@@ -8,7 +8,7 @@ function HeroComponent() {
         <div className="hero-content flex-col lg:flex-row w-screen">
           <div className="w-screen p-2">
             <h1 className="text-[6rem] font-bold gradient-text text-white">
-              Eventory
+              Eventory - test
             </h1>
             <p className="py-3 text-white text-2xl font-semibold pl-1">
               Inventory for Events:{" "}
