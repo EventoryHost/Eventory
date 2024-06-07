@@ -1,7 +1,16 @@
-export default function Home() {
+import React from 'react'
+import { Categories } from './(components)/categories'
+import {Featured} from "./(components)/featured"
+
+type Props = {}
+
+const page = (props: Props) => {
   return (
-    <main>
-    hello
-    </main>
-  );
+    <div>
+        <Categories/>
+        <Featured/>
+    </div>
+  )
 }
+
+export default page

@@ -1,6 +1,6 @@
 import React from "react";
 import { cn } from "@/utils/cn";
-import { BentoGrid, BentoGridItem } from "../../../components/ui/bento-grid";
+import { BentoGrid, BentoGridItem } from "../../components/ui/bento-grid";
 
 export function Categories() {
   return (
