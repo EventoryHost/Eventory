@@ -79,3 +79,7 @@
     font-family: "Poppins", sans-serif;
   font-style: normal;
   }
+
+  .Footer{
+    background-image: url("../../public/footerbg.png");
+  }
