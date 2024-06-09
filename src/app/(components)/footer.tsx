@@ -44,7 +44,7 @@ const Footer = (props: Props) => {
                   width="76"
                   height="105"
                   fill="url(#pattern0_674_672)"
-                  shape-rendering="crispEdges"
+                  shapeRendering="crispEdges"
                 />
               </g>
               <defs>
@@ -55,9 +55,9 @@ const Footer = (props: Props) => {
                   width="84"
                   height="113"
                   filterUnits="userSpaceOnUse"
-                  color-interpolation-filters="sRGB"
+                  colorInterpolationFilters="sRGB"
                 >
-                  <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                  <feFlood floodOpacity="0" result="BackgroundImageFix" />
                   <feColorMatrix
                     in="SourceAlpha"
                     type="matrix"

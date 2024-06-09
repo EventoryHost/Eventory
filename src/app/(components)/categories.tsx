@@ -1,7 +1,5 @@
 import React from "react";
-import { cn } from "@/utils/cn";
 import { BentoGrid, BentoGridItem } from "../../components/ui/bento-grid";
-import DropdownBar from "./searchbox";
 
 export function Categories() {
   return (
