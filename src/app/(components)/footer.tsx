@@ -44,7 +44,6 @@ const Footer = (props: Props) => {
                   width="76"
                   height="105"
                   fill="url(#pattern0_674_672)"
-                  shapeRendering="crispEdges"
                 />
               </g>
               <defs>
