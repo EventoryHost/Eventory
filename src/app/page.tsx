@@ -1,14 +1,19 @@
 import React from 'react'
 import { Categories } from './(components)/categories'
-import {Featured} from "./(components)/featured"
+import { Featured } from "./(components)/featured"
+import Feed from './(components)/Feed'
+import Sectiontwo from './(components)/sectiontwo'
+
 
 type Props = {}
 
 const page = (props: Props) => {
   return (
     <div>
-        <Categories/>
-        <Featured/>
+      <Feed />
+      <Sectiontwo />
+      <Categories />
+      <Featured />
     </div>
   )
 }

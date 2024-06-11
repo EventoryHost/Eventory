@@ -1,3 +1,4 @@
+const { nextui } = require('@nextui-org/theme');
 import type { Config } from "tailwindcss"
 
 const config = {
@@ -7,7 +8,8 @@ const config = {
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
-	],
+    "./node_modules/@nextui-org/theme/dist/components/(autocomplete|button|ripple|spinner|input|listbox|divider|popover|scroll-shadow).js"
+  ],
   prefix: "",
   theme: {
     container: {
@@ -74,7 +76,7 @@ const config = {
       },
     },
   },
-  plugins: [require('daisyui'),require("tailwindcss-animate")],
+  plugins: [require('daisyui'), nextui(), require("tailwindcss-animate")],
 } satisfies Config
 
 export default config

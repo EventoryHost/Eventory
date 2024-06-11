@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Footer from "./(components)/footer";
 import "./globals.css";
+import Nav from "./(components)/nav";
 
 export const metadata: Metadata = {
   title: "Eventory",
@@ -24,8 +25,13 @@ export default function RootLayout({
           rel="stylesheet"
         />
         <link rel="icon" href="/logo-with-bg.svg" />
+
       </head>
+
       <body>
+        <header>
+          <Nav />
+        </header>
         {children}
         <footer>
           <Footer />
