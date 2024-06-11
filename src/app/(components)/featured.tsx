@@ -1,3 +1,5 @@
+"use client"
+
 import * as React from "react";
 
 import { Card, CardContent } from "@/components/ui/card";
@@ -9,6 +11,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import StarIcon from '@mui/icons-material/Star';
+import Autoplay from "embla-carousel-autoplay"
 
 const venues = [
   {
@@ -68,12 +71,18 @@ const venues = [
 ]
 
 export function Featured() {
+
+  const plugin = React.useRef(
+    Autoplay({ delay: 2000, stopOnInteraction: true })
+  )
+
+
   return (
-    <div className="w-full flex items-center justify-between md:p-9 px-[7px] bg-[#D5D6E9] flex-col">
+    <div className="w-full flex items-center justify-between md:p-9 px-[7px] bg-[#ced0f5] flex-col">
       <div className="flex mt-5 md:mt-0 md:w-full px-0 justify-between md:px-[5rem] md:items-center items-start">
         <div className="">
           <h1 className="md:text-5xl text-2xl font-poppins font-bold">Featured Vendors</h1>
-          <p className="md:text-l w-[150%] md:w-[100%] text-xs font-poppins text-gray-500 mt-2">
+          <p className="md:text-l w-[150%] md:w-[100%] md:text-sm text-xs font-poppins text-gray-700 mt-2">
             Select and contact any vendors you like from the following
           </p>
         </div>
@@ -81,14 +90,19 @@ export function Featured() {
           See all
         </button>
       </div>
-      <Carousel className="w-full max-w-[69%] mb-4 md:mb-0 md:max-w-[83%] mt-4">
+      <Carousel
+       plugins={[plugin.current]}
+       className="w-full max-w-[69%] mb-4 md:mb-0 md:max-w-[83%] mt-4"
+       onMouseEnter={plugin.current.stop}
+       onMouseLeave={plugin.current.reset}
+       >
         <CarouselContent className="-ml-1">
           {venues.map((venue, index) => (
             <CarouselItem
               key={index}
               className="pl-1 md:basis-1/2 lg:basis-1/3"
             >
-              <div className="md:p-4 p-1 md:w-[23rem] w-[100%]">
+              <div className="md:p-4 p-1 md:w-[100%] w-[100%]">
                 <div className="rounded-xl w-83 bg-white shadow-md">
                   <figure>
                     <img

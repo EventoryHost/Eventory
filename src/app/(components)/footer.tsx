@@ -3,7 +3,6 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import FacebookIcon from "@mui/icons-material/Facebook";
 
-import logo from "../../public/logo.svg";
 
 type Props = {};
 
@@ -44,7 +43,6 @@ const Footer = (props: Props) => {
                   width="76"
                   height="105"
                   fill="url(#pattern0_674_672)"
-                  shapeRendering="crispEdges"
                 />
               </g>
               <defs>
