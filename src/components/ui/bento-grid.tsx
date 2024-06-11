@@ -1,5 +1,6 @@
 import React from "react";
 import { cn } from "@/utils/cn";
+import Image from "next/image";
 
 export const BentoGrid = ({
   className,
@@ -32,7 +33,7 @@ export const BentoGridItem = ({
   return (
     <div
       className={cn(
-        "relative row-span-1 rounded-xl md:min-h-[13rem] group/bento hover:shadow-xl transition duration-200 shadow-input dark:shadow-none dark:bg-black dark:border-white/[0.2] bg-white border border-transparent flex flex-col overflow-hidden",
+        "relative row-span-1 rounded-xl md:min-h-[13rem] group/bento hover:shadow-2xl transition duration-200 shadow-xl dark:shadow-none dark:bg-black  bg-white flex flex-col overflow-hidden",
         className
       )}
     >
