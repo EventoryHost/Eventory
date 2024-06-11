@@ -103,25 +103,26 @@ const DropdownBar: React.FC = () => {
     return (
         <div className="flex justify-between items-center w-full flex-col md:flex-row border border-gray-300 rounded-2xl">
             <div className="flex justify-between items-center w-full">
-                <div className="flex pl-6 items-center text-black">
-                    <img src="/event.svg" alt="" />
+                <div className="flex pl-[2.8rem] items-center text-black">
+                    <img className="mr-2" src="/event.svg" alt="" />
                     <Dropdown label="Event" />
                     <div className="border-l border-gray-300 h-8 ml-4"></div>
                 </div>
-                <div className="flex items-center ml-4">
-                    <img src="/Location.svg" alt="" />
+                <div className="flex items-center pl-[1.5rem] pr-3">
+                    <img className="mr-2" src="/Location.svg" alt="" />
                     <Dropdown label="Location" />
                     <div className="border-l border-gray-300 h-8 ml-4"></div>
                 </div>
                 <div className="flex items-center ml-4">
-                    <img src="/Calendar.svg" alt="" />
+                    <img className="mr-2" src="/Calendar.svg" alt="" />
                     <Dropdown label="Dates" />
                 </div>
             </div>
             <div className="flex ml-4">
-                <button className="py-4 pr-10 pl-10 md:rounded-l-sm text-white bg-[#2E3192] hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-sm text-xs h-full w-full border-none rounded-2xl">Explore</button>
+                <button className="py-4 pr-[4rem] pl-[4rem] md:rounded-l-sm text-white bg-[#2E3192] hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-sm text-xs h-full w-full border-none rounded-2xl">Explore</button>
             </div>
         </div>
+
     );
 }
 
