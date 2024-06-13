@@ -1,10 +1,13 @@
-"use client"
+"use client";
 
 import React, { useState } from "react";
 import Image from "next/image";
+import { Categories, handleSearch, handleSearchAbort, handleSearchClick } from "@/controllers/search";
 
 const Nav: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [query, setQuery] = useState("");
+  const [results, setResults] = useState<Categories[]>([]);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -53,12 +56,32 @@ const Nav: React.FC = () => {
                 id="default-search"
                 className="block w-full lg:w-[27rem] p-2 pl-12 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50"
                 placeholder="Search for vendors, occasions or location"
-                // value={query}
-                // onChange={handleSearch}
-                // onClick={handleSearchClick}
-                // onBlur={handleSearchAbort}
+                value={query}
+                onChange={async (e) => {
+                  const value = e.target.value;
+                  setQuery(value);
+                  setResults(await handleSearch(value))
+                 }}
+                onClick={async () => setResults(await handleSearchClick())}
+                onBlur={async () => setResults(await handleSearchAbort())}
                 required
               />
+              {results.length > 0 && (
+                <ul className="absolute z-10 mt-1 w-full bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-y-auto">
+                  {results.map((result, index) => (
+                    <li
+                      key={index}
+                      className="p-2 hover:bg-gray-200 cursor-pointer"
+                      onClick={() => {
+                        setQuery(result.category);
+                        setResults([]);
+                      }}
+                    >
+                      {result.category}
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           </form>
         </div>
