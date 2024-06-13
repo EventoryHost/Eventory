@@ -21,7 +21,7 @@ const Feed: React.FC = () => {
     <>
       <div className="md:h-[90vh] h-[70vh] flex md:flex-row flex-col w-[100%]">
         <div className="flex lg:w-[50%] w-[100%] h-[100%] items-center justify-center">
-          <div className="flex flex-col items-start min mt-[4%] justify-center md:mb-[20%] mb-[1%] px-[4%] h-full">
+          <div className="flex flex-col items-start min mt-[10%] justify-center md:mb-[20%] mb-[1%] px-[4%] h-full">
             <h1 className="md:text-6xl text-4xl font-bold">
               Find the Perfect Vendors for Your Event
             </h1>
