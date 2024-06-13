@@ -33,31 +33,6 @@ const Sectiontwo = () => {
                     </div>
                 </div>
             </div>
-
-            <div className='pl-12 pb-12'>
-                <p className="text-4xl font-semibold ">How it works</p>
-            </div>
-
-            <div className="flex justify-around pt-3 pb-12">
-                <div><p className='font-medium  pl-6'>1.  Explore</p>
-                    <div className='py-2'>
-                        <img src="/Group 39655.svg" alt="" />
-                    </div>
-                    <div className='font-light text-xs text-center '>Discover the perfect vendors for your <br></br> event from our diverse selection. </div>
-                </div>
-                <div><p className='font-medium  pl-6'>2.  Evaluate</p>
-                    <div className='py-12'>
-                        <img src="/Group 39656-2.svg" alt="" />
-                    </div>
-                    <div className='font-light text-xs text-center '>Compare vendors based on reviews, <br></br> services, availability, and pricing.  </div>
-                </div>
-                <div><p className='font-medium  pl-6'>3.  Secure</p>
-                    <div className='pt-7 pb-[4.4rem]'>
-                        <img src="/Group 39657-2.svg" alt="" />
-                    </div>
-                    <div className='font-light text-xs text-center '>Book your chosen vendors easily <br></br> and securely through our platform. </div>
-                </div>
-            </div>
         </div>
     )
 }

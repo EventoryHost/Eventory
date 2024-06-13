@@ -7,7 +7,7 @@ import Sectiontwo from './sectiontwo';
 
 const Feed: React.FC = () => {
     return (
-        <div className="h-fit">
+        <div className="h-fit w-[100%]">
             <div className="flex justify-between items-start h-full">
                 <div className="flex-1 flex flex-col pl-10 pt-20">
                     <h1 className='text-5xl  font-bold leading-[60px]'>Find the perfect <br></br> Vendors for your <br></br> Event</h1>
