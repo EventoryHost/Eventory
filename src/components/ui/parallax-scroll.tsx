@@ -16,21 +16,21 @@ export const ParallaxScroll = ({ className }: { className: string }) => {
         '/parallax/Frame 427318909.png',
         '/parallax/Frame 427318907.png',
     ];
-    
+
     const doubledImages = [...images, ...images, ...images];
     const doubledImages2 = [...images2, ...images2, ...images2];
-    
+
     const animationFirst = useAnimation();
     const animationSecond = useAnimation();
 
     useEffect(() => {
         animationFirst.start({ y: -1025, transition: { duration: 20, ease: "linear", repeat: Infinity, repeatType: "loop" } });
-        animationSecond.start({ y: -1025, transition: { duration: 20, ease: "linear", repeat: Infinity, repeatType: "loop" } });
+        animationSecond.start({ y: -800, transition: { duration: 20, ease: "linear", repeat: Infinity, repeatType: "loop" } });
     }, [animationFirst, animationSecond]);
 
     return (
         <div className={cn("h-full p-0 items-start w-full overflow-hidden", className)}>
-            <div className="grid grid-cols-1 md:grid-cols-2 items-start m-0 p-0 max-w-5xl mx-auto gap-3 px-1">
+            <div className="grid grid-cols-1 md:grid-cols-2 items-start m-0 p-0 max-w-5xl mx-auto gap-9 px-1">
                 <div className="grid gap-10 w-full overflow-hidden" style={{ height: '1025px' }}>
                     {doubledImages.map((el, idx) => (
                         <motion.div

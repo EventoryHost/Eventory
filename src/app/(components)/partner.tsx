@@ -22,8 +22,8 @@ export function Partner() {
               i === 0
                 ? "md:row-span-2 md:col-span-2"
                 : i === 1 || i === 2
-                ? "md:col-span-2"
-                : ""
+                  ? "md:col-span-2"
+                  : ""
             }
             imageUrl={item.imageUrl}
           />
@@ -38,9 +38,9 @@ export function Partner() {
             Planning Partner
           </h2>
         </div>
-        <p className="text-gray-900 lg:text-xl lg:w-[65%]">
+        <p className="text-gray-900 lg:text-xl lg:w-[95%]">
           Our platform connects you with top vendors for a seamless event
-          planning experience, ensuring a stress-free planning process for
+          planning experience, ensuring a stress free planning process for
           weddings, corporate events, birthday parties, and any special
           occasion.
         </p>

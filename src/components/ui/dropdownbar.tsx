@@ -73,9 +73,8 @@ const Dropdown: React.FC<DropdownProps> = ({ label }) => {
       ) : (
         <div
           id="dropdown"
-          className={`z-50 ${
-            isDropdownVisible ? "block" : "hidden"
-          } bg-white divide-y divide-gray-100 rounded-lg shadow w-32 dark:bg-gray-700 absolute mt-1`}
+          className={`z-50 ${isDropdownVisible ? "block" : "hidden"
+            } bg-white divide-y divide-gray-100 rounded-lg shadow w-32 dark:bg-gray-700 absolute mt-1`}
         >
           <ul
             className="py-1 text-xs text-gray-700 dark:text-gray-200"
@@ -150,10 +149,11 @@ const DropdownBar: React.FC = () => {
         </div>
       </div>
       <div className="w-full md:w-auto">
-        <button className="py-2 w-full md:py-4 md:pr-16 md:pl-16 text-white bg-[#2E3192] hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-sm text-xs md:rounded-r-xl rounded-br-box rounded-bl-xl">
+        <button className="py-2 w-full md:w-auto md:py-4 md:px-16 text-white bg-[#2E3192] hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 text-xs md:text-sm rounded-xl md:rounded-r-xl md:rounded-l-none">
           Explore
         </button>
       </div>
+
     </div>
   );
 };
