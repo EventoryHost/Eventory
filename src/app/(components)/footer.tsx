@@ -16,15 +16,19 @@ const Footer = (props: Props) => {
               Ready to Plan Your Event ?
             </h1>
             <p className="md:text-sm text-xs text-gray-200 w-[150%] md:mt-5 mt-2">
-              Start discovering the best vendors for your event today.<span className="block md:inline"> It&apos;s free and easy to get started!</span>
+              Start discovering the best vendors for your event today.
+              <span className="block md:inline">
+                {" "}
+                It&apos;s free and easy to get started!
+              </span>
             </p>
-
           </div>
           <div>
             <div className="bg-[#2E3192] text-white md:px-5 md:py-4 text-sm py-3 rounded-sm md:w-[9rem] md:rounded-xl w-[6rem] md:mt-0 -mt-2.5 -mr-4 shadow-md rounded-xl">
-              <a href="#" className="block w-full h-full text-center">Book now</a>
+              <a href="#" className="block w-full h-full text-center">
+                Book now
+              </a>
             </div>
-
           </div>
         </div>
       </div>
@@ -56,7 +60,7 @@ const Footer = (props: Props) => {
           </nav>
           <nav className="flex gap-9">
             <a
-              href=""
+              href="https://www.instagram.com/eventoryofficial/"
               className="flex p-2 shadow-md justify-center items-center text-white rounded-full bg-indigo-900"
             >
               <InstagramIcon />
