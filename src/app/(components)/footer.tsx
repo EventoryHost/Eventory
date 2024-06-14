@@ -16,7 +16,7 @@ const Footer = (props: Props) => {
               Ready to Plan Your Event ?
             </h1>
             <p className="md:text-sm text-xs text-gray-200 w-[150%] md:mt-5 mt-2">
-              Start discovering the best vendors for your event today. It's free and easy to get started!
+              Start discovering the best vendors for your event today. It&apos;s free and easy to get started!
             </p>
           </div>
           <div>
