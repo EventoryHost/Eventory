@@ -24,11 +24,11 @@ const Nav: React.FC = () => {
   return (
     <nav className="bg-white border-b-2 border-gray-300 dark:bg-gray-900 dark:border-gray-700">
       <div className=" flex flex-wrap gap-0 items-center justify-between mx-auto p-4">
-        <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
+        <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse sm:pl-12">
           <Image
-            width={40}
-            height={40}
-            src="./logo-with-bg.svg"
+            width={30}
+            height={30}
+            src="/logo.svg"
             alt="Eventory Logo"
             className="h-10"
           />
