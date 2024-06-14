@@ -78,15 +78,15 @@ export function Featured() {
 
 
   return (
-    <div className="w-full flex items-center justify-between md:p-9 px-[7px] bg-[#ced0f5] flex-col">
-      <div className="flex mt-5 md:mt-0 md:w-full px-0 justify-between md:px-[5rem] md:items-center items-start">
+    <div className="w-full flex items-center justify-between md:p-9 px-3 bg-[#ced0f5] flex-col">
+      <div className="flex md:flex-row flex-col mt-5 md:mt-0 md:w-full px-0 justify-between md:px-[5rem] md:items-center items-start">
         <div className="">
           <h1 className="md:text-5xl text-2xl font-poppins font-bold">Featured Vendors</h1>
-          <p className="md:text-l w-[150%] md:w-[100%] md:text-sm text-xs font-poppins text-gray-700 mt-2">
+          <p className="md:text-l md:w-[100%] w-[85%] md:text-sm text-xs font-poppins text-gray-700 mt-2">
             Select and contact any vendors you like from the following
           </p>
         </div>
-        <button className="bg-[#2E3192] max-w-[10rem] md:text-sm md:mt-0 mt-2 shadow-md md:rounded-xl md:p-3 md:px-8 p-2 w-[50%] rounded-md text-xs hover:bg-indigo-600 text-gray-200">
+        <button className="bg-[#2E3192] max-w-[10rem] md:text-sm md:mt-0 mt-4 shadow-md md:rounded-xl md:p-3 md:px-8 p-2 w-[50%] rounded-md text-xs hover:bg-indigo-600 text-gray-200">
           See all
         </button>
       </div>
@@ -114,7 +114,7 @@ export function Featured() {
                   <div className="mt-2 px-2 pb-1">
                     <div className="flex justify-between w-full">
                       <h2 className="font-poppins font-semibold md:text-2xl text-md">{venue.name}</h2>
-                      <div className="bg-[#D5D6E9] font-md rounded-xl md:p-1 min-h-fit md:text-[1rem] text-[0.6rem] flex items-center md:px-2 p-1 md:gap-2"><StarIcon className="text-[0.7rem] md:text-[0.95rem]"/> {venue.rating}</div>
+                      <div className="bg-[#D5D6E9] h-fit font-md rounded-xl md:p-1 min-h-fit md:text-[1rem] text-[0.6rem] flex items-center md:px-2 p-1 md:gap-2"><StarIcon className="text-[0.7rem] md:text-[0.95rem]"/> {venue.rating}</div>
                     </div>
                     <p className="text-[#605ED8] font-bold text-xs md:text-lg mt-3">₹{venue.price} onwards</p>
                     <div className="card-actions justify-end">

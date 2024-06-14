@@ -30,19 +30,19 @@ export const ParallaxScroll = ({ className }: { className: string }) => {
 
     return (
         <div className={cn("h-full p-0 items-start w-full overflow-hidden", className)}>
-            <div className="grid grid-cols-1 md:grid-cols-2 items-start m-0 p-0 max-w-5xl mx-auto gap-10 px-1">
+            <div className="grid grid-cols-1 md:grid-cols-2 items-start m-0 p-0 max-w-5xl mx-auto gap-3 px-1">
                 <div className="grid gap-10 w-full overflow-hidden" style={{ height: '1025px' }}>
                     {doubledImages.map((el, idx) => (
                         <motion.div
                             key={"grid-1" + idx}
                             animate={animationFirst}
-                            className="relative h-[300px] w-[250px]"
+                            className="relative h-[300px] lg:w-[100%] w-[200px]"
                             style={{ marginBottom: 0 }}
                         >
                             <div className="h-full w-full">
                                 <Image
                                     src={el}
-                                    className="h-full w-full object-cover rounded-md"
+                                    className="h-full w-full object-cover rounded-xl"
                                     layout="fill"
                                     alt="thumbnail"
                                     loading="eager"
@@ -56,13 +56,13 @@ export const ParallaxScroll = ({ className }: { className: string }) => {
                         <motion.div
                             key={"grid-2" + idx}
                             animate={animationSecond}
-                            className="relative h-[300px] w-[250px]"
+                            className="relative h-[300px] lg:w-[100%] w-[200px]"
                             style={{ marginBottom: 0 }}
                         >
                             <div className="h-full w-full">
                                 <Image
                                     src={el}
-                                    className="h-full w-full object-cover rounded-md"
+                                    className="h-full w-full object-cover rounded-xl"
                                     layout="fill"
                                     alt="thumbnail"
                                     loading="eager"

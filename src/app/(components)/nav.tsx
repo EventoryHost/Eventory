@@ -23,7 +23,7 @@ const Nav: React.FC = () => {
 
   return (
     <nav className="bg-white border-b-2 border-gray-300 dark:bg-gray-900 dark:border-gray-700">
-      <div className="max-w-screen-full flex flex-wrap gap-0 items-center justify-between mx-auto p-4">
+      <div className=" flex flex-wrap gap-0 items-center justify-between mx-auto p-4">
         <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
           <Image
             width={40}
