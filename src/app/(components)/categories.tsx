@@ -4,13 +4,13 @@ import { BentoGrid, BentoGridItem } from "../../components/ui/bento-grid";
 
 export function Categories() {
   return (
-    <section className="pt-7 pb-7 md:px-3 px-[7px]">
-      <div className="flex w-full justify-between md:px-[7%] md:items-center items-start">
+    <section className="pt-7 pb-7 md:px-3 px-3">
+      <div className="flex flex-col md:flex-row w-full justify-between md:px-[7%] md:items-center items-start">
         <div className="flex flex-col">
           <h1 className="md:text-5xl text-3xl font-bold">Explore Events</h1>
           <p className="md:text-l md:text-sm text-xs text-gray-700 mt-2">Search through all types of events through categories</p>
         </div>
-        <button className="bg-[#2E3192] md:rounded-xl max-w-[9rem] md:py-3 md:text-sm md:px-8 hover:bg-indigo-600 text-gray-200 p-1 text-xs w-[50%] py-2 rounded-md md:mt-0 mt-1 shadow-md">View More</button>
+        <button className="bg-[#2E3192] md:rounded-xl max-w-[9rem] md:py-3 md:text-sm md:px-8 hover:bg-indigo-600 text-gray-200 p-1 text-xs w-[50%] py-2 rounded-md  mt-3 shadow-md">View More</button>
       </div>
       <BentoGrid className="max-w-6xl mx-auto mt-[2rem] md:mt-[3rem]">
         {items.map((item, i) => (

@@ -1,5 +1,6 @@
 const { nextui } = require("@nextui-org/theme");
 import type { Config } from "tailwindcss";
+import defaultTheme from "tailwindcss/defaultTheme";
 
 const {
   default: flattenColorPalette,
@@ -22,6 +23,10 @@ const config = {
       screens: {
         "2xl": "1400px",
       },
+    },
+    screens: {
+      "xs": "320px",
+      ...defaultTheme.screens,
     },
     extend: {
       colors: {
