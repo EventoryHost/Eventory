@@ -2,7 +2,12 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { Categories, handleSearch, handleSearchAbort, handleSearchClick } from "@/controllers/search";
+import {
+  Categories,
+  handleSearch,
+  handleSearchAbort,
+  handleSearchClick,
+} from "@/controllers/search";
 
 const Nav: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);

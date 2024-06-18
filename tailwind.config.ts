@@ -25,7 +25,7 @@ const config = {
       },
     },
     screens: {
-      "xs": "320px",
+      xs: "320px",
       ...defaultTheme.screens,
     },
     extend: {
@@ -92,7 +92,12 @@ const config = {
       },
     },
   },
-  plugins: [require("daisyui"), nextui(), require("tailwindcss-animate"), addVariablesForColors],
+  plugins: [
+    require("daisyui"),
+    nextui(),
+    require("tailwindcss-animate"),
+    addVariablesForColors,
+  ],
 } satisfies Config;
 
 export default config;
@@ -100,9 +105,9 @@ export default config;
 function addVariablesForColors({ addBase, theme }: any) {
   let allColors = flattenColorPalette(theme("colors"));
   let newVars = Object.fromEntries(
-    Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
+    Object.entries(allColors).map(([key, val]) => [`--${key}`, val]),
   );
- 
+
   addBase({
     ":root": newVars,
   });
