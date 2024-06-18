@@ -12,7 +12,7 @@ const Grow = (props: Props) => {
           <p className="md:text-xl text-sm md:text-left text-center">
             Our platform revolutionizes event planning by effortlessly
             connecting you with a vast network of customers, ensuring a seamless
-            and stress-free organizing experience. Whether it's a dream wedding,
+            and stress-free organizing experience. Whether it&apos;s a dream wedding,
             a high-profile corporate event, an unforgettable birthday party, or
             any celebration you envision, we guarantee unparalleled convenience
             and success in every detail.
