@@ -14,7 +14,7 @@ const Nav: React.FC = () => {
     ["Vendors", "#"],
     ["Events", "#"],
     ["Special Services", "#"],
-    ["Business", "#"],
+    ["Business", "/business"],
   ];
 
   const toggleMenu = () => {

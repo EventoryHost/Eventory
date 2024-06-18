@@ -9,13 +9,13 @@ type Props = {};
 const Footer = (props: Props) => {
   return (
     <div className="bg-gradient-to-r from-[#605ED8] to-[#CA81FE] flex flex-col justify-center items-center">
-      <div className="Footer w-[98%] md:h-[30vh] h-[20vh] mt-2 flex justify-center">
+      <div className="Footer w-[98%] 3xl:h-[20vh] md:h-[30vh] h-[20vh] mt-2 flex justify-center">
         <div className="w-[85%] flex justify-between items-start pt-8">
           <div>
             <h1 className="md:text-4xl md:w-full w-[90%] text-xl font-semibold text-white">
               Ready to Plan Your Event ?
             </h1>
-            <p className="md:text-sm text-xs text-gray-200 w-[150%] md:mt-5 mt-2">
+            <p className="md:text-lg md:w-[80%] text-xs text-white md:font-semibold w-[150%] md:mt-5 mt-2">
               Start discovering the best vendors for your event today.
               <span className="block md:inline">
                 {" "}
@@ -24,7 +24,7 @@ const Footer = (props: Props) => {
             </p>
           </div>
           <div>
-            <div className="bg-[#2E3192] text-white md:px-5 md:py-4 text-sm py-3 rounded-sm md:w-[9rem] md:rounded-xl w-[6rem] md:mt-0 -mt-2.5 -mr-4 shadow-md rounded-xl">
+            <div className="bg-[#2E3192] text-white md:px-5 md:py-4 text-sm py-3 md:w-[9rem] md:rounded-xl w-[6rem] md:mt-0 -mt-2.5 -mr-4 shadow-md rounded-xl">
               <a href="#" className="block w-full h-full text-center">
                 Book now
               </a>
@@ -32,7 +32,7 @@ const Footer = (props: Props) => {
           </div>
         </div>
       </div>
-      <div className="mb-7 md:mt-5 mt-9 md:mt-0 w-[95%] md:mt-0 rounded-xl bg-gradient-to-r from-indigo-200 to-purple-300 bg-white shadow-lg">
+      <div className="mb-7 mt-9 w-[95%] md:mt-0 rounded-xl bg-gradient-to-r from-indigo-200 to-purple-300 bg-white shadow-lg">
         <section className="footer p-10">
           <aside>
             <Image

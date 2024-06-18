@@ -27,6 +27,7 @@ const config = {
     screens: {
       "xs": "320px",
       ...defaultTheme.screens,
+      "3xl" : "2560px"
     },
     extend: {
       colors: {

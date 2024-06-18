@@ -44,7 +44,7 @@ export function Partner() {
           weddings, corporate events, birthday parties, and any special
           occasion.
         </p>
-        <button className="text-sm bg-[#2E3192] p-4 rounded-md text-white">
+        <button className=" bg-[#2E3192] p-4 flex gap-2 justify-center items-center text-lg rounded-md text-white">
           <span>Know More</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"

@@ -4,7 +4,6 @@ import { useMediaQuery } from "react-responsive";
 import { ParallaxScroll } from "@/components/ui/parallax-scroll";
 import Nav from "./nav"; // Import the Nav component
 import DropdownBar from "@/components/ui/dropdownbar";
-import Sectiontwo from "./sectiontwo";
 import { Horizontal } from "./horizontal";
 
 const Feed: React.FC = () => {

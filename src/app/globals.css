@@ -83,3 +83,8 @@
   .Footer{
     background-image: url("../../public/footerbg.png");
   }
+
+  body {
+    overflow-x: hidden;
+    min-width: 100%;
+  }
