@@ -8,9 +8,13 @@ export function Categories() {
       <div className="flex flex-col md:flex-row w-full justify-between md:px-[7%] md:items-center items-start">
         <div className="flex flex-col">
           <h1 className="md:text-5xl text-3xl font-bold">Explore Events</h1>
-          <p className="md:text-l md:text-sm text-xs text-gray-700 mt-2">Search through all types of events through categories</p>
+          <p className="md:text-l md:text-sm text-xs text-gray-700 mt-2">
+            Search through all types of events through categories
+          </p>
         </div>
-        <button className="bg-[#2E3192] md:rounded-xl max-w-[9rem] md:py-3 md:text-sm md:px-8 hover:bg-indigo-600 text-gray-200 p-1 text-xs w-[50%] py-2 rounded-md  mt-3 shadow-md">View More</button>
+        <button className="bg-[#2E3192] md:rounded-xl max-w-[9rem] md:py-3 md:text-sm md:px-8 hover:bg-indigo-600 text-gray-200 p-1 text-xs w-[50%] py-2 rounded-md  mt-3 shadow-md">
+          View More
+        </button>
       </div>
       <BentoGrid className="max-w-6xl mx-auto mt-[2rem] md:mt-[3rem]">
         {items.map((item, i) => (
@@ -18,7 +22,17 @@ export function Categories() {
             key={i}
             title={item.title}
             imageUrl={item.imageUrl}
-            className={i === 4  ? "md:col-span-2 cursor-pointer" : i === 2 || i == 5 ? "md:row-span-2 md:col-span-1 col-span-2 cursor-pointer":  i == 1 ? "col-span-2 md:col-span-1": i === 6 ? "col-span-2 cursor-pointer":"cursor-pointer"}
+            className={
+              i === 4
+                ? "md:col-span-2 cursor-pointer"
+                : i === 2 || i == 5
+                  ? "md:row-span-2 md:col-span-1 col-span-2 cursor-pointer"
+                  : i == 1
+                    ? "col-span-2 md:col-span-1"
+                    : i === 6
+                      ? "col-span-2 cursor-pointer"
+                      : "cursor-pointer"
+            }
           />
         ))}
       </BentoGrid>
@@ -50,7 +64,7 @@ const items = [
   {
     title: "Night",
     imageUrl:
-      "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     title: "Wedding",

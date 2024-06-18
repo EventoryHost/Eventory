@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import * as React from "react";
 
@@ -10,78 +10,78 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import StarIcon from '@mui/icons-material/Star';
-import Autoplay from "embla-carousel-autoplay"
+import StarIcon from "@mui/icons-material/Star";
+import Autoplay from "embla-carousel-autoplay";
 
 const venues = [
   {
     name: "Krishna Vendors",
     rating: "4.5",
     price: "4000",
-    category: "Wedding cakes , Western suburbs"
+    category: "Wedding cakes , Western suburbs",
   },
   {
     name: "Krishna Vendors",
     rating: "4.5",
     price: "4000",
-    category: "Wedding cakes , Western suburbs"
+    category: "Wedding cakes , Western suburbs",
   },
   {
     name: "Krishna Vendors",
     rating: "4.5",
     price: "4000",
-    category: "Wedding cakes , Western suburbs"
+    category: "Wedding cakes , Western suburbs",
   },
   {
     name: "Krishna Vendors",
     rating: "4.5",
     price: "4000",
-    category: "Wedding cakes , Western suburbs"
+    category: "Wedding cakes , Western suburbs",
   },
   {
     name: "Krishna Vendors",
     rating: "4.5",
     price: "4000",
-    category: "Wedding cakes , Western suburbs"
+    category: "Wedding cakes , Western suburbs",
   },
   {
     name: "Krishna Vendors",
     rating: "4.5",
     price: "4000",
-    category: "Wedding cakes , Western suburbs"
+    category: "Wedding cakes , Western suburbs",
   },
   {
     name: "Krishna Vendors",
     rating: "4.5",
     price: "4000",
-    category: "Wedding cakes , Western suburbs"
+    category: "Wedding cakes , Western suburbs",
   },
   {
     name: "Krishna Vendors",
     rating: "4.5",
     price: "4000",
-    category: "Wedding cakes , Western suburbs"
+    category: "Wedding cakes , Western suburbs",
   },
   {
     name: "Krishna Vendors",
     rating: "4.5",
     price: "4000",
-    category: "Wedding cakes , Western suburbs"
+    category: "Wedding cakes , Western suburbs",
   },
-]
+];
 
 export function Featured() {
-
   const plugin = React.useRef(
-    Autoplay({ delay: 2000, stopOnInteraction: true })
-  )
-
+    Autoplay({ delay: 2000, stopOnInteraction: true }),
+  );
 
   return (
     <div className="w-full flex items-center justify-between md:p-9 px-3 bg-[#ced0f5] flex-col">
       <div className="flex md:flex-row flex-col mt-5 md:mt-0 md:w-full px-0 justify-between md:px-[5rem] md:items-center items-start">
         <div className="">
-          <h1 className="md:text-5xl text-2xl font-poppins font-bold">Featured Vendors</h1>
+          <h1 className="md:text-5xl text-2xl font-poppins font-bold">
+            Featured Vendors
+          </h1>
           <p className="md:text-l md:w-[100%] w-[85%] md:text-sm text-xs font-poppins text-gray-700 mt-2">
             Select and contact any vendors you like from the following
           </p>
@@ -91,11 +91,11 @@ export function Featured() {
         </button>
       </div>
       <Carousel
-       plugins={[plugin.current]}
-       className="w-full max-w-[69%] mb-4 md:mb-0 md:max-w-[83%] mt-4"
-       onMouseEnter={plugin.current.stop}
-       onMouseLeave={plugin.current.reset}
-       >
+        plugins={[plugin.current]}
+        className="w-full max-w-[69%] mb-4 md:mb-0 md:max-w-[83%] mt-4"
+        onMouseEnter={plugin.current.stop}
+        onMouseLeave={plugin.current.reset}
+      >
         <CarouselContent className="-ml-1">
           {venues.map((venue, index) => (
             <CarouselItem
@@ -113,12 +113,21 @@ export function Featured() {
                   </figure>
                   <div className="mt-2 px-2 pb-1">
                     <div className="flex justify-between w-full">
-                      <h2 className="font-poppins font-semibold md:text-2xl text-md">{venue.name}</h2>
-                      <div className="bg-[#D5D6E9] h-fit font-md rounded-xl md:p-1 min-h-fit md:text-[1rem] text-[0.6rem] flex items-center md:px-2 p-1 md:gap-2"><StarIcon className="text-[0.7rem] md:text-[0.95rem]"/> {venue.rating}</div>
+                      <h2 className="font-poppins font-semibold md:text-2xl text-md">
+                        {venue.name}
+                      </h2>
+                      <div className="bg-[#D5D6E9] h-fit font-md rounded-xl md:p-1 min-h-fit md:text-[1rem] text-[0.6rem] flex items-center md:px-2 p-1 md:gap-2">
+                        <StarIcon className="text-[0.7rem] md:text-[0.95rem]" />{" "}
+                        {venue.rating}
+                      </div>
                     </div>
-                    <p className="text-[#605ED8] font-bold text-xs md:text-lg mt-3">₹{venue.price} onwards</p>
+                    <p className="text-[#605ED8] font-bold text-xs md:text-lg mt-3">
+                      ₹{venue.price} onwards
+                    </p>
                     <div className="card-actions justify-end">
-                      <div className="text-gray-500 mt-1 md:text-sm w-full text-xs mr-[5rem]">{venue.category}</div>
+                      <div className="text-gray-500 mt-1 md:text-sm w-full text-xs mr-[5rem]">
+                        {venue.category}
+                      </div>
                     </div>
                   </div>
                 </div>

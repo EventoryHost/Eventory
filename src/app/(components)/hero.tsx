@@ -44,7 +44,7 @@ const Feed: React.FC = () => {
       </div>
       {isMounted && !isMediumScreenOrLarger && (
         <>
-          <Horizontal/>
+          <Horizontal />
         </>
       )}
     </>
