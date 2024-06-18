@@ -16,8 +16,8 @@ const Hero = (props: Props) => {
           </div>
           <div className="md:w-[50%] md:text-lg text-sm">
             <p className="text-center">
-              Unlock your business&apos;s full potential by partnering with us! Join
-              our platform to amplify your reach and connect with a vast,
+              Unlock your business&apos;s full potential by partnering with us!
+              Join our platform to amplify your reach and connect with a vast,
               diverse customer base, fueling your growth and driving your
               success to new heights.
             </p>

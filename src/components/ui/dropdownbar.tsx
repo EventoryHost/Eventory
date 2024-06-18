@@ -10,7 +10,9 @@ interface DropdownProps {
 const Dropdown: React.FC<DropdownProps> = ({ label }) => {
   const [isDropdownVisible, setDropdownVisible] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);
-  const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(
+    new Date(),
+  );
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const toggleDropdown = () => {
@@ -73,8 +75,9 @@ const Dropdown: React.FC<DropdownProps> = ({ label }) => {
       ) : (
         <div
           id="dropdown"
-          className={`z-50 ${isDropdownVisible ? "block" : "hidden"
-            } bg-white divide-y divide-gray-100 rounded-lg shadow w-32 dark:bg-gray-700 absolute mt-1`}
+          className={`z-50 ${
+            isDropdownVisible ? "block" : "hidden"
+          } bg-white divide-y divide-gray-100 rounded-lg shadow w-32 dark:bg-gray-700 absolute mt-1`}
         >
           <ul
             className="py-1 text-xs text-gray-700 dark:text-gray-200"
@@ -153,7 +156,6 @@ const DropdownBar: React.FC = () => {
           Explore
         </button>
       </div>
-
     </div>
   );
 };

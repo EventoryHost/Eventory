@@ -8,7 +8,12 @@ interface ModalProps {
   setSelectedDate: (date: Date | undefined) => void;
 }
 
-const Modal: React.FC<ModalProps> = ({ isOpen, onClose, selectedDate, setSelectedDate }) => {
+const Modal: React.FC<ModalProps> = ({
+  isOpen,
+  onClose,
+  selectedDate,
+  setSelectedDate,
+}) => {
   if (!isOpen) return null;
 
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
