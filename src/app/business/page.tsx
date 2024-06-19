@@ -14,7 +14,7 @@ const page = (props: Props) => {
       <Grow />
       <Section3 />
       <Form />
-      <Footer/>
+      <Footer />
     </div>
   );
 };
