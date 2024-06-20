@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React from "react";
 import Image from "next/image";
@@ -120,14 +120,16 @@ const SignUp = (props: Props) => {
             </div>
             <div className="flex md:items-center md:flex-row flex-col-reverse md:mt-0 mt-9 md:px-0 justify-between w-full gap-3 self-start">
               <div className="flex md:gap-3 xs:text-sm gap-2">
-                <input type="checkbox" id="tc" placeholder="t&c" required/>I agree with{" "}
+                <input type="checkbox" id="tc" placeholder="t&c" required />I
+                agree with{" "}
                 <span className="underline text-[#2E3192]">
                   Terms & Conditions
                 </span>
               </div>
             </div>
             <p className="self-start text-gray-500 xs:text-sm xs:mt-5">
-              To verify it&apos;s you, we will send you an OTP to your mobile number.
+              To verify it&apos;s you, we will send you an OTP to your mobile
+              number.
             </p>
             <div className="self-start w-[80%] h-[1px] bg-gray-300"></div>
             <div className="flex flex-col items-start self-start">
@@ -180,15 +182,18 @@ const SignUp = (props: Props) => {
                     LogIn
                   </Link>
                 </div>
-                <button className="bg-[#2E3192] md:min-w-[10rem] xs:px-3 xs:py-2 xs:w-fit md:px-4 md:py-3 md:w-fit rounded-xl text-white" onClick={handleSubmit}>
+                <button
+                  className="bg-[#2E3192] md:min-w-[10rem] xs:px-3 xs:py-2 xs:w-fit md:px-4 md:py-3 md:w-fit rounded-xl text-white"
+                  onClick={handleSubmit}
+                >
                   Verify
                 </button>
                 <button
-                className="bg-[#2E3192] xs:text-sm md:min-w-[10rem] xs:px-3 xs:py-2 xs:w-fit md:px-4 md:py-3 md:w-fit rounded-xl text-white"
-                onClick={toggleModal}
-              >
-                Open Modal
-              </button>
+                  className="bg-[#2E3192] xs:text-sm md:min-w-[10rem] xs:px-3 xs:py-2 xs:w-fit md:px-4 md:py-3 md:w-fit rounded-xl text-white"
+                  onClick={toggleModal}
+                >
+                  Open Modal
+                </button>
               </div>
             </div>
           </div>
@@ -198,14 +203,18 @@ const SignUp = (props: Props) => {
         <div className="fixed inset-0 flex items-center gap-9 justify-center z-50">
           <div className="bg-white p-6 rounded-lg flex flex-col gap-9 items-center justify-center shadow-lg">
             <h1>Verify OTP</h1>
-            <InputOTP maxLength={6} className="border-[#2E3192]" onChange={(value) => setOtp(value)}>
+            <InputOTP
+              maxLength={6}
+              className="border-[#2E3192]"
+              onChange={(value) => setOtp(value)}
+            >
               <InputOTPGroup>
-                <InputOTPSlot index={0}  className="border-[#2E3192]"/>
-                <InputOTPSlot index={1}  className="border-[#2E3192]"/>
-                <InputOTPSlot index={2}  className="border-[#2E3192]"/>
-                <InputOTPSlot index={3}  className="border-[#2E3192]"/>
-                <InputOTPSlot index={4}  className="border-[#2E3192]"/>
-                <InputOTPSlot index={5}  className="border-[#2E3192]"/>
+                <InputOTPSlot index={0} className="border-[#2E3192]" />
+                <InputOTPSlot index={1} className="border-[#2E3192]" />
+                <InputOTPSlot index={2} className="border-[#2E3192]" />
+                <InputOTPSlot index={3} className="border-[#2E3192]" />
+                <InputOTPSlot index={4} className="border-[#2E3192]" />
+                <InputOTPSlot index={5} className="border-[#2E3192]" />
               </InputOTPGroup>
             </InputOTP>
             <button

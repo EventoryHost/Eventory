@@ -13,7 +13,6 @@ import {
 type Props = {};
 
 const SignUp = (props: Props) => {
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [mobile, setMobile] = useState("");
   const [password, setPassword] = useState("");
@@ -32,7 +31,6 @@ const SignUp = (props: Props) => {
     console.log("Password:", password);
   };
 
-
   return (
     <div className="flex flex-col lg:flex-row w-full min-h-[88vh] overflow-hidden">
       <div className="flex flex-col items-start justify-between lg:max-w-[30%] xs:gap-7 xs:pt-4 md:min-w-[30%] bg-[#FFFFFF]">
@@ -40,7 +38,10 @@ const SignUp = (props: Props) => {
           <h1 className="font-bold lg:text-5xl w-full md:text-4xl text-3xl">
             Welcome back to <span className="text-[#2E3192]">Eventory</span>
           </h1>
-          <p className="md:text-xl md:max-w-[90%]">We are happy to see you back. Please log in to access additional features. </p>
+          <p className="md:text-xl md:max-w-[90%]">
+            We are happy to see you back. Please log in to access additional
+            features.{" "}
+          </p>
         </div>
         <div className="lg:w-full relative h-[10rem]">
           <img
@@ -56,7 +57,7 @@ const SignUp = (props: Props) => {
           <div className="flex flex-col items-center gap-5 min-w-full min-h-full">
             <div className="flex items-center md:flex-row flex-col justify-between gap-5 min-w-full">
               <div className="flex flex-col gap-4 min-w-[40%]">
-                <label htmlFor="phone" >Mobile No.</label>
+                <label htmlFor="phone">Mobile No.</label>
                 <input
                   id="phone"
                   type="text"
@@ -68,7 +69,7 @@ const SignUp = (props: Props) => {
                 />
               </div>
               <div className="flex flex-col gap-4 min-w-[40%]">
-                <label htmlFor="email" >Password</label>
+                <label htmlFor="email">Password</label>
                 <input
                   id="password"
                   type="password"
@@ -82,9 +83,12 @@ const SignUp = (props: Props) => {
             </div>
             <div className="flex md:items-center md:flex-row md:mb-7 flex-col-reverse md:mt-0 mt-9 md:px-0 justify-between w-full gap-3 self-start">
               <div className="flex md:gap-3 xs:text-sm gap-2">
-                <input type="checkbox" id="tc" placeholder="t&c" />Remember me
+                <input type="checkbox" id="tc" placeholder="t&c" />
+                Remember me
               </div>
-              <Link href="/" className="font-semibold underline text-[#2E3192]">Forgot Password ?</Link>
+              <Link href="/" className="font-semibold underline text-[#2E3192]">
+                Forgot Password ?
+              </Link>
             </div>
             <div className="self-start w-[80%] h-[1px] bg-gray-300"></div>
             <div className="flex flex-col items-start self-start">
@@ -130,19 +134,25 @@ const SignUp = (props: Props) => {
               <div className="flex min-w-[56vw] gap-9 md:flex-row flex-col justify-between">
                 <div className="flex gap-2 mt-5 xs:text-sm">
                   Don&apos;t have an account ?{" "}
-                  <Link href={"/customersignup"} className="text-[#2E3192] font-semibold">
+                  <Link
+                    href={"/customersignup"}
+                    className="text-[#2E3192] font-semibold"
+                  >
                     SignUp
                   </Link>
                 </div>
-                <button className="bg-[#2E3192] xs:text-sm md:min-w-[10rem] xs:px-3 xs:py-2 xs:w-fit md:px-4 md:py-3 md:w-fit rounded-xl text-white" onClick={handleSubmit}>
+                <button
+                  className="bg-[#2E3192] xs:text-sm md:min-w-[10rem] xs:px-3 xs:py-2 xs:w-fit md:px-4 md:py-3 md:w-fit rounded-xl text-white"
+                  onClick={handleSubmit}
+                >
                   Login
                 </button>
                 <button
-                className="bg-[#2E3192] xs:text-sm md:min-w-[10rem] xs:px-3 xs:py-2 xs:w-fit md:px-4 md:py-3 md:w-fit rounded-xl text-white"
-                onClick={toggleModal}
-              >
-                Open Modal
-              </button>
+                  className="bg-[#2E3192] xs:text-sm md:min-w-[10rem] xs:px-3 xs:py-2 xs:w-fit md:px-4 md:py-3 md:w-fit rounded-xl text-white"
+                  onClick={toggleModal}
+                >
+                  Open Modal
+                </button>
               </div>
             </div>
           </div>
@@ -152,14 +162,18 @@ const SignUp = (props: Props) => {
         <div className="fixed inset-0 flex items-center gap-9 justify-center z-50">
           <div className="bg-white p-6 rounded-lg flex flex-col gap-9 items-center justify-center shadow-lg">
             <h1>Verify OTP</h1>
-            <InputOTP maxLength={6} className="border-[#2E3192]" onChange={(value) => setOtp(value)}>
+            <InputOTP
+              maxLength={6}
+              className="border-[#2E3192]"
+              onChange={(value) => setOtp(value)}
+            >
               <InputOTPGroup>
-                <InputOTPSlot index={0}  className="border-[#2E3192]"/>
-                <InputOTPSlot index={1}  className="border-[#2E3192]"/>
-                <InputOTPSlot index={2}  className="border-[#2E3192]"/>
-                <InputOTPSlot index={3}  className="border-[#2E3192]"/>
-                <InputOTPSlot index={4}  className="border-[#2E3192]"/>
-                <InputOTPSlot index={5}  className="border-[#2E3192]"/>
+                <InputOTPSlot index={0} className="border-[#2E3192]" />
+                <InputOTPSlot index={1} className="border-[#2E3192]" />
+                <InputOTPSlot index={2} className="border-[#2E3192]" />
+                <InputOTPSlot index={3} className="border-[#2E3192]" />
+                <InputOTPSlot index={4} className="border-[#2E3192]" />
+                <InputOTPSlot index={5} className="border-[#2E3192]" />
               </InputOTPGroup>
             </InputOTP>
             <button

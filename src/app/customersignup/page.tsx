@@ -11,11 +11,9 @@ import {
   InputOTPSlot,
 } from "@/components/ui/input-otp";
 
-
 type Props = {};
 
 const SignUp = (props: Props) => {
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [mobile, setMobile] = useState("");
   const [password, setPassword] = useState("");
@@ -161,18 +159,24 @@ const SignUp = (props: Props) => {
                     LogIn
                   </Link>
                 </div>
-                <Link href={"/signup"} className="border-[#2E3192] flex items-center justify-center border-2 bg-white md:min-w-[10rem] xs:px-3 xs:py-2 xs:w-fit md:w-fit rounded-xl font-semibold text-[#2E3192]">
+                <Link
+                  href={"/signup"}
+                  className="border-[#2E3192] flex items-center justify-center border-2 bg-white md:min-w-[10rem] xs:px-3 xs:py-2 xs:w-fit md:w-fit rounded-xl font-semibold text-[#2E3192]"
+                >
                   Register as Vendor
                 </Link>
-                <button className="bg-[#2E3192] md:min-w-[10rem] xs:px-3 xs:py-2 xs:w-fit md:px-4 md:py-3 md:w-fit rounded-xl text-white" onClick={handleSubmit}>
+                <button
+                  className="bg-[#2E3192] md:min-w-[10rem] xs:px-3 xs:py-2 xs:w-fit md:px-4 md:py-3 md:w-fit rounded-xl text-white"
+                  onClick={handleSubmit}
+                >
                   Sign Up
                 </button>
                 <button
-                className="bg-[#2E3192] xs:text-sm md:min-w-[10rem] xs:px-3 xs:py-2 xs:w-fit md:px-4 md:py-3 md:w-fit rounded-xl text-white"
-                onClick={toggleModal}
-              >
-                Open Modal
-              </button>
+                  className="bg-[#2E3192] xs:text-sm md:min-w-[10rem] xs:px-3 xs:py-2 xs:w-fit md:px-4 md:py-3 md:w-fit rounded-xl text-white"
+                  onClick={toggleModal}
+                >
+                  Open Modal
+                </button>
               </div>
             </div>
           </div>
@@ -182,14 +186,18 @@ const SignUp = (props: Props) => {
         <div className="fixed inset-0 flex items-center gap-9 justify-center z-50">
           <div className="bg-white p-6 rounded-lg flex flex-col gap-9 items-center justify-center shadow-lg">
             <h1>Verify OTP</h1>
-            <InputOTP maxLength={6} className="border-[#2E3192]" onChange={(value) => setOtp(value)}>
+            <InputOTP
+              maxLength={6}
+              className="border-[#2E3192]"
+              onChange={(value) => setOtp(value)}
+            >
               <InputOTPGroup>
-                <InputOTPSlot index={0}  className="border-[#2E3192]"/>
-                <InputOTPSlot index={1}  className="border-[#2E3192]"/>
-                <InputOTPSlot index={2}  className="border-[#2E3192]"/>
-                <InputOTPSlot index={3}  className="border-[#2E3192]"/>
-                <InputOTPSlot index={4}  className="border-[#2E3192]"/>
-                <InputOTPSlot index={5}  className="border-[#2E3192]"/>
+                <InputOTPSlot index={0} className="border-[#2E3192]" />
+                <InputOTPSlot index={1} className="border-[#2E3192]" />
+                <InputOTPSlot index={2} className="border-[#2E3192]" />
+                <InputOTPSlot index={3} className="border-[#2E3192]" />
+                <InputOTPSlot index={4} className="border-[#2E3192]" />
+                <InputOTPSlot index={5} className="border-[#2E3192]" />
               </InputOTPGroup>
             </InputOTP>
             <button

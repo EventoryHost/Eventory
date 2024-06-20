@@ -175,14 +175,18 @@ const Login = (props: Props) => {
         <div className="fixed inset-0 flex items-center gap-9 justify-center z-50">
           <div className="bg-white p-6 rounded-lg flex flex-col gap-9 items-center justify-center shadow-lg">
             <h1>Verify OTP</h1>
-            <InputOTP maxLength={6} className="border-[#2E3192]" onChange={(value) => setOtp(value)}>
+            <InputOTP
+              maxLength={6}
+              className="border-[#2E3192]"
+              onChange={(value) => setOtp(value)}
+            >
               <InputOTPGroup>
-                <InputOTPSlot index={0}  className="border-[#2E3192]"/>
-                <InputOTPSlot index={1}  className="border-[#2E3192]"/>
-                <InputOTPSlot index={2}  className="border-[#2E3192]"/>
-                <InputOTPSlot index={3}  className="border-[#2E3192]"/>
-                <InputOTPSlot index={4}  className="border-[#2E3192]"/>
-                <InputOTPSlot index={5}  className="border-[#2E3192]"/>
+                <InputOTPSlot index={0} className="border-[#2E3192]" />
+                <InputOTPSlot index={1} className="border-[#2E3192]" />
+                <InputOTPSlot index={2} className="border-[#2E3192]" />
+                <InputOTPSlot index={3} className="border-[#2E3192]" />
+                <InputOTPSlot index={4} className="border-[#2E3192]" />
+                <InputOTPSlot index={5} className="border-[#2E3192]" />
               </InputOTPGroup>
             </InputOTP>
             <button
