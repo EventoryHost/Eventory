@@ -1,10 +1,8 @@
-"use client"
+"use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
-
 import {
   InputOTP,
   InputOTPGroup,
@@ -14,9 +12,8 @@ import {
 
 type Props = {};
 
-const SignUp = (props: Props) => {
+const Login = (props: Props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [mobile, setMobile] = useState("");
   const [password, setPassword] = useState("");
@@ -31,31 +28,21 @@ const SignUp = (props: Props) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Name:", name);
     console.log("Email:", email);
     console.log("Mobile:", mobile);
     console.log("Password:", password);
   };
 
   return (
-    <div className="flex flex-col lg:flex-row w-full h-full overflow-hidden">
+    <div className="flex flex-col lg:flex-row w-full min-h-[88vh] overflow-hidden">
       <div className="flex flex-col items-start justify-between lg:max-w-[30%] xs:gap-7 xs:pt-4 md:min-w-[30%] bg-[#FFFFFF]">
-        <div className="flex items-center gap-1 md:px-11 xs:pl-5 lg:mt-[5rem] justify-start xs:self-start">
-          <button className="rounded-full p-5 w-10 h-10 flex shadow-xl items-center justify-center bg-[#2E3192] text-white">
-            1
-          </button>
-          <div className="bg-indigo-600 h-[0.3rem] w-[4rem] rounded-xl"></div>
-          <button className="rounded-full p-5 w-10 h-10 flex shadow-xl items-center justify-center bg-[#2E3192] text-white">
-            2
-          </button>
-        </div>
-        <div className="flex flex-col items-start justify-center gap-9 lg:p-8 h-[50%] md:px-11 px-9 xs:pl-5">
-          <h1 className="font-bold lg:text-5xl md:text-4xl text-3xl">
-            Tell us about you
+        <div className="flex flex-col items-start justify-center gap-9 lg:p-8 h-[80%] md:px-9 px-9 xs:pl-5">
+          <h1 className="font-bold lg:text-5xl w-full md:text-4xl text-3xl">
+            Welcome back to <span className="text-[#2E3192]">Eventory</span>
           </h1>
-          <p className="md:w-[90%] text-black xs:text-sm">
-            Fill out your personal details to get verified and proceed to the
-            registration process.
+          <p className="md:text-xl md:max-w-[90%]">
+            We are happy to see you back. Please log in to access additional
+            features.
           </p>
         </div>
         <div className="lg:w-full relative h-[10rem]">
@@ -68,51 +55,39 @@ const SignUp = (props: Props) => {
       </div>
       <div className="flex flex-col min-w-[70%] items-center justify-center bg-[#F7F6F9] md:p-[2.2rem] p-2">
         <div className="flex flex-col gap-7 md:p-6 p-3 xs:min-w-[90%] bg-white rounded-xl">
-          <h1 className="text-3xl font-semibold">Basic Details</h1>
           <div className="flex flex-col items-center gap-5 min-w-full min-h-full">
             <div className="flex items-center md:flex-row flex-col justify-between gap-5 min-w-full">
-              <div className="flex flex-col gap-4 min-w-[40%]">
-                <label htmlFor="fullName">Full Name</label>
-                <input
-                  id="fullName"
-                  type="text"
-                  className="w-full p-5 py-3 bg-white border-2 rounded-xl outline-none"
-                  placeholder="Enter your full name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </div>
               <div className="flex flex-col gap-4 min-w-[40%]">
                 <label htmlFor="email">Email</label>
                 <input
                   id="email"
                   type="text"
-                  className="w-full p-5 py-3 bg-white border-2 rounded-xl outline-none"
+                  className="w-full p-5 py-3 xs:py-2 xs:p-3 bg-white border-2 rounded-xl outline-none"
                   placeholder="Enter your email address"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
-            </div>
-            <div className="flex items-center md:flex-row flex-col justify-between gap-5 min-w-full">
               <div className="flex flex-col gap-4 min-w-[40%]">
-                <label htmlFor="phoneNumber">Mobile No.</label>
+                <label htmlFor="mobile">Mobile No.</label>
                 <input
-                  id="phoneNumber"
+                  id="mobile"
                   type="text"
-                  className="w-full p-5 py-3 bg-white border-2 rounded-xl outline-none"
-                  placeholder="Enter your mobile no."
+                  className="w-full p-5 py-3 xs:py-2 xs:p-3 bg-white border-2 rounded-xl outline-none"
+                  placeholder="Enter your phone number"
                   value={mobile}
                   onChange={(e) => setMobile(e.target.value)}
                 />
               </div>
+            </div>
+            <div className="flex items-center md:flex-row flex-col justify-between gap-5 min-w-full">
               <div className="flex flex-col gap-4 min-w-[40%]">
-                <label htmlFor="dob">Create Password</label>
+                <label htmlFor="password">Password</label>
                 <input
                   id="password"
                   type="password"
-                  className="w-full p-5 py-3 bg-white border-2 rounded-xl outline-none"
-                  placeholder="Create your password"
+                  className="w-full p-5 py-3 xs:py-2 xs:p-3 bg-white border-2 rounded-xl outline-none"
+                  placeholder="Enter your password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
@@ -120,15 +95,14 @@ const SignUp = (props: Props) => {
             </div>
             <div className="flex md:items-center md:flex-row flex-col-reverse md:mt-0 mt-9 md:px-0 justify-between w-full gap-3 self-start">
               <div className="flex md:gap-3 xs:text-sm gap-2">
-                <input type="checkbox" id="tc" placeholder="t&c" required/>I agree with{" "}
-                <span className="underline text-[#2E3192]">
-                  Terms & Conditions
-                </span>
+                <Link
+                  href={"/"}
+                  className="text-[#2E3192] underline font-semibold"
+                >
+                  Forgot Your Pasword ?
+                </Link>
               </div>
             </div>
-            <p className="self-start text-gray-500 xs:text-sm xs:mt-5">
-              To verify it&apos;s you, we will send you an OTP to your mobile number.
-            </p>
             <div className="self-start w-[80%] h-[1px] bg-gray-300"></div>
             <div className="flex flex-col items-start self-start">
               or continue with
@@ -172,24 +146,27 @@ const SignUp = (props: Props) => {
               </div>
               <div className="flex min-w-[56vw] gap-9 md:flex-row flex-col justify-between">
                 <div className="flex gap-2 mt-5 xs:text-sm">
-                  already have an account ?{" "}
+                  Don&apos;t have an account ?{" "}
                   <Link
-                    href={"/login"}
+                    href={"/signup"}
                     className="text-[#2E3192] font-semibold"
                   >
-                    LogIn
+                    SignUp
                   </Link>
                 </div>
-                <button className="bg-[#2E3192] md:min-w-[10rem] xs:px-3 xs:py-2 xs:w-fit md:px-4 md:py-3 md:w-fit rounded-xl text-white" onClick={handleSubmit}>
-                  Verify
-                </button>
                 <button
+                  className="bg-[#2E3192] xs:text-sm md:min-w-[10rem] xs:px-3 xs:py-2 xs:w-fit md:px-4 md:py-3 md:w-fit rounded-xl text-white"
+                  onClick={handleSubmit}
+                >
+                  Login
+                </button>
+              </div>
+              <button
                 className="bg-[#2E3192] xs:text-sm md:min-w-[10rem] xs:px-3 xs:py-2 xs:w-fit md:px-4 md:py-3 md:w-fit rounded-xl text-white"
                 onClick={toggleModal}
               >
                 Open Modal
               </button>
-              </div>
             </div>
           </div>
         </div>
@@ -221,4 +198,4 @@ const SignUp = (props: Props) => {
   );
 };
 
-export default SignUp;
+export default Login;

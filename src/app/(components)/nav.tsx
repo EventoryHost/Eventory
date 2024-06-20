@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   Categories,
   handleSearch,
@@ -192,13 +193,24 @@ const Nav: React.FC = () => {
                 </div>
                 <ul
                   tabIndex={0}
-                  className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52 hidden"
+                  className="mt-3 z-[1] p-2 bg-white shadow menu menu-sm dropdown-content rounded-box w-52"
                 >
                   <li>
                     <a className="justify-between">
                       Profile
-                      <span className="badge">New</span>
                     </a>
+                  </li>
+                  <li>
+                    <Link href={"/customerlogin"}>Customer Login</Link>
+                  </li>
+                  <li>
+                    <Link href={"/customersignup"}>Customer Signup</Link>
+                  </li>
+                  <li>
+                    <Link href={"/login"}>Vendor Login</Link>
+                  </li>
+                  <li>
+                    <Link href={"/signup"}>Vendor Signup</Link>
                   </li>
                   <li>
                     <a>Settings</a>
