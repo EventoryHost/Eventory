@@ -11,11 +11,7 @@ export function Horizontal() {
         direction="right"
         speed="slow"
       />
-      <InfiniteMovingCards 
-      items={testimonials} 
-      direction="left" 
-      speed="slow" 
-      />
+      <InfiniteMovingCards items={testimonials} direction="left" speed="slow" />
     </div>
   );
 }

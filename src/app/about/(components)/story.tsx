@@ -28,10 +28,10 @@ const Story = () => {
   return (
     <>
       <div className="">
-        <div className=" bg-[rgba(213,214,233,1)] rounded-lg shadow-lg  w-full">
-          <div className=" max-sm:mx-[10px] flex flex-col md:flex-row sm:flex-row justify-between items-center lg:py-10 md:py-10 sm:py-10 lg:mx-20 sm:mx-10 lg:gap-40 md:gap-20 sm:gap-20 ">
+        <div className="w-full rounded-lg bg-[rgba(213,214,233,1)] shadow-lg">
+          <div className="flex flex-col items-center justify-between max-sm:mx-[10px] sm:mx-10 sm:flex-row sm:gap-20 sm:py-10 md:flex-row md:gap-20 md:py-10 lg:mx-20 lg:gap-40 lg:py-10">
             <div className="flex-1 justify-center">
-              <h2 className="font-semibold font-serif text-4xl linear-gradient-colour lg:mb-14 sm:mb-10  max-sm:my-5">
+              <h2 className="linear-gradient-colour font-serif text-4xl font-semibold max-sm:my-5 sm:mb-10 lg:mb-14">
                 The Story of Eventory
               </h2>
               <p className="text-[rgb(0,0,0)]">
@@ -42,19 +42,19 @@ const Story = () => {
                 diverse markets nationwide.
               </p>
             </div>
-            <div className="flex-1 flex justify-center ">
+            <div className="flex flex-1 justify-center">
               {/* <Image src="/aboutus/s1.png" alt="" width={560} height={450} /> */}
               <img
                 src="/aboutus/s1.png"
-                className=" max-sm:w-[300px] max-sm:my-10"
+                className="max-sm:my-10 max-sm:w-[300px]"
                 alt=""
               />
             </div>
           </div>
 
-          <div className=" max-sm:mx-[10px] flex flex-col sm:flex-row-reverse justify-between items-center lg:py-10 md:py-10 sm:py-10 lg:mx-20 sm:mx-220 lg:gap-40 md:gap-20 sm:gap-10">
+          <div className="sm:mx-220 flex flex-col items-center justify-between max-sm:mx-[10px] sm:flex-row-reverse sm:gap-10 sm:py-10 md:gap-20 md:py-10 lg:mx-20 lg:gap-40 lg:py-10">
             <div className="flex-1 justify-center">
-              <h2 className="font-semibold font-serif text-4xl linear-gradient-colour lg:mb-14 sm:mb-10  max-sm:my-5">
+              <h2 className="linear-gradient-colour font-serif text-4xl font-semibold max-sm:my-5 sm:mb-10 lg:mb-14">
                 We Provide Experience
               </h2>
               <p className="text-[rgba(0,0,0,1)]">
@@ -65,14 +65,14 @@ const Story = () => {
                 into unforgettable experiences.
               </p>
             </div>
-            <div className="flex-1 flex justify-center sm:py-10 max-sm:w-[300px] max-sm:my-10">
+            <div className="flex flex-1 justify-center max-sm:my-10 max-sm:w-[300px] sm:py-10">
               <Image src="/aboutus/s2.png" alt="" width={560} height={450} />
             </div>
           </div>
 
-          <div className=" max-sm:mx-[10px] flex flex-col sm:flex-row justify-between items-center lg:py-10 md:py-10 sm:py-10 lg:mx-20 sm:mx-10 sm:gap-10 lg:gap-40 md:gap-20">
+          <div className="flex flex-col items-center justify-between max-sm:mx-[10px] sm:mx-10 sm:flex-row sm:gap-10 sm:py-10 md:gap-20 md:py-10 lg:mx-20 lg:gap-40 lg:py-10">
             <div className="flex-1 justify-end">
-              <h2 className="font-semibold font-serif text-4xl linear-gradient-colour lg:mb-14 sm:mb-10  max-sm:my-5">
+              <h2 className="linear-gradient-colour font-serif text-4xl font-semibold max-sm:my-5 sm:mb-10 lg:mb-14">
                 The Social Cause
               </h2>
               <p className="text-[rgba(0,0,0,1)]">
@@ -83,7 +83,7 @@ const Story = () => {
                 vitality.
               </p>
             </div>
-            <div className="flex-1 flex justify-center max-sm:w-[300px] max-sm:my-10">
+            <div className="flex flex-1 justify-center max-sm:my-10 max-sm:w-[300px]">
               <Image
                 src="/aboutus/s3.png"
                 className="rounded-xl"
@@ -94,16 +94,16 @@ const Story = () => {
             </div>
           </div>
 
-          <div className="relative ">
-            <div className=" max-sm:mx-[10px] justify-between items-center lg:py-102 md:py-5 sm:py-10 lg:mx-16 sm:mx-10 sm:gap-0 lg:gap-40 md:gap-20">
+          <div className="relative">
+            <div className="lg:py-102 items-center justify-between max-sm:mx-[10px] sm:mx-10 sm:gap-0 sm:py-10 md:gap-20 md:py-5 lg:mx-16 lg:gap-40">
               <div className="justify-center">
-                <h2 className="font-semibold font-poppins text-4xl linear-gradient-colour lg:mb-14 max-sm:mb-10 md:mb-10">
+                <h2 className="font-poppins linear-gradient-colour text-4xl font-semibold max-sm:mb-10 md:mb-10 lg:mb-14">
                   Why choose us?
                 </h2>
               </div>
             </div>
-            <div className="md:mt-[-20px] md:my-[50px] max-sm:bg-[rgba(213,214,233,1)] w-full md:justify-center lg:justify-around absolute max-sm:relative top-[84px] max-sm:top-[0px] z-10 flex items-center flex-col sm:flex-row gap-20 md:gap-5 ">
-              <div className="bg-[rgba(96,94,216,1)] text-white p-8 rounded-lg w-[346px] h-[412px] mb-10">
+            <div className="absolute top-[84px] z-10 flex w-full flex-col items-center gap-20 max-sm:relative max-sm:top-[0px] max-sm:bg-[rgba(213,214,233,1)] sm:flex-row md:my-[50px] md:mt-[-20px] md:justify-center md:gap-5 lg:justify-around">
+              <div className="mb-10 h-[412px] w-[346px] rounded-lg bg-[rgba(96,94,216,1)] p-8 text-white">
                 <div className="flex flex-col items-center gap-14">
                   <div className="pb-2">
                     <h2 className="text-xl font-semibold">
@@ -111,7 +111,7 @@ const Story = () => {
                     </h2>
                   </div>
 
-                  <div className="flex items-center justify-center  h-20 w-20 text-indigo-600">
+                  <div className="flex h-20 w-20 items-center justify-center text-indigo-600">
                     <svg
                       width="91"
                       height="81"
@@ -157,13 +157,13 @@ const Story = () => {
                 </div>
               </div>
 
-              <div className="bg-[rgba(96,94,216,1)] text-white p-8 rounded-lg w-[346px] h-[412px] mb-10">
+              <div className="mb-10 h-[412px] w-[346px] rounded-lg bg-[rgba(96,94,216,1)] p-8 text-white">
                 <div className="flex flex-col items-center gap-14">
                   <div className="pb-2">
                     <h2 className="text-xl font-semibold">Customer Focus</h2>
                   </div>
 
-                  <div className="flex items-center justify-center  h-20 w-20 text-indigo-600">
+                  <div className="flex h-20 w-20 items-center justify-center text-indigo-600">
                     <svg
                       width="73"
                       height="73"
@@ -185,7 +185,7 @@ const Story = () => {
                 </div>
               </div>
 
-              <div className="bg-[rgba(96,94,216,1)] text-white p-8 rounded-lg w-[346px] h-[412px] mb-10">
+              <div className="mb-10 h-[412px] w-[346px] rounded-lg bg-[rgba(96,94,216,1)] p-8 text-white">
                 <div className="flex flex-col items-center gap-14">
                   <div className="pb-2">
                     <h2 className="text-xl font-semibold">
@@ -193,7 +193,7 @@ const Story = () => {
                     </h2>
                   </div>
 
-                  <div className="flex items-center justify-center  h-20 w-20 text-indigo-600">
+                  <div className="flex h-20 w-20 items-center justify-center text-indigo-600">
                     <svg
                       width="96"
                       height="96"

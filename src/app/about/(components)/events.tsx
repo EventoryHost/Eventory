@@ -1,7 +1,5 @@
-import React from 'react'
+import React from "react";
 import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
-
-
 
 type Props = {};
 
@@ -42,27 +40,24 @@ const testimonials = [
   },
 ];
 
-
 const Events = (props: Props) => {
   return (
     <>
-      <div className="mt-[450px] max-sm:mt-[100px]  justify-between items-center items-center lg:py-5 md:py-5 sm:py-5 lg:mx-16 sm:mx-10 sm:gap-0 lg:gap-40 md:gap-20 2">
-
+      <div className="2 mt-[450px] items-center justify-between max-sm:mt-[100px] sm:mx-10 sm:gap-0 sm:py-5 md:gap-20 md:py-5 lg:mx-16 lg:gap-40 lg:py-5">
         <div className="justify-center">
-          <h2 className="font-semibold text-4xl text-[rgba(0,0,0,1)] lg:mb-14 sm:mb-10">Our Successful Events</h2>
+          <h2 className="text-4xl font-semibold text-[rgba(0,0,0,1)] sm:mb-10 lg:mb-14">
+            Our Successful Events
+          </h2>
         </div>
 
         <InfiniteMovingCards
-        items={testimonials}
-        direction="right"
-        speed="slow"
-      />
-
-
+          items={testimonials}
+          direction="right"
+          speed="slow"
+        />
       </div>
     </>
+  );
+};
 
-  )
-}
-
-export default Events
+export default Events;
