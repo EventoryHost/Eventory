@@ -18,13 +18,13 @@ const Feed: React.FC = () => {
 
   return (
     <>
-      <div className="md:h-[90vh] h-[70vh] flex md:flex-row flex-col w-[100%]">
-        <div className="flex lg:w-[50%] w-[100%] h-[100%] items-center justify-center">
-          <div className="flex flex-col items-start min mt-[10%] justify-center md:mb-[20%] mb-[1%] px-[4%] h-full">
-            <h1 className="md:text-6xl text-4xl font-bold">
+      <div className="flex h-[70vh] w-[100%] flex-col md:h-[90vh] md:flex-row">
+        <div className="flex h-[100%] w-[100%] items-center justify-center lg:w-[50%]">
+          <div className="min mb-[1%] mt-[10%] flex h-full flex-col items-start justify-center px-[4%] md:mb-[20%]">
+            <h1 className="text-4xl font-bold md:text-6xl">
               Find the Perfect Vendors for Your Event
             </h1>
-            <p className="w-[70%] md:text-xl mt-7">
+            <p className="mt-7 w-[70%] md:text-xl">
               Discover, compare, and book top-rated vendors for weddings,
               corporate events, parties, and more – all in one place.
             </p>
@@ -33,7 +33,7 @@ const Feed: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="flex-1 ml-4 pr-5 h-full">
+        <div className="ml-4 h-full flex-1 pr-5">
           <div className="relative h-full w-full">
             {isMounted && isMediumScreenOrLarger && (
               <ParallaxScroll className="custom-class" />
