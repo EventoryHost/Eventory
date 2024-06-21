@@ -15,7 +15,7 @@ const Nav: React.FC = () => {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<Categories[]>([]);
   const tabs: string[][] = [
-    ["About", "#"],
+    ["About", "/about"],
     ["Venues", "#"],
     ["Vendors", "#"],
     ["Events", "#"],
@@ -28,8 +28,8 @@ const Nav: React.FC = () => {
   };
 
   return (
-    <nav className="border-b-2 border-gray-300 bg-white dark:border-gray-700 dark:bg-gray-900">
-      <div className="mx-auto flex flex-wrap items-center justify-between gap-0 p-4">
+    <nav className="bg-white shadow-xl  border-gray-300 dark:bg-gray-900 dark:border-gray-700">
+      <div className=" flex flex-wrap gap-0 items-center justify-between mx-auto p-4">
         <a
           href="/"
           className="flex items-center space-x-3 sm:pl-12 lg:pl-3 xl:pl-12 rtl:space-x-reverse"

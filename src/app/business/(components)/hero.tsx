@@ -36,7 +36,7 @@ const Hero = (props: Props) => {
             <Image
               src={"/hehe.png"}
               width={1400}
-              height={480}
+              height={480}  
               alt="image"
               quality={100}
               className="rounded-2xl"
