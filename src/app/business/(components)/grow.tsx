@@ -5,13 +5,13 @@ type Props = {};
 
 const Grow = (props: Props) => {
   return (
-    <div className="w-full md:min-h-fit min-h-[130vh] bg-[#D5D6E9] flex items-start justify-center xl:p-9">
-      <div className="w-[90%] flex md:flex-row flex-col md:p-5 gap-9 items-center mt-5 justify-center">
-        <div className="flex flex-col gap-11 md:items-start items-center md:w-[50%] w-full justify-around">
-          <h1 className="md:text-5xl text-3xl font-bold md:text-left text-center leading-snug">
+    <div className="flex min-h-[130vh] w-full items-start justify-center bg-[#D5D6E9] md:min-h-fit xl:p-9">
+      <div className="mt-5 flex w-[90%] flex-col items-center justify-center gap-9 md:flex-row md:p-5">
+        <div className="flex w-full flex-col items-center justify-around gap-11 md:w-[50%] md:items-start">
+          <h1 className="text-center text-3xl font-bold leading-snug md:text-left md:text-5xl">
             We help to grow your business
           </h1>
-          <p className="md:text-xl text-sm md:text-left text-center">
+          <p className="text-center text-sm md:text-left md:text-xl">
             Our platform revolutionizes event planning by effortlessly
             connecting you with a vast network of customers, ensuring a seamless
             and stress-free organizing experience. Whether it&apos;s a dream
@@ -19,7 +19,7 @@ const Grow = (props: Props) => {
             party, or any celebration you envision, we guarantee unparalleled
             convenience and success in every detail.
           </p>
-          <button className="bg-[#2E3192] text-white p-5 w-fit font-light rounded-xl">
+          <button className="w-fit rounded-xl bg-[#2E3192] p-5 font-light text-white">
             Get Started
           </button>
         </div>

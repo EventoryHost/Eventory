@@ -44,12 +44,12 @@ const Dropdown: React.FC<DropdownProps> = ({ label }) => {
       <button
         id="dropdownDefaultButton"
         onClick={toggleDropdown}
-        className="text-black bg-white hover:bg-gray-100 focus:outline-none focus:ring-blue-300 font-sm rounded-lg text-xs px-3 py-1.5 text-center inline-flex items-center dark:text-black"
+        className="font-sm inline-flex items-center rounded-lg bg-white px-3 py-1.5 text-center text-xs text-black hover:bg-gray-100 focus:outline-none focus:ring-blue-300 dark:text-black"
         type="button"
       >
         {label}
         <svg
-          className="w-2 h-2 ml-1"
+          className="ml-1 h-2 w-2"
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -77,7 +77,7 @@ const Dropdown: React.FC<DropdownProps> = ({ label }) => {
           id="dropdown"
           className={`z-50 ${
             isDropdownVisible ? "block" : "hidden"
-          } bg-white divide-y divide-gray-100 rounded-lg shadow w-32 dark:bg-gray-700 absolute mt-1`}
+          } absolute mt-1 w-32 divide-y divide-gray-100 rounded-lg bg-white shadow dark:bg-gray-700`}
         >
           <ul
             className="py-1 text-xs text-gray-700 dark:text-gray-200"
@@ -124,26 +124,26 @@ const Dropdown: React.FC<DropdownProps> = ({ label }) => {
 
 const DropdownBar: React.FC = () => {
   return (
-    <div className="flex flex-col md:flex-row justify-between items-center min-w-fit border border-gray-300 rounded-2xl md:p-0 relative">
-      <div className="flex md:flex-row justify-evenly items-center md:px-2 w-full">
-        <div className="flex md:w-[33.3%] w-[30%] border-r items-center justify-center md:mb-0">
-          <img className="md:w-5 w-3" src="/event.svg" alt="Event" />
+    <div className="relative flex min-w-fit flex-col items-center justify-between rounded-2xl border border-gray-300 md:flex-row md:p-0">
+      <div className="flex w-full items-center justify-evenly md:flex-row md:px-2">
+        <div className="flex w-[30%] items-center justify-center border-r md:mb-0 md:w-[33.3%]">
+          <img className="w-3 md:w-5" src="/event.svg" alt="Event" />
           <Dropdown label="Event" />
-          <div className="border-gray-300 h-8 ml-4 hidden md:block"></div>
+          <div className="ml-4 hidden h-8 border-gray-300 md:block"></div>
         </div>
-        <div className="flex md:w-[33.3%] w-[35%] border-r items-center justify-center md:mb-0 md:pl-4">
+        <div className="flex w-[35%] items-center justify-center border-r md:mb-0 md:w-[33.3%] md:pl-4">
           <img
-            className="md:w-5 w-3"
+            className="w-3 md:w-5"
             width={10}
             src="/Location.svg"
             alt="Location"
           />
           <Dropdown label="Location" />
-          <div className="border-gray-300 h-8 ml-4 hidden md:block"></div>
+          <div className="ml-4 hidden h-8 border-gray-300 md:block"></div>
         </div>
-        <div className="flex md:w-[33.3%] w-[30%] items-center justify-center md:mb-0 md:pl-4">
+        <div className="flex w-[30%] items-center justify-center md:mb-0 md:w-[33.3%] md:pl-4">
           <img
-            className="md:w-5 w-3"
+            className="w-3 md:w-5"
             width={10}
             src="/Calendar.svg"
             alt="Dates"
@@ -152,7 +152,7 @@ const DropdownBar: React.FC = () => {
         </div>
       </div>
       <div className="w-full md:w-auto">
-        <button className="py-2 w-full md:w-auto md:py-4 md:px-16 text-white bg-[#2E3192] hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 text-xs md:text-sm rounded-xl md:rounded-r-xl md:rounded-l-none">
+        <button className="w-full rounded-xl bg-[#2E3192] py-2 text-xs text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 md:w-auto md:rounded-l-none md:rounded-r-xl md:px-16 md:py-4 md:text-sm">
           Explore
         </button>
       </div>

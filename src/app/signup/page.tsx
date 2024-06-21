@@ -38,103 +38,103 @@ const SignUp = (props: Props) => {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row w-full h-full overflow-hidden">
-      <div className="flex flex-col items-start justify-between lg:max-w-[30%] xs:gap-7 xs:pt-4 md:min-w-[30%] bg-[#FFFFFF]">
-        <div className="flex items-center gap-1 md:px-11 xs:pl-5 lg:mt-[5rem] justify-start xs:self-start">
-          <button className="rounded-full p-5 w-10 h-10 flex shadow-xl items-center justify-center bg-[#2E3192] text-white">
+    <div className="flex h-full w-full flex-col overflow-hidden lg:flex-row">
+      <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
+        <div className="flex items-center justify-start gap-1 xs:self-start xs:pl-5 md:px-11 lg:mt-[5rem]">
+          <button className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2E3192] p-5 text-white shadow-xl">
             1
           </button>
-          <div className="bg-indigo-600 h-[0.3rem] w-[4rem] rounded-xl"></div>
-          <button className="rounded-full p-5 w-10 h-10 flex shadow-xl items-center justify-center bg-[#2E3192] text-white">
+          <div className="h-[0.3rem] w-[4rem] rounded-xl bg-indigo-600"></div>
+          <button className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2E3192] p-5 text-white shadow-xl">
             2
           </button>
         </div>
-        <div className="flex flex-col items-start justify-center gap-9 lg:p-8 h-[50%] md:px-11 px-9 xs:pl-5">
-          <h1 className="font-bold lg:text-5xl md:text-4xl text-3xl">
+        <div className="flex h-[50%] flex-col items-start justify-center gap-9 px-9 xs:pl-5 md:px-11 lg:p-8">
+          <h1 className="text-3xl font-bold md:text-4xl lg:text-5xl">
             Tell us about you
           </h1>
-          <p className="md:w-[90%] text-black xs:text-sm">
+          <p className="text-black xs:text-sm md:w-[90%]">
             Fill out your personal details to get verified and proceed to the
             registration process.
           </p>
         </div>
-        <div className="lg:w-full relative h-[10rem]">
+        <div className="relative h-[10rem] lg:w-full">
           <img
             src={"/tajmahal.png"}
             alt=""
-            className="object-cover w-full h-full"
+            className="h-full w-full object-cover"
           />
         </div>
       </div>
-      <div className="flex flex-col min-w-[70%] items-center justify-center bg-[#F7F6F9] md:p-[2.2rem] p-2">
-        <div className="flex flex-col gap-7 md:p-6 p-3 xs:min-w-[90%] bg-white rounded-xl">
+      <div className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] p-2 md:p-[2.2rem]">
+        <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
           <h1 className="text-3xl font-semibold">Basic Details</h1>
-          <div className="flex flex-col items-center gap-5 min-w-full min-h-full">
-            <div className="flex items-center md:flex-row flex-col justify-between gap-5 min-w-full">
-              <div className="flex flex-col gap-4 min-w-[40%]">
+          <div className="flex min-h-full min-w-full flex-col items-center gap-5">
+            <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+              <div className="flex min-w-[40%] flex-col gap-4">
                 <label htmlFor="fullName">Full Name</label>
                 <input
                   id="fullName"
                   type="text"
-                  className="w-full p-5 py-3 bg-white border-2 rounded-xl outline-none"
+                  className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
                   placeholder="Enter your full name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                 />
               </div>
-              <div className="flex flex-col gap-4 min-w-[40%]">
+              <div className="flex min-w-[40%] flex-col gap-4">
                 <label htmlFor="email">Email</label>
                 <input
                   id="email"
                   type="text"
-                  className="w-full p-5 py-3 bg-white border-2 rounded-xl outline-none"
+                  className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
                   placeholder="Enter your email address"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
             </div>
-            <div className="flex items-center md:flex-row flex-col justify-between gap-5 min-w-full">
-              <div className="flex flex-col gap-4 min-w-[40%]">
+            <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+              <div className="flex min-w-[40%] flex-col gap-4">
                 <label htmlFor="phoneNumber">Mobile No.</label>
                 <input
                   id="phoneNumber"
                   type="text"
-                  className="w-full p-5 py-3 bg-white border-2 rounded-xl outline-none"
+                  className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
                   placeholder="Enter your mobile no."
                   value={mobile}
                   onChange={(e) => setMobile(e.target.value)}
                 />
               </div>
-              <div className="flex flex-col gap-4 min-w-[40%]">
+              <div className="flex min-w-[40%] flex-col gap-4">
                 <label htmlFor="dob">Create Password</label>
                 <input
                   id="password"
                   type="password"
-                  className="w-full p-5 py-3 bg-white border-2 rounded-xl outline-none"
+                  className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
                   placeholder="Create your password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
             </div>
-            <div className="flex md:items-center md:flex-row flex-col-reverse md:mt-0 mt-9 md:px-0 justify-between w-full gap-3 self-start">
-              <div className="flex md:gap-3 xs:text-sm gap-2">
+            <div className="mt-9 flex w-full flex-col-reverse justify-between gap-3 self-start md:mt-0 md:flex-row md:items-center md:px-0">
+              <div className="flex gap-2 xs:text-sm md:gap-3">
                 <input type="checkbox" id="tc" placeholder="t&c" required />I
                 agree with{" "}
-                <span className="underline text-[#2E3192]">
+                <span className="text-[#2E3192] underline">
                   Terms & Conditions
                 </span>
               </div>
             </div>
-            <p className="self-start text-gray-500 xs:text-sm xs:mt-5">
+            <p className="self-start text-gray-500 xs:mt-5 xs:text-sm">
               To verify it&apos;s you, we will send you an OTP to your mobile
               number.
             </p>
-            <div className="self-start w-[80%] h-[1px] bg-gray-300"></div>
+            <div className="h-[1px] w-[80%] self-start bg-gray-300"></div>
             <div className="flex flex-col items-start self-start">
               or continue with
-              <div className="flex gap-5 mt-5">
+              <div className="mt-5 flex gap-5">
                 <svg
                   width="32"
                   height="32"
@@ -172,24 +172,24 @@ const SignUp = (props: Props) => {
                   />
                 </svg>
               </div>
-              <div className="flex min-w-[56vw] gap-9 md:flex-row flex-col justify-between">
-                <div className="flex gap-2 mt-5 xs:text-sm">
+              <div className="flex min-w-[56vw] flex-col justify-between gap-9 md:flex-row">
+                <div className="mt-5 flex gap-2 xs:text-sm">
                   already have an account ?{" "}
                   <Link
                     href={"/login"}
-                    className="text-[#2E3192] font-semibold"
+                    className="font-semibold text-[#2E3192]"
                   >
                     LogIn
                   </Link>
                 </div>
                 <button
-                  className="bg-[#2E3192] md:min-w-[10rem] xs:px-3 xs:py-2 xs:w-fit md:px-4 md:py-3 md:w-fit rounded-xl text-white"
+                  className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
                   onClick={handleSubmit}
                 >
                   Verify
                 </button>
                 <button
-                  className="bg-[#2E3192] xs:text-sm md:min-w-[10rem] xs:px-3 xs:py-2 xs:w-fit md:px-4 md:py-3 md:w-fit rounded-xl text-white"
+                  className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-3 xs:py-2 xs:text-sm md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
                   onClick={toggleModal}
                 >
                   Open Modal
@@ -200,8 +200,8 @@ const SignUp = (props: Props) => {
         </div>
       </div>
       {isModalOpen && (
-        <div className="fixed inset-0 flex items-center gap-9 justify-center z-50">
-          <div className="bg-white p-6 rounded-lg flex flex-col gap-9 items-center justify-center shadow-lg">
+        <div className="fixed inset-0 z-50 flex items-center justify-center gap-9">
+          <div className="flex flex-col items-center justify-center gap-9 rounded-lg bg-white p-6 shadow-lg">
             <h1>Verify OTP</h1>
             <InputOTP
               maxLength={6}
@@ -218,7 +218,7 @@ const SignUp = (props: Props) => {
               </InputOTPGroup>
             </InputOTP>
             <button
-              className="bg-[#2E3192] text-white px-4 py-2 rounded"
+              className="rounded bg-[#2E3192] px-4 py-2 text-white"
               onClick={toggleModal}
             >
               Submit

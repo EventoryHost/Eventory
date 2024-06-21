@@ -34,79 +34,79 @@ const Login = (props: Props) => {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row w-full min-h-[88vh] overflow-hidden">
-      <div className="flex flex-col items-start justify-between lg:max-w-[30%] xs:gap-7 xs:pt-4 md:min-w-[30%] bg-[#FFFFFF]">
-        <div className="flex flex-col items-start justify-center gap-9 lg:p-8 h-[80%] md:px-9 px-9 xs:pl-5">
-          <h1 className="font-bold lg:text-5xl w-full md:text-4xl text-3xl">
+    <div className="flex min-h-[88vh] w-full flex-col overflow-hidden lg:flex-row">
+      <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
+        <div className="flex h-[80%] flex-col items-start justify-center gap-9 px-9 xs:pl-5 md:px-9 lg:p-8">
+          <h1 className="w-full text-3xl font-bold md:text-4xl lg:text-5xl">
             Welcome back to <span className="text-[#2E3192]">Eventory</span>
           </h1>
-          <p className="md:text-xl md:max-w-[90%]">
+          <p className="md:max-w-[90%] md:text-xl">
             We are happy to see you back. Please log in to access additional
             features.
           </p>
         </div>
-        <div className="lg:w-full relative h-[10rem]">
+        <div className="relative h-[10rem] lg:w-full">
           <img
             src={"/tajmahal.png"}
             alt=""
-            className="object-cover w-full h-full"
+            className="h-full w-full object-cover"
           />
         </div>
       </div>
-      <div className="flex flex-col min-w-[70%] items-center justify-center bg-[#F7F6F9] md:p-[2.2rem] p-2">
-        <div className="flex flex-col gap-7 md:p-6 p-3 xs:min-w-[90%] bg-white rounded-xl">
-          <div className="flex flex-col items-center gap-5 min-w-full min-h-full">
-            <div className="flex items-center md:flex-row flex-col justify-between gap-5 min-w-full">
-              <div className="flex flex-col gap-4 min-w-[40%]">
+      <div className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] p-2 md:p-[2.2rem]">
+        <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
+          <div className="flex min-h-full min-w-full flex-col items-center gap-5">
+            <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+              <div className="flex min-w-[40%] flex-col gap-4">
                 <label htmlFor="email">Email</label>
                 <input
                   id="email"
                   type="text"
-                  className="w-full p-5 py-3 xs:py-2 xs:p-3 bg-white border-2 rounded-xl outline-none"
+                  className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none xs:p-3 xs:py-2"
                   placeholder="Enter your email address"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
-              <div className="flex flex-col gap-4 min-w-[40%]">
+              <div className="flex min-w-[40%] flex-col gap-4">
                 <label htmlFor="mobile">Mobile No.</label>
                 <input
                   id="mobile"
                   type="text"
-                  className="w-full p-5 py-3 xs:py-2 xs:p-3 bg-white border-2 rounded-xl outline-none"
+                  className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none xs:p-3 xs:py-2"
                   placeholder="Enter your phone number"
                   value={mobile}
                   onChange={(e) => setMobile(e.target.value)}
                 />
               </div>
             </div>
-            <div className="flex items-center md:flex-row flex-col justify-between gap-5 min-w-full">
-              <div className="flex flex-col gap-4 min-w-[40%]">
+            <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+              <div className="flex min-w-[40%] flex-col gap-4">
                 <label htmlFor="password">Password</label>
                 <input
                   id="password"
                   type="password"
-                  className="w-full p-5 py-3 xs:py-2 xs:p-3 bg-white border-2 rounded-xl outline-none"
+                  className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none xs:p-3 xs:py-2"
                   placeholder="Enter your password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
             </div>
-            <div className="flex md:items-center md:flex-row flex-col-reverse md:mt-0 mt-9 md:px-0 justify-between w-full gap-3 self-start">
-              <div className="flex md:gap-3 xs:text-sm gap-2">
+            <div className="mt-9 flex w-full flex-col-reverse justify-between gap-3 self-start md:mt-0 md:flex-row md:items-center md:px-0">
+              <div className="flex gap-2 xs:text-sm md:gap-3">
                 <Link
                   href={"/"}
-                  className="text-[#2E3192] underline font-semibold"
+                  className="font-semibold text-[#2E3192] underline"
                 >
                   Forgot Your Pasword ?
                 </Link>
               </div>
             </div>
-            <div className="self-start w-[80%] h-[1px] bg-gray-300"></div>
+            <div className="h-[1px] w-[80%] self-start bg-gray-300"></div>
             <div className="flex flex-col items-start self-start">
               or continue with
-              <div className="flex gap-5 mt-5">
+              <div className="mt-5 flex gap-5">
                 <svg
                   width="32"
                   height="32"
@@ -144,25 +144,25 @@ const Login = (props: Props) => {
                   />
                 </svg>
               </div>
-              <div className="flex min-w-[56vw] gap-9 md:flex-row flex-col justify-between">
-                <div className="flex gap-2 mt-5 xs:text-sm">
+              <div className="flex min-w-[56vw] flex-col justify-between gap-9 md:flex-row">
+                <div className="mt-5 flex gap-2 xs:text-sm">
                   Don&apos;t have an account ?{" "}
                   <Link
                     href={"/signup"}
-                    className="text-[#2E3192] font-semibold"
+                    className="font-semibold text-[#2E3192]"
                   >
                     SignUp
                   </Link>
                 </div>
                 <button
-                  className="bg-[#2E3192] xs:text-sm md:min-w-[10rem] xs:px-3 xs:py-2 xs:w-fit md:px-4 md:py-3 md:w-fit rounded-xl text-white"
+                  className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-3 xs:py-2 xs:text-sm md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
                   onClick={handleSubmit}
                 >
                   Login
                 </button>
               </div>
               <button
-                className="bg-[#2E3192] xs:text-sm md:min-w-[10rem] xs:px-3 xs:py-2 xs:w-fit md:px-4 md:py-3 md:w-fit rounded-xl text-white"
+                className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-3 xs:py-2 xs:text-sm md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
                 onClick={toggleModal}
               >
                 Open Modal
@@ -172,8 +172,8 @@ const Login = (props: Props) => {
         </div>
       </div>
       {isModalOpen && (
-        <div className="fixed inset-0 flex items-center gap-9 justify-center z-50">
-          <div className="bg-white p-6 rounded-lg flex flex-col gap-9 items-center justify-center shadow-lg">
+        <div className="fixed inset-0 z-50 flex items-center justify-center gap-9">
+          <div className="flex flex-col items-center justify-center gap-9 rounded-lg bg-white p-6 shadow-lg">
             <h1>Verify OTP</h1>
             <InputOTP
               maxLength={6}
@@ -190,7 +190,7 @@ const Login = (props: Props) => {
               </InputOTPGroup>
             </InputOTP>
             <button
-              className="bg-[#2E3192] text-white px-4 py-2 rounded"
+              className="rounded bg-[#2E3192] px-4 py-2 text-white"
               onClick={toggleModal}
             >
               Submit

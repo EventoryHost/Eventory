@@ -13,14 +13,14 @@ import {
 
 export function Partner() {
   return (
-    <div className="flex bg-[#C1C9F7] flex-col-reverse md:flex-row md:gap-8 justify-center md:px-[3rem] md:py-3 space-y-4 md:space-y-0">
-      <BentoGrid className="hidden mt-7 md:grid px-2 md:w-1/2">
+    <div className="flex flex-col-reverse justify-center space-y-4 bg-[#C1C9F7] md:flex-row md:gap-8 md:space-y-0 md:px-[3rem] md:py-3">
+      <BentoGrid className="mt-7 hidden px-2 md:grid md:w-1/2">
         {items.map((item, i) => (
           <BentoGridItem
             key={i}
             className={
               i === 0
-                ? "md:row-span-2 md:col-span-2"
+                ? "md:col-span-2 md:row-span-2"
                 : i === 1 || i === 2
                   ? "md:col-span-2"
                   : ""
@@ -29,22 +29,22 @@ export function Partner() {
           />
         ))}
       </BentoGrid>
-      <div className="flex-1 space-y-7 p-4 pt-6 flex flex-col justify-between items-start">
+      <div className="flex flex-1 flex-col items-start justify-between space-y-7 p-4 pt-6">
         <div className="h-fit">
-          <h2 className="lg:text-[2.5rem] md:text-4xl text-3xl font-semibold lg:mb-4">
+          <h2 className="text-3xl font-semibold md:text-4xl lg:mb-4 lg:text-[2.5rem]">
             Your Ultimate Event
           </h2>
-          <h2 className="lg:text-[2.5rem] md:text-4xl text-3xl font-semibold">
+          <h2 className="text-3xl font-semibold md:text-4xl lg:text-[2.5rem]">
             Planning Partner
           </h2>
         </div>
-        <p className="text-gray-900 lg:text-xl lg:w-[95%]">
+        <p className="text-gray-900 lg:w-[95%] lg:text-xl">
           Our platform connects you with top vendors for a seamless event
           planning experience, ensuring a stress free planning process for
           weddings, corporate events, birthday parties, and any special
           occasion.
         </p>
-        <button className=" bg-[#2E3192] p-4 flex gap-2 justify-center items-center text-lg rounded-md text-white">
+        <button className="flex items-center justify-center gap-2 rounded-md bg-[#2E3192] p-4 text-lg text-white">
           <span>Know More</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -52,7 +52,7 @@ export function Partner() {
             viewBox="0 0 24 24"
             strokeWidth="1.5"
             stroke="currentColor"
-            className="h-4 w-3 inline-block ml-1"
+            className="ml-1 inline-block h-4 w-3"
           >
             <path
               strokeLinecap="round"

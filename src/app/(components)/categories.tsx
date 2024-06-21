@@ -4,19 +4,19 @@ import { BentoGrid, BentoGridItem } from "../../components/ui/bento-grid";
 
 export function Categories() {
   return (
-    <section className="pt-7 pb-7 md:px-3 px-3">
-      <div className="flex flex-col md:flex-row w-full justify-between md:px-[7%] md:items-center items-start">
+    <section className="px-3 pb-7 pt-7 md:px-3">
+      <div className="flex w-full flex-col items-start justify-between md:flex-row md:items-center md:px-[7%]">
         <div className="flex flex-col">
-          <h1 className="md:text-5xl text-3xl font-bold">Explore Events</h1>
-          <p className="md:text-l md:text-sm text-xs text-gray-700 mt-2">
+          <h1 className="text-3xl font-bold md:text-5xl">Explore Events</h1>
+          <p className="md:text-l mt-2 text-xs text-gray-700 md:text-sm">
             Search through all types of events through categories
           </p>
         </div>
-        <button className="bg-[#2E3192] md:rounded-xl max-w-[9rem] md:py-3 md:text-sm md:px-8 hover:bg-indigo-600 text-gray-200 p-1 text-xs w-[50%] py-2 rounded-md  mt-3 shadow-md">
+        <button className="mt-3 w-[50%] max-w-[9rem] rounded-md bg-[#2E3192] p-1 py-2 text-xs text-gray-200 shadow-md hover:bg-indigo-600 md:rounded-xl md:px-8 md:py-3 md:text-sm">
           View More
         </button>
       </div>
-      <BentoGrid className="max-w-6xl mx-auto mt-[2rem] md:mt-[3rem]">
+      <BentoGrid className="mx-auto mt-[2rem] max-w-6xl md:mt-[3rem]">
         {items.map((item, i) => (
           <BentoGridItem
             key={i}
@@ -24,9 +24,9 @@ export function Categories() {
             imageUrl={item.imageUrl}
             className={
               i === 4
-                ? "md:col-span-2 cursor-pointer"
+                ? "cursor-pointer md:col-span-2"
                 : i === 2 || i == 5
-                  ? "md:row-span-2 md:col-span-1 col-span-2 cursor-pointer"
+                  ? "col-span-2 cursor-pointer md:col-span-1 md:row-span-2"
                   : i == 1
                     ? "col-span-2 md:col-span-1"
                     : i === 6

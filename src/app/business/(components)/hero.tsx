@@ -6,15 +6,15 @@ type Props = {};
 
 const Hero = (props: Props) => {
   return (
-    <div className="flex items-center justify-center min-w-full">
-      <div className="flex min-h-fit mb-[10rem] flex-col md:px-5 px-3 mt-5 justify-center items-center max-w-[100rem]">
-        <div className="md:p-9 flex items-center justify-center flex-col md:px-5 space-y-9">
-          <div className="xl:w-[50%] lg:w-[80%]">
-            <h1 className="md:text-5xl text-3xl font-bold leading-snug text-center">
+    <div className="flex min-w-full items-center justify-center">
+      <div className="mb-[10rem] mt-5 flex min-h-fit max-w-[100rem] flex-col items-center justify-center px-3 md:px-5">
+        <div className="flex flex-col items-center justify-center space-y-9 md:p-9 md:px-5">
+          <div className="lg:w-[80%] xl:w-[50%]">
+            <h1 className="text-center text-3xl font-bold leading-snug md:text-5xl">
               Build Your Business with Instant Connectivity
             </h1>
           </div>
-          <div className="md:w-[50%] md:text-lg text-sm">
+          <div className="text-sm md:w-[50%] md:text-lg">
             <p className="text-center">
               Unlock your business&apos;s full potential by partnering with us!
               Join our platform to amplify your reach and connect with a vast,
@@ -22,8 +22,8 @@ const Hero = (props: Props) => {
               success to new heights.
             </p>
           </div>
-          <div className="flex flex-col w-fit items-center justify-center space-y-2">
-            <button className="bg-[#2E3192] text-white p-5 w-fit font-light rounded-xl">
+          <div className="flex w-fit flex-col items-center justify-center space-y-2">
+            <button className="w-fit rounded-xl bg-[#2E3192] p-5 font-light text-white">
               Get Started
             </button>
             <Link href={"/"} className="text-[#2E3192] underline">
@@ -31,8 +31,8 @@ const Hero = (props: Props) => {
             </Link>
           </div>
         </div>
-        <div className="relative w-full flex items-center justify-center flex-col md:px-5 px-3 space-y-9">
-          <div className="md:w-[80%] h-[100%] w-full relative">
+        <div className="relative flex w-full flex-col items-center justify-center space-y-9 px-3 md:px-5">
+          <div className="relative h-[100%] w-full md:w-[80%]">
             <Image
               src={"/hehe.png"}
               width={1400}
@@ -41,16 +41,16 @@ const Hero = (props: Props) => {
               quality={100}
               className="rounded-2xl"
             />
-            <div className="absolute left-1/2 transform -translate-x-1/2 md:bottom-[-7rem] bottom-[-5rem] md:min-w-[60%] max-w-[85%]">
-              <div className="relative flex items-center justify-center md:p-7 p-0 px-4 rounded-xl bg-[rgba(96,94,216,0.9)]">
-                <div className="flex text-white justify-center xl:h-[11rem] items-center py-7 md:gap-[4rem] lg:gap-[6rem] gap-[1rem] w-[90%] px-4">
-                  <div className="xl:text-3xl lg:text-3xl md:text-xl text-xs leading-relaxed h-full text-center flex flex-wrap font-semibold">
+            <div className="absolute bottom-[-5rem] left-1/2 max-w-[85%] -translate-x-1/2 transform md:bottom-[-7rem] md:min-w-[60%]">
+              <div className="relative flex items-center justify-center rounded-xl bg-[rgba(96,94,216,0.9)] p-0 px-4 md:p-7">
+                <div className="flex w-[90%] items-center justify-center gap-[1rem] px-4 py-7 text-white md:gap-[4rem] lg:gap-[6rem] xl:h-[11rem]">
+                  <div className="flex h-full flex-wrap text-center text-xs font-semibold leading-relaxed md:text-xl lg:text-3xl xl:text-3xl">
                     Team Members 12+
                   </div>
-                  <div className="xl:text-3xl lg:text-3xl md:text-xl text-xs leading-relaxed h-full text-center flex flex-wrap font-semibold">
+                  <div className="flex h-full flex-wrap text-center text-xs font-semibold leading-relaxed md:text-xl lg:text-3xl xl:text-3xl">
                     Serving Cities 2+
                   </div>
-                  <div className="xl:text-3xl lg:text-3xl md:text-xl text-xs leading-relaxed h-full text-center flex flex-wrap font-semibold">
+                  <div className="flex h-full flex-wrap text-center text-xs font-semibold leading-relaxed md:text-xl lg:text-3xl xl:text-3xl">
                     Event Categories 40+
                   </div>
                 </div>

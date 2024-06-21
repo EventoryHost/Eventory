@@ -8,14 +8,14 @@ type Props = {};
 
 const Footer = (props: Props) => {
   return (
-    <div className="bg-gradient-to-r from-[#605ED8] to-[#CA81FE] flex flex-col justify-center items-center">
-      <div className="Footer w-[98%] 3xl:h-[20vh] md:h-[30vh] h-[20vh] mt-2 flex justify-center">
-        <div className="w-[85%] flex justify-between items-start pt-8">
+    <div className="flex flex-col items-center justify-center bg-gradient-to-r from-[#605ED8] to-[#CA81FE]">
+      <div className="Footer mt-2 flex h-[20vh] w-[98%] justify-center md:h-[30vh] 3xl:h-[20vh]">
+        <div className="flex w-[85%] items-start justify-between pt-8">
           <div>
-            <h1 className="md:text-4xl md:w-full w-[90%] text-xl font-semibold text-white">
+            <h1 className="w-[90%] text-xl font-semibold text-white md:w-full md:text-4xl">
               Ready to Plan Your Event ?
             </h1>
-            <p className="md:text-lg md:w-[80%] text-xs text-white md:font-semibold w-[150%] md:mt-5 mt-2">
+            <p className="mt-2 w-[150%] text-xs text-white md:mt-5 md:w-[80%] md:text-lg md:font-semibold">
               Start discovering the best vendors for your event today.
               <span className="block md:inline">
                 {" "}
@@ -24,15 +24,15 @@ const Footer = (props: Props) => {
             </p>
           </div>
           <div>
-            <div className="bg-[#2E3192] text-white md:px-5 md:py-4 text-sm py-3 md:w-[9rem] md:rounded-xl w-[6rem] md:mt-0 -mt-2.5 -mr-4 shadow-md rounded-xl">
-              <a href="#" className="block w-full h-full text-center">
+            <div className="-mr-4 -mt-2.5 w-[6rem] rounded-xl bg-[#2E3192] py-3 text-sm text-white shadow-md md:mt-0 md:w-[9rem] md:rounded-xl md:px-5 md:py-4">
+              <a href="#" className="block h-full w-full text-center">
                 Book now
               </a>
             </div>
           </div>
         </div>
       </div>
-      <div className="mb-7 mt-9 w-[95%] md:mt-0 rounded-xl bg-gradient-to-r from-indigo-200 to-purple-300 bg-white shadow-lg">
+      <div className="mb-7 mt-9 w-[95%] rounded-xl bg-white bg-gradient-to-r from-indigo-200 to-purple-300 shadow-lg md:mt-0">
         <section className="footer p-10">
           <aside>
             <Image
@@ -44,31 +44,31 @@ const Footer = (props: Props) => {
             />
           </aside>
           <nav>
-            <h6 className="font-bold  md:text-xl text-black">About Us</h6>
-            <a className="link link-hover">Our Mission</a>
-            <a className="link link-hover">Our Team</a>
+            <h6 className="font-bold text-black md:text-xl">About Us</h6>
+            <a className="link-hover link">Our Mission</a>
+            <a className="link-hover link">Our Team</a>
           </nav>
           <nav>
-            <h6 className="font-bold  md:text-xl text-black">Contacts</h6>
-            <a className="link link-hover">+91 987654321</a>
-            <a className="link link-hover">Eventory@withus</a>
+            <h6 className="font-bold text-black md:text-xl">Contacts</h6>
+            <a className="link-hover link">+91 987654321</a>
+            <a className="link-hover link">Eventory@withus</a>
           </nav>
           <nav>
-            <h6 className="font-bold  md:text-xl text-black">Legal</h6>
-            <a className="link link-hover">Terms of use</a>
-            <a className="link link-hover">Privacy policy</a>
+            <h6 className="font-bold text-black md:text-xl">Legal</h6>
+            <a className="link-hover link">Terms of use</a>
+            <a className="link-hover link">Privacy policy</a>
           </nav>
           <nav className="flex gap-9">
             <a
               href="https://www.instagram.com/eventoryofficial/"
-              className="flex p-2 shadow-md justify-center items-center text-white rounded-full bg-indigo-900"
+              className="flex items-center justify-center rounded-full bg-indigo-900 p-2 text-white shadow-md"
             >
               <InstagramIcon />
             </a>
-            <a className="flex p-2 shadow-md justify-center items-center text-white rounded-full bg-indigo-900">
+            <a className="flex items-center justify-center rounded-full bg-indigo-900 p-2 text-white shadow-md">
               <WhatsAppIcon />
             </a>
-            <a className="flex p-2 shadow-md justify-center items-center text-white rounded-full bg-indigo-900">
+            <a className="flex items-center justify-center rounded-full bg-indigo-900 p-2 text-white shadow-md">
               <FacebookIcon />
             </a>
           </nav>
