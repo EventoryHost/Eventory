@@ -11,10 +11,10 @@ const ReachoutForm = () => {
               Your Dream Event Awaits – Reach Out Today!
             </h1>
             <p className="mt-4">
-              Let's Create Unforgettable Memories Together! At{" "}
+              Let&apos;s Create Unforgettable Memories Together! At{" "}
               <span className="font-bold text-indigo-600">Eventory</span> we
               bring your event dreams to life with creativity and precision.
-              Whether it's a wedding, corporate event, or celebration, our
+              Whether it&aposs; a wedding, corporate event, or celebration, our
               expert team ensures every moment is memorable. Contact us today to
               start planning your extraordinary event.
             </p>
