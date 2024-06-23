@@ -35,7 +35,6 @@ const items = [
   // Add more items as needed
 ];
 
-
 const Moments = () => {
   const plugin = React.useRef(
     Autoplay({ delay: 2000, stopOnInteraction: true }),
@@ -69,7 +68,6 @@ const Moments = () => {
             Sharing Moments
           </h2>
         </div>
-        
 
         <div className="relative mx-auto overflow-hidden xs:mt-8">
           <div
