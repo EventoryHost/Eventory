@@ -1,5 +1,5 @@
 import React from "react";
-import Link from 'next/link'
+import Link from "next/link";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import FacebookIcon from "@mui/icons-material/Facebook";
@@ -53,8 +53,15 @@ const Footer = (props: Props) => {
           </nav>
           <nav>
             <h6 className="font-bold text-black md:text-xl">Contacts</h6>
-            <a href="tel:+917903646350" className="link-hover link">+91 7903646350</a>
-            <a  href="mailto:contact@eventory.in" className="link-hover link text-[rgba(98,95,217,1)]">contact@eventory.in</a>
+            <a href="tel:+917903646350" className="link-hover link">
+              +91 7903646350
+            </a>
+            <a
+              href="mailto:contact@eventory.in"
+              className="link-hover link text-[rgba(98,95,217,1)]"
+            >
+              contact@eventory.in
+            </a>
           </nav>
           <nav>
             <h6 className="font-bold text-black md:text-xl">Legal</h6>

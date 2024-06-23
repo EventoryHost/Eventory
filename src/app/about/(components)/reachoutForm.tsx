@@ -1,5 +1,5 @@
 import React from "react";
-import "../../globals.css"
+import "../../globals.css";
 
 type Props = {};
 const ReachoutForm = () => {
@@ -8,7 +8,7 @@ const ReachoutForm = () => {
       <div className="flex items-center justify-center">
         <div className="flex flex-col items-center space-y-8 rounded-lg p-8 md:flex-row md:items-start md:space-x-8 md:space-y-0">
           <div className="flex-1 text-center md:text-left">
-            <h1 className=" text-2xl  md:text-3xl md:mb-20 mb-0 font-bold">
+            <h1 className="mb-0 text-2xl font-bold md:mb-20 md:text-3xl">
               Your Dream Event Awaits – Reach Out Today!
             </h1>
             <p className="mt-4 text-left text-xs md:text-lg">
@@ -20,10 +20,13 @@ const ReachoutForm = () => {
               start planning your extraordinary event.
             </p>
           </div>
-          <div className="w-full flex-1 justify-center align-middle  md:translate-y-0 sm:w-[300px] md:w-[400px]">
+          <div className="w-full flex-1 justify-center align-middle sm:w-[300px] md:w-[400px] md:translate-y-0">
             <form className="flex flex-col space-y-4">
               <div>
-                <label htmlFor="name" className="block text-gray-700 xs:text-sm md:text-md">
+                <label
+                  htmlFor="name"
+                  className="md:text-md block text-gray-700 xs:text-sm"
+                >
                   Full Name
                 </label>
                 <input
@@ -34,7 +37,10 @@ const ReachoutForm = () => {
                 />
               </div>
               <div>
-                <label htmlFor="phone" className="block text-gray-700 xs:text-sm md:text-md">
+                <label
+                  htmlFor="phone"
+                  className="md:text-md block text-gray-700 xs:text-sm"
+                >
                   Mobile number
                 </label>
                 <input
@@ -45,7 +51,10 @@ const ReachoutForm = () => {
                 />
               </div>
               <div>
-                <label htmlFor="message" className="block text-gray-700 xs:text-sm md:text-md">
+                <label
+                  htmlFor="message"
+                  className="md:text-md block text-gray-700 xs:text-sm"
+                >
                   Message
                 </label>
                 <textarea
@@ -57,7 +66,7 @@ const ReachoutForm = () => {
               </div>
               <button
                 type="submit"
-                className="rounded-md bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-700 xs:text-sm md:text-md"
+                className="md:text-md rounded-md bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-700 xs:text-sm"
               >
                 Submit
               </button>

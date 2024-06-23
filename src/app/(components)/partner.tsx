@@ -71,7 +71,8 @@ const items = [
     title: "The Dawn of Innovation",
     description: "Explore the birth of groundbreaking ideas and inventions.",
     icon: <IconClipboardCopy className="h-4 w-4 text-neutral-500" />,
-    imageUrl: "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/partners/partners_01.png", // Add appropriate image URLs
+    imageUrl:
+      "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/partners/partners_01.png", // Add appropriate image URLs
   },
   {
     title: "The Digital Revolution",
@@ -84,6 +85,7 @@ const items = [
     title: "The Art of Design",
     description: "Discover the beauty of thoughtful and functional design.",
     icon: <IconSignature className="h-4 w-4 text-neutral-500" />,
-    imageUrl: "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/partners/partners_03.png",
+    imageUrl:
+      "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/partners/partners_03.png",
   },
 ];

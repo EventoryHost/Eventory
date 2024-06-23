@@ -1,5 +1,5 @@
 import React from "react";
-import "../../globals.css"
+import "../../globals.css";
 import Image from "next/image";
 
 type Props = {};
@@ -19,7 +19,7 @@ const Hero = (props: Props) => {
                 Discover, compare, and book top-rated vendors for weddings,
                 corporate events, parties, and more – all in one place.
               </p>
-              <button className=" rounded-xl text-xs md:text-lg md:rounded-2xl bg-[rgba(46,49,146,1)] px-4 py-4 text-white shadow-lg xs:my-5 xs:mb-12 md:mt-20">
+              <button className="rounded-xl bg-[rgba(46,49,146,1)] px-4 py-4 text-xs text-white shadow-lg xs:my-5 xs:mb-12 md:mt-20 md:rounded-2xl md:text-lg">
                 Connect with us
               </button>
             </div>

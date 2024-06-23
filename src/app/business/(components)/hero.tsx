@@ -34,7 +34,9 @@ const Hero = (props: Props) => {
         <div className="relative flex w-full flex-col items-center justify-center space-y-9 px-3 md:px-5">
           <div className="relative h-[100%] w-full md:w-[80%]">
             <Image
-              src={"https://d1u34m45xfa3ar.cloudfront.net/website/business-page/business_hero.png"}
+              src={
+                "https://d1u34m45xfa3ar.cloudfront.net/website/business-page/business_hero.png"
+              }
               width={1400}
               height={480}
               alt="image"

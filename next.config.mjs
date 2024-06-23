@@ -10,7 +10,7 @@ const nextConfig = {
       },
       {
         hostname: "d1u34m45xfa3ar.cloudfront.net",
-      }
+      },
     ],
   },
 };
