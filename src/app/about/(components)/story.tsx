@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import "../../globals.css"
 import Image from "next/image";
 import "../../globals.css";
 import { styled } from "@mui/material/styles";
@@ -29,12 +30,12 @@ const Story = () => {
     <>
       <div className="">
         <div className="w-full rounded-lg bg-[rgba(213,214,233,1)] shadow-lg">
-          <div className="flex flex-col items-center justify-between max-sm:mx-[10px] sm:mx-10 sm:flex-row sm:gap-20 sm:py-10 md:flex-row md:gap-20 md:py-10 lg:mx-20 lg:gap-40 lg:py-10">
+          <div className="flex flex-col items-center  justify-between max-sm:mx-[10px]  sm:flex-row md:flex-row md:gap-20 md:py-10 px-5 sm:py-10 md:mx-20 sm:gap-20 lg:gap-40 lg:py-10">
             <div className="flex-1 justify-center">
-              <h2 className="linear-gradient-colour font-serif text-4xl font-semibold max-sm:my-5 sm:mb-10 lg:mb-14">
+              <h2 className="linear-gradient-colour font-serif mt-5 text-2xl  md:text-4xl font-semibold max-sm:my-5 sm:mb-10 lg:mb-14">
                 The Story of Eventory
               </h2>
-              <p className="text-[rgb(0,0,0)]">
+              <p className="text-[rgb(0,0,0)] md:text-lg text-xs">
                 Our primary mission is to empower offline vendors across the
                 country by providing them an online platform to reach new
                 customers and expand their businesses beyond local contacts. We
@@ -43,21 +44,21 @@ const Story = () => {
               </p>
             </div>
             <div className="flex flex-1 justify-center">
-              {/* <Image src="/aboutus/s1.png" alt="" width={560} height={450} /> */}
+            
               <img
-                src="/aboutus/s1.png"
-                className="max-sm:my-10 max-sm:w-[300px]"
+                src="https://d1u34m45xfa3ar.cloudfront.net/website/about-page/story_01.png"
+                className="max-sm:my-10 max-sm:w-[280px]"
                 alt=""
               />
             </div>
           </div>
 
-          <div className="sm:mx-220 flex flex-col items-center justify-between max-sm:mx-[10px] sm:flex-row-reverse sm:gap-10 sm:py-10 md:gap-20 md:py-10 lg:mx-20 lg:gap-40 lg:py-10">
+          <div className="flex flex-col  md:flex-row-reverse sm:flex-row-reverse items-center justify-between max-sm:mx-[10px] md:gap-20 md:py-10 px-5 sm:py-10 md:mx-20 sm:gap-20 lg:gap-40 lg:py-10">
             <div className="flex-1 justify-center">
-              <h2 className="linear-gradient-colour font-serif text-4xl font-semibold max-sm:my-5 sm:mb-10 lg:mb-14">
+              <h2 className="linear-gradient-colour font-serif text-2xl  md:text-4xl font-semibold max-sm:my-5 sm:mb-10 lg:mb-14">
                 We Provide Experience
               </h2>
-              <p className="text-[rgba(0,0,0,1)]">
+              <p className="text-[rgba(0,0,0,1)] md:text-lg text-xs">
                 We excel in event planning with innovative ideas and meticulous
                 attention to detail, ensuring clients feel inspired and
                 reassured. Our visionary designs and commitment to excellence
@@ -65,17 +66,21 @@ const Story = () => {
                 into unforgettable experiences.
               </p>
             </div>
-            <div className="flex flex-1 justify-center max-sm:my-10 max-sm:w-[300px] sm:py-10">
-              <Image src="/aboutus/s2.png" alt="" width={560} height={450} />
+            <div className="flex flex-1 justify-center">
+            <img
+                src="https://d1u34m45xfa3ar.cloudfront.net/website/about-page/story_02.png"
+                className="max-sm:my-10 max-sm:w-[300px]"
+                alt=""
+              />
             </div>
           </div>
 
-          <div className="flex flex-col items-center justify-between max-sm:mx-[10px] sm:mx-10 sm:flex-row sm:gap-10 sm:py-10 md:gap-20 md:py-10 lg:mx-20 lg:gap-40 lg:py-10">
+          <div className="flex flex-col items-center justify-between max-sm:mx-[10px] sm:flex-row md:flex-row md:gap-20 md:py-10 px-5 sm:py-10 md:mx-20 sm:gap-20 lg:gap-40 lg:py-10">
             <div className="flex-1 justify-end">
-              <h2 className="linear-gradient-colour font-serif text-4xl font-semibold max-sm:my-5 sm:mb-10 lg:mb-14">
+              <h2 className="linear-gradient-colour font-serif text-2xl  md:text-4xl font-semibold max-sm:my-5 sm:mb-10 lg:mb-14">
                 The Social Cause
               </h2>
-              <p className="text-[rgba(0,0,0,1)]">
+              <p className="text-[rgba(0,0,0,1)] md:text-lg text-xs pt-0 md:pt-10">
                 We focus on fostering employment by integrating offline vendors
                 into our platform, helping them transition online to combat
                 unemployment and enhance income streams. This expansion builds
@@ -83,35 +88,37 @@ const Story = () => {
                 vitality.
               </p>
             </div>
-            <div className="flex flex-1 justify-center max-sm:my-10 max-sm:w-[300px]">
-              <Image
-                src="/aboutus/s3.png"
-                className="rounded-xl"
+            <div className="flex flex-1 justify-center">
+            <img
+                src="https://d1u34m45xfa3ar.cloudfront.net/website/about-page/story_03.png"
+                className="max-sm:my-10 max-sm:w-[300px] rounded-lg"
                 alt=""
-                width={560}
-                height={450}
               />
             </div>
           </div>
 
           <div className="relative">
-            <div className="lg:py-102 items-center justify-between max-sm:mx-[10px] sm:mx-10 sm:gap-0 sm:py-10 md:gap-20 md:py-5 lg:mx-16 lg:gap-40">
+            <div className="lg:py-102  md:py-10 items-center justify-between max-sm:mx-[10px] mx-7 sm:flex-row md:flex-row md:gap-20 md:px-10 sm:py-10  sm:gap-20 lg:gap-40 lg:py-10">
               <div className="justify-center">
-                <h2 className="font-poppins linear-gradient-colour text-4xl font-semibold max-sm:mb-10 md:mb-10 lg:mb-14">
+                <h2 className="font-poppins linear-gradient-colour text-2xl  md:text-4xl font-semibold max-sm:mb-10 md:mb-10 lg:mb-14">
                   Why choose us?
                 </h2>
               </div>
             </div>
-            <div className="absolute top-[84px] z-10 flex w-full flex-col items-center gap-20 max-sm:relative max-sm:top-[0px] max-sm:bg-[rgba(213,214,233,1)] sm:flex-row md:my-[50px] md:mt-[-20px] md:justify-center md:gap-5 lg:justify-around">
-              <div className="mb-10 h-[412px] w-[346px] rounded-lg bg-[rgba(96,94,216,1)] p-8 text-white">
+            
+            <div className=" text-[rgba(255,255,255,1)] absolute md:top-[120px]
+             z-10 flex w-full flex-col items-center
+           gap-5 max-sm:relative max-sm:top-[0px] 
+            max-sm:bg-[rgba(213,214,233,1)] sm:flex-row md:my-[50px] md:mt-[-20px] md:justify-center md:gap-5 lg:justify-around">
+              <div className="mb-10 sm:w-[300px] h-[400px] w-[300px] md:h-[412px] md:w-[346px] rounded-lg bg-[rgba(96,94,216,1)] p-8 text-white">
                 <div className="flex flex-col items-center gap-14">
                   <div className="pb-2">
-                    <h2 className="text-xl font-semibold">
+                    <h2 className=" md:text-xl font-semibold">
                       Innovation and Excellence
                     </h2>
                   </div>
 
-                  <div className="flex h-20 w-20 items-center justify-center text-indigo-600">
+                  <div className="flex h-16 w-16 md:h-20 md:w-20 items-center justify-center text-indigo-600">
                     <svg
                       width="91"
                       height="81"
@@ -149,7 +156,7 @@ const Story = () => {
                       />
                     </svg>
                   </div>
-                  <p className="text-start">
+                  <p className="text-start text-sm md:text-md ">
                     Creating cutting-edge technology to deliver our mission.
                     Committed to high standards of quality, ensuring perfection
                     in every aspect of our work.
@@ -157,13 +164,13 @@ const Story = () => {
                 </div>
               </div>
 
-              <div className="mb-10 h-[412px] w-[346px] rounded-lg bg-[rgba(96,94,216,1)] p-8 text-white">
+              <div className="mb-10 h-[400px] w-[300px] md:h-[412px] md:w-[346px] rounded-lg bg-[rgba(96,94,216,1)] p-8 text-white">
                 <div className="flex flex-col items-center gap-14">
                   <div className="pb-2">
-                    <h2 className="text-xl font-semibold">Customer Focus</h2>
+                    <h2 className="md:text-xl font-semibold">Customer Focus</h2>
                   </div>
 
-                  <div className="flex h-20 w-20 items-center justify-center text-indigo-600">
+                  <div className="flex h-16 w-16 md:h-20 md:w-20 items-center justify-center text-indigo-600">
                     <svg
                       width="73"
                       height="73"
@@ -178,22 +185,22 @@ const Story = () => {
                     </svg>
                   </div>
 
-                  <p className="text-start">
+                  <p className="text-start text-sm md:text-md">
                     Tailoring services to meet customer needs, prioritizing
                     customer satisfaction.
                   </p>
                 </div>
               </div>
 
-              <div className="mb-10 h-[412px] w-[346px] rounded-lg bg-[rgba(96,94,216,1)] p-8 text-white">
+              <div className="mb-10 h-[400px] w-[300px] md:h-[412px] md:w-[346px] rounded-lg bg-[rgba(96,94,216,1)] p-8 text-white">
                 <div className="flex flex-col items-center gap-14">
                   <div className="pb-2">
-                    <h2 className="text-xl font-semibold">
+                    <h2 className=" md:text-xl font-semibold">
                       Integrity and Collaboration
                     </h2>
                   </div>
 
-                  <div className="flex h-20 w-20 items-center justify-center text-indigo-600">
+                  <div className="flex h-16 w-16 md:h-20 md:w-20 items-center justify-center text-indigo-600">
                     <svg
                       width="96"
                       height="96"
@@ -239,7 +246,7 @@ const Story = () => {
                     </svg>
                   </div>
 
-                  <p className="text-start">
+                  <p className="text-start text-sm md:text-md">
                     Conducting business with transparency, honesty, and
                     Emphasizing teamwork within our organization and with
                     clients to achieve extraordinary results..

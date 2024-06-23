@@ -8,6 +8,9 @@ const nextConfig = {
       {
         hostname: "img.daisyui.com",
       },
+      {
+        hostname: "d1u34m45xfa3ar.cloudfront.net",
+      }
     ],
   },
 };

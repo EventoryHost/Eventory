@@ -1,8 +1,11 @@
 import React from "react";
+import Link from 'next/link'
 import InstagramIcon from "@mui/icons-material/Instagram";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import Image from "next/image";
+import { link } from "fs";
+import { redirect } from "next/dist/server/api-utils";
 
 type Props = {};
 
@@ -50,8 +53,8 @@ const Footer = (props: Props) => {
           </nav>
           <nav>
             <h6 className="font-bold text-black md:text-xl">Contacts</h6>
-            <a className="link-hover link">+91 987654321</a>
-            <a className="link-hover link">Eventory@withus</a>
+            <a href="tel:+917903646350" className="link-hover link">+91 7903646350</a>
+            <a  href="mailto:contact@eventory.in" className="link-hover link text-[rgba(98,95,217,1)]">contact@eventory.in</a>
           </nav>
           <nav>
             <h6 className="font-bold text-black md:text-xl">Legal</h6>
