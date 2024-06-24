@@ -35,6 +35,7 @@ const SignUp = (props: Props) => {
     console.log("Email:", email);
     console.log("Mobile:", mobile);
     console.log("Password:", password);
+    toggleModal();
   };
 
   return (
@@ -44,8 +45,8 @@ const SignUp = (props: Props) => {
           <button className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2E3192] p-5 text-white shadow-xl">
             1
           </button>
-          <div className="h-[0.3rem] w-[4rem] rounded-xl bg-indigo-600"></div>
-          <button className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2E3192] p-5 text-white shadow-xl">
+          <div className="h-[0.3rem] w-[4rem] rounded-xl bg-gray-300"></div>
+          <button className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-300 p-5 ">
             2
           </button>
         </div>
@@ -188,12 +189,6 @@ const SignUp = (props: Props) => {
                 >
                   Verify
                 </button>
-                <button
-                  className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-3 xs:py-2 xs:text-sm md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                  onClick={toggleModal}
-                >
-                  Open Modal
-                </button>
               </div>
             </div>
           </div>
@@ -202,7 +197,8 @@ const SignUp = (props: Props) => {
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center gap-9">
           <div className="flex flex-col items-center justify-center gap-9 rounded-lg bg-white p-6 shadow-lg">
-            <h1>Verify OTP</h1>
+            <h1>OTP sent to <span className="font-semibold">+91{mobile}</span></h1>
+            <Link href={"/signup"} onClick={toggleModal} className="font-semibold text-indigo-700 underline">not you?</Link>
             <InputOTP
               maxLength={6}
               className="border-[#2E3192]"
