@@ -25,7 +25,9 @@ const Grow = (props: Props) => {
         </div>
         <div className="md:w-[50%]">
           <Image
-            src={"/image 98.png"}
+            src={
+              "https://d1u34m45xfa3ar.cloudfront.net/website/business-page/business_grow.png"
+            }
             width={647}
             height={483}
             quality={100}

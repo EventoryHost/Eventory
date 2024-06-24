@@ -19,54 +19,49 @@ const venues = [
     rating: "4.5",
     price: "4000",
     category: "Wedding cakes , Western suburbs",
+    img: "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/featured/card_01.png",
+  },
+  {
+    name: "Krishna Vendors",
+    rating: "4.5",
+    price: "5000",
+    category: "Wedding cakes , Western suburbs",
+    img: "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/featured/card_01.png",
+  },
+  {
+    name: "Krishna Vendors",
+    rating: "4.5",
+    price: "6000",
+    category: "Wedding cakes , Western suburbs",
+    img: "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/featured/card_01.png",
+  },
+  {
+    name: "Krishna Vendors",
+    rating: "4.5",
+    price: "7000",
+    category: "Wedding cakes , Western suburbs",
+    img: "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/featured/card_01.png",
+  },
+  {
+    name: "Krishna Vendors",
+    rating: "4.5",
+    price: "8000",
+    category: "Wedding cakes , Western suburbs",
+    img: "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/featured/card_01.png",
+  },
+  {
+    name: "Krishna Vendors",
+    rating: "4.5",
+    price: "9000",
+    category: "Wedding cakes , Western suburbs",
+    img: "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/featured/card_01.png",
   },
   {
     name: "Krishna Vendors",
     rating: "4.5",
     price: "4000",
     category: "Wedding cakes , Western suburbs",
-  },
-  {
-    name: "Krishna Vendors",
-    rating: "4.5",
-    price: "4000",
-    category: "Wedding cakes , Western suburbs",
-  },
-  {
-    name: "Krishna Vendors",
-    rating: "4.5",
-    price: "4000",
-    category: "Wedding cakes , Western suburbs",
-  },
-  {
-    name: "Krishna Vendors",
-    rating: "4.5",
-    price: "4000",
-    category: "Wedding cakes , Western suburbs",
-  },
-  {
-    name: "Krishna Vendors",
-    rating: "4.5",
-    price: "4000",
-    category: "Wedding cakes , Western suburbs",
-  },
-  {
-    name: "Krishna Vendors",
-    rating: "4.5",
-    price: "4000",
-    category: "Wedding cakes , Western suburbs",
-  },
-  {
-    name: "Krishna Vendors",
-    rating: "4.5",
-    price: "4000",
-    category: "Wedding cakes , Western suburbs",
-  },
-  {
-    name: "Krishna Vendors",
-    rating: "4.5",
-    price: "4000",
-    category: "Wedding cakes , Western suburbs",
+    img: "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/featured/card_01.png",
   },
 ];
 
@@ -105,11 +100,7 @@ export function Featured() {
               <div className="w-[100%] p-1 md:w-[100%] md:p-4">
                 <div className="w-83 rounded-xl bg-white shadow-md">
                   <figure>
-                    <img
-                      className="rounded-t-xl"
-                      src="https://plus.unsplash.com/premium_photo-1678230218927-220e624e5a0a?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                      alt="Shoes"
-                    />
+                    <img className="rounded-t-xl" src={venue.img} alt="Shoes" />
                   </figure>
                   <div className="mt-2 px-2 pb-1">
                     <div className="flex w-full justify-between">

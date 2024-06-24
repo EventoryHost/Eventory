@@ -6,15 +6,15 @@ import { cn } from "@/lib/utils";
 
 export const ParallaxScroll = ({ className }: { className: string }) => {
   const images = [
-    "/parallax/Frame 427318907.png",
-    "/parallax/Frame 427318908-1.png",
-    "/parallax/Frame 427318908.png",
+    "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/parallax/Parallax_image_01.png",
+    "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/parallax/Parallax_image_02.png",
+    "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/parallax/Parallax_image_03.png",
   ];
 
   const images2 = [
-    "/parallax/Frame 427318910.png",
-    "/parallax/Frame 427318909.png",
-    "/parallax/Frame 427318907.png",
+    "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/parallax/Parallax_image_04.png",
+    "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/parallax/Parallax_image_05.png",
+    "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/parallax/Parallax_image_01.png",
   ];
 
   const doubledImages = [...images, ...images, ...images];

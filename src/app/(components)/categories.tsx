@@ -44,41 +44,41 @@ const items = [
   {
     title: "Home",
     imageUrl:
-      "https://images.unsplash.com/photo-1589463349208-95817c91f971?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/categories/cat_01.png",
   },
   {
     title: "Festive",
     imageUrl:
-      "https://images.unsplash.com/photo-1571913035274-3eeb685eb255?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzR8fGluZGlhbiUyMGZlc3RpdmFsfGVufDB8fDB8fHww",
+      "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/categories/cat_02.png",
   },
   {
     title: "Special Guest",
     imageUrl:
-      "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/categories/cat_03.png",
   },
   {
     title: "Corporate",
     imageUrl:
-      "https://images.unsplash.com/photo-1514828980084-9462f7d03afc?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/categories/cat_04.png",
   },
   {
     title: "Night",
     imageUrl:
-      "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/categories/cat_05.png",
   },
   {
     title: "Wedding",
     imageUrl:
-      "https://images.unsplash.com/photo-1587271339318-2e78fdf79586?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/categories/cat_06.png",
   },
   {
     title: "Anniversary",
     imageUrl:
-      "https://images.unsplash.com/photo-1542042161784-26ab9e041e89?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/categories/cat_07.png",
   },
   {
     title: "Birthday",
     imageUrl:
-      "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/categories/cat_08.png",
   },
 ];
