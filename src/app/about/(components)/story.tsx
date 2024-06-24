@@ -97,9 +97,9 @@ const Story = () => {
           </div>
 
           <div className="relative">
-            <div className="lg:py-102 mx-7 items-center justify-between max-sm:mx-[10px] sm:flex-row sm:gap-20 sm:py-10 md:flex-row md:gap-20 md:px-10 md:py-10 lg:gap-40 lg:py-10">
+            <div className="px-5 max-sm:mx-[10px] sm:flex-row sm:gap-20 sm:py-10 md:mx-20 md:flex-row md:gap-20 md:py-10 lg:gap-40 lg:py-10">
               <div className="justify-center">
-                <h2 className="font-poppins linear-gradient-colour text-2xl font-semibold max-sm:mb-10 md:mb-10 md:text-4xl lg:mb-14">
+                <h2 className=" text-left font-poppins linear-gradient-colour text-2xl font-semibold max-sm:mb-10 md:mb-10 md:text-4xl lg:mb-14">
                   Why choose us?
                 </h2>
               </div>
