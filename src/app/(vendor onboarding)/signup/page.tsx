@@ -46,7 +46,7 @@ const SignUp = (props: Props) => {
             1
           </button>
           <div className="h-[0.3rem] w-[4rem] rounded-xl bg-gray-300"></div>
-          <button className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-300 p-5 ">
+          <button className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-300 p-5">
             2
           </button>
         </div>
@@ -197,8 +197,16 @@ const SignUp = (props: Props) => {
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center gap-9">
           <div className="flex flex-col items-center justify-center gap-9 rounded-lg bg-white p-6 shadow-lg">
-            <h1>OTP sent to <span className="font-semibold">+91{mobile}</span></h1>
-            <Link href={"/signup"} onClick={toggleModal} className="font-semibold text-indigo-700 underline">not you?</Link>
+            <h1>
+              OTP sent to <span className="font-semibold">+91{mobile}</span>
+            </h1>
+            <Link
+              href={"/signup"}
+              onClick={toggleModal}
+              className="font-semibold text-indigo-700 underline"
+            >
+              not you?
+            </Link>
             <InputOTP
               maxLength={6}
               className="border-[#2E3192]"

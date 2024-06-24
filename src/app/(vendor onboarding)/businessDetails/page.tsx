@@ -55,7 +55,7 @@ const BusinessDetails = () => {
             1
           </button>
           <div className="h-[0.3rem] w-[4rem] rounded-xl bg-[#2E3192]"></div>
-          <button className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2E3192] text-white p-5">
+          <button className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2E3192] p-5 text-white">
             2
           </button>
         </div>
@@ -64,7 +64,8 @@ const BusinessDetails = () => {
             Tell us about your business
           </h1>
           <p className="text-black xs:text-sm md:w-[90%]">
-            Fill out your Business details to get verified and proceed to registration process.
+            Fill out your Business details to get verified and proceed to
+            registration process.
           </p>
         </div>
         <div className="relative h-[10rem] lg:w-full">

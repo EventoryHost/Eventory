@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { Check, ChevronsUpDown } from "lucide-react"
+import * as React from "react";
+import { Check, ChevronsUpDown } from "lucide-react";
 
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 import {
   Command,
   CommandEmpty,
@@ -12,30 +12,35 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/components/ui/command"
+} from "@/components/ui/command";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover"
+} from "@/components/ui/popover";
 
 // Define the type for the options
 type FrameworkOption = {
-  value: string
-  label: string
-}
+  value: string;
+  label: string;
+};
 
 // Define the props for the component
 interface ComboboxDemoProps {
-  options: FrameworkOption[]
-  className?: string
-  placeholder?: string
+  options: FrameworkOption[];
+  className?: string;
+  placeholder?: string;
   setFunction: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export function ComboboxDemo({ options, className, placeholder, setFunction}: ComboboxDemoProps) {
-  const [open, setOpen] = React.useState(false)
-  const [value, setValue] = React.useState("")
+export function ComboboxDemo({
+  options,
+  className,
+  placeholder,
+  setFunction,
+}: ComboboxDemoProps) {
+  const [open, setOpen] = React.useState(false);
+  const [value, setValue] = React.useState("");
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -63,15 +68,15 @@ export function ComboboxDemo({ options, className, placeholder, setFunction}: Co
                   key={option.value}
                   value={option.value}
                   onSelect={(currentValue) => {
-                    setValue(currentValue === value ? "" : currentValue)
-                    setOpen(false)
-                    setFunction(currentValue)
+                    setValue(currentValue === value ? "" : currentValue);
+                    setOpen(false);
+                    setFunction(currentValue);
                   }}
                 >
                   <Check
                     className={cn(
                       "mr-2 h-4 w-4",
-                      value === option.value ? "opacity-100" : "opacity-0"
+                      value === option.value ? "opacity-100" : "opacity-0",
                     )}
                   />
                   {option.label}
@@ -82,5 +87,5 @@ export function ComboboxDemo({ options, className, placeholder, setFunction}: Co
         </Command>
       </PopoverContent>
     </Popover>
-  )
+  );
 }
