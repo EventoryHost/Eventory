@@ -25,7 +25,7 @@ const Footer = (props: Props) => {
             </p>
           </div>
           <div>
-            <div className="-mr-4 -mt-1 w-[6rem] rounded-xl bg-[#2E3192] py-3 text-sm text-white shadow-md md:mt-0 md:w-[9rem] md:rounded-xl md:px-5 md:py-4">
+            <div className="-mr-4 -mt-1.5 w-[6rem] rounded-xl bg-[#2E3192] py-3 text-sm text-white shadow-md md:mt-0 md:w-[9rem] md:rounded-xl md:px-5 md:py-4">
               <a href="#" className="block h-full w-full text-center">
                 Book now
               </a>
@@ -34,12 +34,12 @@ const Footer = (props: Props) => {
         </div>
       </div>
       <div className="mb-7 mt-9 w-[95%] rounded-xl bg-white bg-gradient-to-r from-indigo-200 to-purple-300 shadow-lg md:mt-0">
-        <section className="footer p-10">
-          <aside className="w-full justify-center md:justify-start">
+        <section className="footer p-10  ">
+          <aside className=" justify-center md:justify-start w-full ">
             <Image
               width={100}
               height={100}
-              //
+              // 
               src="https://d1u34m45xfa3ar.cloudfront.net/website/footer/logo-with-bg.svg"
               alt="Eventory logo justify-center items-center align-middle"
               className="mix-blend-multiply"
