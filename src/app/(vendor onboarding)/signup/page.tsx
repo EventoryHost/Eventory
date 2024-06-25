@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { authWithGoogle } from "@/services/auth";
 
 import {
   InputOTP,
@@ -135,7 +136,7 @@ const SignUp = (props: Props) => {
             <div className="h-[1px] w-[80%] self-start bg-gray-300"></div>
             <div className="flex flex-col items-start self-start">
               or continue with
-              <div className="mt-5 flex gap-5">
+              <button className="mt-5 google flex gap-5" onClick={() => authWithGoogle()}>
                 <svg
                   width="32"
                   height="32"
@@ -160,7 +161,7 @@ const SignUp = (props: Props) => {
                     fill="#1976D2"
                   />
                 </svg>
-                <svg
+                {/* <svg
                   width="32"
                   height="32"
                   viewBox="0 0 32 32"
@@ -171,8 +172,8 @@ const SignUp = (props: Props) => {
                     d="M16.0013 2.7207C8.66797 2.7207 2.66797 8.70737 2.66797 16.0807C2.66797 22.7474 7.54797 28.2807 13.9213 29.2807V19.9474H10.5346V16.0807H13.9213V13.134C13.9213 9.78737 15.908 7.94737 18.9613 7.94737C20.4146 7.94737 21.9346 8.2007 21.9346 8.2007V11.494H20.2546C18.6013 11.494 18.0813 12.5207 18.0813 13.574V16.0807H21.788L21.188 19.9474H18.0813V29.2807C21.2232 28.7845 24.0842 27.1814 26.1479 24.7608C28.2115 22.3402 29.3418 19.2616 29.3346 16.0807C29.3346 8.70737 23.3346 2.7207 16.0013 2.7207Z"
                     fill="#1877F2"
                   />
-                </svg>
-              </div>
+                </svg> */}
+              </button>
               <div className="flex min-w-[56vw] flex-col justify-between gap-9 md:flex-row">
                 <div className="mt-5 flex gap-2 xs:text-sm">
                   already have an account ?{" "}

@@ -1,12 +1,14 @@
 import axios from "axios";
-import { api } from "./apiConfig";
+import dotenv from "dotenv"
+
+dotenv.config()
 
 export const authWithGoogle = async () => {
   try {
-    await api.get("/auth/google-auth");
+    await axios.get(`${process.env.BASE_URL}/auth/google-auth`);
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      throw new Error(error.message);
+      throw Error(error.message);
     }
   }
 };
