@@ -26,7 +26,8 @@ const items = [
     name: "Aman Gupta",
     image:
       "https://d1u34m45xfa3ar.cloudfront.net/website/about-page/moments_01.png",
-  },{
+  },
+  {
     message:
       "It was an unforgettable experience with Eventory. They handled everything flawlessly from start to finish.",
     name: "Aman Gupta",
@@ -77,7 +78,7 @@ const Moments = () => {
           </h2>
         </div>
 
-        <div className="relative justify-center mx-auto overflow-hidden xs:mt-8">
+        <div className="relative mx-auto justify-center overflow-hidden xs:mt-8">
           <div
             className="flex justify-center transition-transform duration-500 ease-in-out"
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
@@ -85,10 +86,10 @@ const Moments = () => {
             {items.map((item, index) => (
               <div
                 key={index}
-                className=" w-full flex-shrink-0 flex-col items-center text-center justify-center md:flex-row lg:flex-row"
+                className="w-full flex-shrink-0 flex-col items-center justify-center text-center md:flex-row lg:flex-row"
               >
-                <div className="flex w-full  flex-col items-center justify-center md:flex-row lg:flex-row">
-                  <div className=" md:ml-20 order-2 items-end justify-end rounded-moments md:rounded-l-2xl  bg-[rgba(46,49,146,0.1)] px-5 pt-5 text-left xs:w-[200px]  sm:w-[300px] lg:w-[600px]  md:order-1  md:h-[300px] md:w-2/3">
+                <div className="flex w-full flex-col items-center justify-center md:flex-row lg:flex-row">
+                  <div className="rounded-moments order-2 items-end justify-end bg-[rgba(46,49,146,0.1)] px-5 pt-5 text-left xs:w-[200px] sm:w-[300px] md:order-1 md:ml-20 md:h-[300px] md:w-2/3 md:rounded-l-2xl lg:w-[600px]">
                     <div className="mb-5">
                       <svg
                         width="40"
@@ -111,11 +112,11 @@ const Moments = () => {
                       {item.name}
                     </p>
                   </div>
-                  <div className=" xs:-translate-x-7 sm:-translate-x-5  md:translate-x-0  order-1 flex items-center justify-center md:justify-start max-sm:pl-[60px] md:order-2 md:w-1/3">
+                  <div className="order-1 flex items-center justify-center max-sm:pl-[60px] xs:-translate-x-7 sm:-translate-x-5 md:order-2 md:w-1/3 md:translate-x-0 md:justify-start">
                     <img
                       src={item.image}
                       alt={item.name}
-                      className="h-[200px] rounded-2xl object-cover justify-center  xs:w-[400px] md:h-[400px] md:w-[300px]"
+                      className="h-[200px] justify-center rounded-2xl object-cover xs:w-[400px] md:h-[400px] md:w-[300px]"
                     />
                   </div>
                 </div>
@@ -125,7 +126,7 @@ const Moments = () => {
 
           <button
             onClick={prevSlide}
-            className="  absolute top-1/2 -translate-y-1/2 transform rounded-full p-2"
+            className="absolute top-1/2 -translate-y-1/2 transform rounded-full p-2"
           >
             <svg
               width="42"
@@ -144,7 +145,7 @@ const Moments = () => {
           </button>
           <button
             onClick={nextSlide}
-            className=" absolute right-0 top-1/2 -translate-y-1/2 transform rounded-full p-2"
+            className="absolute right-0 top-1/2 -translate-y-1/2 transform rounded-full p-2"
           >
             <svg
               width="42"
