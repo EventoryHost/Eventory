@@ -136,7 +136,10 @@ const SignUp = (props: Props) => {
             <div className="h-[1px] w-[80%] self-start bg-gray-300"></div>
             <div className="flex flex-col items-start self-start">
               or continue with
-              <button className="mt-5 google flex gap-5" onClick={() => authWithGoogle()}>
+              <button
+                className="google mt-5 flex gap-5"
+                onClick={() => authWithGoogle()}
+              >
                 <svg
                   width="32"
                   height="32"
