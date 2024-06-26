@@ -9,7 +9,7 @@ type Props = {};
 
 const Footer = (props: Props) => {
   return (
-    <div className="flex flex-col  items-center justify-center bg-gradient-to-r from-[#605ED8] to-[#CA81FE]">
+    <div className="flex flex-col items-center justify-center bg-gradient-to-r from-[#605ED8] to-[#CA81FE]">
       <div className="Footer mt-2 flex h-[20vh] w-[98%] justify-center md:h-[30vh] 3xl:h-[20vh]">
         <div className="flex w-[85%] items-start justify-between pt-8">
           <div>

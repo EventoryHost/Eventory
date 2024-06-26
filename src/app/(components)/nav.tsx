@@ -42,13 +42,12 @@ const Nav: React.FC = () => {
             className="h-13 w-10"
           />
         </a>
-        <div className=" mx-5 md:mx-0 max-h-full max-w-full flex-1 pl-[10px]  sm:pl-0">
+        <div className="mx-5 max-h-full max-w-full flex-1 pl-[10px] sm:pl-0 md:mx-0">
           <form className="relative mx-auto flex flex-grow justify-center">
             <label
               htmlFor="default-search"
               className="sr-only mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >
-            </label>
+            ></label>
             <div className="relative w-full max-w-[21rem] md:max-w-[27rem] lg:max-w-[18rem] xl:max-w-[27rem]">
               <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-2 xl:pl-5">
                 <svg
@@ -70,7 +69,7 @@ const Nav: React.FC = () => {
               <input
                 type="text"
                 id="default-search"
-                className="block rounded-lg border border-gray-300 bg-gray-50 p-2 pl-7 text-sm text-gray-900 w-full md:w-[27rem] lg:w-[18rem] xl:w-[27rem] xl:pl-12"
+                className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2 pl-7 text-sm text-gray-900 md:w-[27rem] lg:w-[18rem] xl:w-[27rem] xl:pl-12"
                 placeholder="Search for party and event services"
                 value={query}
                 onChange={async (e) => {
@@ -82,7 +81,7 @@ const Nav: React.FC = () => {
                 onBlur={async () => setResults(await handleSearchAbort())}
                 required
               />
-               
+
               {results.length > 0 && (
                 <ul className="absolute z-10 mt-1 max-h-60 w-full overflow-y-auto rounded-lg border border-gray-300 bg-white shadow-lg">
                   {results.map((result, index) => (
@@ -182,11 +181,27 @@ const Nav: React.FC = () => {
                   role="button"
                   className="avatar btn btn-circle btn-ghost"
                 >
-                  <div className="w-10 rounded-full justify-center translate-x-2 translate-y-2">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <circle cx="4" cy="4" r="4" transform="matrix(-1 0 0 1 16 3)" stroke="#2B3F6C" stroke-width="1.5" />
-                      <path d="M5 16.9347C5 16.0743 5.54085 15.3068 6.35109 15.0175V15.0175C10.004 13.7128 13.996 13.7128 17.6489 15.0175V15.0175C18.4591 15.3068 19 16.0743 19 16.9347V18.2502C19 19.4376 17.9483 20.3498 16.7728 20.1818L15.8184 20.0455C13.2856 19.6837 10.7144 19.6837 8.18162 20.0455L7.22721 20.1818C6.0517 20.3498 5 19.4376 5 18.2502V16.9347Z" stroke="#2B3F6C" stroke-width="1.5" />
-                      
+                  <div className="w-10 translate-x-2 translate-y-2 justify-center rounded-full">
+                    <svg
+                      width="28"
+                      height="28"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <circle
+                        cx="4"
+                        cy="4"
+                        r="4"
+                        transform="matrix(-1 0 0 1 16 3)"
+                        stroke="#2B3F6C"
+                        stroke-width="1.5"
+                      />
+                      <path
+                        d="M5 16.9347C5 16.0743 5.54085 15.3068 6.35109 15.0175V15.0175C10.004 13.7128 13.996 13.7128 17.6489 15.0175V15.0175C18.4591 15.3068 19 16.0743 19 16.9347V18.2502C19 19.4376 17.9483 20.3498 16.7728 20.1818L15.8184 20.0455C13.2856 19.6837 10.7144 19.6837 8.18162 20.0455L7.22721 20.1818C6.0517 20.3498 5 19.4376 5 18.2502V16.9347Z"
+                        stroke="#2B3F6C"
+                        stroke-width="1.5"
+                      />
                     </svg>
                   </div>
                 </div>
