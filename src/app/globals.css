@@ -117,14 +117,14 @@ body {
   }
 }
 
-.footer{
-  @media screen and (max-width: 700px){
-    row-gap: 1rem; 
+.footer {
+  @media screen and (max-width: 700px) {
+    row-gap: 1rem;
   }
 }
 
 .footer > * {
-  @media screen and (max-width: 700px){
+  @media screen and (max-width: 700px) {
     gap: none !important;
   }
 }
