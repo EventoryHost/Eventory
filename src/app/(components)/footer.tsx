@@ -4,6 +4,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import Image from "next/image";
+import "../globals.css";
 
 type Props = {};
 

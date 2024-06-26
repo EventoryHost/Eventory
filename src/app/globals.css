@@ -116,3 +116,15 @@ body {
     width: 56% !important;
   }
 }
+
+.footer{
+  @media screen and (max-width: 700px){
+    row-gap: 1rem; 
+  }
+}
+
+.footer > * {
+  @media screen and (max-width: 700px){
+    gap: none !important;
+  }
+}
