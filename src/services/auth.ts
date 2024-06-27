@@ -12,9 +12,12 @@ export const authWithGoogle = async () => {
 
 export const signUp = async (mobile: String) => {
   try {
-    const res = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/auth/signup`, {
-      mobile,
-    });
+    const res = await axios.post(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/auth/signup`,
+      {
+        mobile,
+      },
+    );
     return res;
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -58,13 +61,16 @@ export const verifyLoginOtp = async (
 
 export const login = async (mobile: String) => {
   try {
-    const res = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/auth/login`, {
-      mobile,
-    });
+    const res = await axios.post(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/auth/login`,
+      {
+        mobile,
+      },
+    );
     return res;
   } catch (error) {
     if (axios.isAxiosError(error)) {
       throw Error(error.message);
     }
   }
-}
+};
