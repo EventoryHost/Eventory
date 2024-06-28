@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { authWithGoogle } from "@/services/auth";
@@ -41,7 +40,7 @@ const SignUp = (props: Props) => {
 
   return (
     <div className="flex h-full w-full flex-col overflow-hidden lg:flex-row">
-      <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
+      <div className="flex min-h-screen flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
         <div className="flex items-center justify-start gap-1 xs:self-start xs:pl-5 md:px-11 lg:mt-[5rem]">
           <button className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2E3192] p-5 text-white shadow-xl">
             1
