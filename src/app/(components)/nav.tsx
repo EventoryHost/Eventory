@@ -90,7 +90,7 @@ const Navbar = () => {
         </div>
 
         {/* search part */}
-        <div className=" hidden lg:block   max-h-full flex-1 sm:pl-0 md:mx-0">
+        <div className="hidden max-h-full flex-1 sm:pl-0 md:mx-0 lg:block">
           <form className="relative mx-auto flex flex-grow justify-center">
             <label
               htmlFor="default-search"
@@ -151,7 +151,7 @@ const Navbar = () => {
         </div>
 
         {/* mobile hamburger and profile */}
-        <div className="menu-icon flex flex-row gap-3 rounded-lg border-[rgba(161,161,161,1)] border-2 p-1 md:rounded-none md:border-0">
+        <div className="menu-icon flex flex-row gap-3 rounded-lg border-2 border-[rgba(161,161,161,1)] p-1 md:rounded-none md:border-0">
           <div className="menu-icon pt-1">
             <div className="dropdown dropdown-end h-min">
               <div
@@ -160,7 +160,7 @@ const Navbar = () => {
                 className="flex flex-col items-center justify-center"
               >
                 <svg
-                 className="text-black"
+                  className="text-black"
                   width="26"
                   height="26"
                   viewBox="0 0 24 24"
@@ -213,7 +213,7 @@ const Navbar = () => {
 
           <div className="menu-icon" onClick={handleShowNavbar}>
             <svg
-            className="text-black items-center"
+              className="items-center text-black"
               width="32"
               height="32"
               viewBox="0 0 24 24"
@@ -293,7 +293,7 @@ const Navbar = () => {
                 />
               </svg>
             </li>
-            <li className=" profilo flex flex-col items-center justify-center">
+            <li className="profilo flex flex-col items-center justify-center">
               <svg
                 className=""
                 width="24"
