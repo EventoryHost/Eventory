@@ -90,7 +90,7 @@ const Navbar = () => {
         </div>
 
         {/* search part */}
-        <div className=" hidden lg:block max-h-full flex-1 sm:pl-0 md:mx-0 lg:mx-10">
+        <div className="hidden max-h-full flex-1 sm:pl-0 md:mx-0 lg:mx-10 lg:block">
           <form className="relative mx-auto flex flex-grow justify-center">
             <label
               htmlFor="default-search"
