@@ -56,7 +56,7 @@ const Feed: React.FC = () => {
                   <input
                     type="text"
                     id="default-search"
-                    className="block w-full rounded-3xl border border-gray-300 bg-gray-50 p-2 pl-6 sm:pl-9 md:pl-16 text-sm text-gray-900"
+                    className="block w-full rounded-xl border border-gray-300 bg-gray-50 p-2 pl-6 sm:pl-9 md:pl-16 text-sm text-gray-900"
                     placeholder="Search for party and event services"
                     value={query}
                     onChange={async (e) => {
