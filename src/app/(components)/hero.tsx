@@ -28,8 +28,8 @@ const Feed: React.FC = () => {
     <>
       <div className="flex h-[70vh] w-[100%] flex-col md:h-[90vh] md:flex-row">
         <div className="flex h-[100%] w-[100%] items-center justify-center lg:w-[50%]">
-          <div className="min flex h-full flex-col mt-10 md:mt-40 lg:mt-0 justify-normal lg:justify-center px-[4%]">
-            <div className="block lg:hidden mb-5 max-h-full  items-center sm:pl-0 md:mx-0 ">
+          <div className="min mt-10 flex h-full flex-col justify-normal px-[4%] md:mt-40 lg:mt-0 lg:justify-center">
+            <div className="mb-5 block max-h-full items-center sm:pl-0 md:mx-0 lg:hidden">
               <form className="relative mx-auto flex flex-grow justify-center">
                 <label
                   htmlFor="default-search"
@@ -88,7 +88,7 @@ const Feed: React.FC = () => {
                 </div>
               </form>
             </div>
-            <h1 className="text-4xl font-bold md:text-6xl md:mt-32">
+            <h1 className="text-4xl font-bold md:mt-32 md:text-6xl">
               Find the Perfect Vendors for Your Event
             </h1>
             <p className="mt-7 w-[70%] md:text-xl">

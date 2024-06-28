@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   background-color: #fcfcfc;
 }
 
@@ -18,42 +18,42 @@ body {
 }
 
 .navbar {
- padding-top: 14px !important;
+  padding-top: 14px !important;
 }
 
 .logo {
 }
 
-li{
-  font-family: "Poppins", sans-serif ;
+li {
+  font-family: "Poppins", sans-serif;
   font-size: 16px;
   font-weight: 500;
-  color:rgba(10,9,41,1)
+  color: rgba(10, 9, 41, 1);
 }
 
-li p{
-    font-family: "Poppins", sans-serif ;
+li p {
+  font-family: "Poppins", sans-serif;
   font-size: 16px;
   font-weight: 500;
 }
-li p:hover{
-    color: rgb(81, 86, 230);
+li p:hover {
+  color: rgb(81, 86, 230);
 }
 
-li:hover{
-    color: rgba(46,49,146,1);
+li:hover {
+  color: rgba(46, 49, 146, 1);
 }
 
 .menu-icon {
   display: none;
 }
 
-.nav-elements ul:active li{
-    border-bottom:10px ;
-    border-color: #574c4c;
+.nav-elements ul:active li {
+  border-bottom: 10px;
+  border-color: #574c4c;
 }
 
-.nav-elements ul{
+.nav-elements ul {
   display: flex;
   justify-content: space-between;
   list-style-type: none;
@@ -63,9 +63,8 @@ li:hover{
   margin-right: 20px;
 }
 
-.top-margin{
-    margin-top: 10px;
-    
+.top-margin {
+  margin-top: 10px;
 }
 
 .nav-elements ul a {
@@ -80,12 +79,12 @@ li:hover{
 }
 
 .nav-elements ul a.active::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -4px;
   left: 0;
   width: 100%;
-  height: 2px;  
+  height: 2px;
 }
 
 @media (max-width: 768px) {
@@ -99,16 +98,16 @@ li:hover{
     display: block;
     cursor: pointer;
   }
- .seprator{
+  .seprator {
     display: none;
-}
-.profilo{
+  }
+  .profilo {
     display: none;
-}
+  }
 
-#profile{
+  #profile {
     display: none;
-}
+  }
 
   .nav-elements {
     z-index: 1000;
@@ -124,21 +123,18 @@ li:hover{
 
   .nav-elements.active {
     width: 100%;
-    padding-top:10px ;
+    padding-top: 10px;
     margin-top: 14px;
   }
 
-  
-
   .nav-elements ul {
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     place-items: center;
   }
 
   .nav-elements ul li {
     margin-right: unset;
     margin-top: 22px;
-    
   }
 }
