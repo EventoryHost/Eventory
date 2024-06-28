@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
 import { ParallaxScroll } from "@/components/ui/parallax-scroll";
 import Nav from "./nav"; // Import the Nav component
-import {DropdownBar} from "@/components/ui/dropdownbar";
+import { DropdownBar } from "@/components/ui/dropdownbar";
 import { Horizontal } from "./horizontal";
 import { FlipWords } from "@/components/ui/flip-words";
 
@@ -18,26 +18,27 @@ const Feed: React.FC = () => {
   }, []);
 
   const words = ["Vendor", "Venue", "Caterer"];
-  
 
   return (
     <>
-      <div className="flex md:py-0 pb-5 w-[100%] flex-col md:pb-[-9rem] md:flex-row bg-pink-100">
+      <div className="flex w-[100%] flex-col bg-pink-100 pb-5 md:flex-row md:py-0 md:pb-[-9rem]">
         <div className="flex h-[100%] w-[100%] items-center justify-start lg:w-[50%]">
           <div className="min mb-[1%] mt-[10%] flex h-full flex-col items-start justify-start px-[4%] md:mb-[20%]">
             <h1 className="text-4xl font-bold md:text-6xl">
-              Find the Perfect<br/><FlipWords words={words} className=""/> for Your Event
+              Find the Perfect
+              <br />
+              <FlipWords words={words} className="" /> for Your Event
             </h1>
             <p className="mt-7 w-[70%] md:text-xl">
               Discover, compare, and book top-rated vendors for weddings,
               corporate events, parties, and more – all in one place.
             </p>
-            <div className="mt-7 flex-1 self-start flex justify-center items-start">
+            <div className="mt-7 flex flex-1 items-start justify-center self-start">
               <DropdownBar />
             </div>
           </div>
         </div>
-        <div className="ml-4  flex-1 pr-5">
+        <div className="ml-4 flex-1 pr-5">
           <div className="relative w-full">
             {isMounted && isMediumScreenOrLarger && (
               <ParallaxScroll className="custom-class" />

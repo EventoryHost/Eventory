@@ -27,19 +27,30 @@ const frameworks = [
     value: "astro",
     label: "Astro",
   },
-]
+];
 
-
-  export function DropdownBar(){
+export function DropdownBar() {
   const [event, setEvent] = useState<string>("");
   const [location, setLocation] = useState<string>("");
 
   return (
-    <div className="flex xl:flex-row flex-col xl:gap-0 max-w-full rounded-xl justify-center items-center">
-      <ComboboxDemo options={frameworks} placeholder="Select Event" setFunction={setEvent}  className="xl:rounded-l-xl xl:rounded-t-none xl:rounded-tl-xl hover:text-[#2E3192] rounded-t-xl py-7 rounded-b-none"/>
-      <ComboboxDemo options={frameworks} placeholder="Select Location" setFunction={setLocation} className="rounded-none py-7 flex items-center justify-between hover:text-[#2E3192]"/>
-      <DatePickerWithRange className="max-w-fit rounded-none py-7 "/>
-      <button className="xl:rounded-r-xl xl:rounded-br-xl xl:rounded-b-none rounded-b-xl flex justify-center items-center bg-[#2E3192] hover:bg-indigo-400 hover:text-[#2E3192] xl:w-fit w-[300px] py-4 px-3 text-white"><WandSparkles className="h-6 w-6"/></button>
+    <div className="flex max-w-full flex-col items-center justify-center rounded-xl xl:flex-row xl:gap-0">
+      <ComboboxDemo
+        options={frameworks}
+        placeholder="Select Event"
+        setFunction={setEvent}
+        className="rounded-b-none rounded-t-xl py-7 hover:text-[#2E3192] xl:rounded-l-xl xl:rounded-t-none xl:rounded-tl-xl"
+      />
+      <ComboboxDemo
+        options={frameworks}
+        placeholder="Select Location"
+        setFunction={setLocation}
+        className="flex items-center justify-between rounded-none py-7 hover:text-[#2E3192]"
+      />
+      <DatePickerWithRange className="max-w-fit rounded-none py-7" />
+      <button className="flex w-[300px] items-center justify-center rounded-b-xl bg-[#2E3192] px-3 py-4 text-white hover:bg-indigo-400 hover:text-[#2E3192] xl:w-fit xl:rounded-b-none xl:rounded-r-xl xl:rounded-br-xl">
+        <WandSparkles className="h-6 w-6" />
+      </button>
     </div>
   );
 }
