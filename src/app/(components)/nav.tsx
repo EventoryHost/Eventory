@@ -164,7 +164,7 @@ const Navbar = () => {
                   className="flex flex-col items-center justify-center"
                 >
                   <svg
-                    className="mt-1 text-black"
+                    className="mt-1 text-black ml-[2px]"
                     width="26"
                     height="26"
                     viewBox="0 0 24 24"
@@ -365,8 +365,8 @@ const Navbar = () => {
             <li className="profilo flex flex-col items-center justify-center">
               <svg
                 className="hidden md:block"
-                width="24"
-                height="24"
+                width="22"
+                height="22"
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -476,7 +476,7 @@ const Navbar = () => {
                         </Link>
                       </div>
                     </div>
-                    <ul className="flex flex-col items-start font-poppins text-sm font-semibold text-[rgba(0,0,0,1)]">
+                    <ul className="flex flex-col font-poppins text-sm font-semibold text-[rgba(0,0,0,1)] -ml-1  item-start">
                       <li className="flex w-full flex-row items-center justify-between py-2">
                         <a href="#" className=" ">
                           <p className=""> Account Details </p>
