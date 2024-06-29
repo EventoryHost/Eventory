@@ -28,6 +28,7 @@ const config = {
       xs: "320px",
       ...defaultTheme.screens,
       "3xl": "2560px",
+      lpt: "1410px",
     },
     extend: {
       colors: {
