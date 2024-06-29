@@ -11,7 +11,6 @@ import {
   handleSearchClick,
 } from "@/controllers/search";
 
-
 const Navbar = () => {
   const [showNavbar, setShowNavbar] = useState(false);
   const [query, setQuery] = useState("");
@@ -21,7 +20,6 @@ const Navbar = () => {
   const handleShowNavbar = () => {
     setShowNavbar(!showNavbar);
   };
-
 
   return (
     <nav className="bg-rgba(0,0,0,0.12) navbar shadow-md">
@@ -139,7 +137,7 @@ const Navbar = () => {
         {/* mobile hamburger and profile */}
         <div className="menu-icon rounded-lg border-1 border-[rgba(161,161,161,1)] px-1 md:rounded-none md:border-0">
           <div className="flex flex-row gap-3">
-            <div className="menu-icon ">
+            <div className="menu-icon">
               <div className="dropdown dropdown-end h-min">
                 <div
                   tabIndex={0}
@@ -147,7 +145,7 @@ const Navbar = () => {
                   className="flex flex-col items-center justify-center"
                 >
                   <svg
-                    className=" mt-2  text-black ml-[3px]"
+                    className="ml-[3px] mt-2 text-black"
                     width="18"
                     height="21"
                     viewBox="0 0 24 24"
@@ -264,7 +262,7 @@ const Navbar = () => {
 
             <div className="menu-icon items-center" onClick={handleShowNavbar}>
               <svg
-                className={`hamburger mt-2 mr-1 items-center text-black ${showNavbar && "rotate-90 scale-90 duration-100"}`}
+                className={`hamburger mr-1 mt-2 items-center text-black ${showNavbar && "rotate-90 scale-90 duration-100"}`}
                 width="24"
                 height="20"
                 viewBox="0 0 24 24"
@@ -459,7 +457,7 @@ const Navbar = () => {
                         </Link>
                       </div>
                     </div>
-                    <ul className="flex flex-col font-poppins text-sm font-semibold text-[rgba(0,0,0,1)] -ml-1  item-start">
+                    <ul className="item-start -ml-1 flex flex-col font-poppins text-sm font-semibold text-[rgba(0,0,0,1)]">
                       <li className="flex w-full flex-row items-center justify-between py-2">
                         <a href="#" className=" ">
                           <p className=""> Account Details </p>
