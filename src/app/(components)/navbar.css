@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Marko+One&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Marko+One&display=swap");
 body {
   margin: 0;
   padding: 0;
@@ -16,7 +16,7 @@ body {
   align-items: center;
   height: 100%;
 }
-.font-marko-one-regular{
+.font-marko-one-regular {
   font-family: "Marko One", serif;
   font-weight: 400;
   font-style: normal;
@@ -50,11 +50,10 @@ li:hover {
 }
 
 .menu-icon {
-  display: none;  
+  display: none;
 }
 
-.nav-elements:active{
-  
+.nav-elements:active {
 }
 
 .nav-elements ul:active li {
@@ -96,7 +95,6 @@ li:hover {
   height: 2px;
 }
 
-
 @media (max-width: 768px) {
   .nav-elements ul li:not(:last-child) {
     margin-right: 3px;
@@ -137,7 +135,6 @@ li:hover {
     width: 100%;
     padding-top: 10px;
     margin-top: 16px;
-    
   }
 
   .nav-elements ul {

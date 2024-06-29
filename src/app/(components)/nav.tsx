@@ -164,7 +164,7 @@ const Navbar = () => {
                   className="flex flex-col items-center justify-center"
                 >
                   <svg
-                    className="text-black mt-1"
+                    className="mt-1 text-black"
                     width="26"
                     height="26"
                     viewBox="0 0 24 24"
@@ -188,7 +188,7 @@ const Navbar = () => {
                 </div>
                 <ul
                   tabIndex={0}
-                  className="menu dropdown-content menu-sm translate-x-10  sm:ml-0 z-[1] mt-3 w-[80vw] sm:w-[40vw] md:w-[40vw] rounded-box bg-white p-2 shadow"
+                  className="menu dropdown-content menu-sm z-[1] mt-3 w-[80vw] translate-x-10 rounded-box bg-white p-2 shadow sm:ml-0 sm:w-[40vw] md:w-[40vw]"
                 >
                   <div className="w-full rounded-lg bg-white">
                     <div className="px-3 text-center">
@@ -212,7 +212,7 @@ const Navbar = () => {
                       </div>
                     </div>
                     <ul className="flex flex-col items-start font-poppins text-sm font-semibold text-[rgba(0,0,0,1)]">
-                    <li className="flex w-full flex-row items-center justify-between py-2">
+                      <li className="flex w-full flex-row items-center justify-between py-2">
                         <a href="#" className=" ">
                           <p className=""> Account Details </p>
                         </a>
@@ -262,10 +262,21 @@ const Navbar = () => {
 
             <div className="menu-icon">
               {/* <p className="text-sm text-[#2b3e6c]">|</p> */}
-              <svg width="1" height="40" viewBox="0 0 1 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-<line x1="0.5" y1="2.18557e-08" x2="0.499998" y2="40" stroke="#797878"/>
-</svg>
-
+              <svg
+                width="1"
+                height="40"
+                viewBox="0 0 1 40"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <line
+                  x1="0.5"
+                  y1="2.18557e-08"
+                  x2="0.499998"
+                  y2="40"
+                  stroke="#797878"
+                />
+              </svg>
             </div>
 
             <div className="menu-icon items-center" onClick={handleShowNavbar}>
