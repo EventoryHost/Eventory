@@ -27,10 +27,9 @@ const frameworks = [
     value: "astro",
     label: "Astro",
   },
-]
+];
 
-
-  export function DropdownBar(){
+export function DropdownBar() {
   const [event, setEvent] = useState<string>("");
   const [location, setLocation] = useState<string>("");
 

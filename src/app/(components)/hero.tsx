@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
 import { ParallaxScroll } from "@/components/ui/parallax-scroll";
 import Nav from "./nav"; // Import the Nav component
-import {DropdownBar} from "@/components/ui/dropdownbar";
+import { DropdownBar } from "@/components/ui/dropdownbar";
 import { Horizontal } from "./horizontal";
 import { FlipWords } from "@/components/ui/flip-words";
 
@@ -18,7 +18,6 @@ const Feed: React.FC = () => {
   }, []);
 
   const words = ["Vendor", "Venue", "Caterer"];
-  
 
   return (
     <>
@@ -26,7 +25,9 @@ const Feed: React.FC = () => {
         <div className="flex w-[100%] items-center justify-start lg:w-[50%]">
           <div className=" mt-[10%] flex h-[90vh] flex-col items-start justify-start px-[4%] lg:mb-[40%] mb-[10%]">
             <h1 className="text-4xl font-bold md:text-6xl">
-              Find the Perfect<br/><FlipWords words={words} className=""/> for Your Event
+              Find the Perfect
+              <br />
+              <FlipWords words={words} className="" /> for Your Event
             </h1>
             <p className="mt-7 w-[70%] md:text-xl">
               Discover, compare, and book top-rated vendors for weddings,
