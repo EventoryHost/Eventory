@@ -12,7 +12,7 @@ export function Categories() {
             Search through all types of events through categories
           </p>
         </div>
-        <button className="mt-3 w-[50%] max-w-[9rem] rounded-md bg-[#2E3192] p-1 py-2 text-xs text-gray-200 shadow-md hover:bg-indigo-600 md:rounded-xl md:px-8 md:py-3 md:text-sm">
+        <button className="mt-3 w-[50%] max-w-[9rem] rounded-md bg-[#2E3192] hover:bg-indigo-400 animate transform hover:text-[#2E3192] p-1 py-2 text-xs text-gray-200 shadow-md md:rounded-xl md:px-8 md:py-3 md:text-sm">
           View More
         </button>
       </div>
@@ -28,7 +28,7 @@ export function Categories() {
                 : i === 2 || i == 5
                   ? "col-span-2 cursor-pointer md:col-span-1 md:row-span-2"
                   : i == 1
-                    ? "col-span-2 md:col-span-1"
+                    ? "col-span-2 cursor-pointer md:col-span-1"
                     : i === 6
                       ? "col-span-2 cursor-pointer"
                       : "cursor-pointer"

@@ -18,7 +18,7 @@ const Footer = (props: Props) => {
             <h1 className="w-[90%] text-xl font-semibold text-white md:w-full md:text-4xl">
               Ready to Plan Your Event ?
             </h1>
-            <p className="mt-2 w-[150%] text-xs text-white md:mt-5 md:w-[80%] md:text-lg md:font-semibold">
+            <p className="mt-2 w-[130%] text-xs text-white md:mt-5 md:w-[80%] md:text-lg md:font-semibold">
               Start discovering the best vendors for your event today.
               <span className="block md:inline">
                 {" "}
@@ -35,7 +35,7 @@ const Footer = (props: Props) => {
           </div>
         </div>
       </div>
-      <div className="mb-7 mt-9 w-[95%] rounded-xl bg-white bg-gradient-to-r from-indigo-200 to-purple-300 shadow-lg md:mt-0">
+      <div className="mb-7 mt-[3rem] w-[95%] rounded-xl bg-white bg-gradient-to-r from-indigo-200 to-purple-300 shadow-lg md:mt-0">
         <section className="footer p-10">
           <aside>
             <Image
