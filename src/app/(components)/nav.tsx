@@ -11,20 +11,6 @@ import {
   handleSearchClick,
 } from "@/controllers/search";
 
-// function Dropdown(props){
-
-//   return (
-//     <div>
-//       {props.isVisible ? (
-//         <ul>
-//           <li>Option 1</li>
-//           <li>Option 2</li>
-//           <li>Option 3</li>
-//         </ul>
-//       ) : null}
-//     </div>
-//   );
-//}
 
 const Navbar = () => {
   const [showNavbar, setShowNavbar] = useState(false);
@@ -36,9 +22,6 @@ const Navbar = () => {
     setShowNavbar(!showNavbar);
   };
 
-  const handleShowDropdown = () => {
-    setIsVisible(!isVisible);
-  };
 
   return (
     <nav className="bg-rgba(0,0,0,0.12) navbar shadow-md">
@@ -47,8 +30,8 @@ const Navbar = () => {
         <div className="logo flex flex-col items-center justify-center">
           <Link href={"/"}>
             <svg
-              width="32"
-              height="42"
+              width="21"
+              height="29"
               viewBox="0 0 37 48"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -87,7 +70,7 @@ const Navbar = () => {
               </defs>
             </svg>
           </Link>
-          <p className="font-marko-one-regular hidden font-semibold md:block md:text-sm">
+          <p className="font-marko-one-regular hidden font-semibold md:block md:text-xs">
             Eventory
           </p>
         </div>
@@ -156,7 +139,7 @@ const Navbar = () => {
         {/* mobile hamburger and profile */}
         <div className="menu-icon rounded-lg border-1 border-[rgba(161,161,161,1)] px-1 md:rounded-none md:border-0">
           <div className="flex flex-row gap-3">
-            <div className="menu-icon pt-1">
+            <div className="menu-icon ">
               <div className="dropdown dropdown-end h-min">
                 <div
                   tabIndex={0}
@@ -164,9 +147,9 @@ const Navbar = () => {
                   className="flex flex-col items-center justify-center"
                 >
                   <svg
-                    className="ml-[2px] mt-1 text-black"
-                    width="26"
-                    height="26"
+                    className=" mt-2  text-black ml-[3px]"
+                    width="18"
+                    height="21"
                     viewBox="0 0 24 24"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -281,9 +264,9 @@ const Navbar = () => {
 
             <div className="menu-icon items-center" onClick={handleShowNavbar}>
               <svg
-                className={`hamburger mt-1 items-center text-black ${showNavbar && "rotate-90 scale-90 duration-100"}`}
-                width="32"
-                height="32"
+                className={`hamburger mt-2 mr-1 items-center text-black ${showNavbar && "rotate-90 scale-90 duration-100"}`}
+                width="24"
+                height="20"
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -476,7 +459,7 @@ const Navbar = () => {
                         </Link>
                       </div>
                     </div>
-                    <ul className="item-start -ml-1 flex flex-col font-poppins text-sm font-semibold text-[rgba(0,0,0,1)]">
+                    <ul className="flex flex-col font-poppins text-sm font-semibold text-[rgba(0,0,0,1)] -ml-1  item-start">
                       <li className="flex w-full flex-row items-center justify-between py-2">
                         <a href="#" className=" ">
                           <p className=""> Account Details </p>
