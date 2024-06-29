@@ -54,7 +54,7 @@ const SignUp = (props: Props) => {
         return; // Stop further processing
       }
     }
-    
+
     // Reset form error if all fields are filled
     setFormError(null);
     const newDetails: basicDetails = {
@@ -74,11 +74,11 @@ const SignUp = (props: Props) => {
     auth.signUp(newDetails.mobile.toString());
     toggleModal();
   };
-  
+
   const handleVerify = (e: React.FormEvent) => {
     e.preventDefault();
     const inputOtp = basicDetails.otp.toString();
-    
+
     if (inputOtp.length !== 6) {
       setFormError(`Please fill in the OTP correctly`);
       console.log("Invalid OTP");

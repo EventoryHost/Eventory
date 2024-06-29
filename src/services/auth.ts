@@ -14,15 +14,15 @@ const authWithGoogle = async () => {
 
 const signUp = async (mobile: String) => {
   try {
-    let data = JSON.stringify({ "mobile": mobile });
+    let data = JSON.stringify({ mobile: mobile });
     let config = {
-      method: 'post',
+      method: "post",
       maxBodyLength: Infinity,
       url: `${process.env.NEXT_PUBLIC_BASE_URL}/auth/signup`,
-      headers: { 
-        'Content-Type': 'application/json'
+      headers: {
+        "Content-Type": "application/json",
       },
-      data : data
+      data: data,
     };
     const res = await axios(config);
     console.log(res);
@@ -43,7 +43,7 @@ const verifySignUpOtp = async (mobile: String, otp: String) => {
       { mobile, otp },
     );
 
-    return res;  // expect refresh token in response - localhost ?? store for persitence
+    return res; // expect refresh token in response - localhost ?? store for persitence
     // cors issue - need to set up cors in server 3000 into 4000
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -78,7 +78,7 @@ const login = async (mobile: String) => {
         mobile,
       },
     );
-    return res;   // expect session id in response 
+    return res; // expect session id in response
   } catch (error) {
     if (axios.isAxiosError(error)) {
       throw Error(error.message);
