@@ -95,7 +95,7 @@ const Feed: React.FC = () => {
               Discover, compare, and book top-rated vendors for weddings,
               corporate events, parties, and more – all in one place.
             </p>
-            <div className=" mt-32 md:mt-7 w-[100%]">
+            <div className="mt-32 w-[100%] md:mt-7">
               <DropdownBar />
             </div>
           </div>

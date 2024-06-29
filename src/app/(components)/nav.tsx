@@ -164,7 +164,7 @@ const Navbar = () => {
                   className="flex flex-col items-center justify-center"
                 >
                   <svg
-                    className="mt-1 text-black ml-[2px]"
+                    className="ml-[2px] mt-1 text-black"
                     width="26"
                     height="26"
                     viewBox="0 0 24 24"
@@ -476,7 +476,7 @@ const Navbar = () => {
                         </Link>
                       </div>
                     </div>
-                    <ul className="flex flex-col font-poppins text-sm font-semibold text-[rgba(0,0,0,1)] -ml-1  item-start">
+                    <ul className="item-start -ml-1 flex flex-col font-poppins text-sm font-semibold text-[rgba(0,0,0,1)]">
                       <li className="flex w-full flex-row items-center justify-between py-2">
                         <a href="#" className=" ">
                           <p className=""> Account Details </p>
