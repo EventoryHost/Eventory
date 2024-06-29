@@ -45,7 +45,7 @@ const SignUp = (props: Props) => {
     window.location.href = `${process.env.NEXT_PUBLIC_BASE_URL}/auth/google-auth`;
   };
 
-  const handleVerify = (e: React.FormEvent) => {
+  const handleSignUp = (e: React.FormEvent) => {
     e.preventDefault();
 
     // Check if any required field is empty
@@ -55,7 +55,7 @@ const SignUp = (props: Props) => {
         return; // Stop further processing
       }
     }
-
+    
     // Reset form error if all fields are filled
     setFormError(null);
     const newDetails: basicDetails = {
@@ -74,6 +74,22 @@ const SignUp = (props: Props) => {
     console.log("mobile details: ", newDetails.mobile.toString());
     auth.signUp(newDetails.mobile.toString());
     toggleModal();
+  };
+  
+  const handleVerify = (e: React.FormEvent) => {
+    e.preventDefault();
+    const inputOtp = basicDetails.otp.toString();
+    
+    if (inputOtp.length !== 6) {
+      setFormError(`Please fill in the OTP correctly`);
+      console.log("Invalid OTP");
+      return;
+    }
+
+    setFormError(null);
+
+    auth.verifySignUpOtp(basicDetails.mobile.toString(), inputOtp);
+    console.log(inputOtp);
   };
 
   const fields: {
@@ -141,7 +157,7 @@ const SignUp = (props: Props) => {
         <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
           <h1 className="text-3xl font-semibold">Basic Details</h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
-            <form onSubmit={handleVerify}>
+            <form onSubmit={handleSignUp}>
               <div className="grid grid-cols-2 gap-5">
                 {fields.map((field) => (
                   <div
@@ -273,9 +289,10 @@ const SignUp = (props: Props) => {
                 <InputOTPSlot index={5} className="border-[#2E3192]" />
               </InputOTPGroup>
             </InputOTP>
+            {formError && <div className="text-red-500">{formError}</div>}
             <button
               className="rounded bg-[#2E3192] px-4 py-2 text-white"
-              onClick={toggleModal}
+              onClick={handleVerify}
             >
               Submit
             </button>
