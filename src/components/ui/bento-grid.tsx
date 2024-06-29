@@ -42,8 +42,8 @@ export const BentoGridItem = ({
         alt={title as string}
         className="absolute inset-0 h-full w-full object-cover"
       />
-      <div className="relative z-10 flex h-full flex-col  group justify-end bg-black bg-opacity-50 hover:bg-opacity-0 p-4">
-        <div className="font-poppins md:font-md group-hover:text-opacity-0 mt-2 text-sm text-white md:text-2xl">
+      <div className="group relative z-10 flex h-full flex-col justify-end bg-black bg-opacity-50 p-4 hover:bg-opacity-0">
+        <div className="font-poppins md:font-md mt-2 text-sm text-white group-hover:text-opacity-0 md:text-2xl">
           {title}
         </div>
       </div>

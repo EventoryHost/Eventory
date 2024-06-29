@@ -13,7 +13,7 @@ import {
 
 export function Partner() {
   return (
-    <div className="flex flex-col-reverse justify-center space-y-4 bg-[#C1C9F7] md:flex-row gap-3 lg:gap-8 md:space-y-0 lg:px-[3rem] md:py-3">
+    <div className="flex flex-col-reverse justify-center gap-3 space-y-4 bg-[#C1C9F7] md:flex-row md:space-y-0 md:py-3 lg:gap-8 lg:px-[3rem]">
       <BentoGrid className="mt-7 hidden px-1 md:grid md:w-1/2">
         {items.map((item, i) => (
           <BentoGridItem
@@ -44,7 +44,7 @@ export function Partner() {
           weddings, corporate events, birthday parties, and any special
           occasion.
         </p>
-        <button className="flex items-center justify-center gap-2 hover:bg-indigo-400 animate transform hover:text-[#2E3192] rounded-md bg-[#2E3192] p-4 text-lg text-white">
+        <button className="animate flex transform items-center justify-center gap-2 rounded-md bg-[#2E3192] p-4 text-lg text-white hover:bg-indigo-400 hover:text-[#2E3192]">
           <span>Know More</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"

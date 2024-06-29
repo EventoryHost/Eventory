@@ -25,10 +25,10 @@ const config = {
       },
     },
     screens: {
-      "xs": "320px",
+      xs: "320px",
       ...defaultTheme.screens,
       "3xl": "2560px",
-      "lpt": "1410px"
+      lpt: "1410px",
     },
     extend: {
       colors: {
