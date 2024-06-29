@@ -44,11 +44,11 @@ const Navbar = () => {
     <nav className="bg-rgba(0,0,0,0.12) navbar shadow-md">
       <div className="container">
         {/* logo eventory part */}
-        <div className="logo">
+        <div className="logo flex flex-col items-center justify-center">
           <Link href={"/"}>
             <svg
-              width="37"
-              height="48"
+              width="32"
+              height="42"
               viewBox="0 0 37 48"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -87,6 +87,9 @@ const Navbar = () => {
               </defs>
             </svg>
           </Link>
+          <p className="font-marko-one-regular hidden font-semibold md:block md:text-sm">
+            Eventory
+          </p>
         </div>
 
         {/* search part */}
@@ -151,101 +154,156 @@ const Navbar = () => {
         </div>
 
         {/* mobile hamburger and profile */}
-        <div className="menu-icon flex flex-row gap-3 rounded-lg border-2 border-[rgba(161,161,161,1)] p-1 md:rounded-none md:border-0">
-          <div className="menu-icon pt-1">
-            <div className="dropdown dropdown-end h-min">
-              <div
-                tabIndex={0}
-                role="button"
-                className="flex flex-col items-center justify-center"
-              >
-                <svg
-                  className="text-black"
-                  width="26"
-                  height="26"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
+        <div className="menu-icon rounded-lg border-1 border-[rgba(161,161,161,1)] px-1 md:rounded-none md:border-0">
+          <div className="flex flex-row gap-3">
+            <div className="menu-icon pt-1">
+              <div className="dropdown dropdown-end h-min">
+                <div
+                  tabIndex={0}
+                  role="button"
+                  className="flex flex-col items-center justify-center"
                 >
-                  <circle
-                    cx="4"
-                    cy="4"
-                    r="4"
-                    transform="matrix(-1 0 0 1 16 3)"
-                    stroke="#2B3F6C"
-                    stroke-width="1.5"
-                  />
-                  <path
-                    d="M5 16.9347C5 16.0743 5.54085 15.3068 6.35109 15.0175V15.0175C10.004 13.7128 13.996 13.7128 17.6489 15.0175V15.0175C18.4591 15.3068 19 16.0743 19 16.9347V18.2502C19 19.4376 17.9483 20.3498 16.7728 20.1818L15.8184 20.0455C13.2856 19.6837 10.7144 19.6837 8.18162 20.0455L7.22721 20.1818C6.0517 20.3498 5 19.4376 5 18.2502V16.9347Z"
-                    stroke="#2B3F6C"
-                    stroke-width="1.5"
-                  />
-                </svg>
+                  <svg
+                    className="text-black mt-1"
+                    width="26"
+                    height="26"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle
+                      cx="4"
+                      cy="4"
+                      r="4"
+                      transform="matrix(-1 0 0 1 16 3)"
+                      stroke="#2B3F6C"
+                      stroke-width="1.5"
+                    />
+                    <path
+                      d="M5 16.9347C5 16.0743 5.54085 15.3068 6.35109 15.0175V15.0175C10.004 13.7128 13.996 13.7128 17.6489 15.0175V15.0175C18.4591 15.3068 19 16.0743 19 16.9347V18.2502C19 19.4376 17.9483 20.3498 16.7728 20.1818L15.8184 20.0455C13.2856 19.6837 10.7144 19.6837 8.18162 20.0455L7.22721 20.1818C6.0517 20.3498 5 19.4376 5 18.2502V16.9347Z"
+                      stroke="#2B3F6C"
+                      stroke-width="1.5"
+                    />
+                  </svg>
+                </div>
+                <ul
+                  tabIndex={0}
+                  className="menu dropdown-content menu-sm translate-x-10  sm:ml-0 z-[1] mt-3 w-[80vw] sm:w-[40vw] md:w-[40vw] rounded-box bg-white p-2 shadow"
+                >
+                  <div className="w-full rounded-lg bg-white">
+                    <div className="px-3 text-center">
+                      <h2 className="mb-2 text-lg font-semibold text-[rgba(46,49,146,1)]">
+                        Welcome to Eventory
+                      </h2>
+                      <p className="hover:text-text-gray-600 mb-4 text-start text-sm text-gray-600 lg:pl-4">
+                        To manage your account and do bookings for your events.
+                      </p>
+                      <div className="mb-4 flex justify-around">
+                        <Link href="/customerlogin">
+                          <button className="rounded-lg border border-gray-700 px-5 py-[7px] duration-100 hover:bg-[rgba(46,49,146,1)] hover:text-[#fcfcfc]">
+                            Log In
+                          </button>
+                        </Link>
+                        <Link href="/customersignup">
+                          <button className="rounded-lg bg-[rgba(46,49,146,1)] px-4 py-2 text-white">
+                            Sign up
+                          </button>
+                        </Link>
+                      </div>
+                    </div>
+                    <ul className="flex flex-col items-start font-poppins text-sm font-semibold text-[rgba(0,0,0,1)]">
+                    <li className="flex w-full flex-row items-center justify-between py-2">
+                        <a href="#" className=" ">
+                          <p className=""> Account Details </p>
+                        </a>
+                        <span className="item-end">&gt;</span>
+                      </li>
+                      <li className="flex w-full flex-row items-center justify-between py-2">
+                        <a href="#" className=" ">
+                          <p> Bookings</p>
+                        </a>
+                        <span className="item-end">&gt;</span>
+                      </li>
+                      <li className="flex w-full flex-row items-center justify-between py-2">
+                        <a href="#" className="gap-8">
+                          <p>Saved vendors </p>
+                        </a>
+                        <span>&gt;</span>
+                      </li>
+                      <li className="flex w-full flex-row items-center justify-between py-2">
+                        <a href="#" className="gap-8">
+                          <p>Billing and Payments</p>
+                        </a>
+                        <span>&gt;</span>
+                      </li>
+                      <li className="flex w-full flex-row items-center justify-between py-2">
+                        <a href="#" className="gap-8">
+                          <p>Feedback</p>
+                        </a>
+                        <span>&gt;</span>
+                      </li>
+                      <li className="flex w-full flex-row items-center justify-between py-2">
+                        <a href="#" className="gap-8">
+                          <p>Contact us </p>
+                        </a>
+                        <span>&gt;</span>
+                      </li>
+                      <li className="mr-[20px] flex w-full flex-row items-center justify-between py-2">
+                        <a href="#" className="gap-8">
+                          <p>Help</p>
+                        </a>
+                        <span>&gt;</span>
+                      </li>
+                    </ul>
+                  </div>
+                </ul>
               </div>
-              <ul
-                tabIndex={0}
-                className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-white p-2 shadow"
-              >
-                <li>
-                  <a className="justify-between">Profile</a>
-                </li>
-                <li>
-                  <Link href={"/customerlogin"}>Customer Login</Link>
-                </li>
-                <li>
-                  <Link href={"/customersignup"}>Customer Signup</Link>
-                </li>
-                <li>
-                  <Link href={"/login"}>Vendor Login</Link>
-                </li>
-                <li>
-                  <Link href={"/signup"}>Vendor Signup</Link>
-                </li>
-                <li>
-                  <a>Settings</a>
-                </li>
-                <li>
-                  <a>Logout</a>
-                </li>
-              </ul>
             </div>
-          </div>
 
-          <div className="menu-icon" onClick={handleShowNavbar}>
-            <svg
-              className="items-center text-black"
-              width="32"
-              height="32"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M20 6L4 6"
-                stroke="#2B3F6C"
-                stroke-width="1.5"
-                stroke-linecap="round"
-              />
-              <path
-                d="M20 12L4 12"
-                stroke="#2B3F6C"
-                stroke-width="1.5"
-                stroke-linecap="round"
-              />
-              <path
-                d="M20 18H4"
-                stroke="#2B3F6C"
-                stroke-width="1.5"
-                stroke-linecap="round"
-              />
-            </svg>
+            <div className="menu-icon">
+              {/* <p className="text-sm text-[#2b3e6c]">|</p> */}
+              <svg width="1" height="40" viewBox="0 0 1 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<line x1="0.5" y1="2.18557e-08" x2="0.499998" y2="40" stroke="#797878"/>
+</svg>
+
+            </div>
+
+            <div className="menu-icon items-center" onClick={handleShowNavbar}>
+              <svg
+                className={`hamburger mt-1 items-center text-black ${showNavbar && "rotate-90 scale-90 duration-100"}`}
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M20 6L4 6"
+                  stroke="#2B3F6C"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M20 12L4 12"
+                  stroke="#2B3F6C"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M20 18H4"
+                  stroke="#2B3F6C"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </div>
           </div>
         </div>
 
         {/* nav List */}
 
         <div className={`nav-elements ${showNavbar && "active"}`}>
-          <ul className="">
+          <ul className=" ">
             <li className="top-margin">
               <Link href={"/about"}>
                 <p>About</p>
@@ -295,7 +353,7 @@ const Navbar = () => {
             </li>
             <li className="profilo flex flex-col items-center justify-center">
               <svg
-                className=""
+                className="hidden md:block"
                 width="24"
                 height="24"
                 viewBox="0 0 24 24"
@@ -348,7 +406,7 @@ const Navbar = () => {
                   stroke-width="1.5"
                 />
               </svg>
-              <p className="text-xs">Inventory</p>
+              <p className="text-md md:text-xs">Inventory</p>
             </li>
             <li id="profile" className="flex flex-col md:visible">
               <div className="dropdown dropdown-end h-min">
@@ -363,6 +421,7 @@ const Navbar = () => {
                     viewBox="0 0 24 24"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
+                    className=""
                   >
                     <circle
                       cx="4"
@@ -383,29 +442,74 @@ const Navbar = () => {
                 </div>
                 <ul
                   tabIndex={0}
-                  className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-white p-2 shadow"
+                  className="menu dropdown-content menu-sm z-[1] mt-4 rounded-box bg-white p-2 shadow-lg md:w-[44vw] lg:w-[30vw]"
                 >
-                  <li>
-                    <a className="justify-between">Profile</a>
-                  </li>
-                  <li>
-                    <Link href={"/customerlogin"}>Customer Login</Link>
-                  </li>
-                  <li>
-                    <Link href={"/customersignup"}>Customer Signup</Link>
-                  </li>
-                  <li>
-                    <Link href={"/login"}>Vendor Login</Link>
-                  </li>
-                  <li>
-                    <Link href={"/signup"}>Vendor Signup</Link>
-                  </li>
-                  <li>
-                    <a>Settings</a>
-                  </li>
-                  <li>
-                    <a>Logout</a>
-                  </li>
+                  <div className="w-full rounded-lg bg-white">
+                    <div className="px-3 text-center">
+                      <h2 className="mb-2 text-lg font-semibold text-[rgba(46,49,146,1)]">
+                        Welcome to Eventory
+                      </h2>
+                      <p className="hover:text-text-gray-600 mb-4 text-start text-sm text-gray-600 lg:pl-4">
+                        To manage your account and do bookings for your events.
+                      </p>
+                      <div className="mb-4 flex justify-around">
+                        <Link href="/customerlogin">
+                          <button className="rounded-lg border border-gray-700 px-5 py-[7px] duration-100 hover:bg-[rgba(46,49,146,1)] hover:text-[#fcfcfc]">
+                            Log In
+                          </button>
+                        </Link>
+                        <Link href="/customersignup">
+                          <button className="rounded-lg bg-[rgba(46,49,146,1)] px-4 py-2 text-white">
+                            Sign up
+                          </button>
+                        </Link>
+                      </div>
+                    </div>
+                    <ul className="flex flex-col items-start font-poppins text-sm font-semibold text-[rgba(0,0,0,1)]">
+                      <li className="flex w-full flex-row items-center justify-between py-2">
+                        <a href="#" className=" ">
+                          <p className=""> Account Details </p>
+                        </a>
+                        <span className="item-end">&gt;</span>
+                      </li>
+                      <li className="flex w-full flex-row items-center justify-between py-2">
+                        <a href="#" className=" ">
+                          <p> Bookings</p>
+                        </a>
+                        <span className="item-end">&gt;</span>
+                      </li>
+                      <li className="flex w-full flex-row items-center justify-between py-2">
+                        <a href="#" className="gap-8">
+                          <p>Saved vendors </p>
+                        </a>
+                        <span>&gt;</span>
+                      </li>
+                      <li className="flex w-full flex-row items-center justify-between py-2">
+                        <a href="#" className="gap-8">
+                          <p>Billing and Payments</p>
+                        </a>
+                        <span>&gt;</span>
+                      </li>
+                      <li className="flex w-full flex-row items-center justify-between py-2">
+                        <a href="#" className="gap-8">
+                          <p>Feedback</p>
+                        </a>
+                        <span>&gt;</span>
+                      </li>
+                      <li className="flex w-full flex-row items-center justify-between py-2">
+                        <a href="#" className="gap-8">
+                          <p>Contact us </p>
+                        </a>
+                        <span>&gt;</span>
+                      </li>
+                      <li className="mr-[20px] flex w-full flex-row items-center justify-between py-2">
+                        <a href="#" className="gap-8">
+                          <p>Help</p>
+                        </a>
+                        <span>&gt;</span>
+                      </li>
+                    </ul>
+                  </div>
                 </ul>
               </div>
             </li>
