@@ -21,7 +21,7 @@ jobs:
 
       # Building a multiline commit message
       - run: 'echo "chore: apply formatting changes" >> commitmessage.txt'
-      - run: echo "[skip ci]" >> commitmessage.txt
+      - run: echo "[skip netlify]" >> commitmessage.txt
 
       # Create a multiline string to be used by the git-auto-commit Action
       - name: Set commit message
