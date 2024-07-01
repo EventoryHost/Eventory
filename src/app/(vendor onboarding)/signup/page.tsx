@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useRef } from "react";
@@ -26,7 +25,7 @@ type basicDetails = {
 const SignUp = (props: Props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [basicDetails, setBasicDetails] = useState<basicDetails>(
-    {} as basicDetails,
+    {} as basicDetails
   );
   const [formError, setFormError] = useState<string | null>(null);
 
@@ -73,6 +72,7 @@ const SignUp = (props: Props) => {
     console.log("Password:", newDetails.password);
     console.log("mobile details: ", newDetails.mobile.toString());
     auth.signUp(newDetails.mobile.toString());
+
     toggleModal();
   };
 
@@ -87,9 +87,8 @@ const SignUp = (props: Props) => {
     }
 
     setFormError(null);
-
-    auth.verifySignUpOtp(basicDetails.mobile.toString(), inputOtp);
     console.log(inputOtp);
+    auth.verifySignUpOtp(basicDetails.mobile.toString(), inputOtp);
   };
 
   const fields: {
@@ -148,7 +147,7 @@ const SignUp = (props: Props) => {
         <div className="relative h-[10rem] lg:w-full">
           <Image
             src={tajmahal}
-            alt="k"
+            alt="Image of Indian monuments"
             className="h-full w-full object-cover"
           />
         </div>
@@ -192,11 +191,11 @@ const SignUp = (props: Props) => {
                 To verify it&apos;s you, we will send you an OTP to your mobile
                 number.
               </p>
-              <div className="h-[1px] w-[80%] self-start bg-gray-300"></div>
+              <div className="h-[1px] w-[80%] self-start bg-gray-300" />
               <div className="flex flex-col items-start self-start">
                 or continue with
                 <div
-                  className="google click-pointer mt-5 flex gap-5"
+                  className="google cursor-pointer mt-5 flex gap-5"
                   onClick={initiateGoogleAuth}
                 >
                   <svg
