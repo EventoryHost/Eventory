@@ -27,6 +27,8 @@ const config = {
     screens: {
       xs: "320px",
       ...defaultTheme.screens,
+      "3xl": "2560px",
+      lpt: "1410px",
     },
     extend: {
       colors: {
@@ -70,6 +72,10 @@ const config = {
         sm: "calc(var(--radius) - 4px)",
       },
       keyframes: {
+        "caret-blink": {
+          "0%,70%,100%": { opacity: "1" },
+          "20%,50%": { opacity: "0" },
+        },
         "accordion-down": {
           from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
@@ -89,6 +95,7 @@ const config = {
         "accordion-up": "accordion-up 0.2s ease-out",
         scroll:
           "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
+        "caret-blink": "caret-blink 1.25s ease-out infinite",
       },
     },
   },
