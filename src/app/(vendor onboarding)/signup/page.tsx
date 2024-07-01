@@ -25,7 +25,7 @@ type basicDetails = {
 const SignUp = (props: Props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [basicDetails, setBasicDetails] = useState<basicDetails>(
-    {} as basicDetails
+    {} as basicDetails,
   );
   const [formError, setFormError] = useState<string | null>(null);
 
@@ -195,7 +195,7 @@ const SignUp = (props: Props) => {
               <div className="flex flex-col items-start self-start">
                 or continue with
                 <div
-                  className="google cursor-pointer mt-5 flex gap-5"
+                  className="google mt-5 flex cursor-pointer gap-5"
                   onClick={initiateGoogleAuth}
                 >
                   <svg

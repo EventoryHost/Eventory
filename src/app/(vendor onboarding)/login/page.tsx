@@ -32,7 +32,7 @@ const Login = (props: Props) => {
   const refs = useRef(
     {} as Record<keyof loginDetails, HTMLInputElement | null>,
   );
-  
+
   const toggleModal = () => {
     if (isModalOpen) {
       console.log("OTP:", loginDetails.otp);
@@ -91,8 +91,7 @@ const Login = (props: Props) => {
     console.log(inputOtp);
     auth.verifyLoginOtp(loginDetails.mobile.toString(), inputOtp, session!);
     // collect refresh token to local storage
-  }
-
+  };
 
   const fields: {
     id: keyof loginDetails;
