@@ -27,6 +27,7 @@ const Login = (props: Props) => {
     {} as loginDetails,
   );
   const [formError, setFormError] = useState<string | null>(null);
+  const [session, setSession] = useState<string | null>(null);
 
   const refs = useRef(
     {} as Record<keyof loginDetails, HTMLInputElement | null>,
@@ -43,7 +44,7 @@ const Login = (props: Props) => {
     window.location.href = `${process.env.NEXT_PUBLIC_BASE_URL}/auth/google-auth`;
   };
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
 
     // Check if any required field is empty
@@ -68,8 +69,11 @@ const Login = (props: Props) => {
     console.log("Mobile:", newDetails.mobile);
     console.log("Password:", newDetails.password);
     console.log("mobile details: ", newDetails.mobile.toString());
-    auth.login(newDetails.mobile.toString());
-
+    const res = await auth.login(newDetails.mobile.toString());
+    if (res) {
+      console.log("Response: ", res.data.data.Session);
+      setSession(res.data.data.Session);
+    }
     toggleModal();
   };
 
@@ -85,8 +89,10 @@ const Login = (props: Props) => {
 
     setFormError(null);
     console.log(inputOtp);
-    auth.verifyLoginOtp(loginDetails.mobile.toString(), inputOtp, "");
+    auth.verifyLoginOtp(loginDetails.mobile.toString(), inputOtp, session!);
+    // collect refresh token to local storage
   }
+
 
   const fields: {
     id: keyof loginDetails;
@@ -138,7 +144,7 @@ const Login = (props: Props) => {
         <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
           <h1 className="text-3xl font-bold">Login</h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
-            <form onSubmit={handleLogin}>
+            <form onSubmit={(val) => handleLogin(val)}>
               <div className="grid grid-cols-2 gap-5">
                 {fields.map((field) => (
                   <div

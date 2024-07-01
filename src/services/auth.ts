@@ -1,5 +1,4 @@
 import axios from "axios";
-import { log } from "console";
 
 const authWithGoogle = async () => {
   console.log("in");
@@ -62,6 +61,7 @@ const verifyLoginOtp = async (
       `${process.env.NEXT_PUBLIC_BASE_URL}/auth/verify-otp-login`,
       { mobile, code, session },
     );
+    console.log(res);
     return res;
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -78,6 +78,7 @@ const login = async (mobile: String) => {
         mobile,
       },
     );
+    console.log(res.data.data.Session);
     return res; // expect session id in response
   } catch (error) {
     if (axios.isAxiosError(error)) {
