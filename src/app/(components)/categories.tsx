@@ -4,19 +4,19 @@ import { BentoGrid, BentoGridItem } from "../../components/ui/bento-grid";
 
 export function Categories() {
   return (
-    <section className="pt-7 pb-7 md:px-3 px-3">
-      <div className="flex flex-col md:flex-row w-full justify-between md:px-[7%] md:items-center items-start">
+    <section className="px-3 pb-7 pt-7 md:px-3">
+      <div className="flex w-full flex-col items-start justify-between md:flex-row md:items-center md:px-[7%]">
         <div className="flex flex-col">
-          <h1 className="md:text-5xl text-3xl font-bold">Explore Events</h1>
-          <p className="md:text-l md:text-sm text-xs text-gray-700 mt-2">
+          <h1 className="text-3xl font-bold md:text-5xl">Explore Events</h1>
+          <p className="md:text-l mt-2 text-xs text-gray-700 md:text-sm">
             Search through all types of events through categories
           </p>
         </div>
-        <button className="bg-[#2E3192] md:rounded-xl max-w-[9rem] md:py-3 md:text-sm md:px-8 hover:bg-indigo-600 text-gray-200 p-1 text-xs w-[50%] py-2 rounded-md  mt-3 shadow-md">
+        <button className="animate mt-3 w-[50%] max-w-[9rem] transform rounded-md bg-[#2E3192] p-1 py-2 text-xs text-gray-200 shadow-md hover:bg-indigo-400 hover:text-[#2E3192] md:rounded-xl md:px-8 md:py-3 md:text-sm">
           View More
         </button>
       </div>
-      <BentoGrid className="max-w-6xl mx-auto mt-[2rem] md:mt-[3rem]">
+      <BentoGrid className="mx-auto mt-[2rem] max-w-6xl md:mt-[3rem]">
         {items.map((item, i) => (
           <BentoGridItem
             key={i}
@@ -24,11 +24,11 @@ export function Categories() {
             imageUrl={item.imageUrl}
             className={
               i === 4
-                ? "md:col-span-2 cursor-pointer"
+                ? "cursor-pointer md:col-span-2"
                 : i === 2 || i == 5
-                  ? "md:row-span-2 md:col-span-1 col-span-2 cursor-pointer"
+                  ? "col-span-2 cursor-pointer md:col-span-1 md:row-span-2"
                   : i == 1
-                    ? "col-span-2 md:col-span-1"
+                    ? "col-span-2 cursor-pointer md:col-span-1"
                     : i === 6
                       ? "col-span-2 cursor-pointer"
                       : "cursor-pointer"
@@ -44,41 +44,41 @@ const items = [
   {
     title: "Home",
     imageUrl:
-      "https://images.unsplash.com/photo-1589463349208-95817c91f971?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/categories/cat_01.png",
   },
   {
     title: "Festive",
     imageUrl:
-      "https://images.unsplash.com/photo-1571913035274-3eeb685eb255?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzR8fGluZGlhbiUyMGZlc3RpdmFsfGVufDB8fDB8fHww",
+      "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/categories/cat_02.png",
   },
   {
     title: "Special Guest",
     imageUrl:
-      "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/categories/cat_03.png",
   },
   {
     title: "Corporate",
     imageUrl:
-      "https://images.unsplash.com/photo-1514828980084-9462f7d03afc?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/categories/cat_04.png",
   },
   {
     title: "Night",
     imageUrl:
-      "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/categories/cat_05.png",
   },
   {
     title: "Wedding",
     imageUrl:
-      "https://images.unsplash.com/photo-1587271339318-2e78fdf79586?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/categories/cat_06.png",
   },
   {
     title: "Anniversary",
     imageUrl:
-      "https://images.unsplash.com/photo-1542042161784-26ab9e041e89?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/categories/cat_07.png",
   },
   {
     title: "Birthday",
     imageUrl:
-      "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/categories/cat_08.png",
   },
 ];
