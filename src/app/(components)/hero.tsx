@@ -32,11 +32,6 @@ const Feed: React.FC = () => {
       <div className="flex w-[100%] flex-col flex-wrap justify-start overflow-hidden md:flex-row md:py-0 lpt:h-[90vh]">
         <div className="flex w-[100%] items-center justify-start lg:w-[50%]">
           <div className="mb-[10%] mt-[10%] flex h-[90vh] flex-col items-start justify-start px-[4%] lg:mb-[40%]">
-            <h1 className="text-4xl font-bold md:text-6xl">
-              Find the Perfect
-              <br />
-              <FlipWords words={words} className="" /> for Your Event
-            </h1>
             <div className="flex w-[100%] flex-col xs:h-[75vh] sm:h-[60vh] md:flex-row lg:h-[90vh]">
               <div className="flex h-[100%] w-[100%] items-center justify-center lg:w-[50%]">
                 <div className="min mt-10 flex h-full flex-col justify-normal px-[4%] md:mt-40 lg:mt-0 lg:justify-center">
@@ -106,8 +101,10 @@ const Feed: React.FC = () => {
                 </div>
               </div>
             </div>
-            <h1 className="font-bold xs:text-4xl sm:text-4xl md:mt-5 md:text-6xl">
-              Find the Perfect Vendors for Your Event
+            <h1 className="text-4xl font-bold md:text-6xl">
+              Find the Perfect
+              <br />
+              <FlipWords words={words} className="" /> for Your Event
             </h1>
             <p className="mt-7 w-[70%] md:text-xl">
               Discover, compare, and book top-rated vendors for weddings,
