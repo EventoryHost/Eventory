@@ -61,9 +61,9 @@ const Navbar = () => {
                   y2="5.84872"
                   gradientUnits="userSpaceOnUse"
                 >
-                  <stop stop-color="#6966EB" />
-                  <stop offset="0.204" stop-color="#5F5DD6" />
-                  <stop offset="1" stop-color="#3B3A85" />
+                  <stop stopColor="#6966EB" />
+                  <stop offset="0.204" stopColor="#5F5DD6" />
+                  <stop offset="1" stopColor="#3B3A85" />
                 </linearGradient>
               </defs>
             </svg>
@@ -158,12 +158,12 @@ const Navbar = () => {
                       r="4"
                       transform="matrix(-1 0 0 1 16 3)"
                       stroke="#2B3F6C"
-                      stroke-width="1.5"
+                      strokeWidth="1.5"
                     />
                     <path
                       d="M5 16.9347C5 16.0743 5.54085 15.3068 6.35109 15.0175V15.0175C10.004 13.7128 13.996 13.7128 17.6489 15.0175V15.0175C18.4591 15.3068 19 16.0743 19 16.9347V18.2502C19 19.4376 17.9483 20.3498 16.7728 20.1818L15.8184 20.0455C13.2856 19.6837 10.7144 19.6837 8.18162 20.0455L7.22721 20.1818C6.0517 20.3498 5 19.4376 5 18.2502V16.9347Z"
                       stroke="#2B3F6C"
-                      stroke-width="1.5"
+                      strokeWidth="1.5"
                     />
                   </svg>
                 </div>
@@ -272,20 +272,20 @@ const Navbar = () => {
                 <path
                   d="M20 6L4 6"
                   stroke="#2B3F6C"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
                 />
                 <path
                   d="M20 12L4 12"
                   stroke="#2B3F6C"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
                 />
                 <path
                   d="M20 18H4"
                   stroke="#2B3F6C"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
                 />
               </svg>
             </div>
@@ -355,47 +355,47 @@ const Navbar = () => {
                 <path
                   d="M2.3968 7.77867C2.66025 5.22985 4.80791 3.29272 7.37031 3.29272H15.5974C18.5111 3.29272 20.8076 5.77415 20.5824 8.67916L19.9623 16.6792C19.7605 19.2829 17.5888 21.2927 14.9772 21.2927H6.54343C3.57869 21.2927 1.26512 18.7277 1.56993 15.7787L2.3968 7.77867Z"
                   stroke="#2B3F6C"
-                  stroke-width="1.5"
+                  strokeWidth="1.5"
                 />
                 <path
                   d="M2.8865 8.48779L20.0127 8.48779"
                   stroke="#2B3F6C"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
                 <path
                   d="M15.7438 2.2439L15.7438 5.17073"
                   stroke="#2B3F6C"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
                 <path
                   d="M7.18005 2.2439L7.18005 5.17073"
                   stroke="#2B3F6C"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
                 <path
                   d="M8 14.4391H13"
                   stroke="#2B3F6C"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
                 <path
                   d="M10.5 12L10.5 16.8781"
                   stroke="#2B3F6C"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
                 <path
                   d="M13.7177 4H15.0985L16.178 4.10518C18.2354 4.30563 19.9574 5.7515 20.5107 7.74324L21.5544 11.5L23.0238 18V18C23.5223 20.0357 21.981 22 19.8852 22H14.2074"
                   stroke="#2B3F6C"
-                  stroke-width="1.5"
+                  strokeWidth="1.5"
                 />
               </svg>
               <p className="text-md md:text-xs">Inventory</p>
@@ -421,12 +421,12 @@ const Navbar = () => {
                       r="4"
                       transform="matrix(-1 0 0 1 16 3)"
                       stroke="#2B3F6C"
-                      stroke-width="1.5"
+                      strokeWidth="1.5"
                     />
                     <path
                       d="M5 16.9347C5 16.0743 5.54085 15.3068 6.35109 15.0175V15.0175C10.004 13.7128 13.996 13.7128 17.6489 15.0175V15.0175C18.4591 15.3068 19 16.0743 19 16.9347V18.2502C19 19.4376 17.9483 20.3498 16.7728 20.1818L15.8184 20.0455C13.2856 19.6837 10.7144 19.6837 8.18162 20.0455L7.22721 20.1818C6.0517 20.3498 5 19.4376 5 18.2502V16.9347Z"
                       stroke="#2B3F6C"
-                      stroke-width="1.5"
+                      strokeWidth="1.5"
                     />
                   </svg>
 
@@ -723,12 +723,12 @@ export default Navbar;
 //                         r="4"
 //                         transform="matrix(-1 0 0 1 16 3)"
 //                         stroke="#2B3F6C"
-//                         stroke-width="1.5"
+//                         strokeWidth="1.5"
 //                       />
 //                       <path
 //                         d="M5 16.9347C5 16.0743 5.54085 15.3068 6.35109 15.0175V15.0175C10.004 13.7128 13.996 13.7128 17.6489 15.0175V15.0175C18.4591 15.3068 19 16.0743 19 16.9347V18.2502C19 19.4376 17.9483 20.3498 16.7728 20.1818L15.8184 20.0455C13.2856 19.6837 10.7144 19.6837 8.18162 20.0455L7.22721 20.1818C6.0517 20.3498 5 19.4376 5 18.2502V16.9347Z"
 //                         stroke="#2B3F6C"
-//                         stroke-width="1.5"
+//                         strokeWidth="1.5"
 //                       />
 //                     </svg>
 //                   </div>
