@@ -34,7 +34,7 @@ const Footer = (props: Props) => {
           </div>
         </div>
       </div>
-      <div className="mb-7 mt-9 w-[95%] rounded-xl bg-white bg-gradient-to-r from-indigo-200 to-purple-300 shadow-lg md:mt-0">
+      <div className="mb-7 mt-[3rem] w-[95%] rounded-xl bg-white bg-gradient-to-r from-indigo-200 to-purple-300 shadow-lg md:mt-0">
         <section className="footer p-10">
           <aside className="w-full justify-center md:justify-start">
             <Image
