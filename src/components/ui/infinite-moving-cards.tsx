@@ -107,7 +107,7 @@ export const InfiniteMovingCards = ({
               src={item.imageUrl}
               alt="Background"
               fill
-              style={{ objectFit: 'cover' }}
+              style={{ objectFit: "cover" }}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               priority
               className="absolute inset-0 z-10 rounded-2xl opacity-100"
