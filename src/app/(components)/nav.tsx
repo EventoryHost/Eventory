@@ -524,7 +524,7 @@ const Navbar = () => {
           </ul>
         </div>
       </div>
-      <div className="container mt-2 lg:hidden">
+      <div className="container mt-2 block lg:hidden">
         <form className="relative mx-0 flex w-full">
           <label
             htmlFor="default-search"
