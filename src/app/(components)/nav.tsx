@@ -22,7 +22,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-rgba(0,0,0,0.12) navbar flex flex-col shadow-md ">
+    <nav className="bg-rgba(0,0,0,0.12) navbar flex flex-col shadow-md">
       <div className="container">
         {/* logo eventory part */}
         <div className="logo flex flex-col items-center justify-center">
@@ -84,7 +84,7 @@ const Navbar = () => {
               <input
                 type="text"
                 id="default-search"
-                className="block w-full justify-start rounded-lg border border-gray-300 bg-gray-50 p-2 pl-3 text-start  text-xs text-gray-900"
+                className="block w-full justify-start rounded-lg border border-gray-300 bg-gray-50 p-2 pl-3 text-start text-xs text-gray-900"
                 placeholder="Search for services"
                 value={query}
                 onChange={async (e) => {
@@ -145,17 +145,17 @@ const Navbar = () => {
         </div>
 
         {/* mobile hamburger and profile */}
-        <div className="menu-icon  border-[rgba(161,161,161,1)] px-0 md:rounded-none md:border-0">
+        <div className="menu-icon border-[rgba(161,161,161,1)] px-0 md:rounded-none md:border-0">
           <div className="flex flex-row gap-2">
-            <div className="menu-icon ">
-              <div className="dropdown dropdown-end h-min ">
+            <div className="menu-icon">
+              <div className="dropdown dropdown-end h-min">
                 <div
                   tabIndex={0}
                   role="button"
                   className="flex flex-col items-center justify-center"
                 >
                   <svg
-                    className="ml-[3px] mt-2 text-black "
+                    className="ml-[3px] mt-2 text-black"
                     width="20"
                     height="22"
                     viewBox="0 0 24 24"
@@ -180,7 +180,7 @@ const Navbar = () => {
                 <ul
                   tabIndex={0}
                   //  bg-[url('https://images.pexels.com/photos/572897/pexels-photo-572897.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')] bg-cover bg-no-repeat bg-center
-                  className="menu  dropdown-content menu-sm z-[1] mt-3 w-[80vw] translate-x-10 rounded-box bg-white p-2 shadow sm:ml-0 sm:w-[40vw] md:w-[40vw]"
+                  className="menu dropdown-content menu-sm z-[1] mt-3 w-[80vw] translate-x-10 rounded-box bg-white p-2 shadow sm:ml-0 sm:w-[40vw] md:w-[40vw]"
                 >
                   <div className="w-full rounded-lg bg-white">
                     <div className="px-3 text-center">
@@ -441,13 +441,13 @@ const Navbar = () => {
                     />
                   </svg>
 
-                  <p className="bottom-0 text-xs ">Profile</p>
+                  <p className="bottom-0 text-xs">Profile</p>
                 </div>
                 <ul
                   tabIndex={0}
-                  className="menu dropdown-content menu-sm z-[1] mt-4 rounded-box p-2 shadow-lg md:w-[44vw] lg:w-[33vw] xl:w-[20vw] bg-[rgba(255,255,255,1)] item-center"
+                  className="item-center menu dropdown-content menu-sm z-[1] mt-4 rounded-box bg-[rgba(255,255,255,1)] p-2 shadow-lg md:w-[44vw] lg:w-[33vw] xl:w-[20vw]"
                 >
-                  <div className=" w-full rounded-lg bg-white">
+                  <div className="w-full rounded-lg bg-white">
                     <div className="px-3 text-center">
                       <h2 className="mb-2 text-lg font-semibold text-[rgba(46,49,146,1)]">
                         Welcome to Eventory
@@ -471,7 +471,10 @@ const Navbar = () => {
                     <ul className="item-start -ml-1 flex flex-col font-poppins text-sm font-semibold text-[rgba(0,0,0,1)]">
                       <li className="flex w-full flex-row items-center justify-between py-2">
                         <a href="#" className=" ">
-                          <p className="text-sm md:text-base"> Account Details </p>
+                          <p className="text-sm md:text-base">
+                            {" "}
+                            Account Details{" "}
+                          </p>
                         </a>
                         <span className="item-end">&gt;</span>
                       </li>
@@ -489,7 +492,9 @@ const Navbar = () => {
                       </li>
                       <li className="flex w-full flex-row items-center justify-between py-2">
                         <a href="#" className="gap-8">
-                          <p className="text-sm md:text-base">Billing and Payments</p>
+                          <p className="text-sm md:text-base">
+                            Billing and Payments
+                          </p>
                         </a>
                         <span>&gt;</span>
                       </li>
@@ -529,7 +534,7 @@ const Navbar = () => {
             <input
               type="text"
               id="default-search"
-              className="xsm:text-center block w-full justify-start rounded-lg border border-gray-300 bg-gray-50 p-2 pl-2 text-start text-xs text-gray-900 sm:pl-3 md:text-sm"
+              className="block w-full justify-start rounded-lg border border-gray-300 bg-gray-50 p-2 pl-2 text-start text-xs text-gray-900 xsm:text-center sm:pl-3 md:text-sm"
               placeholder="Search for party and event services"
               value={query}
               onChange={async (e) => {

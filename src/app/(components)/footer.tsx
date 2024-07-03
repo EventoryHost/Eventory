@@ -17,7 +17,7 @@ const Footer = (props: Props) => {
             <h1 className="w-[90%] text-xl font-semibold text-white md:w-full md:text-4xl">
               Ready to Plan Your Event ?
             </h1>
-            <p className="mt-2 w-[130%] text-xs text-white md:mt-5 md:w-[80%] text-xs md:text-sm">
+            <p className="mt-2 w-[130%] text-xs text-white md:mt-5 md:w-[80%] md:text-sm">
               Start discovering the best vendors for your event today.
               <span className="block md:inline">
                 {" "}
@@ -43,30 +43,37 @@ const Footer = (props: Props) => {
               // src="https://d1u34m45xfa3ar.cloudfront.net/website/footer/logo-with-bg.svg"
               src="/footer/footer-logo-01.svg"
               alt="Eventory logo justify-center items-center align-middle"
-              className="mix-blend-multiply w-[60px] h-[90px]"
+              className="h-[90px] w-[60px] mix-blend-multiply"
             />
           </aside>
           <nav>
             <h6 className="font-bold text-black md:text-xl">About Us</h6>
-            <a className="link-hover link"><p className="md:text-base text-xs">Our Mission</p></a>
-            <a className="link-hover link"><p className="md:text-base text-xs">Our Team</p></a>
+            <a className="link-hover link">
+              <p className="text-xs md:text-base">Our Mission</p>
+            </a>
+            <a className="link-hover link">
+              <p className="text-xs md:text-base">Our Team</p>
+            </a>
           </nav>
           <nav>
             <h6 className="font-bold text-black md:text-xl">Contacts</h6>
             <a href="tel:+917903646350" className="link-hover link">
-              <p className="md:text-base text-xs">+91 7903646350</p>
+              <p className="text-xs md:text-base">+91 7903646350</p>
             </a>
             <a
               href="mailto:contact@eventory.in"
               className="link-hover link text-[rgba(98,95,217,1)]"
             >
-              <p className="md:text-base text-xs">contact@eventory.in</p>
+              <p className="text-xs md:text-base">contact@eventory.in</p>
             </a>
           </nav>
           <nav>
             <h6 className="font-bold text-black md:text-xl">Legal</h6>
-            <a className="link-hover link"><p className="md:text-base text-xs">Terms of use</p></a>
-            <a className="link-hover link"><p className="md:text-base text-xs">Privacy policy</p>
+            <a className="link-hover link">
+              <p className="text-xs md:text-base">Terms of use</p>
+            </a>
+            <a className="link-hover link">
+              <p className="text-xs md:text-base">Privacy policy</p>
             </a>
           </nav>
           <nav className="flex gap-5">

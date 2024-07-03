@@ -49,7 +49,7 @@ const config = {
     extend: {
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
-        roboto:["Roboto", "sans-serif"],
+        roboto: ["Roboto", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
