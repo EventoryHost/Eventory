@@ -524,8 +524,8 @@ const Navbar = () => {
           </ul>
         </div>
       </div>
-      <div className="container pt-2 lg:hidden">
-        <form className="relative mx-0 flex w-full">
+      <div className="container lg:hidden">
+        <form className="relative mx-0 flex pt-2 w-full">
           <label
             htmlFor="default-search"
             className="sr-only mb-2 text-sm font-medium text-gray-900 dark:text-white"
