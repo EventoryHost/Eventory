@@ -23,7 +23,7 @@ const Navbar = () => {
 
   return (
     <nav className="bg-rgba(0,0,0,0.12) navbar flex flex-col shadow-md">
-      <div className="container">
+      <div className="container flex justify-between items-center">
         {/* logo eventory part */}
         <div className="logo flex flex-col items-center justify-center">
           <Link href={"/"}>
@@ -524,7 +524,7 @@ const Navbar = () => {
           </ul>
         </div>
       </div>
-      <div className="container mt-2 block lg:hidden">
+      <div className="container pt-2 lg:hidden">
         <form className="relative mx-0 flex w-full">
           <label
             htmlFor="default-search"
