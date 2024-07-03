@@ -122,30 +122,30 @@ const Story = () => {
                     <path
                       d="M2.45703 70.1874V45.3646L24.1736 36.0594L45.8902 45.3714V70.1874L24.1736 79.4857L2.45703 70.1874Z"
                       stroke="white"
-                      stroke-width="3"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                     <path
                       d="M2.45703 45.3166L24.1736 54.6217L45.8902 45.3166M24.1736 11.408L45.8833 20.72L67.5999 11.4149"
                       stroke="white"
-                      stroke-width="3"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                     <path
                       d="M45.8833 45.3166L67.5999 54.6217L89.3164 45.3166"
                       stroke="white"
-                      stroke-width="3"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                     <path
                       d="M24.1738 54.6354V79.4926M67.6138 54.6354V79.4926M45.8835 20.72V45.5703M24.1875 36.0457V11.2229L45.8973 1.91772L67.6138 11.2229V36.0457L45.8973 45.3509L24.1875 36.0457ZM45.8835 70.1874V45.3646L67.6001 36.0594L89.3167 45.3714V70.1874L67.6001 79.4857L45.8835 70.1874Z"
                       stroke="white"
-                      stroke-width="3"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                   </svg>
                 </div>
@@ -192,7 +192,7 @@ const Story = () => {
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                   >
-                    <g clip-path="url(#clip0_1524_6201)">
+                    <g clipPath="url(#clip0_1524_6201)">
                       <path
                         d="M10.7344 14.3581C9.62981 14.3581 8.73438 15.2535 8.73438 16.3581C8.73438 17.4627 9.62981 18.3581 10.7344 18.3581V14.3581ZM76.0095 17.7723C76.7905 16.9913 76.7905 15.7249 76.0095 14.9439L63.2815 2.21596C62.5005 1.43491 61.2342 1.43491 60.4531 2.21596C59.6721 2.99701 59.6721 4.26334 60.4531 5.04438L71.7668 16.3581L60.4531 27.6718C59.6721 28.4529 59.6721 29.7192 60.4531 30.5002C61.2342 31.2813 62.5005 31.2813 63.2815 30.5002L76.0095 17.7723ZM10.7344 18.3581H74.5952V14.3581H10.7344V18.3581Z"
                         fill="white"
@@ -209,7 +209,7 @@ const Story = () => {
                         rx="0.650628"
                         fill="#4C4AAC"
                         stroke="white"
-                        stroke-width="1.30126"
+                        strokeWidth="1.30126"
                       />
                       <rect
                         x="79.0491"
@@ -219,7 +219,7 @@ const Story = () => {
                         rx="0.650628"
                         fill="#4C4AAC"
                         stroke="white"
-                        stroke-width="1.30126"
+                        strokeWidth="1.30126"
                       />
                     </g>
                     <defs>
@@ -254,30 +254,30 @@ const Story = () => {
                       <path
                         d="M2.45703 70.1874V45.3646L24.1736 36.0594L45.8902 45.3714V70.1874L24.1736 79.4857L2.45703 70.1874Z"
                         stroke="white"
-                        stroke-width="3"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="3"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                       <path
                         d="M2.45703 45.3166L24.1736 54.6217L45.8902 45.3166M24.1736 11.408L45.8833 20.72L67.5999 11.4149"
                         stroke="white"
-                        stroke-width="3"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="3"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                       <path
                         d="M45.8833 45.3166L67.5999 54.6217L89.3164 45.3166"
                         stroke="white"
-                        stroke-width="3"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="3"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                       <path
                         d="M24.1738 54.6354V79.4926M67.6138 54.6354V79.4926M45.8835 20.72V45.5703M24.1875 36.0457V11.2229L45.8973 1.91772L67.6138 11.2229V36.0457L45.8973 45.3509L24.1875 36.0457ZM45.8835 70.1874V45.3646L67.6001 36.0594L89.3167 45.3714V70.1874L67.6001 79.4857L45.8835 70.1874Z"
                         stroke="white"
-                        stroke-width="3"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="3"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                     </svg>
                   </div>
@@ -333,7 +333,7 @@ const Story = () => {
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
                     >
-                      <g clip-path="url(#clip0_1524_6201)">
+                      <g clipPath="url(#clip0_1524_6201)">
                         <path
                           d="M10.7344 14.3581C9.62981 14.3581 8.73438 15.2535 8.73438 16.3581C8.73438 17.4627 9.62981 18.3581 10.7344 18.3581V14.3581ZM76.0095 17.7723C76.7905 16.9913 76.7905 15.7249 76.0095 14.9439L63.2815 2.21596C62.5005 1.43491 61.2342 1.43491 60.4531 2.21596C59.6721 2.99701 59.6721 4.26334 60.4531 5.04438L71.7668 16.3581L60.4531 27.6718C59.6721 28.4529 59.6721 29.7192 60.4531 30.5002C61.2342 31.2813 62.5005 31.2813 63.2815 30.5002L76.0095 17.7723ZM10.7344 18.3581H74.5952V14.3581H10.7344V18.3581Z"
                           fill="white"
@@ -350,7 +350,7 @@ const Story = () => {
                           rx="0.650628"
                           fill="#4C4AAC"
                           stroke="white"
-                          stroke-width="1.30126"
+                          strokeWidth="1.30126"
                         />
                         <rect
                           x="79.0491"
@@ -360,7 +360,7 @@ const Story = () => {
                           rx="0.650628"
                           fill="#4C4AAC"
                           stroke="white"
-                          stroke-width="1.30126"
+                          strokeWidth="1.30126"
                         />
                       </g>
                       <defs>

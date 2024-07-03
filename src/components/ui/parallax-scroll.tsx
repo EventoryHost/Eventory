@@ -62,7 +62,7 @@ export const ParallaxScroll = ({ className }: { className: string }) => {
                 <Image
                   src={el}
                   className="h-full w-full rounded-xl object-cover"
-                  layout="fill"
+                  fill
                   alt="thumbnail"
                   loading="eager"
                 />
@@ -85,9 +85,10 @@ export const ParallaxScroll = ({ className }: { className: string }) => {
                 <Image
                   src={el}
                   className="h-full w-full rounded-xl object-cover"
-                  layout="fill"
+                  fill
                   alt="thumbnail"
                   loading="eager"
+                  priority
                 />
               </div>
             </motion.div>
