@@ -22,7 +22,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-rgba(0,0,0,0.12) navbar shadow-md">
+    <nav className="bg-rgba(0,0,0,0.12) navbar flex flex-col shadow-md ">
       <div className="container">
         {/* logo eventory part */}
         <div className="logo flex flex-col items-center justify-center">
@@ -75,34 +75,17 @@ const Navbar = () => {
 
         {/* search part */}
         <div className="hidden max-h-full flex-1 sm:pl-0 md:mx-0 lg:mx-10 lg:block">
-          <form className="relative mx-auto flex flex-grow justify-center">
+          <form className="relative mx-auto flex flex-grow justify-start">
             <label
               htmlFor="default-search"
               className="sr-only mb-2 text-sm font-medium text-gray-900 dark:text-white"
             ></label>
-            <div className="relative w-full max-w-[21rem] px-5 md:max-w-[27rem] lg:max-w-[18rem] lg:px-0 xl:max-w-[27rem]">
-              <div className="pointer-events-none absolute inset-y-0 flex items-center pl-2 xl:pl-5">
-                <svg
-                  className="h-4 w-4 text-gray-500 dark:text-gray-400"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-                  />
-                </svg>
-              </div>
+            <div className="relative w-full max-w-[21rem] justify-between px-5 md:max-w-[27rem] lg:max-w-[18rem] lg:px-0 xl:max-w-[27rem]">
               <input
                 type="text"
                 id="default-search"
-                className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2 pl-9 text-sm text-gray-900"
-                placeholder="Search for party and event services"
+                className="block w-full justify-start rounded-lg border border-gray-300 bg-gray-50 p-2 pl-3 text-start  text-xs text-gray-900"
+                placeholder="Search for services"
                 value={query}
                 onChange={async (e) => {
                   const value = e.target.value;
@@ -113,6 +96,33 @@ const Navbar = () => {
                 onBlur={async () => setResults(await handleSearchAbort())}
                 required
               />
+
+              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center rounded-r-lg bg-[rgba(46,49,146,1)] px-3">
+                <svg
+                  width="18"
+                  height="19"
+                  viewBox="0 0 21 21"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle
+                    cx="8.99998"
+                    cy="9"
+                    r="8"
+                    stroke="white"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M14.5 14.958L19.5 19.958"
+                    stroke="white"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
 
               {results.length > 0 && (
                 <ul className="absolute z-10 mt-1 max-h-60 w-full overflow-y-auto rounded-lg border border-gray-300 bg-white shadow-lg">
@@ -135,19 +145,19 @@ const Navbar = () => {
         </div>
 
         {/* mobile hamburger and profile */}
-        <div className="menu-icon rounded-lg border-1 border-[rgba(161,161,161,1)] px-1 md:rounded-none md:border-0">
-          <div className="flex flex-row gap-3">
-            <div className="menu-icon">
-              <div className="dropdown dropdown-end h-min">
+        <div className="menu-icon  border-[rgba(161,161,161,1)] px-0 md:rounded-none md:border-0">
+          <div className="flex flex-row gap-2">
+            <div className="menu-icon ">
+              <div className="dropdown dropdown-end h-min ">
                 <div
                   tabIndex={0}
                   role="button"
                   className="flex flex-col items-center justify-center"
                 >
                   <svg
-                    className="ml-[3px] mt-2 text-black"
-                    width="18"
-                    height="21"
+                    className="ml-[3px] mt-2 text-black "
+                    width="20"
+                    height="22"
                     viewBox="0 0 24 24"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -169,7 +179,8 @@ const Navbar = () => {
                 </div>
                 <ul
                   tabIndex={0}
-                  className="menu dropdown-content menu-sm z-[1] mt-3 w-[80vw] translate-x-10 rounded-box bg-white p-2 shadow sm:ml-0 sm:w-[40vw] md:w-[40vw]"
+                  //  bg-[url('https://images.pexels.com/photos/572897/pexels-photo-572897.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')] bg-cover bg-no-repeat bg-center
+                  className="menu  dropdown-content menu-sm z-[1] mt-3 w-[80vw] translate-x-10 rounded-box bg-white p-2 shadow sm:ml-0 sm:w-[40vw] md:w-[40vw]"
                 >
                   <div className="w-full rounded-lg bg-white">
                     <div className="px-3 text-center">
@@ -242,10 +253,10 @@ const Navbar = () => {
             </div>
 
             <div className="menu-icon">
-              {/* <p className="text-sm text-[#2b3e6c]">|</p> */}
               <svg
+                className="mt-1"
                 width="1"
-                height="40"
+                height="30"
                 viewBox="0 0 1 40"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -263,8 +274,8 @@ const Navbar = () => {
             <div className="menu-icon items-center" onClick={handleShowNavbar}>
               <svg
                 className={`hamburger mr-1 mt-2 items-center text-black ${showNavbar && "rotate-90 scale-90 duration-100"}`}
-                width="24"
-                height="20"
+                width="22"
+                height="22"
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -295,7 +306,7 @@ const Navbar = () => {
         {/* nav List */}
 
         <div className={`nav-elements ${showNavbar && "active"}`}>
-          <ul className=" ">
+          <ul className="">
             <li className="top-margin">
               <Link href={"/about"}>
                 <p>About</p>
@@ -430,13 +441,13 @@ const Navbar = () => {
                     />
                   </svg>
 
-                  <p className="bottom-0 text-xs">Profile</p>
+                  <p className="bottom-0 text-xs ">Profile</p>
                 </div>
                 <ul
                   tabIndex={0}
-                  className="menu dropdown-content menu-sm z-[1] mt-4 rounded-box bg-white p-2 shadow-lg md:w-[44vw] lg:w-[30vw]"
+                  className="menu dropdown-content menu-sm z-[1] mt-4 rounded-box p-2 shadow-lg md:w-[44vw] lg:w-[33vw] xl:w-[20vw] bg-[rgba(255,255,255,1)] item-center"
                 >
-                  <div className="w-full rounded-lg bg-white">
+                  <div className=" w-full rounded-lg bg-white">
                     <div className="px-3 text-center">
                       <h2 className="mb-2 text-lg font-semibold text-[rgba(46,49,146,1)]">
                         Welcome to Eventory
@@ -460,43 +471,43 @@ const Navbar = () => {
                     <ul className="item-start -ml-1 flex flex-col font-poppins text-sm font-semibold text-[rgba(0,0,0,1)]">
                       <li className="flex w-full flex-row items-center justify-between py-2">
                         <a href="#" className=" ">
-                          <p className=""> Account Details </p>
+                          <p className="text-sm md:text-base"> Account Details </p>
                         </a>
                         <span className="item-end">&gt;</span>
                       </li>
                       <li className="flex w-full flex-row items-center justify-between py-2">
                         <a href="#" className=" ">
-                          <p> Bookings</p>
+                          <p className="text-sm md:text-base"> Bookings</p>
                         </a>
                         <span className="item-end">&gt;</span>
                       </li>
                       <li className="flex w-full flex-row items-center justify-between py-2">
                         <a href="#" className="gap-8">
-                          <p>Saved vendors </p>
+                          <p className="text-sm md:text-base">Saved vendors </p>
                         </a>
                         <span>&gt;</span>
                       </li>
                       <li className="flex w-full flex-row items-center justify-between py-2">
                         <a href="#" className="gap-8">
-                          <p>Billing and Payments</p>
+                          <p className="text-sm md:text-base">Billing and Payments</p>
                         </a>
                         <span>&gt;</span>
                       </li>
                       <li className="flex w-full flex-row items-center justify-between py-2">
                         <a href="#" className="gap-8">
-                          <p>Feedback</p>
+                          <p className="text-sm md:text-base">Feedback</p>
                         </a>
                         <span>&gt;</span>
                       </li>
                       <li className="flex w-full flex-row items-center justify-between py-2">
                         <a href="#" className="gap-8">
-                          <p>Contact us </p>
+                          <p className="text-sm md:text-base">Contact us </p>
                         </a>
                         <span>&gt;</span>
                       </li>
                       <li className="mr-[20px] flex w-full flex-row items-center justify-between py-2">
                         <a href="#" className="gap-8">
-                          <p>Help</p>
+                          <p className="text-sm md:text-base">Help</p>
                         </a>
                         <span>&gt;</span>
                       </li>
@@ -507,6 +518,74 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
+      </div>
+      <div className="container mt-2 lg:hidden">
+        <form className="relative mx-0 flex w-full">
+          <label
+            htmlFor="default-search"
+            className="sr-only mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          ></label>
+          <div className="relative w-full justify-between lg:px-0">
+            <input
+              type="text"
+              id="default-search"
+              className="xsm:text-center block w-full justify-start rounded-lg border border-gray-300 bg-gray-50 p-2 pl-2 text-start text-xs text-gray-900 sm:pl-3 md:text-sm"
+              placeholder="Search for party and event services"
+              value={query}
+              onChange={async (e) => {
+                const value = e.target.value;
+                setQuery(value);
+                setResults(await handleSearch(value));
+              }}
+              onClick={async () => setResults(await handleSearchClick())}
+              onBlur={async () => setResults(await handleSearchAbort())}
+              required
+            />
+            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center rounded-r-lg bg-[rgba(46,49,146,1)] px-3 py-3 xl:pr-7">
+              <svg
+                width="16"
+                height="17"
+                viewBox="0 0 21 21"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8.99998"
+                  cy="9"
+                  r="8"
+                  stroke="white"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M14.5 14.958L19.5 19.958"
+                  stroke="white"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </div>
+
+            {results.length > 0 && (
+              <ul className="absolute z-10 mt-1 max-h-60 w-full overflow-y-auto rounded-lg border border-gray-300 bg-white shadow-lg">
+                {results.map((result, index) => (
+                  <li
+                    key={index}
+                    className="cursor-pointer p-2 hover:bg-gray-200"
+                    onClick={() => {
+                      setQuery(result.category);
+                      setResults([]);
+                    }}
+                  >
+                    {result.category}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </form>
       </div>
     </nav>
   );

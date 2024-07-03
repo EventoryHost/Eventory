@@ -35,9 +35,8 @@ const config = {
     },
     container: {
       center: true,
-      padding: "1rem",
       screens: {
-        "2xl": "1400px",
+        "2xl": "2560px",
       },
     },
     screens: {
@@ -45,10 +44,12 @@ const config = {
       ...defaultTheme.screens,
       "3xl": "2560px",
       lpt: "1410px",
+      xsm: "400px",
     },
     extend: {
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
+        roboto:["Roboto", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",

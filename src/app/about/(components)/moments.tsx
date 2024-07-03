@@ -2,8 +2,8 @@
 import React from "react";
 import "../../globals.css";
 import { useState, useEffect } from "react";
-import { Card, CardContent } from "@/components/ui/card";
 import Autoplay from "embla-carousel-autoplay";
+
 
 const items = [
   {
@@ -52,14 +52,16 @@ const Moments = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   // Automatically move right every 3 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length);
-    }, 3000);
+  // useEffect(() => { 
+  //   const interval = setInterval(() => {
+  //     setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length);
+  //   }, 3000);
 
-    return () => clearInterval(interval);
-  }, [items.length]);
+  //   return () => clearInterval(interval);
+  // }, [items.length]);
 
+
+  //has issue of some logic, All objects are not visible
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length);
   };
@@ -88,8 +90,8 @@ const Moments = () => {
                 key={index}
                 className="w-full flex-shrink-0 flex-col items-center justify-center text-center md:flex-row lg:flex-row"
               >
-                <div className="flex w-full flex-col items-center justify-center md:flex-row lg:flex-row">
-                  <div className="rounded-moments order-2 items-end justify-end bg-[rgba(46,49,146,0.1)] px-5 pt-5 text-left xs:w-[200px] sm:w-[300px] md:order-1 md:ml-20 md:h-[300px] md:w-2/3 md:rounded-l-2xl lg:w-[600px]">
+                <div className="flex w-full flex-col items-center justify-center md:flex-row lg:flex-row xl:translate-x-28">
+                  <div className="rounded-moments item-center justify-center order-2 items-end  bg-[rgba(46,49,146,0.1)] px-5 pt-5 text-left xs:w-[200px] sm:w-[300px] md:order-1 md:ml-20 md:h-[300px] md:w-1/2 md:rounded-l-2xl lg:w-[400px]">
                     <div className="mb-5">
                       <svg
                         width="40"
@@ -112,13 +114,18 @@ const Moments = () => {
                       {item.name}
                     </p>
                   </div>
-                  <div className="order-1 flex items-center justify-center max-sm:pl-[60px] xs:-translate-x-7 sm:-translate-x-5 md:order-2 md:w-1/3 md:translate-x-0 md:justify-start">
+
+                  {/* max-sm:pl-[60px] xs:-translate-x-7 sm:-translate-x-5 md:order-2 md:w-1/2 md:translate-x-0 md:justify-start */}
+                  <div className=" flex items-center max-sm:pl-[60px] xs:-translate-x-7 sm:-translate-x-5 md:order-2 md:w-1/2 md:translate-x-0 md:justify-start">
                     <img
                       src={item.image}
                       alt={item.name}
                       className="h-[200px] justify-center rounded-2xl object-cover xs:w-[400px] md:h-[400px] md:w-[300px]"
                     />
                   </div>
+                  
+                  
+
                 </div>
               </div>
             ))}
@@ -146,7 +153,7 @@ const Moments = () => {
           <button
             onClick={nextSlide}
             className="absolute right-0 top-1/2 -translate-y-1/2 transform rounded-full p-2"
-          >
+          > 
             <svg
               width="42"
               height="43"
@@ -163,6 +170,23 @@ const Moments = () => {
             </svg>
           </button>
         </div>
+
+        {/* <div className="carousel w-full">
+          <div id="slide1" className="carousel-item relative w-full">
+            <img
+              src="https://img.daisyui.com/images/stock/photo-1625726411847-8cbb60cc71e6.jpg"
+              className="w-full"
+            />
+            <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+              <a href="#slide4" className="btn btn-circle">
+                ❮
+              </a>
+              <a href="#slide2" className="btn btn-circle">
+                ❯
+              </a>
+            </div>
+          </div>
+        </div>   */}
       </div>
     </>
   );

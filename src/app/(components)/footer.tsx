@@ -11,13 +11,13 @@ type Props = {};
 const Footer = (props: Props) => {
   return (
     <div className="flex flex-col items-center justify-center bg-gradient-to-r from-[#605ED8] to-[#CA81FE]">
-      <div className="Footer mt-2 flex h-[20vh] w-[98%] justify-center md:h-[30vh] 3xl:h-[20vh]">
+      <div className="Footer mt-2 flex h-[12vh] w-[98%] justify-center md:h-[20vh] 3xl:h-[20vh]">
         <div className="flex w-[85%] items-start justify-between pt-8">
           <div>
             <h1 className="w-[90%] text-xl font-semibold text-white md:w-full md:text-4xl">
               Ready to Plan Your Event ?
             </h1>
-            <p className="mt-2 w-[130%] text-xs text-white md:mt-5 md:w-[80%] md:text-lg md:font-semibold">
+            <p className="mt-2 w-[130%] text-xs text-white md:mt-5 md:w-[80%] text-xs md:text-sm">
               Start discovering the best vendors for your event today.
               <span className="block md:inline">
                 {" "}
@@ -40,35 +40,36 @@ const Footer = (props: Props) => {
             <Image
               width={100}
               height={100}
-              //
-              src="https://d1u34m45xfa3ar.cloudfront.net/website/footer/logo-with-bg.svg"
+              // src="https://d1u34m45xfa3ar.cloudfront.net/website/footer/logo-with-bg.svg"
+              src="/footer/footer-logo-01.svg"
               alt="Eventory logo justify-center items-center align-middle"
-              className="mix-blend-multiply"
+              className="mix-blend-multiply w-[60px] h-[90px]"
             />
           </aside>
           <nav>
             <h6 className="font-bold text-black md:text-xl">About Us</h6>
-            <a className="link-hover link">Our Mission</a>
-            <a className="link-hover link">Our Team</a>
+            <a className="link-hover link"><p className="md:text-base text-xs">Our Mission</p></a>
+            <a className="link-hover link"><p className="md:text-base text-xs">Our Team</p></a>
           </nav>
           <nav>
             <h6 className="font-bold text-black md:text-xl">Contacts</h6>
             <a href="tel:+917903646350" className="link-hover link">
-              +91 7903646350
+              <p className="md:text-base text-xs">+91 7903646350</p>
             </a>
             <a
               href="mailto:contact@eventory.in"
               className="link-hover link text-[rgba(98,95,217,1)]"
             >
-              contact@eventory.in
+              <p className="md:text-base text-xs">contact@eventory.in</p>
             </a>
           </nav>
           <nav>
             <h6 className="font-bold text-black md:text-xl">Legal</h6>
-            <a className="link-hover link">Terms of use</a>
-            <a className="link-hover link">Privacy policy</a>
+            <a className="link-hover link"><p className="md:text-base text-xs">Terms of use</p></a>
+            <a className="link-hover link"><p className="md:text-base text-xs">Privacy policy</p>
+            </a>
           </nav>
-          <nav className="flex gap-9">
+          <nav className="flex gap-5">
             <a
               href="https://www.instagram.com/eventoryofficial/"
               className="flex items-center justify-center rounded-full bg-indigo-900 p-2 text-white shadow-md"
