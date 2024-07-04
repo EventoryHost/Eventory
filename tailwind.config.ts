@@ -45,6 +45,7 @@ const config = {
       "3xl": "2560px",
       lpt: "1410px",
       xsm: "400px",
+      ncom:"876px"
     },
     extend: {
       fontFamily: {

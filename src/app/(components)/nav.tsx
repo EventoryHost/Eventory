@@ -4,6 +4,7 @@ import "../globals.css";
 import { useState } from "react";
 import Link from "next/link";
 import "./navbar.css";
+import { IoIosClose } from "react-icons/io";
 import {
   Categories,
   handleSearch,
@@ -305,8 +306,10 @@ const Navbar = () => {
 
         {/* nav List */}
 
-        <div className={`nav-elements ${showNavbar && "active"}`}>
-          <ul className="">
+        <div className={`nav-elements ${showNavbar && "active shadow-2xl"}`}>
+          <button onClick={handleShowNavbar} className=" ncom:hidden mt-[2vh] mr-[2vw] w-10 "><IoIosClose size={35}/></button>
+          <div className=" flex items-center justify-center w-auto ">
+          <ul onClick={handleShowNavbar} className={`${showNavbar && " flex item-start"}`}>
             <li className="top-margin">
               <Link href={"/about"}>
                 <p>About</p>
@@ -337,6 +340,11 @@ const Navbar = () => {
                 <p>Special Events</p>
               </Link>
             </li>
+            <li className="top-margin ncom:hidden">
+              <Link href={"#"}>
+                <p>Inventory</p>
+              </Link>
+            </li>
             <li className="seprator">
               <svg
                 width="1"
@@ -354,7 +362,8 @@ const Navbar = () => {
                 />
               </svg>
             </li>
-            <li className="profilo flex flex-col items-center justify-center">
+            <li className=" hidden ncom:block ">
+              <div className="flex flex-col items-center justify-center">
               <svg
                 className="hidden md:block"
                 width="22"
@@ -410,8 +419,9 @@ const Navbar = () => {
                 />
               </svg>
               <p className="text-md md:text-xs">Inventory</p>
+              </div>
             </li>
-            <li id="profile" className="flex flex-col md:visible">
+            <li id="profile" className="flex flex-col ">
               <div className="dropdown dropdown-end h-min">
                 <div
                   tabIndex={0}
@@ -522,6 +532,7 @@ const Navbar = () => {
               </div>
             </li>
           </ul>
+          </div>
         </div>
       </div>
       <div className="container lg:hidden">
