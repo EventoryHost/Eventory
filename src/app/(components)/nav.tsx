@@ -307,231 +307,242 @@ const Navbar = () => {
         {/* nav List */}
 
         <div className={`nav-elements ${showNavbar && "active shadow-2xl"}`}>
-          <button onClick={handleShowNavbar} className=" ncom:hidden mt-[2vh] mr-[2vw] w-10 "><IoIosClose size={35}/></button>
-          <div className=" flex items-center justify-center w-auto ">
-          <ul onClick={handleShowNavbar} className={`${showNavbar && " flex item-start"}`}>
-            <li className="top-margin">
-              <Link href={"/about"}>
-                <p>About</p>
-              </Link>
-            </li>
-            <li className="top-margin">
-              <Link href={"/business"}>
-                <p>Business</p>
-              </Link>
-            </li>
-            <li className="top-margin">
-              <Link href={"#"}>
-                <p>Venue</p>
-              </Link>
-            </li>
-            <li className="top-margin">
-              <Link href={"#"}>
-                <p>Vendors</p>
-              </Link>
-            </li>
-            <li className="top-margin">
-              <Link href={"#"}>
-                <p>Events</p>
-              </Link>
-            </li>
-            <li className="top-margin">
-              <Link href={"#"}>
-                <p>Special Events</p>
-              </Link>
-            </li>
-            <li className="top-margin ncom:hidden">
-              <Link href={"#"}>
-                <p>Inventory</p>
-              </Link>
-            </li>
-            <li className="seprator">
-              <svg
-                width="1"
-                height="40"
-                viewBox="0 0 1 40"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <line
-                  x1="0.5"
-                  y1="2.18557e-08"
-                  x2="0.499998"
-                  y2="40"
-                  stroke="#797878"
-                />
-              </svg>
-            </li>
-            <li className=" hidden ncom:block ">
-              <div className="flex flex-col items-center justify-center">
-              <svg
-                className="hidden md:block"
-                width="22"
-                height="22"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M2.3968 7.77867C2.66025 5.22985 4.80791 3.29272 7.37031 3.29272H15.5974C18.5111 3.29272 20.8076 5.77415 20.5824 8.67916L19.9623 16.6792C19.7605 19.2829 17.5888 21.2927 14.9772 21.2927H6.54343C3.57869 21.2927 1.26512 18.7277 1.56993 15.7787L2.3968 7.77867Z"
-                  stroke="#2B3F6C"
-                  strokeWidth="1.5"
-                />
-                <path
-                  d="M2.8865 8.48779L20.0127 8.48779"
-                  stroke="#2B3F6C"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M15.7438 2.2439L15.7438 5.17073"
-                  stroke="#2B3F6C"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M7.18005 2.2439L7.18005 5.17073"
-                  stroke="#2B3F6C"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M8 14.4391H13"
-                  stroke="#2B3F6C"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M10.5 12L10.5 16.8781"
-                  stroke="#2B3F6C"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M13.7177 4H15.0985L16.178 4.10518C18.2354 4.30563 19.9574 5.7515 20.5107 7.74324L21.5544 11.5L23.0238 18V18C23.5223 20.0357 21.981 22 19.8852 22H14.2074"
-                  stroke="#2B3F6C"
-                  strokeWidth="1.5"
-                />
-              </svg>
-              <p className="text-md md:text-xs">Inventory</p>
-              </div>
-            </li>
-            <li id="profile" className="flex flex-col ">
-              <div className="dropdown dropdown-end h-min">
-                <div
-                  tabIndex={0}
-                  role="button"
-                  className="flex flex-col items-center justify-center"
+          <button
+            onClick={handleShowNavbar}
+            className="mr-[2vw] mt-[2vh] w-10 ncom:hidden"
+          >
+            <IoIosClose size={35} />
+          </button>
+          <div className="flex w-auto items-center justify-center">
+            <ul
+              onClick={handleShowNavbar}
+              className={`${showNavbar && "item-start flex"}`}
+            >
+              <li className="top-margin">
+                <Link href={"/about"}>
+                  <p>About</p>
+                </Link>
+              </li>
+              <li className="top-margin">
+                <Link href={"/business"}>
+                  <p>Business</p>
+                </Link>
+              </li>
+              <li className="top-margin">
+                <Link href={"#"}>
+                  <p>Venue</p>
+                </Link>
+              </li>
+              <li className="top-margin">
+                <Link href={"#"}>
+                  <p>Vendors</p>
+                </Link>
+              </li>
+              <li className="top-margin">
+                <Link href={"#"}>
+                  <p>Events</p>
+                </Link>
+              </li>
+              <li className="top-margin">
+                <Link href={"#"}>
+                  <p>Special Events</p>
+                </Link>
+              </li>
+              <li className="top-margin ncom:hidden">
+                <Link href={"#"}>
+                  <p>Inventory</p>
+                </Link>
+              </li>
+              <li className="seprator">
+                <svg
+                  width="1"
+                  height="40"
+                  viewBox="0 0 1 40"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
+                  <line
+                    x1="0.5"
+                    y1="2.18557e-08"
+                    x2="0.499998"
+                    y2="40"
+                    stroke="#797878"
+                  />
+                </svg>
+              </li>
+              <li className="hidden ncom:block">
+                <div className="flex flex-col items-center justify-center">
                   <svg
-                    width="24"
-                    height="24"
+                    className="hidden md:block"
+                    width="22"
+                    height="22"
                     viewBox="0 0 24 24"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
-                    className=""
                   >
-                    <circle
-                      cx="4"
-                      cy="4"
-                      r="4"
-                      transform="matrix(-1 0 0 1 16 3)"
+                    <path
+                      d="M2.3968 7.77867C2.66025 5.22985 4.80791 3.29272 7.37031 3.29272H15.5974C18.5111 3.29272 20.8076 5.77415 20.5824 8.67916L19.9623 16.6792C19.7605 19.2829 17.5888 21.2927 14.9772 21.2927H6.54343C3.57869 21.2927 1.26512 18.7277 1.56993 15.7787L2.3968 7.77867Z"
                       stroke="#2B3F6C"
                       strokeWidth="1.5"
                     />
                     <path
-                      d="M5 16.9347C5 16.0743 5.54085 15.3068 6.35109 15.0175V15.0175C10.004 13.7128 13.996 13.7128 17.6489 15.0175V15.0175C18.4591 15.3068 19 16.0743 19 16.9347V18.2502C19 19.4376 17.9483 20.3498 16.7728 20.1818L15.8184 20.0455C13.2856 19.6837 10.7144 19.6837 8.18162 20.0455L7.22721 20.1818C6.0517 20.3498 5 19.4376 5 18.2502V16.9347Z"
+                      d="M2.8865 8.48779L20.0127 8.48779"
+                      stroke="#2B3F6C"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M15.7438 2.2439L15.7438 5.17073"
+                      stroke="#2B3F6C"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M7.18005 2.2439L7.18005 5.17073"
+                      stroke="#2B3F6C"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M8 14.4391H13"
+                      stroke="#2B3F6C"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M10.5 12L10.5 16.8781"
+                      stroke="#2B3F6C"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M13.7177 4H15.0985L16.178 4.10518C18.2354 4.30563 19.9574 5.7515 20.5107 7.74324L21.5544 11.5L23.0238 18V18C23.5223 20.0357 21.981 22 19.8852 22H14.2074"
                       stroke="#2B3F6C"
                       strokeWidth="1.5"
                     />
                   </svg>
-
-                  <p className="bottom-0 text-xs">Profile</p>
+                  <p className="text-md md:text-xs">Inventory</p>
                 </div>
-                <ul
-                  tabIndex={0}
-                  className="item-center menu dropdown-content menu-sm z-[1] mt-4 rounded-box bg-[rgba(255,255,255,1)] p-2 shadow-lg md:w-[44vw] lg:w-[33vw] xl:w-[20vw]"
-                >
-                  <div className="w-full rounded-lg bg-white">
-                    <div className="px-3 text-center">
-                      <h2 className="mb-2 text-lg font-semibold text-[rgba(46,49,146,1)]">
-                        Welcome to Eventory
-                      </h2>
-                      <p className="hover:text-text-gray-600 mb-4 text-start text-sm text-gray-600 lg:pl-4">
-                        To manage your account and do bookings for your events.
-                      </p>
-                      <div className="mb-4 flex justify-around">
-                        <Link href="/customerlogin">
-                          <button className="rounded-lg border border-gray-700 px-5 py-[7px] duration-100 hover:bg-[rgba(46,49,146,1)] hover:text-[#fcfcfc]">
-                            Log In
-                          </button>
-                        </Link>
-                        <Link href="/customersignup">
-                          <button className="rounded-lg bg-[rgba(46,49,146,1)] px-4 py-2 text-white">
-                            Sign up
-                          </button>
-                        </Link>
-                      </div>
-                    </div>
-                    <ul className="item-start -ml-1 flex flex-col font-poppins text-sm font-semibold text-[rgba(0,0,0,1)]">
-                      <li className="flex w-full flex-row items-center justify-between py-2">
-                        <a href="#" className=" ">
-                          <p className="text-sm md:text-base">
-                            {" "}
-                            Account Details{" "}
-                          </p>
-                        </a>
-                        <span className="item-end">&gt;</span>
-                      </li>
-                      <li className="flex w-full flex-row items-center justify-between py-2">
-                        <a href="#" className=" ">
-                          <p className="text-sm md:text-base"> Bookings</p>
-                        </a>
-                        <span className="item-end">&gt;</span>
-                      </li>
-                      <li className="flex w-full flex-row items-center justify-between py-2">
-                        <a href="#" className="gap-8">
-                          <p className="text-sm md:text-base">Saved vendors </p>
-                        </a>
-                        <span>&gt;</span>
-                      </li>
-                      <li className="flex w-full flex-row items-center justify-between py-2">
-                        <a href="#" className="gap-8">
-                          <p className="text-sm md:text-base">
-                            Billing and Payments
-                          </p>
-                        </a>
-                        <span>&gt;</span>
-                      </li>
-                      <li className="flex w-full flex-row items-center justify-between py-2">
-                        <a href="#" className="gap-8">
-                          <p className="text-sm md:text-base">Feedback</p>
-                        </a>
-                        <span>&gt;</span>
-                      </li>
-                      <li className="flex w-full flex-row items-center justify-between py-2">
-                        <a href="#" className="gap-8">
-                          <p className="text-sm md:text-base">Contact us </p>
-                        </a>
-                        <span>&gt;</span>
-                      </li>
-                      <li className="mr-[20px] flex w-full flex-row items-center justify-between py-2">
-                        <a href="#" className="gap-8">
-                          <p className="text-sm md:text-base">Help</p>
-                        </a>
-                        <span>&gt;</span>
-                      </li>
-                    </ul>
+              </li>
+              <li id="profile" className="flex flex-col">
+                <div className="dropdown dropdown-end h-min">
+                  <div
+                    tabIndex={0}
+                    role="button"
+                    className="flex flex-col items-center justify-center"
+                  >
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      className=""
+                    >
+                      <circle
+                        cx="4"
+                        cy="4"
+                        r="4"
+                        transform="matrix(-1 0 0 1 16 3)"
+                        stroke="#2B3F6C"
+                        strokeWidth="1.5"
+                      />
+                      <path
+                        d="M5 16.9347C5 16.0743 5.54085 15.3068 6.35109 15.0175V15.0175C10.004 13.7128 13.996 13.7128 17.6489 15.0175V15.0175C18.4591 15.3068 19 16.0743 19 16.9347V18.2502C19 19.4376 17.9483 20.3498 16.7728 20.1818L15.8184 20.0455C13.2856 19.6837 10.7144 19.6837 8.18162 20.0455L7.22721 20.1818C6.0517 20.3498 5 19.4376 5 18.2502V16.9347Z"
+                        stroke="#2B3F6C"
+                        strokeWidth="1.5"
+                      />
+                    </svg>
+
+                    <p className="bottom-0 text-xs">Profile</p>
                   </div>
-                </ul>
-              </div>
-            </li>
-          </ul>
+                  <ul
+                    tabIndex={0}
+                    className="item-center menu dropdown-content menu-sm z-[1] mt-4 rounded-box bg-[rgba(255,255,255,1)] p-2 shadow-lg md:w-[44vw] lg:w-[33vw] xl:w-[20vw]"
+                  >
+                    <div className="w-full rounded-lg bg-white">
+                      <div className="px-3 text-center">
+                        <h2 className="mb-2 text-lg font-semibold text-[rgba(46,49,146,1)]">
+                          Welcome to Eventory
+                        </h2>
+                        <p className="hover:text-text-gray-600 mb-4 text-start text-sm text-gray-600 lg:pl-4">
+                          To manage your account and do bookings for your
+                          events.
+                        </p>
+                        <div className="mb-4 flex justify-around">
+                          <Link href="/customerlogin">
+                            <button className="rounded-lg border border-gray-700 px-5 py-[7px] duration-100 hover:bg-[rgba(46,49,146,1)] hover:text-[#fcfcfc]">
+                              Log In
+                            </button>
+                          </Link>
+                          <Link href="/customersignup">
+                            <button className="rounded-lg bg-[rgba(46,49,146,1)] px-4 py-2 text-white">
+                              Sign up
+                            </button>
+                          </Link>
+                        </div>
+                      </div>
+                      <ul className="item-start -ml-1 flex flex-col font-poppins text-sm font-semibold text-[rgba(0,0,0,1)]">
+                        <li className="flex w-full flex-row items-center justify-between py-2">
+                          <a href="#" className=" ">
+                            <p className="text-sm md:text-base">
+                              {" "}
+                              Account Details{" "}
+                            </p>
+                          </a>
+                          <span className="item-end">&gt;</span>
+                        </li>
+                        <li className="flex w-full flex-row items-center justify-between py-2">
+                          <a href="#" className=" ">
+                            <p className="text-sm md:text-base"> Bookings</p>
+                          </a>
+                          <span className="item-end">&gt;</span>
+                        </li>
+                        <li className="flex w-full flex-row items-center justify-between py-2">
+                          <a href="#" className="gap-8">
+                            <p className="text-sm md:text-base">
+                              Saved vendors{" "}
+                            </p>
+                          </a>
+                          <span>&gt;</span>
+                        </li>
+                        <li className="flex w-full flex-row items-center justify-between py-2">
+                          <a href="#" className="gap-8">
+                            <p className="text-sm md:text-base">
+                              Billing and Payments
+                            </p>
+                          </a>
+                          <span>&gt;</span>
+                        </li>
+                        <li className="flex w-full flex-row items-center justify-between py-2">
+                          <a href="#" className="gap-8">
+                            <p className="text-sm md:text-base">Feedback</p>
+                          </a>
+                          <span>&gt;</span>
+                        </li>
+                        <li className="flex w-full flex-row items-center justify-between py-2">
+                          <a href="#" className="gap-8">
+                            <p className="text-sm md:text-base">Contact us </p>
+                          </a>
+                          <span>&gt;</span>
+                        </li>
+                        <li className="mr-[20px] flex w-full flex-row items-center justify-between py-2">
+                          <a href="#" className="gap-8">
+                            <p className="text-sm md:text-base">Help</p>
+                          </a>
+                          <span>&gt;</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </ul>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
