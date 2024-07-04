@@ -1,8 +1,8 @@
 "use client";
 
+import { useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useRef } from "react";
 
 import auth from "@/services/auth";
 import OtpModal from "@/components/ui/otp-modal";
@@ -28,7 +28,7 @@ const SignUp = (props: Props) => {
     {} as Record<keyof basicDetails, HTMLInputElement | null>,
   );
 
-  const toggleModal = () => { setIsModalOpen(!isModalOpen); };
+  const toggleModal = () => setIsModalOpen(!isModalOpen);
 
   const initiateGoogleAuth = () => {
     window.location.href = `${process.env.NEXT_PUBLIC_BASE_URL}/auth/google-auth`;
@@ -79,14 +79,11 @@ const SignUp = (props: Props) => {
 
     setFormError(null);    // Reset error msg
     console.log(inputOtp);
-    // auth.verifySignUpOtp(basicDetails.mobile.toString(), inputOtp);
+    auth.verifySignUpOtp(basicDetails.mobile.toString(), inputOtp);
   };
 
-const renderError = (): [boolean, string] => {
-    if (formError) {
-      return [true, formError];
-    }
-    return [false, ''];
+  const renderError = (): [boolean, string] => {
+    return (formError) ? [true, formError] : [false, ""];
   };
 
   const fields: {

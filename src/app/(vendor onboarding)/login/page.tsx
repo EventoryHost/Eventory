@@ -1,17 +1,12 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
 import auth from "@/services/auth";
+import OtpModal from "@/components/ui/otp-modal";
 import tajmahal from "/public/tajmahal.png";
-import {
-  InputOTP,
-  InputOTPGroup,
-  InputOTPSeparator,
-  InputOTPSlot,
-} from "@/components/ui/input-otp";
 
 type Props = {};
 type loginDetails = {
@@ -33,12 +28,7 @@ const Login = (props: Props) => {
     {} as Record<keyof loginDetails, HTMLInputElement | null>,
   );
 
-  const toggleModal = () => {
-    if (isModalOpen) {
-      console.log("OTP:", loginDetails.otp);
-    }
-    setIsModalOpen(!isModalOpen);
-  };
+  const toggleModal = () => setIsModalOpen(!isModalOpen);
 
   const initiateGoogleAuth = () => {
     window.location.href = `${process.env.NEXT_PUBLIC_BASE_URL}/auth/google-auth`;
@@ -61,14 +51,15 @@ const Login = (props: Props) => {
       email: refs.current.email!.value,
       mobile: Number(refs.current.mobile!.value),
       password: refs.current.password!.value,
-      otp: 0, // Assuming OTP is handled elsewhere
+      otp: 0,
     };
     setLoginDetails(newDetails);
 
-    console.log("Email:", newDetails.email);
-    console.log("Mobile:", newDetails.mobile);
-    console.log("Password:", newDetails.password);
-    console.log("mobile details: ", newDetails.mobile.toString());
+    // console.log("Email:", newDetails.email);
+    // console.log("Mobile:", newDetails.mobile);
+    // console.log("Password:", newDetails.password);
+    // console.log("mobile details: ", newDetails.mobile.toString());
+
     const res = await auth.login(newDetails.mobile.toString());
     if (res) {
       console.log("Response: ", res.data.data.Session);
@@ -91,6 +82,10 @@ const Login = (props: Props) => {
     console.log(inputOtp);
     auth.verifyLoginOtp(loginDetails.mobile.toString(), inputOtp, session!);
     // collect refresh token to local storage
+  };
+
+  const renderError = (): [boolean, string] => {
+    return formError ? [true, formError] : [false, ""];
   };
 
   const fields: {
@@ -241,7 +236,7 @@ const Login = (props: Props) => {
           </div>
         </div>
       </div>
-      {isModalOpen && (
+      {/* {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center gap-9">
           <div className="flex flex-col items-center justify-center gap-9 rounded-lg bg-white p-6 shadow-lg">
             <h1 className="font-semibold">Verify OTP</h1>
@@ -271,6 +266,19 @@ const Login = (props: Props) => {
             </button>
           </div>
         </div>
+      )} */}
+      {isModalOpen && (
+        <OtpModal
+          mobileNo={loginDetails.mobile}
+          notYouRedirect={toggleModal}
+          verifyFunction={handleVerify}
+          onChangeFunction={(value) => {
+            setLoginDetails({ ...loginDetails, otp: Number(value) });
+            console.log(loginDetails);
+          }}
+          resendOtpRedirect="/login"
+          renderError={renderError}
+        />
       )}
     </div>
   );
