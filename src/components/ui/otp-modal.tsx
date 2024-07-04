@@ -24,14 +24,13 @@ const OtpModal = (props: Props) => {
       <div className="flex flex-col items-center justify-center gap-4 rounded-lg bg-white p-6 shadow-lg">
         <h1 className="text-3xl font-semibold">Enter OTP</h1>
         <p>Please enter OTP recieved at your mobile number {props.mobileNo}</p>
-        <a onClick={props.notYouRedirect} className="mb-9 font-semibold underline cursor-pointer">a
-          Not you?
-        </a>
-        <InputOTP
-          maxLength={6}
-          className=""
-          onChange={props.onChangeFunction}
+        <a
+          onClick={props.notYouRedirect}
+          className="mb-9 cursor-pointer font-semibold underline"
         >
+          a Not you?
+        </a>
+        <InputOTP maxLength={6} className="" onChange={props.onChangeFunction}>
           <InputOTPGroup className="gap-3">
             {Array.from({ length: 6 }).map((_, index) => (
               <InputOTPSlot
@@ -43,7 +42,10 @@ const OtpModal = (props: Props) => {
           </InputOTPGroup>
         </InputOTP>
         <p className="mt-5">Didn&apos;t recieve an OTP? </p>
-        <a onClick={resendOtp} className="font-semibold underline cursor-pointer">
+        <a
+          onClick={resendOtp}
+          className="cursor-pointer font-semibold underline"
+        >
           Resend OTP
         </a>
         {props.renderError()[0] && (

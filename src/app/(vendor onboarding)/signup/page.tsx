@@ -69,7 +69,7 @@ const SignUp = (props: Props) => {
 
   const handleVerify = (e: React.FormEvent) => {
     e.preventDefault();
-    const inputOtp = basicDetails.otp.toString();    // Current OTP value
+    const inputOtp = basicDetails.otp.toString(); // Current OTP value
 
     // Check if OTP is 6 digits long
     if (inputOtp.length !== 6) {
@@ -77,13 +77,13 @@ const SignUp = (props: Props) => {
       return;
     }
 
-    setFormError(null);    // Reset error msg
+    setFormError(null); // Reset error msg
     console.log(inputOtp);
     auth.verifySignUpOtp(basicDetails.mobile.toString(), inputOtp);
   };
 
   const renderError = (): [boolean, string] => {
-    return (formError) ? [true, formError] : [false, ""];
+    return formError ? [true, formError] : [false, ""];
   };
 
   const fields: {
