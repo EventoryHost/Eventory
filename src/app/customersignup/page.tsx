@@ -239,12 +239,6 @@ const SignUp = (props: Props) => {
           </div>
         </div>
       )}
-      <OtpModal
-        onChangeFunction={setOtp}
-        toggleFunction={toggleModal}
-        link="/customersignup"
-        changeNoLink="/customersignup"
-      />
     </div>
   );
 };

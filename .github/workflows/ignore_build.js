@@ -9,9 +9,9 @@ function executeCommand(command) {
   }
 }
 
-function hasRelevantChanges() {
+function hasNoRelevantChanges() {
   return executeCommand(
-    `git diff --quiet ${process.env.CACHED_COMMIT_REF} ${process.env.COMMIT_REF} .`,
+    `git diff --quiet ${process.env.CACHED_COMMIT_REF} ${process.env.COMMIT_REF}`,
   );
 }
 
@@ -31,7 +31,7 @@ function shouldSkipCommit() {
   return /\[skip ci\]|\[skip netlify\]|chore|wip/.test(commitMessage);
 }
 
-if (shouldSkipCommit() || !hasRelevantChanges() || hasNonDeployableChanges()) {
+if (shouldSkipCommit() || hasNoRelevantChanges() || hasNonDeployableChanges()) {
   process.exitCode = 0;
 } else {
   process.exitCode = 1;

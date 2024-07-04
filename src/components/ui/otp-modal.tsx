@@ -1,69 +1,58 @@
-import React from "react";
-import Link from "next/link";
-
 import {
   InputOTP,
   InputOTPGroup,
-  InputOTPSeparator,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
-import { on } from "events";
+import auth from "@/services/auth";
 
 type Props = {
-  link: string;
-  toggleFunction: () => void;
+  mobileNo: number;
+  notYouRedirect: () => void;
+  verifyFunction: (e: React.FormEvent) => void;
   onChangeFunction: (value: string) => void;
-  changeNoLink: string;
+  resendOtpRedirect: string;
+  renderError: () => [boolean, string];
 };
 
 const OtpModal = (props: Props) => {
+  const resendOtp = () => {
+    auth.signUp(props.mobileNo.toString());
+  };
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center gap-9 backdrop-brightness-50">
       <div className="flex flex-col items-center justify-center gap-4 rounded-lg bg-white p-6 shadow-lg">
         <h1 className="text-3xl font-semibold">Enter OTP</h1>
-        <p>Please enter OTP recieved at your mobile number 9*****455</p>
-        <Link href={props.link} className="mb-9 font-semibold underline">
+        <p>Please enter OTP recieved at your mobile number {props.mobileNo}</p>
+        <a onClick={props.notYouRedirect} className="mb-9 font-semibold underline cursor-pointer">a
           Not you?
-        </Link>
+        </a>
         <InputOTP
           maxLength={6}
           className=""
-          onChange={(value) => props.onChangeFunction(value)}
+          onChange={props.onChangeFunction}
         >
           <InputOTPGroup className="gap-3">
-            <InputOTPSlot
-              index={0}
-              className="rounded-md border-1 border-gray-400"
-            />
-            <InputOTPSlot
-              index={1}
-              className="rounded-md border-1 border-gray-400"
-            />
-            <InputOTPSlot
-              index={2}
-              className="rounded-md border-1 border-gray-400"
-            />
-            <InputOTPSlot
-              index={3}
-              className="rounded-md border-1 border-gray-400"
-            />
-            <InputOTPSlot
-              index={4}
-              className="rounded-md border-1 border-gray-400"
-            />
-            <InputOTPSlot
-              index={5}
-              className="rounded-md border-1 border-gray-400"
-            />
+            {Array.from({ length: 6 }).map((_, index) => (
+              <InputOTPSlot
+                key={index}
+                index={index}
+                className="rounded-md border-1 border-gray-400"
+              />
+            ))}
           </InputOTPGroup>
         </InputOTP>
         <p className="mt-5">Didn&apos;t recieve an OTP? </p>
-        <Link href={props.changeNoLink} className="font-semibold underline">
+        <a onClick={resendOtp} className="font-semibold underline cursor-pointer">
           Resend OTP
-        </Link>
+        </a>
+        {props.renderError()[0] && (
+          <p className="text-red-500">{props.renderError()[1]}</p>
+        )}
         <button
+          type="button"
           className="w-[60%] rounded-xl bg-[#2E3192] px-4 py-3 text-white"
-          onClick={props.toggleFunction}
+          onClick={props.verifyFunction}
         >
           Submit
         </button>
