@@ -95,22 +95,10 @@ const Login = (props: Props) => {
     placeholder: string;
   }[] = [
     {
-      id: "email",
-      label: "Email",
-      type: "email",
-      placeholder: "Enter your email address",
-    },
-    {
       id: "mobile",
       label: "Mobile No.",
       type: "number",
       placeholder: "Enter your mobile no.",
-    },
-    {
-      id: "password",
-      label: "Create Password",
-      type: "password",
-      placeholder: "Create your password",
     },
   ];
 
@@ -161,7 +149,7 @@ const Login = (props: Props) => {
                 {formError && <div className="text-red-500">{formError}</div>}
               </div>
               <div className="mt-9 flex w-full flex-col-reverse justify-between gap-3 self-start md:mt-0 md:flex-row md:items-center md:px-0">
-                <div className="flex gap-2 xs:text-sm md:gap-3">
+                <div className="flex gap-2 xs:text-sm md:gap-3 md:mt-9 mt-5">
                   <Link
                     href={"/"}
                     className="font-semibold text-[#2E3192] underline"

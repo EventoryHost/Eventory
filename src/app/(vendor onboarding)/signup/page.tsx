@@ -99,28 +99,16 @@ const SignUp = (props: Props) => {
       placeholder: "Enter your full name",
     },
     {
-      id: "email",
-      label: "Email",
-      type: "email",
-      placeholder: "Enter your email address",
-    },
-    {
       id: "mobile",
       label: "Mobile No.",
       type: "number",
       placeholder: "Enter your mobile no.",
     },
-    {
-      id: "password",
-      label: "Create Password",
-      type: "password",
-      placeholder: "Create your password",
-    },
   ];
 
   return (
-    <div className="flex h-full w-full flex-col overflow-hidden lg:flex-row">
-      <div className="flex min-h-screen flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
+    <div className="flex w-full flex-col overflow-hidden lg:flex-row">
+      <div className="flex md:min-h-[100vh] flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
         <div className="flex items-center justify-start gap-1 xs:self-start xs:pl-5 md:px-11 lg:mt-[5rem]">
           <button className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2E3192] p-5 text-white shadow-xl">
             1
@@ -147,12 +135,12 @@ const SignUp = (props: Props) => {
           />
         </div>
       </div>
-      <div className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] p-2 md:p-[2.2rem]">
-        <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
+      <div className="flex min-w-[70%] md:max-h-[100vh] flex-col items-center justify-center bg-[#F7F6F9] p-2 md:p-[2.2rem]">
+        <div className="flex flex-col gap-7 rounded-xl bg-white p-5 xs:min-w-[90%] md:p-6">
           <h1 className="text-3xl font-semibold">Basic Details</h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <form onSubmit={handleSignUp}>
-              <div className="grid grid-cols-2 gap-5">
+              <div className="my-9 flex flex-col items-center xs:gap-7 justify-between md:flex-row">
                 {fields.map((field) => (
                   <div
                     key={field.id}
@@ -182,12 +170,14 @@ const SignUp = (props: Props) => {
                   </span>
                 </div>
               </div>
-              <p className="self-start text-gray-500 xs:mt-5 xs:text-sm">
-                To verify it&apos;s you, we will send you an OTP to your mobile
-                number.
-              </p>
+              <div className="mt-9">
+                <p className="self-start text-gray-500 xs:mt-5 xs:text-sm">
+                  To verify it&apos;s you, we will send you an OTP to your
+                  mobile number.
+                </p>
+              </div>
               <div className="h-[1px] w-[80%] self-start bg-gray-300" />
-              <div className="flex flex-col items-start self-start">
+              <div className="flex mt-5 flex-col items-start self-start">
                 or continue with
                 <div
                   className="google mt-5 flex cursor-pointer gap-5"
