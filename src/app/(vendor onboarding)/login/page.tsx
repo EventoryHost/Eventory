@@ -149,7 +149,7 @@ const Login = (props: Props) => {
                 {formError && <div className="text-red-500">{formError}</div>}
               </div>
               <div className="mt-9 flex w-full flex-col-reverse justify-between gap-3 self-start md:mt-0 md:flex-row md:items-center md:px-0">
-                <div className="flex gap-2 xs:text-sm md:gap-3 md:mt-9 mt-5">
+                <div className="mt-5 flex gap-2 xs:text-sm md:mt-9 md:gap-3">
                   <Link
                     href={"/"}
                     className="font-semibold text-[#2E3192] underline"

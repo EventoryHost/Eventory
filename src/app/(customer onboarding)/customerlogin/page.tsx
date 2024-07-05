@@ -55,7 +55,7 @@ const SignUp = (props: Props) => {
         <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
           <h1 className="text-3xl font-semibold">Basic Details</h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
-            <div className="flex min-w-full flex-col items-start h-fit justify-between gap-5">
+            <div className="flex h-fit min-w-full flex-col items-start justify-between gap-5">
               <div className="flex min-w-[40%] flex-col gap-4">
                 <label htmlFor="phone">Mobile No.</label>
                 <input
@@ -68,11 +68,13 @@ const SignUp = (props: Props) => {
                   onChange={(e) => setMobile(e.target.value)}
                 />
               </div>
-              <p className="text-gray-500">To verify It&apos;s you, we will send you an OTP to your mobile number</p>
+              <p className="text-gray-500">
+                To verify It&apos;s you, we will send you an OTP to your mobile
+                number
+              </p>
             </div>
             <div className="flex w-full flex-col-reverse justify-between gap-3 self-start md:mb-7 md:mt-0 md:flex-row md:items-center md:px-0">
-              <div className="flex gap-2 xs:text-sm md:gap-3">
-              </div>
+              <div className="flex gap-2 xs:text-sm md:gap-3"></div>
             </div>
             <div className="h-[1px] w-[80%] self-start bg-gray-300"></div>
             <div className="flex flex-col items-start self-start">
