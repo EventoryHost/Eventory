@@ -1,17 +1,12 @@
 "use client";
 
+import { useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useRef } from "react";
 
 import auth from "@/services/auth";
+import OtpModal from "@/components/ui/otp-modal";
 import tajmahal from "/public/tajmahal.png";
-import {
-  InputOTP,
-  InputOTPGroup,
-  InputOTPSeparator,
-  InputOTPSlot,
-} from "@/components/ui/input-otp";
 
 type Props = {};
 type basicDetails = {
@@ -33,12 +28,7 @@ const SignUp = (props: Props) => {
     {} as Record<keyof basicDetails, HTMLInputElement | null>,
   );
 
-  const toggleModal = () => {
-    if (isModalOpen) {
-      console.log("OTP:", basicDetails.otp);
-    }
-    setIsModalOpen(!isModalOpen);
-  };
+  const toggleModal = () => setIsModalOpen(!isModalOpen);
 
   const initiateGoogleAuth = () => {
     window.location.href = `${process.env.NEXT_PUBLIC_BASE_URL}/auth/google-auth`;
@@ -57,20 +47,21 @@ const SignUp = (props: Props) => {
 
     // Reset form error if all fields are filled
     setFormError(null);
+    // Store the form data
     const newDetails: basicDetails = {
       name: refs.current.name!.value,
       email: refs.current.email!.value,
       mobile: Number(refs.current.mobile!.value),
       password: refs.current.password!.value,
-      otp: 0, // Assuming OTP is handled elsewhere
+      otp: 0,
     };
     setBasicDetails(newDetails);
 
-    console.log("Name:", newDetails.name);
-    console.log("Email:", newDetails.email);
-    console.log("Mobile:", newDetails.mobile);
-    console.log("Password:", newDetails.password);
-    console.log("mobile details: ", newDetails.mobile.toString());
+    // console.log("Name:", newDetails.name);
+    // console.log("Email:", newDetails.email);
+    // console.log("Mobile:", newDetails.mobile);
+    // console.log("Password:", newDetails.password);
+    // console.log("mobile details: ", newDetails.mobile.toString());
     auth.signUp(newDetails.mobile.toString());
 
     toggleModal();
@@ -78,17 +69,21 @@ const SignUp = (props: Props) => {
 
   const handleVerify = (e: React.FormEvent) => {
     e.preventDefault();
-    const inputOtp = basicDetails.otp.toString();
+    const inputOtp = basicDetails.otp.toString(); // Current OTP value
 
+    // Check if OTP is 6 digits long
     if (inputOtp.length !== 6) {
       setFormError(`Please fill in the OTP correctly`);
-      console.log("Invalid OTP");
       return;
     }
 
-    setFormError(null);
+    setFormError(null); // Reset error msg
     console.log(inputOtp);
     auth.verifySignUpOtp(basicDetails.mobile.toString(), inputOtp);
+  };
+
+  const renderError = (): [boolean, string] => {
+    return formError ? [true, formError] : [false, ""];
   };
 
   const fields: {
@@ -104,28 +99,16 @@ const SignUp = (props: Props) => {
       placeholder: "Enter your full name",
     },
     {
-      id: "email",
-      label: "Email",
-      type: "email",
-      placeholder: "Enter your email address",
-    },
-    {
       id: "mobile",
       label: "Mobile No.",
       type: "number",
       placeholder: "Enter your mobile no.",
     },
-    {
-      id: "password",
-      label: "Create Password",
-      type: "password",
-      placeholder: "Create your password",
-    },
   ];
 
   return (
-    <div className="flex h-full w-full flex-col overflow-hidden lg:flex-row">
-      <div className="flex min-h-screen flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
+    <div className="flex w-full flex-col overflow-hidden lg:flex-row">
+      <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-h-[100vh] md:min-w-[30%] lg:max-w-[30%]">
         <div className="flex items-center justify-start gap-1 xs:self-start xs:pl-5 md:px-11 lg:mt-[5rem]">
           <button className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2E3192] p-5 text-white shadow-xl">
             1
@@ -152,12 +135,12 @@ const SignUp = (props: Props) => {
           />
         </div>
       </div>
-      <div className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] p-2 md:p-[2.2rem]">
-        <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
+      <div className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] p-2 md:max-h-[100vh] md:p-[2.2rem]">
+        <div className="flex flex-col gap-7 rounded-xl bg-white p-5 xs:min-w-[90%] md:p-6">
           <h1 className="text-3xl font-semibold">Basic Details</h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <form onSubmit={handleSignUp}>
-              <div className="grid grid-cols-2 gap-5">
+              <div className="my-9 flex flex-col items-center justify-between xs:gap-7 md:flex-row">
                 {fields.map((field) => (
                   <div
                     key={field.id}
@@ -187,12 +170,14 @@ const SignUp = (props: Props) => {
                   </span>
                 </div>
               </div>
-              <p className="self-start text-gray-500 xs:mt-5 xs:text-sm">
-                To verify it&apos;s you, we will send you an OTP to your mobile
-                number.
-              </p>
+              <div className="mt-9">
+                <p className="self-start text-gray-500 xs:mt-5 xs:text-sm">
+                  To verify it&apos;s you, we will send you an OTP to your
+                  mobile number.
+                </p>
+              </div>
               <div className="h-[1px] w-[80%] self-start bg-gray-300" />
-              <div className="flex flex-col items-start self-start">
+              <div className="mt-5 flex flex-col items-start self-start">
                 or continue with
                 <div
                   className="google mt-5 flex cursor-pointer gap-5"
@@ -258,45 +243,17 @@ const SignUp = (props: Props) => {
         </div>
       </div>
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center gap-9">
-          <div className="flex flex-col items-center justify-center gap-9 rounded-lg bg-white p-6 shadow-lg">
-            <h1>
-              OTP sent to{" "}
-              <span className="font-semibold">+91{basicDetails.mobile}</span>
-            </h1>
-            <Link
-              href={"/signup"}
-              onClick={toggleModal}
-              className="font-semibold text-indigo-700 underline"
-            >
-              not you?
-            </Link>
-            <InputOTP
-              maxLength={6}
-              className="border-[#2E3192]"
-              onChange={(value) => {
-                setBasicDetails({ ...basicDetails, otp: Number(value) });
-                console.log(basicDetails);
-              }}
-            >
-              <InputOTPGroup>
-                <InputOTPSlot index={0} className="border-[#2E3192]" />
-                <InputOTPSlot index={1} className="border-[#2E3192]" />
-                <InputOTPSlot index={2} className="border-[#2E3192]" />
-                <InputOTPSlot index={3} className="border-[#2E3192]" />
-                <InputOTPSlot index={4} className="border-[#2E3192]" />
-                <InputOTPSlot index={5} className="border-[#2E3192]" />
-              </InputOTPGroup>
-            </InputOTP>
-            {formError && <div className="text-red-500">{formError}</div>}
-            <button
-              className="rounded bg-[#2E3192] px-4 py-2 text-white"
-              onClick={handleVerify}
-            >
-              Submit
-            </button>
-          </div>
-        </div>
+        <OtpModal
+          mobileNo={basicDetails.mobile}
+          notYouRedirect={toggleModal}
+          verifyFunction={handleVerify}
+          onChangeFunction={(value) => {
+            setBasicDetails({ ...basicDetails, otp: Number(value) });
+            console.log("OTP:", basicDetails.otp);
+          }}
+          resendOtpRedirect="/signup"
+          renderError={renderError}
+        />
       )}
     </div>
   );

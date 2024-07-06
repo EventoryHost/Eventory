@@ -3,8 +3,8 @@ import "../../app/globals.css";
 
 import * as React from "react";
 import { useState } from "react";
-import { ComboboxDemo } from "../dropdown";
-import { DatePickerWithRange } from "../datePicket";
+import { ComboboxDemo } from "./dropdown";
+import { DatePickerWithRange } from "./datePicket";
 import { WandSparkles } from "lucide-react";
 
 const frameworks = [
