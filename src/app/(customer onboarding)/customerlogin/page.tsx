@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-
 import {
   InputOTP,
   InputOTPGroup,
@@ -17,7 +16,6 @@ const SignUp = (props: Props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [mobile, setMobile] = useState("");
   const [password, setPassword] = useState("");
-  const [cpassword, setCPassword] = useState("");
   const [otp, setOtp] = useState("");
 
   const toggleModal = () => {
@@ -29,7 +27,6 @@ const SignUp = (props: Props) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Confirm Password:", cpassword);
     console.log("Mobile:", mobile);
     console.log("Password:", password);
   };
@@ -37,12 +34,13 @@ const SignUp = (props: Props) => {
   return (
     <div className="flex min-h-[88vh] w-full flex-col overflow-hidden lg:flex-row">
       <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
-        <div className="flex h-[80%] flex-col items-start justify-center gap-9 px-9 xs:pl-5 md:px-11 lg:p-8">
-          <h1 className="text-3xl font-bold md:text-4xl lg:text-5xl">
-            Welcome to <span className="text-[#2E3192]">Eventory </span>
+        <div className="flex h-[80%] flex-col items-start justify-center gap-9 px-9 xs:pl-5 md:px-9 lg:p-8">
+          <h1 className="w-full text-3xl font-bold md:text-4xl lg:text-5xl">
+            Welcome back to <span className="text-[#2E3192]">Eventory</span>
           </h1>
-          <p className="text-sm text-black md:w-[90%] md:text-xl">
-            Sign up to get access to additional features
+          <p className="md:max-w-[90%] md:text-xl">
+            We are happy to see you back. Please log in to access additional
+            features.{" "}
           </p>
         </div>
         <div className="relative h-[10rem] lg:w-full">
@@ -55,59 +53,29 @@ const SignUp = (props: Props) => {
       </div>
       <div className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] p-2 md:p-[2.2rem]">
         <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
+          <h1 className="text-3xl font-semibold">Basic Details</h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
-            <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+            <div className="flex h-fit min-w-full flex-col items-start justify-between gap-5">
               <div className="flex min-w-[40%] flex-col gap-4">
-                <label htmlFor="Mobile">Mobile No.</label>
+                <label htmlFor="phone">Mobile No.</label>
                 <input
-                  id="Mobile"
+                  id="phone"
                   type="text"
-                  className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
+                  className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none xs:p-3 xs:py-2"
                   placeholder="Enter your phone no."
+                  required
                   value={mobile}
                   onChange={(e) => setMobile(e.target.value)}
                 />
               </div>
-              <div className="flex min-w-[40%] flex-col gap-4">
-                <label htmlFor="password">Create Password</label>
-                <input
-                  id="password"
-                  type="password"
-                  className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
-                  placeholder="Create your password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </div>
+              <p className="text-gray-500">
+                To verify It&apos;s you, we will send you an OTP to your mobile
+                number
+              </p>
             </div>
-            <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-              <div className="flex min-w-[40%] flex-col gap-4">
-                <label htmlFor="cpassword">Confirm Password</label>
-                <input
-                  id="cpassword"
-                  type="password"
-                  className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
-                  placeholder="Re-Enter your password"
-                  value={cpassword}
-                  onChange={(e) => setCPassword(e.target.value)}
-                />
-              </div>
+            <div className="flex w-full flex-col-reverse justify-between gap-3 self-start md:mb-7 md:mt-0 md:flex-row md:items-center md:px-0">
+              <div className="flex gap-2 xs:text-sm md:gap-3"></div>
             </div>
-            <div className="mt-9 flex w-full flex-col-reverse items-start justify-between gap-3 md:mt-0 md:items-center md:px-0">
-              <div className="flex gap-2 self-start xs:text-sm md:gap-3">
-                <input type="checkbox" id="tc" placeholder="t&c" />I agree with{" "}
-                <span className="text-[#2E3192] underline">
-                  Terms & Conditions
-                </span>
-              </div>
-              <div className="flex gap-2 self-start xs:text-sm md:gap-3">
-                <input type="checkbox" id="tc" placeholder="t&c" />
-                Remember Me
-              </div>
-            </div>
-            <p className="self-start text-gray-500 xs:mt-5 xs:text-sm">
-              Password should be of atleast 6 characters
-            </p>
             <div className="h-[1px] w-[80%] self-start bg-gray-300"></div>
             <div className="flex flex-col items-start self-start">
               or continue with
@@ -136,7 +104,7 @@ const SignUp = (props: Props) => {
                     fill="#1976D2"
                   />
                 </svg>
-                <svg
+                {/* <svg
                   width="32"
                   height="32"
                   viewBox="0 0 32 32"
@@ -147,29 +115,23 @@ const SignUp = (props: Props) => {
                     d="M16.0013 2.7207C8.66797 2.7207 2.66797 8.70737 2.66797 16.0807C2.66797 22.7474 7.54797 28.2807 13.9213 29.2807V19.9474H10.5346V16.0807H13.9213V13.134C13.9213 9.78737 15.908 7.94737 18.9613 7.94737C20.4146 7.94737 21.9346 8.2007 21.9346 8.2007V11.494H20.2546C18.6013 11.494 18.0813 12.5207 18.0813 13.574V16.0807H21.788L21.188 19.9474H18.0813V29.2807C21.2232 28.7845 24.0842 27.1814 26.1479 24.7608C28.2115 22.3402 29.3418 19.2616 29.3346 16.0807C29.3346 8.70737 23.3346 2.7207 16.0013 2.7207Z"
                     fill="#1877F2"
                   />
-                </svg>
+                </svg> */}
               </div>
               <div className="flex min-w-[56vw] flex-col justify-between gap-9 md:flex-row">
                 <div className="mt-5 flex gap-2 xs:text-sm">
-                  already have an account ?{" "}
+                  Don&apos;t have an account ?{" "}
                   <Link
-                    href={"/customerlogin"}
+                    href={"/customersignup"}
                     className="font-semibold text-[#2E3192]"
                   >
-                    LogIn
+                    SignUp
                   </Link>
                 </div>
-                <Link
-                  href={"/signup"}
-                  className="flex items-center justify-center rounded-xl border-2 border-[#2E3192] bg-white font-semibold text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem]"
-                >
-                  Register as Vendor
-                </Link>
                 <button
-                  className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+                  className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-3 xs:py-2 xs:text-sm md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
                   onClick={handleSubmit}
                 >
-                  Sign Up
+                  Login
                 </button>
                 <button
                   className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-3 xs:py-2 xs:text-sm md:w-fit md:min-w-[10rem] md:px-4 md:py-3"

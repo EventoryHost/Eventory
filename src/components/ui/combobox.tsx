@@ -33,7 +33,7 @@ interface ComboboxDemoProps {
   setFunction: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export function ComboboxDemo({
+export function Combobox({
   options,
   className,
   placeholder,
@@ -49,10 +49,7 @@ export function ComboboxDemo({
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className={cn(
-            "w-[300px] justify-between md:h-[65px] md:w-[500px] lpt:w-[200px]",
-            className,
-          )}
+          className={cn("w-[100%] min-w-[245px] justify-between", className)}
         >
           {value
             ? options.find((option) => option.value === value)?.label

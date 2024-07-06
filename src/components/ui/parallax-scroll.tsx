@@ -45,13 +45,11 @@ export const ParallaxScroll = ({ className }: { className: string }) => {
   }, [animationFirst, animationSecond]);
 
   return (
-    <div
-      className={cn("h-full w-full items-start overflow-hidden p-0", className)}
-    >
+    <div className={cn("w-full items-start overflow-hidden p-0", className)}>
       <div className="m-0 mx-auto grid max-w-5xl grid-cols-1 items-start gap-9 p-0 px-1 md:grid-cols-2">
         <div
           className="grid w-full gap-10 overflow-hidden"
-          style={{ height: "1025px" }}
+          style={{ minHeight: "10vh", maxHeight: "170vh" }}
         >
           {doubledImages.map((el, idx) => (
             <motion.div
@@ -64,7 +62,7 @@ export const ParallaxScroll = ({ className }: { className: string }) => {
                 <Image
                   src={el}
                   className="h-full w-full rounded-xl object-cover"
-                  layout="fill"
+                  fill
                   alt="thumbnail"
                   loading="eager"
                 />
@@ -74,7 +72,7 @@ export const ParallaxScroll = ({ className }: { className: string }) => {
         </div>
         <div
           className="grid w-full gap-10 overflow-hidden"
-          style={{ height: "1025px" }}
+          style={{ minHeight: "90vh", maxHeight: "170vh" }}
         >
           {doubledImages2.map((el, idx) => (
             <motion.div
@@ -87,9 +85,10 @@ export const ParallaxScroll = ({ className }: { className: string }) => {
                 <Image
                   src={el}
                   className="h-full w-full rounded-xl object-cover"
-                  layout="fill"
+                  fill
                   alt="thumbnail"
                   loading="eager"
+                  priority
                 />
               </div>
             </motion.div>
