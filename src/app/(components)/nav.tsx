@@ -556,7 +556,6 @@ const Navbar = () => {
             <input
               type="text"
               id="default-search"
-              className="block w-full justify-start rounded-lg border border-gray-300 bg-gray-50 p-2 pl-4 text-start text-xs text-gray-900 sm:pl-3 md:text-center md:text-sm"
               className="block w-full justify-start rounded-lg border border-gray-300 bg-gray-50 p-2 pl-2 text-start text-xs text-gray-900 sm:pl-3 md:text-center md:text-sm"
               placeholder="Search for party and event services"
               value={query}
