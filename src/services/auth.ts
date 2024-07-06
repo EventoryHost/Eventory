@@ -68,3 +68,17 @@ export const login = async (mobile: String) => {
     }
   }
 }
+
+export const addBusinessDetails = async (id: String, details: Map<String, any>) => {
+  try {
+    const res = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/auth/add-business-details`, {
+      id,
+      details,
+    });
+    return res;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      throw Error(error.message);
+    }
+  }
+}
