@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
 import { ParallaxScroll } from "@/components/ui/parallax-scroll";
 import Nav from "./nav"; // Import the Nav component
-import { DropdownBar } from "@/components/ui/dropdownbar";
+import { DropdownBar } from "@/components/dropdownbar";
 import { Horizontal } from "./horizontal";
 import { FlipWords } from "@/components/ui/flip-words";
 

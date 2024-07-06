@@ -2,6 +2,8 @@
 
 import React, { useState } from "react";
 import { ComboboxDemo } from "@/components/dropdown";
+import { Dropdown } from "react-day-picker";
+import { Combobox } from "@/components/ui/combobox";
 
 const frameworks = [
   { value: "next.js", label: "Next.js" },
@@ -48,7 +50,7 @@ const BusinessDetails = () => {
   };
 
   return (
-    <div className="flex h-full w-full flex-col overflow-hidden lg:flex-row">
+    <div className="flex h-full w-full flex-col overflow-hidden lg:flex-row min-h-screen">
       <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
         <div className="flex items-center justify-start gap-1 xs:self-start xs:pl-5 md:px-11 lg:mt-[5rem]">
           <button className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-300 p-5">
@@ -76,7 +78,7 @@ const BusinessDetails = () => {
           />
         </div>
       </div>
-      <div className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] p-2 md:p-[2.2rem]">
+      <div className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] p-2 md:p-[1rem]">
         <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
           <h1 className="text-3xl font-semibold">Business Details</h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
@@ -94,11 +96,11 @@ const BusinessDetails = () => {
               </div>
               <div className="flex min-w-[40%] flex-col gap-4">
                 <label htmlFor="category">Category</label>
-                <ComboboxDemo
+                <Combobox
                   options={frameworks}
-                  placeholder="Select your category"
-                  className="w-full rounded-xl border-2 bg-white p-5 py-6 outline-none"
-                  setFunction={setCategory}
+                  placeholder="Select Category"
+                  setFunction={setYears}
+                  className="flex items-center justify-between rounded-xl border-2 py-6 hover:text-[#2E3192]"
                 />
               </div>
             </div>
@@ -114,13 +116,13 @@ const BusinessDetails = () => {
                   onChange={(e) => setGstin(e.target.value)}
                 />
               </div>
-              <div className="flex min-w-[40%] flex-col gap-4">
+              <div className="flex flex-col gap-4 xs:min-w-[40%]">
                 <label htmlFor="years">Years in Operation</label>
-                <ComboboxDemo
-                  options={yearsInOperation}
-                  placeholder="Select years in operation"
-                  className="w-full rounded-xl border-2 bg-white p-5 py-6 outline-none"
+                <Combobox
+                  options={frameworks}
+                  placeholder="Select Years"
                   setFunction={setYears}
+                  className="flex items-center justify-between rounded-xl border-2 py-6 hover:text-[#2E3192]"
                 />
               </div>
             </div>
@@ -162,11 +164,11 @@ const BusinessDetails = () => {
               </div>
               <div className="flex min-w-[40%] flex-col gap-4">
                 <label htmlFor="cities">Operational Cities</label>
-                <ComboboxDemo
-                  options={operationalCities}
-                  placeholder="Select operational cities"
-                  className="w-full rounded-xl border-2 bg-white p-5 py-6 outline-none"
-                  setFunction={setCities}
+                <Combobox
+                  options={frameworks}
+                  placeholder="Select Years"
+                  setFunction={setYears}
+                  className="flex items-center justify-between rounded-xl border-2 py-6 hover:text-[#2E3192]"
                 />
               </div>
             </div>
