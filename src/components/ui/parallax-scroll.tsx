@@ -6,15 +6,15 @@ import { cn } from "@/lib/utils";
 
 export const ParallaxScroll = ({ className }: { className: string }) => {
   const images = [
-    "/parallax/Frame 427318907.png",
-    "/parallax/Frame 427318908-1.png",
-    "/parallax/Frame 427318908.png",
+    "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/parallax/Parallax_image_01.png",
+    "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/parallax/Parallax_image_02.png",
+    "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/parallax/Parallax_image_03.png",
   ];
 
   const images2 = [
-    "/parallax/Frame 427318910.png",
-    "/parallax/Frame 427318909.png",
-    "/parallax/Frame 427318907.png",
+    "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/parallax/Parallax_image_04.png",
+    "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/parallax/Parallax_image_05.png",
+    "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/parallax/Parallax_image_01.png",
   ];
 
   const doubledImages = [...images, ...images, ...images];
@@ -45,26 +45,24 @@ export const ParallaxScroll = ({ className }: { className: string }) => {
   }, [animationFirst, animationSecond]);
 
   return (
-    <div
-      className={cn("h-full p-0 items-start w-full overflow-hidden", className)}
-    >
-      <div className="grid grid-cols-1 md:grid-cols-2 items-start m-0 p-0 max-w-5xl mx-auto gap-9 px-1">
+    <div className={cn("w-full items-start overflow-hidden p-0", className)}>
+      <div className="m-0 mx-auto grid max-w-5xl grid-cols-1 items-start gap-9 p-0 px-1 md:grid-cols-2">
         <div
-          className="grid gap-10 w-full overflow-hidden"
-          style={{ height: "1025px" }}
+          className="grid w-full gap-10 overflow-hidden"
+          style={{ minHeight: "10vh", maxHeight: "170vh" }}
         >
           {doubledImages.map((el, idx) => (
             <motion.div
               key={"grid-1" + idx}
               animate={animationFirst}
-              className="relative h-[300px] lg:w-[100%] w-[200px]"
+              className="relative h-[300px] w-[200px] lg:w-[100%]"
               style={{ marginBottom: 0 }}
             >
               <div className="h-full w-full">
                 <Image
                   src={el}
-                  className="h-full w-full object-cover rounded-xl"
-                  layout="fill"
+                  className="h-full w-full rounded-xl object-cover"
+                  fill
                   alt="thumbnail"
                   loading="eager"
                 />
@@ -73,23 +71,24 @@ export const ParallaxScroll = ({ className }: { className: string }) => {
           ))}
         </div>
         <div
-          className="grid gap-10 w-full overflow-hidden"
-          style={{ height: "1025px" }}
+          className="grid w-full gap-10 overflow-hidden"
+          style={{ minHeight: "90vh", maxHeight: "170vh" }}
         >
           {doubledImages2.map((el, idx) => (
             <motion.div
               key={"grid-2" + idx}
               animate={animationSecond}
-              className="relative h-[300px] lg:w-[100%] w-[200px]"
+              className="relative h-[300px] w-[200px] lg:w-[100%]"
               style={{ marginBottom: 0 }}
             >
               <div className="h-full w-full">
                 <Image
                   src={el}
-                  className="h-full w-full object-cover rounded-xl"
-                  layout="fill"
+                  className="h-full w-full rounded-xl object-cover"
+                  fill
                   alt="thumbnail"
                   loading="eager"
+                  priority
                 />
               </div>
             </motion.div>

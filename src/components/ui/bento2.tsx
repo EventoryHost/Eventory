@@ -13,7 +13,7 @@ export const BentoGrid = ({
   return (
     <div
       className={cn(
-        "grid md:auto-rows-[13rem] auto-rows-[10rem] grid-cols-3 md:grid-cols-4 md:gap-4 gap-1 max-w-5xl",
+        "grid max-w-5xl auto-rows-[10rem] grid-cols-3 gap-1 md:auto-rows-[13rem] md:grid-cols-4 md:gap-4",
         className,
       )}
     >
@@ -34,17 +34,17 @@ export const BentoGridItem = ({
   return (
     <div
       className={cn(
-        "relative row-span-1 rounded-xl md:min-h-[13rem] group/bento hover:shadow-2xl transition duration-200 shadow-xl dark:shadow-none bg-white flex flex-col overflow-hidden",
+        "group/bento relative row-span-1 flex flex-col overflow-hidden rounded-xl bg-white shadow-xl transition duration-200 hover:shadow-2xl dark:shadow-none md:min-h-[13rem]",
         className,
       )}
     >
       <img
         src={imageUrl}
         alt={title as string}
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 h-full w-full object-cover"
       />
-      <div className="relative z-10 w-full flex flex-col justify-end h-full p-4">
-        <div className="font-poppins md:font-md md:text-2xl text-sm text-white mt-2">
+      <div className="relative z-10 flex h-full w-full flex-col justify-end p-4">
+        <div className="md:font-md mt-2 font-poppins text-sm text-white md:text-2xl">
           {title}
         </div>
       </div>

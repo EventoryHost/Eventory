@@ -27,7 +27,7 @@ const Modal: React.FC<ModalProps> = ({
       className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
       onClick={handleOverlayClick}
     >
-      <div className="bg-white rounded-lg shadow-lg">
+      <div className="rounded-lg bg-white shadow-lg">
         <Calendar
           mode="single"
           selected={selectedDate}

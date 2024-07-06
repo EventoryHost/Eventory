@@ -2,10 +2,9 @@
 import React, { useState, useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
 import { ParallaxScroll } from "@/components/ui/parallax-scroll";
-import Nav from "./nav"; // Import the Nav component
-import DropdownBar from "@/components/ui/dropdownbar";
-import Sectiontwo from "./sectiontwo";
+import { DropdownBar } from "@/components/dropdownbar";
 import { Horizontal } from "./horizontal";
+import { FlipWords } from "@/components/ui/flip-words";
 
 const Feed: React.FC = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -17,25 +16,29 @@ const Feed: React.FC = () => {
     setIsMounted(true);
   }, []);
 
+  const words = ["Vendor", "Venue", "Caterer"];
+
   return (
     <>
-      <div className="md:h-[90vh] h-[70vh] flex md:flex-row flex-col w-[100%]">
-        <div className="flex lg:w-[50%] w-[100%] h-[100%] items-center justify-center">
-          <div className="flex flex-col items-start min mt-[10%] justify-center md:mb-[20%] mb-[1%] px-[4%] h-full">
-            <h1 className="md:text-6xl text-4xl font-bold">
-              Find the Perfect Vendors for Your Event
+      <div className="flex w-[100%] flex-col flex-wrap justify-start overflow-hidden md:flex-row md:py-0 lpt:h-[90vh]">
+        <div className="flex w-[100%] items-center justify-start lg:w-[50%]">
+          <div className="mb-[10%] mt-[10%] flex h-[70vh] flex-col items-start justify-start px-[4%] md:h-[80vh] lg:mb-[40%] lg:h-[90vh]">
+            <h1 className="text-4xl font-bold md:text-6xl">
+              Find the Perfect
+              <br />
+              <FlipWords words={words} className="" /> for Your Event
             </h1>
-            <p className="w-[70%] md:text-xl mt-7">
+            <p className="mt-7 w-[70%] md:text-xl">
               Discover, compare, and book top-rated vendors for weddings,
               corporate events, parties, and more – all in one place.
             </p>
-            <div className="mt-7 w-[100%]">
+            <div className="mt-7 flex items-start justify-center self-start">
               <DropdownBar />
             </div>
           </div>
         </div>
-        <div className="flex-1 ml-4 pr-5 h-full">
-          <div className="relative h-full w-full">
+        <div className="ml-4 flex-1 pr-5">
+          <div className="max-w-[100%]">
             {isMounted && isMediumScreenOrLarger && (
               <ParallaxScroll className="custom-class" />
             )}
