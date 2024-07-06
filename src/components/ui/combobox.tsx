@@ -49,10 +49,7 @@ export function Combobox({
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className={cn(
-            "w-[100%] justify-between min-w-[245px]",
-            className,
-          )}
+          className={cn("w-[100%] min-w-[245px] justify-between", className)}
         >
           {value
             ? options.find((option) => option.value === value)?.label
