@@ -23,14 +23,17 @@ const signUp = async (mobile: String) => {
       },
       data: data,
     };
+    console.log(config);
     const res = await axios(config);
     console.log(res);
-    // console.log(JSON.stringify(res.data));
-    return res;
+    
+    return { newUser: true };
   } catch (error) {
-    console.log(error);
     if (axios.isAxiosError(error)) {
-      throw Error(error.message);
+      if (error.response!.status === 409)
+        return { newUser: false };
+      else
+        throw Error(error.message);
     }
   }
 };
