@@ -306,7 +306,7 @@ const Navbar = () => {
 
         {/* nav List */}
 
-        <div className={`nav-elements ${showNavbar && "active shadow-2xl"}`}>
+        <div className={`nav-elements ${showNavbar && "active sm:shadow-2xl md:shadow-none"}`}>
           <button
             onClick={handleShowNavbar}
             className="mr-[2vw] mt-[2vh] w-10 ncom:hidden"
