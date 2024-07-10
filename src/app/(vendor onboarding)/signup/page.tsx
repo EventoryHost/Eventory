@@ -30,10 +30,6 @@ const SignUp = (props: Props) => {
 
   const toggleModal = () => setIsModalOpen(!isModalOpen);
 
-  const initiateGoogleAuth = () => {
-    window.location.href = `${process.env.NEXT_PUBLIC_BASE_URL}/auth/google-auth`;
-  };
-
   const handleSignUp = async(e: React.FormEvent) => {
     e.preventDefault();
 
@@ -181,7 +177,7 @@ const SignUp = (props: Props) => {
                 or continue with
                 <div
                   className="google mt-5 flex cursor-pointer gap-5"
-                  onClick={initiateGoogleAuth}
+                  onClick={auth.authWithGoogle}
                 >
                   <svg
                     width="32"

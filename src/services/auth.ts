@@ -1,14 +1,14 @@
 import axios from "axios";
 
 const authWithGoogle = async () => {
-  console.log("in");
-  try {
-    await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/auth/google-auth`);
-  } catch (error) {
-    if (axios.isAxiosError(error)) {
-      throw Error(error.message);
-    }
-  }
+  const cognitoDomain = process.env.NEXT_PUBLIC_COGNITO_DOMAIN;
+  const redirectUri = encodeURIComponent(process.env.NEXT_PUBLIC_REDIRECT_URI!);
+  const responseType = "code";
+  const clientId = process.env.NEXT_PUBLIC_COGNITO_APP_CLIENT_ID;
+  const scope = "openid email profile";
+
+  const authUrl = `${cognitoDomain}/oauth2/authorize?identity_provider=Google&redirect_uri=${redirectUri}&response_type=${responseType}&client_id=${clientId}&scope=${scope}`;
+  window.location.href = authUrl;
 };
 
 const signUp = async (mobile: String) => {
@@ -103,8 +103,12 @@ export const addBusinessDetails = async (id: String, details: Map<String, any>) 
     }
   }
 };
-const auth = { authWithGoogle, signUp, verifySignUpOtp, verifyLoginOtp, login, addBusinessDetails};
+const auth = {
+  authWithGoogle,
+  signUp,
+  verifySignUpOtp,
+  verifyLoginOtp,
+  login,
+  addBusinessDetails,
+};
 export default auth;
-
-
-
