@@ -30,12 +30,12 @@ const Story = () => {
     <>
       <div className="">
         <div className="w-full bg-[rgba(213,214,233,1)] shadow-lg">
-          <div className="flex flex-col items-center justify-between px-5 max-sm:mx-[10px] sm:flex-row sm:gap-20 sm:py-10 md:mx-20 md:flex-row md:gap-20 md:py-10 lg:gap-20 xl:gap-40 lg:py-10">
+          <div className="flex flex-col items-center justify-between px-5 max-sm:mx-[10px] sm:flex-row sm:gap-20 sm:py-10 md:mx-20 md:flex-row md:gap-20 md:py-10 lg:gap-20 lg:py-10 xl:gap-40">
             <div className="flex-1 justify-center">
-              <h2 className="linear-gradient-colour mt-5 font-serif text-2xl font-semibold max-sm:my-5 sm:mb-3 md:text-2xl lg:text-4xl lg:mb-7 xl:md-14">
+              <h2 className="linear-gradient-colour xl:md-14 mt-5 font-serif text-2xl font-semibold max-sm:my-5 sm:mb-3 md:text-2xl lg:mb-7 lg:text-4xl">
                 The Story of Eventory
               </h2>
-              <p className="text-xs text-[rgb(0,0,0)] md:text-md lg:text-base xl:text-lg">
+              <p className="md:text-md text-xs text-[rgb(0,0,0)] lg:text-base xl:text-lg">
                 Our primary mission is to empower offline vendors across the
                 country by providing them an online platform to reach new
                 customers and expand their businesses beyond local contacts. We
@@ -52,12 +52,12 @@ const Story = () => {
             </div>
           </div>
 
-          <div className="flex flex-col items-center justify-between px-5 max-sm:mx-[10px] sm:flex-row-reverse sm:gap-20 sm:py-10 md:mx-20 md:flex-row-reverse md:gap-20 md:py-10 lg:gap-20 xl:gap-40 lg:py-10">
+          <div className="flex flex-col items-center justify-between px-5 max-sm:mx-[10px] sm:flex-row-reverse sm:gap-20 sm:py-10 md:mx-20 md:flex-row-reverse md:gap-20 md:py-10 lg:gap-20 lg:py-10 xl:gap-40">
             <div className="flex-1 justify-center">
-              <h2 className="linear-gradient-colour font-serif text-2xl font-semibold  sm:mb-3 md:text-2xl lg:text-4xl lg:mb-7 xl:md-14">
+              <h2 className="linear-gradient-colour xl:md-14 font-serif text-2xl font-semibold sm:mb-3 md:text-2xl lg:mb-7 lg:text-4xl">
                 We Provide Experience
               </h2>
-              <p className="text-xs text-[rgba(0,0,0,1)] md:text-md lg:text-base xl:text-lg">
+              <p className="md:text-md text-xs text-[rgba(0,0,0,1)] lg:text-base xl:text-lg">
                 We excel in event planning with innovative ideas and meticulous
                 attention to detail, ensuring clients feel inspired and
                 reassured. Our visionary designs and commitment to excellence
@@ -74,12 +74,12 @@ const Story = () => {
             </div>
           </div>
 
-          <div className="flex flex-col items-center justify-between px-5 max-sm:mx-[10px] sm:flex-row sm:gap-20 sm:py-10 md:mx-20 md:flex-row md:gap-20 md:py-10 lg:gap-20 xl:gap-40  lg:py-10">
+          <div className="flex flex-col items-center justify-between px-5 max-sm:mx-[10px] sm:flex-row sm:gap-20 sm:py-10 md:mx-20 md:flex-row md:gap-20 md:py-10 lg:gap-20 lg:py-10 xl:gap-40">
             <div className="flex-1 justify-end">
-              <h2 className="linear-gradient-colour font-serif text-2xl font-semibold max-sm:my-5 sm:mb-3 md:text-2xl lg:text-4xl lg:mb-7 xl:md-14">
+              <h2 className="linear-gradient-colour xl:md-14 font-serif text-2xl font-semibold max-sm:my-5 sm:mb-3 md:text-2xl lg:mb-7 lg:text-4xl">
                 The Social Cause
               </h2>
-              <p className="pt-0 text-xs text-[rgba(0,0,0,1)] md:text-md lg:text-base xl:text-lg">
+              <p className="md:text-md pt-0 text-xs text-[rgba(0,0,0,1)] lg:text-base xl:text-lg">
                 We focus on fostering employment by integrating offline vendors
                 into our platform, helping them transition online to combat
                 unemployment and enhance income streams. This expansion builds

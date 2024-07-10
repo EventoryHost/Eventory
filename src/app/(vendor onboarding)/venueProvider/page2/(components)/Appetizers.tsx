@@ -10,7 +10,7 @@ const Appetizers = ({ appetizers }: Props) => {
       {appetizers.map((appetizer, index) => (
         <button
           key={index}
-          className="col-span-1 row-span-1 flex items-center justify-center rounded-2xl border border-none bg-[rgba(242,242,242,1)] px-2 py-3 font-medium text-sm text-gray-600 outline-none hover:bg-[#2E3192] hover:text-white"
+          className="col-span-1 row-span-1 flex items-center justify-center rounded-2xl border border-none bg-[rgba(242,242,242,1)] px-2 py-3 text-sm font-medium text-gray-600 outline-none hover:bg-[#2E3192] hover:text-white"
         >
           {appetizer}
         </button>

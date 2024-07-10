@@ -49,8 +49,6 @@ const standingOptions = [
 ];
 
 const Page = () => {
- 
-
   const [businessName, setBusinessName] = useState("");
   const [category, setCategory] = useState("");
   const [gstin, setGstin] = useState("");
@@ -140,7 +138,6 @@ const Page = () => {
                   setFunction={setYears}
                   className="flex items-center justify-between rounded-xl border-2 py-6 hover:text-[#2E3192]"
                 />
-                
               </div>
             </div>
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
@@ -161,7 +158,6 @@ const Page = () => {
                   setFunction={setYears}
                   className="flex items-center justify-between rounded-xl border-2 py-6 hover:text-[#2E3192]"
                 />
-                
               </div>
               {/* <div className="flex min-w-[40%] flex-col gap-4">
                 <label htmlFor="businessName">Venue Description</label>
@@ -175,13 +171,13 @@ const Page = () => {
                 />
               </div> */}
             </div>
-            <div className=" flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-            <div className="flex min-w-[40%]  flex-col gap-4">
+            <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+              <div className="flex min-w-[40%] flex-col gap-4">
                 <label htmlFor="businessName">Venue Description</label>
                 <input
                   id="businessName"
                   type="text"
-                  className="h-[4rem] w-full rounded-xl text-sm border-2 bg-white p-3 outline-none"
+                  className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                   placeholder="Enter your Venue Description"
                   value={businessName}
                   onChange={(e) => setBusinessName(e.target.value)}

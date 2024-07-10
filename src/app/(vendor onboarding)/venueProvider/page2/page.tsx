@@ -8,54 +8,54 @@ import { ArrowUpSquare, Upload } from "lucide-react";
 import Appetizers from "./(components)/Appetizers";
 
 const decorType = [
-    { value: "indoor", label: "Inhouse Decor" },
-    { value: "external_allowed", label: "External Decor Allowed" },
-    { value: "external_not  ", label: "External Decor Not Allowed" },
-  ];
+  { value: "indoor", label: "Inhouse Decor" },
+  { value: "external_allowed", label: "External Decor Allowed" },
+  { value: "external_not  ", label: "External Decor Not Allowed" },
+];
 
 const audioVisualEquipment = [
-    "Microphones",
-    "Speakers",
-    "Audio Mixers",
-    "Amplifiers",
-    "Projection Screens",
-    "Lcd Projectors",
-    "Dlp Projectors",
-    "Led Screens",
-    "Ptz Cameras", // PTZ (Pan-Tilt-Zoom) Cameras
-    "Monitors",
-    "Camcorders",
-    "Others",
-  ];
-  
-  const accessibilityFeatures = [
-    "Wheelchair Access",
-    "Restrooms",
-    "Parkings",
-    "Clear Pathways",
-    "Interpreters",
-    "Braille Screens",
-    "Screen Readers",
-    "Audio Descriptions",
-    "Hearing Loops",
-    "Sensory Rooms",
-    "Visual Sign Support",
-    "Emergency Procedures",
-    "Others",
-  ];
-  
-  const facilities = [
-    "High Speed Internet",
-    "Charging Stations",
-    "Fill Hvac Control", // Assuming 'fill_hug_te_control' is a typo
-    "Av Equipments",
-    "Banquet Hall",
-    "Garden Area",
-    "Bridal Room",
-    "Storage Area",
-    "First Aid Equipments",
-    "Others",
-  ];
+  "Microphones",
+  "Speakers",
+  "Audio Mixers",
+  "Amplifiers",
+  "Projection Screens",
+  "Lcd Projectors",
+  "Dlp Projectors",
+  "Led Screens",
+  "Ptz Cameras", // PTZ (Pan-Tilt-Zoom) Cameras
+  "Monitors",
+  "Camcorders",
+  "Others",
+];
+
+const accessibilityFeatures = [
+  "Wheelchair Access",
+  "Restrooms",
+  "Parkings",
+  "Clear Pathways",
+  "Interpreters",
+  "Braille Screens",
+  "Screen Readers",
+  "Audio Descriptions",
+  "Hearing Loops",
+  "Sensory Rooms",
+  "Visual Sign Support",
+  "Emergency Procedures",
+  "Others",
+];
+
+const facilities = [
+  "High Speed Internet",
+  "Charging Stations",
+  "Fill Hvac Control", // Assuming 'fill_hug_te_control' is a typo
+  "Av Equipments",
+  "Banquet Hall",
+  "Garden Area",
+  "Bridal Room",
+  "Storage Area",
+  "First Aid Equipments",
+  "Others",
+];
 
 const Page = () => {
   const [businessName, setBusinessName] = useState("");
@@ -133,7 +133,7 @@ const Page = () => {
           </div>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-start justify-between gap-2">
-            <div className="flex min-w-[40%] flex-col gap-4">
+              <div className="flex min-w-[40%] flex-col gap-4">
                 <label htmlFor="category">Venue Type</label>
                 <Combobox
                   options={decorType}
@@ -142,11 +142,13 @@ const Page = () => {
                   className="flex items-center justify-between rounded-xl border-2 py-6 hover:text-[#2E3192]"
                 />
               </div>
-            </div>            
+            </div>
           </div>
         </div>
         <div className="flex flex-col gap-9 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
-          <h1 className="text-3xl font-semibold">Audio and visual Equipment you provide </h1>
+          <h1 className="text-3xl font-semibold">
+            Audio and visual Equipment you provide{" "}
+          </h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers appetizers={audioVisualEquipment} />
@@ -154,10 +156,12 @@ const Page = () => {
           </div>
         </div>
         <div className="flex flex-col gap-9 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
-          <h1 className="text-3xl font-semibold">Accessibility Features at your Venue </h1>
+          <h1 className="text-3xl font-semibold">
+            Accessibility Features at your Venue{" "}
+          </h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-              <Appetizers appetizers={ accessibilityFeatures} />
+              <Appetizers appetizers={accessibilityFeatures} />
             </div>
           </div>
         </div>

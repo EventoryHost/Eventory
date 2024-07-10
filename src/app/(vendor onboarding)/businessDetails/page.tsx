@@ -45,7 +45,10 @@ const BusinessDetails = () => {
     const token = urlParams.get("session_token");
     if (token) {
       localStorage.setItem("token", token);
-      const { userId, email } = jwt.decode(token) as { userId: string; email: string };
+      const { userId, email } = jwt.decode(token) as {
+        userId: string;
+        email: string;
+      };
       console.log("User ID:", userId);
       console.log("Email:", email);
     }

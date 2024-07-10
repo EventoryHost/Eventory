@@ -26,14 +26,12 @@ const signUp = async (mobile: String) => {
     console.log(config);
     const res = await axios(config);
     console.log(res);
-    
+
     return { newUser: true };
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      if (error.response!.status === 409)
-        return { newUser: false };
-      else
-        throw Error(error.message);
+      if (error.response!.status === 409) return { newUser: false };
+      else throw Error(error.message);
     }
   }
 };
@@ -88,14 +86,20 @@ const login = async (mobile: String) => {
       throw Error(error.message);
     }
   }
-}
+};
 
-export const addBusinessDetails = async (id: String, details: Map<String, any>) => {
+export const addBusinessDetails = async (
+  id: String,
+  details: Map<String, any>,
+) => {
   try {
-    const res = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/auth/add-business-details`, {
-      id,
-      details,
-    });
+    const res = await axios.post(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/auth/add-business-details`,
+      {
+        id,
+        details,
+      },
+    );
     return res;
   } catch (error) {
     if (axios.isAxiosError(error)) {
