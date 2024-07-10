@@ -30,10 +30,6 @@ const Login = (props: Props) => {
 
   const toggleModal = () => setIsModalOpen(!isModalOpen);
 
-  const initiateGoogleAuth = () => {
-    window.location.href = `${process.env.NEXT_PUBLIC_BASE_URL}/auth/google-auth`;
-  };
-
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -163,7 +159,7 @@ const Login = (props: Props) => {
                 or continue with
                 <div
                   className="google mt-5 flex cursor-pointer gap-5"
-                  onClick={initiateGoogleAuth}
+                  onClick={auth.authWithGoogle}
                 >
                   <svg
                     width="32"
@@ -189,18 +185,6 @@ const Login = (props: Props) => {
                       fill="#1976D2"
                     />
                   </svg>
-                  {/* <svg
-                  width="32"
-                  height="32"
-                  viewBox="0 0 32 32"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M16.0013 2.7207C8.66797 2.7207 2.66797 8.70737 2.66797 16.0807C2.66797 22.7474 7.54797 28.2807 13.9213 29.2807V19.9474H10.5346V16.0807H13.9213V13.134C13.9213 9.78737 15.908 7.94737 18.9613 7.94737C20.4146 7.94737 21.9346 8.2007 21.9346 8.2007V11.494H20.2546C18.6013 11.494 18.0813 12.5207 18.0813 13.574V16.0807H21.788L21.188 19.9474H18.0813V29.2807C21.2232 28.7845 24.0842 27.1814 26.1479 24.7608C28.2115 22.3402 29.3418 19.2616 29.3346 16.0807C29.3346 8.70737 23.3346 2.7207 16.0013 2.7207Z"
-                    fill="#1877F2"
-                  />
-                </svg> */}
                 </div>
                 <div className="flex min-w-[56vw] flex-col justify-between gap-9 md:flex-row">
                   <div className="mt-5 flex gap-2 xs:text-sm">
@@ -224,37 +208,6 @@ const Login = (props: Props) => {
           </div>
         </div>
       </div>
-      {/* {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center gap-9">
-          <div className="flex flex-col items-center justify-center gap-9 rounded-lg bg-white p-6 shadow-lg">
-            <h1 className="font-semibold">Verify OTP</h1>
-            <InputOTP
-              maxLength={6}
-              className="border-[#2E3192]"
-              onChange={(value) => {
-                setLoginDetails({ ...loginDetails, otp: Number(value) });
-                console.log(loginDetails);
-              }}
-            >
-              <InputOTPGroup>
-                <InputOTPSlot index={0} className="border-[#2E3192]" />
-                <InputOTPSlot index={1} className="border-[#2E3192]" />
-                <InputOTPSlot index={2} className="border-[#2E3192]" />
-                <InputOTPSlot index={3} className="border-[#2E3192]" />
-                <InputOTPSlot index={4} className="border-[#2E3192]" />
-                <InputOTPSlot index={5} className="border-[#2E3192]" />
-              </InputOTPGroup>
-            </InputOTP>
-            {formError && <div className="text-red-500">{formError}</div>}
-            <button
-              className="rounded bg-[#2E3192] px-4 py-2 text-white"
-              onClick={handleVerify}
-            >
-              Submit
-            </button>
-          </div>
-        </div>
-      )} */}
       {isModalOpen && (
         <OtpModal
           mobileNo={loginDetails.mobile}
