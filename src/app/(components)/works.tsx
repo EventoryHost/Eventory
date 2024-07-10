@@ -5,36 +5,59 @@ type Props = {};
 
 const Works = (props: Props) => {
   return (
-    <div className=" bg-[#C1C9F7] p-4 pt-[3rem] w-full flex justify-center items-center flex-col">
-      <div className="pl-12 pb-12 md:mr-0 mr-9 lg:self-start">
-        <h1 className="md:text-5xl text-3xl font-bold">How it works</h1>
+    <div className="flex w-full flex-col items-center justify-center bg-[#C1C9F7] p-4 pt-[3rem]">
+      <div className="mr-9 pb-12 pl-12 md:mr-0 lg:self-start">
+        <h1 className="text-3xl font-bold md:text-5xl">How it works</h1>
       </div>
 
-      <div className="flex flex-col lg:flex-row w-full lg:w-[85%] lg:px-0 px-4 gap-9 lg:gap-3 justify-between pt-3 pb-12">
-        <div className="flex flex-col justify-center items-center min-h-[50%] w-full lg:w-1/3">
-          <p className="font-semibold text-xl md:text-3xl self-start">1. Explore</p>
-          <div className="flex-1 flex items-center justify-center md:mt-0 mt-2">
-            <Image width={200} height={200} src="/Group 39655.svg" alt="Explore" />
+      <div className="flex w-full flex-col justify-between gap-9 px-4 pb-12 pt-3 lg:w-[85%] lg:flex-row lg:gap-3 lg:px-0">
+        <div className="flex min-h-[50%] w-full flex-col items-center justify-center lg:w-1/3">
+          <p className="self-start text-xl font-semibold md:text-3xl">
+            1. Explore
+          </p>
+          <div className="mt-2 flex flex-1 items-center justify-center md:mt-0">
+            <Image
+              width={200}
+              height={200}
+              src="https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/works/works_01.svg"
+              alt="Explore"
+            />
           </div>
-          <div className="text-sm md:text-lg font-semibold text-center mt-5">
-            Discover the perfect vendors for your event from our diverse selection.
+          <div className="mt-5 text-center text-sm font-semibold md:text-lg">
+            Discover the perfect vendors for your event from our diverse
+            selection.
           </div>
         </div>
-        <div className="flex flex-col justify-center items-center min-h-[50%] w-full lg:w-1/3">
-          <p className="font-semibold text-xl md:text-3xl self-start">2. Evaluate</p>
-          <div className="flex-1 flex items-center justify-center">
-            <Image width={350} height={350} src="/Group 39656-2.svg" alt="Evaluate" />
+        <div className="flex min-h-[50%] w-full flex-col items-center justify-center lg:w-1/3">
+          <p className="self-start text-xl font-semibold md:text-3xl">
+            2. Evaluate
+          </p>
+          <div className="flex flex-1 items-center justify-center">
+            <Image
+              width={350}
+              height={350}
+              src="https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/works/works_02.svg"
+              alt="Evaluate"
+            />
           </div>
-          <div className="text-sm md:text-lg font-semibold text-center mt-7 md:mt-4">
-            Compare vendors based on reviews, services, availability, and pricing.
+          <div className="mt-7 text-center text-sm font-semibold md:mt-4 md:text-lg">
+            Compare vendors based on reviews, services, availability, and
+            pricing.
           </div>
         </div>
-        <div className="flex flex-col justify-center items-center min-h-[50%] w-full lg:w-1/3">
-          <p className="font-semibold text-xl md:text-3xl self-start">3. Secure</p>
-          <div className="flex-1 flex items-center justify-center">
-            <Image width={300} height={300} src="/Group 39657-2.svg" alt="Secure" />
+        <div className="flex min-h-[50%] w-full flex-col items-center justify-center lg:w-1/3">
+          <p className="self-start text-xl font-semibold md:text-3xl">
+            3. Secure
+          </p>
+          <div className="flex flex-1 items-center justify-center">
+            <Image
+              width={300}
+              height={300}
+              src="https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/works/works_03.svg"
+              alt="Secure"
+            />
           </div>
-          <div className="text-sm md:text-lg font-semibold text-center mt-7 md:mt-4">
+          <div className="mt-7 text-center text-sm font-semibold md:mt-4 md:text-lg">
             Book your chosen vendors easily and securely through our platform.
           </div>
         </div>

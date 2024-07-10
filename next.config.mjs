@@ -8,6 +8,11 @@ const nextConfig = {
       {
         hostname: "img.daisyui.com",
       },
+      {
+        protocol: "https",
+        hostname: "d1u34m45xfa3ar.cloudfront.net",
+        pathname: "/website/**",
+      },
     ],
   },
 };
