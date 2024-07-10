@@ -23,8 +23,10 @@ const PriceSlider = ({ value, onChange }: Props) => {
         <Slider sx={{color: '#2E3192',}}
           getAriaLabel={() => 'Price range'}
           value={value}
+          // 0 is the min price
           min={0}
-          max={500000}
+          // 10 lacs is the max price
+          max={1000000}
           onChange={onChange}
           valueLabelDisplay="auto"
           valueLabelFormat={valuetext}
