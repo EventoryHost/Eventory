@@ -12,20 +12,6 @@ const regional = [
   { value: "other", label: "Other" },
 ];
 
-const service = [
-  { value: "buffet", label: "Buffet" },
-  { value: "plated", label: "Plated Meals" },
-  { value: "family", label: "Family Style" },
-  { value: "station", label: "Food Stations" },
-];
-
-const cuisine = [
-  { value: "north", label: "North Indian" },
-  { value: "south", label: "South Indian" },
-  { value: "chinese", label: "Chinese" },
-  { value: "italian", label: "Italian" },
-];
-
 const venueType = [
   { value: "indoor", label: "Indoor" },
   { value: "outdoor", label: "Outdoor" },
@@ -48,28 +34,42 @@ const standingOptions = [
   { value: "moreThan500", label: "> 500 persons" },
 ];
 
-const Page = () => {
- 
+const timeOptions = [
+{ value: "07:00", label: "07:00 hours" },
+{ value: "08:00", label: "08:00 hours" },
+{ value: "09:00", label: "09:00 hours" },
+{ value: "10:00", label: "10:00 hours" },
+{ value: "11:00", label: "11:00 hours" },
+{ value: "12:00", label: "12:00 hours" },
+{ value: "13:00", label: "13:00 hours" },
+{ value: "14:00", label: "14:00 hours" },
+{ value: "15:00", label: "15:00 hours" },
+{ value: "16:00", label: "16:00 hours" },
+{ value: "17:00", label: "17:00 hours" },
+{ value: "18:00", label: "18:00 hours" },
+{ value: "19:00", label: "19:00 hours" },
+{ value: "20:00", label: "20:00 hours" },
+{ value: "21:00", label: "21:00 hours" },
+{ value: "22:00", label: "22:00 hours" },
+{ value: "23:00", label: "23:00 hours" },
 
-  const [businessName, setBusinessName] = useState("");
-  const [category, setCategory] = useState("");
-  const [gstin, setGstin] = useState("");
-  const [years, setYears] = useState("");
-  const [businessAddress, setBusinessAddress] = useState("");
-  const [landmark, setLandmark] = useState("");
-  const [pinCode, setPinCode] = useState("");
-  const [cities, setCities] = useState("");
+];
+
+const Page = () => {
+  
+  const [venuetype, setVenueType] = useState("");
+  const [seatingCapacity, setSeatingCapacity] = useState("");
+  const [standingCapacity, setStandingOptions] = useState("");
+  const [operatingHours, setOperatingHours] = useState("");
+  const [venueDescription, setVenueDescription] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Business Name:", businessName);
-    console.log("Category:", category);
-    console.log("GSTIN:", gstin);
-    console.log("Years in Operation:", years);
-    console.log("Business Address:", businessAddress);
-    console.log("Landmark:", landmark);
-    console.log("Pin Code:", pinCode);
-    console.log("Operational Cities:", cities);
+    console.log("Venue Type:", venuetype);
+    console.log("Seating Capacity:", seatingCapacity);
+    console.log("Standing Capacity:", standingCapacity);
+    console.log("Operating Hours:", operatingHours);
+    console.log("Venue Description:", venueDescription);
   };
 
   return (
@@ -128,7 +128,7 @@ const Page = () => {
                 <Combobox
                   options={venueType}
                   placeholder="Select your category"
-                  setFunction={setYears}
+                  setFunction={setVenueType}
                   className="flex items-center justify-between rounded-xl border-2 py-6 hover:text-[#2E3192]"
                 />
               </div>
@@ -137,19 +137,18 @@ const Page = () => {
                 <Combobox
                   options={seatingOptions}
                   placeholder="Select your category"
-                  setFunction={setYears}
+                  setFunction={setSeatingCapacity}
                   className="flex items-center justify-between rounded-xl border-2 py-6 hover:text-[#2E3192]"
                 />
-                
               </div>
             </div>
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <div className="flex min-w-[40%] flex-col gap-4">
                 <label htmlFor="category">Operating hours</label>
                 <Combobox
-                  options={regional}
+                  options={timeOptions}
                   placeholder="Select your category"
-                  setFunction={setYears}
+                  setFunction={setOperatingHours}
                   className="flex items-center justify-between rounded-xl border-2 py-6 hover:text-[#2E3192]"
                 />
               </div>
@@ -158,10 +157,9 @@ const Page = () => {
                 <Combobox
                   options={standingOptions}
                   placeholder="Select your category"
-                  setFunction={setYears}
+                  setFunction={setStandingOptions}
                   className="flex items-center justify-between rounded-xl border-2 py-6 hover:text-[#2E3192]"
                 />
-                
               </div>
               {/* <div className="flex min-w-[40%] flex-col gap-4">
                 <label htmlFor="businessName">Venue Description</label>
@@ -175,16 +173,16 @@ const Page = () => {
                 />
               </div> */}
             </div>
-            <div className=" flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-            <div className="flex min-w-[40%]  flex-col gap-4">
+            <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+              <div className="flex min-w-[40%] flex-col gap-4">
                 <label htmlFor="businessName">Venue Description</label>
                 <input
                   id="businessName"
                   type="text"
-                  className="h-[4rem] w-full rounded-xl text-sm border-2 bg-white p-3 outline-none"
+                  className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                   placeholder="Enter your Venue Description"
-                  value={businessName}
-                  onChange={(e) => setBusinessName(e.target.value)}
+                  value={venueDescription}
+                  onChange={(e) => setVenueDescription(e.target.value)}
                 />
               </div>
             </div>
