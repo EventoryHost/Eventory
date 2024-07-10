@@ -3,6 +3,7 @@
 import { useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from 'next/navigation';
 
 import auth from "@/services/auth";
 import OtpModal from "@/components/ui/otp-modal";
@@ -11,9 +12,7 @@ import tajmahal from "/public/tajmahal.png";
 type Props = {};
 type basicDetails = {
   name: string;
-  email: string;
   mobile: number;
-  password: string;
   otp: number;
 };
 
@@ -23,6 +22,7 @@ const SignUp = (props: Props) => {
     {} as basicDetails,
   );
   const [formError, setFormError] = useState<string | null>(null);
+  const router = useRouter();
 
   const refs = useRef(
     {} as Record<keyof basicDetails, HTMLInputElement | null>,
@@ -34,7 +34,7 @@ const SignUp = (props: Props) => {
     window.location.href = `${process.env.NEXT_PUBLIC_BASE_URL}/auth/google-auth`;
   };
 
-  const handleSignUp = (e: React.FormEvent) => {
+  const handleSignUp = async(e: React.FormEvent) => {
     e.preventDefault();
 
     // Check if any required field is empty
@@ -50,21 +50,21 @@ const SignUp = (props: Props) => {
     // Store the form data
     const newDetails: basicDetails = {
       name: refs.current.name!.value,
-      email: refs.current.email!.value,
       mobile: Number(refs.current.mobile!.value),
-      password: refs.current.password!.value,
       otp: 0,
     };
     setBasicDetails(newDetails);
 
     // console.log("Name:", newDetails.name);
-    // console.log("Email:", newDetails.email);
     // console.log("Mobile:", newDetails.mobile);
-    // console.log("Password:", newDetails.password);
     // console.log("mobile details: ", newDetails.mobile.toString());
-    auth.signUp(newDetails.mobile.toString());
-
-    toggleModal();
+    const res = await auth.signUp(newDetails.mobile.toString());
+    if (res!.newUser) {
+      toggleModal();
+    } else if (!res!.newUser) {
+      router.push("/login");
+      // TODO add toast message
+    }
   };
 
   const handleVerify = (e: React.FormEvent) => {
