@@ -1,8 +1,8 @@
 "use client";
 
-import React from 'react';
-import Box from '@mui/material/Box';
-import Slider from '@mui/material/Slider';
+import React from "react";
+import Box from "@mui/material/Box";
+import Slider from "@mui/material/Slider";
 
 type Props = {
   value: number[];
@@ -10,18 +10,17 @@ type Props = {
 };
 
 function valuetext(value: number) {
-  const units = ['Rs'];
+  const units = ["Rs"];
   return `${units[0]} ${value}`;
 }
 
-
 const PriceSlider = ({ value, onChange }: Props) => {
   return (
-    <div className="justify-center flex w-[90%]">
+    <div className="flex w-[90%] justify-center">
       <Box sx={{ width: 300 }}>
-        
-        <Slider sx={{color: '#2E3192',}}
-          getAriaLabel={() => 'Price range'}
+        <Slider
+          sx={{ color: "#2E3192" }}
+          getAriaLabel={() => "Price range"}
           value={value}
           // 0 is the min price
           min={0}

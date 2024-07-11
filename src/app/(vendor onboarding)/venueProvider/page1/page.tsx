@@ -35,28 +35,26 @@ const standingOptions = [
 ];
 
 const timeOptions = [
-{ value: "07:00", label: "07:00 hours" },
-{ value: "08:00", label: "08:00 hours" },
-{ value: "09:00", label: "09:00 hours" },
-{ value: "10:00", label: "10:00 hours" },
-{ value: "11:00", label: "11:00 hours" },
-{ value: "12:00", label: "12:00 hours" },
-{ value: "13:00", label: "13:00 hours" },
-{ value: "14:00", label: "14:00 hours" },
-{ value: "15:00", label: "15:00 hours" },
-{ value: "16:00", label: "16:00 hours" },
-{ value: "17:00", label: "17:00 hours" },
-{ value: "18:00", label: "18:00 hours" },
-{ value: "19:00", label: "19:00 hours" },
-{ value: "20:00", label: "20:00 hours" },
-{ value: "21:00", label: "21:00 hours" },
-{ value: "22:00", label: "22:00 hours" },
-{ value: "23:00", label: "23:00 hours" },
-
+  { value: "07:00", label: "07:00 hours" },
+  { value: "08:00", label: "08:00 hours" },
+  { value: "09:00", label: "09:00 hours" },
+  { value: "10:00", label: "10:00 hours" },
+  { value: "11:00", label: "11:00 hours" },
+  { value: "12:00", label: "12:00 hours" },
+  { value: "13:00", label: "13:00 hours" },
+  { value: "14:00", label: "14:00 hours" },
+  { value: "15:00", label: "15:00 hours" },
+  { value: "16:00", label: "16:00 hours" },
+  { value: "17:00", label: "17:00 hours" },
+  { value: "18:00", label: "18:00 hours" },
+  { value: "19:00", label: "19:00 hours" },
+  { value: "20:00", label: "20:00 hours" },
+  { value: "21:00", label: "21:00 hours" },
+  { value: "22:00", label: "22:00 hours" },
+  { value: "23:00", label: "23:00 hours" },
 ];
 
 const Page = () => {
-  
   const [venuetype, setVenueType] = useState("");
   const [seatingCapacity, setSeatingCapacity] = useState("");
   const [standingCapacity, setStandingOptions] = useState("");

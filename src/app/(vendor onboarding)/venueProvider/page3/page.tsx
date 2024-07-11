@@ -13,9 +13,9 @@ const Page = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if(termsAndConditions !== "" || cancellationPolicy !== "") {
-    console.log("Terms and Conditions:", termsAndConditions);
-    console.log("Cancellation Policy:", cancellationPolicy);
+    if (termsAndConditions !== "" || cancellationPolicy !== "") {
+      console.log("Terms and Conditions:", termsAndConditions);
+      console.log("Cancellation Policy:", cancellationPolicy);
     }
   };
 
@@ -73,9 +73,7 @@ const Page = () => {
               <div className="flex min-w-[40%] flex-col gap-4">
                 {/* <label htmlFor="category">Venue Type</label> */}
                 <div className="flex min-w-full flex-col items-start justify-between gap-2">
-                  <p className="text-xl font-semibold">
-                  Terms and Conditions
-                  </p>
+                  <p className="text-xl font-semibold">Terms and Conditions</p>
                   <p className="text-gray-500">PNG, PDF, JPG</p>
                   <button className="flex items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
                     {" "}
@@ -87,11 +85,9 @@ const Page = () => {
               <div className="flex min-w-[40%] flex-col gap-4">
                 {/* <label htmlFor="category">Seating Capacity</label> */}
                 <div className="flex min-w-full flex-col items-start justify-between gap-2">
-                  <p className="text-xl font-semibold">
-                  Cancellation Policy
-                  </p>
+                  <p className="text-xl font-semibold">Cancellation Policy</p>
                   <p className="text-gray-500">PNG, PDF, JPG</p>
-                  <button className=" flex items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
+                  <button className="flex items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
                     {" "}
                     <Upload />
                     Upload
@@ -105,7 +101,7 @@ const Page = () => {
                 <input
                   id="businessName"
                   type="text"
-                  className="h-[4rem] pb-[8vw] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
+                  className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 pb-[8vw] text-sm outline-none"
                   placeholder="Enter Your Terms And Conditions"
                   value={termsAndConditions}
                   onChange={(e) => setTermsAndConditions(e.target.value)}
@@ -116,7 +112,7 @@ const Page = () => {
                 <input
                   id="businessName"
                   type="text"
-                  className="h-[4rem] pb-[8vw] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
+                  className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 pb-[8vw] text-sm outline-none"
                   placeholder="Enter Your Cancellation Policy"
                   value={cancellationPolicy}
                   onChange={(e) => setCancellationPolicy(e.target.value)}

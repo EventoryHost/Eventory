@@ -50,7 +50,6 @@ const Page: React.FC = () => {
     ]);
   };
 
-
   const handleSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
     console.log("Hourly Packages:", hourlyPackages);
@@ -398,7 +397,6 @@ const Page: React.FC = () => {
 
 export default Page;
 
-
 // "use client";
 
 // import React, { useState } from "react";
@@ -687,4 +685,3 @@ export default Page;
 // };
 
 // export default Page;
-

@@ -13,56 +13,56 @@ const decorType = [
   { value: "external_not  ", label: "External Decor Not Allowed" },
 ];
 
-  const audioVisualEquipment = [
-    "Amplifiers",
-    "Audio Mixers",
-    "Camcorders",
-    "Dlp Projectors",
-    "Led Screens",
-    "Lcd Projectors",
-    "Microphones",
-    "Monitors",
-    "Others",
-    "Ptz Cameras", // PTZ (Pan-Tilt-Zoom) Cameras
-    "Projection Screens",
-    "Speakers",
-  ];
-  
-  const accessibilityFeatures = [
-    "Audio Descriptions",
-    "Braille Screens",
-    "Clear Pathways",
-    "Emergency Procedures",
-    "Hearing Loops",
-    "Interpreters",
-    "Others",
-    "Parkings",
-    "Restrooms",
-    "Screen Readers",
-    "Sensory Rooms",
-    "Visual Sign Support",
-    "Wheelchair Access",
-  ];
-  
-  const facilities = [
-    "Av Equipments",
-    "Banquet Hall",
-    "Bridal Room",
-    "Charging Stations",
-    "Fill Hvac Control", // Assuming 'fill_hug_te_control' is a typo
-    "First Aid Equipments",
-    "Garden Area",
-    "High Speed Internet",
-    "Others",
-    "Storage Area",
-  ];
+const audioVisualEquipment = [
+  "Amplifiers",
+  "Audio Mixers",
+  "Camcorders",
+  "Dlp Projectors",
+  "Led Screens",
+  "Lcd Projectors",
+  "Microphones",
+  "Monitors",
+  "Others",
+  "Ptz Cameras", // PTZ (Pan-Tilt-Zoom) Cameras
+  "Projection Screens",
+  "Speakers",
+];
+
+const accessibilityFeatures = [
+  "Audio Descriptions",
+  "Braille Screens",
+  "Clear Pathways",
+  "Emergency Procedures",
+  "Hearing Loops",
+  "Interpreters",
+  "Others",
+  "Parkings",
+  "Restrooms",
+  "Screen Readers",
+  "Sensory Rooms",
+  "Visual Sign Support",
+  "Wheelchair Access",
+];
+
+const facilities = [
+  "Av Equipments",
+  "Banquet Hall",
+  "Bridal Room",
+  "Charging Stations",
+  "Fill Hvac Control", // Assuming 'fill_hug_te_control' is a typo
+  "First Aid Equipments",
+  "Garden Area",
+  "High Speed Internet",
+  "Others",
+  "Storage Area",
+];
 
 const Page = () => {
   const [decortype, setdecortype] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-     console.log("DecorType:", decortype);
+    console.log("DecorType:", decortype);
   };
 
   return (
@@ -119,7 +119,7 @@ const Page = () => {
           </div>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-start justify-between gap-2">
-            <div className="flex min-w-[40%] flex-col gap-4">
+              <div className="flex min-w-[40%] flex-col gap-4">
                 <label htmlFor="category">Decor Services</label>
                 <Combobox
                   options={decorType}

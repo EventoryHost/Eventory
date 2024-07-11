@@ -7,7 +7,6 @@ import { Combobox } from "@/components/ui/combobox";
 import { ArrowUpSquare, Upload } from "lucide-react";
 import Appetizers from "../(components)/Appetizers";
 
-
 const venue_restrictions = [
   "Alcohol",
   "Bag Checking",
@@ -36,16 +35,13 @@ const venue_special_features = [
   "Waterfront Views",
 ];
 const Page = () => {
-  
   const [instaURL, setInstaURL] = useState("");
   const [websiteURL, setWebsiteURL] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if(instaURL)
-    console.log("instagram URL:", instaURL);
-   if(websiteURL)
-    console.log("website URL:", websiteURL);
+    if (instaURL) console.log("instagram URL:", instaURL);
+    if (websiteURL) console.log("website URL:", websiteURL);
   };
 
   return (
@@ -120,7 +116,7 @@ const Page = () => {
                     Virtual tour of your venue (Optional)
                   </p>
                   <p className="text-gray-500">PNG, PDF, JPG</p>
-                  <button className=" flex items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
+                  <button className="flex items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
                     {" "}
                     <Upload />
                     Upload
