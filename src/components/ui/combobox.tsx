@@ -1,6 +1,6 @@
 "use client";
 
-import * as React from "react";
+import { useState } from "react";
 import { Check, ChevronsUpDown } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -30,17 +30,12 @@ interface ComboboxDemoProps {
   options: FrameworkOption[];
   className?: string;
   placeholder?: string;
-  setFunction: React.Dispatch<React.SetStateAction<string>>;
+  setFunction: (value: string) => void;
 }
 
-export function Combobox({
-  options,
-  className,
-  placeholder,
-  setFunction,
-}: ComboboxDemoProps) {
-  const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState("");
+export function Combobox( props: ComboboxDemoProps) {
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState("");
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -49,11 +44,11 @@ export function Combobox({
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className={cn("w-[100%] min-w-[245px] justify-between", className)}
+          className={cn("w-[100%] min-w-[245px] justify-between", props.className)}
         >
           {value
-            ? options.find((option) => option.value === value)?.label
-            : placeholder || "Select framework..."}
+            ? props.options.find((option) => option.value === value)?.label
+            : props.placeholder || "Select framework..."}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
@@ -63,14 +58,14 @@ export function Combobox({
           <CommandList>
             <CommandEmpty>No framework found.</CommandEmpty>
             <CommandGroup>
-              {options.map((option) => (
+              {props.options.map((option) => (
                 <CommandItem
                   key={option.value}
                   value={option.value}
                   onSelect={(currentValue) => {
                     setValue(currentValue === value ? "" : currentValue);
                     setOpen(false);
-                    setFunction(currentValue);
+                    props.setFunction(currentValue);
                   }}
                 >
                   <Check
