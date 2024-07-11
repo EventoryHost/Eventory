@@ -1,8 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
-import { ComboboxDemo } from "@/components/dropdown";
-import { Dropdown } from "react-day-picker";
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import jwt from "jsonwebtoken";
+
+import tajmahal from "/public/tajmahal.png";
 import { Combobox } from "@/components/ui/combobox";
 
 const frameworks = [
@@ -36,6 +38,21 @@ const BusinessDetails = () => {
   const [landmark, setLandmark] = useState("");
   const [pinCode, setPinCode] = useState("");
   const [cities, setCities] = useState("");
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) return;
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get("session_token");
+    if (token) {
+      localStorage.setItem("token", token);
+      const { userId, email } = jwt.decode(token) as {
+        userId: string;
+        email: string;
+      };
+      console.log("User ID:", userId);
+      console.log("Email:", email);
+    }
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -71,9 +88,9 @@ const BusinessDetails = () => {
           </p>
         </div>
         <div className="relative h-[10rem] lg:w-full">
-          <img
-            src={"/tajmahal.png"}
-            alt=""
+          <Image
+            src={tajmahal}
+            alt="Image of Indian monuments"
             className="h-full w-full object-cover"
           />
         </div>
