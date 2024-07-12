@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import jwt from "jsonwebtoken";
 
+import { addBusinessDetails } from "@/services/auth";
 import tajmahal from "/public/tajmahal.png";
 import { Combobox } from "@/components/ui/combobox";
 
@@ -29,7 +30,7 @@ const operationalCities = [
   { value: "chi", label: "Chicago" },
 ];
 
-type businessDetails = {
+export type businessDetails = {
   businessName: string;
   category: string;
   gstin: string;
@@ -37,7 +38,7 @@ type businessDetails = {
   businessAddress: string;
   landmark: string;
   pinCode: number;
-  cities: string;
+  cities: string[];
 };
 
 const BusinessDetails = () => {
@@ -81,14 +82,14 @@ const BusinessDetails = () => {
       cities: businessDetails.cities
     };
     setBusinessDetails(newDetails);
-    console.log("Business Name:", newDetails.businessName);
-    console.log("Category:", newDetails.category);
-    console.log("GSTIN:", newDetails.gstin);
-    console.log("Years in Operation:", newDetails.years);
-    console.log("Business Address:", newDetails.businessAddress);
-    console.log("Landmark:", newDetails.landmark);
-    console.log("Pin Code:", newDetails.pinCode);
-    console.log("Operational Cities:", newDetails.cities);
+    console.log("Business Details:", newDetails);
+
+    const token = localStorage.getItem("token")!;
+    const { userId, email } = jwt.decode(token) as {
+      userId: string;
+      email: string;
+    };
+    addBusinessDetails(userId, newDetails);
   };
 
   return (
@@ -168,7 +169,7 @@ const BusinessDetails = () => {
                 <div className="flex flex-col gap-4 xs:min-w-[40%]">
                   <label htmlFor="years">Years in Operation</label>
                   <Combobox
-                    options={frameworks}
+                    options={yearsInOperation}
                     placeholder="Select Years"
                     setFunction={(val) => {
                       setBusinessDetails({ ...businessDetails, years: val });
@@ -222,10 +223,10 @@ const BusinessDetails = () => {
                 <div className="flex min-w-[40%] flex-col gap-4">
                   <label htmlFor="cities">Operational Cities</label>
                   <Combobox
-                    options={frameworks}
+                    options={operationalCities}
                     placeholder="Select Operational Cities"
                     setFunction={(val) => {
-                      setBusinessDetails({ ...businessDetails, cities: val });
+                      setBusinessDetails({ ...businessDetails, cities: [val] });
                     }}
                     className="flex items-center justify-between rounded-xl border-2 py-6 hover:text-[#2E3192]"
                   />
