@@ -72,10 +72,10 @@ async function addVenue(data: any) {
 //       daily: String,
 //       seasonal: String,
 //     },
-  
+
 //     photosVideos: [String],
 //     virtualTour: String,
-  
+
 //     socialLinks: {
 //       instagramURL: String,
 //       websiteURL: String,
