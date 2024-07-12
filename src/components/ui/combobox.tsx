@@ -33,7 +33,7 @@ interface ComboboxDemoProps {
   setFunction: (value: string) => void;
 }
 
-export function Combobox( props: ComboboxDemoProps) {
+export function Combobox(props: ComboboxDemoProps) {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
 
@@ -44,7 +44,10 @@ export function Combobox( props: ComboboxDemoProps) {
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className={cn("w-[100%] min-w-[245px] justify-between", props.className)}
+          className={cn(
+            "w-[100%] min-w-[245px] justify-between",
+            props.className,
+          )}
         >
           {value
             ? props.options.find((option) => option.value === value)?.label

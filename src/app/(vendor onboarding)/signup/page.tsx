@@ -35,7 +35,7 @@ type basicDetails = {
   otp: number;
 };
 
-const SignUp = (props: {} ) => {
+const SignUp = (props: {}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [basicDetails, setBasicDetails] = useState<basicDetails>(
     {} as basicDetails,

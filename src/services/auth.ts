@@ -93,7 +93,7 @@ const login = async (mobile: String) => {
 export const addBusinessDetails = async (
   id: string,
   details: businessDetails,
-) => {  
+) => {
   try {
     const res = await axios.post(
       `${process.env.NEXT_PUBLIC_BASE_URL}/auth/add-business-details`,
