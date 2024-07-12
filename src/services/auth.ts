@@ -1,5 +1,7 @@
 import axios from "axios";
 
+import { businessDetails } from "@/app/(vendor onboarding)/businessDetails/page";
+
 const authWithGoogle = async () => {
   const cognitoDomain = process.env.NEXT_PUBLIC_COGNITO_DOMAIN;
   const redirectUri = encodeURIComponent(process.env.NEXT_PUBLIC_REDIRECT_URI!);
@@ -89,9 +91,9 @@ const login = async (mobile: String) => {
 };
 
 export const addBusinessDetails = async (
-  id: String,
-  details: Map<String, any>,
-) => {
+  id: string,
+  details: businessDetails,
+) => {  
   try {
     const res = await axios.post(
       `${process.env.NEXT_PUBLIC_BASE_URL}/auth/add-business-details`,
