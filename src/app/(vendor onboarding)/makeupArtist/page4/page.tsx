@@ -1,33 +1,26 @@
 "use client";
 
-import React, { useState } from "react";    
+import React, { useState } from "react";
 import Appetizers from "../(components)/Appetizers";
 
 const makeupTypes = [
-    "Bridal Makeup",
-    "Daily Makeup", // Assuming misspelling in the image
-    "Editorial Makeup",
-    "Film and TV Makeup",
-    "Runway Makeup",
-    "Special Effects (SFX) Makeup",
-    "Special Occasion Makeup",
-    "Traditional Bridal Makeup",
-    "Others",
-  ];
+  "Bridal Makeup",
+  "Daily Makeup", // Assuming misspelling in the image
+  "Editorial Makeup",
+  "Film and TV Makeup",
+  "Runway Makeup",
+  "Special Effects (SFX) Makeup",
+  "Special Occasion Makeup",
+  "Traditional Bridal Makeup",
+  "Others",
+];
 
 const Page = () => {
- 
-  const [category, setCategory] = useState<
-   "Yes" | "No"
-  >("No");
+  const [category, setCategory] = useState<"Yes" | "No">("No");
 
-  
-  const handleCategoryChange = (
-    newCategory: "Yes" | "No",
-  ) => {
+  const handleCategoryChange = (newCategory: "Yes" | "No") => {
     setCategory(newCategory);
   };
-
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -89,26 +82,25 @@ const Page = () => {
             <p className="">On-site Service availability ?</p>
           </div>
           <div className="flex flex-row gap-2">
-              <div className="flex items-center gap-2">
-                <input
-                  type="radio"
-                  checked={category === "Yes"}
-                  onChange={() => handleCategoryChange("Yes")}
-                />
-                <p className="text-gray-500">Yes</p>
-              </div>
-              <div className="flex items-center gap-2">
-                <input
-                  type="radio"
-                  checked={category === "No"}
-                  onChange={() => handleCategoryChange("No")}
-                />
-                <p className="text-gray-500">No</p>
-              </div>
+            <div className="flex items-center gap-2">
+              <input
+                type="radio"
+                checked={category === "Yes"}
+                onChange={() => handleCategoryChange("Yes")}
+              />
+              <p className="text-gray-500">Yes</p>
             </div>
+            <div className="flex items-center gap-2">
+              <input
+                type="radio"
+                checked={category === "No"}
+                onChange={() => handleCategoryChange("No")}
+              />
+              <p className="text-gray-500">No</p>
+            </div>
+          </div>
         </div>
-        
-       
+
         <div className="flex flex-col gap-9 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
           <h1 className="text-3xl font-semibold">Specialization makeups</h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">

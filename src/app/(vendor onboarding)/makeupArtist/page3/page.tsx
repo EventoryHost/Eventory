@@ -12,8 +12,6 @@ interface Package {
 }
 
 const Page: React.FC = () => {
-  
-
   const [seasonalPackages, setSeasonalPackages] = useState<Package[]>([
     { type: "", priceRange: [50000, 600000] },
   ]);
@@ -28,7 +26,7 @@ const Page: React.FC = () => {
   const [dailyPackages, setDailyPackages] = useState<Package[]>([
     { type: "", priceRange: [20000, 1000000] },
   ]);
- 
+
   const handlePackageChange = (
     setPackages: React.Dispatch<React.SetStateAction<Package[]>>,
     index: number,
@@ -391,4 +389,3 @@ const Page: React.FC = () => {
 };
 
 export default Page;
-
