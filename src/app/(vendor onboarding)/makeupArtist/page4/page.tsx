@@ -1,68 +1,36 @@
 "use client";
 
-import React, { useState } from "react";
-import { ComboboxDemo } from "@/components/dropdown";
-import { Dropdown } from "react-day-picker";
-import { Combobox } from "@/components/ui/combobox";
-import { ArrowUpSquare, Upload } from "lucide-react";
+import React, { useState } from "react";    
 import Appetizers from "../(components)/Appetizers";
 
-const decorType = [
-  { value: "indoor", label: "Inhouse Decor" },
-  { value: "external_allowed", label: "External Decor Allowed" },
-  { value: "external_not  ", label: "External Decor Not Allowed" },
-];
-
-const audioVisualEquipment = [
-  "Amplifiers",
-  "Audio Mixers",
-  "Camcorders",
-  "Dlp Projectors",
-  "Led Screens",
-  "Lcd Projectors",
-  "Microphones",
-  "Monitors",
-  "Others",
-  "Ptz Cameras", // PTZ (Pan-Tilt-Zoom) Cameras
-  "Projection Screens",
-  "Speakers",
-];
-
-const accessibilityFeatures = [
-  "Audio Descriptions",
-  "Braille Screens",
-  "Clear Pathways",
-  "Emergency Procedures",
-  "Hearing Loops",
-  "Interpreters",
-  "Others",
-  "Parkings",
-  "Restrooms",
-  "Screen Readers",
-  "Sensory Rooms",
-  "Visual Sign Support",
-  "Wheelchair Access",
-];
-
-const facilities = [
-  "Av Equipments",
-  "Banquet Hall",
-  "Bridal Room",
-  "Charging Stations",
-  "Fill Hvac Control", // Assuming 'fill_hug_te_control' is a typo
-  "First Aid Equipments",
-  "Garden Area",
-  "High Speed Internet",
-  "Others",
-  "Storage Area",
-];
+const makeupTypes = [
+    "Bridal Makeup",
+    "Daily Makeup", // Assuming misspelling in the image
+    "Editorial Makeup",
+    "Film and TV Makeup",
+    "Runway Makeup",
+    "Special Effects (SFX) Makeup",
+    "Special Occasion Makeup",
+    "Traditional Bridal Makeup",
+    "Others",
+  ];
 
 const Page = () => {
-  const [decortype, setdecortype] = useState("");
+ 
+  const [category, setCategory] = useState<
+   "Yes" | "No"
+  >("No");
+
+  
+  const handleCategoryChange = (
+    newCategory: "Yes" | "No",
+  ) => {
+    setCategory(newCategory);
+  };
+
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("DecorType:", decortype);
   };
 
   return (
@@ -115,47 +83,37 @@ const Page = () => {
       <div className="scroll-touch flex max-h-[calc(100vh-5.2rem)] min-w-[70%] flex-col items-center gap-9 overflow-y-scroll bg-[#F7F6F9] p-2 md:p-[1rem]">
         <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
           <div className="flex gap-9">
-            <h1 className="text-3xl font-semibold">Venue Feature details</h1>
+            <h1 className="text-3xl font-semibold">Services Details</h1>
           </div>
-          <div className="flex min-h-full min-w-full flex-col items-center gap-5">
-            <div className="flex min-w-full flex-col items-start justify-between gap-2">
-              <div className="flex min-w-[40%] flex-col gap-4">
-                <label htmlFor="category">Decor Services</label>
-                <Combobox
-                  options={decorType}
-                  placeholder="Select Decor Type"
-                  setFunction={setdecortype}
-                  className="flex items-center justify-between rounded-xl border-2 py-6 hover:text-[#2E3192]"
+          <div className="flex gap-9">
+            <p className="">On-site Service availability ?</p>
+          </div>
+          <div className="flex flex-row gap-2">
+              <div className="flex items-center gap-2">
+                <input
+                  type="radio"
+                  checked={category === "Yes"}
+                  onChange={() => handleCategoryChange("Yes")}
                 />
+                <p className="text-gray-500">Yes</p>
+              </div>
+              <div className="flex items-center gap-2">
+                <input
+                  type="radio"
+                  checked={category === "No"}
+                  onChange={() => handleCategoryChange("No")}
+                />
+                <p className="text-gray-500">No</p>
               </div>
             </div>
-          </div>
         </div>
+        
+       
         <div className="flex flex-col gap-9 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
-          <h1 className="text-3xl font-semibold">
-            Audio and visual Equipment you provide{" "}
-          </h1>
+          <h1 className="text-3xl font-semibold">Specialization makeups</h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-              <Appetizers appetizers={audioVisualEquipment} />
-            </div>
-          </div>
-        </div>
-        <div className="flex flex-col gap-9 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
-          <h1 className="text-3xl font-semibold">
-            Accessibility Features at your Venue{" "}
-          </h1>
-          <div className="flex min-h-full min-w-full flex-col items-center gap-5">
-            <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-              <Appetizers appetizers={accessibilityFeatures} />
-            </div>
-          </div>
-        </div>
-        <div className="flex flex-col gap-9 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
-          <h1 className="text-3xl font-semibold">Facilities at your Venue</h1>
-          <div className="flex min-h-full min-w-full flex-col items-center gap-5">
-            <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-              <Appetizers appetizers={facilities} />
+              <Appetizers appetizers={makeupTypes} />
             </div>
             <div className="items-strech mt-9 flex flex-row gap-7 self-end">
               <button
