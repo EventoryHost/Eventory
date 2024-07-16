@@ -8,26 +8,11 @@ import { ArrowUpSquare, Upload } from "lucide-react";
 import Appetizers from "../(components)/Appetizers";
 
 const appetizers = [
-  "Samosa",
-  "Pakora",
-  "Paneer Tikka",
-  "Aloo Tikki",
-  "Chicken 65",
-  "Dhokla",
-  "Vada Pav",
-  "Pani Puri",
-  "Bhel Puri",
-  "Dahi Puri",
-  "Papdi Chaat",
-  "Hara Bhara Kabab",
-  "Seekh Kebab",
-  "Bhajiya",
-  "Momos",
-  "Masala Papad",
-  "Keema Samosa",
-  "Fish Amritsari",
-  "Prawn Koliwada",
-  "Aloo Chaat",
+  "Weddings",
+  "Corporate",
+  "Birthdays",
+  "Anniversary",
+  "Others",
 ];
 
 const cuisine = [
@@ -38,26 +23,9 @@ const cuisine = [
 ];
 
 const beverages = [
-  "Masala Chai",
-  "Lassi",
-  "Chaas",
-  "Nimbu Pani",
-  "Aam Panna",
-  "Thandai",
-  "Jal Jeera",
-  "Sol Kadhi",
-  "Filter Coffee",
-  "Coconut Water",
-  "Sugarcane Juice",
-  "Badam Milk",
-  "Kokum Sherbet",
-  "Falooda",
-  "Rooh Afza",
-  "Buttermilk",
-  "Sharbat",
-  "Feni",
-  "Toddy",
-  "Kanji",
+  "Setup Services",
+  "Cleanup Services",
+  "Others",
 ];
 
 const Page = () => {
@@ -130,74 +98,24 @@ const Page = () => {
         </div>
       </div>
       <div className="scroll-touch flex max-h-[calc(100vh-5.2rem)] min-w-[70%] flex-col items-strech gap-9 overflow-y-scroll bg-[#F7F6F9] p-2 md:p-[3rem]">
-        <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
-          <div className="flexxs:flex-col gap-9">
-            <h1 className="text-2xl font-semibold md:text-3xl">Menu Details</h1>
-            <div className="flex items-center gap-2">
-              <input type="radio" />
-              <p className="text-gray-500">Veg</p>
-            </div>
-            <div className="flex items-center gap-2">
-              <input type="radio" />
-              <p className="text-gray-500">Non-Veg</p>
-            </div>
-          </div>
-          <div className="flex min-h-full min-w-full flex-col items-center gap-5">
-            <div className="flex min-w-full flex-col items-start justify-between gap-2">
-              <p className="text-xl font-semibold">Upload Menu</p>
-              <p className="text-gray-500">PNG, PDF, JPG</p>
-              <button className="mt-5 flex items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
-                {" "}
-                <Upload />
-                Upload
-              </button>
-            </div>
-          </div>
-        </div>
         <div className="flex flex-col gap-9 rounded-xl bg-white p-3  xs:min-w-[90%] md:p-6">
-          <h1 className="md:text-3xl text-2xl font-semibold">Appetizers</h1>
+          <h1 className="md:text-3xl text-2xl font-semibold">Event Details</h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
+            <h1 className="md:text-2xl text-lg font-normal self-start">Event Types Catered:</h1>
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers appetizers={appetizers} />
             </div>
           </div>
         </div>
         <div className="flex flex-col gap-9 rounded-xl bg-white p-3  xs:min-w-[90%] md:p-6">
-          <h1 className="md:text-3xl text-2xl font-semibold">Beverages</h1>
+          <h1 className="md:text-2xl text-lg font-normal self-start">Additional Services:</h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers appetizers={beverages} />
             </div>
-          </div>
-        </div>
-        <div className="flex flex-col gap-9 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
-          <div className="flex min-w-full flex-col items-start justify-between gap-5">
-            <h1 className="md:text-3xl text-2xl font-semibold">Other Details</h1>
-            <div className="flex md:flex-row gap-9 width-[100%] justify-between flex-col">
-            <div className="flex min-w-[40%] flex-col gap-4">
-              <label htmlFor="businessName">Caterer Name (Manager)</label>
-              <input
-                id="businessName"
-                type="text"
-                className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
-                placeholder="Enter your business name"
-                value={businessName}
-                onChange={(e) => setBusinessName(e.target.value)}
-              />
-            </div>
-            <div className="flex min-w-[40%] flex-col gap-4">
-              <label htmlFor="category">Cuisine Specialties</label>
-              <Combobox
-                options={cuisine}
-                placeholder="Select Cuisine"
-                setFunction={setYears}
-                className="flex items-center justify-between rounded-xl border-2 py-6 hover:text-[#2E3192]"
-              />
-            </div>
-            </div>
             <div className="flex flex-row gap-7 items-strech mt-9 self-end">
               <button
-                className="rounded-xl border-[#2E3192] border-2 text-[#2E3192]  xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+                className="rounded-xl border-[#2E3192] border-2 text-[#2E3192]  xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
                 onClick={handleSubmit}
               >
                 Skip
