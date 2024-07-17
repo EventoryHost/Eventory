@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 type Props = {
   appetizers: string[];
@@ -6,11 +6,14 @@ type Props = {
 
 const Appetizers = ({ appetizers }: Props) => {
   return (
-    <div className='min-w-[100%] min-h-[100%] grid gap-3 grid-cols-3 md:grid-cols-4 '>
+    <div className="grid min-h-[100%] min-w-[100%] grid-cols-3 gap-3 md:grid-cols-4">
       {appetizers.map((appetizer, index) => (
-        <button key={index} className='border flex outline-none border-none hover:bg-[#2E3192] text-gray-600 hover:text-white font-medium items-center justify-center md:text-lg text-sm bg-gray-200  rounded-2xl px-2 py-3 row-span-1 col-span-1'>
-        {appetizer}
-      </button>
+        <button
+          key={index}
+          className="col-span-1 row-span-1 flex items-center justify-center rounded-2xl border border-none bg-gray-200 px-2 py-3 text-sm font-medium text-gray-600 outline-none hover:bg-[#2E3192] hover:text-white md:text-lg"
+        >
+          {appetizer}
+        </button>
       ))}
     </div>
   );

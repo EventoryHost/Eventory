@@ -96,7 +96,7 @@ const Page = () => {
           />
         </div>
       </div>
-      <div className="flex min-w-[70%] flex-col items-center overflow-y-scroll justify-center bg-[#F7F6F9] p-2 md:p-[1rem]">
+      <div className="flex min-w-[70%] flex-col items-center justify-center overflow-y-scroll bg-[#F7F6F9] p-2 md:p-[1rem]">
         <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
           <h1 className="text-3xl font-semibold">Additional Details</h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">

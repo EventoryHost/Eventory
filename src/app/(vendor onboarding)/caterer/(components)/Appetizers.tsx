@@ -15,7 +15,9 @@ const Appetizers = ({
 }: AppetizersProps) => {
   const handleButtonClick = (appetizer: string) => {
     if (selectedAppetizers.includes(appetizer)) {
-      setSelectedAppetizers(selectedAppetizers.filter((item) => item !== appetizer));
+      setSelectedAppetizers(
+        selectedAppetizers.filter((item) => item !== appetizer),
+      );
     } else {
       setSelectedAppetizers([...selectedAppetizers, appetizer]);
     }

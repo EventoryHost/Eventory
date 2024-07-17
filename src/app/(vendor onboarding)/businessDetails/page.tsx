@@ -42,8 +42,15 @@ export type businessDetails = {
 };
 
 const BusinessDetails = () => {
-  const [businessDetails, setBusinessDetails] = useState<businessDetails>({} as businessDetails);
-  const refs = useRef({} as Record<keyof businessDetails, HTMLInputElement| HTMLButtonElement | null>);
+  const [businessDetails, setBusinessDetails] = useState<businessDetails>(
+    {} as businessDetails,
+  );
+  const refs = useRef(
+    {} as Record<
+      keyof businessDetails,
+      HTMLInputElement | HTMLButtonElement | null
+    >,
+  );
 
   useEffect(() => {
     if (localStorage.getItem("token")) return;
@@ -79,7 +86,7 @@ const BusinessDetails = () => {
       businessAddress: refs.current.businessAddress!.value,
       landmark: refs.current.landmark!.value,
       pinCode: Number(refs.current.pinCode!.value),
-      cities: businessDetails.cities
+      cities: businessDetails.cities,
     };
     setBusinessDetails(newDetails);
     console.log("Business Details:", newDetails);

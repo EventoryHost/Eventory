@@ -13,7 +13,9 @@ const Page = () => {
   const [selectedAppetizers, setSelectedAppetizers] = useState<string[]>([]);
   const [selectedBeverages, setSelectedBeverages] = useState<string[]>([]);
   const [selectedMainCourses, setSelectedMainCourses] = useState<string[]>([]);
-  const [selectedDietaryOptions, setSelectedDietaryOptions] = useState<string[]>([]);
+  const [selectedDietaryOptions, setSelectedDietaryOptions] = useState<
+    string[]
+  >([]);
 
   const handleContinue = () => {
     console.log({
@@ -72,7 +74,9 @@ const Page = () => {
           >
             1
           </button>
-          <div className={`h-[0.3rem] w-[4rem] rounded-xl ${currentPage > 1 ? "bg-[#2E3192]" : "bg-gray-300"}`}></div>
+          <div
+            className={`h-[0.3rem] w-[4rem] rounded-xl ${currentPage > 1 ? "bg-[#2E3192]" : "bg-gray-300"}`}
+          ></div>
           <button
             className={`flex h-10 w-10 items-center justify-center rounded-full p-5 ${currentPage === 2 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
           >
