@@ -77,7 +77,7 @@ export function Featured() {
           <h1 className="font-poppins text-2xl font-bold md:text-5xl">
             Featured Vendors
           </h1>
-          <p className="md:text-l font-poppins mt-2 w-[85%] text-xs text-gray-700 md:w-[100%] md:text-sm">
+          <p className="md:text-l mt-2 w-[85%] font-poppins text-xs text-gray-700 md:w-[100%] md:text-sm">
             Select and contact any vendors you like from the following
           </p>
         </div>
@@ -104,7 +104,7 @@ export function Featured() {
                   </figure>
                   <div className="mt-2 px-2 pb-1">
                     <div className="flex w-full justify-between">
-                      <h2 className="font-poppins text-md font-semibold md:text-2xl">
+                      <h2 className="text-md font-poppins font-semibold md:text-2xl">
                         {venue.name}
                       </h2>
                       <div className="font-md flex h-fit min-h-fit items-center rounded-xl bg-[#D5D6E9] p-1 text-[0.6rem] md:gap-2 md:p-1 md:px-2 md:text-[1rem]">

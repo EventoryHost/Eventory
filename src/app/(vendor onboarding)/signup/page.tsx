@@ -3,38 +3,52 @@
 import { useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 import auth from "@/services/auth";
 import OtpModal from "@/components/ui/otp-modal";
 import tajmahal from "/public/tajmahal.png";
 
-type Props = {};
+const fields: {
+  id: keyof basicDetails;
+  label: string;
+  type: string;
+  placeholder: string;
+}[] = [
+  {
+    id: "name",
+    label: "Full Name",
+    type: "text",
+    placeholder: "Enter your full name",
+  },
+  {
+    id: "mobile",
+    label: "Mobile No.",
+    type: "number",
+    placeholder: "Enter your mobile no.",
+  },
+];
+
 type basicDetails = {
   name: string;
-  email: string;
   mobile: number;
-  password: string;
   otp: number;
 };
 
-const SignUp = (props: Props) => {
+const SignUp = (props: {} ) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [basicDetails, setBasicDetails] = useState<basicDetails>(
     {} as basicDetails,
   );
   const [formError, setFormError] = useState<string | null>(null);
-
+  const router = useRouter();
   const refs = useRef(
     {} as Record<keyof basicDetails, HTMLInputElement | null>,
   );
 
   const toggleModal = () => setIsModalOpen(!isModalOpen);
 
-  const initiateGoogleAuth = () => {
-    window.location.href = `${process.env.NEXT_PUBLIC_BASE_URL}/auth/google-auth`;
-  };
-
-  const handleSignUp = (e: React.FormEvent) => {
+  const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
 
     // Check if any required field is empty
@@ -50,21 +64,21 @@ const SignUp = (props: Props) => {
     // Store the form data
     const newDetails: basicDetails = {
       name: refs.current.name!.value,
-      email: refs.current.email!.value,
       mobile: Number(refs.current.mobile!.value),
-      password: refs.current.password!.value,
       otp: 0,
     };
     setBasicDetails(newDetails);
 
     // console.log("Name:", newDetails.name);
-    // console.log("Email:", newDetails.email);
     // console.log("Mobile:", newDetails.mobile);
-    // console.log("Password:", newDetails.password);
     // console.log("mobile details: ", newDetails.mobile.toString());
-    auth.signUp(newDetails.mobile.toString());
-
-    toggleModal();
+    const res = await auth.signUp(newDetails.mobile.toString());
+    if (res!.newUser) {
+      toggleModal();
+    } else if (!res!.newUser) {
+      router.push("/login");
+      // TODO add toast message
+    }
   };
 
   const handleVerify = (e: React.FormEvent) => {
@@ -85,26 +99,6 @@ const SignUp = (props: Props) => {
   const renderError = (): [boolean, string] => {
     return formError ? [true, formError] : [false, ""];
   };
-
-  const fields: {
-    id: keyof basicDetails;
-    label: string;
-    type: string;
-    placeholder: string;
-  }[] = [
-    {
-      id: "name",
-      label: "Full Name",
-      type: "text",
-      placeholder: "Enter your full name",
-    },
-    {
-      id: "mobile",
-      label: "Mobile No.",
-      type: "number",
-      placeholder: "Enter your mobile no.",
-    },
-  ];
 
   return (
     <div className="flex w-full flex-col overflow-hidden lg:flex-row">
@@ -181,7 +175,7 @@ const SignUp = (props: Props) => {
                 or continue with
                 <div
                   className="google mt-5 flex cursor-pointer gap-5"
-                  onClick={initiateGoogleAuth}
+                  onClick={auth.authWithGoogle}
                 >
                   <svg
                     width="32"

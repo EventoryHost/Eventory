@@ -1,8 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
-import { ComboboxDemo } from "@/components/dropdown";
-import { Dropdown } from "react-day-picker";
+import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
+import jwt from "jsonwebtoken";
+
+import { addBusinessDetails } from "@/services/auth";
+import tajmahal from "/public/tajmahal.png";
 import { Combobox } from "@/components/ui/combobox";
 
 const frameworks = [
@@ -27,30 +30,70 @@ const operationalCities = [
   { value: "chi", label: "Chicago" },
 ];
 
-const BusinessDetails = () => {
-  const [businessName, setBusinessName] = useState("");
-  const [category, setCategory] = useState("");
-  const [gstin, setGstin] = useState("");
-  const [years, setYears] = useState("");
-  const [businessAddress, setBusinessAddress] = useState("");
-  const [landmark, setLandmark] = useState("");
-  const [pinCode, setPinCode] = useState("");
-  const [cities, setCities] = useState("");
+export type businessDetails = {
+  businessName: string;
+  category: string;
+  gstin: string;
+  years: string;
+  businessAddress: string;
+  landmark: string;
+  pinCode: number;
+  cities: string[];
+};
 
-  const handleSubmit = (e: React.FormEvent) => {
+const BusinessDetails = () => {
+  const [businessDetails, setBusinessDetails] = useState<businessDetails>({} as businessDetails);
+  const refs = useRef({} as Record<keyof businessDetails, HTMLInputElement| HTMLButtonElement | null>);
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) return;
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get("session_token");
+    if (token) {
+      localStorage.setItem("token", token);
+      const { userId, email } = jwt.decode(token) as {
+        userId: string;
+        email: string;
+      };
+      console.log("User ID:", userId);
+      console.log("Email:", email);
+    }
+  }, []);
+
+  const handleBizSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Business Name:", businessName);
-    console.log("Category:", category);
-    console.log("GSTIN:", gstin);
-    console.log("Years in Operation:", years);
-    console.log("Business Address:", businessAddress);
-    console.log("Landmark:", landmark);
-    console.log("Pin Code:", pinCode);
-    console.log("Operational Cities:", cities);
+
+    // Check if any required field is empty
+    for (const key in refs.current) {
+      const refElement = refs.current[key as keyof businessDetails];
+      if (!refElement || !refElement.value.trim()) {
+        return; // Stop further processing
+      }
+    }
+
+    const newDetails: businessDetails = {
+      businessName: refs.current.businessName!.value,
+      category: businessDetails.category,
+      gstin: refs.current.gstin!.value,
+      years: businessDetails.years,
+      businessAddress: refs.current.businessAddress!.value,
+      landmark: refs.current.landmark!.value,
+      pinCode: Number(refs.current.pinCode!.value),
+      cities: businessDetails.cities
+    };
+    setBusinessDetails(newDetails);
+    console.log("Business Details:", newDetails);
+
+    const token = localStorage.getItem("token")!;
+    const { userId, email } = jwt.decode(token) as {
+      userId: string;
+      email: string;
+    };
+    addBusinessDetails(userId, newDetails);
   };
 
   return (
-    <div className="flex h-full w-full flex-col overflow-hidden lg:flex-row min-h-screen">
+    <div className="flex h-full min-h-screen w-full flex-col overflow-hidden lg:flex-row">
       <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
         <div className="flex items-center justify-start gap-1 xs:self-start xs:pl-5 md:px-11 lg:mt-[5rem]">
           <button className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-300 p-5">
@@ -71,9 +114,9 @@ const BusinessDetails = () => {
           </p>
         </div>
         <div className="relative h-[10rem] lg:w-full">
-          <img
-            src={"/tajmahal.png"}
-            alt=""
+          <Image
+            src={tajmahal}
+            alt="Image of Indian monuments"
             className="h-full w-full object-cover"
           />
         </div>
@@ -81,106 +124,124 @@ const BusinessDetails = () => {
       <div className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] p-2 md:p-[1rem]">
         <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
           <h1 className="text-3xl font-semibold">Business Details</h1>
-          <div className="flex min-h-full min-w-full flex-col items-center gap-5">
-            <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-              <div className="flex min-w-[40%] flex-col gap-4">
-                <label htmlFor="businessName">Business Name</label>
-                <input
-                  id="businessName"
-                  type="text"
-                  className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
-                  placeholder="Enter your business name"
-                  value={businessName}
-                  onChange={(e) => setBusinessName(e.target.value)}
-                />
+          <form onSubmit={handleBizSubmit}>
+            <div className="flex min-h-full min-w-full flex-col items-center gap-5">
+              <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+                <div className="flex min-w-[40%] flex-col gap-4">
+                  <label htmlFor="businessName">Business Name</label>
+                  <input
+                    id="businessName"
+                    type="text"
+                    className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
+                    placeholder="Enter your business name"
+                    ref={(el) => {
+                      refs.current.businessName = el;
+                    }}
+                    required
+                  />
+                </div>
+                <div className="flex min-w-[40%] flex-col gap-4">
+                  <label htmlFor="category">Category</label>
+                  <Combobox
+                    options={frameworks}
+                    placeholder="Select Category"
+                    setFunction={(val) => {
+                      setBusinessDetails({ ...businessDetails, category: val });
+                    }}
+                    className="flex items-center justify-between rounded-xl border-2 py-6 hover:text-[#2E3192]"
+                  />
+                </div>
               </div>
-              <div className="flex min-w-[40%] flex-col gap-4">
-                <label htmlFor="category">Category</label>
-                <Combobox
-                  options={frameworks}
-                  placeholder="Select Category"
-                  setFunction={setYears}
-                  className="flex items-center justify-between rounded-xl border-2 py-6 hover:text-[#2E3192]"
-                />
+              <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+                <div className="flex min-w-[40%] flex-col gap-4">
+                  <label htmlFor="gstin">GSTIN</label>
+                  <input
+                    id="gstin"
+                    type="text"
+                    className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
+                    placeholder="Enter your GSTIN"
+                    ref={(el) => {
+                      refs.current.gstin = el;
+                    }}
+                    required
+                  />
+                </div>
+                <div className="flex flex-col gap-4 xs:min-w-[40%]">
+                  <label htmlFor="years">Years in Operation</label>
+                  <Combobox
+                    options={yearsInOperation}
+                    placeholder="Select Years"
+                    setFunction={(val) => {
+                      setBusinessDetails({ ...businessDetails, years: val });
+                    }}
+                    className="flex items-center justify-between rounded-xl border-2 py-6 hover:text-[#2E3192]"
+                  />
+                </div>
+              </div>
+              <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+                <div className="flex min-w-[40%] flex-col gap-4">
+                  <label htmlFor="businessAddress">Business Address</label>
+                  <input
+                    id="businessAddress"
+                    type="text"
+                    className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
+                    placeholder="Enter your business address"
+                    ref={(el) => {
+                      refs.current.businessAddress = el;
+                    }}
+                    required
+                  />
+                </div>
+                <div className="flex min-w-[40%] flex-col gap-4">
+                  <label htmlFor="landmark">Landmark</label>
+                  <input
+                    id="landmark"
+                    type="text"
+                    className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
+                    placeholder="Enter landmark"
+                    ref={(el) => {
+                      refs.current.landmark = el;
+                    }}
+                    required
+                  />
+                </div>
+              </div>
+              <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+                <div className="flex min-w-[40%] flex-col gap-4">
+                  <label htmlFor="pinCode">Pin Code</label>
+                  <input
+                    id="pinCode"
+                    type="number"
+                    className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none [-moz-appearance:_textfield] [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
+                    placeholder="Enter pin code"
+                    ref={(el) => {
+                      refs.current.pinCode = el;
+                    }}
+                    required
+                  />
+                </div>
+                <div className="flex min-w-[40%] flex-col gap-4">
+                  <label htmlFor="cities">Operational Cities</label>
+                  <Combobox
+                    options={operationalCities}
+                    placeholder="Select Operational Cities"
+                    setFunction={(val) => {
+                      setBusinessDetails({ ...businessDetails, cities: [val] });
+                    }}
+                    className="flex items-center justify-between rounded-xl border-2 py-6 hover:text-[#2E3192]"
+                  />
+                </div>
+              </div>
+              <div className="flex flex-col items-start self-start">
+                <button
+                  type="submit"
+                  className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+                >
+                  Verify
+                </button>
               </div>
             </div>
-            <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-              <div className="flex min-w-[40%] flex-col gap-4">
-                <label htmlFor="gstin">GSTIN</label>
-                <input
-                  id="gstin"
-                  type="text"
-                  className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
-                  placeholder="Enter your GSTIN"
-                  value={gstin}
-                  onChange={(e) => setGstin(e.target.value)}
-                />
-              </div>
-              <div className="flex flex-col gap-4 xs:min-w-[40%]">
-                <label htmlFor="years">Years in Operation</label>
-                <Combobox
-                  options={frameworks}
-                  placeholder="Select Years"
-                  setFunction={setYears}
-                  className="flex items-center justify-between rounded-xl border-2 py-6 hover:text-[#2E3192]"
-                />
-              </div>
-            </div>
-            <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-              <div className="flex min-w-[40%] flex-col gap-4">
-                <label htmlFor="businessAddress">Business Address</label>
-                <input
-                  id="businessAddress"
-                  type="text"
-                  className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
-                  placeholder="Enter your business address"
-                  value={businessAddress}
-                  onChange={(e) => setBusinessAddress(e.target.value)}
-                />
-              </div>
-              <div className="flex min-w-[40%] flex-col gap-4">
-                <label htmlFor="landmark">Landmark</label>
-                <input
-                  id="landmark"
-                  type="text"
-                  className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
-                  placeholder="Enter landmark"
-                  value={landmark}
-                  onChange={(e) => setLandmark(e.target.value)}
-                />
-              </div>
-            </div>
-            <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-              <div className="flex min-w-[40%] flex-col gap-4">
-                <label htmlFor="pinCode">Pin Code</label>
-                <input
-                  id="pinCode"
-                  type="text"
-                  className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
-                  placeholder="Enter pin code"
-                  value={pinCode}
-                  onChange={(e) => setPinCode(e.target.value)}
-                />
-              </div>
-              <div className="flex min-w-[40%] flex-col gap-4">
-                <label htmlFor="cities">Operational Cities</label>
-                <Combobox
-                  options={frameworks}
-                  placeholder="Select Years"
-                  setFunction={setYears}
-                  className="flex items-center justify-between rounded-xl border-2 py-6 hover:text-[#2E3192]"
-                />
-              </div>
-            </div>
-            <div className="flex flex-col items-start self-start">
-              <button
-                className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={handleSubmit}
-              >
-                Verify
-              </button>
-            </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>

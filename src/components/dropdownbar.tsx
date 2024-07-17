@@ -1,4 +1,5 @@
 "use client";
+import "../app/globals.css";
 
 import * as React from "react";
 import { useState } from "react";
@@ -49,7 +50,10 @@ export function DropdownBar() {
       />
       <DatePickerWithRange className="max-w-fit rounded-none py-7" />
       <button className="group flex w-[300px] items-center justify-center rounded-b-xl bg-[#2E3192] px-3 py-4 text-white hover:bg-indigo-400 hover:text-[#2E3192] md:h-[65px] md:w-[500px] lpt:w-fit lpt:rounded-b-none lpt:rounded-r-xl lpt:rounded-br-xl">
-        <WandSparkles className="h-6 w-6 group-hover:animate-pulse" />
+        <WandSparkles className="hidden h-6 w-6 group-hover:animate-pulse lpt:block" />
+        <a href="#" className="font-roboto lpt:hidden">
+          Explore
+        </a>
       </button>
     </div>
   );

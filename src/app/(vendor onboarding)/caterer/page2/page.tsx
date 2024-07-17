@@ -5,7 +5,7 @@ import { ComboboxDemo } from "@/components/dropdown";
 import { Dropdown } from "react-day-picker";
 import { Combobox } from "@/components/ui/combobox";
 import { ArrowUpSquare, Upload } from "lucide-react";
-import Appetizers from "../(components)/Appetizers";
+import Appetizers from "./(components)/Appetizers";
 
 const appetizers = [
   "Samosa",
@@ -47,7 +47,7 @@ const beverages = [
   "Jal Jeera",
   "Sol Kadhi",
   "Filter Coffee",
-  "Coconut Water",
+  "Tender Coconut Water",
   "Sugarcane Juice",
   "Badam Milk",
   "Kokum Sherbet",
@@ -129,10 +129,10 @@ const Page = () => {
           />
         </div>
       </div>
-      <div className="scroll-touch flex max-h-[calc(100vh-5.2rem)] min-w-[70%] flex-col items-strech gap-9 overflow-y-scroll bg-[#F7F6F9] p-2 md:p-[3rem]">
+      <div className="scroll-touch flex max-h-[calc(100vh-5.2rem)] min-w-[70%] flex-col items-center gap-9 overflow-y-scroll bg-[#F7F6F9] p-2 md:p-[1rem]">
         <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
-          <div className="flexxs:flex-col gap-9">
-            <h1 className="text-2xl font-semibold md:text-3xl">Menu Details</h1>
+          <div className="flex gap-9">
+            <h1 className="text-3xl font-semibold">Menu Details</h1>
             <div className="flex items-center gap-2">
               <input type="radio" />
               <p className="text-gray-500">Veg</p>
@@ -154,16 +154,16 @@ const Page = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col gap-9 rounded-xl bg-white p-3  xs:min-w-[90%] md:p-6">
-          <h1 className="md:text-3xl text-2xl font-semibold">Appetizers</h1>
+        <div className="flex flex-col gap-9 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
+          <h1 className="text-3xl font-semibold">Appetizers</h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers appetizers={appetizers} />
             </div>
           </div>
         </div>
-        <div className="flex flex-col gap-9 rounded-xl bg-white p-3  xs:min-w-[90%] md:p-6">
-          <h1 className="md:text-3xl text-2xl font-semibold">Beverages</h1>
+        <div className="flex flex-col gap-9 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
+          <h1 className="text-3xl font-semibold">Beverages</h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers appetizers={beverages} />
@@ -171,9 +171,8 @@ const Page = () => {
           </div>
         </div>
         <div className="flex flex-col gap-9 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
-          <div className="flex min-w-full flex-col items-start justify-between gap-5">
-            <h1 className="md:text-3xl text-2xl font-semibold">Other Details</h1>
-            <div className="flex md:flex-row gap-9 width-[100%] justify-between flex-col">
+          <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+            <h1 className="text-3xl font-semibold">Other Details</h1>
             <div className="flex min-w-[40%] flex-col gap-4">
               <label htmlFor="businessName">Caterer Name (Manager)</label>
               <input
@@ -193,21 +192,6 @@ const Page = () => {
                 setFunction={setYears}
                 className="flex items-center justify-between rounded-xl border-2 py-6 hover:text-[#2E3192]"
               />
-            </div>
-            </div>
-            <div className="flex flex-row gap-7 items-strech mt-9 self-end">
-              <button
-                className="rounded-xl border-[#2E3192] border-2 text-[#2E3192]  xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={handleSubmit}
-              >
-                Skip
-              </button>
-              <button
-                className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={handleSubmit}
-              >
-                Continue
-              </button>
             </div>
           </div>
         </div>

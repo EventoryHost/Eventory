@@ -28,7 +28,7 @@ function shouldSkipCommit() {
   const commitMessage = execSync("git log -1 --pretty=%B")
     .toString()
     .toLowerCase();
-  return /\[skip ci\]|\[skip netlify\]|chore|wip/.test(commitMessage);
+  return /\[skip ci\]|\[skip netlify\]|chore|wip|bug/.test(commitMessage);
 }
 
 if (shouldSkipCommit() || hasNoRelevantChanges() || hasNonDeployableChanges()) {

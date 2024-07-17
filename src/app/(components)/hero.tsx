@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
 import { ParallaxScroll } from "@/components/ui/parallax-scroll";
-import Nav from "./nav"; // Import the Nav component
 import { DropdownBar } from "@/components/dropdownbar";
 import { Horizontal } from "./horizontal";
 import { FlipWords } from "@/components/ui/flip-words";
@@ -23,7 +22,7 @@ const Feed: React.FC = () => {
     <>
       <div className="flex w-[100%] flex-col flex-wrap justify-start overflow-hidden md:flex-row md:py-0 lpt:h-[90vh]">
         <div className="flex w-[100%] items-center justify-start lg:w-[50%]">
-          <div className="mb-[10%] mt-[10%] flex h-[90vh] flex-col items-start justify-start px-[4%] lg:mb-[40%]">
+          <div className="mb-[10%] mt-[10%] flex h-[70vh] flex-col items-start justify-start px-[4%] md:h-[80vh] lg:mb-[40%] lg:h-[90vh]">
             <h1 className="text-4xl font-bold md:text-6xl">
               Find the Perfect
               <br />
