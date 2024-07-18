@@ -29,6 +29,10 @@ interface FormState {
 }
 
 const VenueForm: React.FC = () => {
+
+  const [currentPage, setCurrentPage] = useState(1);
+
+  // global varibales
   const [formState, setFormState] = useState<FormState>({
     venueType: "",
     seatingCapacity: "",
@@ -44,6 +48,12 @@ const VenueForm: React.FC = () => {
     instaURL: "",
     websiteURL: "",
   });
+
+  const updateFormState = (newState: Partial<FormState>) => {
+    setFormState((prev) => ({ ...prev, ...newState }));
+  };
+
+
 
   const [hourlyPackages, setHourlyPackages] = useState<Package[]>([
     { type: "", priceRange: [10000, 1000000] },
@@ -70,6 +80,7 @@ const VenueForm: React.FC = () => {
     string[]
   >([]);
 
+  //global functions
   const handlePackageChange = (
     setPackages: React.Dispatch<React.SetStateAction<Package[]>>,
     index: number,
@@ -96,46 +107,36 @@ const VenueForm: React.FC = () => {
     ]);
   };
 
-  const [currentPage, setCurrentPage] = useState(1);
 
-  const updateFormState = (newState: Partial<FormState>) => {
-    setFormState((prev) => ({ ...prev, ...newState }));
-  };
+  
 
   const handleSubmit = async () => {
     const venueData = {
-      // page 1
-      venueName: "placeholder",
-      venueType: formState.venueType,
-      standingCapacity: formState.standingCapacity,
-      seatingCapacity: formState.seatingCapacity,
+      id: "321",
+      name: "To be added",
       operatingHours: {
         openingTime: formState.startOperatingHours,
         closingTime: formState.endOperatingHours,
       },
       venueDescription: formState.venueDescription,
-
-      // page 2
-
+      capacity: Number(formState.seatingCapacity) + Number(formState.standingCapacity),
       decorServices: formState.decorType,
       audioVisualEquipment: audioVisualEquipment,
       accessibilityFeatures: accessibilityFeatures,
       facilities: facilities,
-
-      // page 3
-      termsAndConditions: formState.termsAndConditions,
+      termsConditions: formState.termsAndConditions,
       cancellationPolicy: formState.cancellationPolicy,
-
-      //page4
-      hourlyPackages: hourlyPackages,
-      dailyPackages: dailyPackages,
-      seasonalPackages: seasonalPackages,
-
-      //page 5
-      instaURL: formState.instaURL,
-      websiteURL: formState.websiteURL,
-      venue_restrictions: venue_restrictions,
-      venue_special_features: venue_special_features,
+      rates: {
+        hourly: hourlyPackages,
+        daily: dailyPackages,
+        seasonal: seasonalPackages,
+      },
+      socialLinks: {
+        instagramURL: formState.instaURL,
+        websiteURL: formState.websiteURL,
+      },
+      restrictionsPolicies: venue_restrictions,
+      specialFeatures: venue_special_features,
     };
 
     try {
@@ -147,8 +148,8 @@ const VenueForm: React.FC = () => {
 
     console.log([
       ["Venue name:", formState.venueType],
-      ["Seating Capacity:", formState.seatingCapacity],
-      ["Standing Capacity:", formState.standingCapacity],
+      ["Seating Capacity:", Number(formState.seatingCapacity)],
+      ["Standing Capacity:", Number(formState.standingCapacity)],
       [
         "Operating Hours:",
         formState.startOperatingHours,

@@ -3,7 +3,8 @@ import axios from "axios";
 async function addVenue(data: any) {
   try {
     const response = await axios.post(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/products/add-venue`,
+      //`${process.env.NEXT_PUBLIC_BASE_URL}/api/products/add-venue`,
+      `https://9e90-103-178-198-228.ngrok-free.app/api/products/add-venue`,
       data,
       {
         headers: {
@@ -72,10 +73,10 @@ async function addVenue(data: any) {
 //       daily: String,
 //       seasonal: String,
 //     },
-
+  
 //     photosVideos: [String],
 //     virtualTour: String,
-
+  
 //     socialLinks: {
 //       instagramURL: String,
 //       websiteURL: String,

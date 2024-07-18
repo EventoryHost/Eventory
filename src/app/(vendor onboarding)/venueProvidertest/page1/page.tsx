@@ -13,18 +13,18 @@ const venueTypes = [
 
 const seatingOptions = [
   { value: "", label: "Seated" },
-  { value: "lessThan100", label: "<100 persons" },
-  { value: "100to300", label: "100-300 persons" },
-  { value: "300to400", label: "300-400 persons" },
-  { value: "moreThan500", label: "> 500 persons" },
+  { value: "100", label: "<100 persons" },
+  { value: "300", label: "100-300 persons" },
+  { value: "400", label: "300-400 persons" },
+  { value: "500", label: "> 500 persons" },
 ];
 
 const standingOptions = [
-  { value: "", label: "Standing" },
-  { value: "lessThan100", label: "<100 persons" },
-  { value: "100to300", label: "100-300 persons" },
-  { value: "300to400", label: "300-400 persons" },
-  { value: "moreThan500", label: "> 500 persons" },
+  { value: "", label: "Seated" },
+  { value: "100", label: "<100 persons" },
+  { value: "300", label: "100-300 persons" },
+  { value: "400", label: "300-400 persons" },
+  { value: "500", label: "> 500 persons" },
 ];
 
 const timeOptions = [

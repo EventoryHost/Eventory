@@ -56,8 +56,6 @@ const _facilities = [
 interface FormState {
   venueType: string;
   seatingCapacity: string;
-  standingCapacity: string;
-  startOperatingHours: string;
   endOperatingHours: string;
   venueDescription: string;
   decorType: string;

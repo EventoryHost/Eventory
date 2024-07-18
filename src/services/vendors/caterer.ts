@@ -45,10 +45,10 @@ async function addCaterer(data: any) {
 //     advance_booking_period: String,
 //     deposit_required: String,
 //     per_plate_rates: String,
-
+  
 //     package_deals: String,
 //     per_plate_price_range: String,
-
+  
 //     cancellation_policy: {
 //       file: { type: String },
 //       via: { type: String },
@@ -65,5 +65,6 @@ async function addCaterer(data: any) {
 //     catering_service_images: [String],
 //     videos_of_event_setups: [String],
 //   });
+
 
 export { addCaterer };
