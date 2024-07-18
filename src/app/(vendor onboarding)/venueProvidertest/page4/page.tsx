@@ -1,55 +1,45 @@
+
+
 "use client";
 
-import React, { useState, ChangeEvent } from "react";
+import React from "react";
 import { Upload } from "lucide-react";
 import PriceSlider from "../(components)/priceSlider";
 import Checkbox from "@mui/material/Checkbox";
-import { set } from "date-fns";
 
 interface Package {
   type: string;
   priceRange: [number, number];
-} 
+}
 
-const Page: React.FC = () => {
-  const [hourlyPackages, setHourlyPackages] = useState<Package[]>([
-    { type: "", priceRange: [10000, 1000000] },
-  ]);
-
-  const [dailyPackages, setDailyPackages] = useState<Package[]>([
-    { type: "", priceRange: [20000, 100000] },
-  ]);
-
-  const [seasonalPackages, setSeasonalPackages] = useState<Package[]>([
-    { type: "", priceRange: [50000, 600000] },
-  ]);
-
-  const handlePackageChange = (
+interface PageProps {
+  hourlyPackages: Package[];
+  setHourlyPackages: React.Dispatch<React.SetStateAction<Package[]>>;
+  dailyPackages: Package[];
+  setDailyPackages: React.Dispatch<React.SetStateAction<Package[]>>;
+  seasonalPackages: Package[];
+  setSeasonalPackages: React.Dispatch<React.SetStateAction<Package[]>>;
+  handlePackageChange: (
     setPackages: React.Dispatch<React.SetStateAction<Package[]>>,
     index: number,
     field: "type" | "priceRange",
-    value: string | [number, number],
-  ) => {
-    setPackages((prevPackages) => {
-      const newPackages = [...prevPackages];
-      if (field === "type") {
-        newPackages[index].type = value as string;
-      } else {
-        newPackages[index].priceRange = value as [number, number];
-      }
-      return newPackages;
-    });
-  };
+    value: string | [number, number]
+  ) => void;
+  addPackage: (
+    setPackages: React.Dispatch<React.SetStateAction<Package[]>>
+  ) => void;
+}
 
-  const addPackage = (
-    setPackages: React.Dispatch<React.SetStateAction<Package[]>>,
-  ) => {
-    setPackages((prevPackages) => [
-      ...prevPackages,
-      { type: "", priceRange: [0, 100000] },
-    ]);
-  };
-
+const Page: React.FC<PageProps> = ({
+  hourlyPackages,
+  setHourlyPackages,
+  dailyPackages,
+  setDailyPackages,
+  seasonalPackages,
+  setSeasonalPackages,
+  handlePackageChange,
+  addPackage
+}) => {
   const handleSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
     console.log("Hourly Packages:", hourlyPackages);
@@ -107,18 +97,6 @@ const Page: React.FC = () => {
         <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
           <h1 className="text-3xl font-semibold">Basic Details</h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
-            {/* <div className="flex min-w-full flex-col gap-4">
-              <label htmlFor="uploadButton">Upload Photo/Video</label>
-              <button
-                id="uploadButton"
-                className="flex h-[4rem] w-full items-center justify-center gap-2 rounded-lg border-2 border-dotted border-gray-300 bg-white"
-              >
-                <Upload />
-                <p>Upload</p>
-              </button>
-            </div> */}
-
-            {/* Hourly Packages */}
             {hourlyPackages.map((pkg, index) => (
               <div
                 key={index}
@@ -372,23 +350,13 @@ const Page: React.FC = () => {
                 </button>
               </div>
             </div>
-
-            {/* continue and skip button */}
-            <div className="mt-9 flex flex-row items-stretch gap-7 self-end">
-              <button
-                className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={handleSubmit}
-              >
-                Skip
-              </button>
-              <button
-                className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={handleSubmit}
-              >
-                Continue
-              </button>
-            </div>
           </div>
+          <button
+            className="self-end rounded-lg bg-[#2E3192] px-7 py-3 text-white hover:bg-[#252683]"
+            onClick={handleSubmit}
+          >
+            Save
+          </button>
         </div>
       </div>
     </div>
@@ -397,42 +365,83 @@ const Page: React.FC = () => {
 
 export default Page;
 
+
+
 // "use client";
 
-// import React, { useState } from "react";
+// import React, { ChangeEvent } from "react";
 // import { Upload } from "lucide-react";
-// import PriceSlider from "./(components)/priceSlider";
+// import PriceSlider from "../(components)/priceSlider";
 // import Checkbox from "@mui/material/Checkbox";
 
-// const Page = () => {
-//   const [value1, setValue1] = useState([10000, 400000]);
-//   const [value2, setValue2] = useState([20000, 450000]);
-//   const [value3, setValue3] = useState([50000, 600000]);
-//   const label = { inputProps: { "aria-label": "Checkbox demo" } };
+// interface Package {
+//   type: string;
+//   priceRange: [number, number];
+// }
+// interface FormState {
+//   venueType: string;
+//   seatingCapacity: string;
+//   standingCapacity: string;
+//   startOperatingHours: string;
+//   endOperatingHours: string;
+//   venueDescription: string;
+//   decorType: string;
+//   hourlyPackages: Package[];
+//     dailyPackages: Package[];
+//     seasonalPackages: Package[];
+//   audioVisualEquipment: string[];
+//   accessibilityFeatures: string[];
+//   facilities: string[];
+//   termsAndConditions: string;
+//   cancellationPolicy: string;
+//   instaURL: string;
+//   websiteURL: string;
 
-//   const handleChange1 = (event: Event, newValue: number | number[]) => {
-//     setValue1(newValue as number[]);
-//     //console.log('value1', value1)
+// }
+
+// interface PageProps {
+//   formState: {
+//     hourlyPackages: Package[];
+//     dailyPackages: Package[];
+//     seasonalPackages: Package[];
+//   };
+//   //updatePackageFormState: (key: string, value: any) => void;
+//   updatePackageFormState:(packageType: keyof FormState, newPackages: Package[]) => void;
+// }
+
+// const Page: React.FC<PageProps> = ({ formState, updatePackageFormState}) => {
+//   const { hourlyPackages, dailyPackages, seasonalPackages } = formState;
+
+//   const handlePackageChange = (
+//     packages: Package[],
+//     index: number,
+//     field: "type" | "priceRange",
+//     value: string | [number, number],
+//     packageType: "hourlyPackages" | "dailyPackages" | "seasonalPackages"
+//   ) => {
+//     const newPackages = [...packages];
+//     if (field === "type") {
+//       newPackages[index].type = value as string;
+//     } else {
+//       newPackages[index].priceRange = value as [number, number];
+//     }
+//     updatePackageFormState(packageType, newPackages);
 //   };
 
-//   const handleChange2 = (event: Event, newValue: number | number[]) => {
-//     setValue2(newValue as number[]);
-//     //console.log('value2', value2)
+//   const addPackage = (packageType: "hourlyPackages" | "dailyPackages" | "seasonalPackages") => {
+//     const newPackage = { type: "", priceRange: [0, 100000] };
+//     const newPackages = [...formState[packageType], newPackage];
+//     console.log("newPackages", newPackages);
+//     //updatePackageFormState(packageType, newPackages);
 //   };
 
-//   const handleChange3 = (event: Event, newValue: number | number[]) => {
-//     setValue3(newValue as number[]);
-//     //console.log('value3', value3)
-//   };
-
-//   const [instaURL, setInstaURL] = useState("");
-//   const [websiteURL, setWebsiteURL] = useState("");
-
-//   const handleSubmit = (e: React.FormEvent) => {
+//   const handleSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
 //     e.preventDefault();
-//     if (instaURL) console.log("instagram URL:", instaURL);
-//     if (websiteURL) console.log("website URL:", websiteURL);
+//     console.log("Hourly Packages:", hourlyPackages);
+//     console.log("Daily Packages:", dailyPackages);
+//     console.log("Seasonal Packages:", seasonalPackages);
 //   };
+
 
 //   return (
 //     <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden lg:flex-row">
@@ -484,97 +493,63 @@ export default Page;
 //         <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
 //           <h1 className="text-3xl font-semibold">Basic Details</h1>
 //           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
-//             {/* 6 col for 3 items */}
-//             <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
-//               <div className="flex min-w-[40%] flex-col gap-4">
-//                 <label htmlFor="category">
-//                   <Checkbox
-//                     {...label}
-//                     sx={{
-//                       "&.Mui-checked": {
-//                         color: "#2E3192",
-//                       },
-//                     }}
+
+//             {/* Hourly Packages */}
+//             {hourlyPackages.map((pkg, index) => (
+//               <div
+//                 key={index}
+//                 className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row"
+//               >
+//                 <div className="flex min-w-[40%] flex-col gap-4">
+//                   <label htmlFor={`hourlyPackageType${index}`}>
+//                     <Checkbox
+//                       sx={{
+//                         "&.Mui-checked": {
+//                           color: "#2E3192",
+//                         },
+//                       }}
+//                     />
+//                     Hourly package rates
+//                   </label>
+//                   <input
+//                     id={`hourlyPackageType${index}`}
+//                     type="text"
+//                     className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
+//                     placeholder="Type of package , Eg: Day time"
+//                     value={pkg.type}
+//                     onChange={(e) =>
+//                       handlePackageChange(
+//                         hourlyPackages,
+//                         index,
+//                         "type",
+//                         e.target.value,
+//                         "hourlyPackages"
+//                       )
+//                     }
 //                   />
-//                   {/* <input type="checkbox" className="m-2 size-4 "></input> */}
-//                   Hourly package rates
-//                 </label>
-//                 <input
-//                   id="businessName"
-//                   type="text"
-//                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
-//                   placeholder="Type of package , Eg: Day time"
-//                   value={instaURL}
-//                   onChange={(e) => setInstaURL(e.target.value)}
-//                 />
-//               </div>
+//                 </div>
 
-//               <div className="flex h-full min-w-[40%] flex-col items-center justify-between">
-//                 <label htmlFor="category">Select price range</label>
-//                 <PriceSlider value={value1} onChange={handleChange1} />
-//               </div>
-//             </div>
-// <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-//   <div className="flex  flex-col items-start justify-between gap-2">
-//     <p className="text-gray-500">Or Provide Via</p>
-//     <button className="flex items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
-//       {" "}
-//       <Upload />
-//       Upload
-//     </button>
-//   </div>
-//   <div className="flex  flex-col item-start justify-between gap-2">
-//   <div className="rounded-lg bg-[#E6E6E6] p-2 cursor-pointer hover:shadow-xl">
-//       <svg
-//         width="24"
-//         height="24"
-//         viewBox="0 0 24 24"
-//         fill="none"
-//         xmlns="http://www.w3.org/2000/svg"
-//       >
-//         <path
-//           d="M12 5.5V17.5M6 11.9H18"
-//           stroke="#2B3F6C"
-//           stroke-width="2"
-//           stroke-linecap="round"
-//           stroke-linejoin="round"
-//         />
-//       </svg>
-//     </div>
-//   </div>
-// </div>
-
-//             <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
-//               <div className="flex min-w-[40%] flex-col gap-4">
-//                 <label htmlFor="category">
-//                   <Checkbox
-//                     {...label}
-//                     sx={{
-//                       "&.Mui-checked": {
-//                         color: "#2E3192",
-//                       },
-//                     }}
+//                 <div className="flex h-full min-w-[40%] flex-col items-center justify-between">
+//                   <label htmlFor={`hourlyPriceRange${index}`}>
+//                     Select price range
+//                   </label>
+//                   <PriceSlider
+//                     value={pkg.priceRange}
+//                     onChange={(e, newValue) =>
+//                       handlePackageChange(
+//                         hourlyPackages,
+//                         index,
+//                         "priceRange",
+//                         newValue as [number, number],
+//                         "hourlyPackages"
+//                       )
+//                     }
 //                   />
-//                   Daily package rates
-//                 </label>
-//                 <input
-//                   id="businessName"
-//                   type="text"
-//                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
-//                   placeholder="Type of package , Eg: Day time"
-//                   value={instaURL}
-//                   onChange={(e) => setInstaURL(e.target.value)}
-//                 />
+//                 </div>
 //               </div>
-
-//               <div className="flex h-full min-w-[40%] flex-col items-center justify-between">
-//                 <label htmlFor="category">Select price range</label>
-//                 <PriceSlider value={value2} onChange={handleChange2} />
-//               </div>
-
-//             </div>
+//             ))}
 //             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-//               <div className="flex  flex-col items-start justify-between gap-2">
+//               <div className="flex flex-col items-start justify-between gap-2">
 //                 <p className="text-gray-500">Or Provide Via</p>
 //                 <button className="flex items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
 //                   {" "}
@@ -582,8 +557,11 @@ export default Page;
 //                   Upload
 //                 </button>
 //               </div>
-//               <div className="flex  flex-col item-start justify-between gap-2">
-//               <div className="rounded-lg bg-[#E6E6E6] p-2 cursor-pointer hover:shadow-xl">
+//               <div className="item-start flex flex-col justify-between gap-2">
+//                 <button
+//                   className="cursor-pointer rounded-lg bg-[#E6E6E6] p-2 hover:shadow-xl"
+//                   onClick={() => addPackage("hourlyPackages")}
+//                 >
 //                   <svg
 //                     width="24"
 //                     height="24"
@@ -594,46 +572,71 @@ export default Page;
 //                     <path
 //                       d="M12 5.5V17.5M6 11.9H18"
 //                       stroke="#2B3F6C"
-//                       stroke-width="2"
-//                       stroke-linecap="round"
-//                       stroke-linejoin="round"
+//                       strokeWidth="2"
+//                       strokeLinecap="round"
+//                       strokeLinejoin="round"
 //                     />
 //                   </svg>
+//                 </button>
+//               </div>
+//             </div>
+
+//             {/* Daily Packages */}
+//             {dailyPackages.map((pkg, index) => (
+//               <div
+//                 key={index}
+//                 className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row"
+//               >
+//                 <div className="flex min-w-[40%] flex-col gap-4">
+//                   <label htmlFor={`dailyPackageType${index}`}>
+//                     <Checkbox
+//                       sx={{
+//                         "&.Mui-checked": {
+//                           color: "#2E3192",
+//                         },
+//                       }}
+//                     />
+//                     Daily package rates
+//                   </label>
+//                   <input
+//                     id={`dailyPackageType${index}`}
+//                     type="text"
+//                     className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
+//                     placeholder="Type of package , Eg: Day time"
+//                     value={pkg.type}
+//                     onChange={(e) =>
+//                       handlePackageChange(
+//                         dailyPackages,
+//                         index,
+//                         "type",
+//                         e.target.value,
+//                         "dailyPackages"
+//                       )
+//                     }
+//                   />
+//                 </div>
+
+//                 <div className="flex h-full min-w-[40%] flex-col items-center justify-between">
+//                   <label htmlFor={`dailyPriceRange${index}`}>
+//                     Select price range
+//                   </label>
+//                   <PriceSlider
+//                     value={pkg.priceRange}
+//                     onChange={(e, newValue) =>
+//                       handlePackageChange(
+//                         dailyPackages,
+//                         index,
+//                         "priceRange",
+//                         newValue as [number, number],
+//                         "dailyPackages"
+//                       )
+//                     }
+//                   />
 //                 </div>
 //               </div>
-//             </div>
-
-//             <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
-//               <div className="flex min-w-[40%] flex-col gap-4">
-//                 <label htmlFor="category">
-//                   <Checkbox
-//                     {...label}
-//                     sx={{
-//                       "&.Mui-checked": {
-//                         color: "#2E3192",
-//                       },
-//                     }}
-//                   />
-//                   Seasonal package rates
-//                 </label>
-//                 <input
-//                   id="businessName"
-//                   type="text"
-//                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
-//                   placeholder="Type of package , Eg: Day time"
-//                   value={instaURL}
-//                   onChange={(e) => setInstaURL(e.target.value)}
-//                 />
-//               </div>
-
-//               <div className="flex h-full min-w-[40%] flex-col items-center justify-between">
-//                 <label htmlFor="category">Select price range</label>
-//                 <PriceSlider value={value3} onChange={handleChange1} />
-//               </div>
-
-//             </div>
+//             ))}
 //             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-//               <div className="flex  flex-col items-start justify-between gap-2">
+//               <div className="flex flex-col items-start justify-between gap-2">
 //                 <p className="text-gray-500">Or Provide Via</p>
 //                 <button className="flex items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
 //                   {" "}
@@ -641,8 +644,11 @@ export default Page;
 //                   Upload
 //                 </button>
 //               </div>
-//               <div className="flex  flex-col item-start justify-between gap-2">
-//               <div className="rounded-lg bg-[#E6E6E6] p-2 cursor-pointer hover:shadow-xl">
+//               <div className="item-start flex flex-col justify-between gap-2">
+//                 <button
+//                   className="cursor-pointer rounded-lg bg-[#E6E6E6] p-2 hover:shadow-xl"
+//                   onClick={() => addPackage("dailyPackages")}
+//                 >
 //                   <svg
 //                     width="24"
 //                     height="24"
@@ -653,17 +659,104 @@ export default Page;
 //                     <path
 //                       d="M12 5.5V17.5M6 11.9H18"
 //                       stroke="#2B3F6C"
-//                       stroke-width="2"
-//                       stroke-linecap="round"
-//                       stroke-linejoin="round"
+//                       strokeWidth="2"
+//                       strokeLinecap="round"
+//                       strokeLinejoin="round"
 //                     />
 //                   </svg>
+//                 </button>
+//               </div>
+//             </div>
+
+//             {/* Seasonal Packages */}
+//             {seasonalPackages.map((pkg, index) => (
+//               <div
+//                 key={index}
+//                 className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row"
+//               >
+//                 <div className="flex min-w-[40%] flex-col gap-4">
+//                   <label htmlFor={`seasonalPackageType${index}`}>
+//                     <Checkbox
+//                       sx={{
+//                         "&.Mui-checked": {
+//                           color: "#2E3192",
+//                         },
+//                       }}
+//                     />
+//                     Seasonal package rates
+//                   </label>
+//                   <input
+//                     id={`seasonalPackageType${index}`}
+//                     type="text"
+//                     className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
+//                     placeholder="Type of package , Eg: Day time"
+//                     value={pkg.type}
+//                     onChange={(e) =>
+//                       handlePackageChange(
+//                         seasonalPackages,
+//                         index,
+//                         "type",
+//                         e.target.value,
+//                         "seasonalPackages"
+//                       )
+//                     }
+//                   />
 //                 </div>
+
+//                 <div className="flex h-full min-w-[40%] flex-col items-center justify-between">
+//                   <label htmlFor={`seasonalPriceRange${index}`}>
+//                     Select price range
+//                   </label>
+//                   <PriceSlider
+//                     value={pkg.priceRange}
+//                     onChange={(e, newValue) =>
+//                       handlePackageChange(
+//                         seasonalPackages,
+//                         index,
+//                         "priceRange",
+//                         newValue as [number, number],
+//                         "seasonalPackages"
+//                       )
+//                     }
+//                   />
+//                 </div>
+//               </div>
+//             ))}
+//             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+//               <div className="flex flex-col items-start justify-between gap-2">
+//                 <p className="text-gray-500">Or Provide Via</p>
+//                 <button className="flex items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
+//                   {" "}
+//                   <Upload />
+//                   Upload
+//                 </button>
+//               </div>
+//               <div className="item-start flex flex-col justify-between gap-2">
+//                 <button
+//                   className="cursor-pointer rounded-lg bg-[#E6E6E6] p-2 hover:shadow-xl"
+//                   onClick={() => addPackage("seasonalPackages")}
+//                 >
+//                   <svg
+//                     width="24"
+//                     height="24"
+//                     viewBox="0 0 24 24"
+//                     fill="none"
+//                     xmlns="http://www.w3.org/2000/svg"
+//                   >
+//                     <path
+//                       d="M12 5.5V17.5M6 11.9H18"
+//                       stroke="#2B3F6C"
+//                       strokeWidth="2"
+//                       strokeLinecap="round"
+//                       strokeLinejoin="round"
+//                     />
+//                   </svg>
+//                 </button>
 //               </div>
 //             </div>
 
 //             {/* continue and skip button */}
-//             <div className="items-strech mt-9 flex flex-row gap-7 self-end">
+//             <div className="mt-9 flex flex-row items-stretch gap-7 self-end">
 //               <button
 //                 className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
 //                 onClick={handleSubmit}
@@ -685,3 +778,4 @@ export default Page;
 // };
 
 // export default Page;
+

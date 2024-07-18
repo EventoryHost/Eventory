@@ -7,7 +7,7 @@ import { Combobox } from "@/components/ui/combobox";
 import { ArrowUpSquare, Upload } from "lucide-react";
 import Appetizers from "../(components)/Appetizers";
 
-const venue_restrictions = [
+const _venue_restrictions = [
   "Alcohol",
   "Bag Checking",
   "Equipment Damage",
@@ -20,7 +20,7 @@ const venue_restrictions = [
   "Waste Management",
 ];
 
-const venue_special_features = [
+const _venue_features = [
   "Architectural Features",
   "Botanical Gardens",
   "Children's Play Area",
@@ -34,15 +34,34 @@ const venue_special_features = [
   "Rooftop Venues",
   "Waterfront Views",
 ];
-const Page = () => {
-  const [instaURL, setInstaURL] = useState("");
-  const [websiteURL, setWebsiteURL] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (instaURL) console.log("instagram URL:", instaURL);
-    if (websiteURL) console.log("website URL:", websiteURL);
-  };
+interface FormState {
+  venueType: string;
+  seatingCapacity: string;
+  standingCapacity: string;
+  startOperatingHours: string;
+  endOperatingHours: string;
+  venueDescription: string;
+  decorType: string;
+  termsAndConditions: string;
+  cancellationPolicy: string;
+  instaURL: string;
+  websiteURL: string;
+
+}
+
+interface Page5Props {
+  formState: FormState;
+  updateFormState: (newState: Partial<FormState>) => void;
+  handleSubmit: (e: React.FormEvent) => void;
+  venue_restrictions: string[];
+  setVenue_restrictions: React.Dispatch<React.SetStateAction<string[]>>;
+  venue_special_features: string[];
+  setVenue_special_features: React.Dispatch<React.SetStateAction<string[]>>;
+}
+
+const Page: React.FC<Page5Props> = ({ formState, updateFormState, handleSubmit, venue_restrictions, setVenue_restrictions, venue_special_features, setVenue_special_features }) => {
+  
 
   return (
     <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden lg:flex-row">
@@ -128,41 +147,26 @@ const Page = () => {
               <div className="flex min-w-[40%] flex-col gap-4">
                 <label htmlFor="category">Instagram URL (optional)</label>
                 <input
-                  id="businessName"
+                  id="instaURL"
                   type="text"
                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                   placeholder="Enter your instagram URL"
-                  value={instaURL}
-                  onChange={(e) => setInstaURL(e.target.value)}
+                  value={formState.instaURL}
+                  onChange={(e) => updateFormState({ instaURL: e.target.value })}
                 />
               </div>
               <div className="flex min-w-[40%] flex-col gap-4">
                 <label htmlFor="category">Website URL (optional)</label>
                 <input
-                  id="businessName"
+                  id="websiteURL"
                   type="text"
                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                   placeholder="Enter your website URL"
-                  value={websiteURL}
-                  onChange={(e) => setWebsiteURL(e.target.value)}
+                  value={formState.websiteURL}
+                  onChange={(e) => updateFormState({ websiteURL: e.target.value })}
                 />
               </div>
             </div>
-
-            {/* <div className="items-strech mt-9 flex flex-row gap-7 self-end">
-              <button
-                className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={handleSubmit}
-              >
-                Skip
-              </button>
-              <button
-                className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={handleSubmit}
-              >
-                Continue
-              </button>
-            </div> */}
           </div>
         </div>
         <div className="flex flex-col gap-9 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
@@ -171,7 +175,11 @@ const Page = () => {
           </h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-              <Appetizers appetizers={venue_restrictions} />
+              <Appetizers
+               appetizers={_venue_restrictions}
+                selectedAppetizers={venue_restrictions}
+                setSelectedAppetizers={setVenue_restrictions}
+                />
             </div>
           </div>
         </div>
@@ -179,7 +187,11 @@ const Page = () => {
           <h1 className="text-3xl font-semibold">Special Features at your Venue</h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-              <Appetizers appetizers={venue_special_features} />
+              <Appetizers 
+              appetizers={_venue_features}
+              selectedAppetizers={venue_special_features}
+              setSelectedAppetizers={setVenue_special_features}
+               />
             </div>
             <div className="items-strech mt-9 flex flex-row gap-7 self-end">
               <button

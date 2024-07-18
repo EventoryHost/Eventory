@@ -5,7 +5,7 @@ import { ComboboxDemo } from "@/components/dropdown";
 import { Dropdown } from "react-day-picker";
 import { Combobox } from "@/components/ui/combobox";
 
-const venueType = [
+const venueTypes = [
   { value: "indoor", label: "Indoor" },
   { value: "outdoor", label: "Outdoor" },
   { value: "both", label: "Both" },
@@ -55,21 +55,30 @@ const timeOptions = [
   { value: "24:00", label: "11:59 PM" },
 ];
 
-const Page = () => {
-  const [venuetype, setVenueType] = useState("");
-  const [seatingCapacity, setSeatingCapacity] = useState("");
-  const [standingCapacity, setStandingOptions] = useState("");
-  const [startOperatingHours, setstartOperatingHours] = useState("");
-  const [endOperatingHours, setendOperatingHours] = useState("");
-  const [venueDescription, setVenueDescription] = useState("");
+interface FormState {
+  venueType: string;
+  seatingCapacity: string;
+  standingCapacity: string;
+  startOperatingHours: string;
+  endOperatingHours: string;
+  venueDescription: string;
+}
+
+interface Page1Props {
+  formState: FormState;
+  updateFormState: (newState: Partial<FormState>) => void;
+}
+
+const Page: React.FC<Page1Props> = ({ formState, updateFormState }) => {
+  const { venueType, seatingCapacity, standingCapacity, startOperatingHours, endOperatingHours, venueDescription } = formState;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Venue Type:", venuetype);
+    console.log("Venue Type:", venueType);
     console.log("Seating Capacity:", seatingCapacity);
     console.log("Standing Capacity:", standingCapacity);
-    console.log("starting Operating Time:", startOperatingHours);
-    console.log("ending Operating Time:", endOperatingHours);
+    console.log("Starting Operating Time:", startOperatingHours);
+    console.log("Ending Operating Time:", endOperatingHours);
     console.log("Venue Description:", venueDescription);
   };
 
@@ -127,9 +136,9 @@ const Page = () => {
               <div className="flex min-w-[40%] flex-col gap-4">
                 <label htmlFor="category">Venue Type</label>
                 <Combobox
-                  options={venueType}
+                  options={venueTypes}
                   placeholder="Select your category"
-                  setFunction={setVenueType}
+                  setFunction={(value) => updateFormState({ venueType: value })}
                   className="flex items-center justify-between rounded-xl border-2 py-6 hover:text-[#2E3192]"
                 />
               </div>
@@ -138,7 +147,7 @@ const Page = () => {
                 <Combobox
                   options={seatingOptions}
                   placeholder="Select your category"
-                  setFunction={setSeatingCapacity}
+                  setFunction={(value) => updateFormState({ seatingCapacity: value })}
                   className="flex items-center justify-between rounded-xl border-2 py-6 hover:text-[#2E3192]"
                 />
               </div>
@@ -149,7 +158,7 @@ const Page = () => {
                 <Combobox
                   options={timeOptions}
                   placeholder="Select your category"
-                  setFunction={setstartOperatingHours}
+                  setFunction={(value) => updateFormState({ startOperatingHours: value })}
                   className="flex items-center justify-between rounded-xl border-2 py-6 hover:text-[#2E3192]"
                 />
                  <label htmlFor="category" className="text-center">to</label>
@@ -158,7 +167,7 @@ const Page = () => {
                   <Combobox
                   options={timeOptions}
                   placeholder="Select your category"
-                  setFunction={setendOperatingHours}
+                  setFunction={(value) => updateFormState({ endOperatingHours: value })}
                   className="flex items-center justify-between rounded-xl border-2 py-6 hover:text-[#2E3192]"
                 />
               </div>
@@ -167,7 +176,7 @@ const Page = () => {
                 <Combobox
                   options={standingOptions}
                   placeholder="Select your category"
-                  setFunction={setStandingOptions}
+                  setFunction={(value) => updateFormState({ standingCapacity: value })}
                   className="flex items-center justify-between rounded-xl border-2 py-6 hover:text-[#2E3192]"
                 />
               </div>
@@ -181,7 +190,7 @@ const Page = () => {
                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                   placeholder="Enter your Venue Description"
                   value={venueDescription}
-                  onChange={(e) => setVenueDescription(e.target.value)}
+                  onChange={(e) => updateFormState({ venueDescription: e.target.value })}
                 />
               </div>
             </div>
