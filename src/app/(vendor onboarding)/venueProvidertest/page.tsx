@@ -56,14 +56,19 @@ const VenueForm: React.FC = () => {
   const [seasonalPackages, setSeasonalPackages] = useState<Package[]>([
     { type: "", priceRange: [50000, 600000] },
   ]);
- 
-  const [audioVisualEquipment, setAudioVisualEquipment] = useState<string[]>([]);
-  const [accessibilityFeatures, setAccessibilityFeatures] = useState<string[]>([]);
+
+  const [audioVisualEquipment, setAudioVisualEquipment] = useState<string[]>(
+    [],
+  );
+  const [accessibilityFeatures, setAccessibilityFeatures] = useState<string[]>(
+    [],
+  );
   const [facilities, setFacilities] = useState<string[]>([]);
 
   const [venue_restrictions, setVenue_restrictions] = useState<string[]>([]);
-  const [venue_special_features, setVenue_special_features] = useState<string[]>([]);
-
+  const [venue_special_features, setVenue_special_features] = useState<
+    string[]
+  >([]);
 
   const handlePackageChange = (
     setPackages: React.Dispatch<React.SetStateAction<Package[]>>,
@@ -91,8 +96,6 @@ const VenueForm: React.FC = () => {
     ]);
   };
 
-
-
   const [currentPage, setCurrentPage] = useState(1);
 
   const updateFormState = (newState: Partial<FormState>) => {
@@ -104,9 +107,9 @@ const VenueForm: React.FC = () => {
       // page 1
       venueName: "placeholder",
       venueType: formState.venueType,
-      standingCapacity:formState.standingCapacity,
+      standingCapacity: formState.standingCapacity,
       seatingCapacity: formState.seatingCapacity,
-       operatingHours: {
+      operatingHours: {
         openingTime: formState.startOperatingHours,
         closingTime: formState.endOperatingHours,
       },
@@ -142,30 +145,30 @@ const VenueForm: React.FC = () => {
       console.error("Error adding venue:", error);
     }
 
-    console.log(
+    console.log([
+      ["Venue name:", formState.venueType],
+      ["Seating Capacity:", formState.seatingCapacity],
+      ["Standing Capacity:", formState.standingCapacity],
       [
-        ["Venue name:", formState.venueType],
-        ["Seating Capacity:", formState.seatingCapacity],
-        ["Standing Capacity:", formState.standingCapacity],
-        ["Operating Hours:", formState.startOperatingHours, formState.endOperatingHours],
-        ["Venue Description:", formState.venueDescription],
-        ["Decor Type:", formState.decorType],
-        ["Audio Visual Equipment:", audioVisualEquipment],
-        ["Accessibility Features:", accessibilityFeatures],
-        ["Facilities:", facilities],
-        ["Terms and Conditions:", formState.termsAndConditions],
-        ["Cancellation Policy:", formState.cancellationPolicy],
-        ["Hourly Packages:", hourlyPackages],
-        ["Daily Packages:", dailyPackages],
-        ["Seasonal Packages:", seasonalPackages],
-        ["Instagram URL:", formState.instaURL],
-        ["Website URL:", formState.websiteURL],
-        ["Venue Restrictions:", venue_restrictions],
-        ["Venue Special Features:", venue_special_features]
-      ]
-      
-
-    );
+        "Operating Hours:",
+        formState.startOperatingHours,
+        formState.endOperatingHours,
+      ],
+      ["Venue Description:", formState.venueDescription],
+      ["Decor Type:", formState.decorType],
+      ["Audio Visual Equipment:", audioVisualEquipment],
+      ["Accessibility Features:", accessibilityFeatures],
+      ["Facilities:", facilities],
+      ["Terms and Conditions:", formState.termsAndConditions],
+      ["Cancellation Policy:", formState.cancellationPolicy],
+      ["Hourly Packages:", hourlyPackages],
+      ["Daily Packages:", dailyPackages],
+      ["Seasonal Packages:", seasonalPackages],
+      ["Instagram URL:", formState.instaURL],
+      ["Website URL:", formState.websiteURL],
+      ["Venue Restrictions:", venue_restrictions],
+      ["Venue Special Features:", venue_special_features],
+    ]);
   };
 
   const renderPage = () => {
@@ -176,15 +179,15 @@ const VenueForm: React.FC = () => {
         );
       case 2:
         return (
-          <Page2 formState={formState} 
-          updateFormState={updateFormState}
-          audioVisualEquipment={audioVisualEquipment}
-          setAudioVisualEquipment={setAudioVisualEquipment}
-          accessibilityFeatures={accessibilityFeatures}
-          setAccessibilityFeatures={setAccessibilityFeatures}
-          facilities={facilities}
-          setFacilities={setFacilities}
-
+          <Page2
+            formState={formState}
+            updateFormState={updateFormState}
+            audioVisualEquipment={audioVisualEquipment}
+            setAudioVisualEquipment={setAudioVisualEquipment}
+            accessibilityFeatures={accessibilityFeatures}
+            setAccessibilityFeatures={setAccessibilityFeatures}
+            facilities={facilities}
+            setFacilities={setFacilities}
           />
         );
       case 3:
@@ -226,7 +229,7 @@ const VenueForm: React.FC = () => {
   return (
     <div>
       {renderPage()}
-      <div className=" mt-9 flex flex-row gap-7 justify-center items-center ml-10">
+      <div className="ml-10 mt-9 flex flex-row items-center justify-center gap-7">
         {currentPage > 1 && (
           <button
             className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"

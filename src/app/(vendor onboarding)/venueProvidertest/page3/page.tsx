@@ -18,13 +18,12 @@ interface Page3Props {
 }
 
 const Page: React.FC<Page3Props> = ({ formState, updateFormState }) => {
-  const {termsAndConditions, cancellationPolicy} = formState;
-
+  const { termsAndConditions, cancellationPolicy } = formState;
 
   const handleSubmit = (e: React.FormEvent) => {
-      e.preventDefault();
-        console.log("Terms and Conditions:", formState.termsAndConditions);
-        console.log("Cancellation Policy:", formState.cancellationPolicy);
+    e.preventDefault();
+    console.log("Terms and Conditions:", formState.termsAndConditions);
+    console.log("Cancellation Policy:", formState.cancellationPolicy);
   };
 
   return (
@@ -112,7 +111,9 @@ const Page: React.FC<Page3Props> = ({ formState, updateFormState }) => {
                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 pb-[8vw] text-sm outline-none"
                   placeholder="Enter Your Terms And Conditions"
                   value={termsAndConditions}
-                  onChange={(e) => updateFormState({ termsAndConditions: e.target.value })}
+                  onChange={(e) =>
+                    updateFormState({ termsAndConditions: e.target.value })
+                  }
                 />
               </div>
               <div className="flex min-w-[40%] flex-col gap-4">
@@ -123,7 +124,9 @@ const Page: React.FC<Page3Props> = ({ formState, updateFormState }) => {
                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 pb-[8vw] text-sm outline-none"
                   placeholder="Enter Your Cancellation Policy"
                   value={cancellationPolicy}
-                  onChange={(e) => updateFormState({ cancellationPolicy: e.target.value })}
+                  onChange={(e) =>
+                    updateFormState({ cancellationPolicy: e.target.value })
+                  }
                 />
               </div>
             </div>

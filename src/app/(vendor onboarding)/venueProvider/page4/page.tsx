@@ -9,7 +9,7 @@ import { set } from "date-fns";
 interface Package {
   type: string;
   priceRange: [number, number];
-} 
+}
 
 const Page: React.FC = () => {
   const [hourlyPackages, setHourlyPackages] = useState<Package[]>([

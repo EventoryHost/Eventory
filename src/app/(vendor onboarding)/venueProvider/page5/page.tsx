@@ -176,7 +176,9 @@ const Page = () => {
           </div>
         </div>
         <div className="flex flex-col gap-9 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
-          <h1 className="text-3xl font-semibold">Special Features at your Venue</h1>
+          <h1 className="text-3xl font-semibold">
+            Special Features at your Venue
+          </h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers appetizers={venue_special_features} />

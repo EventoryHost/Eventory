@@ -1,5 +1,3 @@
-
-
 "use client";
 
 import React from "react";
@@ -23,10 +21,10 @@ interface PageProps {
     setPackages: React.Dispatch<React.SetStateAction<Package[]>>,
     index: number,
     field: "type" | "priceRange",
-    value: string | [number, number]
+    value: string | [number, number],
   ) => void;
   addPackage: (
-    setPackages: React.Dispatch<React.SetStateAction<Package[]>>
+    setPackages: React.Dispatch<React.SetStateAction<Package[]>>,
   ) => void;
 }
 
@@ -38,7 +36,7 @@ const Page: React.FC<PageProps> = ({
   seasonalPackages,
   setSeasonalPackages,
   handlePackageChange,
-  addPackage
+  addPackage,
 }) => {
   const handleSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -365,8 +363,6 @@ const Page: React.FC<PageProps> = ({
 
 export default Page;
 
-
-
 // "use client";
 
 // import React, { ChangeEvent } from "react";
@@ -441,7 +437,6 @@ export default Page;
 //     console.log("Daily Packages:", dailyPackages);
 //     console.log("Seasonal Packages:", seasonalPackages);
 //   };
-
 
 //   return (
 //     <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden lg:flex-row">
@@ -778,4 +773,3 @@ export default Page;
 // };
 
 // export default Page;
-

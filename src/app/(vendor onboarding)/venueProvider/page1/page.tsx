@@ -28,7 +28,7 @@ const standingOptions = [
 ];
 
 const timeOptions = [
-   {value: "00:00", label: "00:01 AM"},
+  { value: "00:00", label: "00:01 AM" },
   { value: "01:00", label: "01:00 AM" },
   { value: "02:00", label: "02:00 AM" },
   { value: "03:00", label: "03:00 AM" },
@@ -152,10 +152,11 @@ const Page = () => {
                   setFunction={setstartOperatingHours}
                   className="flex items-center justify-between rounded-xl border-2 py-6 hover:text-[#2E3192]"
                 />
-                 <label htmlFor="category" className="text-center">to</label>
+                <label htmlFor="category" className="text-center">
+                  to
+                </label>
 
-                 
-                  <Combobox
+                <Combobox
                   options={timeOptions}
                   placeholder="Select your category"
                   setFunction={setendOperatingHours}

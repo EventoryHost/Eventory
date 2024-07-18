@@ -63,7 +63,7 @@ interface FormState {
   decorType: string;
   // audioVisualEquipment: string[];
   // accessibilityFeatures: string[];
-  //facilities: string[]; 
+  //facilities: string[];
 }
 
 interface Page2Props {
@@ -74,14 +74,21 @@ interface Page2Props {
   facilities: string[];
   setFacilities: React.Dispatch<React.SetStateAction<string[]>>;
 
-
   formState: FormState;
   updateFormState: (newState: Partial<FormState>) => void;
 }
 
-
-const Page: React.FC<Page2Props> = ({ formState, updateFormState, audioVisualEquipment, setAudioVisualEquipment,accessibilityFeatures, setAccessibilityFeatures, facilities,  setFacilities }) => {
-  const {decorType} = formState;
+const Page: React.FC<Page2Props> = ({
+  formState,
+  updateFormState,
+  audioVisualEquipment,
+  setAudioVisualEquipment,
+  accessibilityFeatures,
+  setAccessibilityFeatures,
+  facilities,
+  setFacilities,
+}) => {
+  const { decorType } = formState;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -160,10 +167,10 @@ const Page: React.FC<Page2Props> = ({ formState, updateFormState, audioVisualEqu
           </h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-            <Appetizers
-            appetizers={_audioEquipment}
-            selectedAppetizers={audioVisualEquipment}
-            setSelectedAppetizers={setAudioVisualEquipment}
+              <Appetizers
+                appetizers={_audioEquipment}
+                selectedAppetizers={audioVisualEquipment}
+                setSelectedAppetizers={setAudioVisualEquipment}
               />
             </div>
           </div>
@@ -174,11 +181,11 @@ const Page: React.FC<Page2Props> = ({ formState, updateFormState, audioVisualEqu
           </h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-              <Appetizers 
-              appetizers={_accessibilityFeatures}
-              selectedAppetizers={accessibilityFeatures}
-              setSelectedAppetizers={setAccessibilityFeatures}
-               />
+              <Appetizers
+                appetizers={_accessibilityFeatures}
+                selectedAppetizers={accessibilityFeatures}
+                setSelectedAppetizers={setAccessibilityFeatures}
+              />
             </div>
           </div>
         </div>
@@ -187,10 +194,10 @@ const Page: React.FC<Page2Props> = ({ formState, updateFormState, audioVisualEqu
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
-               appetizers={_facilities}
+                appetizers={_facilities}
                 selectedAppetizers={facilities}
                 setSelectedAppetizers={setFacilities}
-               />
+              />
             </div>
             <div className="items-strech mt-9 flex flex-row gap-7 self-end">
               <button

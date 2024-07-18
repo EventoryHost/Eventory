@@ -28,7 +28,7 @@ const standingOptions = [
 ];
 
 const timeOptions = [
-   {value: "00:00", label: "00:01 AM"},
+  { value: "00:00", label: "00:01 AM" },
   { value: "01:00", label: "01:00 AM" },
   { value: "02:00", label: "02:00 AM" },
   { value: "03:00", label: "03:00 AM" },
@@ -70,7 +70,14 @@ interface Page1Props {
 }
 
 const Page: React.FC<Page1Props> = ({ formState, updateFormState }) => {
-  const { venueType, seatingCapacity, standingCapacity, startOperatingHours, endOperatingHours, venueDescription } = formState;
+  const {
+    venueType,
+    seatingCapacity,
+    standingCapacity,
+    startOperatingHours,
+    endOperatingHours,
+    venueDescription,
+  } = formState;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -147,7 +154,9 @@ const Page: React.FC<Page1Props> = ({ formState, updateFormState }) => {
                 <Combobox
                   options={seatingOptions}
                   placeholder="Select your category"
-                  setFunction={(value) => updateFormState({ seatingCapacity: value })}
+                  setFunction={(value) =>
+                    updateFormState({ seatingCapacity: value })
+                  }
                   className="flex items-center justify-between rounded-xl border-2 py-6 hover:text-[#2E3192]"
                 />
               </div>
@@ -158,16 +167,21 @@ const Page: React.FC<Page1Props> = ({ formState, updateFormState }) => {
                 <Combobox
                   options={timeOptions}
                   placeholder="Select your category"
-                  setFunction={(value) => updateFormState({ startOperatingHours: value })}
+                  setFunction={(value) =>
+                    updateFormState({ startOperatingHours: value })
+                  }
                   className="flex items-center justify-between rounded-xl border-2 py-6 hover:text-[#2E3192]"
                 />
-                 <label htmlFor="category" className="text-center">to</label>
+                <label htmlFor="category" className="text-center">
+                  to
+                </label>
 
-                 
-                  <Combobox
+                <Combobox
                   options={timeOptions}
                   placeholder="Select your category"
-                  setFunction={(value) => updateFormState({ endOperatingHours: value })}
+                  setFunction={(value) =>
+                    updateFormState({ endOperatingHours: value })
+                  }
                   className="flex items-center justify-between rounded-xl border-2 py-6 hover:text-[#2E3192]"
                 />
               </div>
@@ -176,7 +190,9 @@ const Page: React.FC<Page1Props> = ({ formState, updateFormState }) => {
                 <Combobox
                   options={standingOptions}
                   placeholder="Select your category"
-                  setFunction={(value) => updateFormState({ standingCapacity: value })}
+                  setFunction={(value) =>
+                    updateFormState({ standingCapacity: value })
+                  }
                   className="flex items-center justify-between rounded-xl border-2 py-6 hover:text-[#2E3192]"
                 />
               </div>
@@ -190,7 +206,9 @@ const Page: React.FC<Page1Props> = ({ formState, updateFormState }) => {
                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                   placeholder="Enter your Venue Description"
                   value={venueDescription}
-                  onChange={(e) => updateFormState({ venueDescription: e.target.value })}
+                  onChange={(e) =>
+                    updateFormState({ venueDescription: e.target.value })
+                  }
                 />
               </div>
             </div>

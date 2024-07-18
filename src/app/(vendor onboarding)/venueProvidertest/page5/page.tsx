@@ -47,7 +47,6 @@ interface FormState {
   cancellationPolicy: string;
   instaURL: string;
   websiteURL: string;
-
 }
 
 interface Page5Props {
@@ -60,9 +59,15 @@ interface Page5Props {
   setVenue_special_features: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-const Page: React.FC<Page5Props> = ({ formState, updateFormState, handleSubmit, venue_restrictions, setVenue_restrictions, venue_special_features, setVenue_special_features }) => {
-  
-
+const Page: React.FC<Page5Props> = ({
+  formState,
+  updateFormState,
+  handleSubmit,
+  venue_restrictions,
+  setVenue_restrictions,
+  venue_special_features,
+  setVenue_special_features,
+}) => {
   return (
     <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden lg:flex-row">
       <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
@@ -152,7 +157,9 @@ const Page: React.FC<Page5Props> = ({ formState, updateFormState, handleSubmit, 
                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                   placeholder="Enter your instagram URL"
                   value={formState.instaURL}
-                  onChange={(e) => updateFormState({ instaURL: e.target.value })}
+                  onChange={(e) =>
+                    updateFormState({ instaURL: e.target.value })
+                  }
                 />
               </div>
               <div className="flex min-w-[40%] flex-col gap-4">
@@ -163,7 +170,9 @@ const Page: React.FC<Page5Props> = ({ formState, updateFormState, handleSubmit, 
                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                   placeholder="Enter your website URL"
                   value={formState.websiteURL}
-                  onChange={(e) => updateFormState({ websiteURL: e.target.value })}
+                  onChange={(e) =>
+                    updateFormState({ websiteURL: e.target.value })
+                  }
                 />
               </div>
             </div>
@@ -176,22 +185,24 @@ const Page: React.FC<Page5Props> = ({ formState, updateFormState, handleSubmit, 
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
-               appetizers={_venue_restrictions}
+                appetizers={_venue_restrictions}
                 selectedAppetizers={venue_restrictions}
                 setSelectedAppetizers={setVenue_restrictions}
-                />
+              />
             </div>
           </div>
         </div>
         <div className="flex flex-col gap-9 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
-          <h1 className="text-3xl font-semibold">Special Features at your Venue</h1>
+          <h1 className="text-3xl font-semibold">
+            Special Features at your Venue
+          </h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-              <Appetizers 
-              appetizers={_venue_features}
-              selectedAppetizers={venue_special_features}
-              setSelectedAppetizers={setVenue_special_features}
-               />
+              <Appetizers
+                appetizers={_venue_features}
+                selectedAppetizers={venue_special_features}
+                setSelectedAppetizers={setVenue_special_features}
+              />
             </div>
             <div className="items-strech mt-9 flex flex-row gap-7 self-end">
               <button
