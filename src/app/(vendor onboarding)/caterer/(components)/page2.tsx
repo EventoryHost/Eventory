@@ -45,6 +45,7 @@ const Page2 = ({
             />
           </div>
         </div>
+        
         <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
           <div className="flex min-w-[40%] flex-col gap-4">
             <label htmlFor="beverages">Beverages</label>
