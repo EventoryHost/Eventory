@@ -13,7 +13,7 @@ const venueTypes = [
 
 const seatingOptions = [
   { value: "", label: "Seated" },
-  { value: "100", label: "<100 persons" },
+  { value: "less than 100", label: "<100 persons" },
   { value: "300", label: "100-300 persons" },
   { value: "400", label: "300-400 persons" },
   { value: "500", label: "> 500 persons" },
@@ -21,7 +21,7 @@ const seatingOptions = [
 
 const standingOptions = [
   { value: "", label: "Seated" },
-  { value: "100", label: "<100 persons" },
+  { value: "less than 100", label: "<100 persons" },
   { value: "300", label: "100-300 persons" },
   { value: "400", label: "300-400 persons" },
   { value: "500", label: "> 500 persons" },

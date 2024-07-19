@@ -36,15 +36,6 @@ const _venue_features = [
 ];
 
 interface FormState {
-  venueType: string;
-  seatingCapacity: string;
-  standingCapacity: string;
-  startOperatingHours: string;
-  endOperatingHours: string;
-  venueDescription: string;
-  decorType: string;
-  termsAndConditions: string;
-  cancellationPolicy: string;
   instaURL: string;
   websiteURL: string;
 }
