@@ -29,7 +29,6 @@ interface FormState {
 }
 
 const VenueForm: React.FC = () => {
-
   const [currentPage, setCurrentPage] = useState(1);
 
   // global varibales
@@ -52,8 +51,6 @@ const VenueForm: React.FC = () => {
   const updateFormState = (newState: Partial<FormState>) => {
     setFormState((prev) => ({ ...prev, ...newState }));
   };
-
-
 
   const [hourlyPackages, setHourlyPackages] = useState<Package[]>([
     { type: "", priceRange: [10000, 1000000] },
@@ -107,72 +104,68 @@ const VenueForm: React.FC = () => {
     ]);
   };
 
-
-  
-
   const handleSubmit = async () => {
     const formData = new FormData();
 
     formData.append("id", "321"); // Ensure this ID is unique and valid
-  formData.append("name", formState.venueType);
-  formData.append("operatingHours[openingTime]", formState.startOperatingHours);
-  formData.append("operatingHours[closingTime]", formState.endOperatingHours);
-  formData.append("venueDescription", formState.venueDescription);
-  formData.append("seatedCapacity", formState.seatingCapacity); // Ensure this is a string
-  formData.append("standingCapacity", formState.standingCapacity); // Ensure this is a string  
-  formData.append("decorServices", formState.decorType);
-  formData.append("termsConditions", formState.termsAndConditions);
-  formData.append("cancellationPolicy", formState.cancellationPolicy);
-  formData.append("socialLinks[instagramURL]", formState.instaURL);
-  formData.append("socialLinks[websiteURL]", formState.websiteURL);
+    formData.append("name", formState.venueType);
+    formData.append(
+      "operatingHours[openingTime]",
+      formState.startOperatingHours,
+    );
+    formData.append("operatingHours[closingTime]", formState.endOperatingHours);
+    formData.append("venueDescription", formState.venueDescription);
+    formData.append("seatedCapacity", formState.seatingCapacity); // Ensure this is a string
+    formData.append("standingCapacity", formState.standingCapacity); // Ensure this is a string
+    formData.append("decorServices", formState.decorType);
+    formData.append("termsConditions", formState.termsAndConditions);
+    formData.append("cancellationPolicy", formState.cancellationPolicy);
+    formData.append("socialLinks[instagramURL]", formState.instaURL);
+    formData.append("socialLinks[websiteURL]", formState.websiteURL);
 
+    audioVisualEquipment.forEach((item, index) => {
+      formData.append(`audioVisualEquipment[${index}]`, item);
+    });
 
-  audioVisualEquipment.forEach((item, index) => {
-    formData.append(`audioVisualEquipment[${index}]`, item);
-  });
+    accessibilityFeatures.forEach((item, index) => {
+      formData.append(`accessibilityFeatures[${index}]`, item);
+    });
 
-  accessibilityFeatures.forEach((item, index) => {
-    formData.append(`accessibilityFeatures[${index}]`, item);
-  });
+    facilities.forEach((item, index) => {
+      formData.append(`facilities[${index}]`, item);
+    });
 
-  facilities.forEach((item, index) => {
-    formData.append(`facilities[${index}]`, item);
-  });
+    venue_restrictions.forEach((item, index) => {
+      formData.append(`restrictionsPolicies[${index}]`, item);
+    });
 
-  venue_restrictions.forEach((item, index) => {
-    formData.append(`restrictionsPolicies[${index}]`, item);
-  });
+    venue_special_features.forEach((item, index) => {
+      formData.append(`specialFeatures[${index}]`, item);
+    });
 
-  venue_special_features.forEach((item, index) => {
-    formData.append(`specialFeatures[${index}]`, item);
-  });
+    hourlyPackages.forEach((pkg, index) => {
+      formData.append(`rates[hourly][${index}]`, JSON.stringify(pkg));
+    });
 
-  hourlyPackages.forEach((pkg, index) => {
-    formData.append(`rates[hourly][${index}]`, JSON.stringify(pkg));
-  });
+    dailyPackages.forEach((pkg, index) => {
+      formData.append(`rates[daily][${index}]`, JSON.stringify(pkg));
+    });
 
-  dailyPackages.forEach((pkg, index) => {
-    formData.append(`rates[daily][${index}]`, JSON.stringify(pkg));
-  });
+    seasonalPackages.forEach((pkg, index) => {
+      formData.append(`rates[seasonal][${index}]`, JSON.stringify(pkg));
+    });
 
-  seasonalPackages.forEach((pkg, index) => {
-    formData.append(`rates[seasonal][${index}]`, JSON.stringify(pkg));
-  });
+    //for debugging
+    formData.forEach((value, key) => {
+      console.log(`${key}: ${value}`);
+    });
 
-
-  //for debugging
-  formData.forEach((value, key) => {
-    console.log(`${key}: ${value}`);
-  });
-
-
-  try {
-    await addVenue(formData);
-    console.log("Venue added successfully");
-  } catch (error) {
-    console.error("Error adding venue:", error);
-  }
-
+    try {
+      await addVenue(formData);
+      console.log("Venue added successfully");
+    } catch (error) {
+      console.error("Error adding venue:", error);
+    }
   };
 
   const renderPage = () => {

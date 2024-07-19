@@ -2,7 +2,7 @@ import axios from "axios";
 
 async function addVenue(data: any) {
   try {
-     console.log(data);
+    console.log(data);
     const response = await axios.post(
       `https://9e90-103-178-198-228.ngrok-free.app/api/products/add-venue`,
       data,
@@ -12,7 +12,7 @@ async function addVenue(data: any) {
         },
       },
     );
-    console.log(response.data); 
+    console.log(response.data);
   } catch (error) {
     if (axios.isAxiosError(error)) {
       console.log(error.message);
