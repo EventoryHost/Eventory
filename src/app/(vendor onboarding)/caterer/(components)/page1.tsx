@@ -89,7 +89,7 @@ const Page1 = ({
                 appetizers={regional}
                 selectedAppetizers={regionalSpecialties}
                 setSelectedAppetizers={setRegionalSpecialties}
-              />  
+              />
             </div>
           </div>
         </div>
