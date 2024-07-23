@@ -2,8 +2,9 @@
 
 import React, { useState } from "react";
 import Appetizers from "../(components)/Appetizers";
+import { set } from "date-fns";
 
-const makeupTypes = [
+const _makeupTypes = [
   "Bridal Makeup",
   "Daily Makeup", // Assuming misspelling in the image
   "Editorial Makeup",
@@ -15,15 +16,38 @@ const makeupTypes = [
   "Others",
 ];
 
-const Page = () => {
-  const [category, setCategory] = useState<"Yes" | "No">("No");
+
+interface Page4Props {
+ 
+  makeupTypes: string[];
+  setMakeupTypes: React.Dispatch<React.SetStateAction<string[]>>;
+  onsiteMakeup: boolean; 
+  setOnsiteMakeup: React.Dispatch<React.SetStateAction<boolean>>;
+ }
+
+
+const Page: React.FC<Page4Props> = ({ 
+  makeupTypes,
+  setMakeupTypes,
+  onsiteMakeup,
+  setOnsiteMakeup
+
+}) => {
+
+
 
   const handleCategoryChange = (newCategory: "Yes" | "No") => {
-    setCategory(newCategory);
+     if(newCategory === "Yes") {
+      setOnsiteMakeup(true);
+     } else {
+      setOnsiteMakeup(false);
+     }
   };
   
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+     console.log("onsiteMakeup", onsiteMakeup);
+      console.log("makeupTypes", makeupTypes);
   };
 
   return (
@@ -85,7 +109,7 @@ const Page = () => {
             <div className="flex items-center gap-2">
               <input
                 type="radio"
-                checked={category === "Yes"}
+                checked={onsiteMakeup === true}
                 onChange={() => handleCategoryChange("Yes")}
               />
               <p className="text-gray-500">Yes</p>
@@ -93,7 +117,7 @@ const Page = () => {
             <div className="flex items-center gap-2">
               <input
                 type="radio"
-                checked={category === "No"}
+                checked={onsiteMakeup === false}
                 onChange={() => handleCategoryChange("No")}
               />
               <p className="text-gray-500">No</p>
@@ -105,7 +129,11 @@ const Page = () => {
           <h1 className="text-3xl font-semibold">Specialization makeups</h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-              <Appetizers appetizers={makeupTypes} />
+              <Appetizers
+                appetizers={_makeupTypes} 
+                selectedAppetizers={makeupTypes}
+                setSelectedAppetizers={setMakeupTypes}
+               />
             </div>
             <div className="items-strech mt-9 flex flex-row gap-7 self-end">
               <button

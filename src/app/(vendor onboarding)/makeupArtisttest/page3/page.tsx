@@ -1,42 +1,94 @@
 "use client";
 
-import React from "react";
-import { Upload } from "lucide-react";
+import React, { useState, ChangeEvent } from "react";
+import { Percent, Upload } from "lucide-react";
+import PriceSlider from "../(components)/priceSlider";
 import Checkbox from "@mui/material/Checkbox";
+import Percentage from "../(components)/percentage";
+import { set } from "date-fns";
 
 interface Package {
   type: string;
   priceRange: [number, number];
 }
 
-interface PageProps {
-  hourlyPackages: Package[];
-  setHourlyPackages: React.Dispatch<React.SetStateAction<Package[]>>;
-  dailyPackages: Package[];
-  setDailyPackages: React.Dispatch<React.SetStateAction<Package[]>>;
-  seasonalPackages: Package[];
-  setSeasonalPackages: React.Dispatch<React.SetStateAction<Package[]>>;
-  handlePackageChange: (
-    setPackages: React.Dispatch<React.SetStateAction<Package[]>>,
-    index: number,
-    field: "type" | "priceRange",
-    value: string | [number, number],
-  ) => void;
-  addPackage: (
-    setPackages: React.Dispatch<React.SetStateAction<Package[]>>,
-  ) => void;
-}
+interface FormState {}
+interface Page3Props {
+    advancePayment: number;
+    setAdvancePayment: (newValue: number) => void;
+    hourlyPackage: Package[];
+    setHourlyPackages: React.Dispatch<React.SetStateAction<Package[]>>;
+    dealPackage: Package[];
+    setdealPackage: React.Dispatch<React.SetStateAction<Package[]>>;
+    ratesbyWorker: Package[];
+    setratesbyWorker:  React.Dispatch<React.SetStateAction<Package[]>>;
+    handlePackageChange: (
+      setPackages: React.Dispatch<React.SetStateAction<Package[]>>,
+      index: number,
+      field: "type" | "priceRange",
+      value: string | [number, number],
+    ) => void;
+    addPackage: (
+      setPackages: React.Dispatch<React.SetStateAction<Package[]>>,
+    ) => void;
+ }
 
-const Page: React.FC<PageProps> = ({
-  hourlyPackages,
-  setHourlyPackages,
-  dailyPackages,
-  setDailyPackages,
-  seasonalPackages,
-  setSeasonalPackages,
-  handlePackageChange,
-  addPackage,
+const Page: React.FC<Page3Props> = ({ 
+   advancePayment,
+   setAdvancePayment,
+    hourlyPackage,
+    setHourlyPackages,
+    dealPackage,
+    setdealPackage,
+    ratesbyWorker,
+    setratesbyWorker,
+    handlePackageChange,
+    addPackage,
 }) => {
+
+ // const [advancePayment, setAdvancePayment] = useState(25);
+
+  const handlePercentageChange = (newValue: number) => {
+    setAdvancePayment(newValue);
+  };
+
+  // const [hourlyPackage, setHourlyPackages] = useState<Package[]>([
+  //   { type: "", priceRange: [0,0] },
+  // ]);
+  // const [dealPackage, setdealPackage] = useState<Package[]>([
+  //   { type: "", priceRange: [0,0] },
+  // ]);
+
+  // const [ratesbyWorker, setratesbyWorker] = useState<Package[]>([
+  //   { type: "", priceRange:[0,0] },
+  // ]);
+
+  // const handlePackageChange = (
+  //   setPackages: React.Dispatch<React.SetStateAction<Package[]>>,
+  //   index: number,
+  //   field: "type" | "priceRange",
+  //   value: string | [number, number],
+  // ) => {
+  //   setPackages((prevPackages) => {
+  //     const newPackages = [...prevPackages];
+  //     if (field === "type") {
+  //       newPackages[index].type = value as string;
+  //     } else {
+  //       newPackages[index].priceRange = value as [number, number];
+  //     }
+  //     return newPackages;
+  //   });
+  // };
+
+  // const addPackage = (
+  //   setPackages: React.Dispatch<React.SetStateAction<Package[]>>,
+  // ) => {
+  //   setPackages((prevPackages) => [
+  //     ...prevPackages,
+  //     { type: "", priceRange: [0, 100000] },
+  //   ]);
+  // };
+
   const handleMinPriceChange = (
     setPackages: React.Dispatch<React.SetStateAction<Package[]>>,
     packages: Package[],
@@ -65,11 +117,13 @@ const Page: React.FC<PageProps> = ({
     handlePackageChange(setPackages, index, "priceRange", updatedPriceRange);
   };
 
+
   const handleSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    console.log("Hourly Packages:", hourlyPackages);
-    console.log("Daily Packages:", dailyPackages);
-    console.log("Seasonal Packages:", seasonalPackages);
+    console.log("hourlyPackage", hourlyPackage);
+    console.log("dealPackage", dealPackage);
+    console.log("ratesbyWorker", ratesbyWorker);
+    console.log("advancePayment", advancePayment);
   };
 
   return (
@@ -122,7 +176,8 @@ const Page: React.FC<PageProps> = ({
         <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
           <h1 className="text-3xl font-semibold">Basic Details</h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
-            {hourlyPackages.map((pkg, index) => (
+            {/* makeup artist type*/}
+            {hourlyPackage.map((pkg, index) => (
               <div
                 key={index}
                 className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row"
@@ -136,13 +191,13 @@ const Page: React.FC<PageProps> = ({
                         },
                       }}
                     />
-                    Hourly package rates
+                    Hourly Package Rates
                   </label>
                   <input
-                    id={`hourlyPackageType${index}`}
+                    id={`hourlyPackage${index}`}
                     type="text"
                     className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
-                    placeholder="Type of package , Eg: Day time"
+                    placeholder="Type of artists , Eg: Bridal makeup artists"
                     value={pkg.type}
                     onChange={(e) =>
                       handlePackageChange(
@@ -158,7 +213,7 @@ const Page: React.FC<PageProps> = ({
                 <div className="flex h-full min-w-[40%] flex-col items-center justify-between">
                   <label htmlFor={`hourlyPriceRange${index}`}>
                     Select price range
-                  </label>
+                  </label>            
                   <div className="flex w-[80%] flex-row justify-between gap-4">
                     <input
                       id={`hourlyMinPrice${index}`}
@@ -169,7 +224,7 @@ const Page: React.FC<PageProps> = ({
                       onChange={(e) =>
                         handleMinPriceChange(
                           setHourlyPackages,
-                          hourlyPackages,
+                          hourlyPackage,
                           index,
                           e.target.value,
                         )
@@ -184,7 +239,7 @@ const Page: React.FC<PageProps> = ({
                       onChange={(e) =>
                         handleMaxPriceChange(
                           setHourlyPackages,
-                          hourlyPackages,
+                          hourlyPackage,
                           index,
                           e.target.value,
                         )
@@ -216,28 +271,25 @@ const Page: React.FC<PageProps> = ({
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
-                      d="M12 5.5V17.5M6 11.5H18"
-                      stroke="#2E3192"
-                      strokeWidth="1.2"
+                      d="M12 5.5V17.5M6 11.9H18"
+                      stroke="#2B3F6C"
+                      strokeWidth="2"
                       strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                   </svg>
                 </button>
               </div>
             </div>
-          </div>
-        </div>
 
-        <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
-          <h1 className="text-3xl font-semibold">Daily Packages</h1>
-          <div className="flex min-h-full min-w-full flex-col items-center gap-5">
-            {dailyPackages.map((pkg, index) => (
+            {/* hourly Packages */}
+            {dealPackage.map((pkg, index) => (
               <div
                 key={index}
                 className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row"
               >
                 <div className="flex min-w-[40%] flex-col gap-4">
-                  <label htmlFor={`dailyPackageType${index}`}>
+                  <label htmlFor={`hourlyPackages${index}`}>
                     <Checkbox
                       sx={{
                         "&.Mui-checked": {
@@ -245,17 +297,17 @@ const Page: React.FC<PageProps> = ({
                         },
                       }}
                     />
-                    Daily package rates
+                   Deal package rates
                   </label>
                   <input
-                    id={`dailyPackageType${index}`}
+                    id={`dealPackage${index}`}
                     type="text"
                     className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                     placeholder="Type of package , Eg: Day time"
                     value={pkg.type}
                     onChange={(e) =>
                       handlePackageChange(
-                        setDailyPackages,
+                        setdealPackage,
                         index,
                         "type",
                         e.target.value,
@@ -265,35 +317,35 @@ const Page: React.FC<PageProps> = ({
                 </div>
 
                 <div className="flex h-full min-w-[40%] flex-col items-center justify-between">
-                  <label htmlFor={`dailyPriceRange${index}`}>
+                  <label htmlFor={`hourlyPackages${index}`}>
                     Select price range
                   </label>
                   <div className="flex w-[80%] flex-row justify-between gap-4">
                     <input
-                      id={`dailyMinPrice${index}`}
+                      id={`dealMinPrice${index}`}
                       type="number"
                       className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                       placeholder="Min price"
                       value={pkg.priceRange[0] === 0 ? "" : pkg.priceRange[0]}
                       onChange={(e) =>
                         handleMinPriceChange(
-                          setDailyPackages,
-                          dailyPackages,
+                          setdealPackage,
+                          dealPackage,
                           index,
                           e.target.value,
                         )
                       }
                     />
                     <input
-                      id={`dailyMaxPrice${index}`}
+                      id={`dealMaxPrice${index}`}
                       type="number"
                       className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                       placeholder="Max price"
                       value={pkg.priceRange[1] === 0 ? "" : pkg.priceRange[1]}
                       onChange={(e) =>
                         handleMaxPriceChange(
-                          setDailyPackages,
-                          dailyPackages,
+                          setdealPackage,
+                          dealPackage,
                           index,
                           e.target.value,
                         )
@@ -315,7 +367,7 @@ const Page: React.FC<PageProps> = ({
               <div className="item-start flex flex-col justify-between gap-2">
                 <button
                   className="cursor-pointer rounded-lg bg-[#E6E6E6] p-2 hover:shadow-xl"
-                  onClick={() => addPackage(setDailyPackages)}
+                  onClick={() => addPackage(setdealPackage)}
                 >
                   <svg
                     width="24"
@@ -325,28 +377,25 @@ const Page: React.FC<PageProps> = ({
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
-                      d="M12 5.5V17.5M6 11.5H18"
-                      stroke="#2E3192"
-                      strokeWidth="1.2"
+                      d="M12 5.5V17.5M6 11.9H18"
+                      stroke="#2B3F6C"
+                      strokeWidth="2"
                       strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                   </svg>
                 </button>
               </div>
             </div>
-          </div>
-        </div>
 
-        <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
-          <h1 className="text-3xl font-semibold">Seasonal Packages</h1>
-          <div className="flex min-h-full min-w-full flex-col items-center gap-5">
-            {seasonalPackages.map((pkg, index) => (
+            {/* dialy package charges */}
+            {ratesbyWorker.map((pkg, index) => (
               <div
                 key={index}
                 className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row"
               >
                 <div className="flex min-w-[40%] flex-col gap-4">
-                  <label htmlFor={`seasonalPackageType${index}`}>
+                  <label htmlFor={`dailyPackages${index}`}>
                     <Checkbox
                       sx={{
                         "&.Mui-checked": {
@@ -354,17 +403,17 @@ const Page: React.FC<PageProps> = ({
                         },
                       }}
                     />
-                    Seasonal package rates
+                   Rates by Worker
                   </label>
                   <input
-                    id={`seasonalPackageType${index}`}
+                    id={`setratesbyWorker${index}`}
                     type="text"
                     className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
-                    placeholder="Type of package , Eg: Day time"
+                    placeholder="Type of Package , Eg: Week days"
                     value={pkg.type}
                     onChange={(e) =>
                       handlePackageChange(
-                        setSeasonalPackages,
+                       setratesbyWorker,
                         index,
                         "type",
                         e.target.value,
@@ -374,35 +423,35 @@ const Page: React.FC<PageProps> = ({
                 </div>
 
                 <div className="flex h-full min-w-[40%] flex-col items-center justify-between">
-                  <label htmlFor={`seasonalPriceRange${index}`}>
+                  <label htmlFor={`setratesbyWorker${index}`}>
                     Select price range
                   </label>
                   <div className="flex w-[80%] flex-row justify-between gap-4">
                     <input
-                      id={`seasonalMinPrice${index}`}
+                      id={`ratesbyWorker${index}`}
                       type="number"
                       className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                       placeholder="Min price"
                       value={pkg.priceRange[0] === 0 ? "" : pkg.priceRange[0]}
                       onChange={(e) =>
                         handleMinPriceChange(
-                          setSeasonalPackages,
-                          seasonalPackages,
+                          setratesbyWorker,
+                          ratesbyWorker,
                           index,
                           e.target.value,
                         )
                       }
                     />
                     <input
-                      id={`seasonalMaxPrice${index}`}
+                      id={`ratesbyWorker${index}`}
                       type="number"
                       className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                       placeholder="Max price"
                       value={pkg.priceRange[1] === 0 ? "" : pkg.priceRange[1]}
                       onChange={(e) =>
                         handleMaxPriceChange(
-                          setSeasonalPackages,
-                          seasonalPackages,
+                          setratesbyWorker,
+                          ratesbyWorker,
                           index,
                           e.target.value,
                         )
@@ -424,7 +473,7 @@ const Page: React.FC<PageProps> = ({
               <div className="item-start flex flex-col justify-between gap-2">
                 <button
                   className="cursor-pointer rounded-lg bg-[#E6E6E6] p-2 hover:shadow-xl"
-                  onClick={() => addPackage(setSeasonalPackages)}
+                  onClick={() => addPackage(setratesbyWorker)}
                 >
                   <svg
                     width="24"
@@ -434,26 +483,59 @@ const Page: React.FC<PageProps> = ({
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
-                      d="M12 5.5V17.5M6 11.5H18"
-                      stroke="#2E3192"
-                      strokeWidth="1.2"
+                      d="M12 5.5V17.5M6 11.9H18"
+                      stroke="#2B3F6C"
+                      strokeWidth="2"
                       strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                   </svg>
                 </button>
               </div>
             </div>
-          </div>
-        </div>
 
-        <div className="mt-7 flex w-full justify-between gap-4 lg:mt-[5rem]">
-          <button className="rounded-lg bg-gray-300 p-3">Back</button>
-          <button
-            className="rounded-lg bg-[#2E3192] p-3 text-white"
-            onClick={handleSubmit}
-          >
-            Next
-          </button>
+            <div
+                
+                className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row"
+              >
+                <div className="flex min-w-[40%] flex-col gap-4">
+                  <label className="flex flex-row">
+                    <Checkbox
+                      sx={{
+                        "&.Mui-checked": {
+                          color: "#2E3192",
+                        },
+                      }}
+                    />
+                    <p className="font-poppins font-semibold text-lg items-center flex">Advance Payment</p>
+                  </label>
+                  <div className="flex flex-row gap-5">
+                    <p className="">set percentage(%)</p>
+                    {/* <div className="border-2 rounded-xl text-sm">{advancePayment}</div> */}
+                  </div>                      
+                  <Percentage 
+                  initialValue={advancePayment}
+                  onChange={handlePercentageChange}
+                  />
+                </div>          
+              </div>
+
+            {/* continue and skip button */}
+            <div className="mt-9 flex flex-row items-stretch gap-7 self-end">
+              <button
+                className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+                onClick={handleSubmit}
+              >
+                Skip
+              </button>
+              <button
+                className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+                onClick={handleSubmit}
+              >
+                Continue
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

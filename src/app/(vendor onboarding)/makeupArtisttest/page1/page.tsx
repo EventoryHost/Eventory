@@ -6,6 +6,7 @@ import { Dropdown } from "react-day-picker";
 import { Combobox } from "@/components/ui/combobox";
 import { ArrowUpSquare, Upload } from "lucide-react";
 import Appetizers from "../(components)/Appetizers";
+import { set } from "date-fns";
 
 const _makeupArtists_individual = [
   "Airbrush Makeup Artists",
@@ -59,47 +60,69 @@ const _groupMembers = [
   { value: "10+", label: "more than 10" },
 ];
 
+interface FormState {
+  artistDescription: string;
+  portfolioUrl: string;
+  makeup_groupmembers: string;
+  organisationMembers: string;
+}
+
+interface Page1Props {
+  formState: FormState;
+  updateFormState: (newState: Partial<FormState>) => void;
+  category: string;
+  handleCategoryChange: (newCategory: "Individual" | "Group" | "Organisation") => void;
+  makeupArtists_individual: string[];
+  setMakeupArtist_individual: React.Dispatch<React.SetStateAction<string[]>>;
+  makeupArtists_groups: string[];
+  setMakeupArtist_group: React.Dispatch<React.SetStateAction<string[]>>;
+  makeupArtists_organisation: string[];
+  setMakeupArtist_organisation: React.Dispatch<React.SetStateAction<string[]>>;
+}
 
 
 
-const Page: React.FC = ({
+const Page: React.FC<Page1Props> = ({
+  formState,
+  updateFormState,
+  category,
+   handleCategoryChange,
+  makeupArtists_individual,
+  setMakeupArtist_individual,
+  makeupArtists_groups,
+  setMakeupArtist_group,
+  makeupArtists_organisation,
+  setMakeupArtist_organisation,
 
 }) => {
-  const [category, setCategory] = useState<
-    "Individual" | "Group" | "Organisation"
-  >("Individual");
+  const { artistDescription, portfolioUrl, makeup_groupmembers, organisationMembers } = formState;
 
-  //
-  const [artistDescription, setartistDescription] = useState("");
-  const [portfolioUrl, setPortfolioUrl] = useState("");
+  //common state
+  
 
- //
-  const [makeup_groupmembers, setmakeupGroupMembers] = useState("");
+//group state
 
-  //organisation state
-  const [organisationMembers, setOrganisationMembers] = useState("");
 
   //chips state
-  const [makeupArtists_individual, setMakeupArtist_individual] = useState<string[]>([]);
-  const [makeupArtists_groups, setMakeupArtist_group] = useState<string[]>([]);
-  const [makeupArtists_organisation, setMakeupArtist_organisation] = useState<string[]>([]);
+  // const [makeupArtists_individual, setMakeupArtist_individual] = useState<string[]>([]);
+  // const [makeupArtists_groups, setMakeupArtist_group] = useState<string[]>([]);
+  // const [makeupArtists_organisation, setMakeupArtist_organisation] = useState<string[]>([]);
 
 
-  const handleCategoryChange = (
-    newCategory: "Individual" | "Group" | "Organisation",
-  ) => {
-    setCategory(newCategory);
-  };
 
 
   const handleSubmit = (e: React.FormEvent) => {
     // Handle form submission
     e.preventDefault();
-    console.log("Category:", category);
-    console.log("Artist Description:", artistDescription);
-    if (portfolioUrl) console.log("Portfolio URL:", portfolioUrl);
-    if (organisationMembers)
-      console.log("Organisation Members:", organisationMembers);
+    console.log("category:", category);
+    console.log("artistDescription:", artistDescription);
+    console.log("portfolioUrl:", portfolioUrl);
+    console.log("makeup_groupmembers:", makeup_groupmembers);
+    console.log("organisationMembers:", organisationMembers);
+    console.log("makeupArtists_individual:", makeupArtists_individual);
+    console.log("makeupArtists_groups:", makeupArtists_groups);
+    console.log("makeupArtists_organisation:", makeupArtists_organisation);
+
   };
 
   return (
@@ -201,7 +224,7 @@ const Page: React.FC = ({
                     className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                     placeholder="Enter your Venue Description"
                     value={artistDescription}
-                    onChange={(e) => setartistDescription(e.target.value)}
+                    onChange={(e) =>updateFormState({ artistDescription: e.target.value })}
                   />
                 </div>
                 <div className="flex min-w-[40%] flex-col gap-4">
@@ -230,7 +253,7 @@ const Page: React.FC = ({
                       className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                       placeholder="Enter your Venue Description"
                       value={portfolioUrl}
-                      onChange={(e) => setPortfolioUrl(e.target.value)}
+                      onChange={(e) => updateFormState({ portfolioUrl: e.target.value })}
                     />
                   </div>
                 </div>
@@ -247,9 +270,9 @@ const Page: React.FC = ({
                     <Combobox
                       options={_groupMembers}
                       placeholder="Select your category"
-                      setFunction={setmakeupGroupMembers}
+                      setFunction={(value) => updateFormState({ makeup_groupmembers: value })}
                       className="flex items-center justify-between rounded-xl border-2 py-6 hover:text-[#2E3192]"
-                    />
+                    />  
                   </div>
                   <div className="flex min-w-[40%] flex-col gap-4">
                     {/* <label htmlFor="category">Seating Capacity</label> */}
@@ -275,7 +298,7 @@ const Page: React.FC = ({
                       className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                       placeholder="Description about your group"
                       value={artistDescription}
-                      onChange={(e) => setartistDescription(e.target.value)}
+                      onChange={(e) => updateFormState({ artistDescription: e.target.value })}
                     />
                   </div>
                   <div className="flex min-w-[40%] flex-col gap-4">
@@ -286,7 +309,7 @@ const Page: React.FC = ({
                       className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                       placeholder="portfolio url"
                       value={portfolioUrl}
-                      onChange={(e) => setPortfolioUrl(e.target.value)}
+                      onChange={(e) => updateFormState({ portfolioUrl: e.target.value })}
                     />
                   </div>
                 </div>
@@ -303,7 +326,7 @@ const Page: React.FC = ({
                     <Combobox
                       options={_groupMembers}
                       placeholder="Select your category"
-                      setFunction={setOrganisationMembers}
+                      setFunction={(value) => updateFormState({ organisationMembers: value })}
                       className="flex items-center justify-between rounded-xl border-2 py-6 hover:text-[#2E3192]"
                     />
                   </div>
@@ -331,7 +354,7 @@ const Page: React.FC = ({
                       className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                       placeholder="Description about your group"
                       value={artistDescription}
-                      onChange={(e) => setartistDescription(e.target.value)}
+                      onChange={(e) => updateFormState({ artistDescription: e.target.value })}
                     />
                   </div>
                   <div className="flex min-w-[40%] flex-col gap-4">
@@ -342,7 +365,7 @@ const Page: React.FC = ({
                       className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                       placeholder="portfolio url"
                       value={portfolioUrl}
-                      onChange={(e) => setPortfolioUrl(e.target.value)}
+                      onChange={(e) => updateFormState({ portfolioUrl: e.target.value })}
                     />
                   </div>
                 </div>
