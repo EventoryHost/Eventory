@@ -1,6 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
+
+import tajmahal from "/public/tajmahal.png";
 import { ComboboxDemo } from "@/components/dropdown";
 import { Dropdown } from "react-day-picker";
 import { Combobox } from "@/components/ui/combobox";
@@ -112,9 +115,9 @@ const Page = () => {
           </p>
         </div>
         <div className="relative h-[10rem] lg:w-full">
-          <img
-            src={"/tajmahal.png"}
-            alt=""
+          <Image
+            src={tajmahal}
+            alt="Image of Indian monuments"
             className="h-full w-full object-cover"
           />
         </div>
