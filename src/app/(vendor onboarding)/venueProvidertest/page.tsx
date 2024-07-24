@@ -7,7 +7,6 @@ import Page3 from "./page3/page";
 import Page4 from "./page4/page";
 import Page5 from "./page5/page";
 import { addVenue } from "../../../services/vendors/venue";
-import PriceSlider from "./(components)/priceSlider";
 
 interface Package {
   type: string;
@@ -15,6 +14,8 @@ interface Package {
 }
 
 interface FormState {
+  venueName: string;
+  VenueAddress: string;
   venueType: string;
   seatingCapacity: string;
   standingCapacity: string;
@@ -33,6 +34,8 @@ const VenueForm: React.FC = () => {
 
   // global varibales
   const [formState, setFormState] = useState<FormState>({
+    venueName: "",
+    VenueAddress: "",
     venueType: "",
     seatingCapacity: "",
     standingCapacity: "",
@@ -53,15 +56,15 @@ const VenueForm: React.FC = () => {
   };
 
   const [hourlyPackages, setHourlyPackages] = useState<Package[]>([
-    { type: "", priceRange: [10000, 1000000] },
+    { type: "", priceRange: [0, 0] },
   ]);
 
   const [dailyPackages, setDailyPackages] = useState<Package[]>([
-    { type: "", priceRange: [20000, 100000] },
+    { type: "", priceRange: [0, 0] },
   ]);
 
   const [seasonalPackages, setSeasonalPackages] = useState<Package[]>([
-    { type: "", priceRange: [50000, 600000] },
+    { type: "", priceRange: [0, 0] },
   ]);
 
   const [audioVisualEquipment, setAudioVisualEquipment] = useState<string[]>(

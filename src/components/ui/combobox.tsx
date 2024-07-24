@@ -45,7 +45,7 @@ export function Combobox(props: ComboboxDemoProps) {
           role="combobox"
           aria-expanded={open}
           className={cn(
-            "w-[100%] min-w-[245px] justify-between",
+            "h-[4rem] w-[100%] min-w-[245px] justify-between",
             props.className,
           )}
         >

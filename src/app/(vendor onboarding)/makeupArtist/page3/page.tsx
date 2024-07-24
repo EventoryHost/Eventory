@@ -12,10 +12,6 @@ interface Package {
 }
 
 const Page: React.FC = () => {
-  const [seasonalPackages, setSeasonalPackages] = useState<Package[]>([
-    { type: "", priceRange: [50000, 600000] },
-  ]);
-
   const [makeupArtistType, setMakeupArtistType] = useState<Package[]>([
     { type: "", priceRange: [10000, 1000000] },
   ]);
