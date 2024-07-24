@@ -66,9 +66,9 @@ interface Page2Props {
   audioVisualEquipment: string[];
   setAudioVisualEquipment: React.Dispatch<React.SetStateAction<string[]>>;
   accessibilityFeatures: string[];
-    setAccessibilityFeatures: React.Dispatch<React.SetStateAction<string[]>>;
-    facilities: string[];
-    setFacilities: React.Dispatch<React.SetStateAction<string[]>>;
+  setAccessibilityFeatures: React.Dispatch<React.SetStateAction<string[]>>;
+  facilities: string[];
+  setFacilities: React.Dispatch<React.SetStateAction<string[]>>;
 
   formState: FormState;
   updateFormState: (newState: Partial<FormState>) => void;

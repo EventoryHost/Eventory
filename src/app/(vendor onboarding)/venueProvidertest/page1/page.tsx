@@ -143,34 +143,32 @@ const Page: React.FC<Page1Props> = ({ formState, updateFormState }) => {
         <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
           <h1 className="text-3xl font-semibold">Basic Details</h1>
           <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-              <div className="flex min-w-[40%] flex-col gap-4">
-                <label htmlFor="businessName">Venue Name</label>
-                <input
-                  id="businessName"
-                  type="text"
-                  className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
-                  placeholder="Enter your Venue Name"
-                  value={venueName}
-                  onChange={(e) =>
-                    updateFormState({ venueName: e.target.value })
-                  }
-                />
-              </div>
-              <div className="flex min-w-[40%] flex-col gap-4">
-                <label htmlFor="businessName">Venue Address</label>
-                <input
-                  id="businessName"
-                  type="text"
-                  className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
-                  placeholder="Enter your Venue address"
-                  value={VenueAddress}
-                  onChange={(e) =>
-                    updateFormState({ VenueAddress: e.target.value })
-                  }
-                />
-              </div>
+            <div className="flex min-w-[40%] flex-col gap-4">
+              <label htmlFor="businessName">Venue Name</label>
+              <input
+                id="businessName"
+                type="text"
+                className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
+                placeholder="Enter your Venue Name"
+                value={venueName}
+                onChange={(e) => updateFormState({ venueName: e.target.value })}
+              />
             </div>
-            
+            <div className="flex min-w-[40%] flex-col gap-4">
+              <label htmlFor="businessName">Venue Address</label>
+              <input
+                id="businessName"
+                type="text"
+                className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
+                placeholder="Enter your Venue address"
+                value={VenueAddress}
+                onChange={(e) =>
+                  updateFormState({ VenueAddress: e.target.value })
+                }
+              />
+            </div>
+          </div>
+
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <div className="flex min-w-[40%] flex-col gap-4">
@@ -196,7 +194,7 @@ const Page: React.FC<Page1Props> = ({ formState, updateFormState }) => {
             </div>
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <div className="flex min-w-[40%] flex-col gap-4">
-                <label htmlFor="category">Operating hours</label>          
+                <label htmlFor="category">Operating hours</label>
                 <Combobox
                   options={timeOptions}
                   placeholder="start timings..."
@@ -241,7 +239,7 @@ const Page: React.FC<Page1Props> = ({ formState, updateFormState }) => {
                 />
               </div>
             </div>
-            
+
             <div className="items-strech mt-9 flex flex-row gap-7 self-end">
               <button
                 className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"

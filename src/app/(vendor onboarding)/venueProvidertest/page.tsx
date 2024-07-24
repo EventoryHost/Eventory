@@ -8,7 +8,6 @@ import Page4 from "./page4/page";
 import Page5 from "./page5/page";
 import { addVenue } from "../../../services/vendors/venue";
 
-
 interface Package {
   type: string;
   priceRange: [number, number];
@@ -35,7 +34,7 @@ const VenueForm: React.FC = () => {
 
   // global varibales
   const [formState, setFormState] = useState<FormState>({
-    venueName : "",
+    venueName: "",
     VenueAddress: "",
     venueType: "",
     seatingCapacity: "",
@@ -57,23 +56,29 @@ const VenueForm: React.FC = () => {
   };
 
   const [hourlyPackages, setHourlyPackages] = useState<Package[]>([
-    { type: "", priceRange: [0,0] },
+    { type: "", priceRange: [0, 0] },
   ]);
 
   const [dailyPackages, setDailyPackages] = useState<Package[]>([
-    { type: "", priceRange:[0,0] },
+    { type: "", priceRange: [0, 0] },
   ]);
 
   const [seasonalPackages, setSeasonalPackages] = useState<Package[]>([
-    { type: "", priceRange: [0,0] },
+    { type: "", priceRange: [0, 0] },
   ]);
 
-  const [audioVisualEquipment, setAudioVisualEquipment] = useState<string[]>([],);
-  const [accessibilityFeatures, setAccessibilityFeatures] = useState<string[]>([],);
+  const [audioVisualEquipment, setAudioVisualEquipment] = useState<string[]>(
+    [],
+  );
+  const [accessibilityFeatures, setAccessibilityFeatures] = useState<string[]>(
+    [],
+  );
   const [facilities, setFacilities] = useState<string[]>([]);
 
   const [venue_restrictions, setVenue_restrictions] = useState<string[]>([]);
-  const [venue_special_features, setVenue_special_features] = useState<string[]>([],);
+  const [venue_special_features, setVenue_special_features] = useState<
+    string[]
+  >([]);
 
   //global functions
   const handlePackageChange = (

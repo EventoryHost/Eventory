@@ -16,38 +16,31 @@ const _makeupTypes = [
   "Others",
 ];
 
-
 interface Page4Props {
- 
   makeupTypes: string[];
   setMakeupTypes: React.Dispatch<React.SetStateAction<string[]>>;
-  onsiteMakeup: boolean; 
+  onsiteMakeup: boolean;
   setOnsiteMakeup: React.Dispatch<React.SetStateAction<boolean>>;
- }
+}
 
-
-const Page: React.FC<Page4Props> = ({ 
+const Page: React.FC<Page4Props> = ({
   makeupTypes,
   setMakeupTypes,
   onsiteMakeup,
-  setOnsiteMakeup
-
+  setOnsiteMakeup,
 }) => {
-
-
-
   const handleCategoryChange = (newCategory: "Yes" | "No") => {
-     if(newCategory === "Yes") {
+    if (newCategory === "Yes") {
       setOnsiteMakeup(true);
-     } else {
+    } else {
       setOnsiteMakeup(false);
-     }
+    }
   };
-  
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-     console.log("onsiteMakeup", onsiteMakeup);
-      console.log("makeupTypes", makeupTypes);
+    console.log("onsiteMakeup", onsiteMakeup);
+    console.log("makeupTypes", makeupTypes);
   };
 
   return (
@@ -130,10 +123,10 @@ const Page: React.FC<Page4Props> = ({
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
-                appetizers={_makeupTypes} 
+                appetizers={_makeupTypes}
                 selectedAppetizers={makeupTypes}
                 setSelectedAppetizers={setMakeupTypes}
-               />
+              />
             </div>
             <div className="items-strech mt-9 flex flex-row gap-7 self-end">
               <button

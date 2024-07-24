@@ -14,39 +14,38 @@ interface Package {
 
 interface FormState {}
 interface Page3Props {
-    advancePayment: number;
-    setAdvancePayment: (newValue: number) => void;
-    hourlyPackage: Package[];
-    setHourlyPackages: React.Dispatch<React.SetStateAction<Package[]>>;
-    dealPackage: Package[];
-    setdealPackage: React.Dispatch<React.SetStateAction<Package[]>>;
-    ratesbyWorker: Package[];
-    setratesbyWorker:  React.Dispatch<React.SetStateAction<Package[]>>;
-    handlePackageChange: (
-      setPackages: React.Dispatch<React.SetStateAction<Package[]>>,
-      index: number,
-      field: "type" | "priceRange",
-      value: string | [number, number],
-    ) => void;
-    addPackage: (
-      setPackages: React.Dispatch<React.SetStateAction<Package[]>>,
-    ) => void;
- }
+  advancePayment: number;
+  setAdvancePayment: (newValue: number) => void;
+  hourlyPackage: Package[];
+  setHourlyPackages: React.Dispatch<React.SetStateAction<Package[]>>;
+  dealPackage: Package[];
+  setdealPackage: React.Dispatch<React.SetStateAction<Package[]>>;
+  ratesbyWorker: Package[];
+  setratesbyWorker: React.Dispatch<React.SetStateAction<Package[]>>;
+  handlePackageChange: (
+    setPackages: React.Dispatch<React.SetStateAction<Package[]>>,
+    index: number,
+    field: "type" | "priceRange",
+    value: string | [number, number],
+  ) => void;
+  addPackage: (
+    setPackages: React.Dispatch<React.SetStateAction<Package[]>>,
+  ) => void;
+}
 
-const Page: React.FC<Page3Props> = ({ 
-   advancePayment,
-   setAdvancePayment,
-    hourlyPackage,
-    setHourlyPackages,
-    dealPackage,
-    setdealPackage,
-    ratesbyWorker,
-    setratesbyWorker,
-    handlePackageChange,
-    addPackage,
+const Page: React.FC<Page3Props> = ({
+  advancePayment,
+  setAdvancePayment,
+  hourlyPackage,
+  setHourlyPackages,
+  dealPackage,
+  setdealPackage,
+  ratesbyWorker,
+  setratesbyWorker,
+  handlePackageChange,
+  addPackage,
 }) => {
-
- // const [advancePayment, setAdvancePayment] = useState(25);
+  // const [advancePayment, setAdvancePayment] = useState(25);
 
   const handlePercentageChange = (newValue: number) => {
     setAdvancePayment(newValue);
@@ -116,7 +115,6 @@ const Page: React.FC<Page3Props> = ({
     ];
     handlePackageChange(setPackages, index, "priceRange", updatedPriceRange);
   };
-
 
   const handleSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -213,7 +211,7 @@ const Page: React.FC<Page3Props> = ({
                 <div className="flex h-full min-w-[40%] flex-col items-center justify-between">
                   <label htmlFor={`hourlyPriceRange${index}`}>
                     Select price range
-                  </label>            
+                  </label>
                   <div className="flex w-[80%] flex-row justify-between gap-4">
                     <input
                       id={`hourlyMinPrice${index}`}
@@ -297,7 +295,7 @@ const Page: React.FC<Page3Props> = ({
                         },
                       }}
                     />
-                   Deal package rates
+                    Deal package rates
                   </label>
                   <input
                     id={`dealPackage${index}`}
@@ -403,7 +401,7 @@ const Page: React.FC<Page3Props> = ({
                         },
                       }}
                     />
-                   Rates by Worker
+                    Rates by Worker
                   </label>
                   <input
                     id={`setratesbyWorker${index}`}
@@ -413,7 +411,7 @@ const Page: React.FC<Page3Props> = ({
                     value={pkg.type}
                     onChange={(e) =>
                       handlePackageChange(
-                       setratesbyWorker,
+                        setratesbyWorker,
                         index,
                         "type",
                         e.target.value,
@@ -494,31 +492,30 @@ const Page: React.FC<Page3Props> = ({
               </div>
             </div>
 
-            <div
-                
-                className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row"
-              >
-                <div className="flex min-w-[40%] flex-col gap-4">
-                  <label className="flex flex-row">
-                    <Checkbox
-                      sx={{
-                        "&.Mui-checked": {
-                          color: "#2E3192",
-                        },
-                      }}
-                    />
-                    <p className="font-poppins font-semibold text-lg items-center flex">Advance Payment</p>
-                  </label>
-                  <div className="flex flex-row gap-5">
-                    <p className="">set percentage(%)</p>
-                    {/* <div className="border-2 rounded-xl text-sm">{advancePayment}</div> */}
-                  </div>                      
-                  <Percentage 
+            <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
+              <div className="flex min-w-[40%] flex-col gap-4">
+                <label className="flex flex-row">
+                  <Checkbox
+                    sx={{
+                      "&.Mui-checked": {
+                        color: "#2E3192",
+                      },
+                    }}
+                  />
+                  <p className="flex items-center font-poppins text-lg font-semibold">
+                    Advance Payment
+                  </p>
+                </label>
+                <div className="flex flex-row gap-5">
+                  <p className="">set percentage(%)</p>
+                  {/* <div className="border-2 rounded-xl text-sm">{advancePayment}</div> */}
+                </div>
+                <Percentage
                   initialValue={advancePayment}
                   onChange={handlePercentageChange}
-                  />
-                </div>          
+                />
               </div>
+            </div>
 
             {/* continue and skip button */}
             <div className="mt-9 flex flex-row items-stretch gap-7 self-end">

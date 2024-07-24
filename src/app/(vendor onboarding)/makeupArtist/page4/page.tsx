@@ -21,7 +21,7 @@ const Page = () => {
   const handleCategoryChange = (newCategory: "Yes" | "No") => {
     setCategory(newCategory);
   };
-  
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
   };

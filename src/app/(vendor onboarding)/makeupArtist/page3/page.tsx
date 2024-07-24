@@ -12,8 +12,6 @@ interface Package {
 }
 
 const Page: React.FC = () => {
-
-
   const [makeupArtistType, setMakeupArtistType] = useState<Package[]>([
     { type: "", priceRange: [10000, 1000000] },
   ]);
