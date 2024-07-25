@@ -4,7 +4,7 @@ async function addVenue(data: any) {
   try {
     console.log(data);
     const response = await axios.post(
-      `https://9e90-103-178-198-228.ngrok-free.app/api/products/add-venue`,
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/products/add-venue`,
       data,
       {
         headers: {

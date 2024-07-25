@@ -8,8 +8,8 @@ import { ArrowUpSquare, Upload } from "lucide-react";
 import Appetizers from "../(components)/Appetizers";
 
 interface FormState {
-  termsAndConditions: string;
-  cancellationPolicy: string;
+  termsAndConditions: string | File;
+  cancellationPolicy: string | File;
 }
 
 interface Page3Props {
@@ -82,10 +82,22 @@ const Page: React.FC<Page3Props> = ({ formState, updateFormState }) => {
                 <div className="flex min-w-full flex-col items-start justify-between gap-2">
                   <p className="text-xl font-semibold">Terms and Conditions</p>
                   <p className="text-gray-500">PNG, PDF, JPG</p>
-                  <button className="flex items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
-                    {" "}
+                  <button className="relative flex items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
                     <Upload />
                     Upload
+                    <input
+                      type="file"
+                      id="termsAndConditions"
+                      name="termsAndConditions"
+                      accept="image/png, .pdf, image/jpg"
+                      // className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
+                      onChange={(e) => {
+                        const file = e.target.files![0];
+                        updateFormState({
+                          termsAndConditions: e.target.files![0],
+                        });
+                      }}
+                    />
                   </button>
                 </div>
               </div>
@@ -110,7 +122,6 @@ const Page: React.FC<Page3Props> = ({ formState, updateFormState }) => {
                   type="text"
                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 pb-[8vw] text-sm outline-none"
                   placeholder="Enter Your Terms And Conditions"
-                  value={termsAndConditions}
                   onChange={(e) =>
                     updateFormState({ termsAndConditions: e.target.value })
                   }
@@ -123,7 +134,6 @@ const Page: React.FC<Page3Props> = ({ formState, updateFormState }) => {
                   type="text"
                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 pb-[8vw] text-sm outline-none"
                   placeholder="Enter Your Cancellation Policy"
-                  value={cancellationPolicy}
                   onChange={(e) =>
                     updateFormState({ cancellationPolicy: e.target.value })
                   }

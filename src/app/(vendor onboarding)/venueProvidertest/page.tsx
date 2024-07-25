@@ -23,7 +23,7 @@ interface FormState {
   endOperatingHours: string;
   venueDescription: string;
   decorType: string;
-  termsAndConditions: string;
+  termsAndConditions: string | File;
   cancellationPolicy: string;
   instaURL: string;
   websiteURL: string;
@@ -191,6 +191,10 @@ const VenueForm: React.FC = () => {
           />
         );
       case 3:
+        console.log(
+          "Upload termsAndConditions:",
+          formState.termsAndConditions,
+        );
         return (
           <Page3 formState={formState} updateFormState={updateFormState} />
         );
