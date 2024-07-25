@@ -1,6 +1,8 @@
 "use client";
-// venueProvider/VenueForm.tsx
+
 import React, { useState } from "react";
+import jwt from "jsonwebtoken";
+
 import Page1 from "./page1/page";
 import Page2 from "./page2/page";
 import Page3 from "./page3/page";
@@ -107,11 +109,21 @@ const VenueForm: React.FC = () => {
     ]);
   };
 
+  function getVendorId(): string {
+    const token = localStorage.getItem("token")!;
+    const { userId, email } = jwt.decode(token) as {
+      userId: string;
+      email: string;
+    };
+    return userId;
+  }
+
   const handleSubmit = async () => {
     const formData = new FormData();
 
-    formData.append("id", "321"); // Ensure this ID is unique and valid
-    formData.append("name", formState.venueType);
+    formData.append("id", getVendorId()); // Ensure this ID is unique and valid
+    formData.append("name", formState.venueName);
+    formData.append("venueType", formState.venueType);
     formData.append(
       "operatingHours[openingTime]",
       formState.startOperatingHours,
