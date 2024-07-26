@@ -27,7 +27,7 @@ interface PageProps {
   ) => void;
 }
 
-const Page: React.FC<PageProps> = ({
+const Page4: React.FC<PageProps> = ({
   hourlyPackages,
   setHourlyPackages,
   dailyPackages,
@@ -446,18 +446,9 @@ const Page: React.FC<PageProps> = ({
           </div>
         </div>
 
-        <div className="mt-7 flex w-full justify-between gap-4 lg:mt-[5rem]">
-          <button className="rounded-lg bg-gray-300 p-3">Back</button>
-          <button
-            className="rounded-lg bg-[#2E3192] p-3 text-white"
-            onClick={handleSubmit}
-          >
-            Next
-          </button>
-        </div>
       </div>
     </div>
   );
 };
 
-export default Page;
+export default Page4;

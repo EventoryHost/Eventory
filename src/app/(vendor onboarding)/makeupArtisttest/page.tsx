@@ -202,7 +202,7 @@ const VenueForm: React.FC = () => {
   return (
     <div>
       {renderPage()}
-      <div className="ml-10 mt-9 flex flex-row items-center justify-center gap-7">
+      <div className="my-9 flex flex-row justify-end gap-7 mr-[5%]">
         {currentPage > 1 && (
           <button
             className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"

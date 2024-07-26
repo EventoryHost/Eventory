@@ -105,11 +105,6 @@ const Page: React.FC<Page1Props> = ({
 
   //group state
 
-  //chips state
-  // const [makeupArtists_individual, setMakeupArtist_individual] = useState<string[]>([]);
-  // const [makeupArtists_groups, setMakeupArtist_group] = useState<string[]>([]);
-  // const [makeupArtists_organisation, setMakeupArtist_organisation] = useState<string[]>([]);
-
   const handleSubmit = (e: React.FormEvent) => {
     // Handle form submission
     e.preventDefault();

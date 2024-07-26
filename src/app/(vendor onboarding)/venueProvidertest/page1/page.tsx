@@ -1,8 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
-import { ComboboxDemo } from "@/components/dropdown";
-import { Dropdown } from "react-day-picker";
+import React from "react";
 import { Combobox } from "@/components/ui/combobox";
 
 const venueTypes = [
@@ -71,7 +69,7 @@ interface Page1Props {
   updateFormState: (newState: Partial<FormState>) => void;
 }
 
-const Page: React.FC<Page1Props> = ({ formState, updateFormState }) => {
+const Page1: React.FC<Page1Props> = ({ formState, updateFormState }) => {
   const {
     venueName,
     VenueAddress,
@@ -261,4 +259,4 @@ const Page: React.FC<Page1Props> = ({ formState, updateFormState }) => {
   );
 };
 
-export default Page;
+export default Page1;

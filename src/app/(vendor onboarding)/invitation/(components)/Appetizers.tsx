@@ -24,7 +24,7 @@ const Appetizers = ({
   };
 
   return (
-    <div className="grid min-h-[100%] min-w-[100%] grid-cols-4 grid-rows-5 gap-3">
+    <div className="grid min-h-[100%] min-w-[100%] grid-cols-4 grid-rows-1 gap-3">
       {appetizers.map((appetizer, index) => (
         <button
           key={index}

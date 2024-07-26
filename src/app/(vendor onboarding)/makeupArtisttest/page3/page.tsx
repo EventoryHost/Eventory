@@ -45,48 +45,10 @@ const Page: React.FC<Page3Props> = ({
   handlePackageChange,
   addPackage,
 }) => {
-  // const [advancePayment, setAdvancePayment] = useState(25);
-
+ 
   const handlePercentageChange = (newValue: number) => {
     setAdvancePayment(newValue);
   };
-
-  // const [hourlyPackage, setHourlyPackages] = useState<Package[]>([
-  //   { type: "", priceRange: [0,0] },
-  // ]);
-  // const [dealPackage, setdealPackage] = useState<Package[]>([
-  //   { type: "", priceRange: [0,0] },
-  // ]);
-
-  // const [ratesbyWorker, setratesbyWorker] = useState<Package[]>([
-  //   { type: "", priceRange:[0,0] },
-  // ]);
-
-  // const handlePackageChange = (
-  //   setPackages: React.Dispatch<React.SetStateAction<Package[]>>,
-  //   index: number,
-  //   field: "type" | "priceRange",
-  //   value: string | [number, number],
-  // ) => {
-  //   setPackages((prevPackages) => {
-  //     const newPackages = [...prevPackages];
-  //     if (field === "type") {
-  //       newPackages[index].type = value as string;
-  //     } else {
-  //       newPackages[index].priceRange = value as [number, number];
-  //     }
-  //     return newPackages;
-  //   });
-  // };
-
-  // const addPackage = (
-  //   setPackages: React.Dispatch<React.SetStateAction<Package[]>>,
-  // ) => {
-  //   setPackages((prevPackages) => [
-  //     ...prevPackages,
-  //     { type: "", priceRange: [0, 100000] },
-  //   ]);
-  // };
 
   const handleMinPriceChange = (
     setPackages: React.Dispatch<React.SetStateAction<Package[]>>,
