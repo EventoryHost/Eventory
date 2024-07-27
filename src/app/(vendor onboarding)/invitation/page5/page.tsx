@@ -40,11 +40,9 @@ const Page: React.FC<Page5Props> = ({
   handlePackageChange,
   addPackage,
 }) => {
- 
   const handlePercentageChange = (newValue: number) => {
     setAdvancePayment(newValue);
   };
-
 
   const handleMinPriceChange = (
     setPackages: React.Dispatch<React.SetStateAction<Package[]>>,
@@ -102,7 +100,7 @@ const Page: React.FC<Page5Props> = ({
           <div className="h-[0.3rem] w-[4rem] rounded-xl bg-[#2E3192]"></div>
           <button className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2E3192] p-5 text-white">
             5
-          </button>          
+          </button>
         </div>
         <div className="flex h-[50%] flex-col items-start justify-center gap-9 px-9 xs:pl-5 md:px-11 lg:p-8">
           <h1 className="text-3xl font-bold md:text-4xl lg:text-5xl">
@@ -126,7 +124,7 @@ const Page: React.FC<Page5Props> = ({
           <h1 className="text-3xl font-semibold">Pricing structure</h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             {/* per peice Price range*/}
-            {perPeicePriceRange.map((pkg,index) => (
+            {perPeicePriceRange.map((pkg, index) => (
               <div
                 key={index}
                 className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row"
@@ -231,7 +229,7 @@ const Page: React.FC<Page5Props> = ({
               </div>
             </div>
 
-            {bulkPriceRange.map((pkg,index) => (
+            {bulkPriceRange.map((pkg, index) => (
               <div
                 key={index}
                 className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row"
@@ -292,8 +290,8 @@ const Page: React.FC<Page5Props> = ({
                       value={pkg.priceRange[1] === 0 ? "" : pkg.priceRange[1]}
                       onChange={(e) =>
                         handleMaxPriceChange(
-                         setbulkPriceRange,
-                          bulkPriceRange,                         
+                          setbulkPriceRange,
+                          bulkPriceRange,
                           index,
                           e.target.value,
                         )
@@ -335,7 +333,6 @@ const Page: React.FC<Page5Props> = ({
                 </button>
               </div>
             </div>
-
 
             <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
               <div className="flex min-w-[40%] flex-col gap-4">

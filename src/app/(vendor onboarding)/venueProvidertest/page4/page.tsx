@@ -445,7 +445,6 @@ const Page4: React.FC<PageProps> = ({
             </div>
           </div>
         </div>
-
       </div>
     </div>
   );

@@ -29,22 +29,21 @@ interface FormState {
   informationInserts: boolean;
   // Page 3
 
-  additionalStationery: boolean,
-    thankYouCards: boolean,
-    designConcepts:boolean,
-    discussVision: boolean,
-    specialTouch: boolean,
-    initialConsultation: boolean,
-    allowRevisions: boolean,
-    provideProofs: boolean,
-    designconcept:boolean,
+  additionalStationery: boolean;
+  thankYouCards: boolean;
+  designConcepts: boolean;
+  discussVision: boolean;
+  specialTouch: boolean;
+  initialConsultation: boolean;
+  allowRevisions: boolean;
+  provideProofs: boolean;
+  designconcept: boolean;
   // Page 4
   termsandConditions: string;
   canelationPolicy: string;
   clienttestimonials: string;
   extracharges: boolean;
   deposit: boolean;
-  
 }
 
 const VenueForm: React.FC = () => {
@@ -65,7 +64,7 @@ const VenueForm: React.FC = () => {
     differentCardstockWeights: false,
     informationInserts: false,
 
-    //page 3 
+    //page 3
     additionalStationery: false,
     thankYouCards: false,
     designConcepts: false,
@@ -88,10 +87,13 @@ const VenueForm: React.FC = () => {
   };
 
   //page 1
-  const [typesOfInvitationsYouDesign, setTypesOfInvitationsYouDesign] = useState<string[]>([]);
+  const [typesOfInvitationsYouDesign, setTypesOfInvitationsYouDesign] =
+    useState<string[]>([]);
   const [formalinvitation, setFormalInvitation] = useState<string[]>([]);
   const [casualinvitation, setCasualInvitation] = useState<string[]>([]);
-  const [Electronicinvitation, setElectronicInvitation] = useState<string[]>([]);
+  const [Electronicinvitation, setElectronicInvitation] = useState<string[]>(
+    [],
+  );
   const [handmadeinvitation, setHandmadeInvitation] = useState<string[]>([]);
   const [printedInvitation, setPrintedInvitation] = useState<string[]>([]);
   const [specialyInvitation, setSpecialyInvitation] = useState<string[]>([]);
@@ -107,9 +109,13 @@ const VenueForm: React.FC = () => {
 
   //page 4
 
-  //page 5 
-  const [perPeicePriceRange, setperPeicePriceRange] = useState<Package[]>([{ type: "", priceRange: [0, 0] },]);
-  const [bulkPriceRange, setbulkPriceRange] = useState<Package[]>([{ type: "", priceRange: [0, 0] },]);
+  //page 5
+  const [perPeicePriceRange, setperPeicePriceRange] = useState<Package[]>([
+    { type: "", priceRange: [0, 0] },
+  ]);
+  const [bulkPriceRange, setbulkPriceRange] = useState<Package[]>([
+    { type: "", priceRange: [0, 0] },
+  ]);
   const [advancePayment, setAdvancePayment] = useState(25);
 
   const handlePackageChange = (
@@ -252,19 +258,15 @@ const VenueForm: React.FC = () => {
       case 3:
         return (
           <Page3
-          formState={formState}
-          updateFormState={updateFormState}
-          envelopeTypes={envelopTypes}
-          setEnvelopeTypes={setEnvelopTypes}
+            formState={formState}
+            updateFormState={updateFormState}
+            envelopeTypes={envelopTypes}
+            setEnvelopeTypes={setEnvelopTypes}
           />
         );
       case 4:
         return (
-          <Page4
-            formState={formState}
-            updateFormState={updateFormState}
-            
-          />
+          <Page4 formState={formState} updateFormState={updateFormState} />
         );
       case 5:
         return (
@@ -312,7 +314,7 @@ const VenueForm: React.FC = () => {
   return (
     <div>
       {renderPage()}
-      <div className="my-9 flex flex-row justify-end gap-7 mr-[5%]">
+      <div className="my-9 mr-[5%] flex flex-row justify-end gap-7">
         {currentPage > 1 && (
           <button
             className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"

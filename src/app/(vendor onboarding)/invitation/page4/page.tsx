@@ -5,23 +5,20 @@ import Appetizers from "../(components)/Appetizers";
 import { Upload } from "lucide-react";
 import { Combobox } from "@/components/ui/combobox";
 
-
-
 const _religiousAndCulturalInvitations = [
   "Diwali invitations",
   "Ganesh chaturthi cards",
   "Christmas invitation",
-  "Halloween invitation"
+  "Halloween invitation",
 ];
-
 
 const _experience = [
   { value: "1", label: "1" },
   { value: "2", label: "2" },
   { value: "3", label: "3" },
   { value: "4", label: "4" },
-  { value:"other", label: "Other" }
-]
+  { value: "other", label: "Other" },
+];
 interface FormState {
   termsandConditions: string;
   canelationPolicy: string;
@@ -33,14 +30,16 @@ interface FormState {
 interface Page4Props {
   formState: FormState;
   updateFormState: (newState: Partial<FormState>) => void;
-
 }
 
-const Page: React.FC<Page4Props> = ({
-   formState,
-  updateFormState,
-  }) => {
-  const { termsandConditions, canelationPolicy, extracharges, deposit, clienttestimonials } = formState;
+const Page: React.FC<Page4Props> = ({ formState, updateFormState }) => {
+  const {
+    termsandConditions,
+    canelationPolicy,
+    extracharges,
+    deposit,
+    clienttestimonials,
+  } = formState;
 
   // const [termdandConditions, setTermsAndConditions] = useState("");
   // const [canelationPolicy, setCancelationPolicy] = useState("");
@@ -48,7 +47,6 @@ const Page: React.FC<Page4Props> = ({
   // const [extracharges, setExtraCharges] = useState(false);
   // const  [deposit, setDeposit] = useState(false);
   // const [clienttestimonials, setClientTestimonials] = useState("");
-
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -78,7 +76,7 @@ const Page: React.FC<Page4Props> = ({
           <div className="h-[0.3rem] w-[4rem] rounded-xl bg-gray-300"></div>
           <button className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-300 p-5">
             5
-          </button>          
+          </button>
         </div>
         <div className="flex h-[50%] flex-col items-start justify-center gap-9 px-9 xs:pl-5 md:px-11 lg:p-8">
           <h1 className="text-3xl font-bold md:text-4xl lg:text-5xl">
@@ -133,7 +131,7 @@ const Page: React.FC<Page4Props> = ({
                   placeholder="Enter url here"
                   value={termsandConditions}
                   onChange={(e) =>
-                    updateFormState({termsandConditions: e.target.value })
+                    updateFormState({ termsandConditions: e.target.value })
                   }
                 />
               </div>
@@ -154,16 +152,15 @@ const Page: React.FC<Page4Props> = ({
             <div className="flex min-w-full flex-row items-start justify-between gap-4">
               <div className="flex min-w-[40%] flex-col gap-4">
                 <label>
-                Do you charge extra for customizable <br /> invitation designs ?
+                  Do you charge extra for customizable <br /> invitation designs
+                  ?
                 </label>
-                <div className="flex flex-row items-center  gap-2">
+                <div className="flex flex-row items-center gap-2">
                   <input
                     className="h-4 w-4 bg-[#2E3192] text-[#2E3192]"
                     type="radio"
                     checked={extracharges === true}
-                    onChange={() =>
-                      updateFormState({extracharges : true })
-                    }
+                    onChange={() => updateFormState({ extracharges: true })}
                   />
                   <p>Yes</p>
 
@@ -171,9 +168,7 @@ const Page: React.FC<Page4Props> = ({
                     className="h-4 w-4 bg-[#2E3192] text-[#2E3192]"
                     type="radio"
                     checked={extracharges === false}
-                    onChange={() =>
-                      updateFormState({extracharges: false })
-                    }
+                    onChange={() => updateFormState({ extracharges: false })}
                   />
                   <p>No</p>
                 </div>
@@ -191,16 +186,15 @@ const Page: React.FC<Page4Props> = ({
             <div className="flex min-w-full flex-row items-start justify-between gap-4">
               <div className="flex min-w-[40%] flex-col gap-4">
                 <label>
-                Do they require a deposit to book their <br /> design services ?
+                  Do they require a deposit to book their <br /> design services
+                  ?
                 </label>
-                <div className="flex flex-row items-center  gap-2">
+                <div className="flex flex-row items-center gap-2">
                   <input
                     className="h-4 w-4 bg-[#2E3192] text-[#2E3192]"
                     type="radio"
                     checked={deposit === true}
-                    onChange={() =>
-                      updateFormState({deposit : true })
-                    }
+                    onChange={() => updateFormState({ deposit: true })}
                   />
                   <p>Yes</p>
 
@@ -208,9 +202,7 @@ const Page: React.FC<Page4Props> = ({
                     className="h-4 w-4 bg-[#2E3192] text-[#2E3192]"
                     type="radio"
                     checked={deposit === false}
-                    onChange={() =>
-                      updateFormState({deposit: false })
-                    }
+                    onChange={() => updateFormState({ deposit: false })}
                   />
                   <p>No</p>
                 </div>
@@ -224,28 +216,27 @@ const Page: React.FC<Page4Props> = ({
                   placeholder="Enter url here"
                   value={clienttestimonials}
                   onChange={(e) =>
-                    updateFormState({clienttestimonials : e.target.value })
+                    updateFormState({ clienttestimonials: e.target.value })
                   }
                 />
               </div>
             </div>
           </div>
           <div className="items-strech mt-9 flex flex-row gap-7 self-end">
-              <button
-                className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={handleSubmit}
-              >
-                Skip
-              </button>
-              <button
-                className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={handleSubmit}
-              >
-                Continue
-              </button>
+            <button
+              className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+              onClick={handleSubmit}
+            >
+              Skip
+            </button>
+            <button
+              className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+              onClick={handleSubmit}
+            >
+              Continue
+            </button>
+          </div>
         </div>
-        </div>
-        
       </div>
     </div>
   );

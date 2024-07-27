@@ -45,7 +45,6 @@ const Page: React.FC<Page3Props> = ({
   handlePackageChange,
   addPackage,
 }) => {
- 
   const handlePercentageChange = (newValue: number) => {
     setAdvancePayment(newValue);
   };

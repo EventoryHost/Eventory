@@ -39,14 +39,16 @@ const Page: React.FC<Page2Props> = ({
   paperType,
   setPaperType,
 }) => {
-  const { customInvitationsFromScratch, 
+  const {
+    customInvitationsFromScratch,
     semiCustomInvitations,
     preDesignedCards,
     foilStamping,
     engraving,
     differentCardstockWeights,
     informationInserts,
-    letterPressPrinting } = formState;
+    letterPressPrinting,
+  } = formState;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -78,7 +80,7 @@ const Page: React.FC<Page2Props> = ({
           <div className="h-[0.3rem] w-[4rem] rounded-xl bg-gray-300"></div>
           <button className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-300 p-5">
             5
-          </button>          
+          </button>
         </div>
         <div className="flex h-[50%] flex-col items-start justify-center gap-9 px-9 xs:pl-5 md:px-11 lg:p-8">
           <h1 className="text-3xl font-bold md:text-4xl lg:text-5xl">
@@ -103,13 +105,13 @@ const Page: React.FC<Page2Props> = ({
             <h1 className="text-3xl font-semibold">Basic Details</h1>
           </div>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
-            <div className="flex min-w-full flex-row items-start justify-between gap-">
+            <div className="gap- flex min-w-full flex-row items-start justify-between">
               <div className="flex min-w-[40%] flex-col gap-4">
                 <label>
                   Do you create custom invitations from the <br />
                   scratch?
                 </label>
-                <div className="flex flex-row items-center  gap-2">
+                <div className="flex flex-row items-center gap-2">
                   <input
                     className="h-4 w-4 bg-[#2E3192] text-[#2E3192]"
                     type="radio"
@@ -136,7 +138,7 @@ const Page: React.FC<Page2Props> = ({
                   Do you offer letter-press printing for more <br />
                   luxurious look ?
                 </label>
-                <div className="flex flex-row items-center  gap-2">
+                <div className="flex flex-row items-center gap-2">
                   <input
                     className="h-4 w-4 bg-[#2E3192] text-[#2E3192]"
                     type="radio"
@@ -161,14 +163,12 @@ const Page: React.FC<Page2Props> = ({
             </div>
             <div className="flex min-w-full flex-row items-start justify-between gap-0">
               <div className="flex min-w-[40%] flex-col gap-4">
-                <label>
-                 Do you create semi - custom invitations ?
-                </label>
-                <div className="flex flex-row items-center  gap-2">
+                <label>Do you create semi - custom invitations ?</label>
+                <div className="flex flex-row items-center gap-2">
                   <input
                     className="h-4 w-4 bg-[#2E3192] text-[#2E3192]"
                     type="radio"
-                    checked={semiCustomInvitations=== true}
+                    checked={semiCustomInvitations === true}
                     onChange={() =>
                       updateFormState({ semiCustomInvitations: true })
                     }
@@ -181,7 +181,6 @@ const Page: React.FC<Page2Props> = ({
                     checked={semiCustomInvitations === false}
                     onChange={() =>
                       updateFormState({ semiCustomInvitations: false })
-
                     }
                   />
                   <p>No</p>
@@ -189,16 +188,14 @@ const Page: React.FC<Page2Props> = ({
               </div>
               <div className="flex min-w-[40%] flex-col gap-4">
                 <label htmlFor="businessName">
-                Do you have pre-designed cards available ?
+                  Do you have pre-designed cards available ?
                 </label>
-                <div className="flex flex-row items-center  gap-2">
+                <div className="flex flex-row items-center gap-2">
                   <input
                     className="h-4 w-4 bg-[#2E3192] text-[#2E3192]"
                     type="radio"
                     checked={preDesignedCards === true}
-                    onChange={() =>
-                      updateFormState({ preDesignedCards: true })
-                    }
+                    onChange={() => updateFormState({ preDesignedCards: true })}
                   />
                   <p>Yes</p>
 
@@ -217,16 +214,15 @@ const Page: React.FC<Page2Props> = ({
             <div className="flex min-w-full flex-row items-start justify-between gap-0">
               <div className="flex min-w-[40%] flex-col gap-4">
                 <label>
-                Do they offer foil stamping for metallic <br />accents ?
+                  Do they offer foil stamping for metallic <br />
+                  accents ?
                 </label>
-                <div className="flex flex-row items-center  gap-2">
+                <div className="flex flex-row items-center gap-2">
                   <input
                     className="h-4 w-4 bg-[#2E3192] text-[#2E3192]"
                     type="radio"
-                    checked={foilStamping=== true}
-                    onChange={() =>
-                      updateFormState({ foilStamping: true })
-                    }
+                    checked={foilStamping === true}
+                    onChange={() => updateFormState({ foilStamping: true })}
                   />
                   <p>Yes</p>
 
@@ -234,25 +230,23 @@ const Page: React.FC<Page2Props> = ({
                     className="h-4 w-4 bg-[#2E3192] text-[#2E3192]"
                     type="radio"
                     checked={foilStamping === false}
-                    onChange={() =>
-                      updateFormState({ foilStamping: false })
-
-                    }
+                    onChange={() => updateFormState({ foilStamping: false })}
                   />
                   <p>No</p>
                 </div>
               </div>
               <div className="flex min-w-[40%] flex-col gap-4">
                 <label htmlFor="businessName">
-                Do you offer different cardstock weights for <br /> invitations?
+                  Do you offer different cardstock weights for <br />{" "}
+                  invitations?
                 </label>
-                <div className="flex flex-row items-center  gap-2">
+                <div className="flex flex-row items-center gap-2">
                   <input
                     className="h-4 w-4 bg-[#2E3192] text-[#2E3192]"
                     type="radio"
                     checked={differentCardstockWeights === true}
                     onChange={() =>
-                      updateFormState({differentCardstockWeights: true })
+                      updateFormState({ differentCardstockWeights: true })
                     }
                   />
                   <p>Yes</p>
@@ -272,40 +266,37 @@ const Page: React.FC<Page2Props> = ({
             <div className="flex min-w-full flex-row items-start justify-between gap-0">
               <div className="flex min-w-[40%] flex-col gap-4">
                 <label>
-                Do they offer engraving for a classic and <br />elegant look ?
+                  Do they offer engraving for a classic and <br />
+                  elegant look ?
                 </label>
-                <div className="flex flex-row items-center  gap-2">
+                <div className="flex flex-row items-center gap-2">
                   <input
                     className="h-4 w-4 bg-[#2E3192] text-[#2E3192]"
                     type="radio"
-                    checked={engraving=== true}
-                    onChange={() =>
-                      updateFormState({ foilStamping: true })
-                    }
+                    checked={engraving === true}
+                    onChange={() => updateFormState({ foilStamping: true })}
                   />
                   <p>Yes</p>
 
                   <input
                     className="h-4 w-4 bg-[#2E3192] text-[#2E3192]"
                     type="radio"
-                    checked={engraving=== false}
-                    onChange={() =>
-                      updateFormState({ foilStamping: false })
-
-                    }
+                    checked={engraving === false}
+                    onChange={() => updateFormState({ foilStamping: false })}
                   />
                   <p>No</p>
                 </div>
               </div>
               <div className="flex min-w-[40%] flex-col gap-4">
                 <label>
-                Do you design information inserts for <br /> additional event details ?
+                  Do you design information inserts for <br /> additional event
+                  details ?
                 </label>
-                <div className="flex flex-row items-center  gap-2">
+                <div className="flex flex-row items-center gap-2">
                   <input
                     className="h-4 w-4 bg-[#2E3192] text-[#2E3192]"
                     type="radio"
-                    checked={ informationInserts=== true}
+                    checked={informationInserts === true}
                     onChange={() =>
                       updateFormState({ informationInserts: true })
                     }
@@ -318,13 +309,12 @@ const Page: React.FC<Page2Props> = ({
                     checked={informationInserts === false}
                     onChange={() =>
                       updateFormState({ informationInserts: false })
-
                     }
                   />
                   <p>No</p>
                 </div>
               </div>
-            </div>                        
+            </div>
           </div>
         </div>
         <div className="flex flex-col gap-9 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">

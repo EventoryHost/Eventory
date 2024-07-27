@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import {Upload } from "lucide-react";
+import { Upload } from "lucide-react";
 import Appetizers from "../(components)/Appetizers";
 
 const _venue_restrictions = [

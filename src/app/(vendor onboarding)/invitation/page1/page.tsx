@@ -15,62 +15,56 @@ const _typesOfInvitationsYouDesign = [
   "Specialty invitation",
   "Unique invitation",
   "Cultural invitation",
-  "Others"
+  "Others",
 ];
-
 
 const _formalInvitations = [
   "Wedding invitations",
   "Corporate invitations",
   "Gala invitation",
-  "Others"
+  "Others",
 ];
 
 const _casualInvitations = [
   "Birthday invitations",
   "Housewarming invitations",
   "BBQ / Outdoor invitation",
-  "Others"
+  "Others",
 ];
 
 const _electronicInvitations = [
   "E-mail invitations",
   "Social media invitations",
-  "Others"
+  "Others",
 ];
 
 const _handmadeInvitations = [
   "DIY invitations",
   "Artisan invitations",
-  "Others"
+  "Others",
 ];
 
 const _printedInvitations = [
   "Printed invitations",
   "Photo invitations",
-  "Others"
+  "Others",
 ];
 
 const _specialtyInvitations = [
   "Theme party invitations",
   "Save the date cards",
   "RSVP cards",
-  "Others"
+  "Others",
 ];
 
-const _uniqueInvitations = [
-  "Video invitations",
-  "Interactive cards",
-  "Others"
-];
+const _uniqueInvitations = ["Video invitations", "Interactive cards", "Others"];
 
 const _religiousAndCulturalInvitations = [
   "Diwali invitations",
   "Ganesh chaturthi cards",
   "Christmas invitation",
-  "Halloween invitation"
+  "Halloween invitation",
 ];
-
 
 const _decorTypes = [
   { value: "indoor", label: "Inhouse Decor" },
@@ -127,8 +121,8 @@ const _experience = [
   { value: "2", label: "2" },
   { value: "3", label: "3" },
   { value: "4", label: "4" },
-  { value:"other", label: "Other" }
-]
+  { value: "other", label: "Other" },
+];
 interface FormState {
   references: boolean;
   portfolio: string;
@@ -139,30 +133,31 @@ interface Page1Props {
   formState: FormState;
   updateFormState: (newState: Partial<FormState>) => void;
   typesOfInvitationsYouDesign: string[];
-  setTypesOfInvitationsYouDesign: React.Dispatch<React.SetStateAction<string[]>>;
+  setTypesOfInvitationsYouDesign: React.Dispatch<
+    React.SetStateAction<string[]>
+  >;
   formalinvitation: string[];
-  setFormalInvitation:  React.Dispatch<React.SetStateAction<string[]>>;
+  setFormalInvitation: React.Dispatch<React.SetStateAction<string[]>>;
   casualinvitation: string[];
-  setCasualInvitation:  React.Dispatch<React.SetStateAction<string[]>>;
+  setCasualInvitation: React.Dispatch<React.SetStateAction<string[]>>;
   Electronicinvitation: string[];
-  setElectronicInvitation:  React.Dispatch<React.SetStateAction<string[]>>;
+  setElectronicInvitation: React.Dispatch<React.SetStateAction<string[]>>;
   handmadeinvitation: string[];
-  setHandmadeInvitation:  React.Dispatch<React.SetStateAction<string[]>>;
+  setHandmadeInvitation: React.Dispatch<React.SetStateAction<string[]>>;
   printedInvitation: string[];
-  setPrintedInvitation:  React.Dispatch<React.SetStateAction<string[]>>;
+  setPrintedInvitation: React.Dispatch<React.SetStateAction<string[]>>;
   specialyInvitation: string[];
-  setSpecialyInvitation:  React.Dispatch<React.SetStateAction<string[]>>;
+  setSpecialyInvitation: React.Dispatch<React.SetStateAction<string[]>>;
   uniqueInvitation: string[];
-  setUniqueInvitation:  React.Dispatch<React.SetStateAction<string[]>>;
+  setUniqueInvitation: React.Dispatch<React.SetStateAction<string[]>>;
   relegiousInvitation: string[];
-  setRelegiousInvitation:  React.Dispatch<React.SetStateAction<string[]>>;
+  setRelegiousInvitation: React.Dispatch<React.SetStateAction<string[]>>;
   otherInvitation: string[];
-  setOtherInvitation:  React.Dispatch<React.SetStateAction<string[]>>;
-
+  setOtherInvitation: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
 const Page: React.FC<Page1Props> = ({
-   formState,
+  formState,
   updateFormState,
   typesOfInvitationsYouDesign,
   setTypesOfInvitationsYouDesign,
@@ -184,7 +179,7 @@ const Page: React.FC<Page1Props> = ({
   setRelegiousInvitation,
   otherInvitation,
   setOtherInvitation,
-  }) => {
+}) => {
   const { references, portfolio, experience } = formState;
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -215,7 +210,7 @@ const Page: React.FC<Page1Props> = ({
           <div className="h-[0.3rem] w-[4rem] rounded-xl bg-gray-300"></div>
           <button className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-300 p-5">
             5
-          </button>          
+          </button>
         </div>
         <div className="flex h-[50%] flex-col items-start justify-center gap-9 px-9 xs:pl-5 md:px-11 lg:p-8">
           <h1 className="text-3xl font-bold md:text-4xl lg:text-5xl">
@@ -289,7 +284,9 @@ const Page: React.FC<Page1Props> = ({
                 <Combobox
                   options={_experience}
                   placeholder="Select your category"
-                  setFunction={(value) => updateFormState({ experience: value })}
+                  setFunction={(value) =>
+                    updateFormState({ experience: value })
+                  }
                   className="flex items-center justify-between rounded-xl border-2 py-6 hover:text-[#2E3192]"
                 />
               </div>
@@ -298,36 +295,32 @@ const Page: React.FC<Page1Props> = ({
         </div>
         <div className="flex flex-col gap-9 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
           <h1 className="text-3xl font-semibold">
-          Types of Invitations you design 
+            Types of Invitations you design
           </h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
-                 appetizers={_typesOfInvitationsYouDesign}
-                 selectedAppetizers={typesOfInvitationsYouDesign}
-                 setSelectedAppetizers={setTypesOfInvitationsYouDesign}
+                appetizers={_typesOfInvitationsYouDesign}
+                selectedAppetizers={typesOfInvitationsYouDesign}
+                setSelectedAppetizers={setTypesOfInvitationsYouDesign}
               />
             </div>
           </div>
         </div>
         <div className="flex flex-col gap-9 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
-          <h1 className="text-3xl font-semibold">
-          Formal Invitations
-          </h1>
+          <h1 className="text-3xl font-semibold">Formal Invitations</h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
-                 appetizers={_formalInvitations}
-                 selectedAppetizers={formalinvitation}
-                 setSelectedAppetizers={setFormalInvitation}
+                appetizers={_formalInvitations}
+                selectedAppetizers={formalinvitation}
+                setSelectedAppetizers={setFormalInvitation}
               />
             </div>
           </div>
         </div>
         <div className="flex flex-col gap-9 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
-          <h1 className="text-3xl font-semibold">
-          Casual Invitations
-          </h1>
+          <h1 className="text-3xl font-semibold">Casual Invitations</h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
@@ -339,9 +332,7 @@ const Page: React.FC<Page1Props> = ({
           </div>
         </div>
         <div className="flex flex-col gap-9 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
-          <h1 className="text-3xl font-semibold">
-          Electronic Invitations
-          </h1>
+          <h1 className="text-3xl font-semibold">Electronic Invitations</h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
@@ -353,9 +344,7 @@ const Page: React.FC<Page1Props> = ({
           </div>
         </div>
         <div className="flex flex-col gap-9 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
-          <h1 className="text-3xl font-semibold">
-          Handmade Invitations
-          </h1>
+          <h1 className="text-3xl font-semibold">Handmade Invitations</h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
@@ -367,9 +356,7 @@ const Page: React.FC<Page1Props> = ({
           </div>
         </div>
         <div className="flex flex-col gap-9 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
-          <h1 className="text-3xl font-semibold">
-          Printed Invitations
-          </h1>
+          <h1 className="text-3xl font-semibold">Printed Invitations</h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
@@ -381,9 +368,7 @@ const Page: React.FC<Page1Props> = ({
           </div>
         </div>
         <div className="flex flex-col gap-9 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
-          <h1 className="text-3xl font-semibold">
-          Specialty  Invitations
-          </h1>
+          <h1 className="text-3xl font-semibold">Specialty Invitations</h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
@@ -395,9 +380,7 @@ const Page: React.FC<Page1Props> = ({
           </div>
         </div>
         <div className="flex flex-col gap-9 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
-          <h1 className="text-3xl font-semibold">
-          Unique  Invitations
-          </h1>
+          <h1 className="text-3xl font-semibold">Unique Invitations</h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
@@ -410,8 +393,8 @@ const Page: React.FC<Page1Props> = ({
         </div>
         <div className="flex flex-col gap-9 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
           <h1 className="text-3xl font-semibold">
-            Religious and Cultural  Invitations
-            </h1>
+            Religious and Cultural Invitations
+          </h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
