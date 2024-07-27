@@ -1,10 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
-import { ComboboxDemo } from "@/components/dropdown";
-import { Dropdown } from "react-day-picker";
-import { Combobox } from "@/components/ui/combobox";
-import { ArrowUpSquare, Upload } from "lucide-react";
+import React from "react";
+import {Upload } from "lucide-react";
 import Appetizers from "../(components)/Appetizers";
 
 const _venue_restrictions = [
@@ -50,7 +47,7 @@ interface Page5Props {
   setVenue_special_features: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-const Page: React.FC<Page5Props> = ({
+const Page5: React.FC<Page5Props> = ({
   formState,
   updateFormState,
   handleSubmit,
@@ -216,4 +213,4 @@ const Page: React.FC<Page5Props> = ({
   );
 };
 
-export default Page;
+export default Page5;

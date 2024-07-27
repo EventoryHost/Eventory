@@ -74,7 +74,7 @@ interface Page2Props {
   updateFormState: (newState: Partial<FormState>) => void;
 }
 
-const Page: React.FC<Page2Props> = ({
+const Page2: React.FC<Page2Props> = ({
   formState,
   updateFormState,
   audioVisualEquipment,
@@ -216,4 +216,4 @@ const Page: React.FC<Page2Props> = ({
   );
 };
 
-export default Page;
+export default Page2;

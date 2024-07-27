@@ -17,7 +17,7 @@ interface Page3Props {
   updateFormState: (newState: Partial<FormState>) => void;
 }
 
-const Page: React.FC<Page3Props> = ({ formState, updateFormState }) => {
+const Page3: React.FC<Page3Props> = ({ formState, updateFormState }) => {
   const { termsAndConditions, cancellationPolicy } = formState;
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -162,4 +162,4 @@ const Page: React.FC<Page3Props> = ({ formState, updateFormState }) => {
   );
 };
 
-export default Page;
+export default Page3;

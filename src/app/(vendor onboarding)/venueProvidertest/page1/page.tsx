@@ -74,7 +74,7 @@ interface Page1Props {
   updateFormState: (newState: Partial<FormState>) => void;
 }
 
-const Page: React.FC<Page1Props> = ({ formState, updateFormState }) => {
+const Page1: React.FC<Page1Props> = ({ formState, updateFormState }) => {
   const {
     venueName,
     VenueAddress,
@@ -264,4 +264,4 @@ const Page: React.FC<Page1Props> = ({ formState, updateFormState }) => {
   );
 };
 
-export default Page;
+export default Page1;
