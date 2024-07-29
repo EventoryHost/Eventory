@@ -45,7 +45,7 @@ export function Combobox2(props: ComboboxProps) {
           aria-expanded={open}
           className={cn(
             "w-[100%] min-w-[245px] justify-between",
-            props.className
+            props.className,
           )}
         >
           {value
@@ -73,7 +73,7 @@ export function Combobox2(props: ComboboxProps) {
                   <Check
                     className={cn(
                       "mr-2 h-4 w-4",
-                      value === option.value ? "opacity-100" : "opacity-0"
+                      value === option.value ? "opacity-100" : "opacity-0",
                     )}
                   />
                   {option.label}

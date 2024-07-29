@@ -20,7 +20,6 @@ const Page4 = ({
   setSelectedBeverages: React.Dispatch<React.SetStateAction<string[]>>;
   handleContinue: () => void;
 }) => {
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     handleContinue();

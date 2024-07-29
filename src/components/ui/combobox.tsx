@@ -51,7 +51,9 @@ export function Combobox({
           aria-expanded={open}
           className={cn("w-[100%] min-w-[245px] justify-between", className)}
         >
-          {value ? options.find((option) => option.value === value)?.label : placeholder}
+          {value
+            ? options.find((option) => option.value === value)?.label
+            : placeholder}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
@@ -72,7 +74,10 @@ export function Combobox({
                   }}
                 >
                   <Check
-                    className={cn("mr-2 h-4 w-4", value === option.value ? "opacity-100" : "opacity-0")}
+                    className={cn(
+                      "mr-2 h-4 w-4",
+                      value === option.value ? "opacity-100" : "opacity-0",
+                    )}
                   />
                   {option.label}
                 </CommandItem>
