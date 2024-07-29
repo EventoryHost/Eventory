@@ -19,69 +19,67 @@ async function addVenue(data: any) {
   }
 }
 
-// const venueSchema = new Schema({
-//     id: { type: String, required: true },
-//     name: {
-//       type: String,
-//       required: true,
-//     },
-//     operatingHours: {
-//       openingTime: {
-//         type: String,
-//         required: true,
-//       },
-//       closingTime: {
-//         type: String,
-//         required: true,
-//       },
-//     },
-//     venueDescription: {
-//       type: String,
-//       required: true,
-//     },
-//     capacity: {
-//       type: Number,
-//       required: true,
-//     },
-//     decorServices: {
-//       type: String,
-//       required: true,
-//     },
-//     audioVisualEquipment: {
-//       type: [String],
-//       required: true,
-//     },
-//     accessibilityFeatures: {
-//       type: [String],
-//       required: true,
-//     },
-//     facilities: {
-//       type: [String],
-//       required: true,
-//     },
-//     termsConditions: {
-//       type: String,
-//       required: true,
-//     },
-//     cancellationPolicy: {
-//       type: String,
-//       required: true,
-//     },
-//     rates: {
-//       hourly: String,
-//       daily: String,
-//       seasonal: String,
-//     },
-  
-//     photosVideos: [String],
-//     virtualTour: String,
-  
-//     socialLinks: {
-//       instagramURL: String,
-//       websiteURL: String,
-//     },
-//     restrictionsPolicies: [String],
-//     specialFeatures: [String],
-//   });
+// {
+//   "id": " venue123", dont test with the same id once succesful
+//   "name": " Grand Ballroom",
+//   "operatingHours": {
+//       "openingTime": " 09:00 AM",
+//       "closingTime": " 11:00 PM"
+//   },
+//   "venueDescription": " A spacious and elegant ballroom perfect for weddings, conferences, and large gatherings.",
+//   "seatedCapacity": " 300",
+//   "standingCapacity": " 500",
+//   "decorServices": " Available",
+//   "audioVisualEquipment": [
+//       " Projector",
+//       " Sound System",
+//       " Microphones",
+//       " Stage Lighting"
+//   ],
+//   "accessibilityFeatures": [
+//       " Wheelchair Accessible",
+//       " Elevator Access"
+//   ],
+//   "facilities": [
+//       " Restrooms",
+//       " Parking Lot",
+//       " Kitchen",
+//       " WiFi"
+//   ],
+//   "termsConditions": "https://eventory-bucket.s3.ap-south-1.amazonaws.com/Venues/%20Grand%20Ballroom/documents/AnkitKumarChakraborty_210906338_EEE.pdf",
+//   "cancellationPolicy": " Cancellations made within 48 hours will incur a 50% fee.", (file hoga) 
+//   "rates": {
+//       "hourly": [
+//           " $100/hr",
+//           " $150/hr (peak hours)"
+//       ],
+//       "daily": [
+//           " $800/day",
+//           " $1200/day (weekends)"
+//       ],
+//       "seasonal": [
+//           " $700/day (off-season)",
+//           " $1000/day (holiday season)"
+//       ]
+//   },
+//   "portfolio": [
+//       "https://eventory-bucket.s3.ap-south-1.amazonaws.com/Venues/%20Grand%20Ballroom/documents/AnkitKumarChakraborty_210906338_EEE.pdf"
+//   ],
+//   "socialLinks": {
+//       "instagramURL": " https://instagram.com/grandballroom",
+//       "websiteURL": " https://grandballroom.com"
+//   },
+//   "restrictionsPolicies": [
+//       " No smoking indoors",
+//       " No outside catering"
+//   ],
+//   "specialFeatures": [
+//       " Chandeliers",
+//       " Marble Flooring",
+//       " Garden View"
+//   ],
+//   "_id": "6699960e220f2a0095bdc0fc",
+//   "__v": 0
+// }
 
 export { addVenue };
