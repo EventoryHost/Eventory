@@ -2,20 +2,50 @@
 
 import React, { useState } from "react";
 import Page1 from "./(components)/page1";
+import Page3 from "./(components)/page3";
 import Page2 from "./(components)/page2";
+import Page4 from "./(components)/page4";
+import Page5 from "./(components)/page5";
+import Page6 from "./(components)/page6";
+import Image from "next/image";
 
 const Page = () => {
-  const [currentPage, setCurrentPage] = useState(1);
+  // States for Page1
   const [businessName, setBusinessName] = useState("");
   const [cuisineSpecialties, setCuisineSpecialties] = useState<string[]>([]);
   const [regionalSpecialties, setRegionalSpecialties] = useState<string[]>([]);
   const [serviceStyles, setServiceStyles] = useState<string[]>([]);
+
+  //states for page2
   const [selectedAppetizers, setSelectedAppetizers] = useState<string[]>([]);
   const [selectedBeverages, setSelectedBeverages] = useState<string[]>([]);
   const [selectedMainCourses, setSelectedMainCourses] = useState<string[]>([]);
   const [selectedDietaryOptions, setSelectedDietaryOptions] = useState<
     string[]
   >([]);
+
+  //states for page3
+  const [eventTypes, setEventTypes] = useState<string[]>([]);
+  const [additionalServices, setAdditionalServices] = useState<string[]>([]);
+
+  //states forpage4
+  const [staffProvides, setStaffProvides] = useState<string[]>([]);
+  const [equipmentsProvided, setEquipmentsProvided] = useState<string[]>([]);
+
+  // states for page6
+  const [tastingSessions, setTastingSessions] = useState<boolean>(false);
+  const [businessLicenses, setBusinessLicenses] = useState<boolean>(false);
+  const [foodSafety, setFoodSafety] = useState<boolean>(false);
+
+  const [currentPage, setCurrentPage] = useState(6);
+
+  const [category, setCategory] = useState("");
+  const [gstin, setGstin] = useState("");
+  const [years, setYears] = useState("");
+  const [businessAddress, setBusinessAddress] = useState("");
+  const [landmark, setLandmark] = useState("");
+  const [pinCode, setPinCode] = useState("");
+  const [cities, setCities] = useState("");
 
   const handleContinue = () => {
     console.log({
@@ -57,51 +87,106 @@ const Page = () => {
             setSelectedMainCourses={setSelectedMainCourses}
             selectedDietaryOptions={selectedDietaryOptions}
             setSelectedDietaryOptions={setSelectedDietaryOptions}
-            handleSubmit={handleContinue}
+            handleSubmit={() => setCurrentPage(3)}
+          />
+        );
+      case 3:
+        return (
+          <Page3
+            selectedAppetizers={eventTypes}
+            setSelectedAppetizers={setEventTypes}
+            selectedBeverages={additionalServices}
+            setSelectedBeverages={setAdditionalServices}
+            handleContinue={() => setCurrentPage(4)}
+          />
+        );
+      case 4:
+        return (
+          <Page4
+            selectedAppetizers={staffProvides}
+            setSelectedAppetizers={setStaffProvides}
+            selectedBeverages={equipmentsProvided}
+            setSelectedBeverages={setEquipmentsProvided}
+            handleContinue={() => setCurrentPage(5)}
+          />
+        );
+      case 5:
+        return (
+          <Page5
+            businessName={businessName}
+            setBusinessName={setBusinessName}
+            category={category}
+            setCategory={setCategory}
+            gstin={gstin}
+            setGstin={setGstin}
+            years={years}
+            setYears={setYears}
+            businessAddress={businessAddress}
+            setBusinessAddress={setBusinessAddress}
+            landmark={landmark}
+            setLandmark={setLandmark}
+            pinCode={pinCode}
+            setPinCode={setPinCode}
+            cities={cities}
+            setCities={setCities}
+            handleContinue={handleContinue}
+          />
+        );
+      case 6:
+        return (
+          <Page6
+            tastingSessions={tastingSessions}
+            setTastingSessions={setTastingSessions}
+            businessLicenses={businessLicenses}
+            setBusinessLicenses={setBusinessLicenses}
+            foodSafety={foodSafety}
+            setFoodSafety={setFoodSafety}
+            handleContinue={handleContinue}
           />
         );
       default:
-        return <div>Invalid page</div>;
+        return <div>Completed</div>;
     }
   };
-
   return (
-    <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden lg:flex-row">
+    <div className="m-0 flex w-full flex-col overflow-x-hidden lg:h-[calc(100vh-4.2rem)] lg:flex-row">
       <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
-        <div className="flex items-center justify-start gap-1 xs:self-start xs:pl-5 md:px-11 lg:mt-[2rem]">
-          <button
-            className={`flex h-10 w-10 items-center justify-center rounded-full p-5 ${currentPage === 1 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-          >
-            1
-          </button>
-          <div
-            className={`h-[0.3rem] w-[4rem] rounded-xl ${currentPage > 1 ? "bg-[#2E3192]" : "bg-gray-300"}`}
-          ></div>
-          <button
-            className={`flex h-10 w-10 items-center justify-center rounded-full p-5 ${currentPage === 2 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-          >
-            2
-          </button>
-          <div className="h-[0.3rem] w-[4rem] rounded-xl bg-gray-300"></div>
-          <button className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-300 p-5">
-            3
-          </button>
+        <div className="flex w-[100%] flex-col gap-5 lg:gap-3">
+          <div className="flex items-center justify-start gap-1 px-3 lg:mt-[2rem]">
+            <button
+              className={`flex h-10 w-10 items-center justify-center rounded-full p-5 ${currentPage === 1 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+            >
+              1
+            </button>
+            <div
+              className={`h-[0.3rem] w-[4rem] rounded-xl ${currentPage > 1 ? "bg-[#2E3192]" : "bg-gray-300"}`}
+            ></div>
+            <button
+              className={`flex h-10 w-10 items-center justify-center rounded-full p-5 ${currentPage === 2 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+            >
+              2
+            </button>
+            <div className="h-[0.3rem] w-[4rem] rounded-xl bg-gray-300"></div>
+            <button className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-300 p-5">
+              3
+            </button>
+          </div>
+          <div className="flex items-center justify-start gap-1 px-3 lg:mt-[1rem]">
+            <button className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-300 p-5">
+              4
+            </button>
+            <div className="h-[0.3rem] w-[4rem] rounded-xl bg-gray-300"></div>
+            <button className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-300 p-5">
+              5
+            </button>
+            <div className="h-[0.3rem] w-[4rem] rounded-xl bg-gray-300"></div>
+            <button className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-300 p-5">
+              6
+            </button>
+          </div>
         </div>
-        <div className="flex items-center justify-start gap-1 xs:self-start xs:pl-5 md:px-11 lg:mt-[1rem]">
-          <button className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-300 p-5">
-            4
-          </button>
-          <div className="h-[0.3rem] w-[4rem] rounded-xl bg-gray-300"></div>
-          <button className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-300 p-5">
-            5
-          </button>
-          <div className="h-[0.3rem] w-[4rem] rounded-xl bg-gray-300"></div>
-          <button className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-300 p-5">
-            6
-          </button>
-        </div>
-        <div className="flex h-[50%] flex-col items-start justify-center gap-9 px-9 xs:pl-5 md:px-11 lg:p-8">
-          <h1 className="text-3xl font-bold md:text-4xl lg:text-5xl">
+        <div className="flex h-[50%] flex-col items-start justify-center gap-9 px-3 md:px-3">
+          <h1 className="text-[8vw] font-bold md:text-[3vw]">
             Tell us about your business
           </h1>
           <p className="text-black xs:text-sm md:w-[90%]">
@@ -110,9 +195,11 @@ const Page = () => {
           </p>
         </div>
         <div className="relative h-[10rem] lg:w-full">
-          <img
+          <Image
             src={"/tajmahal.png"}
             alt=""
+            width={400}
+            height={200}
             className="h-full w-full object-cover"
           />
         </div>
