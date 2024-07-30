@@ -1,0 +1,38 @@
+Eventory/
+│
+├── public/
+│
+├── src/
+│   ├── app/
+│   │   ├── (components)/
+│   │   ├── (customer onboarding)/
+│   │   │   ├── customerlogin/
+│   │   │   ├── customersignup/
+│   │   │
+│   │   ├── (vendor onboarding)/
+│   │   │   ├── businessDetails/
+│   │   │   │   ├── caterer/
+│   │   │   │   │   ├── page1.tsx
+│   │   │   │   │   ├── page2.tsx
+│   │   │   │   ├── login/
+│   │   │   │   ├── signup/
+│   │   │   │   ├── venueProvider/
+│   │   │
+│   │   ├── about/
+│   │   ├── business/
+│   │   ├── globals.css
+│   │   ├── layout.tsx
+│   │   ├── page.tsx
+│
+├── components/
+├── controllers/
+├── lib/
+├── services/
+├── utils/
+│
+├── .env
+├── .eslintrc.json
+├── .gitignore
+├── .prettierrc.json
+├── components.json
+├── netlify.toml
