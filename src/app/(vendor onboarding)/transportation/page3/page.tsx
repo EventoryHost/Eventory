@@ -88,7 +88,7 @@ const page = () => {
           <h1 className="text-3xl font-semibold md:text-4xl lg:text-5xl">
             Fill out your Pricing rates
           </h1>
-          <p className="text-gray-600 xs:text-sm lg:text-lg md:w-[90%]">
+          <p className="text-gray-600 xs:text-sm md:w-[90%] lg:text-lg">
             Please provide the details of the vehicles offered by your company.
           </p>
         </div>
@@ -107,8 +107,9 @@ const page = () => {
             <div className="flex gap-2">
               <input
                 type="checkbox"
-                className="h-6 w-6 border-2 rounded-lg border-[#2E3192] bg-white appearance-none checked:bg-[#2E3192]  focus:outline-none"
-              />              <span className="semi-bold">Type of Vehicles</span>
+                className="h-6 w-6 appearance-none rounded-lg border-2 border-[#2E3192] bg-white checked:bg-[#2E3192] focus:outline-none"
+              />{" "}
+              <span className="semi-bold">Type of Vehicles</span>
             </div>
             <div className="flex flex-row gap-6">
               <div className="flex flex-col">
@@ -146,7 +147,7 @@ const page = () => {
             <div className="flex gap-2">
               <input
                 type="checkbox"
-                className="h-6 w-6 border-2 rounded-lg border-[#2E3192] bg-white appearance-none checked:bg-[#2E3192]  focus:outline-none"
+                className="h-6 w-6 appearance-none rounded-lg border-2 border-[#2E3192] bg-white checked:bg-[#2E3192] focus:outline-none"
               />
               <span className="semi-bold">Type of Service</span>
             </div>
@@ -186,7 +187,7 @@ const page = () => {
             <div className="flex gap-2">
               <input
                 type="checkbox"
-                className="h-6 w-6 border-2 rounded-lg border-[#2E3192] bg-white appearance-none checked:bg-[#2E3192]  focus:outline-none"
+                className="h-6 w-6 appearance-none rounded-lg border-2 border-[#2E3192] bg-white checked:bg-[#2E3192] focus:outline-none"
               />
               <span className="semi-bold">Type of Cargo</span>
             </div>
@@ -226,7 +227,7 @@ const page = () => {
             <div className="flex gap-2">
               <input
                 type="checkbox"
-                className="h-6 w-6 border-2 rounded-lg border-[#2E3192] bg-white appearance-none checked:bg-[#2E3192]  focus:outline-none"
+                className="h-6 w-6 appearance-none rounded-lg border-2 border-[#2E3192] bg-white checked:bg-[#2E3192] focus:outline-none"
               />
               <span className="semi-bold">Advanced Payment</span>
             </div>

@@ -28,7 +28,7 @@ const page = () => {
           <h1 className="text-3xl font-semibold md:text-4xl lg:text-5xl">
             Fill out your Policy
           </h1>
-          <p className="text-gray-600 lg:text-lg xs:text-sm md:w-[90%]">
+          <p className="text-gray-600 xs:text-sm md:w-[90%] lg:text-lg">
             Please provide the details of the business offered by your company.
           </p>
         </div>
@@ -83,26 +83,23 @@ const page = () => {
             </div>
           </div>
 
-          <div className="mt-9 flex flex-row gap-4 w-full justify-end">
+          <div className="mt-9 flex w-full flex-row justify-end gap-4">
             <button
-              className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] px-6 py-3 w-auto"
+              className="w-auto rounded-xl border-2 border-[#2E3192] px-6 py-3 text-[#2E3192]"
               onClick={handleSubmit}
             >
               Skip
             </button>
             <button
-              className="rounded-xl bg-[#2E3192] text-white px-6 py-3 w-auto"
+              className="w-auto rounded-xl bg-[#2E3192] px-6 py-3 text-white"
               onClick={handleSubmit}
             >
               Continue
             </button>
           </div>
-
         </div>
       </div>
     </div>
-
-
   );
 };
 

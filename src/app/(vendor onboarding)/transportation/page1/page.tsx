@@ -51,7 +51,7 @@ const Page = () => {
         <div className="flex items-center justify-start gap-1 xs:self-start xs:pl-5 lg:mt-[2rem]">
           <StepBar currentStep={1} />
         </div>
-        <div className="flex h-[50%] flex-col items-start ml-8 justify-center gap-9 px-9 xs:pl-5 md:px-11 lg:p-8">
+        <div className="ml-8 flex h-[50%] flex-col items-start justify-center gap-9 px-9 xs:pl-5 md:px-11 lg:p-8">
           <h1 className="text-2xl font-semibold md:text-4xl lg:text-5xl">
             Fill out your Basic details
           </h1>
@@ -70,9 +70,9 @@ const Page = () => {
       <div className="flex w-full flex-col items-center justify-center bg-[#F7F6F9] p-2 md:p-[1rem]">
         <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
           <h1 className="text-3xl font-semibold">Basic Details</h1>
-          <div className="flex flex-col gap-5 min-h-full w-full">
-            <div className="flex flex-col items-center justify-between gap-5 w-full md:flex-row">
-              <div className="flex flex-col gap-4 w-full md:w-[48%]">
+          <div className="flex min-h-full w-full flex-col gap-5">
+            <div className="flex w-full flex-col items-center justify-between gap-5 md:flex-row">
+              <div className="flex w-full flex-col gap-4 md:w-[48%]">
                 <label htmlFor="contactName">Contact Person Name</label>
                 <input
                   onChange={(e) => setContactName(e.target.value)}
@@ -82,7 +82,7 @@ const Page = () => {
                   placeholder="Enter your full name"
                 />
               </div>
-              <div className="flex flex-col gap-4 w-full md:w-[48%]">
+              <div className="flex w-full flex-col gap-4 md:w-[48%]">
                 <label htmlFor="category">Number of workers</label>
                 <Combobox
                   options={workerOptions.map((worker) => ({
@@ -95,8 +95,8 @@ const Page = () => {
                 />
               </div>
             </div>
-            <div className="flex flex-col items-center justify-between gap-5 w-full md:flex-row">
-              <div className="flex flex-col gap-4 w-full md:w-[48%]">
+            <div className="flex w-full flex-col items-center justify-between gap-5 md:flex-row">
+              <div className="flex w-full flex-col gap-4 md:w-[48%]">
                 <label htmlFor="desc">Description of your past work</label>
                 <input
                   onChange={(e) => setDesc(e.target.value)}
@@ -106,9 +106,9 @@ const Page = () => {
                   placeholder="Enter your Description"
                 />
               </div>
-              <div className="mt-5 flex flex-col gap-4 w-full md:w-[48%]">
+              <div className="mt-5 flex w-full flex-col gap-4 md:w-[48%]">
                 <div className="flex flex-col items-start gap-5">
-                  <div className="flex flex-col items-start gap-2 w-full">
+                  <div className="flex w-full flex-col items-start gap-2">
                     <p className="text-[16px]">Portfolio of past work</p>
                     <p className="text-gray-500">PNG, PDF, JPG</p>
                     {/* Hidden file input */}
@@ -127,13 +127,13 @@ const Page = () => {
                     </button>
                   </div>
                 </div>
-                <div className="flex flex-col w-full">
+                <div className="flex w-full flex-col">
                   <label htmlFor="url">Or provide via URL</label>
                   <input
                     onChange={(e) => setUrl(e.target.value)}
                     id="url"
                     type="text"
-                    className="w-full mt-2 rounded-xl border-2 bg-white p-5 py-3 outline-none"
+                    className="mt-2 w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
                     placeholder="Enter URL"
                   />
                 </div>
