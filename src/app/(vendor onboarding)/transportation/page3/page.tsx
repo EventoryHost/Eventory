@@ -85,10 +85,10 @@ const page = () => {
           <StepBar currentStep={3} />
         </div>
         <div className="flex h-[80%] flex-col items-start gap-9 px-9 xs:pl-5 md:px-11 lg:p-8">
-          <h1 className="text-3xl font-bold md:text-4xl lg:text-5xl">
+          <h1 className="text-3xl font-semibold md:text-4xl lg:text-5xl">
             Fill out your Pricing rates
           </h1>
-          <p className="text-black xs:text-sm md:w-[90%]">
+          <p className="text-gray-600 xs:text-sm lg:text-lg md:w-[90%]">
             Please provide the details of the vehicles offered by your company.
           </p>
         </div>
@@ -105,8 +105,10 @@ const page = () => {
           <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
             <span className="font-semibold">Pricing Structure</span>
             <div className="flex gap-2">
-              <input type="checkbox" name="heavy_vehicles" id="" />
-              <span className="semi-bold">Type of Vehicles</span>
+              <input
+                type="checkbox"
+                className="h-6 w-6 border-2 rounded-lg border-[#2E3192] bg-white appearance-none checked:bg-[#2E3192]  focus:outline-none"
+              />              <span className="semi-bold">Type of Vehicles</span>
             </div>
             <div className="flex flex-row gap-6">
               <div className="flex flex-col">
@@ -142,7 +144,10 @@ const page = () => {
             </div>
             <AddBtn />
             <div className="flex gap-2">
-              <input type="checkbox" name="heavy_vehicles" id="" />
+              <input
+                type="checkbox"
+                className="h-6 w-6 border-2 rounded-lg border-[#2E3192] bg-white appearance-none checked:bg-[#2E3192]  focus:outline-none"
+              />
               <span className="semi-bold">Type of Service</span>
             </div>
             <div className="flex flex-row gap-6">
@@ -179,7 +184,10 @@ const page = () => {
             </div>
             <AddBtn />
             <div className="flex gap-2">
-              <input type="checkbox" name="heavy_vehicles" id="" />
+              <input
+                type="checkbox"
+                className="h-6 w-6 border-2 rounded-lg border-[#2E3192] bg-white appearance-none checked:bg-[#2E3192]  focus:outline-none"
+              />
               <span className="semi-bold">Type of Cargo</span>
             </div>
             <div className="flex flex-row gap-6">
@@ -216,7 +224,10 @@ const page = () => {
             </div>
             <AddBtn />
             <div className="flex gap-2">
-              <input type="checkbox" name="heavy_vehicles" id="" />
+              <input
+                type="checkbox"
+                className="h-6 w-6 border-2 rounded-lg border-[#2E3192] bg-white appearance-none checked:bg-[#2E3192]  focus:outline-none"
+              />
               <span className="semi-bold">Advanced Payment</span>
             </div>
             Set Percentage

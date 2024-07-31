@@ -25,10 +25,10 @@ const page = () => {
           <StepBar currentStep={4} />
         </div>
         <div className="flex h-[80%] flex-col items-start gap-9 px-9 xs:pl-5 md:px-11 lg:p-8">
-          <h1 className="text-3xl font-bold md:text-4xl lg:text-5xl">
+          <h1 className="text-3xl font-semibold md:text-4xl lg:text-5xl">
             Fill out your Policy
           </h1>
-          <p className="text-black xs:text-sm md:w-[90%]">
+          <p className="text-gray-600 lg:text-lg xs:text-sm md:w-[90%]">
             Please provide the details of the business offered by your company.
           </p>
         </div>
@@ -40,88 +40,69 @@ const page = () => {
           />
         </div>
       </div>
-      <div className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] p-2 md:p-[1rem]">
-        <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
-          <span className="text-3xl font-semibold">Policy</span>
-
-          <div className="flex gap-20">
-            <div>
+      <div className="flex w-full flex-col items-center justify-center bg-[#F7F6F9] p-2 sm:w-[90%] md:w-[70%] md:p-4 lg:p-6">
+        <div className="flex flex-col gap-7 rounded-xl bg-white p-3 sm:w-[100%] md:w-[80%] md:p-6">
+          <span className="text-2xl font-semibold sm:text-3xl">Policy</span>
+          <div className="flex flex-col gap-6 md:flex-row md:gap-20">
+            <div className="flex flex-col gap-4">
               <span className="text-lg">Terms and conditions</span>
               <p className="mb-3 text-xs text-gray-500">PNG, PDF, JPG</p>
-              <button className="mb-5 flex max-w-52 items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
-                {" "}
+              <button className="mb-5 flex items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
                 <Upload />
                 Upload
               </button>
-              <div className="flex min-w-[40%] flex-col gap-4">
-                <label className="text-lg" htmlFor="category">
+              <div className="flex flex-col gap-4">
+                <label className="text-lg" htmlFor="terms">
                   Or provide via
                 </label>
                 <textarea
-                  id="url"
-                  className="h-32 w-96 resize-none overflow-hidden rounded-xl border-2 bg-white p-5 pb-28 pt-6 outline-none scrollbar-hide"
-                  placeholder="Enter your Venue Description"
+                  id="terms"
+                  className="h-32 w-full resize-none rounded-xl border-2 bg-white p-5 outline-none"
+                  placeholder="Enter your terms description"
                 />
               </div>
-
-              <style jsx>{`
-                .scrollbar-hide::-webkit-scrollbar {
-                  display: none;
-                }
-                .scrollbar-hide {
-                  -ms-overflow-style: none; /* IE and Edge */
-                  scrollbar-width: none; /* Firefox */
-                }
-              `}</style>
             </div>
-            <div>
+
+            <div className="flex flex-col gap-4">
               <span className="text-lg">Cancellation Policy</span>
               <p className="mb-3 text-xs text-gray-500">PNG, PDF, JPG</p>
-              <button className="mb-5 flex max-w-52 items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
-                {" "}
+              <button className="mb-5 flex items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
                 <Upload />
                 Upload
               </button>
-              <div className="flex min-w-[40%] flex-col gap-4">
-                <label className="text-lg" htmlFor="category">
+              <div className="flex flex-col gap-4">
+                <label className="text-lg" htmlFor="cancellation">
                   Or provide via
                 </label>
                 <textarea
-                  id="url"
-                  className="h-32 w-96 resize-none overflow-hidden rounded-xl border-2 bg-white p-5 pb-28 pt-6 outline-none scrollbar-hide"
-                  placeholder="Enter your Venue Description"
+                  id="cancellation"
+                  className="h-32 w-full resize-none rounded-xl border-2 bg-white p-5 outline-none"
+                  placeholder="Enter your cancellation description"
                 />
-              </div>
-
-              <style jsx>{`
-                .scrollbar-hide::-webkit-scrollbar {
-                  display: none;
-                }
-                .scrollbar-hide {
-                  -ms-overflow-style: none; /* IE and Edge */
-                  scrollbar-width: none; /* Firefox */
-                }
-              `}</style>
-
-              <div className="items-strech mt-9 flex flex-row gap-7 self-end">
-                <button
-                  className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                  onClick={handleSubmit}
-                >
-                  Skip
-                </button>
-                <button
-                  className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                  onClick={handleSubmit}
-                >
-                  Continue
-                </button>
               </div>
             </div>
           </div>
+
+          <div className="mt-9 flex flex-row gap-4 w-full justify-end">
+            <button
+              className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] px-6 py-3 w-auto"
+              onClick={handleSubmit}
+            >
+              Skip
+            </button>
+            <button
+              className="rounded-xl bg-[#2E3192] text-white px-6 py-3 w-auto"
+              onClick={handleSubmit}
+            >
+              Continue
+            </button>
+          </div>
+
         </div>
       </div>
     </div>
+
+
   );
 };
 

@@ -79,10 +79,10 @@ const page = () => {
           <StepBar currentStep={2} />
         </div>
         <div className="flex h-[80%] flex-col items-start gap-9 px-9 xs:pl-5 md:px-11 lg:p-8">
-          <h1 className="text-3xl font-bold md:text-4xl lg:text-5xl">
+          <h1 className="text-3xl font-semibold md:text-4xl lg:text-5xl">
             Fill out your Vehicle details
           </h1>
-          <p className="text-black xs:text-sm md:w-[90%]">
+          <p className=" text-gray-600 lg:text-xl  xs:text-sm md:w-[90%]">
             Please provide the details of the Vehicles offered by your company.
           </p>
         </div>
@@ -96,11 +96,14 @@ const page = () => {
       </div>
       <div className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] p-2 md:p-[1rem]">
         <div>
-          <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
-            <span className="font-bold">Equipment Details</span>
+          <div className="flex flex-col gap-7 rounded-xl bg-white p-3 lg:text-2xl xs:min-w-[90%] md:p-6">
+            <span className="font-semibold">Equipment Details</span>
             <div className="flex gap-2">
-              <input type="checkbox" name="heavy_vehicles" id="" />
-              <span className="semi-bold">Heavy Vehicles</span>
+              <input
+                type="checkbox"
+                className="h-6 w-6 border-2 rounded-lg border-[#2E3192] bg-white appearance-none checked:bg-[#2E3192]  focus:outline-none"
+              />
+              <span className="font-semibold">Heavy Vehicles</span>
             </div>
             <div className="flex flex-row gap-2">
               <input
@@ -131,10 +134,10 @@ const page = () => {
           </div>
           {/* Vehicle types */}
           <div className="my-6"></div>
-          <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
+          <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:w-full md:p-6">
             <span className="font-semibold">Vehicle types</span>
 
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
               {vehicleTypes.map((type) => (
                 <button
                   key={type}
@@ -145,37 +148,40 @@ const page = () => {
               ))}
             </div>
           </div>
+
           {/* Brands */}
           <div className="my-6"></div>
-          <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
+          <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:w-full md:p-6">
             <span className="font-semibold">Brands</span>
 
-            <div className="grid grid-cols-4 gap-4">
-              {brands.map((type) => (
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+              {brands.map((brand) => (
                 <button
-                  key={type}
+                  key={brand}
                   className="rounded-3xl bg-gray-200 p-4 text-center shadow-md hover:bg-[#252775] hover:text-white"
                 >
-                  {type}
+                  {brand}
                 </button>
               ))}
             </div>
           </div>
+
           {/* Models */}
           <div className="my-6"></div>
-          <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
+          <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:w-full md:p-6">
             <span className="font-semibold">Models</span>
 
-            <div className="grid grid-cols-4 gap-4">
-              {models.map((type) => (
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+              {models.map((model) => (
                 <button
-                  key={type}
+                  key={model}
                   className="rounded-3xl bg-gray-200 p-4 text-center shadow-md hover:bg-[#252775] hover:text-white"
                 >
-                  {type}
+                  {model}
                 </button>
               ))}
             </div>
+
 
             <div className="items-strech mt-9 flex flex-row gap-7 self-end">
               <button
