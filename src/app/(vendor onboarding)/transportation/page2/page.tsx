@@ -80,10 +80,10 @@ const page = () => {
         </div>
         <div className="flex h-[80%] flex-col items-start gap-9 px-9 xs:pl-5 md:px-11 lg:p-8">
           <h1 className="text-3xl font-bold md:text-4xl lg:text-5xl">
-            Fill out your Basic details
+            Fill out your Vehicle details
           </h1>
           <p className="text-black xs:text-sm md:w-[90%]">
-            Please provide the details of the business offered by your company.
+            Please provide the details of the Vehicles offered by your company.
           </p>
         </div>
         <div className="relative h-[10rem] lg:w-full">

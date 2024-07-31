@@ -2,7 +2,9 @@
 import StepBar from "@/app/(components)/stepBar";
 import { Combobox } from "@/components/ui/combobox";
 import { Upload } from "lucide-react";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+
 
 const workerOptions = [
   { value: "0-2 Members", label: "0-2 Members " },
@@ -12,6 +14,7 @@ const workerOptions = [
 ];
 
 const page = () => {
+  const router = useRouter();
   const [contactName, setcontactName] = useState("");
   const [desc, setDesc] = useState("");
   const [workers, setWorkers] = useState("");
@@ -23,6 +26,7 @@ const page = () => {
     console.log("Category:", workers);
     console.log("Description:", desc);
     console.log("URL:", url);
+    router.push("/transportation/page2");
   };
 
   return (
