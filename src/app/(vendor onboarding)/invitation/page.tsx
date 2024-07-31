@@ -46,7 +46,7 @@ interface FormState {
   deposit: boolean;
 }
 
-const VenueForm: React.FC = () => {
+const Invitation: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   // global variables
   const [formState, setFormState] = useState<FormState>({
@@ -344,4 +344,4 @@ const VenueForm: React.FC = () => {
   );
 };
 
-export default VenueForm;
+export default Invitation;

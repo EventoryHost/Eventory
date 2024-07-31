@@ -26,7 +26,7 @@ interface FormState {
   venueDescription: string;
   decorType: string;
   termsAndConditions: string | File;
-  cancellationPolicy: string;
+  cancellationPolicy: string | File;
   instaURL: string;
   websiteURL: string;
 }
@@ -205,7 +205,8 @@ const VenueForm: React.FC = () => {
       case 3:
         console.log("Upload termsAndConditions:", formState.termsAndConditions);
         return (
-          <Page3 formState={formState} updateFormState={updateFormState} />
+          <Page3 formState={formState} 
+           updateFormState={updateFormState} />
         );
       case 4:
         return (
