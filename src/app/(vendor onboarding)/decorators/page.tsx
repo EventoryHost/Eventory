@@ -9,7 +9,6 @@ import Page5 from "./page5/page";
 import Page6 from "./page6/page";
 import Page7 from "./page7/page";
 
-
 interface Package {
   type: string;
   priceRange: [number, number];
@@ -18,7 +17,7 @@ interface Package {
 interface FormState {
   // Page-specific states
   // Page 1
-  
+
   // Page 2
   propthemesOffered: boolean;
   adobtThemes: boolean;
@@ -28,7 +27,7 @@ interface FormState {
 
   // Page 3
   backDropoptions: string;
-  decorationoptions:string;
+  decorationoptions: string;
   prop_accessory: string;
 
   // Page 4
@@ -49,7 +48,6 @@ interface FormState {
   cancellationPolicy: string;
   termsAndConditions: string;
   privacyPolicy: string;
-
 }
 
 const Decorators: React.FC = () => {
@@ -57,7 +55,7 @@ const Decorators: React.FC = () => {
   // global variables
   const [formState, setFormState] = useState<FormState>({
     //page1
-   
+
     // Page 2
     propthemesOffered: false,
     adobtThemes: false,
@@ -66,9 +64,9 @@ const Decorators: React.FC = () => {
     customDesignProcess: "",
 
     //page 3
-     backDropoptions: "",
-     decorationoptions: "",
-     prop_accessory: "",
+    backDropoptions: "",
+    decorationoptions: "",
+    prop_accessory: "",
     // Page 4
     freeInitialConsultation: true,
     revisionPolicy: true,
@@ -94,13 +92,13 @@ const Decorators: React.FC = () => {
 
   //page 1
   const [typesOfEvents, setTypesOfEvents] = useState<string[]>([]);
-  const [weddingEvents, setWeddingEvents] = useState<string[]>([]); 
+  const [weddingEvents, setWeddingEvents] = useState<string[]>([]);
   const [corporateEvents, setCorporateEvents] = useState<string[]>([]);
   const [seasonalEvents, setSeasonalEvents] = useState<string[]>([]);
   const [culturalEvents, setCulturalEvents] = useState<string[]>([]);
-  
+
   //page 2
-   const [themesOffered, setThemesOffered] = useState<string[]>([]);
+  const [themesOffered, setThemesOffered] = useState<string[]>([]);
 
   //page 3
   const [themesElements, setThemesElements] = useState<string[]>([]);
@@ -169,20 +167,35 @@ const Decorators: React.FC = () => {
       formData.append("culturalEvents", event);
     });
     //page 2
-    formData.append("propthemesOffered", formState.propthemesOffered.toString());
+    formData.append(
+      "propthemesOffered",
+      formState.propthemesOffered.toString(),
+    );
     formData.append("adobtThemes", formState.adobtThemes.toString());
     formData.append("colorschmes", formState.colorschmes.toString());
-    formData.append("customizationsThemes", formState.customizationsThemes.toString());
+    formData.append(
+      "customizationsThemes",
+      formState.customizationsThemes.toString(),
+    );
     formData.append("customDesignProcess", formState.customDesignProcess);
     //page 3
     formData.append("backDropoptions", formState.backDropoptions);
     formData.append("decorationoptions", formState.decorationoptions);
     formData.append("prop_accessory", formState.prop_accessory);
     //page 4
-    formData.append("freeInitialConsultation", formState.freeInitialConsultation.toString());
+    formData.append(
+      "freeInitialConsultation",
+      formState.freeInitialConsultation.toString(),
+    );
     formData.append("revisionPolicy", formState.revisionPolicy.toString());
-    formData.append("writtenthemeProposal", formState.writtenthemeProposal.toString());
-    formData.append("setup_installation", formState.setup_installation.toString());
+    formData.append(
+      "writtenthemeProposal",
+      formState.writtenthemeProposal.toString(),
+    );
+    formData.append(
+      "setup_installation",
+      formState.setup_installation.toString(),
+    );
     formData.append("consulationProcess", formState.consulationProcess);
     //page 5
     hourlyPackages.forEach((packageData, index) => {
@@ -229,8 +242,7 @@ const Decorators: React.FC = () => {
     formData.append("cancellationPolicy", formState.cancellationPolicy);
     formData.append("termsAndConditions", formState.termsAndConditions);
     formData.append("privacyPolicy", formState.privacyPolicy);
-    
-    
+
     // Append form data for debugging
     formData.forEach((value, key) => {
       console.log(`${key}: ${value}`);
@@ -254,7 +266,7 @@ const Decorators: React.FC = () => {
             setCulturalEvents={setCulturalEvents}
           />
         );
-        case 2:
+      case 2:
         return (
           <Page2
             formState={formState}
@@ -264,70 +276,60 @@ const Decorators: React.FC = () => {
           />
         );
 
-        case 3:
-          return (
-            <Page3
-              formState={formState}
-              updateFormState={updateFormState}
-              themesElements={themesElements}
-              setThemesElements={setThemesElements}
-            />
-          );
-          
-          case 4:
-            return (
-              <Page4
-                formState={formState}
-                updateFormState={updateFormState}
-              />
-            );
-          
-          case 5:
-            return (
-              <Page5
-                hourlyPackages={hourlyPackages}
-                setHourlyPackages={setHourlyPackages}
-                dailyPackages={dailyPackages}
-                setDailyPackages={setDailyPackages}
-                additionalCharges={additionalCharges}
-                setAdditionalCharges={setAdditionalCharges}
-                handlePackageChange={handlePackageChange}
-                addPackage={addPackage}
-                advancePayment={advancePayment}
-                setAdvancePayment={setAdvancePayment}
-              />
-            );
+      case 3:
+        return (
+          <Page3
+            formState={formState}
+            updateFormState={updateFormState}
+            themesElements={themesElements}
+            setThemesElements={setThemesElements}
+          />
+        );
 
-            case 6:
-              return (
-                <Page6
-                   formState={formState}
-                   updateFormState={updateFormState}
-                   />  
-              );
-            
-              case 7:
-                return (
-                  <Page7
-                    formState={formState}
-                    updateFormState={updateFormState}
-                  />
-                );
+      case 4:
+        return (
+          <Page4 formState={formState} updateFormState={updateFormState} />
+        );
 
-     
+      case 5:
+        return (
+          <Page5
+            hourlyPackages={hourlyPackages}
+            setHourlyPackages={setHourlyPackages}
+            dailyPackages={dailyPackages}
+            setDailyPackages={setDailyPackages}
+            additionalCharges={additionalCharges}
+            setAdditionalCharges={setAdditionalCharges}
+            handlePackageChange={handlePackageChange}
+            addPackage={addPackage}
+            advancePayment={advancePayment}
+            setAdvancePayment={setAdvancePayment}
+          />
+        );
+
+      case 6:
+        return (
+          <Page6 formState={formState} updateFormState={updateFormState} />
+        );
+
+      case 7:
+        return (
+          <Page7 formState={formState} updateFormState={updateFormState} />
+        );
+
       default:
         return (
           <Page1
-          typeOfevents={typesOfEvents}
-          setTypesOfEvents={setTypesOfEvents}
-          weddingEvents={weddingEvents}
-          setWeddingEvents={setWeddingEvents}
-          corporateEvents={corporateEvents}
-          setCorporateEvents={setCorporateEvents}
-          seasonalEvents={seasonalEvents}
-          setSeasonalEvents={setSeasonalEvents}
-          culturalEvents={culturalEvents}
-          setCulturalEvents={setCulturalEvents}
+            typeOfevents={typesOfEvents}
+            setTypesOfEvents={setTypesOfEvents}
+            weddingEvents={weddingEvents}
+            setWeddingEvents={setWeddingEvents}
+            corporateEvents={corporateEvents}
+            setCorporateEvents={setCorporateEvents}
+            seasonalEvents={seasonalEvents}
+            setSeasonalEvents={setSeasonalEvents}
+            culturalEvents={culturalEvents}
+            setCulturalEvents={setCulturalEvents}
           />
         );
     }

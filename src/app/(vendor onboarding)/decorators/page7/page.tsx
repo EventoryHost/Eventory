@@ -5,7 +5,6 @@ import Appetizers from "../(components)/Appetizers";
 import { Upload } from "lucide-react";
 import { Combobox } from "@/components/ui/combobox";
 
-
 interface FormState {
   insurancePolicy: string;
   cancellationPolicy: string;
@@ -134,7 +133,6 @@ const Page7: React.FC<Page7Props> = ({ formState, updateFormState }) => {
                 />
               </div>
             </div>
-        
           </div>
         </div>
         <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
@@ -182,12 +180,11 @@ const Page7: React.FC<Page7Props> = ({ formState, updateFormState }) => {
                   placeholder="Enter url here"
                   value={privacyPolicy}
                   onChange={(e) =>
-                    updateFormState({privacyPolicy: e.target.value })
+                    updateFormState({ privacyPolicy: e.target.value })
                   }
                 />
               </div>
             </div>
-        
           </div>
         </div>
       </div>

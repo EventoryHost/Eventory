@@ -95,13 +95,15 @@ const Page3: React.FC<Page3Props> = ({
         </div>
         <div className="flex flex-col gap-9 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
-            <div className="flex min-w-full flex-col lg:flex-row item-center lg:items-start lg:justify-between gap-2">
+            <div className="item-center flex min-w-full flex-col gap-2 lg:flex-row lg:items-start lg:justify-between">
               <div className="flex min-w-[45%] flex-col gap-4">
-                <label htmlFor="category">Description of backdrop options</label>
+                <label htmlFor="category">
+                  Description of backdrop options
+                </label>
                 <input
                   id="businessName"
                   type="text"
-                  className="h-[4rem] pb-[8rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
+                  className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 pb-[8rem] text-sm outline-none"
                   placeholder="Description of their custom design process"
                   value={backDropoptions}
                   onChange={(e) =>
@@ -110,11 +112,13 @@ const Page3: React.FC<Page3Props> = ({
                 />
               </div>
               <div className="flex min-w-[45%] flex-col gap-4">
-                <label htmlFor="category">Description of stage decoration options</label>
+                <label htmlFor="category">
+                  Description of stage decoration options
+                </label>
                 <input
                   id="businessName"
                   type="text"
-                  className="h-[4rem] pb-[8rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
+                  className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 pb-[8rem] text-sm outline-none"
                   placeholder="Description of their custom design process"
                   value={decorationoptions}
                   onChange={(e) =>
@@ -125,11 +129,13 @@ const Page3: React.FC<Page3Props> = ({
             </div>
             <div className="flex min-w-full flex-row items-start justify-between gap-2">
               <div className="flex min-w-[45%] flex-col gap-4">
-                <label htmlFor="category">Description of prop & accessory selection</label>
+                <label htmlFor="category">
+                  Description of prop & accessory selection
+                </label>
                 <input
                   id="businessName"
                   type="text"
-                  className="h-[4rem]  pb-[8rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
+                  className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 pb-[8rem] text-sm outline-none"
                   placeholder="Description of their custom design process"
                   value={backDropoptions}
                   onChange={(e) =>

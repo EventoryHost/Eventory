@@ -110,7 +110,7 @@ const Page2: React.FC<Page2Props> = ({
         <div className="flex flex-col gap-9 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-row items-start justify-between gap-2">
-              <div className="flex lg:max-w-[60%] min-w-[40%] flex-col gap-4">
+              <div className="flex min-w-[40%] flex-col gap-4 lg:max-w-[60%]">
                 <label htmlFor="businessName">
                   Do you offer prop selection for themes ?
                 </label>
@@ -133,7 +133,7 @@ const Page2: React.FC<Page2Props> = ({
                   />
                 </div>
               </div>
-              <div className="flex lg:max-w-[60%] min-w-[40%] flex-col gap-4">
+              <div className="flex min-w-[40%] flex-col gap-4 lg:max-w-[60%]">
                 <label htmlFor="businessName">
                   Do you adapt themes to different venue sizes ?
                 </label>
