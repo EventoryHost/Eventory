@@ -27,7 +27,7 @@ interface Page5Props {
     setPackages: React.Dispatch<React.SetStateAction<Package[]>>,
   ) => void;
   advancePayment: number;
-    setAdvancePayment: React.Dispatch<React.SetStateAction<number>>;
+  setAdvancePayment: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const Page5: React.FC<Page5Props> = ({
@@ -36,7 +36,7 @@ const Page5: React.FC<Page5Props> = ({
   dailyPackages,
   setDailyPackages,
   additionalCharges,
-setAdditionalCharges,
+  setAdditionalCharges,
   handlePackageChange,
   addPackage,
   advancePayment,
@@ -76,7 +76,6 @@ setAdditionalCharges,
 
   const handleSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    
   };
 
   return (
@@ -236,7 +235,6 @@ setAdditionalCharges,
         </div>
 
         <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
-          
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             {dailyPackages.map((pkg, index) => (
               <div
@@ -345,7 +343,6 @@ setAdditionalCharges,
         </div>
 
         <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
-         
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             {additionalCharges.map((pkg, index) => (
               <div
@@ -361,7 +358,7 @@ setAdditionalCharges,
                         },
                       }}
                     />
-                   Additional charges rates
+                    Additional charges rates
                   </label>
                   <input
                     id={`additionalCharges${index}`}
@@ -394,7 +391,7 @@ setAdditionalCharges,
                       onChange={(e) =>
                         handleMinPriceChange(
                           setAdditionalCharges,
-                         additionalCharges,
+                          additionalCharges,
                           index,
                           e.target.value,
                         )
@@ -474,8 +471,8 @@ setAdditionalCharges,
                 />
               </div>
             </div>
-          </div>        
-        </div>        
+          </div>
+        </div>
       </div>
     </div>
   );

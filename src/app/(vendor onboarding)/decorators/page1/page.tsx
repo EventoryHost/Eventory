@@ -4,71 +4,70 @@ import React from "react";
 import Appetizers from "../(components)/Appetizers";
 
 const _typesOfEvent = [
-    "Anniversary Celebration",
-    "Birthday Party",
-    "Corporate Event",
-    "Cultural Events",
-    "Others",
-    "Seasonal Parties",
-    "Wedding Events",
-  ];
-  
-  const _weddingEvents = [
-    "After-Party",
-    "Bachelorette Party",
-    "Bridal Luncheon",
-    "Engagement Party",
-    "Haldi",
-    "Mandap decor",
-    "Mehndi",
-    "Others",
-    "Post-Wedding Reception",
-    "Ring Ceremony",
-    "Sangeet",
-    "Stage decor",
-    "Wedding Shower",
-    "Welcome Party",
-  ];
-  
-  const _corporateEvents = [
-    "Art Exhibitions",
-    "Award Ceremonies",
-    "Club Meetings",
-    "Launch Party",
-    "Networking Events",
-    "Others",
-    "Product Launch Webinars",
-    "Trade Shows and Expos",
-  ];
-  
-  const _seasonalEvents = [
-    "Anniversary",
-    "Annual Function",
-    "Birthday Party",
-    "Convocation",
-    "Farewell",
-    "Freshers",
-    "Halloween",
-    "New Year",
-    "Others",
-    "Valentine",
-  ];
-  
-  const _culturalEvents = [
-    "Christmas",
-    "Diwali",
-    "Durga Puja",
-    "Eid-ul-Fitr",
-    "Ganesh Chaturthi",
-    "Holi",
-    "Kala ghoda",
-    "Lohri",
-    "Navratri",
-    "Onam",
-    "Others",
-    "Pongal",
-  ];
+  "Anniversary Celebration",
+  "Birthday Party",
+  "Corporate Event",
+  "Cultural Events",
+  "Others",
+  "Seasonal Parties",
+  "Wedding Events",
+];
 
+const _weddingEvents = [
+  "After-Party",
+  "Bachelorette Party",
+  "Bridal Luncheon",
+  "Engagement Party",
+  "Haldi",
+  "Mandap decor",
+  "Mehndi",
+  "Others",
+  "Post-Wedding Reception",
+  "Ring Ceremony",
+  "Sangeet",
+  "Stage decor",
+  "Wedding Shower",
+  "Welcome Party",
+];
+
+const _corporateEvents = [
+  "Art Exhibitions",
+  "Award Ceremonies",
+  "Club Meetings",
+  "Launch Party",
+  "Networking Events",
+  "Others",
+  "Product Launch Webinars",
+  "Trade Shows and Expos",
+];
+
+const _seasonalEvents = [
+  "Anniversary",
+  "Annual Function",
+  "Birthday Party",
+  "Convocation",
+  "Farewell",
+  "Freshers",
+  "Halloween",
+  "New Year",
+  "Others",
+  "Valentine",
+];
+
+const _culturalEvents = [
+  "Christmas",
+  "Diwali",
+  "Durga Puja",
+  "Eid-ul-Fitr",
+  "Ganesh Chaturthi",
+  "Holi",
+  "Kala ghoda",
+  "Lohri",
+  "Navratri",
+  "Onam",
+  "Others",
+  "Pongal",
+];
 
 interface FormState {
   references: boolean;
@@ -77,33 +76,30 @@ interface FormState {
 }
 
 interface Page1Props {
-    typeOfevents : string[];
-    setTypesOfEvents : React.Dispatch<React.SetStateAction<string[]>>;
-    weddingEvents : string[];
-    setWeddingEvents : React.Dispatch<React.SetStateAction<string[]>>;
-    corporateEvents : string[];
-    setCorporateEvents :  React.Dispatch<React.SetStateAction<string[]>>;
-    seasonalEvents : string[];
-    setSeasonalEvents : React.Dispatch<React.SetStateAction<string[]>>;
-    culturalEvents : string[];
-    setCulturalEvents : React.Dispatch<React.SetStateAction<string[]>>;
+  typeOfevents: string[];
+  setTypesOfEvents: React.Dispatch<React.SetStateAction<string[]>>;
+  weddingEvents: string[];
+  setWeddingEvents: React.Dispatch<React.SetStateAction<string[]>>;
+  corporateEvents: string[];
+  setCorporateEvents: React.Dispatch<React.SetStateAction<string[]>>;
+  seasonalEvents: string[];
+  setSeasonalEvents: React.Dispatch<React.SetStateAction<string[]>>;
+  culturalEvents: string[];
+  setCulturalEvents: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
 const Page1: React.FC<Page1Props> = ({
   typeOfevents,
-    setTypesOfEvents,
-    weddingEvents,
-    setWeddingEvents,
-    corporateEvents,
-    setCorporateEvents,
-    seasonalEvents,
-    setSeasonalEvents,
-    culturalEvents,
-    setCulturalEvents
-
+  setTypesOfEvents,
+  weddingEvents,
+  setWeddingEvents,
+  corporateEvents,
+  setCorporateEvents,
+  seasonalEvents,
+  setSeasonalEvents,
+  culturalEvents,
+  setCulturalEvents,
 }) => {
-
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
   };
@@ -152,11 +148,8 @@ const Page1: React.FC<Page1Props> = ({
         </div>
       </div>
       <div className="scroll-touch flex max-h-[calc(100vh-5.2rem)] min-w-[70%] flex-col items-center gap-9 overflow-y-scroll bg-[#F7F6F9] p-2 md:p-[1rem]">
-        
         <div className="flex flex-col gap-9 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
-          <h1 className="text-3xl font-semibold">
-          Types of Event
-          </h1>
+          <h1 className="text-3xl font-semibold">Types of Event</h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers

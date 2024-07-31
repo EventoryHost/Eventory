@@ -5,12 +5,11 @@ import Appetizers from "../(components)/Appetizers";
 import { Upload } from "lucide-react";
 import { Combobox } from "@/components/ui/combobox";
 
-
 interface FormState {
   portfolio: string;
-    ratings_reviews: string;
-    clientTestimonials: string;
-    certificates_awards: string;
+  ratings_reviews: string;
+  clientTestimonials: string;
+  certificates_awards: string;
 }
 
 interface Page6Props {
@@ -134,7 +133,6 @@ const Page6: React.FC<Page6Props> = ({ formState, updateFormState }) => {
                 />
               </div>
             </div>
-        
           </div>
         </div>
         <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
@@ -187,7 +185,6 @@ const Page6: React.FC<Page6Props> = ({ formState, updateFormState }) => {
                 />
               </div>
             </div>
-        
           </div>
         </div>
       </div>
