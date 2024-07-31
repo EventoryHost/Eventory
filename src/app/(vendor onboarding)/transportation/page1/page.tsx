@@ -5,7 +5,6 @@ import { Upload } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
-
 const workerOptions = [
   { value: "0-2 Members", label: "0-2 Members " },
   { value: "2-4 Members", label: "2-4 Members" },
