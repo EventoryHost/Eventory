@@ -33,7 +33,7 @@ interface ComboboxProps {
   setFunction: (value: string) => void;
 }
 
-export function Combobox( props: ComboboxProps ) {
+export function Combobox(props: ComboboxProps) {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
 

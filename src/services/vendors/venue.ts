@@ -48,7 +48,7 @@ async function addVenue(data: any) {
 //       " WiFi"
 //   ],
 //   "termsConditions": "https://eventory-bucket.s3.ap-south-1.amazonaws.com/Venues/%20Grand%20Ballroom/documents/AnkitKumarChakraborty_210906338_EEE.pdf",
-//   "cancellationPolicy": " Cancellations made within 48 hours will incur a 50% fee.", (file hoga) 
+//   "cancellationPolicy": " Cancellations made within 48 hours will incur a 50% fee.", (file hoga)
 //   "rates": {
 //       "hourly": [
 //           " $100/hr",

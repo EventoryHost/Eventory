@@ -94,5 +94,4 @@ async function addCaterer(data: any) {
 //   ],
 // }
 
-
 export { addCaterer };
