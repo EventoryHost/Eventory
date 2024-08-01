@@ -44,7 +44,7 @@ export function Combobox(props: ComboboxProps) {
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className={cn("w-[100%] min-w-[245px] justify-between", className)}
+          className={cn("w-[100%] min-w-[245px] justify-between", props.className)}
         >
           {value
             ? props.options.find((option) => option.value === value)?.label
