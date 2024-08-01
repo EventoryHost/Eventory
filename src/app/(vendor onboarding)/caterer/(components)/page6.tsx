@@ -23,7 +23,7 @@ const Page6 = ({
   handleContinue,
 }: Page6Props) => {
   return (
-    <form className="flex h-full overflow-x-hidden min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden lg:flex-row">
+    <form className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden overflow-x-hidden lg:flex-row">
       <div className="flex min-w-[100%] flex-col items-center overflow-y-scroll bg-[#F7F6F9] p-2 md:p-[1rem]">
         <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
           <h1 className="text-3xl font-semibold">Additional Details</h1>

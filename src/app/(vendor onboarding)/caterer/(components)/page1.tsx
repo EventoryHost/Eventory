@@ -40,11 +40,11 @@ const Page1 = ({
   handleContinue,
 }: Page1Props) => {
   return (
-    <form className="flex flex-col gap-7 overflow-y-scroll xs:justify-start items-start rounded-xl bg-white p-3 xs:w-[100%] xs:min-w-[90%] md:p-6">
+    <form className="flex flex-col items-start gap-7 overflow-y-scroll rounded-xl bg-white p-3 xs:w-[100%] xs:min-w-[90%] xs:justify-start md:p-6">
       <h1 className="text-3xl font-semibold">Basic Details</h1>
-      <div className="flex min-w-full flex-col gap-9 items-center">
-        <div className="flex flex-col w-[100%] items-start justify-between gap-2 md:flex-row">
-          <div className="flex flex-col gap-4 w-fit">
+      <div className="flex min-w-full flex-col items-center gap-9">
+        <div className="flex w-[100%] flex-col items-start justify-between gap-2 md:flex-row">
+          <div className="flex w-fit flex-col gap-4">
             <label htmlFor="businessName">Caterer Name (Manager)</label>
             <input
               id="businessName"
@@ -56,7 +56,7 @@ const Page1 = ({
             />
           </div>
         </div>
-        <div className="flex flex-col gap-5 rounded-xl bg-white w-[100%]">
+        <div className="flex w-[100%] flex-col gap-5 rounded-xl bg-white">
           <label htmlFor="years">Cuisine Specialties</label>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
@@ -68,7 +68,7 @@ const Page1 = ({
             </div>
           </div>
         </div>
-        <div className="flex flex-col gap-5 rounded-xl bg-white min-w-[100%]">
+        <div className="flex min-w-[100%] flex-col gap-5 rounded-xl bg-white">
           <label htmlFor="years">Service Styles Offered</label>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
@@ -81,7 +81,7 @@ const Page1 = ({
           </div>
         </div>
 
-        <div className="flex flex-col gap-5 rounded-xl bg-white min-w-[100%]">
+        <div className="flex min-w-[100%] flex-col gap-5 rounded-xl bg-white">
           <label htmlFor="category">Regional Specialties</label>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
@@ -95,7 +95,7 @@ const Page1 = ({
         </div>
       </div>
       <button
-        className="lg:w-[10vw] w-fit xs:text-[4vw] md:text-[2vw] lg:text-[1vw] flex items-center justify-center rounded-xl self-end bg-[#2E3192] p-5 text-white"
+        className="flex w-fit items-center justify-center self-end rounded-xl bg-[#2E3192] p-5 text-white xs:text-[4vw] md:text-[2vw] lg:w-[10vw] lg:text-[1vw]"
         onClick={handleContinue}
       >
         Continue

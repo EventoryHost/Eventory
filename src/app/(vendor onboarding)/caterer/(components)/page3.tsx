@@ -22,12 +22,11 @@ const Page3 = ({
   handleContinue,
 }: {
   selectedAppetizers: string[];
-  setSelectedAppetizers:  React.Dispatch<React.SetStateAction<string[]>>;
+  setSelectedAppetizers: React.Dispatch<React.SetStateAction<string[]>>;
   selectedBeverages: string[];
-  setSelectedBeverages:  React.Dispatch<React.SetStateAction<string[]>>;
+  setSelectedBeverages: React.Dispatch<React.SetStateAction<string[]>>;
   handleContinue: () => void;
 }) => {
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     handleContinue();

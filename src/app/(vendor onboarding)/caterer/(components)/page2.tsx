@@ -32,9 +32,9 @@ const Page2 = ({
   handleSubmit,
 }: Page2Props) => {
   return (
-    <form className="flex flex-col gap-5 justify-start items-start overflow-y-scroll h-full rounded-xl bg-white p-3 xs:w-[100%] xs:min-w-[90%] md:p-6">
-      <h1 className="text-3xl font-semibold my-5">Menu Details</h1>
-      <div className="flex min-h-full min-w-full items-start justify-around flex-col gap-5">
+    <form className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll rounded-xl bg-white p-3 xs:w-[100%] xs:min-w-[90%] md:p-6">
+      <h1 className="my-5 text-3xl font-semibold">Menu Details</h1>
+      <div className="flex min-h-full min-w-full flex-col items-start justify-around gap-5">
         <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
           <div className="flex min-w-fit flex-col gap-4">
             <label htmlFor="appetizers">Appetizers</label>
@@ -78,7 +78,7 @@ const Page2 = ({
         </div>
       </div>
       <button
-        className="lg:w-[10vw] w-fit xs:text-[4vw] md:text-[2vw] lg:text-[1vw] flex items-center justify-center rounded-xl self-end bg-[#2E3192] p-5 text-white"
+        className="flex w-fit items-center justify-center self-end rounded-xl bg-[#2E3192] p-5 text-white xs:text-[4vw] md:text-[2vw] lg:w-[10vw] lg:text-[1vw]"
         onClick={() => {
           console.log({
             selectedAppetizers,
