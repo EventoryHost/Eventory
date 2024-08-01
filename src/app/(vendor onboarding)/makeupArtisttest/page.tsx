@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
-import Page1 from "./page1/page";
-import Page2 from "./page2/page";
-import Page3 from "./page3/page";
-import Page4 from "./page4/page";
+import Page1 from "./page1/page1";
+import Page2 from "./page2/page2";
+import Page3 from "./page3/page3";
+import Page4 from "./page4/page4";
 import { set } from "date-fns";
 
 interface Package {

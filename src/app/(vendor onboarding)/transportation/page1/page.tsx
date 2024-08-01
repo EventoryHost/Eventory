@@ -11,7 +11,7 @@ const workerOptions = [
   { value: "More than 10 Members", label: "More than 10 Members" },
 ];
 
-const page = () => {
+const Page = () => {
   const [contactName, setcontactName] = useState("");
   const [desc, setDesc] = useState("");
   const [workers, setWorkers] = useState("");
@@ -135,4 +135,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

@@ -3,11 +3,11 @@
 import React, { useState } from "react";
 import jwt from "jsonwebtoken";
 
-import Page1 from "./page1/page";
-import Page2 from "./page2/page";
-import Page3 from "./page3/page";
-import Page4 from "./page4/page";
-import Page5 from "./page5/page";
+import Page1 from "./page1/page1";
+import Page2 from "./page2/page2";
+import Page3 from "./page3/page3";
+import Page4 from "./page4/page4";
+import Page5 from "./page5/page5";
 import { addVenue } from "../../../services/vendors/venue";
 
 interface Package {
@@ -26,7 +26,7 @@ interface FormState {
   venueDescription: string;
   decorType: string;
   termsAndConditions: string | File;
-  cancellationPolicy: string;
+  cancellationPolicy: string | File;
   instaURL: string;
   websiteURL: string;
 }

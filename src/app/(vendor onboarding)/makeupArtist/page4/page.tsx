@@ -17,6 +17,7 @@ const makeupTypes = [
 
 const Page = () => {
   const [category, setCategory] = useState<"Yes" | "No">("No");
+  const [makeupTypes, setMakeupTypes] = useState<string[]>([]);
 
   const handleCategoryChange = (newCategory: "Yes" | "No") => {
     setCategory(newCategory);
@@ -105,7 +106,7 @@ const Page = () => {
           <h1 className="text-3xl font-semibold">Specialization makeups</h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-              <Appetizers appetizers={makeupTypes} />
+              <Appetizers appetizers={makeupTypes} selectedAppetizers={makeupTypes} setSelectedAppetizers={setMakeupTypes} />
             </div>
             <div className="items-strech mt-9 flex flex-row gap-7 self-end">
               <button
