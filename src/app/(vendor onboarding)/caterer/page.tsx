@@ -37,15 +37,50 @@ const Page = () => {
   const [businessLicenses, setBusinessLicenses] = useState<boolean>(false);
   const [foodSafety, setFoodSafety] = useState<boolean>(false);
 
-  const [currentPage, setCurrentPage] = useState(5);
+  const [currentPage, setCurrentPage] = useState(1);
 
-  const [category, setCategory] = useState("");
-  const [gstin, setGstin] = useState("");
-  const [years, setYears] = useState("");
-  const [businessAddress, setBusinessAddress] = useState("");
-  const [landmark, setLandmark] = useState("");
-  const [pinCode, setPinCode] = useState("");
-  const [cities, setCities] = useState("");
+  // states for page5
+  interface Package {
+    type: string;
+    priceRange: [number, number];
+  }
+  
+  const ParentComponent: React.FC = () => {
+    // State for packages
+    const [hourlyPackages, setHourlyPackages] = useState<Package[]>([]);
+    const [dailyPackages, setDailyPackages] = useState<Package[]>([]);
+    const [seasonalPackages, setSeasonalPackages] = useState<Package[]>([]);
+  
+    // Function to handle package change
+    const handlePackageChange = (
+      setPackages: React.Dispatch<React.SetStateAction<Package[]>>,
+      index: number,
+      field: "type" | "priceRange",
+      value: string | [number, number],
+    ) => {
+      setPackages((prevPackages) => {
+        const newPackages = [...prevPackages];
+        if (field === "type") {
+          newPackages[index] = { ...newPackages[index], type: value as string };
+        } else {
+          newPackages[index] = {
+            ...newPackages[index],
+            priceRange: value as [number, number],
+          };
+        }
+        return newPackages;
+      });
+    };
+  
+    // Function to add a new package
+    const addPackage = (
+      setPackages: React.Dispatch<React.SetStateAction<Package[]>>,
+    ) => {
+      setPackages((prevPackages) => [
+        ...prevPackages,
+        { type: "", priceRange: [0, 0] },
+      ]);
+    };
 
   const handleContinue = () => {
     console.log({
@@ -113,23 +148,14 @@ const Page = () => {
       case 5:
         return (
           <Page5
-            businessName={businessName}
-            setBusinessName={setBusinessName}
-            category={category}
-            setCategory={setCategory}
-            gstin={gstin}
-            setGstin={setGstin}
-            years={years}
-            setYears={setYears}
-            businessAddress={businessAddress}
-            setBusinessAddress={setBusinessAddress}
-            landmark={landmark}
-            setLandmark={setLandmark}
-            pinCode={pinCode}
-            setPinCode={setPinCode}
-            cities={cities}
-            setCities={setCities}
-            handleContinue={handleContinue}
+            hourlyPackages={hourlyPackages}
+            setHourlyPackages={setHourlyPackages}
+            dailyPackages={dailyPackages}
+            setDailyPackages={setDailyPackages}
+            seasonalPackages={seasonalPackages}
+            setSeasonalPackages={setSeasonalPackages}
+            handlePackageChange={handlePackageChange}
+            addPackage={addPackage}
           />
         );
       case 6:
@@ -148,6 +174,7 @@ const Page = () => {
         return <div>Completed</div>;
     }
   };
+
   return (
     <div className="m-0 flex w-full flex-col overflow-x-hidden lg:h-[calc(100vh-4.2rem)] lg:flex-row">
       <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
@@ -209,6 +236,7 @@ const Page = () => {
       </div>
     </div>
   );
+}
 };
 
 export default Page;
