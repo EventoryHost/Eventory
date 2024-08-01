@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import StepBar from "@/app/(components)/stepBar";
 import { Check, EditIcon } from "lucide-react";
 
-const page = () => {
+const Page = () => {
   const router = useRouter();
   const name = "Vijay Mallya";
   const [contactName, setcontactName] = useState("");
@@ -258,4 +258,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

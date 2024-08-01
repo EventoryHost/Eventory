@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { Upload } from "lucide-react";
 
-const page = () => {
+const Page = () => {
   const [value, setValue] = useState(50);
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
@@ -103,4 +103,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
