@@ -37,7 +37,7 @@ const Page = () => {
   const [businessLicenses, setBusinessLicenses] = useState<boolean>(false);
   const [foodSafety, setFoodSafety] = useState<boolean>(false);
 
-  const [currentPage, setCurrentPage] = useState(6);
+  const [currentPage, setCurrentPage] = useState(5);
 
   const [category, setCategory] = useState("");
   const [gstin, setGstin] = useState("");
