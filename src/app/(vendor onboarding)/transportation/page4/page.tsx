@@ -82,8 +82,6 @@ const Page4 = () => {
               </div>
             </div>
           </div>
-
-          
         </div>
       </div>
     </div>

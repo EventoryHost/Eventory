@@ -238,8 +238,6 @@ const Preview = () => {
             </div>
           </div>
         </div>
-
-        
       </div>
     </>
   );

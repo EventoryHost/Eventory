@@ -19,11 +19,14 @@ type Page1Props = {
     portfolioUrl: string;
     file: File | null;
   };
-  handleChange: (key: keyof Page1Props['formState'], value: any) => void;
-  handleNestedChange?: (key: keyof Page1Props['formState'], nestedKey: string, value: any) => void; // Optional if not always used
+  handleChange: (key: keyof Page1Props["formState"], value: any) => void;
+  handleNestedChange?: (
+    key: keyof Page1Props["formState"],
+    nestedKey: string,
+    value: any,
+  ) => void; // Optional if not always used
   navigateToPage: (pageIndex: number) => void;
 };
-
 
 const Page1: React.FC<Page1Props> = ({
   formState,
@@ -84,8 +87,12 @@ const Page1: React.FC<Page1Props> = ({
                 <label htmlFor="workers">Number of workers</label>
                 <Combobox
                   options={workerOptions}
-                  placeholder={`${formState.numberOfWorkers}` || "Select number of workers"}
-                  setFunction={(value) => handleChange("numberOfWorkers", value)}
+                  placeholder={
+                    `${formState.numberOfWorkers}` || "Select number of workers"
+                  }
+                  setFunction={(value) =>
+                    handleChange("numberOfWorkers", value)
+                  }
                   className="flex items-center justify-between rounded-xl border-2 py-6 text-gray-500 hover:text-[#2E3192]"
                 />
               </div>
@@ -97,7 +104,9 @@ const Page1: React.FC<Page1Props> = ({
                   id="desc"
                   type="text"
                   value={formState.descriptionOfPastWork}
-                  onChange={(e) => handleChange("descriptionOfPastWork", e.target.value)}
+                  onChange={(e) =>
+                    handleChange("descriptionOfPastWork", e.target.value)
+                  }
                   className="w-full rounded-xl border-2 bg-white p-5 pb-28 pt-3 outline-none"
                   placeholder="Enter your Description"
                 />
@@ -129,7 +138,9 @@ const Page1: React.FC<Page1Props> = ({
                     id="url"
                     type="text"
                     value={formState.portfolioUrl}
-                    onChange={(e) => handleChange("portfolioUrl", e.target.value)}
+                    onChange={(e) =>
+                      handleChange("portfolioUrl", e.target.value)
+                    }
                     className="mt-2 w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
                     placeholder="Enter URL"
                   />
@@ -138,7 +149,6 @@ const Page1: React.FC<Page1Props> = ({
             </div>
           </div>
         </div>
-        
       </div>
     </div>
   );
