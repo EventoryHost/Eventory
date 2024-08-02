@@ -23,10 +23,18 @@ interface FormState {
 interface PageProps {
   formState: FormState;
   handleChange: (key: keyof FormState, value: any) => void;
-  handleNestedChange: (key: keyof FormState, nestedKey: string, value: any) => void;
+  handleNestedChange: (
+    key: keyof FormState,
+    nestedKey: string,
+    value: any,
+  ) => void;
 }
 
-const Page1: React.FC<PageProps> = ({ formState, handleChange, handleNestedChange }) => {
+const Page1: React.FC<PageProps> = ({
+  formState,
+  handleChange,
+  handleNestedChange,
+}) => {
   const router = useRouter();
 
   return (
@@ -65,7 +73,7 @@ const Page1: React.FC<PageProps> = ({ formState, handleChange, handleNestedChang
                   id="vendorName"
                   type="text"
                   value={formState.vendorName}
-                  onChange={(e) => handleChange('vendorName', e.target.value)}
+                  onChange={(e) => handleChange("vendorName", e.target.value)}
                   className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
                   placeholder="Enter your full name"
                 />
@@ -81,7 +89,9 @@ const Page1: React.FC<PageProps> = ({ formState, handleChange, handleNestedChang
                   id="contactNumber"
                   type="text"
                   value={formState.contactNumber}
-                  onChange={(e) => handleChange('contactNumber', e.target.value)}
+                  onChange={(e) =>
+                    handleChange("contactNumber", e.target.value)
+                  }
                   className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
                   placeholder="Enter your contact number"
                 />
@@ -101,7 +111,9 @@ const Page1: React.FC<PageProps> = ({ formState, handleChange, handleNestedChang
                   <textarea
                     id="venueDescription"
                     value={formState.venueDescription}
-                    onChange={(e) => handleChange('venueDescription', e.target.value)}
+                    onChange={(e) =>
+                      handleChange("venueDescription", e.target.value)
+                    }
                     placeholder="Enter your Venue description"
                     className="focus:shadow-outline h-36 w-full resize-none appearance-none rounded-xl border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
                   />
@@ -117,7 +129,9 @@ const Page1: React.FC<PageProps> = ({ formState, handleChange, handleNestedChang
                     type="text"
                     id="minimumQuantity"
                     value={formState.minimumQuantity}
-                    onChange={(e) => handleChange('minimumQuantity', e.target.value)}
+                    onChange={(e) =>
+                      handleChange("minimumQuantity", e.target.value)
+                    }
                     placeholder="Enter minimum quantity"
                     className="focus:shadow-outline w-full appearance-none rounded-xl border px-3 py-4 leading-tight text-gray-700 shadow focus:outline-none"
                   />
@@ -133,8 +147,8 @@ const Page1: React.FC<PageProps> = ({ formState, handleChange, handleNestedChang
                       id="bulkQuantityYes"
                       type="radio"
                       name="bulkQuantity"
-                      checked={formState.bulkQuantity === 'yes'}
-                      onChange={() => handleChange('bulkQuantity', 'yes')}
+                      checked={formState.bulkQuantity === "yes"}
+                      onChange={() => handleChange("bulkQuantity", "yes")}
                       className="form-radio h-4 w-4 text-indigo-600 focus:ring-indigo-500"
                     />
                     <label
@@ -147,8 +161,8 @@ const Page1: React.FC<PageProps> = ({ formState, handleChange, handleNestedChang
                       id="bulkQuantityNo"
                       type="radio"
                       name="bulkQuantity"
-                      checked={formState.bulkQuantity === 'no'}
-                      onChange={() => handleChange('bulkQuantity', 'no')}
+                      checked={formState.bulkQuantity === "no"}
+                      onChange={() => handleChange("bulkQuantity", "no")}
                       className="form-radio ml-4 h-4 w-4 text-indigo-600 focus:ring-indigo-500"
                     />
                     <label
@@ -168,8 +182,8 @@ const Page1: React.FC<PageProps> = ({ formState, handleChange, handleNestedChang
                       id="customizableGiftsYes"
                       type="radio"
                       name="customizableGifts"
-                      checked={formState.customizableGifts === 'yes'}
-                      onChange={() => handleChange('customizableGifts', 'yes')}
+                      checked={formState.customizableGifts === "yes"}
+                      onChange={() => handleChange("customizableGifts", "yes")}
                       className="form-radio h-4 w-4 text-indigo-600 focus:ring-indigo-500"
                     />
                     <label
@@ -182,8 +196,8 @@ const Page1: React.FC<PageProps> = ({ formState, handleChange, handleNestedChang
                       id="customizableGiftsNo"
                       type="radio"
                       name="customizableGifts"
-                      checked={formState.customizableGifts === 'no'}
-                      onChange={() => handleChange('customizableGifts', 'no')}
+                      checked={formState.customizableGifts === "no"}
+                      onChange={() => handleChange("customizableGifts", "no")}
                       className="form-radio ml-4 h-4 w-4 text-indigo-600 focus:ring-indigo-500"
                     />
                     <label
@@ -193,7 +207,6 @@ const Page1: React.FC<PageProps> = ({ formState, handleChange, handleNestedChang
                       No
                     </label>
                   </div>
-                  
                 </div>
               </div>
             </div>

@@ -1,5 +1,5 @@
 // Preview.tsx
-import React from 'react';
+import React from "react";
 import ThreeStepBar from "@/app/(components)/threeStepBar";
 import { EditIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -42,7 +42,11 @@ interface FormState {
 interface PreviewProps {
   formState: FormState;
   handleChange: (key: keyof FormState, value: any) => void;
-  handleNestedChange: (key: keyof FormState, nestedKey: string, value: any) => void;
+  handleNestedChange: (
+    key: keyof FormState,
+    nestedKey: string,
+    value: any,
+  ) => void;
   navigateToPage: (pageIndex: number) => void;
   selectedGiftTypes: string[];
   setSelectedGiftTypes: React.Dispatch<React.SetStateAction<string[]>>;
@@ -96,10 +100,11 @@ const Preview: React.FC<PreviewProps> = ({
           <div className="">
             <div className="mr-4 mt-4 flex justify-between rounded-xl bg-gray-200 p-2 pl-4 text-2xl font-medium">
               1. Basic Details
-              <div 
-              onClick={() => navigateToPage(0)}
-              className="align-center flex justify-center p-1">
-                  <EditIcon size={28} />
+              <div
+                onClick={() => navigateToPage(0)}
+                className="align-center flex justify-center p-1"
+              >
+                <EditIcon size={28} />
               </div>
             </div>
 
@@ -125,7 +130,9 @@ const Preview: React.FC<PreviewProps> = ({
                 <h2 className="mb-2 mt-4 block text-xl font-medium text-gray-700">
                   Do You Provide Customizable Gifts?
                 </h2>
-                <span className="font-semibold">{formState.customizableGifts}</span>
+                <span className="font-semibold">
+                  {formState.customizableGifts}
+                </span>
               </div>
             </div>
 
@@ -134,7 +141,9 @@ const Preview: React.FC<PreviewProps> = ({
                 <h2 className="mb-2 mr-24 mt-4 block text-xl font-medium text-gray-700">
                   Do You Provide Delivery Service?
                 </h2>
-                <span className="font-semibold">{formState.deliveryCharges.min}</span>
+                <span className="font-semibold">
+                  {formState.deliveryCharges.min}
+                </span>
               </div>
               <div>
                 <h2 className="mb-2 mt-4 block text-xl font-medium text-gray-700">
@@ -152,18 +161,19 @@ const Preview: React.FC<PreviewProps> = ({
 
             <div className="mr-4 mt-4 flex justify-between rounded-xl bg-gray-200 p-2 pl-4 text-2xl font-medium">
               2. Catalog Details
-              <div onClick={()=>navigateToPage(1)} className="align-center flex justify-center p-1">
-                  <EditIcon size={28} />
+              <div
+                onClick={() => navigateToPage(1)}
+                className="align-center flex justify-center p-1"
+              >
+                <EditIcon size={28} />
               </div>
             </div>
-
-
 
             <div className="mb-2">
               <label className="mb-2 mt-4 block text-lg font-medium text-gray-700">
                 List Of Gifts
               </label>
-              <div className=" flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+              <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
                 <Appetizers
                   appetizers={giftTypes}
                   selectedAppetizers={selectedGiftTypes}
@@ -173,9 +183,10 @@ const Preview: React.FC<PreviewProps> = ({
             </div>
             <div className="mr-4 mt-4 flex justify-between rounded-xl bg-gray-200 p-2 pl-4 text-2xl font-medium">
               3. Pricing and Policies
-              <div 
+              <div
                 onClick={() => navigateToPage(1)}
-                className="align-center flex justify-center p-1">
+                className="align-center flex justify-center p-1"
+              >
                 <EditIcon size={28} />
               </div>
             </div>
@@ -183,21 +194,19 @@ const Preview: React.FC<PreviewProps> = ({
               <h2 className="mb-2 mt-4 block text-xl font-medium text-gray-700">
                 Terms And Conditions
               </h2>
-              <span className="font-semibold">{formState.termsAndConditions}</span>
+              <span className="font-semibold">
+                {formState.termsAndConditions}
+              </span>
             </div>
-
           </div>
           <div className="mt-4">
             <h2 className="mb-2 mt-4 block text-xl font-medium text-gray-700">
               Price Range
             </h2>
-            <span className="font-semibold">₹{formState.priceRange.min} - ₹{formState.priceRange.max}</span>
+            <span className="font-semibold">
+              ₹{formState.priceRange.min} - ₹{formState.priceRange.max}
+            </span>
           </div>
-
-
-
-
-
         </div>
       </div>
     </div>

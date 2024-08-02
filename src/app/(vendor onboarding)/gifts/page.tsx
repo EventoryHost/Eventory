@@ -1,10 +1,10 @@
 "use client";
 // RootPage.tsx
-import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import Page1 from './page1/page';
-import Page2 from './page2/page';
-import Preview from './preview/page';
+import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+import Page1 from "./page1/page";
+import Page2 from "./page2/page";
+import Preview from "./preview/page";
 
 const Pages = [Page1, Page2, Preview];
 
@@ -40,19 +40,26 @@ const RootPage = () => {
     appetizers: [],
     deliveryCharges: { min: "", max: "" },
     termsAndConditions: "",
-    category: ""
+    category: "",
   });
 
   // Function to handle changes for form fields
   const handleChange = (key: keyof FormState, value: any) => {
-    setFormState(prevState => ({ ...prevState, [key]: value }));
+    setFormState((prevState) => ({ ...prevState, [key]: value }));
   };
 
   // Function to handle changes for nested fields
-  const handleNestedChange = (key: keyof FormState, nestedKey: string, value: any) => {
-    setFormState(prevState => ({
+  const handleNestedChange = (
+    key: keyof FormState,
+    nestedKey: string,
+    value: any,
+  ) => {
+    setFormState((prevState) => ({
       ...prevState,
-      [key]: typeof prevState[key] === 'object' ? { ...prevState[key], [nestedKey]: value } : { [nestedKey]: value },
+      [key]:
+        typeof prevState[key] === "object"
+          ? { ...prevState[key], [nestedKey]: value }
+          : { [nestedKey]: value },
     }));
   };
 
@@ -60,11 +67,13 @@ const RootPage = () => {
   const navigateToPage = (pageIndex: number) => {
     setCurrentPage(pageIndex);
   };
-  
 
   // Function to handle changes for gift types
   const handleGiftTypesChange = (selectedTypes: string[]) => {
-    setFormState(prevState => ({ ...prevState, typesOfGifts: selectedTypes }));
+    setFormState((prevState) => ({
+      ...prevState,
+      typesOfGifts: selectedTypes,
+    }));
   };
 
   const CurrentPageComponent = Pages[currentPage];

@@ -47,32 +47,41 @@ interface FormState {
 interface PageProps {
   formState: FormState;
   handleChange: (key: keyof FormState, value: any) => void;
-  handleNestedChange: (key: keyof FormState, nestedKey: string, value: any) => void;
+  handleNestedChange: (
+    key: keyof FormState,
+    nestedKey: string,
+    value: any,
+  ) => void;
   setSelectedGiftTypes: (value: any) => void;
   selectedGiftTypes: any; // Add this line
 }
 
-const Page2: React.FC<PageProps> = ({ formState, handleChange, handleNestedChange , setSelectedGiftTypes , selectedGiftTypes }) => {
-  const [isDeliveryChargesChecked, setIsDeliveryChargesChecked] = useState<boolean>(false);
-  const [isPriceRangeChecked, setisPriceRangeChecked] = useState<boolean>(false);
+const Page2: React.FC<PageProps> = ({
+  formState,
+  handleChange,
+  handleNestedChange,
+  setSelectedGiftTypes,
+  selectedGiftTypes,
+}) => {
+  const [isDeliveryChargesChecked, setIsDeliveryChargesChecked] =
+    useState<boolean>(false);
+  const [isPriceRangeChecked, setisPriceRangeChecked] =
+    useState<boolean>(false);
 
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsDeliveryChargesChecked(e.target.checked);
     if (!e.target.checked) {
-      handleChange('deliveryCharges', { min: '', max: '' });
+      handleChange("deliveryCharges", { min: "", max: "" });
     }
   };
   const handleCheckboxChange1 = (e: React.ChangeEvent<HTMLInputElement>) => {
     setisPriceRangeChecked(e.target.checked);
     if (!e.target.checked) {
-      handleChange('priceRange', { min: '', max: '' });
+      handleChange("priceRange", { min: "", max: "" });
     }
   };
 
-
   const router = useRouter();
-
-
 
   return (
     <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden lg:flex-row">
@@ -125,29 +134,41 @@ const Page2: React.FC<PageProps> = ({ formState, handleChange, handleNestedChang
                 Select Price Range
               </label>
             </div>
-            {isPriceRangeChecked &&  (<div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className="font-medium text-gray-700">Min</label>
-                <input
-                  type="text"
-                  value={formState.priceRange.min}
-                  placeholder="Eg: Rs 200"
-                  onChange={(e) => handleChange('priceRange', { ...formState.priceRange, min: e.target.value })}
-                  className="w-full rounded-md border-2 px-3 py-2 focus:border-blue-500 focus:outline-none focus:ring-blue-500"
-                />
+            {isPriceRangeChecked && (
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="font-medium text-gray-700">Min</label>
+                  <input
+                    type="text"
+                    value={formState.priceRange.min}
+                    placeholder="Eg: Rs 200"
+                    onChange={(e) =>
+                      handleChange("priceRange", {
+                        ...formState.priceRange,
+                        min: e.target.value,
+                      })
+                    }
+                    className="w-full rounded-md border-2 px-3 py-2 focus:border-blue-500 focus:outline-none focus:ring-blue-500"
+                  />
+                </div>
+                <div>
+                  <label className="font-medium text-gray-700">Max</label>
+                  <input
+                    type="text"
+                    value={formState.priceRange.max}
+                    placeholder="Eg: Rs 500"
+                    onChange={(e) =>
+                      handleChange("priceRange", {
+                        ...formState.priceRange,
+                        max: e.target.value,
+                      })
+                    }
+                    className="w-full rounded-md border-2 px-3 py-2 focus:border-blue-500 focus:outline-none focus:ring-blue-500"
+                  />
+                </div>
               </div>
-              <div>
-                <label className="font-medium text-gray-700">Max</label>
-                <input
-                  type="text"
-                  value={formState.priceRange.max}
-                  placeholder="Eg: Rs 500"
-                  onChange={(e) => handleChange('priceRange', { ...formState.priceRange, max: e.target.value })}
-                  className="w-full rounded-md border-2 px-3 py-2 focus:border-blue-500 focus:outline-none focus:ring-blue-500"
-                />
-              </div>
-            </div>)}
-            <div className="flex items-center mt-4">
+            )}
+            <div className="mt-4 flex items-center">
               <input
                 type="checkbox"
                 checked={isDeliveryChargesChecked}
@@ -159,14 +180,19 @@ const Page2: React.FC<PageProps> = ({ formState, handleChange, handleNestedChang
               </label>
             </div>
             {isDeliveryChargesChecked && (
-              <div className="grid grid-cols-2 gap-4 mt-4">
+              <div className="mt-4 grid grid-cols-2 gap-4">
                 <div>
                   <label className="font-medium text-gray-700">Min</label>
                   <input
                     type="text"
                     value={formState.deliveryCharges.min}
                     placeholder="Per plate rate, Eg: Rs 200"
-                    onChange={(e) => handleChange('deliveryCharges', { ...formState.deliveryCharges, min: e.target.value })}
+                    onChange={(e) =>
+                      handleChange("deliveryCharges", {
+                        ...formState.deliveryCharges,
+                        min: e.target.value,
+                      })
+                    }
                     className="w-full rounded-md border-2 px-3 py-2 focus:border-blue-500 focus:outline-none focus:ring-blue-500"
                   />
                 </div>
@@ -176,7 +202,12 @@ const Page2: React.FC<PageProps> = ({ formState, handleChange, handleNestedChang
                     type="text"
                     value={formState.deliveryCharges.max}
                     placeholder="Per plate rate, Eg: Rs 500"
-                    onChange={(e) => handleChange('deliveryCharges', { ...formState.deliveryCharges, max: e.target.value })}
+                    onChange={(e) =>
+                      handleChange("deliveryCharges", {
+                        ...formState.deliveryCharges,
+                        max: e.target.value,
+                      })
+                    }
                     className="w-full rounded-md border-2 px-3 py-2 focus:border-blue-500 focus:outline-none focus:ring-blue-500"
                   />
                 </div>
@@ -190,12 +221,12 @@ const Page2: React.FC<PageProps> = ({ formState, handleChange, handleNestedChang
                 Upload
               </button>
             </div>
-          <h2 className="text-xl font-medium">Or continue via</h2>
-          <input
-            type="text"
-            placeholder="Select your category"
-            className="w-1/3 rounded-xl border-2 px-3 py-2 focus:border-[#2E3192] focus:outline-none focus:ring-blue-500"
-          />
+            <h2 className="text-xl font-medium">Or continue via</h2>
+            <input
+              type="text"
+              placeholder="Select your category"
+              className="w-1/3 rounded-xl border-2 px-3 py-2 focus:border-[#2E3192] focus:outline-none focus:ring-blue-500"
+            />
           </div>
         </div>
       </div>
