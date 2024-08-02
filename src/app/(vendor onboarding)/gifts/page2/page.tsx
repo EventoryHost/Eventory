@@ -5,7 +5,10 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import Appetizers from "../../decorators/(components)/Appetizers";
 
-const _buttonTexts = [
+// Define types for the component state and props
+type AppetizerType = string;
+
+const _buttonTexts: AppetizerType[] = [
   "Books and Media Gifts",
   "Charitable Gifts",
   "Consumable Gifts",
@@ -24,14 +27,52 @@ const _buttonTexts = [
   "Other",
 ];
 
-const Page = () => {
-  const router = useRouter();
-  const [typesOfInvitationsYouDesign, setTypesOfInvitationsYouDesign] =
-    useState([]);
+// Define types for form state
+interface FormState {
+  vendorName: string;
+  contactNumber: string;
+  venueDescription: string;
+  minimumQuantity: string;
+  bulkQuantity: string;
+  customizableGifts: string;
+  typesOfGifts: string[];
+  appetizers: string[];
+  priceRange: { min: string; max: string };
+  deliveryCharges: { min: string; max: string };
+  termsAndConditions: string;
+  category: string;
+}
 
-  function handleSubmit() {
-    router.push("/gifts/preview");
-  }
+// Define types for props
+interface PageProps {
+  formState: FormState;
+  handleChange: (key: keyof FormState, value: any) => void;
+  handleNestedChange: (key: keyof FormState, nestedKey: string, value: any) => void;
+  setSelectedGiftTypes: (value: any) => void;
+  selectedGiftTypes: any; // Add this line
+}
+
+const Page2: React.FC<PageProps> = ({ formState, handleChange, handleNestedChange , setSelectedGiftTypes , selectedGiftTypes }) => {
+  const [isDeliveryChargesChecked, setIsDeliveryChargesChecked] = useState<boolean>(false);
+  const [isPriceRangeChecked, setisPriceRangeChecked] = useState<boolean>(false);
+
+  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsDeliveryChargesChecked(e.target.checked);
+    if (!e.target.checked) {
+      handleChange('deliveryCharges', { min: '', max: '' });
+    }
+  };
+  const handleCheckboxChange1 = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setisPriceRangeChecked(e.target.checked);
+    if (!e.target.checked) {
+      handleChange('priceRange', { min: '', max: '' });
+    }
+  };
+
+
+  const router = useRouter();
+
+
 
   return (
     <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden lg:flex-row">
@@ -64,12 +105,8 @@ const Page = () => {
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
                 appetizers={_buttonTexts}
-                selectedAppetizers={typesOfInvitationsYouDesign}
-                setSelectedAppetizers={
-                  setTypesOfInvitationsYouDesign as React.Dispatch<
-                    React.SetStateAction<string[]>
-                  >
-                }
+                selectedAppetizers={selectedGiftTypes}
+                setSelectedAppetizers={setSelectedGiftTypes}
               />
             </div>
           </div>
@@ -80,18 +117,22 @@ const Page = () => {
             <div className="flex items-center">
               <input
                 type="checkbox"
+                checked={isPriceRangeChecked}
+                onChange={handleCheckboxChange1}
                 className="h-4 w-4 rounded-lg border-gray-300 bg-gray-100 text-blue-600 focus:ring-blue-500"
               />
               <label className="ml-2 font-semibold text-gray-700">
                 Select Price Range
               </label>
             </div>
-            <div className="grid grid-cols-2 gap-4">
+            {isPriceRangeChecked &&  (<div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="font-medium text-gray-700">Min</label>
                 <input
                   type="text"
-                  placeholder="Per plate rate , Eg : Rs 200"
+                  value={formState.priceRange.min}
+                  placeholder="Eg: Rs 200"
+                  onChange={(e) => handleChange('priceRange', { ...formState.priceRange, min: e.target.value })}
                   className="w-full rounded-md border-2 px-3 py-2 focus:border-blue-500 focus:outline-none focus:ring-blue-500"
                 />
               </div>
@@ -99,66 +140,62 @@ const Page = () => {
                 <label className="font-medium text-gray-700">Max</label>
                 <input
                   type="text"
-                  placeholder="Per plate rate , Eg : Rs 200"
+                  value={formState.priceRange.max}
+                  placeholder="Eg: Rs 500"
+                  onChange={(e) => handleChange('priceRange', { ...formState.priceRange, max: e.target.value })}
                   className="w-full rounded-md border-2 px-3 py-2 focus:border-blue-500 focus:outline-none focus:ring-blue-500"
                 />
               </div>
-            </div>
-            <div className="flex items-center">
+            </div>)}
+            <div className="flex items-center mt-4">
               <input
                 type="checkbox"
+                checked={isDeliveryChargesChecked}
+                onChange={handleCheckboxChange}
                 className="h-4 w-4 rounded-xl border-gray-300 bg-gray-100 text-blue-600 focus:ring-blue-500"
               />
               <label className="ml-2 font-semibold text-gray-700">
-                Delivery Charges(If available)
+                Delivery Charges (If available)
               </label>
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className="font-medium text-gray-700">Min</label>
-                <input
-                  type="text"
-                  placeholder="Per plate rate , Eg : Rs 200"
-                  className="w-full rounded-md border-2 px-3 py-2 focus:border-blue-500 focus:outline-none focus:ring-blue-500"
-                />
+            {isDeliveryChargesChecked && (
+              <div className="grid grid-cols-2 gap-4 mt-4">
+                <div>
+                  <label className="font-medium text-gray-700">Min</label>
+                  <input
+                    type="text"
+                    value={formState.deliveryCharges.min}
+                    placeholder="Per plate rate, Eg: Rs 200"
+                    onChange={(e) => handleChange('deliveryCharges', { ...formState.deliveryCharges, min: e.target.value })}
+                    className="w-full rounded-md border-2 px-3 py-2 focus:border-blue-500 focus:outline-none focus:ring-blue-500"
+                  />
+                </div>
+                <div>
+                  <label className="font-medium text-gray-700">Max</label>
+                  <input
+                    type="text"
+                    value={formState.deliveryCharges.max}
+                    placeholder="Per plate rate, Eg: Rs 500"
+                    onChange={(e) => handleChange('deliveryCharges', { ...formState.deliveryCharges, max: e.target.value })}
+                    className="w-full rounded-md border-2 px-3 py-2 focus:border-blue-500 focus:outline-none focus:ring-blue-500"
+                  />
+                </div>
               </div>
-              <div>
-                <label className="font-medium text-gray-700">Max</label>
-                <input
-                  type="text"
-                  placeholder="Per plate rate , Eg : Rs 200"
-                  className="w-full rounded-md border-2 px-3 py-2 focus:border-blue-500 focus:outline-none focus:ring-blue-500"
-                />
-              </div>
-              <div className="flex flex-col">
-                <h2 className="text-xl font-medium">Terms and Conditions</h2>
-                <p className="text-sm text-gray-500">PNG, PDF, JPG</p>
-                <button className="mt-2 flex w-48 items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
-                  <Upload size={24} />
-                  Upload
-                </button>
-              </div>
-            </div>
-            <h2 className="text-xl font-medium">Or continue via</h2>
-            <input
-              type="text"
-              placeholder="Select your category"
-              className="w-1/3 rounded-xl border-2 px-3 py-2 focus:border-[#2E3192] focus:outline-none focus:ring-blue-500"
-            />
-            <div className="mt-9 flex flex-row items-stretch gap-7 self-end">
-              <button
-                className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={handleSubmit}
-              >
-                Skip
-              </button>
-              <button
-                className="rounded-xl bg-[rgb(46,49,146)] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={handleSubmit}
-              >
-                Continue
+            )}
+            <div className="flex flex-col">
+              <h2 className="text-xl font-medium">Terms and Conditions</h2>
+              <p className="text-sm text-gray-500">PNG, PDF, JPG</p>
+              <button className="mt-2 flex w-48 items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
+                <Upload size={24} />
+                Upload
               </button>
             </div>
+          <h2 className="text-xl font-medium">Or continue via</h2>
+          <input
+            type="text"
+            placeholder="Select your category"
+            className="w-1/3 rounded-xl border-2 px-3 py-2 focus:border-[#2E3192] focus:outline-none focus:ring-blue-500"
+          />
           </div>
         </div>
       </div>
@@ -166,4 +203,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default Page2;

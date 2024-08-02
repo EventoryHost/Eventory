@@ -3,7 +3,30 @@ import ThreeStepBar from "@/app/(components)/threeStepBar";
 import React from "react";
 import { useRouter } from "next/navigation";
 
-const Page = () => {
+// Define types for form state
+interface FormState {
+  vendorName: string;
+  contactNumber: string;
+  venueDescription: string;
+  minimumQuantity: string;
+  bulkQuantity: string;
+  customizableGifts: string;
+  typesOfGifts: string[];
+  priceRange: { min: string; max: string };
+  appetizers: string[];
+  deliveryCharges: { min: string; max: string };
+  termsAndConditions: string;
+  category: string;
+}
+
+// Define types for props
+interface PageProps {
+  formState: FormState;
+  handleChange: (key: keyof FormState, value: any) => void;
+  handleNestedChange: (key: keyof FormState, nestedKey: string, value: any) => void;
+}
+
+const Page1: React.FC<PageProps> = ({ formState, handleChange, handleNestedChange }) => {
   const router = useRouter();
 
   return (
@@ -41,6 +64,8 @@ const Page = () => {
                 <input
                   id="vendorName"
                   type="text"
+                  value={formState.vendorName}
+                  onChange={(e) => handleChange('vendorName', e.target.value)}
                   className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
                   placeholder="Enter your full name"
                 />
@@ -55,6 +80,8 @@ const Page = () => {
                 <input
                   id="contactNumber"
                   type="text"
+                  value={formState.contactNumber}
+                  onChange={(e) => handleChange('contactNumber', e.target.value)}
                   className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
                   placeholder="Enter your contact number"
                 />
@@ -73,6 +100,8 @@ const Page = () => {
                   </label>
                   <textarea
                     id="venueDescription"
+                    value={formState.venueDescription}
+                    onChange={(e) => handleChange('venueDescription', e.target.value)}
                     placeholder="Enter your Venue description"
                     className="focus:shadow-outline h-36 w-full resize-none appearance-none rounded-xl border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
                   />
@@ -87,6 +116,8 @@ const Page = () => {
                   <input
                     type="text"
                     id="minimumQuantity"
+                    value={formState.minimumQuantity}
+                    onChange={(e) => handleChange('minimumQuantity', e.target.value)}
                     placeholder="Enter minimum quantity"
                     className="focus:shadow-outline w-full appearance-none rounded-xl border px-3 py-4 leading-tight text-gray-700 shadow focus:outline-none"
                   />
@@ -99,25 +130,29 @@ const Page = () => {
                   </label>
                   <div className="flex items-center">
                     <input
-                      id="bulkQuantity"
+                      id="bulkQuantityYes"
                       type="radio"
                       name="bulkQuantity"
+                      checked={formState.bulkQuantity === 'yes'}
+                      onChange={() => handleChange('bulkQuantity', 'yes')}
                       className="form-radio h-4 w-4 text-indigo-600 focus:ring-indigo-500"
                     />
                     <label
-                      htmlFor="bulkQuantity"
+                      htmlFor="bulkQuantityYes"
                       className="ml-2 block text-sm font-medium text-gray-900"
                     >
                       Yes
                     </label>
                     <input
-                      id="noBulkQuantity"
+                      id="bulkQuantityNo"
                       type="radio"
                       name="bulkQuantity"
+                      checked={formState.bulkQuantity === 'no'}
+                      onChange={() => handleChange('bulkQuantity', 'no')}
                       className="form-radio ml-4 h-4 w-4 text-indigo-600 focus:ring-indigo-500"
                     />
                     <label
-                      htmlFor="noBulkQuantity"
+                      htmlFor="bulkQuantityNo"
                       className="ml-2 block text-sm font-medium text-gray-900"
                     >
                       No
@@ -130,44 +165,35 @@ const Page = () => {
                   </label>
                   <div className="flex items-center">
                     <input
-                      id="customizableGifts"
+                      id="customizableGiftsYes"
                       type="radio"
                       name="customizableGifts"
+                      checked={formState.customizableGifts === 'yes'}
+                      onChange={() => handleChange('customizableGifts', 'yes')}
                       className="form-radio h-4 w-4 text-indigo-600 focus:ring-indigo-500"
                     />
                     <label
-                      htmlFor="customizableGifts"
+                      htmlFor="customizableGiftsYes"
                       className="ml-2 block text-sm font-medium text-gray-900"
                     >
                       Yes
                     </label>
                     <input
-                      id="noCustomizableGifts"
+                      id="customizableGiftsNo"
                       type="radio"
                       name="customizableGifts"
+                      checked={formState.customizableGifts === 'no'}
+                      onChange={() => handleChange('customizableGifts', 'no')}
                       className="form-radio ml-4 h-4 w-4 text-indigo-600 focus:ring-indigo-500"
                     />
                     <label
-                      htmlFor="noCustomizableGifts"
+                      htmlFor="customizableGiftsNo"
                       className="ml-2 block text-sm font-medium text-gray-900"
                     >
                       No
                     </label>
                   </div>
-                  <div className="items-strech ml-20 mt-56 flex flex-row gap-7 self-end">
-                    <button
-                      className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                      // onClick={handleSubmit}
-                    >
-                      Skip
-                    </button>
-                    <button
-                      className="rounded-xl bg-[rgb(46,49,146)] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                      // onClick={handleSubmit}
-                    >
-                      Continue
-                    </button>
-                  </div>
+                  
                 </div>
               </div>
             </div>
@@ -178,4 +204,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default Page1;

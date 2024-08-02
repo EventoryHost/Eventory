@@ -1,8 +1,8 @@
-"use client";
+// Preview.tsx
+import React from 'react';
 import ThreeStepBar from "@/app/(components)/threeStepBar";
-import { Check, EditIcon } from "lucide-react";
+import { EditIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
 import Appetizers from "../../decorators/(components)/Appetizers";
 
 const giftTypes = [
@@ -10,19 +10,56 @@ const giftTypes = [
   "Charitable Gifts",
   "Consumable Gifts",
   "Occasional Gifts",
+  "Personalized Gifts",
   "Functional Gifts",
   "Luxury Gifts",
+  "Surprise Gifts",
+  "Traditional Gifts",
+  "Home and Kitchenware Gifts",
   "Experiential Gifts",
+  "Tech and Gadgets Gifts",
   "Subscription Services Gifts",
+  "Fashion and Apparel Gifts",
+  "Sports and Fitness Gifts",
+  "Other",
 ];
 
-const Page = () => {
+interface FormState {
+  vendorName: string;
+  contactNumber: string;
+  venueDescription: string;
+  minimumQuantity: string;
+  bulkQuantity: string;
+  customizableGifts: string;
+  typesOfGifts: string[];
+  priceRange: { min: string; max: string };
+  appetizers: string[];
+  deliveryCharges: { min: string; max: string };
+  termsAndConditions: string;
+  category: string;
+}
+
+interface PreviewProps {
+  formState: FormState;
+  handleChange: (key: keyof FormState, value: any) => void;
+  handleNestedChange: (key: keyof FormState, nestedKey: string, value: any) => void;
+  navigateToPage: (pageIndex: number) => void;
+  selectedGiftTypes: string[];
+  setSelectedGiftTypes: React.Dispatch<React.SetStateAction<string[]>>;
+}
+
+const Preview: React.FC<PreviewProps> = ({
+  formState,
+  handleChange,
+  handleNestedChange,
+  navigateToPage,
+  selectedGiftTypes,
+  setSelectedGiftTypes,
+}) => {
   const router = useRouter();
 
-  const [selectedGiftTypes, setSelectedGiftTypes] = useState<string[]>([]);
-
   function handleSubmit() {
-    router.push("/transportation/page3");
+    // Submission logic goes here
   }
 
   return (
@@ -54,15 +91,15 @@ const Page = () => {
       <div className="ml-[30%] flex w-full flex-col items-center justify-center bg-[#F7F6F9] p-2 md:p-[1rem]">
         <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
           <div className="mb-4 text-2xl font-bold text-gray-800">
-            VIJAY MALLYA / Gifts
+            {formState.vendorName} / Gifts
           </div>
           <div className="">
             <div className="mr-4 mt-4 flex justify-between rounded-xl bg-gray-200 p-2 pl-4 text-2xl font-medium">
               1. Basic Details
-              <div className="align-center flex justify-center p-1">
-                <a href="">
+              <div 
+              onClick={() => navigateToPage(0)}
+              className="align-center flex justify-center p-1">
                   <EditIcon size={28} />
-                </a>
               </div>
             </div>
 
@@ -80,9 +117,7 @@ const Page = () => {
                   rows={4}
                   disabled
                 >
-                  YesNavkar Venue Shirpur Act As An Integrator Of Venue Industry
-                  In India By Providing One-Stop/End-To-End Solutions For Your
-                  Every Travel & Comfort Need.
+                  {formState.venueDescription}
                 </textarea>
               </div>
 
@@ -90,7 +125,7 @@ const Page = () => {
                 <h2 className="mb-2 mt-4 block text-xl font-medium text-gray-700">
                   Do You Provide Customizable Gifts?
                 </h2>
-                <span className="font-semibold">Yes</span>
+                <span className="font-semibold">{formState.customizableGifts}</span>
               </div>
             </div>
 
@@ -99,92 +134,74 @@ const Page = () => {
                 <h2 className="mb-2 mr-24 mt-4 block text-xl font-medium text-gray-700">
                   Do You Provide Delivery Service?
                 </h2>
-                <span className="font-semibold">Yes</span>
+                <span className="font-semibold">{formState.deliveryCharges.min}</span>
               </div>
               <div>
                 <h2 className="mb-2 mt-4 block text-xl font-medium text-gray-700">
                   Do You Offer products in bulk quantity?
                 </h2>
-                <span className="font-semibold">Yes</span>
+                <span className="font-semibold">{formState.bulkQuantity}</span>
+              </div>
+            </div>
+            <div className="mt-16">
+              <h2 className="mb-2 mt-4 block text-xl font-medium text-gray-700">
+                What is the minimum quantity of orders?
+              </h2>
+              <span className="font-semibold">{formState.minimumQuantity}</span>
+            </div>
+
+            <div className="mr-4 mt-4 flex justify-between rounded-xl bg-gray-200 p-2 pl-4 text-2xl font-medium">
+              2. Catalog Details
+              <div onClick={()=>navigateToPage(1)} className="align-center flex justify-center p-1">
+                  <EditIcon size={28} />
+              </div>
+            </div>
+
+
+
+            <div className="mb-2">
+              <label className="mb-2 mt-4 block text-lg font-medium text-gray-700">
+                List Of Gifts
+              </label>
+              <div className=" flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+                <Appetizers
+                  appetizers={giftTypes}
+                  selectedAppetizers={selectedGiftTypes}
+                  setSelectedAppetizers={setSelectedGiftTypes}
+                />
+              </div>
+            </div>
+            <div className="mr-4 mt-4 flex justify-between rounded-xl bg-gray-200 p-2 pl-4 text-2xl font-medium">
+              3. Pricing and Policies
+              <div 
+                onClick={() => navigateToPage(1)}
+                className="align-center flex justify-center p-1">
+                <EditIcon size={28} />
               </div>
             </div>
             <div className="mt-4">
               <h2 className="mb-2 mt-4 block text-xl font-medium text-gray-700">
-                What is the minimum quantity of orders?
+                Terms And Conditions
               </h2>
-              <span className="font-semibold">2</span>
+              <span className="font-semibold">{formState.termsAndConditions}</span>
             </div>
+
+          </div>
+          <div className="mt-4">
+            <h2 className="mb-2 mt-4 block text-xl font-medium text-gray-700">
+              Price Range
+            </h2>
+            <span className="font-semibold">₹{formState.priceRange.min} - ₹{formState.priceRange.max}</span>
           </div>
 
-          <div className="">
-            <div className="mr-4 mt-4 flex justify-between rounded-xl bg-gray-200 p-2 pl-4 text-2xl font-medium">
-              2. Catalog Details
-              <div className="align-center flex justify-center p-1">
-                <a href="">
-                  <EditIcon size={28} />
-                </a>
-              </div>
-            </div>
-            <div className="mb-2">
-              <label className="mb-2 mt-4 block text-lg font-medium text-gray-700">
-                Types Of Gifts
-              </label>
-              <div className="mb-[-210px] flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-                <Appetizers
-                  appetizers={giftTypes}
-                  selectedAppetizers={selectedGiftTypes}
-                  setSelectedAppetizers={
-                    setSelectedGiftTypes as React.Dispatch<
-                      React.SetStateAction<string[]>
-                    >
-                  }
-                />
-              </div>
-            </div>
-          </div>
 
-          <div className="">
-            <div className="mr-4 mt-4 flex justify-between rounded-xl bg-gray-200 p-2 pl-4 text-2xl font-medium">
-              3. Pricing Policies
-              <div className="align-center flex justify-center p-1">
-                <a href="">
-                  <EditIcon size={28} />
-                </a>
-              </div>
-            </div>
 
-            <div className="mt-4 flex flex-col">
-              <h2 className="font-medium">Terms and Conditions</h2>
-              <span className="mt-2 flex items-center font-semibold">
-                <span>Doc1.pdf</span>
-                <Check size={24} />
-              </span>
 
-              <h2 className="mt-6 font-semibold">Select Price Range</h2>
-              <h2 className="mt-2 text-base font-normal">Price Range</h2>
 
-              <span className="font-semibold">₹800 - ₹1600 </span>
-
-              <div className="mt-9 flex w-full flex-row justify-end gap-4">
-                <button
-                  className="w-auto rounded-xl border-2 border-[#2E3192] px-6 py-3 text-[#2E3192]"
-                  onClick={handleSubmit}
-                >
-                  Skip
-                </button>
-                <button
-                  className="w-auto rounded-xl bg-[#2E3192] px-6 py-3 text-white"
-                  onClick={handleSubmit}
-                >
-                  Continue
-                </button>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default Page;
+export default Preview;
