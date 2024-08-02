@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import Appetizers from "../(components)/Appetizers";
 import { Upload } from "lucide-react";
 import { Combobox } from "@/components/ui/combobox";
-import { set } from "date-fns";
 
 const _typesOfInvitationsYouDesign = [
   "Formal Invitation",
@@ -156,7 +155,7 @@ interface Page1Props {
   setOtherInvitation: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-const Page: React.FC<Page1Props> = ({
+const Page = ({
   formState,
   updateFormState,
   typesOfInvitationsYouDesign,
@@ -179,7 +178,7 @@ const Page: React.FC<Page1Props> = ({
   setRelegiousInvitation,
   otherInvitation,
   setOtherInvitation,
-}) => {
+}: Page1Props) => {
   const { references, portfolio, experience } = formState;
 
   const handleSubmit = (e: React.FormEvent) => {

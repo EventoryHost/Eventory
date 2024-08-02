@@ -21,49 +21,77 @@ async function addCaterer(data: any) {
 
 // schema for reference
 
-// const catererSchema = new Schema({
-//     name: { type: String, required: true },
-//     id: { type: String, required: true },
-//     cuisine_specialities: String,
-//     regional_specialities: String,
-//     service_style_offered: String,
-//     menu: {
-//       type: { type: String },
-//       file: { type: String },
-//     },
-//     appetizers: [String],
-//     main_course: [String],
-//     beverages: [String],
-//     special_dietary_options: [String],
-//     pre_set_menus: [String],
-//     customizable: { type: Boolean, default: false },
-//     event_types_catered: [String],
-//     additional_services: [String],
-//     staff_provided: [String],
-//     equipment_provided: [String],
-//     minimum_order_requirements: String,
-//     advance_booking_period: String,
-//     deposit_required: String,
-//     per_plate_rates: String,
-
-//     package_deals: String,
-//     per_plate_price_range: String,
-
-//     cancellation_policy: {
-//       file: { type: String },
-//       via: { type: String },
-//       _id: false,
-//     },
-//     tasting_sessions: { type: Boolean, default: false },
-//     business_licenses: { type: Boolean, default: false },
-//     food_safety_certificates: { type: Boolean, default: false },
-//     terms_and_conditions: {
-//       file: { type: String },
-//       via: { type: String },
-//       _id: false,
-//     },
-//     catering_service_images: [String],
-//     videos_of_event_setups: [String],
-//   });
+// {
+//   "name": " Gourmet Catering",
+//   "managerName": " John Doe",
+//   "id": " caterer123", dont test with the same id once succesful
+//   "cuisine_specialities": [
+//       " Italian",
+//       " French"
+//   ],
+//   "regional_specialities": [
+//       " Mediterranean",
+//       " Asian"
+//   ],
+//   "service_style_offered": [
+//       " Buffet",
+//       " Plated"
+//   ],
+//   "menu": " menu_link",
+//   "menuType": " Vegetarian",
+//   "appetizers": [
+//       " Bruschetta",
+//       " Spring Rolls"
+//   ],
+//   "main_course": [
+//       " Pasta Primavera",
+//       " Chicken Teriyaki"
+//   ],
+//   "beverages": [
+//       " Wine",
+//       " Juice"
+//   ],
+//   "special_dietary_options": [
+//       " Gluten-Free",
+//       " Vegan"
+//   ],
+//   "pre_set_menus": [
+//       " Wedding Menu",
+//       " Corporate Menu"
+//   ],
+//   "customizable": true,
+//   "event_types_catered": [
+//       " Weddings",
+//       " Corporate Events"
+//   ],
+//   "additional_services": [
+//       " Bartending",
+//       " Cake Cutting"
+//   ],
+//   "staff_provided": [
+//       " Waiters",
+//       " Chefs"
+//   ],
+//   "equipment_provided": [
+//       " Cutlery",
+//       " Chafing Dishes"
+//   ],
+//   "minimum_order_requirements": " 50 plates",
+//   "advance_booking_period": " 1 month",
+//   "deposit_required": " 20%",
+//   "per_plate_rates": {
+//       "max": " $50",
+//       "min": " $20"
+//   },
+//   "cancellation_policy": " Cancellations made within 1 week of the event will incur a 25% fee.",(file hoga)
+//   "tasting_sessions": true,
+//   "business_licenses": true,
+//   "food_safety_certificates": true,
+//   "terms_and_conditions": " All bookings must be confirmed with a deposit. Full payment is due 2 weeks before the event.", (file hoga)
+//   "portfolio": [
+//       "https://eventory-bucket.s3.ap-south-1.amazonaws.com/Caterers/%20Gourmet%20Catering/documents/Resume.pdf",
+//       "https://eventory-bucket.s3.ap-south-1.amazonaws.com/Caterers/%20Gourmet%20Catering/documents/AnkitKumarChakraborty_210906338_EEE.pdf"
+//   ],
+// }
 
 export { addCaterer };

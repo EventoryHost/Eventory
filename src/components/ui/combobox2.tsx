@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { Check, ChevronsUpDown } from "lucide-react";
-
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
@@ -33,7 +32,7 @@ interface ComboboxProps {
   setFunction: (value: string) => void;
 }
 
-export function Combobox(props: ComboboxProps) {
+export function Combobox2(props: ComboboxProps) {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
 
@@ -51,11 +50,11 @@ export function Combobox(props: ComboboxProps) {
         >
           {value
             ? props.options.find((option) => option.value === value)?.label
-            : props.placeholder}
+            : props.placeholder || "Select framework..."}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="p-0[n w-[250px]">
+      <PopoverContent className="w-[200px] p-0">
         <Command>
           <CommandInput placeholder="Search framework..." />
           <CommandList>

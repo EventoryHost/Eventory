@@ -62,7 +62,7 @@ const models = [
   "Others",
 ];
 
-const page = () => {
+const Page = () => {
   const router = useRouter();
   const [contactName, setcontactName] = useState("");
 
@@ -203,4 +203,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

@@ -1,30 +1,51 @@
 "use client";
 
 import React, { useState } from "react";
-import Appetizers from "../(components)/Appetizers";
+import { ComboboxDemo } from "@/components/dropdown";
+import { Dropdown } from "react-day-picker";
+import { Combobox } from "@/components/ui/combobox";
 
-const makeupTypes = [
-  "Bridal Makeup",
-  "Daily Makeup", // Assuming misspelling in the image
-  "Editorial Makeup",
-  "Film and TV Makeup",
-  "Runway Makeup",
-  "Special Effects (SFX) Makeup",
-  "Special Occasion Makeup",
-  "Traditional Bridal Makeup",
-  "Others",
+const regional = [
+  { value: "gujrati", label: "Gujrati" },
+  { value: "rajasthani", label: "Rajasthani" },
+  { value: "bengali", label: "Bengali" },
+  { value: "other", label: "Other" },
+];
+
+const service = [
+  { value: "buffet", label: "Buffet" },
+  { value: "plated", label: "Plated Meals" },
+  { value: "family", label: "Family Style" },
+  { value: "station", label: "Food Stations" },
+];
+
+const cuisine = [
+  { value: "north", label: "North Indian" },
+  { value: "south", label: "South Indian" },
+  { value: "chinese", label: "Chinese" },
+  { value: "italian", label: "Italian" },
 ];
 
 const Page = () => {
-  const [category, setCategory] = useState<"Yes" | "No">("No");
-  const [makeupTypes, setMakeupTypes] = useState<string[]>([]);
-
-  const handleCategoryChange = (newCategory: "Yes" | "No") => {
-    setCategory(newCategory);
-  };
+  const [businessName, setBusinessName] = useState("");
+  const [category, setCategory] = useState("");
+  const [gstin, setGstin] = useState("");
+  const [years, setYears] = useState("");
+  const [businessAddress, setBusinessAddress] = useState("");
+  const [landmark, setLandmark] = useState("");
+  const [pinCode, setPinCode] = useState("");
+  const [cities, setCities] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    console.log("Business Name:", businessName);
+    console.log("Category:", category);
+    console.log("GSTIN:", gstin);
+    console.log("Years in Operation:", years);
+    console.log("Business Address:", businessAddress);
+    console.log("Landmark:", landmark);
+    console.log("Pin Code:", pinCode);
+    console.log("Operational Cities:", cities);
   };
 
   return (
@@ -34,8 +55,8 @@ const Page = () => {
           <button className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2E3192] p-5 text-white">
             1
           </button>
-          <div className="h-[0.3rem] w-[4rem] rounded-xl bg-[#2E3192]"></div>
-          <button className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2E3192] p-5 text-white">
+          <div className="h-[0.3rem] w-[4rem] rounded-xl bg-gray-300"></div>
+          <button className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-300 p-5">
             2
           </button>
           <div className="h-[0.3rem] w-[4rem] rounded-xl bg-gray-300"></div>
@@ -74,43 +95,37 @@ const Page = () => {
           />
         </div>
       </div>
-      <div className="scroll-touch flex max-h-[calc(100vh-5.2rem)] min-w-[70%] flex-col items-center gap-9 overflow-y-scroll bg-[#F7F6F9] p-2 md:p-[1rem]">
+      <div className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] p-2 md:p-[1rem]">
         <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
-          <div className="flex gap-9">
-            <h1 className="text-3xl font-semibold">Services Details</h1>
-          </div>
-          <div className="flex gap-9">
-            <p className="">On-site Service availability ?</p>
-          </div>
-          <div className="flex flex-row gap-2">
-            <div className="flex items-center gap-2">
-              <input
-                type="radio"
-                checked={category === "Yes"}
-                onChange={() => handleCategoryChange("Yes")}
-              />
-              <p className="text-gray-500">Yes</p>
-            </div>
-            <div className="flex items-center gap-2">
-              <input
-                type="radio"
-                checked={category === "No"}
-                onChange={() => handleCategoryChange("No")}
-              />
-              <p className="text-gray-500">No</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="flex flex-col gap-9 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
-          <h1 className="text-3xl font-semibold">Specialization makeups</h1>
+          <h1 className="text-3xl font-semibold">Basic Details</h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-              <Appetizers
-                appetizers={makeupTypes}
-                selectedAppetizers={makeupTypes}
-                setSelectedAppetizers={setMakeupTypes}
-              />
+              <div className="flex min-w-[40%] flex-col gap-4">
+                <label htmlFor="businessName">Caterer Name (Manager)</label>
+                <input
+                  id="businessName"
+                  type="text"
+                  className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
+                  placeholder="Enter your business name"
+                  value={businessName}
+                  onChange={(e) => setBusinessName(e.target.value)}
+                />
+              </div>
+              <div className="flex min-w-[40%] flex-col gap-4">
+                <label htmlFor="category">Cuisine Specialties</label>
+                <input
+                  id="businessName"
+                  type="text"
+                  className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
+                  placeholder="Enter your business name"
+                  value={businessName}
+                  onChange={(e) => setBusinessName(e.target.value)}
+                />
+              </div>
+            </div>
+            <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+              <div className="flex min-w-[40%] flex-col gap-4"></div>
+              <div className="flex flex-col gap-4 xs:min-w-[40%]"></div>
             </div>
             <div className="items-strech mt-9 flex flex-row gap-7 self-end">
               <button

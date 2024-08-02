@@ -21,7 +21,7 @@ const _experience = [
 ];
 interface FormState {
   termsandConditions: string;
-  canelationPolicy: string;
+  cancellationPolicy: string;
   clienttestimonials: string;
   extracharges: boolean;
   deposit: boolean;
@@ -35,14 +35,14 @@ interface Page4Props {
 const Page: React.FC<Page4Props> = ({ formState, updateFormState }) => {
   const {
     termsandConditions,
-    canelationPolicy,
+    cancellationPolicy,
     extracharges,
     deposit,
     clienttestimonials,
   } = formState;
 
   // const [termdandConditions, setTermsAndConditions] = useState("");
-  // const [canelationPolicy, setCancelationPolicy] = useState("");
+  // const [cancellationPolicy, setCancelationPolicy] = useState("");
 
   // const [extracharges, setExtraCharges] = useState(false);
   // const  [deposit, setDeposit] = useState(false);
@@ -142,9 +142,9 @@ const Page: React.FC<Page4Props> = ({ formState, updateFormState }) => {
                   type="text"
                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                   placeholder="Enter url here"
-                  value={canelationPolicy}
+                  value={cancellationPolicy}
                   onChange={(e) =>
-                    updateFormState({ canelationPolicy: e.target.value })
+                    updateFormState({ cancellationPolicy: e.target.value })
                   }
                 />
               </div>

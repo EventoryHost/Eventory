@@ -63,7 +63,7 @@ const models = [
   "Others",
 ];
 
-const page = () => {
+const Page = () => {
   const [value, setValue] = useState(50);
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
@@ -299,4 +299,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
