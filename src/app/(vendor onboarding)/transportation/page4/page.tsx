@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { Upload } from "lucide-react";
 
-const Page = () => {
+const Page4 = () => {
   const [value, setValue] = useState(50);
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
@@ -83,24 +83,11 @@ const Page = () => {
             </div>
           </div>
 
-          <div className="mt-9 flex w-full flex-row justify-end gap-4">
-            <button
-              className="w-auto rounded-xl border-2 border-[#2E3192] px-6 py-3 text-[#2E3192]"
-              onClick={handleSubmit}
-            >
-              Skip
-            </button>
-            <button
-              className="w-auto rounded-xl bg-[#2E3192] px-6 py-3 text-white"
-              onClick={handleSubmit}
-            >
-              Continue
-            </button>
-          </div>
+          
         </div>
       </div>
     </div>
   );
 };
 
-export default Page;
+export default Page4;

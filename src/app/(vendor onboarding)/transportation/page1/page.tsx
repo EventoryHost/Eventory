@@ -2,40 +2,39 @@
 import StepBar from "@/app/(components)/stepBar";
 import { Combobox } from "@/components/ui/combobox";
 import { Upload } from "lucide-react";
-import { useRouter } from "next/navigation";
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 
 const workerOptions = [
-  { value: "0-2 Members", label: "0-2 Members " },
+  { value: "0-2 Members", label: "0-2 Members" },
   { value: "2-4 Members", label: "2-4 Members" },
   { value: "4-7 Members", label: "4-7 Members" },
   { value: "More than 10 Members", label: "More than 10 Members" },
 ];
 
-const Page = () => {
-  const router = useRouter();
-  const [contactName, setContactName] = useState("");
-  const [desc, setDesc] = useState("");
-  const [workers, setWorkers] = useState("");
-  const [url, setUrl] = useState("");
-  const [file, setFile] = useState<File | null>(null);
-
-  // Create a ref for the file input
-  const fileInputRef = useRef<HTMLInputElement>(null);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Business Name:", contactName);
-    console.log("Category:", workers);
-    console.log("Description:", desc);
-    console.log("URL:", url);
-    console.log("File:", file);
-    router.push("/transportation/page2");
+type Page1Props = {
+  formState: {
+    contactName: string;
+    numberOfWorkers: string;
+    descriptionOfPastWork: string;
+    portfolioUrl: string;
+    file: File | null;
   };
+  handleChange: (key: keyof Page1Props['formState'], value: any) => void;
+  handleNestedChange?: (key: keyof Page1Props['formState'], nestedKey: string, value: any) => void; // Optional if not always used
+  navigateToPage: (pageIndex: number) => void;
+};
+
+
+const Page1: React.FC<Page1Props> = ({
+  formState,
+  handleChange,
+  navigateToPage,
+}) => {
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      setFile(e.target.files[0]);
+      handleChange("file", e.target.files[0]);
     }
   };
 
@@ -73,22 +72,20 @@ const Page = () => {
               <div className="flex w-full flex-col gap-4 md:w-[48%]">
                 <label htmlFor="contactName">Contact Person Name</label>
                 <input
-                  onChange={(e) => setContactName(e.target.value)}
                   id="contactName"
                   type="text"
+                  value={formState.contactName}
+                  onChange={(e) => handleChange("contactName", e.target.value)}
                   className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
                   placeholder="Enter your full name"
                 />
               </div>
               <div className="flex w-full flex-col gap-4 md:w-[48%]">
-                <label htmlFor="category">Number of workers</label>
+                <label htmlFor="workers">Number of workers</label>
                 <Combobox
-                  options={workerOptions.map((worker) => ({
-                    value: worker.value,
-                    label: worker.label,
-                  }))}
-                  placeholder="Select your category"
-                  setFunction={setWorkers}
+                  options={workerOptions}
+                  placeholder={`${formState.numberOfWorkers}` || "Select number of workers"}
+                  setFunction={(value) => handleChange("numberOfWorkers", value)}
                   className="flex items-center justify-between rounded-xl border-2 py-6 text-gray-500 hover:text-[#2E3192]"
                 />
               </div>
@@ -97,9 +94,10 @@ const Page = () => {
               <div className="flex w-full flex-col gap-4 md:w-[48%]">
                 <label htmlFor="desc">Description of your past work</label>
                 <input
-                  onChange={(e) => setDesc(e.target.value)}
                   id="desc"
                   type="text"
+                  value={formState.descriptionOfPastWork}
+                  onChange={(e) => handleChange("descriptionOfPastWork", e.target.value)}
                   className="w-full rounded-xl border-2 bg-white p-5 pb-28 pt-3 outline-none"
                   placeholder="Enter your Description"
                 />
@@ -109,7 +107,6 @@ const Page = () => {
                   <div className="flex w-full flex-col items-start gap-2">
                     <p className="text-[16px]">Portfolio of past work</p>
                     <p className="text-gray-500">PNG, PDF, JPG</p>
-                    {/* Hidden file input */}
                     <input
                       type="file"
                       ref={fileInputRef}
@@ -117,6 +114,7 @@ const Page = () => {
                       className="hidden"
                     />
                     <button
+                      type="button"
                       onClick={handleFileClick}
                       className="flex items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white"
                     >
@@ -128,34 +126,22 @@ const Page = () => {
                 <div className="flex w-full flex-col">
                   <label htmlFor="url">Or provide via URL</label>
                   <input
-                    onChange={(e) => setUrl(e.target.value)}
                     id="url"
                     type="text"
+                    value={formState.portfolioUrl}
+                    onChange={(e) => handleChange("portfolioUrl", e.target.value)}
                     className="mt-2 w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
                     placeholder="Enter URL"
                   />
                 </div>
               </div>
             </div>
-            <div className="items-strech mt-9 flex flex-row gap-7 self-end">
-              <button
-                className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={handleSubmit}
-              >
-                Skip
-              </button>
-              <button
-                className="rounded-xl bg-[rgb(46,49,146)] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={handleSubmit}
-              >
-                Continue
-              </button>
-            </div>
           </div>
         </div>
+        
       </div>
     </div>
   );
 };
 
-export default Page;
+export default Page1;

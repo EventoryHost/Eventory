@@ -1,76 +1,78 @@
 "use client";
+
 import StepBar from "@/app/(components)/stepBar";
 import { Upload } from "lucide-react";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import Appetizers from "../../caterer/(components)/Appetizers";
 
-const vehicleTypes = [
-  "Sedan",
-  "Hatchback",
-  "Coupe",
-  "Convertible",
-  "SUV",
-  "Bus",
-  "Van",
-  "Crossover",
-  "Minivan",
-  "Wagon",
-  "Sports Cars",
-  "Luxury Cars",
-  "Minibus",
-  "Hybrid",
-  "Limousine",
-  "Others",
-];
-const brands = [
-  "Maruti Suzuki",
-  "Hyundai",
-  "Tata Motors",
-  "Mahindra",
-  "Honda",
-  "Skoda",
-  "Volkswagen AG",
-  "Renault",
-  "Nissan",
-  "Mg Motors",
-  "BYD",
-  "Toyota",
-  "Kia",
-  "Audi",
-  "Bmw",
-  "Mercedes",
-  "Others",
-];
+const vehicleTypes = ["Sedan","Hatchback","Coupe","Convertible","SUV","Bus","Van","Crossover","Minivan","Wagon","Sports Cars","Luxury Cars","Minibus","Hybrid","Limousine","Others"];
+const brands = ["Maruti Suzuki","Hyundai","Tata Motors","Mahindra","Honda","Skoda","Volkswagen AG","Renault","Nissan","Mg Motors","BYD","Toyota","Kia","Audi","BMW","Mercedes","Others"];
+const models = ["Swift","Scorpio","Tata Punch","Mahindra Thar","Ciaz","Nexon","Creta","Brezza","Sonet","Innova Crysta","Innova","Kia Carens","Xuv300","Baleno","Ertiga","Others"];
 
-const models = [
-  "Swift",
-  "Scorpio",
-  "Tata Punch",
-  "Mahindra",
-  "Thar",
-  "Ciaz",
-  "Nexon",
-  "Creta",
-  "Brezza",
-  "Sonet",
-  "Innova Crysta",
-  "Innova",
-  "Kia Carens",
-  "Xuv300",
-  "Baleno",
-  "Ertiga",
-  "Others",
-];
 
-const Page = () => {
-  const router = useRouter();
-  const [contactName, setcontactName] = useState("");
+interface FormState {
+  contactName: string;
+  numberOfWorkers: string;
+  descriptionOfPastWork: string;
+  portfolioUrl: string;
+  vehicleType: string;
+  vehicleOptions: string[];
+  file: File | null;
+  isHeavyVehicles: boolean;
+  vehicleName1: string;
+  vehicleName2: string;
+};
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+type HandleChange = (field: keyof FormState, value: any) => void;
 
-    router.push("/transportation/page3");
+type Page2Props = {
+  formState: FormState;
+  handleChange: HandleChange;
+  navigateToPage: (pageIndex: number) => void;
+  selectedVehicleTypes: string[];
+  selectedBrands: string[];
+  setSelectedBrands: React.Dispatch<React.SetStateAction<string[]>>;
+  selectedModels: string[];
+  setSelectedModels: React.Dispatch<React.SetStateAction<string[]>>;
+  setSelectedVehicleTypes: React.Dispatch<React.SetStateAction<string[]>>;
+};
+
+const Page2: React.FC<Page2Props> = ({
+  formState,
+  handleChange,
+  navigateToPage,
+  selectedVehicleTypes,
+  setSelectedVehicleTypes,
+  selectedBrands,
+  setSelectedBrands,
+  selectedModels,
+  setSelectedModels,
+}) => {
+  const [isHeavyVehicles, setIsHeavyVehicles] = useState(formState.isHeavyVehicles); 
+  const [vehicleName1, setVehicleName1] = useState(formState.vehicleName1); 
+  const [vehicleName2, setVehicleName2] = useState(formState.vehicleName2);
+
+  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsHeavyVehicles(e.target.checked);
+    handleChange('isHeavyVehicles', e.target.checked);
   };
+
+  const handleVehicleName1Change = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setVehicleName1(e.target.value);
+    handleChange('vehicleName1', e.target.value);
+  };
+
+  const handleVehicleName2Change = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setVehicleName2(e.target.value);
+    handleChange('vehicleName2', e.target.value);
+  };
+
+  useEffect(() => {
+    handleChange('vehicleOptions', selectedVehicleTypes);
+    handleChange('vehicleOptions', selectedBrands);
+    handleChange('vehicleOptions', selectedModels);
+  }, [selectedVehicleTypes, selectedBrands, selectedModels]);
 
   return (
     <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden lg:flex-row">
@@ -101,21 +103,23 @@ const Page = () => {
             <div className="flex gap-2">
               <input
                 type="checkbox"
+                checked={isHeavyVehicles}
+                onChange={handleCheckboxChange}
                 className="h-6 w-6 appearance-none rounded-lg border-2 border-[#2E3192] bg-white checked:bg-[#2E3192] focus:outline-none"
               />
               <span className="font-semibold">Heavy Vehicles</span>
             </div>
             <div className="flex flex-row gap-2">
               <input
-                onChange={(e) => setcontactName(e.target.value)}
-                id="contactName"
+                value={vehicleName1}
+                onChange={handleVehicleName1Change}
                 type="text"
                 className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
                 placeholder="Name of vehicles"
               />
               <input
-                onChange={(e) => setcontactName(e.target.value)}
-                id="contactName"
+                value={vehicleName2}
+                onChange={handleVehicleName2Change}
                 type="text"
                 className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
                 placeholder="Name of vehicles"
@@ -125,7 +129,6 @@ const Page = () => {
               <div className="flex min-w-[40%] flex-col gap-2">
                 <label htmlFor="url">or provide via</label>
                 <button className="flex max-w-52 items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
-                  {" "}
                   <Upload />
                   Upload
                 </button>
@@ -136,66 +139,33 @@ const Page = () => {
           <div className="my-6"></div>
           <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:w-full md:p-6">
             <span className="font-semibold">Vehicle types</span>
-
-            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
-              {vehicleTypes.map((type) => (
-                <button
-                  key={type}
-                  className="rounded-3xl bg-gray-200 p-4 text-center shadow-md hover:bg-[#252775] hover:text-white"
-                >
-                  {type}
-                </button>
-              ))}
-            </div>
+            <Appetizers
+              appetizers={vehicleTypes}
+              selectedAppetizers={selectedVehicleTypes}
+              setSelectedAppetizers={setSelectedVehicleTypes}
+            />
           </div>
 
           {/* Brands */}
           <div className="my-6"></div>
           <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:w-full md:p-6">
             <span className="font-semibold">Brands</span>
-
-            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
-              {brands.map((brand) => (
-                <button
-                  key={brand}
-                  className="rounded-3xl bg-gray-200 p-4 text-center shadow-md hover:bg-[#252775] hover:text-white"
-                >
-                  {brand}
-                </button>
-              ))}
-            </div>
+            <Appetizers
+              appetizers={brands}
+              selectedAppetizers={selectedBrands}
+              setSelectedAppetizers={setSelectedBrands}
+            />
           </div>
 
           {/* Models */}
           <div className="my-6"></div>
           <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:w-full md:p-6">
             <span className="font-semibold">Models</span>
-
-            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
-              {models.map((model) => (
-                <button
-                  key={model}
-                  className="rounded-3xl bg-gray-200 p-4 text-center shadow-md hover:bg-[#252775] hover:text-white"
-                >
-                  {model}
-                </button>
-              ))}
-            </div>
-
-            <div className="items-strech mt-9 flex flex-row gap-7 self-end">
-              <button
-                className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={handleSubmit}
-              >
-                Skip
-              </button>
-              <button
-                className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={handleSubmit}
-              >
-                Continue
-              </button>
-            </div>
+            <Appetizers
+              appetizers={models}
+              selectedAppetizers={selectedModels}
+              setSelectedAppetizers={setSelectedModels}
+            />
           </div>
         </div>
       </div>
@@ -203,4 +173,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default Page2;

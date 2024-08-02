@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import StepBar from "@/app/(components)/stepBar";
 import { Check, EditIcon } from "lucide-react";
 
-const Page = () => {
+const Preview = () => {
   const router = useRouter();
   const name = "Vijay Mallya";
   const [contactName, setcontactName] = useState("");
@@ -239,23 +239,10 @@ const Page = () => {
           </div>
         </div>
 
-        <div className="mt-9 flex w-full flex-row justify-end gap-4">
-          <button
-            className="w-auto rounded-xl border-2 border-[#2E3192] px-6 py-3 text-[#2E3192]"
-            onClick={handleSubmit}
-          >
-            Skip
-          </button>
-          <button
-            className="w-auto rounded-xl bg-[#2E3192] px-6 py-3 text-white"
-            onClick={handleSubmit}
-          >
-            Continue
-          </button>
-        </div>
+        
       </div>
     </>
   );
 };
 
-export default Page;
+export default Preview;
