@@ -33,14 +33,12 @@ const Page = () => {
     router.push("/transportation/page2");
   };
 
-  // Function to handle file change
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       setFile(e.target.files[0]);
     }
   };
 
-  // Function to trigger file input click
   const handleFileClick = () => {
     fileInputRef.current?.click();
   };

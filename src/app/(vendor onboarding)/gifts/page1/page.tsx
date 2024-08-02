@@ -1,21 +1,16 @@
 "use client";
-import StepBar from "@/app/(components)/stepBar";
 import ThreeStepBar from "@/app/(components)/threeStepBar";
-import { Combobox } from "@/components/ui/combobox";
-import { Upload } from "lucide-react";
+import React from "react";
 import { useRouter } from "next/navigation";
-import React, { useRef, useState } from "react";
 
-const workerOptions = [
-  { value: "0-2 Members", label: "0-2 Members " },
-  { value: "2-4 Members", label: "2-4 Members" },
-  { value: "4-7 Members", label: "4-7 Members" },
-  { value: "More than 10 Members", label: "More than 10 Members" },
-];
+
 
 const Page = () => {
   const router = useRouter();
 
+  function handleSubmit() {
+    router.push("/gifts/page2");
+  }
 
   return (
     <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden lg:flex-row">
@@ -160,13 +155,13 @@ const Page = () => {
                   <div className="items-strech mt-56 ml-20 flex flex-row gap-7 self-end">
                     <button
                       className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                    // onClick={handleSubmit}
+                    onClick={handleSubmit}
                     >
                       Skip
                     </button>
                     <button
                       className="rounded-xl bg-[rgb(46,49,146)] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                    // onClick={handleSubmit}
+                    onClick={handleSubmit}
                     >
                       Continue
                     </button>
@@ -176,15 +171,7 @@ const Page = () => {
             </div>
           </div>
         </div>
-
-
-
-
-
-
       </div>
-
-
     </div>
   );
 };
