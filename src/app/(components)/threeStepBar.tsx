@@ -12,10 +12,10 @@ const ThreeStepBar = (
       <div className="flex items-center space-x-2">
         {[1, 2, 3].map((step) => (
           <button
-          key={step}
-          onClick={() => onStepChange(step)}
-          className={`h-2 w-14 rounded-full ${currentStep >= step ? "bg-[#252775]" : "bg-gray-300"} opacity-100 first:ml-0 ml-2`}
-        />
+            key={step}
+            onClick={() => onStepChange(step)}
+            className={`h-2 w-14 rounded-full ${currentStep >= step ? "bg-[#252775]" : "bg-gray-300"} ml-2 opacity-100 first:ml-0`}
+          />
         ))}
       </div>
     </div>
