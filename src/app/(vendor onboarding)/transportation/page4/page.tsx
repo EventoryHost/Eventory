@@ -4,7 +4,6 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { Upload } from "lucide-react";
 
-
 interface FormState {
   termsProvideVia: string;
   policyProvideVia: string;
@@ -27,7 +26,6 @@ const handleSubmit = (e: React.FormEvent) => {
   e.preventDefault();
 };
 const Page4 = ({ formState, handleChange, navigateToPage }: Page3Props) => {
-
   const [value, setValue] = useState(50);
   return (
     <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden lg:flex-row">
@@ -69,7 +67,9 @@ const Page4 = ({ formState, handleChange, navigateToPage }: Page3Props) => {
                 <textarea
                   id="terms"
                   className="h-32 w-full resize-none rounded-xl border-2 bg-white p-5 outline-none"
-                  onChange={(e) => handleChange("termsProvideVia", e.target.value)}
+                  onChange={(e) =>
+                    handleChange("termsProvideVia", e.target.value)
+                  }
                   placeholder="Enter your terms"
                   value={formState.termsProvideVia}
                 />
@@ -90,7 +90,9 @@ const Page4 = ({ formState, handleChange, navigateToPage }: Page3Props) => {
                 <textarea
                   id="cancellation"
                   className="h-32 w-full resize-none rounded-xl border-2 bg-white p-5 outline-none"
-                  onChange={(e) => handleChange("policyProvideVia", e.target.value)}
+                  onChange={(e) =>
+                    handleChange("policyProvideVia", e.target.value)
+                  }
                   placeholder="Enter your policy"
                   value={formState.policyProvideVia}
                 />

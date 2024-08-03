@@ -6,9 +6,61 @@ import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import Appetizers from "../../caterer/(components)/Appetizers";
 
-const vehicleTypes = ["Sedan","Hatchback","Coupe","Convertible","SUV","Bus","Van","Crossover","Minivan","Wagon","Sports Cars","Luxury Cars","Minibus","Hybrid","Limousine","Others"];
-const brands = ["Maruti Suzuki","Hyundai","Tata Motors","Mahindra","Honda","Skoda","Volkswagen AG","Renault","Nissan","Mg Motors","BYD","Toyota","Kia","Audi","BMW","Mercedes","Others"];
-const models = ["Swift","Scorpio","Tata Punch","Mahindra Thar","Ciaz","Nexon","Creta","Brezza","Sonet","Innova Crysta","Innova","Kia Carens","Xuv300","Baleno","Ertiga","Others"];
+const vehicleTypes = [
+  "Sedan",
+  "Hatchback",
+  "Coupe",
+  "Convertible",
+  "SUV",
+  "Bus",
+  "Van",
+  "Crossover",
+  "Minivan",
+  "Wagon",
+  "Sports Cars",
+  "Luxury Cars",
+  "Minibus",
+  "Hybrid",
+  "Limousine",
+  "Others",
+];
+const brands = [
+  "Maruti Suzuki",
+  "Hyundai",
+  "Tata Motors",
+  "Mahindra",
+  "Honda",
+  "Skoda",
+  "Volkswagen AG",
+  "Renault",
+  "Nissan",
+  "Mg Motors",
+  "BYD",
+  "Toyota",
+  "Kia",
+  "Audi",
+  "BMW",
+  "Mercedes",
+  "Others",
+];
+const models = [
+  "Swift",
+  "Scorpio",
+  "Tata Punch",
+  "Mahindra Thar",
+  "Ciaz",
+  "Nexon",
+  "Creta",
+  "Brezza",
+  "Sonet",
+  "Innova Crysta",
+  "Innova",
+  "Kia Carens",
+  "Xuv300",
+  "Baleno",
+  "Ertiga",
+  "Others",
+];
 
 interface FormState {
   contactName: string;
@@ -18,7 +70,7 @@ interface FormState {
   vehicleType: string;
   selectedVehicleTypes: string[];
   selectedBrands: string[];
-  selectedModels: string[];  
+  selectedModels: string[];
   file: File | null;
   isHeavyVehicles: boolean;
   vehicleName1: string;
@@ -70,8 +122,6 @@ const Page2: React.FC<Page2Props> = ({
     setVehicleName2(e.target.value);
     handleChange("vehicleName2", e.target.value);
   };
-
-  
 
   return (
     <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden lg:flex-row">

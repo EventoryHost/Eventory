@@ -6,11 +6,61 @@ import { useRouter } from "next/navigation";
 import { Check, EditIcon } from "lucide-react";
 import Appetizers from "../../caterer/(components)/Appetizers";
 
-
-const vehicleTypes = ["Sedan", "Hatchback", "Coupe", "Convertible", "SUV", "Bus", "Van", "Crossover", "Minivan", "Wagon", "Sports Cars", "Luxury Cars", "Minibus", "Hybrid", "Limousine", "Others"];
-const brands = ["Maruti Suzuki", "Hyundai", "Tata Motors", "Mahindra", "Honda", "Skoda", "Volkswagen AG", "Renault", "Nissan", "Mg Motors", "BYD", "Toyota", "Kia", "Audi", "BMW", "Mercedes", "Others"];
-const models = ["Swift", "Scorpio", "Tata Punch", "Mahindra Thar", "Ciaz", "Nexon", "Creta", "Brezza", "Sonet", "Innova Crysta", "Innova", "Kia Carens", "Xuv300", "Baleno", "Ertiga", "Others"];
-
+const vehicleTypes = [
+  "Sedan",
+  "Hatchback",
+  "Coupe",
+  "Convertible",
+  "SUV",
+  "Bus",
+  "Van",
+  "Crossover",
+  "Minivan",
+  "Wagon",
+  "Sports Cars",
+  "Luxury Cars",
+  "Minibus",
+  "Hybrid",
+  "Limousine",
+  "Others",
+];
+const brands = [
+  "Maruti Suzuki",
+  "Hyundai",
+  "Tata Motors",
+  "Mahindra",
+  "Honda",
+  "Skoda",
+  "Volkswagen AG",
+  "Renault",
+  "Nissan",
+  "Mg Motors",
+  "BYD",
+  "Toyota",
+  "Kia",
+  "Audi",
+  "BMW",
+  "Mercedes",
+  "Others",
+];
+const models = [
+  "Swift",
+  "Scorpio",
+  "Tata Punch",
+  "Mahindra Thar",
+  "Ciaz",
+  "Nexon",
+  "Creta",
+  "Brezza",
+  "Sonet",
+  "Innova Crysta",
+  "Innova",
+  "Kia Carens",
+  "Xuv300",
+  "Baleno",
+  "Ertiga",
+  "Others",
+];
 
 interface FormState {
   contactName: string;
@@ -23,9 +73,9 @@ interface FormState {
   vehicleName1: string;
   vehicleName2: string;
   vehicleType: string;
-  selectedVehicleTypes: string[],
-  selectedBrands: string[],
-  selectedModels: string[],
+  selectedVehicleTypes: string[];
+  selectedBrands: string[];
+  selectedModels: string[];
   file: File | null;
 
   // Page3
@@ -51,14 +101,10 @@ interface FormState {
 
 type HandleChange = (field: keyof FormState, value: any) => void;
 
-
 type PreviewProps = {
-
   formState: FormState;
   navigateToPage: (pageIndex: number) => void;
   handleChange: HandleChange;
-
-
 };
 
 const Preview = ({ formState, navigateToPage, handleChange }: PreviewProps) => {
@@ -70,7 +116,7 @@ const Preview = ({ formState, navigateToPage, handleChange }: PreviewProps) => {
 
   return (
     <>
-      <div className="flex flex-col gap-2 w-screen p-2">
+      <div className="flex w-screen flex-col gap-2 p-2">
         <span className="align-center flex justify-start p-4 text-3xl font-semibold">
           {formState.contactName} / Transportation
         </span>
@@ -104,10 +150,7 @@ const Preview = ({ formState, navigateToPage, handleChange }: PreviewProps) => {
           </div>
           <div className="flex w-1/2 flex-col">
             <span className="text-xl">Portfolio of past work</span>
-            <span className="mt-4 font-semibold">
-              {formState.portfolioUrl}
-            </span>
-
+            <span className="mt-4 font-semibold">{formState.portfolioUrl}</span>
           </div>
         </div>
 
@@ -123,7 +166,9 @@ const Preview = ({ formState, navigateToPage, handleChange }: PreviewProps) => {
         <div className="mx-8 mt-6 flex gap-16">
           <div className="flex w-1/2 flex-col">
             <span className="text-lg">Do You have any heavy vehicles?</span>
-            <span className="mt-4 font-semibold">{formState.isHeavyVehicles ? "Yes" : "No"}</span>
+            <span className="mt-4 font-semibold">
+              {formState.isHeavyVehicles ? "Yes" : "No"}
+            </span>
           </div>
         </div>
         <div className="flex w-1/2 flex-col">
@@ -201,7 +246,9 @@ const Preview = ({ formState, navigateToPage, handleChange }: PreviewProps) => {
           <div className="mt-4 flex">
             <div className="flex w-1/2 flex-col">
               <span> {formState.vehicleTypePage3}</span>
-              <span className="font-semibold">₹ {formState.vehicleMinRate} - ₹{formState.vehicleMaxRate}</span>
+              <span className="font-semibold">
+                ₹ {formState.vehicleMinRate} - ₹{formState.vehicleMaxRate}
+              </span>
             </div>
           </div>
         </div>
@@ -211,9 +258,10 @@ const Preview = ({ formState, navigateToPage, handleChange }: PreviewProps) => {
           <div className="mt-4 flex flex-row">
             <div className="flex w-1/2 flex-col">
               <span>{formState.serviceType}</span>
-              <span className="font-semibold">₹ {formState.serviceMinRate} - ₹{formState.serviceMaxRate}</span>
+              <span className="font-semibold">
+                ₹ {formState.serviceMinRate} - ₹{formState.serviceMaxRate}
+              </span>
             </div>
-
           </div>
         </div>
 
@@ -222,9 +270,10 @@ const Preview = ({ formState, navigateToPage, handleChange }: PreviewProps) => {
           <div className="mt-4 flex">
             <div className="flex w-1/2 flex-col">
               <span>{formState.cargoType}</span>
-              <span className="font-semibold">₹ {formState.cargoMinRate} - ₹{formState.cargoMaxRate}</span>
+              <span className="font-semibold">
+                ₹ {formState.cargoMinRate} - ₹{formState.cargoMaxRate}
+              </span>
             </div>
-
           </div>
         </div>
 
@@ -240,11 +289,15 @@ const Preview = ({ formState, navigateToPage, handleChange }: PreviewProps) => {
         <div className="mx-8 mt-6 flex gap-16">
           <div className="flex w-1/2 flex-col">
             <span className="text-xl">Do you take advance payment</span>
-            <span className="mt-4 font-semibold">{formState.advancedPaymentCheckbox ? "Yes" : "No"}</span>
+            <span className="mt-4 font-semibold">
+              {formState.advancedPaymentCheckbox ? "Yes" : "No"}
+            </span>
           </div>
           <div className="flex w-1/2 flex-col">
             <span className="text-xl">Percentage Value</span>
-            <span className="mt-4 font-semibold">{formState.percentageValue}</span>
+            <span className="mt-4 font-semibold">
+              {formState.percentageValue}
+            </span>
           </div>
         </div>
 
@@ -256,13 +309,15 @@ const Preview = ({ formState, navigateToPage, handleChange }: PreviewProps) => {
               </div>
               <div className="ml-8">
                 {formState.termsProvideVia ? (
-                  <a href={formState.termsProvideVia}>{formState.termsProvideVia}</a>) : (
+                  <a href={formState.termsProvideVia}>
+                    {formState.termsProvideVia}
+                  </a>
+                ) : (
                   <span className="ml-8 mt-2 flex items-center font-semibold">
                     <span>Doc1.pdf</span>
                     <Check size={24} />
                   </span>
-                )
-                }
+                )}
               </div>
             </div>
           </div>
@@ -273,7 +328,9 @@ const Preview = ({ formState, navigateToPage, handleChange }: PreviewProps) => {
               </div>
               <div className="ml-8">
                 {formState.policyProvideVia ? (
-                  <a href={formState.policyProvideVia}>{formState.policyProvideVia}</a>
+                  <a href={formState.policyProvideVia}>
+                    {formState.policyProvideVia}
+                  </a>
                 ) : (
                   <span className="ml-8 mt-2 flex items-center font-semibold">
                     <span>Doc1.pdf</span>
@@ -281,7 +338,6 @@ const Preview = ({ formState, navigateToPage, handleChange }: PreviewProps) => {
                   </span>
                 )}
               </div>
-
             </div>
           </div>
         </div>
