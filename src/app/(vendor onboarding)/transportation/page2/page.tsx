@@ -2,7 +2,6 @@
 
 import StepBar from "@/app/(components)/stepBar";
 import { Upload } from "lucide-react";
-import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import Appetizers from "../../caterer/(components)/Appetizers";
 
@@ -42,13 +41,6 @@ type Page2Props = {
 const Page2: React.FC<Page2Props> = ({
   formState,
   handleChange,
-  navigateToPage,
-  selectedVehicleTypes,
-  setSelectedVehicleTypes,
-  selectedBrands,
-  setSelectedBrands,
-  selectedModels,
-  setSelectedModels,
 }) => {
   const [isHeavyVehicles, setIsHeavyVehicles] = useState(
     formState.isHeavyVehicles,

@@ -20,17 +20,13 @@ interface FormState {
   percentageValue: number;
 }
 
-  type HandleChange = (field: keyof FormState, value: any) => void;
+type HandleChange = (field: keyof FormState, value: any) => void;
 
-  type Page3Props = {
-    formState: FormState;
-    handleChange: HandleChange;
-    navigateToPage: (pageIndex: number) => void;
-  };
-
-// interface Page3Props {
-//     formState: any;
-// }
+type Page3Props = {
+  formState: FormState;
+  handleChange: HandleChange;
+  navigateToPage: (pageIndex: number) => void;
+};
 
 const Page3 = ({ formState, handleChange, navigateToPage }: Page3Props) => {
   return (
@@ -217,13 +213,13 @@ const Page3 = ({ formState, handleChange, navigateToPage }: Page3Props) => {
               <label className="mb-4">Set Percentage Value</label>
               <input
                 value={formState.percentageValue}
-                onChange={(e) =>
-                  handleChange("percentageValue", e.target.value)
-                }
-                type="number"
+                onChange={(e) => handleChange("percentageValue", e.target.value)}
+                type="range"
+                min="0"
+                max="100"
                 className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
-                placeholder="Enter percentage value"
               />
+              <span>{formState.percentageValue}%</span>
             </div>
           </div>
         </form>

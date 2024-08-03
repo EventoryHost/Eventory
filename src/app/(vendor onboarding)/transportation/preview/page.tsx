@@ -1,8 +1,6 @@
 "use client";
-// Make a preview page for the transportation form
 
-import React, { useState } from "react";
-import { useRouter } from "next/navigation";
+import React from "react";
 import { Check, EditIcon } from "lucide-react";
 import Appetizers from "../../caterer/(components)/Appetizers";
 
@@ -62,11 +60,6 @@ type PreviewProps = {
 };
 
 const Preview = ({ formState, navigateToPage, handleChange }: PreviewProps) => {
-  const router = useRouter();
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-  };
 
   return (
     <>

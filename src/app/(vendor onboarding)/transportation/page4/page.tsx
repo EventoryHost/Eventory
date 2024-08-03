@@ -1,6 +1,5 @@
 "use client";
 import StepBar from "@/app/(components)/stepBar";
-import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { Upload } from "lucide-react";
 
@@ -18,17 +17,8 @@ type Page3Props = {
   navigateToPage: (pageIndex: number) => void;
 };
 
-// const handleChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
-//   setValue(Number(event.target.value));
-// };
-// const router = useRouter();
+const Page4 = ({ formState, handleChange }: Page3Props) => {
 
-const handleSubmit = (e: React.FormEvent) => {
-  e.preventDefault();
-};
-const Page4 = ({ formState, handleChange, navigateToPage }: Page3Props) => {
-
-  const [value, setValue] = useState(50);
   return (
     <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden lg:flex-row">
       <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
