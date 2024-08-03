@@ -21,7 +21,13 @@ interface FormState {
 }
 
 type HandleChange = (field: keyof FormState, value: any) => void;
+type HandleChange = (field: keyof FormState, value: any) => void;
 
+type Page3Props = {
+  formState: FormState;
+  handleChange: HandleChange;
+  navigateToPage: (pageIndex: number) => void;
+};
 type Page3Props = {
   formState: FormState;
   handleChange: HandleChange;
