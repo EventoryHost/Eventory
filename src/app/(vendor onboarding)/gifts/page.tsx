@@ -1,9 +1,9 @@
 "use client";
 // RootPage.tsx
 import React, { useState } from "react";
-import Page1 from "./page1/page";
-import Page2 from "./page2/page";
-import Preview from "./preview/page";
+import Page1 from "./page1/page1";
+import Page2 from "./page2/page2";
+import Preview from "./preview/page3";
 
 const Pages = [Page1, Page2, Preview];
 
