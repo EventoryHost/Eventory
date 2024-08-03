@@ -106,7 +106,6 @@ type PreviewProps = {
 };
 
 const Preview = ({ formState, navigateToPage, handleChange }: PreviewProps) => {
-
   return (
     <>
       <div className="flex w-screen flex-col gap-2 p-2">

@@ -17,7 +17,6 @@ type Page3Props = {
 };
 
 const Page4 = ({ formState, handleChange }: Page3Props) => {
-
   return (
     <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden lg:flex-row">
       <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
