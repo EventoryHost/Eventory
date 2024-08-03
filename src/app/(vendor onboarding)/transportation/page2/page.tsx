@@ -90,10 +90,7 @@ type Page2Props = {
   setSelectedVehicleTypes: React.Dispatch<React.SetStateAction<string[]>>;
 };
 
-const Page2: React.FC<Page2Props> = ({
-  formState,
-  handleChange,
-}) => {
+const Page2: React.FC<Page2Props> = ({ formState, handleChange }) => {
   const [isHeavyVehicles, setIsHeavyVehicles] = useState(
     formState.isHeavyVehicles,
   );

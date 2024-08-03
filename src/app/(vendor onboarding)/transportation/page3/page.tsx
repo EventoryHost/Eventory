@@ -219,7 +219,9 @@ const Page3 = ({ formState, handleChange, navigateToPage }: Page3Props) => {
               <label className="mb-4">Set Percentage Value</label>
               <input
                 value={formState.percentageValue}
-                onChange={(e) => handleChange("percentageValue", e.target.value)}
+                onChange={(e) =>
+                  handleChange("percentageValue", e.target.value)
+                }
                 type="range"
                 min="0"
                 max="100"
