@@ -6,61 +6,9 @@ import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import Appetizers from "../../caterer/(components)/Appetizers";
 
-const vehicleTypes = [
-  "Sedan",
-  "Hatchback",
-  "Coupe",
-  "Convertible",
-  "SUV",
-  "Bus",
-  "Van",
-  "Crossover",
-  "Minivan",
-  "Wagon",
-  "Sports Cars",
-  "Luxury Cars",
-  "Minibus",
-  "Hybrid",
-  "Limousine",
-  "Others",
-];
-const brands = [
-  "Maruti Suzuki",
-  "Hyundai",
-  "Tata Motors",
-  "Mahindra",
-  "Honda",
-  "Skoda",
-  "Volkswagen AG",
-  "Renault",
-  "Nissan",
-  "Mg Motors",
-  "BYD",
-  "Toyota",
-  "Kia",
-  "Audi",
-  "BMW",
-  "Mercedes",
-  "Others",
-];
-const models = [
-  "Swift",
-  "Scorpio",
-  "Tata Punch",
-  "Mahindra Thar",
-  "Ciaz",
-  "Nexon",
-  "Creta",
-  "Brezza",
-  "Sonet",
-  "Innova Crysta",
-  "Innova",
-  "Kia Carens",
-  "Xuv300",
-  "Baleno",
-  "Ertiga",
-  "Others",
-];
+const vehicleTypes = ["Sedan","Hatchback","Coupe","Convertible","SUV","Bus","Van","Crossover","Minivan","Wagon","Sports Cars","Luxury Cars","Minibus","Hybrid","Limousine","Others"];
+const brands = ["Maruti Suzuki","Hyundai","Tata Motors","Mahindra","Honda","Skoda","Volkswagen AG","Renault","Nissan","Mg Motors","BYD","Toyota","Kia","Audi","BMW","Mercedes","Others"];
+const models = ["Swift","Scorpio","Tata Punch","Mahindra Thar","Ciaz","Nexon","Creta","Brezza","Sonet","Innova Crysta","Innova","Kia Carens","Xuv300","Baleno","Ertiga","Others"];
 
 interface FormState {
   contactName: string;
@@ -68,7 +16,9 @@ interface FormState {
   descriptionOfPastWork: string;
   portfolioUrl: string;
   vehicleType: string;
-  vehicleOptions: string[];
+  selectedVehicleTypes: string[];
+  selectedBrands: string[];
+  selectedModels: string[];  
   file: File | null;
   isHeavyVehicles: boolean;
   vehicleName1: string;
@@ -121,11 +71,7 @@ const Page2: React.FC<Page2Props> = ({
     handleChange("vehicleName2", e.target.value);
   };
 
-  useEffect(() => {
-    handleChange("vehicleOptions", selectedVehicleTypes);
-    handleChange("vehicleOptions", selectedBrands);
-    handleChange("vehicleOptions", selectedModels);
-  }, [selectedVehicleTypes, selectedBrands, selectedModels]);
+  
 
   return (
     <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden lg:flex-row">
@@ -194,8 +140,10 @@ const Page2: React.FC<Page2Props> = ({
             <span className="font-semibold">Vehicle types</span>
             <Appetizers
               appetizers={vehicleTypes}
-              selectedAppetizers={selectedVehicleTypes}
-              setSelectedAppetizers={setSelectedVehicleTypes}
+              selectedAppetizers={formState.selectedVehicleTypes}
+              setSelectedAppetizers={(selectedappetizers) =>
+                handleChange("selectedVehicleTypes", selectedappetizers)
+              }
             />
           </div>
 
@@ -205,8 +153,10 @@ const Page2: React.FC<Page2Props> = ({
             <span className="font-semibold">Brands</span>
             <Appetizers
               appetizers={brands}
-              selectedAppetizers={selectedBrands}
-              setSelectedAppetizers={setSelectedBrands}
+              selectedAppetizers={formState.selectedBrands}
+              setSelectedAppetizers={(selectedBrands) =>
+                handleChange("selectedBrands", selectedBrands)
+              }
             />
           </div>
 
@@ -216,8 +166,10 @@ const Page2: React.FC<Page2Props> = ({
             <span className="font-semibold">Models</span>
             <Appetizers
               appetizers={models}
-              selectedAppetizers={selectedModels}
-              setSelectedAppetizers={setSelectedModels}
+              selectedAppetizers={formState.selectedModels}
+              setSelectedAppetizers={(selectedModels) =>
+                handleChange("selectedModels", selectedModels)
+              }
             />
           </div>
         </div>

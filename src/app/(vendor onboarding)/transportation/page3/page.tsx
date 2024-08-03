@@ -2,7 +2,6 @@
 "use client";
 import StepBar from "@/app/(components)/stepBar";
 import React from "react";
-import AddBtn from "@/app/(components)/addBtn";
 
 interface FormState {
   vehicleCheckbox: boolean;
@@ -21,13 +20,13 @@ interface FormState {
   percentageValue: number;
 }
 
-type HandleChange = (field: keyof FormState, value: any) => void;
+  type HandleChange = (field: keyof FormState, value: any) => void;
 
-type Page3Props = {
-  formState: FormState;
-  handleChange: HandleChange;
-  navigateToPage: (pageIndex: number) => void;
-};
+  type Page3Props = {
+    formState: FormState;
+    handleChange: HandleChange;
+    navigateToPage: (pageIndex: number) => void;
+  };
 
 // interface Page3Props {
 //     formState: any;
@@ -215,7 +214,7 @@ const Page3 = ({ formState, handleChange, navigateToPage }: Page3Props) => {
 
           <div className="flex flex-row gap-6">
             <div className="flex flex-col">
-              <label>Percentage Value</label>
+              <label className="mb-4">Set Percentage Value</label>
               <input
                 value={formState.percentageValue}
                 onChange={(e) =>

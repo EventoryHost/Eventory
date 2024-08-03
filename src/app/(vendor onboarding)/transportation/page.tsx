@@ -1,5 +1,5 @@
 "use client";
-
+ 
 import React, { useState } from "react";
 import Page1 from "./page1/page";
 import Page2 from "./page2/page";
@@ -22,7 +22,9 @@ export type FormState = {
   vehicleName1: string;
   vehicleName2: string;
   vehicleType: string;
-  vehicleOptions: string[];
+  selectedVehicleTypes: string[];
+  selectedBrands: string[];
+  selectedModels: string[];
   file: File | null;
 
   // Page3
@@ -40,9 +42,13 @@ export type FormState = {
   cargoMaxRate: string;
   advancedPaymentCheckbox: boolean;
   percentageValue: number;
+
+  // Page4
+  termsProvideVia: string;
+  policyProvideVia: string;
 };
 
-type HandleChange = (key: keyof FormState, value: any) => void;
+type HandleChange = (key: keyof FormState | "navigateToPage", value: any) => void;
 type HandleNestedChange = (
   key: keyof FormState,
   nestedKey: string,
@@ -60,7 +66,9 @@ const RootPage = () => {
     vehicleName1: "",
     vehicleName2: "",
     vehicleType: "",
-    vehicleOptions: [],
+    selectedVehicleTypes: [],
+    selectedBrands: [],
+    selectedModels: [],
     file: null,
     vehicleCheckbox: false,
     vehicleTypePage3: "",
@@ -76,6 +84,8 @@ const RootPage = () => {
     cargoMaxRate: "",
     advancedPaymentCheckbox: false,
     percentageValue: 0,
+    termsProvideVia: "",
+    policyProvideVia: "",
   });
 
   const [selectedVehicleTypes, setSelectedVehicleTypes] = useState<string[]>(
@@ -123,8 +133,9 @@ const RootPage = () => {
         setSelectedBrands={setSelectedBrands}
         selectedModels={selectedModels}
         setSelectedModels={setSelectedModels}
-      />
-      <div className="my-9 mr-[5%] flex flex-row justify-end gap-7">
+        
+        />
+      <div className="my-9 mr-[5%]  w-full flex-row flex justify-end gap-7">
         {currentPage > 0 && (
           <button
             className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
