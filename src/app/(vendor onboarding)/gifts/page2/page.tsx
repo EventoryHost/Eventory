@@ -1,7 +1,6 @@
 "use client";
 import ThreeStepBar from "@/app/(components)/threeStepBar";
 import { Upload } from "lucide-react";
-import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import Appetizers from "../../decorators/(components)/Appetizers";
 
@@ -80,8 +79,6 @@ const Page2: React.FC<PageProps> = ({
       handleChange("priceRange", { min: "", max: "" });
     }
   };
-
-  const router = useRouter();
 
   return (
     <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden lg:flex-row">

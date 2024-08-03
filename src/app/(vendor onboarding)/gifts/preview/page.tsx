@@ -2,7 +2,6 @@
 import React from "react";
 import ThreeStepBar from "@/app/(components)/threeStepBar";
 import { EditIcon } from "lucide-react";
-import { useRouter } from "next/navigation";
 import Appetizers from "../../decorators/(components)/Appetizers";
 
 const giftTypes = [
@@ -60,7 +59,6 @@ const Preview: React.FC<PreviewProps> = ({
   selectedGiftTypes,
   setSelectedGiftTypes,
 }) => {
-  const router = useRouter();
 
   function handleSubmit() {
     // Submission logic goes here

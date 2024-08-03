@@ -3,7 +3,6 @@
 import { useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 
 import auth from "@/services/auth";
 import OtpModal from "@/components/ui/otp-modal";
@@ -41,7 +40,6 @@ const SignUp = (props: {}) => {
     {} as basicDetails,
   );
   const [formError, setFormError] = useState<string | null>(null);
-  const router = useRouter();
   const refs = useRef(
     {} as Record<keyof basicDetails, HTMLInputElement | null>,
   );

@@ -1,7 +1,6 @@
 "use client";
 import ThreeStepBar from "@/app/(components)/threeStepBar";
 import React from "react";
-import { useRouter } from "next/navigation";
 
 // Define types for form state
 interface FormState {
@@ -35,7 +34,6 @@ const Page1: React.FC<PageProps> = ({
   handleChange,
   handleNestedChange,
 }) => {
-  const router = useRouter();
 
   return (
     <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden lg:flex-row">

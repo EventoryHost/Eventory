@@ -1,7 +1,6 @@
 "use client";
 // RootPage.tsx
 import React, { useState } from "react";
-import { useRouter } from "next/navigation";
 import Page1 from "./page1/page";
 import Page2 from "./page2/page";
 import Preview from "./preview/page";
@@ -24,7 +23,6 @@ type FormState = {
 };
 
 const RootPage = () => {
-  const router = useRouter();
   const [currentPage, setCurrentPage] = useState<number>(0);
 
   // Initialize form state with default values
