@@ -59,7 +59,6 @@ const Preview: React.FC<PreviewProps> = ({
   selectedGiftTypes,
   setSelectedGiftTypes,
 }) => {
-
   function handleSubmit() {
     // Submission logic goes here
   }
