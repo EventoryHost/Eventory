@@ -74,7 +74,6 @@ const SignUp = (props: {}) => {
     if (res!.newUser) {
       toggleModal();
     } else if (!res!.newUser) {
-      router.push("/login");
       // TODO add toast message
     }
   };
