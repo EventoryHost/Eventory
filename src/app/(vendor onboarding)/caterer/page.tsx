@@ -37,7 +37,7 @@ const Page = () => {
   const [businessLicenses, setBusinessLicenses] = useState<boolean>(false);
   const [foodSafety, setFoodSafety] = useState<boolean>(false);
 
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(5);
 
   // states for page5
   interface Package {
@@ -45,7 +45,7 @@ const Page = () => {
     priceRange: [number, number];
   }
   
-  const ParentComponent: React.FC = () => {
+  
     // State for packages
     const [hourlyPackages, setHourlyPackages] = useState<Package[]>([]);
     const [dailyPackages, setDailyPackages] = useState<Package[]>([]);
@@ -156,6 +156,7 @@ const Page = () => {
             setSeasonalPackages={setSeasonalPackages}
             handlePackageChange={handlePackageChange}
             addPackage={addPackage}
+            handleContinue={() => setCurrentPage(6)}
           />
         );
       case 6:
@@ -237,6 +238,6 @@ const Page = () => {
     </div>
   );
 }
-};
+
 
 export default Page;
