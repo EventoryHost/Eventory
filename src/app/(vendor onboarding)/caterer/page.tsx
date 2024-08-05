@@ -50,7 +50,7 @@ const Page = () => {
     const [hourlyPackages, setHourlyPackages] = useState<Package[]>([]);
     const [dailyPackages, setDailyPackages] = useState<Package[]>([]);
     const [seasonalPackages, setSeasonalPackages] = useState<Package[]>([]);
-  
+
     // Function to handle package change
     const handlePackageChange = (
       setPackages: React.Dispatch<React.SetStateAction<Package[]>>,
@@ -71,7 +71,7 @@ const Page = () => {
         return newPackages;
       });
     };
-  
+
     // Function to add a new package
     const addPackage = (
       setPackages: React.Dispatch<React.SetStateAction<Package[]>>,
@@ -82,18 +82,18 @@ const Page = () => {
       ]);
     };
 
-  const handleContinue = () => {
-    console.log({
-      businessName,
-      cuisineSpecialties,
-      regionalSpecialties,
-      serviceStyles,
-      selectedAppetizers,
-      selectedBeverages,
-      selectedMainCourses,
-      selectedDietaryOptions,
-    });
-  };
+    const handleContinue = () => {
+      console.log({
+        businessName,
+        cuisineSpecialties,
+        regionalSpecialties,
+        serviceStyles,
+        selectedAppetizers,
+        selectedBeverages,
+        selectedMainCourses,
+        selectedDietaryOptions,
+      });
+    };
 
   const renderPage = () => {
     switch (currentPage) {
