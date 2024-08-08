@@ -77,13 +77,13 @@ interface FormState {
 }
 
 interface Page1Props {
-  formState:{
+  formState: {
     businessName: string;
     references: boolean;
     portfolio: string;
     experience: string;
-  }
-  updateFormState: (newState: Partial<FormState>) => void;  
+  };
+  updateFormState: (newState: Partial<FormState>) => void;
   typeOfevents: string[];
   setTypesOfEvents: React.Dispatch<React.SetStateAction<string[]>>;
   weddingEvents: string[];
@@ -111,15 +111,14 @@ const Page1: React.FC<Page1Props> = ({
   updateFormState,
 }) => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const {name , value} = e.target;
-    updateFormState({[name]: value});
+    const { name, value } = e.target;
+    updateFormState({ [name]: value });
     console.log(formState.businessName);
   };
 
   return (
     <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden lg:flex-row">
       <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
-
         <div className="flex items-center justify-start gap-1 xs:self-start xs:pl-5 md:px-11 lg:mt-[2rem]">
           <button className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2E3192] p-5 text-white">
             1
@@ -162,23 +161,20 @@ const Page1: React.FC<Page1Props> = ({
       </div>
       <div className="scroll-touch flex max-h-[calc(100vh-5.2rem)] min-w-[70%] flex-col items-center gap-9 overflow-y-scroll bg-[#F7F6F9] p-2 md:p-[1rem]">
         <div className="flex flex-col gap-9 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
-
-
           <div className="flex flex-col items-start justify-center gap-9 px-9 xs:pl-5 md:px-11 lg:p-8">
             <h1 className="text-3xl font-bold md:text-4xl lg:text-5xl">
               Your business Name
             </h1>
             <input
-            className="w-full h-12 p-4 border border-gray-300 rounded-xl"
+              className="h-12 w-full rounded-xl border border-gray-300 p-4"
               type="text"
               id="businessName"
               name="businessName"
               value={formState.businessName}
               placeholder="Enter your business name"
-              onChange={handleInputChange} 
-              />
+              onChange={handleInputChange}
+            />
           </div>
-
 
           <h1 className="text-3xl font-semibold">Types of Event</h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">

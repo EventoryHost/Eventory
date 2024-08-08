@@ -52,8 +52,8 @@ interface FormState {
   termsAndConditions: string;
   privacyPolicy: string;
 
-  references :boolean
-  experience :string
+  references: boolean;
+  experience: string;
 }
 
 const Decorators: React.FC = () => {
@@ -92,14 +92,13 @@ const Decorators: React.FC = () => {
     termsAndConditions: "",
     privacyPolicy: "",
 
-    references :false,
-    experience :""
+    references: false,
+    experience: "",
   });
 
   const updateFormState = (newState: Partial<FormState>) => {
     setFormState((prev) => ({ ...prev, ...newState }));
   };
-
 
   //page 1
   // const [businessName, setbusinessName] = useState("");
@@ -165,7 +164,10 @@ const Decorators: React.FC = () => {
       return null;
     }
     try {
-      const decodedToken = jwt.decode(token) as { userId?: string; email?: string };
+      const decodedToken = jwt.decode(token) as {
+        userId?: string;
+        email?: string;
+      };
       if (!decodedToken || !decodedToken.userId) {
         console.error("Invalid token or token does not contain userId.");
         return null;
@@ -176,8 +178,6 @@ const Decorators: React.FC = () => {
       return null;
     }
   }
-
-
 
   // Submit form data
 
@@ -305,10 +305,7 @@ const Decorators: React.FC = () => {
     } catch (error) {
       console.error("Error adding venue:", error);
     }
-
   };
-
-
 
   const renderPage = () => {
     switch (currentPage) {
