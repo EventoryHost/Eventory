@@ -113,7 +113,7 @@ const Page2: React.FC<Page2Props> = ({ formState, handleChange }) => {
   };
 
   return (
-    <div className="flex h-full box-border w-full flex-col overflow-hidden lg:flex-row">
+    <div className="box-border flex h-full w-full flex-col overflow-hidden lg:flex-row">
       <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
         <div className="flex items-center justify-start gap-1 xs:self-start xs:pl-5 lg:mt-[2rem]">
           <StepBar currentStep={2} />
@@ -136,7 +136,7 @@ const Page2: React.FC<Page2Props> = ({ formState, handleChange }) => {
       </div>
       <div className="flex w-full flex-col items-center justify-center bg-[#F7F6F9] p-2 md:p-[1rem]">
         <div className="w-full">
-          <div className="flex flex-col gap-7  rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6 lg:text-2xl">
+          <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6 lg:text-2xl">
             <span className="font-semibold">Equipment Details</span>
             <div className="flex gap-2">
               <input
