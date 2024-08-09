@@ -51,13 +51,13 @@ const Page3 = ({ formState, handleChange, navigateToPage }: Page3Props) => {
           />
         </div>
       </div>
-      <div className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] p-2 md:p-[1rem]">
+      <div className="flex min-w-[70%]  flex-col items-center justify-center bg-[#F7F6F9] p-2 md:p-[1rem]">
         <form
           onSubmit={(e) => {
             e.preventDefault();
             navigateToPage(4);
           }}
-          className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6"
+          className="flex w-full flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6"
         >
           <span className="font-semibold">Pricing Structure</span>
 
@@ -213,17 +213,21 @@ const Page3 = ({ formState, handleChange, navigateToPage }: Page3Props) => {
               <label className="mb-4">Set Percentage Value</label>
               <input
                 value={formState.percentageValue}
-                onChange={(e) =>
-                  handleChange("percentageValue", e.target.value)
+                onInput={(e) =>
+                  handleChange("percentageValue", (e.target as HTMLInputElement).value)
                 }
                 type="range"
                 min="0"
                 max="100"
-                className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
+                step="1"
+                className="w-full rounded-xl border-2 outline-none"
+                style={{ padding: 0, backgroundColor: 'white', borderColor: '#2E3192' }}
               />
               <span>{formState.percentageValue}%</span>
             </div>
           </div>
+
+
         </form>
       </div>
     </div>
