@@ -58,6 +58,11 @@ type HandleNestedChange = (
   value: any,
 ) => void;
 
+type Package = {
+  type: string;
+  priceRange: [number, number];
+}
+
 const RootPage = () => {
   const [currentPage, setCurrentPage] = useState<number>(0);
   const [formState, setFormState] = useState<FormState>({
@@ -97,6 +102,17 @@ const RootPage = () => {
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
   const [selectedModels, setSelectedModels] = useState<string[]>([]);
 
+  const [packages, setPackages] = useState<Package[]>([
+    { type: "", priceRange: [0, 100000] },
+  ]);
+
+  const addPackage = () => {
+    setPackages((prevPackages) => [
+      ...prevPackages,
+      { type: "", priceRange: [0, 100000] },
+    ]);
+  };
+
   const handleChange: HandleChange = (key, value) => {
     setFormState((prevState) => ({ ...prevState, [key]: value }));
     console.log(formState);
@@ -118,7 +134,8 @@ const RootPage = () => {
 
   const CurrentPageComponent = Pages[currentPage];
 
-  const handleSubmit = () => {
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
     console.log(formState);
     // Add form submission logic here
   };
@@ -136,7 +153,10 @@ const RootPage = () => {
         setSelectedBrands={setSelectedBrands}
         selectedModels={selectedModels}
         setSelectedModels={setSelectedModels}
+        packages={packages}
+        addPackage={addPackage}
       />
+
       <div className="my-9 mr-[5%] flex w-full flex-row justify-end gap-7">
         {currentPage > 0 && (
           <button

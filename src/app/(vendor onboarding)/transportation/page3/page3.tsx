@@ -1,7 +1,6 @@
-// Page3 component
 "use client";
 import StepBar from "@/app/(components)/stepBar";
-import React from "react";
+import React, { useState } from "react";
 
 interface FormState {
   vehicleCheckbox: boolean;
@@ -19,6 +18,10 @@ interface FormState {
   advancedPaymentCheckbox: boolean;
   percentageValue: number;
 }
+interface Package {
+  type: string;
+  priceRange: [number, number];
+}
 
 type HandleChange = (field: keyof FormState, value: any) => void;
 
@@ -26,9 +29,73 @@ type Page3Props = {
   formState: FormState;
   handleChange: HandleChange;
   navigateToPage: (pageIndex: number) => void;
+  packages: Package[];
+  addPackage: (packageType: string) => void;
 };
 
-const Page3 = ({ formState, handleChange, navigateToPage }: Page3Props) => {
+const Page3 = ({
+  formState,
+  handleChange,
+  navigateToPage,
+  packages,
+  addPackage,
+}: Page3Props) => {
+  const [vehicles, setVehicles] = useState<{ type: string; minRate: string; maxRate: string }[]>([]);
+  const [services, setServices] = useState<{ type: string; minRate: string; maxRate: string }[]>([]);
+  const [cargo, setCargo] = useState<{ type: string; minRate: string; maxRate: string }[]>([]);
+
+  const updateFormState = () => {
+    handleChange('vehicleTypePage3', vehicles.map(v => v.type));
+    handleChange('vehicleMinRate', vehicles.map(v => v.minRate));
+    handleChange('vehicleMaxRate', vehicles.map(v => v.maxRate));
+  
+    handleChange('serviceType', services.map(s => s.type));
+    handleChange('serviceMinRate', services.map(s => s.minRate));
+    handleChange('serviceMaxRate', services.map(s => s.maxRate));
+  
+    handleChange('cargoType', cargo.map(c => c.type));
+    handleChange('cargoMinRate', cargo.map(c => c.minRate));
+    handleChange('cargoMaxRate', cargo.map(c => c.maxRate));
+  };
+
+  // Call this function when you add a new vehicle, service, or cargo item
+const handleAddVehicle = () => {
+  setVehicles([...vehicles, { type: '', minRate: '', maxRate: '' }]);
+  updateFormState(); // Update the global state
+};
+
+const handleAddService = () => {
+  setServices([...services, { type: '', minRate: '', maxRate: '' }]);
+  updateFormState(); // Update the global state
+};
+
+const handleAddCargo = () => {
+  setCargo([...cargo, { type: '', minRate: '', maxRate: '' }]);
+  updateFormState(); // Update the global state
+};
+
+  const handleVehicleChange = (index: number, field: keyof { type: string; minRate: string; maxRate: string }, value: string) => {
+    const newVehicles = [...vehicles];
+    newVehicles[index] = { ...newVehicles[index], [field]: value };
+    setVehicles(newVehicles);
+    updateFormState(); // Sync with global state
+  };
+  
+
+  const handleServiceChange = (index: number, field: keyof { type: string; minRate: string; maxRate: string }, value: string) => {
+    const newServices = [...services];
+    newServices[index] = { ...newServices[index], [field]: value };
+    setServices(newServices);
+    updateFormState(); // Sync with global state
+  };
+  
+  const handleCargoChange = (index: number, field: keyof { type: string; minRate: string; maxRate: string }, value: string) => {
+    const newCargo = [...cargo];
+    newCargo[index] = { ...newCargo[index], [field]: value };
+    setCargo(newCargo);
+    updateFormState(); // Sync with global state
+  };
+
   return (
     <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col lg:flex-row">
       <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
@@ -73,39 +140,63 @@ const Page3 = ({ formState, handleChange, navigateToPage }: Page3Props) => {
             <span className="semi-bold">Type of Vehicles</span>
           </div>
 
-          <div className="flex flex-row gap-6">
-            <div className="flex flex-col">
-              <label>Name</label>
-              <input
-                value={formState.vehicleTypePage3}
-                onChange={(e) =>
-                  handleChange("vehicleTypePage3", e.target.value)
-                }
-                type="text"
-                className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
-                placeholder="Enter vehicle type"
-              />
+          {/* Render vehicle inputs dynamically */}
+          {vehicles.map((vehicle, index) => (
+            <div key={index} className="flex flex-row gap-6">
+              <div className="flex flex-col">
+                <label>Vehicle Name</label>
+                <input
+                  value={vehicle.type}
+                  onChange={(e) => handleVehicleChange(index, 'type', e.target.value)}
+                  type="text"
+                  className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
+                  placeholder="Enter vehicle type"
+                />
+              </div>
+              <div className="flex flex-col">
+                <label>Min. Rate</label>
+                <input
+                  value={vehicle.minRate}
+                  onChange={(e) => handleVehicleChange(index, 'minRate', e.target.value)}
+                  type="text"
+                  className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
+                  placeholder="Enter minimum rate"
+                />
+              </div>
+              <div className="flex flex-col">
+                <label>Max. Rate</label>
+                <input
+                  value={vehicle.maxRate}
+                  onChange={(e) => handleVehicleChange(index, 'maxRate', e.target.value)}
+                  type="text"
+                  className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
+                  placeholder="Enter maximum rate"
+                />
+              </div>
             </div>
-            <div className="flex flex-col">
-              <label>Min. Rate</label>
-              <input
-                value={formState.vehicleMinRate}
-                onChange={(e) => handleChange("vehicleMinRate", e.target.value)}
-                type="text"
-                className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
-                placeholder="Enter minimum rate"
-              />
-            </div>
-            <div className="flex flex-col">
-              <label>Max. Rate</label>
-              <input
-                value={formState.vehicleMaxRate}
-                onChange={(e) => handleChange("vehicleMaxRate", e.target.value)}
-                type="text"
-                className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
-                placeholder="Enter maximum rate"
-              />
-            </div>
+          ))}
+
+          <div className="item-start w-10 flex flex-col justify-between gap-2">
+            <button
+              type="button"
+              className="cursor-pointer rounded-lg bg-[#E6E6E6] p-2 hover:shadow-xl"
+              onClick={handleAddVehicle}
+            >
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 5.5V17.5M6 11.5H18"
+                  stroke="#2E3192"
+                  strokeWidth="1.2"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </button>
           </div>
 
           <div className="flex gap-2">
@@ -120,37 +211,63 @@ const Page3 = ({ formState, handleChange, navigateToPage }: Page3Props) => {
             <span className="semi-bold">Type of Services</span>
           </div>
 
-          <div className="flex flex-row gap-6">
-            <div className="flex flex-col">
-              <label>Name</label>
-              <input
-                value={formState.serviceType}
-                onChange={(e) => handleChange("serviceType", e.target.value)}
-                type="text"
-                className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
-                placeholder="Enter service type"
-              />
+          {/* Render service inputs dynamically */}
+          {services.map((service, index) => (
+            <div key={index} className="flex flex-row gap-6">
+              <div className="flex flex-col">
+                <label>Name</label>
+                <input
+                  value={service.type}
+                  onChange={(e) => handleServiceChange(index, 'type', e.target.value)}
+                  type="text"
+                  className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
+                  placeholder="Enter service type"
+                />
+              </div>
+              <div className="flex flex-col">
+                <label>Min. Rate</label>
+                <input
+                  value={service.minRate}
+                  onChange={(e) => handleServiceChange(index, 'minRate', e.target.value)}
+                  type="text"
+                  className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
+                  placeholder="Enter minimum rate"
+                />
+              </div>
+              <div className="flex flex-col">
+                <label>Max. Rate</label>
+                <input
+                  value={service.maxRate}
+                  onChange={(e) => handleServiceChange(index, 'maxRate', e.target.value)}
+                  type="text"
+                  className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
+                  placeholder="Enter maximum rate"
+                />
+              </div>
             </div>
-            <div className="flex flex-col">
-              <label>Min. Rate</label>
-              <input
-                value={formState.serviceMinRate}
-                onChange={(e) => handleChange("serviceMinRate", e.target.value)}
-                type="text"
-                className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
-                placeholder="Enter minimum rate"
-              />
-            </div>
-            <div className="flex flex-col">
-              <label>Max. Rate</label>
-              <input
-                value={formState.serviceMaxRate}
-                onChange={(e) => handleChange("serviceMaxRate", e.target.value)}
-                type="text"
-                className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
-                placeholder="Enter maximum rate"
-              />
-            </div>
+          ))}
+
+          <div className="item-start w-10 flex flex-col justify-between gap-2">
+            <button
+              type="button"
+              className="cursor-pointer rounded-lg bg-[#E6E6E6] p-2 hover:shadow-xl"
+              onClick={handleAddService}
+            >
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 5.5V17.5M6 11.5H18"
+                  stroke="#2E3192"
+                  strokeWidth="1.2"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </button>
           </div>
 
           <div className="flex gap-2">
@@ -163,37 +280,63 @@ const Page3 = ({ formState, handleChange, navigateToPage }: Page3Props) => {
             <span className="semi-bold">Type of Cargo</span>
           </div>
 
-          <div className="flex flex-row gap-6">
-            <div className="flex flex-col">
-              <label>Name</label>
-              <input
-                value={formState.cargoType}
-                onChange={(e) => handleChange("cargoType", e.target.value)}
-                type="text"
-                className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
-                placeholder="Enter cargo type"
-              />
+           {/* Render cargo inputs dynamically */}
+           {cargo.map((cargoItem, index) => (
+            <div key={index} className="flex flex-row gap-6">
+              <div className="flex flex-col">
+                <label>Type</label>
+                <input
+                  value={cargoItem.type}
+                  onChange={(e) => handleCargoChange(index, 'type', e.target.value)}
+                  type="text"
+                  className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
+                  placeholder="Enter cargo type"
+                />
+              </div>
+              <div className="flex flex-col">
+                <label>Min. Rate</label>
+                <input
+                  value={cargoItem.minRate}
+                  onChange={(e) => handleCargoChange(index, 'minRate', e.target.value)}
+                  type="text"
+                  className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
+                  placeholder="Enter minimum rate"
+                />
+              </div>
+              <div className="flex flex-col">
+                <label>Max. Rate</label>
+                <input
+                  value={cargoItem.maxRate}
+                  onChange={(e) => handleCargoChange(index, 'maxRate', e.target.value)}
+                  type="text"
+                  className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
+                  placeholder="Enter maximum rate"
+                />
+              </div>
             </div>
-            <div className="flex flex-col">
-              <label>Min. Rate</label>
-              <input
-                value={formState.cargoMinRate}
-                onChange={(e) => handleChange("cargoMinRate", e.target.value)}
-                type="text"
-                className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
-                placeholder="Enter minimum rate"
-              />
-            </div>
-            <div className="flex flex-col">
-              <label>Max. Rate</label>
-              <input
-                value={formState.cargoMaxRate}
-                onChange={(e) => handleChange("cargoMaxRate", e.target.value)}
-                type="text"
-                className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
-                placeholder="Enter maximum rate"
-              />
-            </div>
+          ))}
+
+          <div className="item-start w-10 flex flex-col justify-between gap-2">
+            <button
+              type="button"
+              className="cursor-pointer rounded-lg bg-[#E6E6E6] p-2 hover:shadow-xl"
+              onClick={handleAddCargo}
+            >
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 5.5V17.5M6 11.5H18"
+                  stroke="#2E3192"
+                  strokeWidth="1.2"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </button>
           </div>
 
           <div className="flex gap-2">
@@ -233,6 +376,8 @@ const Page3 = ({ formState, handleChange, navigateToPage }: Page3Props) => {
               <span>{formState.percentageValue}%</span>
             </div>
           </div>
+
+         
         </form>
       </div>
     </div>

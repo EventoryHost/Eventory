@@ -137,7 +137,7 @@ const Page2: React.FC<Page2Props> = ({ formState, handleChange }) => {
       <div className="flex w-full flex-col items-center justify-center bg-[#F7F6F9] p-2 md:p-[1rem]">
         <div className="w-full">
           <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6 lg:text-2xl">
-            <span className="font-semibold">Equipment Details</span>
+            <span className="font-medium">Equipment Details</span>
             <div className="flex gap-2">
               <input
                 type="checkbox"
@@ -145,21 +145,21 @@ const Page2: React.FC<Page2Props> = ({ formState, handleChange }) => {
                 onChange={handleCheckboxChange}
                 className="h-6 w-6 appearance-none rounded-lg border-2 border-[#2E3192] bg-white checked:bg-[#2E3192] focus:outline-none"
               />
-              <span className="font-semibold">Heavy Vehicles</span>
+              <span className="font-medium">Heavy Vehicles</span>
             </div>
             <div className="flex flex-row gap-2">
               <input
                 value={vehicleName1}
                 onChange={handleVehicleName1Change}
                 type="text"
-                className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
+                className="w-full rounded-xl border-2 bg-white p-5 py-3 text-medium outline-none"
                 placeholder="Name of vehicles"
               />
               <input
                 value={vehicleName2}
                 onChange={handleVehicleName2Change}
                 type="text"
-                className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
+                className="w-full rounded-xl border-2 bg-white p-5 py-3 text-medium outline-none"
                 placeholder="Name of vehicles"
               />
             </div>
