@@ -1,8 +1,8 @@
 import StepBar from "@/app/(components)/stepBar";
 
 function page4() {
-    return (
-      <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden lg:flex-row">
+  return (
+    <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden lg:flex-row">
       <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
         <div className="flex items-center justify-start gap-1 xs:self-start xs:pl-5 lg:mt-[2rem]">
           <StepBar currentStep={4} />
@@ -24,7 +24,7 @@ function page4() {
         </div>
       </div>
     </div>
-    );
-  }
-  
-  export default page4;
+  );
+}
+
+export default page4;
