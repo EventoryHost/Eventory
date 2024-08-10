@@ -40,56 +40,100 @@ const Page3 = ({
   packages,
   addPackage,
 }: Page3Props) => {
-  const [vehicles, setVehicles] = useState<{ type: string; minRate: string; maxRate: string }[]>([]);
-  const [services, setServices] = useState<{ type: string; minRate: string; maxRate: string }[]>([]);
-  const [cargo, setCargo] = useState<{ type: string; minRate: string; maxRate: string }[]>([]);
+  const [vehicles, setVehicles] = useState<
+    { type: string; minRate: string; maxRate: string }[]
+  >([]);
+  const [services, setServices] = useState<
+    { type: string; minRate: string; maxRate: string }[]
+  >([]);
+  const [cargo, setCargo] = useState<
+    { type: string; minRate: string; maxRate: string }[]
+  >([]);
 
   const updateFormState = () => {
-    handleChange('vehicleTypePage3', vehicles.map(v => v.type));
-    handleChange('vehicleMinRate', vehicles.map(v => v.minRate));
-    handleChange('vehicleMaxRate', vehicles.map(v => v.maxRate));
-  
-    handleChange('serviceType', services.map(s => s.type));
-    handleChange('serviceMinRate', services.map(s => s.minRate));
-    handleChange('serviceMaxRate', services.map(s => s.maxRate));
-  
-    handleChange('cargoType', cargo.map(c => c.type));
-    handleChange('cargoMinRate', cargo.map(c => c.minRate));
-    handleChange('cargoMaxRate', cargo.map(c => c.maxRate));
+    handleChange(
+      "vehicleTypePage3",
+      vehicles.map((v) => v.type),
+    );
+    handleChange(
+      "vehicleMinRate",
+      vehicles.map((v) => v.minRate),
+    );
+    handleChange(
+      "vehicleMaxRate",
+      vehicles.map((v) => v.maxRate),
+    );
+
+    handleChange(
+      "serviceType",
+      services.map((s) => s.type),
+    );
+    handleChange(
+      "serviceMinRate",
+      services.map((s) => s.minRate),
+    );
+    handleChange(
+      "serviceMaxRate",
+      services.map((s) => s.maxRate),
+    );
+
+    handleChange(
+      "cargoType",
+      cargo.map((c) => c.type),
+    );
+    handleChange(
+      "cargoMinRate",
+      cargo.map((c) => c.minRate),
+    );
+    handleChange(
+      "cargoMaxRate",
+      cargo.map((c) => c.maxRate),
+    );
   };
 
   // Call this function when you add a new vehicle, service, or cargo item
-const handleAddVehicle = () => {
-  setVehicles([...vehicles, { type: '', minRate: '', maxRate: '' }]);
-  updateFormState(); // Update the global state
-};
+  const handleAddVehicle = () => {
+    setVehicles([...vehicles, { type: "", minRate: "", maxRate: "" }]);
+    updateFormState(); // Update the global state
+  };
 
-const handleAddService = () => {
-  setServices([...services, { type: '', minRate: '', maxRate: '' }]);
-  updateFormState(); // Update the global state
-};
+  const handleAddService = () => {
+    setServices([...services, { type: "", minRate: "", maxRate: "" }]);
+    updateFormState(); // Update the global state
+  };
 
-const handleAddCargo = () => {
-  setCargo([...cargo, { type: '', minRate: '', maxRate: '' }]);
-  updateFormState(); // Update the global state
-};
+  const handleAddCargo = () => {
+    setCargo([...cargo, { type: "", minRate: "", maxRate: "" }]);
+    updateFormState(); // Update the global state
+  };
 
-  const handleVehicleChange = (index: number, field: keyof { type: string; minRate: string; maxRate: string }, value: string) => {
+  const handleVehicleChange = (
+    index: number,
+    field: keyof { type: string; minRate: string; maxRate: string },
+    value: string,
+  ) => {
     const newVehicles = [...vehicles];
     newVehicles[index] = { ...newVehicles[index], [field]: value };
     setVehicles(newVehicles);
     updateFormState(); // Sync with global state
   };
-  
 
-  const handleServiceChange = (index: number, field: keyof { type: string; minRate: string; maxRate: string }, value: string) => {
+  const handleServiceChange = (
+    index: number,
+    field: keyof { type: string; minRate: string; maxRate: string },
+    value: string,
+  ) => {
     const newServices = [...services];
     newServices[index] = { ...newServices[index], [field]: value };
     setServices(newServices);
     updateFormState(); // Sync with global state
   };
-  
-  const handleCargoChange = (index: number, field: keyof { type: string; minRate: string; maxRate: string }, value: string) => {
+
+  const handleCargoChange = (
+    index: number,
+    field: keyof { type: string; minRate: string; maxRate: string },
+    value: string,
+  ) => {
     const newCargo = [...cargo];
     newCargo[index] = { ...newCargo[index], [field]: value };
     setCargo(newCargo);
@@ -147,7 +191,9 @@ const handleAddCargo = () => {
                 <label>Vehicle Name</label>
                 <input
                   value={vehicle.type}
-                  onChange={(e) => handleVehicleChange(index, 'type', e.target.value)}
+                  onChange={(e) =>
+                    handleVehicleChange(index, "type", e.target.value)
+                  }
                   type="text"
                   className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
                   placeholder="Enter vehicle type"
@@ -157,7 +203,9 @@ const handleAddCargo = () => {
                 <label>Min. Rate</label>
                 <input
                   value={vehicle.minRate}
-                  onChange={(e) => handleVehicleChange(index, 'minRate', e.target.value)}
+                  onChange={(e) =>
+                    handleVehicleChange(index, "minRate", e.target.value)
+                  }
                   type="text"
                   className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
                   placeholder="Enter minimum rate"
@@ -167,7 +215,9 @@ const handleAddCargo = () => {
                 <label>Max. Rate</label>
                 <input
                   value={vehicle.maxRate}
-                  onChange={(e) => handleVehicleChange(index, 'maxRate', e.target.value)}
+                  onChange={(e) =>
+                    handleVehicleChange(index, "maxRate", e.target.value)
+                  }
                   type="text"
                   className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
                   placeholder="Enter maximum rate"
@@ -176,7 +226,7 @@ const handleAddCargo = () => {
             </div>
           ))}
 
-          <div className="item-start w-10 flex flex-col justify-between gap-2">
+          <div className="item-start flex w-10 flex-col justify-between gap-2">
             <button
               type="button"
               className="cursor-pointer rounded-lg bg-[#E6E6E6] p-2 hover:shadow-xl"
@@ -218,7 +268,9 @@ const handleAddCargo = () => {
                 <label>Name</label>
                 <input
                   value={service.type}
-                  onChange={(e) => handleServiceChange(index, 'type', e.target.value)}
+                  onChange={(e) =>
+                    handleServiceChange(index, "type", e.target.value)
+                  }
                   type="text"
                   className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
                   placeholder="Enter service type"
@@ -228,7 +280,9 @@ const handleAddCargo = () => {
                 <label>Min. Rate</label>
                 <input
                   value={service.minRate}
-                  onChange={(e) => handleServiceChange(index, 'minRate', e.target.value)}
+                  onChange={(e) =>
+                    handleServiceChange(index, "minRate", e.target.value)
+                  }
                   type="text"
                   className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
                   placeholder="Enter minimum rate"
@@ -238,7 +292,9 @@ const handleAddCargo = () => {
                 <label>Max. Rate</label>
                 <input
                   value={service.maxRate}
-                  onChange={(e) => handleServiceChange(index, 'maxRate', e.target.value)}
+                  onChange={(e) =>
+                    handleServiceChange(index, "maxRate", e.target.value)
+                  }
                   type="text"
                   className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
                   placeholder="Enter maximum rate"
@@ -247,7 +303,7 @@ const handleAddCargo = () => {
             </div>
           ))}
 
-          <div className="item-start w-10 flex flex-col justify-between gap-2">
+          <div className="item-start flex w-10 flex-col justify-between gap-2">
             <button
               type="button"
               className="cursor-pointer rounded-lg bg-[#E6E6E6] p-2 hover:shadow-xl"
@@ -280,14 +336,16 @@ const handleAddCargo = () => {
             <span className="semi-bold">Type of Cargo</span>
           </div>
 
-           {/* Render cargo inputs dynamically */}
-           {cargo.map((cargoItem, index) => (
+          {/* Render cargo inputs dynamically */}
+          {cargo.map((cargoItem, index) => (
             <div key={index} className="flex flex-row gap-6">
               <div className="flex flex-col">
                 <label>Type</label>
                 <input
                   value={cargoItem.type}
-                  onChange={(e) => handleCargoChange(index, 'type', e.target.value)}
+                  onChange={(e) =>
+                    handleCargoChange(index, "type", e.target.value)
+                  }
                   type="text"
                   className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
                   placeholder="Enter cargo type"
@@ -297,7 +355,9 @@ const handleAddCargo = () => {
                 <label>Min. Rate</label>
                 <input
                   value={cargoItem.minRate}
-                  onChange={(e) => handleCargoChange(index, 'minRate', e.target.value)}
+                  onChange={(e) =>
+                    handleCargoChange(index, "minRate", e.target.value)
+                  }
                   type="text"
                   className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
                   placeholder="Enter minimum rate"
@@ -307,7 +367,9 @@ const handleAddCargo = () => {
                 <label>Max. Rate</label>
                 <input
                   value={cargoItem.maxRate}
-                  onChange={(e) => handleCargoChange(index, 'maxRate', e.target.value)}
+                  onChange={(e) =>
+                    handleCargoChange(index, "maxRate", e.target.value)
+                  }
                   type="text"
                   className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
                   placeholder="Enter maximum rate"
@@ -316,7 +378,7 @@ const handleAddCargo = () => {
             </div>
           ))}
 
-          <div className="item-start w-10 flex flex-col justify-between gap-2">
+          <div className="item-start flex w-10 flex-col justify-between gap-2">
             <button
               type="button"
               className="cursor-pointer rounded-lg bg-[#E6E6E6] p-2 hover:shadow-xl"
@@ -376,8 +438,6 @@ const handleAddCargo = () => {
               <span>{formState.percentageValue}%</span>
             </div>
           </div>
-
-         
         </form>
       </div>
     </div>

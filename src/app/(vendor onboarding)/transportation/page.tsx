@@ -61,7 +61,7 @@ type HandleNestedChange = (
 type Package = {
   type: string;
   priceRange: [number, number];
-}
+};
 
 const RootPage = () => {
   const [currentPage, setCurrentPage] = useState<number>(0);
