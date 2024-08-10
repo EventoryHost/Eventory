@@ -52,7 +52,9 @@ const Page1 = ({
               className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
               placeholder="Enter your business name"
               value={formState.businessName}
-              onChange={(e) => updateFormState({ businessName: e.target.value})}
+              onChange={(e) =>
+                updateFormState({ businessName: e.target.value })
+              }
             />
           </div>
         </div>

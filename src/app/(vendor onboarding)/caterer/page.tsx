@@ -37,9 +37,7 @@ const Caterer = () => {
   }
 
   // States for Page1
-  const [cuisineSpecialties, setCuisineSpecialties] = useState<string[]>(
-    [],
-  );
+  const [cuisineSpecialties, setCuisineSpecialties] = useState<string[]>([]);
   const [regionalSpecialties, setRegionalSpecialties] = useState<string[]>([]);
   const [serviceStyles, setServiceStyles] = useState<string[]>([]);
 
@@ -100,7 +98,10 @@ const Caterer = () => {
 
   function getVendorId(): string | null {
     const token = localStorage.getItem("token");
-    if (!token) { console.error("Token not found"); return null; }
+    if (!token) {
+      console.error("Token not found");
+      return null;
+    }
 
     const { userId, email } = jwt.decode(token) as {
       userId: string;
@@ -110,8 +111,7 @@ const Caterer = () => {
   }
 
   const handleContinue = () => {
-    console.log(
-      formState.businessName, {
+    console.log(formState.businessName, {
       cuisineSpecialties,
       regionalSpecialties,
       serviceStyles,
@@ -193,7 +193,10 @@ const Caterer = () => {
             setRegionalSpecialties={setRegionalSpecialties}
             serviceStyles={serviceStyles}
             setServiceStyles={setServiceStyles}
-            handleContinue={() => { setCurrentPage(2); handleContinue(); }}
+            handleContinue={() => {
+              setCurrentPage(2);
+              handleContinue();
+            }}
           />
         );
       case 2:
@@ -207,7 +210,10 @@ const Caterer = () => {
             setSelectedMainCourses={setSelectedMainCourses}
             selectedDietaryOptions={selectedDietaryOptions}
             setSelectedDietaryOptions={setSelectedDietaryOptions}
-            handleContinue={() => { setCurrentPage(3); handleContinue(); }}
+            handleContinue={() => {
+              setCurrentPage(3);
+              handleContinue();
+            }}
           />
         );
       case 3:
@@ -217,7 +223,10 @@ const Caterer = () => {
             setSelectedAppetizers={setEventTypes}
             selectedBeverages={additionalServices}
             setSelectedBeverages={setAdditionalServices}
-            handleContinue={() => { setCurrentPage(4); handleContinue(); }}
+            handleContinue={() => {
+              setCurrentPage(4);
+              handleContinue();
+            }}
           />
         );
       case 4:
@@ -227,7 +236,10 @@ const Caterer = () => {
             setSelectedAppetizers={setStaffProvides}
             selectedBeverages={equipmentsProvided}
             setSelectedBeverages={setEquipmentsProvided}
-            handleContinue={() => { setCurrentPage(5); handleContinue(); }}
+            handleContinue={() => {
+              setCurrentPage(5);
+              handleContinue();
+            }}
           />
         );
       case 5:
@@ -241,7 +253,10 @@ const Caterer = () => {
             setSeasonalPackages={setSeasonalPackages}
             handlePackageChange={handlePackageChange}
             addPackage={addPackage}
-            handleContinue={() => { setCurrentPage(6); handleContinue(); }}
+            handleContinue={() => {
+              setCurrentPage(6);
+              handleContinue();
+            }}
           />
         );
       case 6:

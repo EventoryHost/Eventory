@@ -111,7 +111,10 @@ const VenueForm: React.FC = () => {
 
   function getVendorId(): string | null {
     const token = localStorage.getItem("token");
-    if (!token) { console.error("Token not found"); return null; }
+    if (!token) {
+      console.error("Token not found");
+      return null;
+    }
 
     const { userId, email } = jwt.decode(token) as {
       userId: string;

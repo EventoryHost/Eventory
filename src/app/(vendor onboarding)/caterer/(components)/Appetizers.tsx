@@ -11,7 +11,10 @@ const Appetizers = ({
   selectedAppetizers,
   setSelectedAppetizers,
 }: AppetizersProps) => {
-  const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement>, appetizer: string) => {
+  const handleButtonClick = (
+    e: React.MouseEvent<HTMLButtonElement>,
+    appetizer: string,
+  ) => {
     e.preventDefault();
     if (selectedAppetizers.includes(appetizer)) {
       setSelectedAppetizers(

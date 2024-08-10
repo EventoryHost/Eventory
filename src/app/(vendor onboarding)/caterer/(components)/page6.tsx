@@ -10,16 +10,8 @@ interface Page6Props {
   handleContinue: () => void;
 }
 
-const Page6 = ({
-  formState,
-  updateFormState,
-  handleContinue,
-}: Page6Props) => {
-  const {
-    tastingSessions,
-    businessLicenses,
-    foodSafety
-  } = formState;
+const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
+  const { tastingSessions, businessLicenses, foodSafety } = formState;
 
   return (
     <form className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden overflow-x-hidden lg:flex-row">
@@ -38,8 +30,10 @@ const Page6 = ({
                       name="tastingSessions"
                       value="true"
                       checked={tastingSessions}
-                      onChange={() => updateFormState({ tastingSessions: true })}
-                      />
+                      onChange={() =>
+                        updateFormState({ tastingSessions: true })
+                      }
+                    />
                     <label htmlFor="tastingSessionsYes">Yes</label>
                   </div>
                   <div className="flex min-w-[40%] gap-4">
@@ -49,7 +43,9 @@ const Page6 = ({
                       name="tastingSessions"
                       value="false"
                       checked={!tastingSessions}
-                      onChange={() => updateFormState({ tastingSessions: false })}
+                      onChange={() =>
+                        updateFormState({ tastingSessions: false })
+                      }
                     />
                     <label htmlFor="tastingSessionsNo">No</label>
                   </div>
@@ -74,8 +70,10 @@ const Page6 = ({
                       name="businessLicense"
                       value="true"
                       checked={businessLicenses}
-                      onChange={() => updateFormState({ businessLicenses: true} )}
-                      />
+                      onChange={() =>
+                        updateFormState({ businessLicenses: true })
+                      }
+                    />
                     <label htmlFor="businessLicenseYes">Yes</label>
                   </div>
                   <div className="flex min-w-[40%] gap-4">
@@ -85,7 +83,9 @@ const Page6 = ({
                       name="businessLicense"
                       value="false"
                       checked={!businessLicenses}
-                      onChange={() => updateFormState({ businessLicenses: false} )}
+                      onChange={() =>
+                        updateFormState({ businessLicenses: false })
+                      }
                     />
                     <label htmlFor="businessLicenseNo">No</label>
                   </div>
@@ -110,7 +110,7 @@ const Page6 = ({
                       name="foodSafety"
                       value="true"
                       checked={foodSafety}
-                      onChange={() => updateFormState({ foodSafety: true} )}
+                      onChange={() => updateFormState({ foodSafety: true })}
                     />
                     <label htmlFor="foodSafetyYes">Yes</label>
                   </div>
@@ -121,7 +121,7 @@ const Page6 = ({
                       name="foodSafety"
                       value="false"
                       checked={!foodSafety}
-                      onChange={() => updateFormState({ foodSafety: false} )}
+                      onChange={() => updateFormState({ foodSafety: false })}
                     />
                     <label htmlFor="foodSafetyNo">No</label>
                   </div>
