@@ -2,26 +2,25 @@
 
 import React, { useState } from "react";
 import { Upload } from "lucide-react";
+import { FormState } from "../page";
 
 interface Page6Props {
-  tastingSessions: boolean;
-  setTastingSessions: (value: boolean) => void;
-  businessLicenses: boolean;
-  setBusinessLicenses: (value: boolean) => void;
-  foodSafety: boolean;
-  setFoodSafety: (value: boolean) => void;
+  formState: FormState;
+  updateFormState: (newState: Partial<FormState>) => void;
   handleContinue: () => void;
 }
 
 const Page6 = ({
-  tastingSessions,
-  setTastingSessions,
-  businessLicenses,
-  setBusinessLicenses,
-  foodSafety,
-  setFoodSafety,
+  formState,
+  updateFormState,
   handleContinue,
 }: Page6Props) => {
+  const {
+    tastingSessions,
+    businessLicenses,
+    foodSafety
+  } = formState;
+
   return (
     <form className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden overflow-x-hidden lg:flex-row">
       <div className="flex min-w-[100%] flex-col items-center overflow-y-scroll bg-[#F7F6F9] p-2 md:p-[1rem]">
@@ -39,8 +38,8 @@ const Page6 = ({
                       name="tastingSessions"
                       value="true"
                       checked={tastingSessions}
-                      onChange={() => setTastingSessions(true)}
-                    />
+                      onChange={() => updateFormState({ tastingSessions: true })}
+                      />
                     <label htmlFor="tastingSessionsYes">Yes</label>
                   </div>
                   <div className="flex min-w-[40%] gap-4">
@@ -50,7 +49,7 @@ const Page6 = ({
                       name="tastingSessions"
                       value="false"
                       checked={!tastingSessions}
-                      onChange={() => setTastingSessions(false)}
+                      onChange={() => updateFormState({ tastingSessions: false })}
                     />
                     <label htmlFor="tastingSessionsNo">No</label>
                   </div>
@@ -75,8 +74,8 @@ const Page6 = ({
                       name="businessLicense"
                       value="true"
                       checked={businessLicenses}
-                      onChange={() => setBusinessLicenses(true)}
-                    />
+                      onChange={() => updateFormState({ businessLicenses: true} )}
+                      />
                     <label htmlFor="businessLicenseYes">Yes</label>
                   </div>
                   <div className="flex min-w-[40%] gap-4">
@@ -86,7 +85,7 @@ const Page6 = ({
                       name="businessLicense"
                       value="false"
                       checked={!businessLicenses}
-                      onChange={() => setBusinessLicenses(false)}
+                      onChange={() => updateFormState({ businessLicenses: false} )}
                     />
                     <label htmlFor="businessLicenseNo">No</label>
                   </div>
@@ -111,7 +110,7 @@ const Page6 = ({
                       name="foodSafety"
                       value="true"
                       checked={foodSafety}
-                      onChange={() => setFoodSafety(true)}
+                      onChange={() => updateFormState({ foodSafety: true} )}
                     />
                     <label htmlFor="foodSafetyYes">Yes</label>
                   </div>
@@ -122,7 +121,7 @@ const Page6 = ({
                       name="foodSafety"
                       value="false"
                       checked={!foodSafety}
-                      onChange={() => setFoodSafety(false)}
+                      onChange={() => updateFormState({ foodSafety: false} )}
                     />
                     <label htmlFor="foodSafetyNo">No</label>
                   </div>

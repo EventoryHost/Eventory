@@ -1,7 +1,5 @@
 "use client";
 
-import React from "react";
-
 type AppetizersProps = {
   appetizers: string[];
   selectedAppetizers: string[];
@@ -13,7 +11,8 @@ const Appetizers = ({
   selectedAppetizers,
   setSelectedAppetizers,
 }: AppetizersProps) => {
-  const handleButtonClick = (appetizer: string) => {
+  const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement>, appetizer: string) => {
+    e.preventDefault();
     if (selectedAppetizers.includes(appetizer)) {
       setSelectedAppetizers(
         selectedAppetizers.filter((item) => item !== appetizer),
@@ -28,7 +27,7 @@ const Appetizers = ({
       {appetizers.map((appetizer, index) => (
         <button
           key={index}
-          onClick={() => handleButtonClick(appetizer)}
+          onClick={(e) => handleButtonClick(e, appetizer)}
           className={`text col-span-1 row-span-1 flex min-w-[7rem] items-center justify-center rounded-2xl border border-none px-2 py-3 text-[3.5vw] font-medium outline-none md:text-[2vw] lg:text-[1vw] ${
             selectedAppetizers.includes(appetizer)
               ? "bg-[#2E3192] text-white"
