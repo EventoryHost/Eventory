@@ -20,34 +20,34 @@ type FormState = {
   handleChange: (key: keyof FormState, value: any) => void;
   [key: string]: any;
 
-    // Page2
-    insurancePolicy: string;
-    cancellationPolicy: string;
-    termsAndConditions: string;
-    privacyPolicy: string;
+  // Page2
+  insurancePolicy: string;
+  cancellationPolicy: string;
+  termsAndConditions: string;
+  privacyPolicy: string;
 };
 
 const RootPage = () => {
   const [currentPage, setCurrentPage] = useState<number>(0);
 
-    // Initialize form state with default values
-    const [formState, setFormState] = useState<FormState>({
-        // Page1
-        contactName: "",
-        phoneNumber: "",
-        workDescription: "",
-        yearsOfExperience: "",
-        numberOfWorkers: "",
+  // Initialize form state with default values
+  const [formState, setFormState] = useState<FormState>({
+    // Page1
+    contactName: "",
+    phoneNumber: "",
+    workDescription: "",
+    yearsOfExperience: "",
+    numberOfWorkers: "",
 
-        // Page2
-        insurancePolicy: "",
-        cancellationPolicy: "",
-        termsAndConditions: "",
-        privacyPolicy: "",
-        handleChange: (key: keyof FormState, value: any) => {
-            setFormState((prevState) => ({ ...prevState, [key]: value }));
-        },
-    });
+    // Page2
+    insurancePolicy: "",
+    cancellationPolicy: "",
+    termsAndConditions: "",
+    privacyPolicy: "",
+    handleChange: (key: keyof FormState, value: any) => {
+      setFormState((prevState) => ({ ...prevState, [key]: value }));
+    },
+  });
 
   // Function to handle changes for form fields
   const handleChange = (key: keyof FormState, value: any) => {
@@ -74,7 +74,9 @@ const RootPage = () => {
     setCurrentPage(pageIndex);
   };
 
-    const CurrentPageComponent: React.FC<page1Props | page2Props | {}> = Pages[currentPage] as React.FC<page1Props | page2Props | {}>;
+  const CurrentPageComponent: React.FC<page1Props | page2Props | {}> = Pages[
+    currentPage
+  ] as React.FC<page1Props | page2Props | {}>;
 
   function handleSubmit() {
     console.log(formState);
