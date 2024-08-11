@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import { FormState } from "../page";
 import Appetizers from "./Appetizers";
 
 const regional = [
@@ -14,11 +14,11 @@ const regional = [
   "Bengali",
 ];
 const service = ["Buffet", "Plated Meals", "Family Style", "Food Stations"];
-const cuisine = ["North Indian", "South Indian", "Chinese", "Italian"];
+const _cuisine = ["North Indian", "South Indian", "Chinese", "Italian"];
 
 type Page1Props = {
-  businessName: string;
-  setBusinessName: React.Dispatch<React.SetStateAction<string>>;
+  formState: FormState;
+  updateFormState: (newState: Partial<FormState>) => void;
   cuisineSpecialties: string[];
   setCuisineSpecialties: React.Dispatch<React.SetStateAction<string[]>>;
   regionalSpecialties: string[];
@@ -29,8 +29,8 @@ type Page1Props = {
 };
 
 const Page1 = ({
-  businessName,
-  setBusinessName,
+  formState,
+  updateFormState,
   cuisineSpecialties,
   setCuisineSpecialties,
   regionalSpecialties,
@@ -51,8 +51,10 @@ const Page1 = ({
               type="text"
               className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
               placeholder="Enter your business name"
-              value={businessName}
-              onChange={(e) => setBusinessName(e.target.value)}
+              value={formState.businessName}
+              onChange={(e) =>
+                updateFormState({ businessName: e.target.value })
+              }
             />
           </div>
         </div>
@@ -61,7 +63,7 @@ const Page1 = ({
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
-                appetizers={cuisine}
+                appetizers={_cuisine}
                 selectedAppetizers={cuisineSpecialties}
                 setSelectedAppetizers={setCuisineSpecialties}
               />

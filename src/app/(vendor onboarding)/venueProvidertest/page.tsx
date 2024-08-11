@@ -109,8 +109,13 @@ const VenueForm: React.FC = () => {
     ]);
   };
 
-  function getVendorId(): string {
-    const token = localStorage.getItem("token")!;
+  function getVendorId(): string | null {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("Token not found");
+      return null;
+    }
+
     const { userId, email } = jwt.decode(token) as {
       userId: string;
       email: string;
@@ -121,7 +126,7 @@ const VenueForm: React.FC = () => {
   const handleSubmit = async () => {
     const formData = new FormData();
 
-    formData.append("id", getVendorId()); // Ensure this ID is unique and valid
+    formData.append("id", getVendorId()!); // Ensure this ID is unique and valid
     formData.append("name", formState.venueName);
     formData.append("venueType", formState.venueType);
     formData.append(
