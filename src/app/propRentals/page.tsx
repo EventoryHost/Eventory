@@ -2,7 +2,7 @@
 // RootPage.tsx
 import React, { useState } from "react";
 import page1, { page1Props } from "./page1/page1";
-import page2 from "./page2/page2";
+import page2, { page2Props } from "./page2/page2";
 import page3 from "./page3/page3";
 import page4 from "./page4/page4";
 import page5 from "./page5/page5";
@@ -22,6 +22,10 @@ type FormState = {
     [key: string]: any;
 
     // Page2
+    insurancePolicy: string;
+    cancellationPolicy: string;
+    termsAndConditions: string;
+    privacyPolicy: string;
 };
 
 const RootPage = () => {
@@ -29,11 +33,18 @@ const RootPage = () => {
 
     // Initialize form state with default values
     const [formState, setFormState] = useState<FormState>({
+        // Page1
         contactName: "",
         phoneNumber: "",
         workDescription: "",
         yearsOfExperience: "",
         numberOfWorkers: "",
+
+        // Page2
+        insurancePolicy: "",
+        cancellationPolicy: "",
+        termsAndConditions: "",
+        privacyPolicy: "",
         handleChange: (key: keyof FormState, value: any) => {
             setFormState((prevState) => ({ ...prevState, [key]: value }));
         },
@@ -65,7 +76,7 @@ const RootPage = () => {
     };
 
 
-    const CurrentPageComponent: React.FC<page1Props> = Pages[currentPage];
+    const CurrentPageComponent: React.FC<page1Props | page2Props | {}> = Pages[currentPage] as React.FC<page1Props | page2Props | {}>;
 
     function handleSubmit() {
         console.log(formState);
