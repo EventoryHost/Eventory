@@ -3,7 +3,7 @@
 import StepBar from "@/app/(components)/stepBar";
 import ThreeStepBar from "@/app/(components)/threeStepBar";
 import { Combobox } from "@/components/ui/combobox";
-import React from "react";
+import React, { SetStateAction } from "react";
 
 const workerOptions = [
   { value: "0-2 Members", label: "0-2 Members" },
@@ -33,6 +33,12 @@ export interface page1Props {
   handleChange: (key: string, value: any) => void;
   handleNestedChange: (key: string, nestedKey: string, value: any) => void;
   navigateToPage: (page: number) => void;
+  selectedCategory: string;
+  setSelectedCategory: (value: any) => void;
+  selectedAppetizers: string[];
+  setselectedAppetizers: (value: SetStateAction<string[]>) => void;
+  selectedDecor: string[];
+  setSelectedDecor: (value: any) => void;
 }
 
 const page1: React.FC<page1Props> = ({

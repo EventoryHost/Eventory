@@ -1,11 +1,11 @@
 import StepBar from "@/app/(components)/stepBar";
 
-function page3() {
+function page4() {
   return (
     <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden lg:flex-row">
       <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
         <div className="flex items-center justify-start gap-1 xs:self-start xs:pl-5 lg:mt-[2rem]">
-          <StepBar currentStep={3} />
+          <StepBar currentStep={4} />
         </div>
         <div className="ml-8 flex h-[50%] flex-col items-start justify-center gap-9 px-9 xs:pl-5 md:px-11 lg:p-8">
           <h1 className="text-2xl font-semibold md:text-4xl lg:text-5xl">
@@ -23,8 +23,15 @@ function page3() {
           />
         </div>
       </div>
+
+
+      <div className="scroll-touch flex max-h-[calc(100vh-5.2rem)] min-w-[70%] flex-col items-center gap-9 overflow-y-scroll bg-[#F7F6F9] p-2 md:p-[1rem]">
+        <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
+          <h1 className="text-3xl  font-semibold mb-4">Fill out following details</h1>
+        </div>
+      </div>
     </div>
   );
 }
 
-export default page3;
+export default page4;

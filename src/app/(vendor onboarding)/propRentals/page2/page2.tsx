@@ -1,5 +1,6 @@
 import StepBar from "@/app/(components)/stepBar";
 import { Upload } from "lucide-react";
+import { SetStateAction } from "react";
 
 interface formState {
   insurancePolicy: string;
@@ -14,6 +15,12 @@ export interface page2Props {
   handleChange: (key: string, value: any) => void;
   handleNestedChange: (key: string, nestedKey: string, value: any) => void;
   navigateToPage: (page: number) => void;
+  selectedCategory: string;
+  setSelectedCategory: (value: any) => void;
+  selectedAppetizers: string[];
+  setselectedAppetizers: (value: SetStateAction<string[]>) => void;
+  selectedDecor: string[];
+  setSelectedDecor: (value: any) => void;
 }
 
 const page2: React.FC<page2Props> = ({
