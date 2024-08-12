@@ -58,7 +58,9 @@ const page2: React.FC<page2Props> = ({
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-row items-start justify-between gap-2">
               <div className="flex min-w-[40%] flex-col gap-4">
-                <label className="font-semibold" htmlFor="category">Insurance coverage policy </label>
+                <label className="font-semibold" htmlFor="category">
+                  Insurance coverage policy{" "}
+                </label>
                 <p className="text-gray-500">PNG, PDF, JPG</p>
                 <button className="flex items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
                   {" "}
@@ -67,7 +69,9 @@ const page2: React.FC<page2Props> = ({
                 </button>
               </div>
               <div className="flex min-w-[40%] flex-col gap-4">
-                <label className="font-semibold" htmlFor="category">Cancellation policy</label>
+                <label className="font-semibold" htmlFor="category">
+                  Cancellation policy
+                </label>
                 <p className="text-gray-500">PNG, PDF, JPG</p>
                 <button className="flex items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
                   {" "}
@@ -85,7 +89,8 @@ const page2: React.FC<page2Props> = ({
                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                   placeholder="Enter your venue description"
                   value={formState.insurancePolicy}
-                  onChange={(e) => handleChange("insurancePolicy", e.target.value)
+                  onChange={(e) =>
+                    handleChange("insurancePolicy", e.target.value)
                   }
                 />
               </div>
@@ -97,7 +102,8 @@ const page2: React.FC<page2Props> = ({
                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                   placeholder="Enter your venue description"
                   value={formState.cancellationPolicy}
-                  onChange={(e) => handleChange("cancellationPolicy", e.target.value)
+                  onChange={(e) =>
+                    handleChange("cancellationPolicy", e.target.value)
                   }
                 />
               </div>
@@ -108,7 +114,9 @@ const page2: React.FC<page2Props> = ({
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-row items-start justify-between gap-2">
               <div className="flex min-w-[40%] flex-col gap-4">
-                <label className="font-semibold" htmlFor="category">Terms and conditions </label>
+                <label className="font-semibold" htmlFor="category">
+                  Terms and conditions{" "}
+                </label>
                 <p className="text-gray-500">PNG, PDF, JPG</p>
                 <button className="flex items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
                   {" "}
@@ -117,7 +125,9 @@ const page2: React.FC<page2Props> = ({
                 </button>
               </div>
               <div className="flex min-w-[40%] flex-col gap-4">
-                <label className="font-semibold" htmlFor="category">Privacy policy</label>
+                <label className="font-semibold" htmlFor="category">
+                  Privacy policy
+                </label>
                 <p className="text-gray-500">PNG, PDF, JPG</p>
                 <button className="flex items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
                   {" "}
@@ -135,7 +145,9 @@ const page2: React.FC<page2Props> = ({
                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                   placeholder="Enter your venue description"
                   value={formState.termsAndConditions}
-                  onChange={(e) => handleChange("termsAndConditions", e.target.value)}
+                  onChange={(e) =>
+                    handleChange("termsAndConditions", e.target.value)
+                  }
                 />
               </div>
               <div className="flex min-w-[40%] flex-col gap-4">
@@ -146,7 +158,9 @@ const page2: React.FC<page2Props> = ({
                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                   placeholder="Enter your venue description"
                   value={formState.privacyPolicy}
-                  onChange={(e) => handleChange("privacyPolicy", e.target.value)}
+                  onChange={(e) =>
+                    handleChange("privacyPolicy", e.target.value)
+                  }
                 />
               </div>
             </div>
@@ -155,6 +169,6 @@ const page2: React.FC<page2Props> = ({
       </div>
     </div>
   );
-}
+};
 
 export default page2;
