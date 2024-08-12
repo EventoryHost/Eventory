@@ -24,10 +24,11 @@ function page4() {
         </div>
       </div>
 
-
       <div className="scroll-touch flex max-h-[calc(100vh-5.2rem)] min-w-[70%] flex-col items-center gap-9 overflow-y-scroll bg-[#F7F6F9] p-2 md:p-[1rem]">
         <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
-          <h1 className="text-3xl  font-semibold mb-4">Fill out following details</h1>
+          <h1 className="mb-4 text-3xl font-semibold">
+            Fill out following details
+          </h1>
         </div>
       </div>
     </div>

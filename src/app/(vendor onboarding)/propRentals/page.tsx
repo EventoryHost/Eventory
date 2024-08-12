@@ -42,9 +42,6 @@ type FormState = {
   workerType: string;
   workerMinRate: string;
   workerMaxRate: string;
-  
-
-
 };
 
 type PricingEntry = {
@@ -91,7 +88,10 @@ const RootPage = () => {
   const addPricingEntry = () => {
     setFormState((prevState) => ({
       ...prevState,
-      pricingEntries: [...prevState.pricingEntries, { name: "", min: 0, max: 0 }],
+      pricingEntries: [
+        ...prevState.pricingEntries,
+        { name: "", min: 0, max: 0 },
+      ],
     }));
   };
 
@@ -110,13 +110,13 @@ const RootPage = () => {
     }));
   };
 
-  
-
   const navigateToPage = (pageIndex: number) => {
     setCurrentPage(pageIndex);
   };
 
-  const CurrentPageComponent: React.FC<page1Props | page2Props | {}> = Pages[currentPage] as React.FC<page1Props | page2Props | {}>;
+  const CurrentPageComponent: React.FC<page1Props | page2Props | {}> = Pages[
+    currentPage
+  ] as React.FC<page1Props | page2Props | {}>;
 
   const [selectedCategory, setSelectedCategory] = useState("Furniture & Decor");
   const [selectedAppetizers, setselectedAppetizers] = useState<string[]>([]);
