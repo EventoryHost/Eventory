@@ -80,54 +80,6 @@ const Page5: React.FC<PageProps> = ({
         <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
           <h1 className="text-3xl font-semibold">Basic Details</h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
-            <div
-              key={-1}
-              className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row"
-            >
-              <div className="flex min-w-[40%] flex-col gap-4">
-                <label htmlFor={`hourlyPackageType${-1}`}>
-                  Minimum Order Requirements
-                </label>
-                <input
-                  id={`hourlyPackageType${-1}`}
-                  type="text"
-                  className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
-                  placeholder="Type of package , Eg: Day time"
-                  onChange={(e) =>
-                    handlePackageChange(
-                      setHourlyPackages,
-                      -1,
-                      "type",
-                      e.target.value,
-                    )
-                  }
-                />
-              </div>
-              <div className="flex h-full min-w-[40%] flex-col items-start justify-center gap-6">
-                <label
-                  htmlFor={`hourlyPriceRange${-1}`}
-                  className="self-start font-bold"
-                >
-                  Advance Booking Period
-                </label>
-                <div className="flex w-[80%] flex-row justify-between gap-4">
-                  <input
-                    id={`hourlyMaxPrice${-1}`}
-                    type="number"
-                    className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
-                    placeholder="Max price"
-                    onChange={(e) =>
-                      handleMaxPriceChange(
-                        setHourlyPackages,
-                        hourlyPackages,
-                        -1,
-                        e.target.value,
-                      )
-                    }
-                  />
-                </div>
-              </div>
-            </div>
             {hourlyPackages.map((pkg, index) => (
               <div
                 key={index}
@@ -208,73 +160,6 @@ const Page5: React.FC<PageProps> = ({
 
         <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
-            <div
-              key={-1}
-              className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row"
-            >
-              <div className="flex min-w-[40%] flex-col gap-4">
-                <label htmlFor={`dailyPackageType${-1}`}>
-                  <Checkbox
-                    sx={{
-                      "&.Mui-checked": {
-                        color: "#2E3192",
-                      },
-                    }}
-                  />
-                  Per plate rates
-                </label>
-                <input
-                  id={`dailyPackageType${-1}`}
-                  type="text"
-                  className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
-                  placeholder="Type of package , Eg: Day time"
-                  onChange={(e) =>
-                    handlePackageChange(
-                      setDailyPackages,
-                      -1,
-                      "type",
-                      e.target.value,
-                    )
-                  }
-                />
-              </div>
-
-              <div className="flex h-full min-w-[40%] flex-col items-center justify-between">
-                <label htmlFor={`dailyPriceRange${-1}`}>
-                  Select price range
-                </label>
-                <div className="flex w-[80%] flex-row justify-between gap-4">
-                  <input
-                    id={`dailyMinPrice${-1}`}
-                    type="number"
-                    className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
-                    placeholder="Min price"
-                    onChange={(e) =>
-                      handleMinPriceChange(
-                        setDailyPackages,
-                        dailyPackages,
-                        -1,
-                        e.target.value,
-                      )
-                    }
-                  />
-                  <input
-                    id={`dailyMaxPrice${-1}`}
-                    type="number"
-                    className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
-                    placeholder="Max price"
-                    onChange={(e) =>
-                      handleMaxPriceChange(
-                        setDailyPackages,
-                        dailyPackages,
-                        -1,
-                        e.target.value,
-                      )
-                    }
-                  />
-                </div>
-              </div>
-            </div>
             {dailyPackages.map((pkg, index) => (
               <div
                 key={index}
@@ -375,73 +260,6 @@ const Page5: React.FC<PageProps> = ({
 
         <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
-            <div
-              key={-1}
-              className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row"
-            >
-              <div className="flex min-w-[40%] flex-col gap-4">
-                <label htmlFor={`seasonalPackageType${-1}`}>
-                  <Checkbox
-                    sx={{
-                      "&.Mui-checked": {
-                        color: "#2E3192",
-                      },
-                    }}
-                  />
-                  Deal package rates
-                </label>
-                <input
-                  id={`seasonalPackageType${-1}`}
-                  type="text"
-                  className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
-                  placeholder="Type of package , Eg: Day time"
-                  onChange={(e) =>
-                    handlePackageChange(
-                      setSeasonalPackages,
-                      -1,
-                      "type",
-                      e.target.value,
-                    )
-                  }
-                />
-              </div>
-
-              <div className="flex h-full min-w-[40%] flex-col items-center justify-between">
-                <label htmlFor={`seasonalPriceRange${-1}`}>
-                  Select price range
-                </label>
-                <div className="flex w-[80%] flex-row justify-between gap-4">
-                  <input
-                    id={`seasonalMinPrice${-1}`}
-                    type="number"
-                    className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
-                    placeholder="Min price"
-                    onChange={(e) =>
-                      handleMinPriceChange(
-                        setSeasonalPackages,
-                        seasonalPackages,
-                        -1,
-                        e.target.value,
-                      )
-                    }
-                  />
-                  <input
-                    id={`seasonalMaxPrice${-1}`}
-                    type="number"
-                    className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
-                    placeholder="Max price"
-                    onChange={(e) =>
-                      handleMaxPriceChange(
-                        setSeasonalPackages,
-                        seasonalPackages,
-                        -1,
-                        e.target.value,
-                      )
-                    }
-                  />
-                </div>
-              </div>
-            </div>
             {seasonalPackages.map((pkg, index) => (
               <div
                 key={index}

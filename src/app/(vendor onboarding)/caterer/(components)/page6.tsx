@@ -56,6 +56,19 @@ const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
                 <button className="mt-5 flex items-center justify-center gap-5 rounded-xl border-2 border-dashed border-gray-400 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
                   <Upload />
                   Upload
+                  <input
+                    type="file"
+                    id="cateringServiceImages"
+                    name="cateringServiceImages"
+                    accept="image/png, .pdf, image/jpg"
+                    // className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
+                    onChange={(e) => {
+                      const file = e.target.files![0];
+                      updateFormState({
+                        cateringServiceImages: e.target.files![0],
+                      });
+                    }}
+                  />
                 </button>
               </div>
             </div>
@@ -96,6 +109,19 @@ const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
                 <button className="mt-5 flex items-center justify-center gap-5 rounded-xl border-2 border-dashed border-gray-400 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
                   <Upload />
                   Upload
+                  <input
+                    type="file"
+                    id="videoEvent"
+                    name="videoEvent"
+                    accept=".mp4, .avi, .mov, .wmv"
+                    // className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
+                    onChange={(e) => {
+                      const file = e.target.files![0];
+                      updateFormState({
+                        videoEvent: e.target.files![0],
+                      });
+                    }}
+                  />
                 </button>
               </div>
             </div>
@@ -131,6 +157,19 @@ const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
                   <button className="mt-5 flex items-center justify-center gap-5 rounded-xl border-2 border-dashed border-gray-400 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
                     <Upload />
                     Upload
+                    <input
+                      type="file"
+                      id="termsAndConditions"
+                      name="termsAndConditions"
+                      accept="image/png, .pdf, image/jpg"
+                      // className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
+                      onChange={(e) => {
+                        const file = e.target.files![0];
+                        updateFormState({
+                          termsAndConditions: e.target.files![0],
+                        });
+                      }}
+                    />
                   </button>
                   <p className="mt-5 text-lg">or Provide Via</p>
                   <textarea
@@ -146,6 +185,19 @@ const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
                 <button className="mt-5 flex items-center justify-center gap-5 rounded-xl border-2 border-dashed border-gray-400 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
                   <Upload />
                   Upload
+                  <input
+                    type="file"
+                    id="cancellationPolicy"
+                    name="cancellationPolicy"
+                    accept="image/png, .pdf, image/jpg"
+                    // className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
+                    onChange={(e) => {
+                      const file = e.target.files![0];
+                      updateFormState({
+                        cancellationPolicy: e.target.files![0],
+                      });
+                    }}
+                  />
                 </button>
                 <p className="mt-5 text-lg">or Provide Via</p>
                 <textarea
@@ -163,13 +215,19 @@ const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
             <div className="items-strech mt-9 flex flex-row gap-7 self-end">
               <button
                 className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={handleContinue}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleContinue();
+                }}
               >
                 Skip
               </button>
               <button
                 className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={handleContinue}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleContinue();
+                }}
               >
                 Continue
               </button>

@@ -107,9 +107,21 @@ const Page3: React.FC<Page3Props> = ({ formState, updateFormState }) => {
                   <p className="text-xl font-semibold">Cancellation Policy</p>
                   <p className="text-gray-500">PNG, PDF, JPG</p>
                   <button className="flex items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
-                    {" "}
                     <Upload />
                     Upload
+                    <input
+                      type="file"
+                      id="cancellationPolicy"
+                      name="cancellationPolicy"
+                      accept="image/png, .pdf, image/jpg"
+                      // className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
+                      onChange={(e) => {
+                        const file = e.target.files![0];
+                        updateFormState({
+                          cancellationPolicy: e.target.files![0],
+                        });
+                      }}
+                    />
                   </button>
                 </div>
               </div>

@@ -25,12 +25,25 @@ export interface FormState {
   tastingSessions: boolean;
   businessLicenses: boolean;
   foodSafety: boolean;
+  cateringServiceImages: string | File;
+  videoEvent: string | File;
+  termsAndConditions: string | File;
+  cancellationPolicy: string | File;
 }
 
 const Caterer = () => {
   // State for current page
   const [currentPage, setCurrentPage] = useState(1);
-  const [formState, setFormState] = useState<FormState>({} as FormState);
+  const [formState, setFormState] = useState<FormState>({
+    businessName: "",
+    tastingSessions: false,
+    businessLicenses: false,
+    foodSafety: false,
+    cateringServiceImages: "",
+    videoEvent: "",
+    termsAndConditions: "",
+    cancellationPolicy: "",
+  });
 
   function updateFormState(newState: Partial<FormState>) {
     setFormState((prev) => ({ ...prev, ...newState }));
@@ -111,7 +124,8 @@ const Caterer = () => {
   }
 
   const handleContinue = () => {
-    console.log(formState.businessName, {
+    console.log({
+      BusinessName: formState.businessName,
       cuisineSpecialties,
       regionalSpecialties,
       serviceStyles,
@@ -119,6 +133,20 @@ const Caterer = () => {
       selectedBeverages,
       selectedMainCourses,
       selectedDietaryOptions,
+      eventTypes,
+      additionalServices,
+      staffProvides,
+      equipmentsProvided,
+      hourlyPackages,
+      dailyPackages,
+      seasonalPackages,
+      TastingSessions: formState.tastingSessions,
+      BusinessLicenses: formState.businessLicenses,
+      FoodSafety: formState.foodSafety,
+      CateringServiceImages: formState.cateringServiceImages,
+      VideoEvent: formState.videoEvent,
+      TermsAndConditions: formState.termsAndConditions,
+      CancellationPolicy: formState.cancellationPolicy,
     });
   };
 
@@ -172,6 +200,10 @@ const Caterer = () => {
     formData.append("tastingSessions", formState.tastingSessions.toString());
     formData.append("businessLicenses", formState.businessLicenses.toString());
     formData.append("foodSafety", formState.foodSafety.toString());
+    formData.append("cateringServiceImages", formState.cateringServiceImages);
+    formData.append("videoEvent", formState.videoEvent);
+    formData.append("termsAndConditions", formState.termsAndConditions);
+    formData.append("cancellationPolicy", formState.cancellationPolicy);
     try {
       await addCaterer(formData);
       console.log("Caterer added successfully");
