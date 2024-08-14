@@ -57,9 +57,6 @@ type FormState = {
   dealCheckboxPage5: boolean;
   workerCheckboxPage5: boolean;
   advancedPaymentCheckboxPage5: boolean;
-
-
-
 };
 
 type PricingEntry = {
@@ -76,7 +73,7 @@ const RootPage = () => {
     workDescription: "",
     yearsOfExperience: "",
     numberOfWorkers: "",
-    handleChange: (key: keyof FormState, value: any) => { },
+    handleChange: (key: keyof FormState, value: any) => {},
     insurancePolicy: "",
     cancellationPolicy: "",
     termsAndConditions: "",
@@ -90,13 +87,11 @@ const RootPage = () => {
     packageMinRate: "",
     packageMaxRate: "",
 
-
     dealCheckbox: false,
     dealType: "",
     dealMinRate: "",
     dealMaxRate: "",
 
-    
     workerCheckbox: false,
     workerType: "",
     workerMinRate: "",
@@ -125,13 +120,16 @@ const RootPage = () => {
     setFormState((prevState) => ({ ...prevState, [key]: value }));
   };
 
-  const handleCheckboxChange = (page: number, checkboxName: string, value: boolean) => {
-    setFormState(prevState => ({
+  const handleCheckboxChange = (
+    page: number,
+    checkboxName: string,
+    value: boolean,
+  ) => {
+    setFormState((prevState) => ({
       ...prevState,
-      [`${checkboxName}Page${page}`]: value
+      [`${checkboxName}Page${page}`]: value,
     }));
   };
-
 
   const addPricingEntry = () => {
     setFormState((prevState) => ({
@@ -158,8 +156,6 @@ const RootPage = () => {
     }));
   };
 
-
-
   const navigateToPage = (pageIndex: number) => {
     setCurrentPage(pageIndex);
   };
@@ -172,9 +168,15 @@ const RootPage = () => {
   const [selectedAppetizers, setselectedAppetizers] = useState<string[]>([]);
   const [selectedDecor, setSelectedDecor] = useState<string[]>([]);
   const [selectedTentOptions, setSelectedTentOptions] = useState<string[]>([]);
-  const [selectedAudioOptions, setSelectedAudioOptions] = useState<string[]>([]);
-  const [selectedvisualOptions, setSelectedVisualOptions] = useState<string[]>([]);
-  const [selectedLightOptions, setSelectedLightOptions] = useState<string[]>([]);
+  const [selectedAudioOptions, setSelectedAudioOptions] = useState<string[]>(
+    [],
+  );
+  const [selectedvisualOptions, setSelectedVisualOptions] = useState<string[]>(
+    [],
+  );
+  const [selectedLightOptions, setSelectedLightOptions] = useState<string[]>(
+    [],
+  );
   const [percentageValuePage3, setPercentageValuePage3] = useState(0);
   const [percentageValuePage4, setPercentageValuePage4] = useState(0);
   const [percentageValuePage5, setPercentageValuePage5] = useState(0);

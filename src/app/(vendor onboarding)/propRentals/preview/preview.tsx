@@ -56,7 +56,7 @@ const audioOptions = [
   "recording equipment",
   "confrence and meeting equipment",
   "lighting equipment",
-  "others"
+  "others",
 ];
 
 const visualOptions = [
@@ -75,7 +75,7 @@ const visualOptions = [
   "presentaion aids",
   "VR and AR equipment",
   "ineractive display",
-  "Others"
+  "Others",
 ];
 
 const lightOptions = [
@@ -95,9 +95,8 @@ const lightOptions = [
   "lighting fixtures",
   "lighting controllers",
   "lighting accessories",
-  "Others"
+  "Others",
 ];
-
 
 type PricingEntry = {
   name: string;
@@ -180,8 +179,6 @@ type PagePreviewProps = {
   percentageValuePage5: number;
 };
 
-
-
 function preview({
   formState,
   selectedAppetizers,
@@ -200,7 +197,6 @@ function preview({
   advancePaymentCheckbox,
   percentageValuePage3,
   percentageValuePage4,
-
 }: PagePreviewProps) {
   return (
     <div>
@@ -212,7 +208,7 @@ function preview({
         <div className="ml-8 mr-4 flex justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
           1. General Information
           <div className="align-center flex justify-center p-1">
-            <button >
+            <button>
               <EditIcon size={32} />
             </button>
           </div>
@@ -238,20 +234,23 @@ function preview({
           </div>
           <div className="flex w-1/2 flex-col">
             <span className="text-xl">Years of experience</span>
-            <span className="mt-4 font-semibold">{formState.yearsOfExperience}</span>
+            <span className="mt-4 font-semibold">
+              {formState.yearsOfExperience}
+            </span>
           </div>
         </div>
 
         <div className="mx-8 mt-6 flex w-1/2 flex-col">
           <span className="text-xl">Number of workers</span>
-          <span className="mt-4 font-semibold">{formState.numberOfWorkers}</span>
+          <span className="mt-4 font-semibold">
+            {formState.numberOfWorkers}
+          </span>
         </div>
 
-
-        <div className="ml-8 mr-4 flex mt-6 justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
+        <div className="ml-8 mr-4 mt-6 flex justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
           2.Mandatory Details
           <div className="align-center flex justify-center p-1">
-            <button >
+            <button>
               <EditIcon size={32} />
             </button>
           </div>
@@ -260,29 +259,37 @@ function preview({
         <div className="mx-8 mt-6 flex gap-16">
           <div className="flex w-1/2 flex-col">
             <span className="text-xl">Insurance coverage policy</span>
-            <span className="mt-4 font-semibold">{formState.insurancePolicy}</span>
+            <span className="mt-4 font-semibold">
+              {formState.insurancePolicy}
+            </span>
           </div>
           <div className="flex w-1/2 flex-col">
             <span className="text-xl">Cancellation policy</span>
-            <span className="mt-4 font-semibold">{formState.cancellationPolicy}</span>
+            <span className="mt-4 font-semibold">
+              {formState.cancellationPolicy}
+            </span>
           </div>
         </div>
 
         <div className="mx-8 mt-6 flex gap-16">
           <div className="flex w-1/2 flex-col">
             <span className="text-xl">Terms and Conditions</span>
-            <span className="mt-4 font-semibold">{formState.termsAndConditions}</span>
+            <span className="mt-4 font-semibold">
+              {formState.termsAndConditions}
+            </span>
           </div>
           <div className="flex w-1/2 flex-col">
             <span className="text-xl">Privacy Policy</span>
-            <span className="mt-4 font-semibold">{formState.privacyPolicy}</span>
+            <span className="mt-4 font-semibold">
+              {formState.privacyPolicy}
+            </span>
           </div>
         </div>
 
         <div className="ml-8 mr-4 flex justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
           3. Furniture and Decor Rentals
           <div className="align-center flex justify-center p-1">
-            <button >
+            <button>
               <EditIcon size={32} />
             </button>
           </div>
@@ -298,7 +305,7 @@ function preview({
           </div>
         </div>
 
-        <div className="flex m-6 mt-4 flex-col">
+        <div className="m-6 mt-4 flex flex-col">
           <span className="text-xl">Selected Decor</span>
           <Appetizers
             appetizers={furnitureOptions}
@@ -306,7 +313,7 @@ function preview({
             setselectedAppetizers={setselectedAppetizers}
           />
         </div>
-        <div className="flex m-6 mt-6 flex-col">
+        <div className="m-6 mt-6 flex flex-col">
           <span className="text-xl">Selected Appetizers</span>
           <Appetizers
             appetizers={DecorOptions}
@@ -316,7 +323,7 @@ function preview({
         </div>
 
         <div>
-          <span className="font-semibold text-2xl ml-6 mb-4">
+          <span className="mb-4 ml-6 text-2xl font-semibold">
             Pricing Structure
           </span>
 
@@ -357,11 +364,10 @@ function preview({
           </div>
         </div>
 
-
         <div className="ml-8 mr-4 flex justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
           4. Tent and Canopy Rentals
           <div className="align-center flex justify-center p-1">
-            <button >
+            <button>
               <EditIcon size={32} />
             </button>
           </div>
@@ -377,7 +383,7 @@ function preview({
           </div>
         </div>
 
-        <div className="flex m-6 mt-4 flex-col">
+        <div className="m-6 mt-4 flex flex-col">
           <span className="text-xl">Tent and Canopy</span>
           <Appetizers
             appetizers={tentOptions}
@@ -388,7 +394,7 @@ function preview({
 
         {/* Pricing Structure section */}
         <div>
-          <span className="font-semibold text-2xl ml-6 mb-4">
+          <span className="mb-4 ml-6 text-2xl font-semibold">
             Pricing Structure
           </span>
 
@@ -432,7 +438,7 @@ function preview({
         <div className="ml-8 mr-4 flex justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
           5. Audio-Visual Equipment Rentals
           <div className="align-center flex justify-center p-1">
-            <button >
+            <button>
               <EditIcon size={32} />
             </button>
           </div>
@@ -448,7 +454,7 @@ function preview({
           </div>
         </div>
 
-        <div className="flex m-6 mt-4 flex-col">
+        <div className="m-6 mt-4 flex flex-col">
           <span className="text-xl">Audio Equipment</span>
           <Appetizers
             appetizers={audioOptions}
@@ -457,7 +463,7 @@ function preview({
           />
         </div>
 
-        <div className="flex m-6 mt-6 flex-col">
+        <div className="m-6 mt-6 flex flex-col">
           <span className="text-xl">Visual Equipment</span>
           <Appetizers
             appetizers={visualOptions}
@@ -466,7 +472,7 @@ function preview({
           />
         </div>
 
-        <div className="flex m-6 mt-6 flex-col">
+        <div className="m-6 mt-6 flex flex-col">
           <span className="text-xl">Light Equipment</span>
           <Appetizers
             appetizers={lightOptions}
@@ -476,7 +482,7 @@ function preview({
         </div>
 
         <div>
-          <span className="font-semibold text-2xl ml-6 mb-4">
+          <span className="mb-4 ml-6 text-2xl font-semibold">
             Pricing Structure
           </span>
 
