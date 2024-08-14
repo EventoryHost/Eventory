@@ -146,12 +146,15 @@ function page3({
   >([]);
 
 
-  const handleAddPricingEntry = (type: 'hourly' | 'deal' | 'worker', entry: PricingEntry) => {
-    if (type === 'hourly') {
+  const handleAddPricingEntry = (
+    type: "hourly" | "deal" | "worker",
+    entry: PricingEntry,
+  ) => {
+    if (type === "hourly") {
       sethourlypackageRates([...hourlypackageRates, entry]);
-    } else if (type === 'deal') {
+    } else if (type === "deal") {
       setdealpackageRates([...dealpackageRates, entry]);
-    } else if (type === 'worker') {
+    } else if (type === "worker") {
       setratesByWorkers([...ratesByWorkers, entry]);
     }
   };
@@ -204,8 +207,10 @@ function page3({
 
       <div className="scroll-touch flex max-h-[calc(100vh-5.2rem)] min-w-[70%] flex-col items-center gap-9 overflow-y-scroll bg-[#F7F6F9] p-2 md:p-[1rem]">
         <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
-          <h1 className="text-3xl  font-semibold mb-4">Fill out following details</h1>
-          <div className="flex max-w-max space-x-4 rounded-3xl border border-[#2E3192] p-4  overflow-hidden">
+          <h1 className="mb-4 text-3xl font-semibold">
+            Fill out following details
+          </h1>
+          <div className="flex max-w-max space-x-4 overflow-hidden rounded-3xl border border-[#2E3192] p-4">
             <button
               onClick={() => {
                 setSelectedCategory('Furniture & Decor')

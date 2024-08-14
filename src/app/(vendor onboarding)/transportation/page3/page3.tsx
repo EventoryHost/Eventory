@@ -115,7 +115,7 @@ const Page3 = ({
     const newVehicles = [...vehicles];
     newVehicles[index] = { ...newVehicles[index], [field]: value };
     setVehicles(newVehicles);
-    updateFormState(); 
+    updateFormState();
   };
 
   const handleServiceChange = (
