@@ -3,7 +3,7 @@
 import StepBar from "@/app/(components)/stepBar";
 import Appetizers from "@/app/(vendor onboarding)/propRentals/(components)/Appetizers";
 import { Upload } from "lucide-react";
-import { SetStateAction, useEffect, useState } from "react";
+import { SetStateAction, useState } from "react";
 import Page4, {
   page4Props,
 } from "@/app/(vendor onboarding)/propRentals/page4/page4";
@@ -115,7 +115,7 @@ type page3Props = {
   percentageValuePage5: number;
 };
 
-function page3({
+function Page3({
   selectedCategory,
   selectedAppetizers,
   setSelectedCategory,
@@ -719,4 +719,4 @@ function page3({
   );
 }
 
-export default page3;
+export default Page3;

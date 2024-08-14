@@ -55,8 +55,8 @@ const RootPage = () => {
     setFormState((prevState) => ({
       ...prevState,
       [key]:
-        typeof prevState[key] === "object"
-          ? { ...prevState[key], [nestedKey]: value }
+        typeof prevState[key] === 'object' && prevState[key] !== null && !Array.isArray(prevState[key])
+          ? { ...prevState[key] as Record<string, any>, [nestedKey]: value }
           : { [nestedKey]: value },
     }));
   };

@@ -53,7 +53,7 @@ export interface page1Props {
   percentageValuePage3: number;
 }
 
-const page1: React.FC<page1Props> = ({
+const Page1: React.FC<page1Props> = ({
   formState,
   handleChange,
   handleNestedChange,
@@ -177,4 +177,4 @@ const page1: React.FC<page1Props> = ({
   );
 };
 
-export default page1;
+export default Page1;

@@ -179,7 +179,7 @@ type PagePreviewProps = {
   percentageValuePage5: number;
 };
 
-function preview({
+function Preview({
   formState,
   selectedAppetizers,
   setselectedAppetizers,
@@ -527,4 +527,4 @@ function preview({
   );
 }
 
-export default preview;
+export default Preview;
