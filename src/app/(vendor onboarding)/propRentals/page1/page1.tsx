@@ -26,6 +26,9 @@ interface formState {
   yearsOfExperience: string;
   numberOfWorkers: string;
   handleChange: (key: string, value: any) => void;
+  percentageValuePage3: number;
+  percentageValuePage4: number;
+  percentageValuePage5: number;
 }
 
 export interface page1Props {
@@ -39,6 +42,15 @@ export interface page1Props {
   setselectedAppetizers: (value: SetStateAction<string[]>) => void;
   selectedDecor: string[];
   setSelectedDecor: (value: any) => void;
+  selectedTentOptions: string[];
+  setSelectedTentOptions: (value: any) => void;
+  selectedAudioOptions: string[];
+  setSelectedAudioOptions: (value: any) => void;
+  selectedvisualOptions: string[];
+  setSelectedVisualOptions: (value: any) => void;
+  selectedLightOptions: string[];
+  setSelectedLightOptions: (value: any) => void;
+  percentageValuePage3: number;
 }
 
 const page1: React.FC<page1Props> = ({

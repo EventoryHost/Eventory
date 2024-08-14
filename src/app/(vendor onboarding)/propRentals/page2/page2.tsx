@@ -21,6 +21,17 @@ export interface page2Props {
   setselectedAppetizers: (value: SetStateAction<string[]>) => void;
   selectedDecor: string[];
   setSelectedDecor: (value: any) => void;
+  selectedTentOptions: string[];
+  setSelectedTentOptions: (value: any) => void;
+  selectedAudioOptions: string[];
+  setSelectedAudioOptions: (value: any) => void;
+  selectedvisualOptions: string[];
+  setSelectedVisualOptions: (value: any) => void;
+  selectedLightOptions: string[];
+  setSelectedLightOptions: (value: any) => void;
+  percentageValuePage3: number;
+  percentageValuePage4: number;
+  percentageValuePage5: number;
 }
 
 const page2: React.FC<page2Props> = ({
