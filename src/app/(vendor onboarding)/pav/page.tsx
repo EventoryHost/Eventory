@@ -1,12 +1,11 @@
 "use client";
 
+import Page1 from "./components/page1";
+import Page2 from "./components/page2";
+import Page3 from "./components/page3";
+import Page4 from "./components/page4";
+import Page5 from "./components/page5";
 import React, { useState } from "react";
-import Page1 from "./(components)/page1";
-import Page3 from "./(components)/page3";
-import Page2 from "./(components)/page2";
-import Page4 from "./(components)/page4";
-import Page5 from "./(components)/page5";
-import Page6 from "./(components)/page6";
 import Image from "next/image";
 
 const Page = () => {
@@ -115,61 +114,57 @@ const Page = () => {
           <Page2
             selectedAppetizers={selectedAppetizers}
             setSelectedAppetizers={setSelectedAppetizers}
-            selectedBeverages={selectedBeverages}
-            setSelectedBeverages={setSelectedBeverages}
-            selectedMainCourses={selectedMainCourses}
-            setSelectedMainCourses={setSelectedMainCourses}
-            selectedDietaryOptions={selectedDietaryOptions}
-            setSelectedDietaryOptions={setSelectedDietaryOptions}
-            handleSubmit={() => setCurrentPage(3)}
+            handleContinue={() => setCurrentPage(3)}
           />
         );
-      case 3:
-        return (
-          <Page3
-            selectedAppetizers={eventTypes}
-            setSelectedAppetizers={setEventTypes}
-            selectedBeverages={additionalServices}
-            setSelectedBeverages={setAdditionalServices}
+        case 3:
+          return (
+            <Page3
+            selectedAppetizers={selectedAppetizers}
+            setSelectedAppetizers={setSelectedAppetizers}
             handleContinue={() => setCurrentPage(4)}
-          />
-        );
-      case 4:
-        return (
-          <Page4
-            selectedAppetizers={staffProvides}
-            setSelectedAppetizers={setStaffProvides}
-            selectedBeverages={equipmentsProvided}
-            setSelectedBeverages={setEquipmentsProvided}
+            />
+          );
+        case 4:
+          return (
+            <Page4
+            businessName={businessName}
+            setBusinessName={setBusinessName}
+            cuisineSpecialties={cuisineSpecialties}
+            setCuisineSpecialties={setCuisineSpecialties}
+            regionalSpecialties={regionalSpecialties}
+            setRegionalSpecialties={setRegionalSpecialties}
+            serviceStyles={serviceStyles}
+            setServiceStyles={setServiceStyles}
             handleContinue={() => setCurrentPage(5)}
-          />
-        );
-      case 5:
-        return (
-          <Page5
-            hourlyPackages={hourlyPackages}
-            setHourlyPackages={setHourlyPackages}
-            dailyPackages={dailyPackages}
-            setDailyPackages={setDailyPackages}
-            seasonalPackages={seasonalPackages}
-            setSeasonalPackages={setSeasonalPackages}
-            handlePackageChange={handlePackageChange}
-            addPackage={addPackage}
-            handleContinue={() => setCurrentPage(6)}
-          />
-        );
-      case 6:
-        return (
-          <Page6
-            tastingSessions={tastingSessions}
-            setTastingSessions={setTastingSessions}
-            businessLicenses={businessLicenses}
-            setBusinessLicenses={setBusinessLicenses}
-            foodSafety={foodSafety}
-            setFoodSafety={setFoodSafety}
-            handleContinue={handleContinue}
-          />
-        );
+            />
+          );
+        case 5:
+          return (
+            <Page5
+              hourlyPackages={hourlyPackages}
+              setHourlyPackages={setHourlyPackages}
+              dailyPackages={dailyPackages}
+              setDailyPackages={setDailyPackages}
+              seasonalPackages={seasonalPackages}
+              setSeasonalPackages={setSeasonalPackages}
+              handlePackageChange={handlePackageChange}
+              addPackage={addPackage}
+              handleContinue={() => setCurrentPage(6)}
+            />
+          );
+      //   case 6:
+      //     return (
+      //       <Page6
+      //         tastingSessions={tastingSessions}
+      //         setTastingSessions={setTastingSessions}
+      //         businessLicenses={businessLicenses}
+      //         setBusinessLicenses={setBusinessLicenses}
+      //         foodSafety={foodSafety}
+      //         setFoodSafety={setFoodSafety}
+      //         handleContinue={handleContinue}
+      //       />
+      //     );
       default:
         return <div>Completed</div>;
     }

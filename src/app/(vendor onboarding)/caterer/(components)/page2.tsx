@@ -35,7 +35,7 @@ const Page2 = ({
     <form className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll rounded-xl bg-white p-3 xs:w-[100%] xs:min-w-[90%] md:p-6">
       <h1 className="my-5 text-3xl font-semibold">Menu Details</h1>
       <div className="flex min-h-full min-w-full flex-col items-start justify-around gap-5">
-        <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
+        <div className="flex min-w-full flex-col items-start justify-between gap-5 ">
           <div className="flex min-w-fit flex-col gap-4">
             <label htmlFor="appetizers">Appetizers</label>
             <Appetizers
@@ -76,8 +76,7 @@ const Page2 = ({
             />
           </div>
         </div>
-      </div>
-      <button
+        <button
         className="flex w-fit items-center justify-center self-end rounded-xl bg-[#2E3192] p-5 text-white xs:text-[4vw] md:text-[2vw] lg:w-[10vw] lg:text-[1vw]"
         onClick={() => {
           console.log({
@@ -91,6 +90,8 @@ const Page2 = ({
       >
         Submit
       </button>
+      </div>
+      
     </form>
   );
 };
