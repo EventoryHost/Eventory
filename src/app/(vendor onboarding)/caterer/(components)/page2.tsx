@@ -17,7 +17,7 @@ type Page2Props = {
   setSelectedMainCourses: React.Dispatch<React.SetStateAction<string[]>>;
   selectedDietaryOptions: string[];
   setSelectedDietaryOptions: React.Dispatch<React.SetStateAction<string[]>>;
-  handleSubmit: () => void;
+  handleContinue: () => void;
 };
 
 const Page2 = ({
@@ -29,7 +29,7 @@ const Page2 = ({
   setSelectedMainCourses,
   selectedDietaryOptions,
   setSelectedDietaryOptions,
-  handleSubmit,
+  handleContinue,
 }: Page2Props) => {
   return (
     <form className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll rounded-xl bg-white p-3 xs:w-[100%] xs:min-w-[90%] md:p-6">
@@ -76,19 +76,19 @@ const Page2 = ({
             />
           </div>
         </div>
+      </div>
+      <div className="items-strech mt-9 flex flex-row gap-7 self-end">
         <button
-          className="flex w-fit items-center justify-center self-end rounded-xl bg-[#2E3192] p-5 text-white xs:text-[4vw] md:text-[2vw] lg:w-[10vw] lg:text-[1vw]"
-          onClick={() => {
-            console.log({
-              selectedAppetizers,
-              selectedBeverages,
-              selectedMainCourses,
-              selectedDietaryOptions,
-            });
-            handleSubmit();
-          }}
+          className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+          onClick={handleContinue}
         >
-          Submit
+          Skip
+        </button>
+        <button
+          className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+          onClick={handleContinue}
+        >
+          Continue
         </button>
       </div>
     </form>

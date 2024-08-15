@@ -2,26 +2,17 @@
 
 import React, { useState } from "react";
 import { Upload } from "lucide-react";
+import { FormState } from "../page";
 
 interface Page6Props {
-  tastingSessions: boolean;
-  setTastingSessions: (value: boolean) => void;
-  businessLicenses: boolean;
-  setBusinessLicenses: (value: boolean) => void;
-  foodSafety: boolean;
-  setFoodSafety: (value: boolean) => void;
+  formState: FormState;
+  updateFormState: (newState: Partial<FormState>) => void;
   handleContinue: () => void;
 }
 
-const Page6 = ({
-  tastingSessions,
-  setTastingSessions,
-  businessLicenses,
-  setBusinessLicenses,
-  foodSafety,
-  setFoodSafety,
-  handleContinue,
-}: Page6Props) => {
+const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
+  const { tastingSessions, businessLicenses, foodSafety } = formState;
+
   return (
     <form className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden overflow-x-hidden lg:flex-row">
       <div className="flex min-w-[100%] flex-col items-center overflow-y-scroll bg-[#F7F6F9] p-2 md:p-[1rem]">
@@ -39,7 +30,9 @@ const Page6 = ({
                       name="tastingSessions"
                       value="true"
                       checked={tastingSessions}
-                      onChange={() => setTastingSessions(true)}
+                      onChange={() =>
+                        updateFormState({ tastingSessions: true })
+                      }
                     />
                     <label htmlFor="tastingSessionsYes">Yes</label>
                   </div>
@@ -50,7 +43,9 @@ const Page6 = ({
                       name="tastingSessions"
                       value="false"
                       checked={!tastingSessions}
-                      onChange={() => setTastingSessions(false)}
+                      onChange={() =>
+                        updateFormState({ tastingSessions: false })
+                      }
                     />
                     <label htmlFor="tastingSessionsNo">No</label>
                   </div>
@@ -61,6 +56,19 @@ const Page6 = ({
                 <button className="mt-5 flex items-center justify-center gap-5 rounded-xl border-2 border-dashed border-gray-400 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
                   <Upload />
                   Upload
+                  <input
+                    type="file"
+                    id="cateringServiceImages"
+                    name="cateringServiceImages"
+                    accept="image/png, .pdf, image/jpg"
+                    // className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
+                    onChange={(e) => {
+                      const file = e.target.files![0];
+                      updateFormState({
+                        cateringServiceImages: e.target.files![0],
+                      });
+                    }}
+                  />
                 </button>
               </div>
             </div>
@@ -75,7 +83,9 @@ const Page6 = ({
                       name="businessLicense"
                       value="true"
                       checked={businessLicenses}
-                      onChange={() => setBusinessLicenses(true)}
+                      onChange={() =>
+                        updateFormState({ businessLicenses: true })
+                      }
                     />
                     <label htmlFor="businessLicenseYes">Yes</label>
                   </div>
@@ -86,7 +96,9 @@ const Page6 = ({
                       name="businessLicense"
                       value="false"
                       checked={!businessLicenses}
-                      onChange={() => setBusinessLicenses(false)}
+                      onChange={() =>
+                        updateFormState({ businessLicenses: false })
+                      }
                     />
                     <label htmlFor="businessLicenseNo">No</label>
                   </div>
@@ -97,6 +109,19 @@ const Page6 = ({
                 <button className="mt-5 flex items-center justify-center gap-5 rounded-xl border-2 border-dashed border-gray-400 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
                   <Upload />
                   Upload
+                  <input
+                    type="file"
+                    id="videoEvent"
+                    name="videoEvent"
+                    accept=".mp4, .avi, .mov, .wmv"
+                    // className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
+                    onChange={(e) => {
+                      const file = e.target.files![0];
+                      updateFormState({
+                        videoEvent: e.target.files![0],
+                      });
+                    }}
+                  />
                 </button>
               </div>
             </div>
@@ -111,7 +136,7 @@ const Page6 = ({
                       name="foodSafety"
                       value="true"
                       checked={foodSafety}
-                      onChange={() => setFoodSafety(true)}
+                      onChange={() => updateFormState({ foodSafety: true })}
                     />
                     <label htmlFor="foodSafetyYes">Yes</label>
                   </div>
@@ -122,7 +147,7 @@ const Page6 = ({
                       name="foodSafety"
                       value="false"
                       checked={!foodSafety}
-                      onChange={() => setFoodSafety(false)}
+                      onChange={() => updateFormState({ foodSafety: false })}
                     />
                     <label htmlFor="foodSafetyNo">No</label>
                   </div>
@@ -132,6 +157,19 @@ const Page6 = ({
                   <button className="mt-5 flex items-center justify-center gap-5 rounded-xl border-2 border-dashed border-gray-400 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
                     <Upload />
                     Upload
+                    <input
+                      type="file"
+                      id="termsAndConditions"
+                      name="termsAndConditions"
+                      accept="image/png, .pdf, image/jpg"
+                      // className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
+                      onChange={(e) => {
+                        const file = e.target.files![0];
+                        updateFormState({
+                          termsAndConditions: e.target.files![0],
+                        });
+                      }}
+                    />
                   </button>
                   <p className="mt-5 text-lg">or Provide Via</p>
                   <textarea
@@ -147,6 +185,19 @@ const Page6 = ({
                 <button className="mt-5 flex items-center justify-center gap-5 rounded-xl border-2 border-dashed border-gray-400 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
                   <Upload />
                   Upload
+                  <input
+                    type="file"
+                    id="cancellationPolicy"
+                    name="cancellationPolicy"
+                    accept="image/png, .pdf, image/jpg"
+                    // className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
+                    onChange={(e) => {
+                      const file = e.target.files![0];
+                      updateFormState({
+                        cancellationPolicy: e.target.files![0],
+                      });
+                    }}
+                  />
                 </button>
                 <p className="mt-5 text-lg">or Provide Via</p>
                 <textarea
@@ -164,13 +215,19 @@ const Page6 = ({
             <div className="items-strech mt-9 flex flex-row gap-7 self-end">
               <button
                 className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={handleContinue}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleContinue();
+                }}
               >
                 Skip
               </button>
               <button
                 className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={handleContinue}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleContinue();
+                }}
               >
                 Continue
               </button>

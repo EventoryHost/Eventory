@@ -33,12 +33,7 @@ interface ComboboxProps {
   setFunction: (value: string) => void;
 }
 
-export function Combobox({
-  options,
-  className,
-  placeholder = "Select framework...",
-  setFunction,
-}: ComboboxProps) {
+export function Combobox(props: ComboboxProps) {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
 
@@ -49,28 +44,31 @@ export function Combobox({
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className={cn("w-[100%] min-w-[245px] justify-between", className)}
+          className={cn(
+            "w-[100%] min-w-[245px] justify-between",
+            props.className,
+          )}
         >
           {value
-            ? options.find((option) => option.value === value)?.label
-            : placeholder}
+            ? props.options.find((option) => option.value === value)?.label
+            : props.placeholder}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[200px] p-0">
+      <PopoverContent className="p-0[n w-[250px]">
         <Command>
           <CommandInput placeholder="Search framework..." />
           <CommandList>
             <CommandEmpty>No framework found.</CommandEmpty>
             <CommandGroup>
-              {options.map((option) => (
+              {props.options.map((option) => (
                 <CommandItem
                   key={option.value}
                   value={option.value}
                   onSelect={(currentValue) => {
                     setValue(currentValue === value ? "" : currentValue);
                     setOpen(false);
-                    setFunction(currentValue);
+                    props.setFunction(currentValue);
                   }}
                 >
                   <Check

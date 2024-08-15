@@ -5,7 +5,7 @@ import { ComboboxDemo } from "@/components/dropdown";
 import { Dropdown } from "react-day-picker";
 import { Combobox } from "@/components/ui/combobox";
 import { ArrowUpSquare, Upload } from "lucide-react";
-import Appetizers from "./(components)/Appetizers";
+import Appetizers from "../(components)/Appetizers";
 
 const decorType = [
   { value: "indoor", label: "Inhouse Decor" },
@@ -14,69 +14,55 @@ const decorType = [
 ];
 
 const audioVisualEquipment = [
-  "Microphones",
-  "Speakers",
-  "Audio Mixers",
   "Amplifiers",
-  "Projection Screens",
-  "Lcd Projectors",
+  "Audio Mixers",
+  "Camcorders",
   "Dlp Projectors",
   "Led Screens",
-  "Ptz Cameras", // PTZ (Pan-Tilt-Zoom) Cameras
+  "Lcd Projectors",
+  "Microphones",
   "Monitors",
-  "Camcorders",
   "Others",
+  "Ptz Cameras", // PTZ (Pan-Tilt-Zoom) Cameras
+  "Projection Screens",
+  "Speakers",
 ];
 
 const accessibilityFeatures = [
-  "Wheelchair Access",
-  "Restrooms",
-  "Parkings",
-  "Clear Pathways",
-  "Interpreters",
-  "Braille Screens",
-  "Screen Readers",
   "Audio Descriptions",
+  "Braille Screens",
+  "Clear Pathways",
+  "Emergency Procedures",
   "Hearing Loops",
+  "Interpreters",
+  "Others",
+  "Parkings",
+  "Restrooms",
+  "Screen Readers",
   "Sensory Rooms",
   "Visual Sign Support",
-  "Emergency Procedures",
-  "Others",
+  "Wheelchair Access",
 ];
 
 const facilities = [
-  "High Speed Internet",
-  "Charging Stations",
-  "Fill Hvac Control", // Assuming 'fill_hug_te_control' is a typo
   "Av Equipments",
   "Banquet Hall",
-  "Garden Area",
   "Bridal Room",
-  "Storage Area",
+  "Charging Stations",
+  "Fill Hvac Control", // Assuming 'fill_hug_te_control' is a typo
   "First Aid Equipments",
+  "Garden Area",
+  "High Speed Internet",
   "Others",
+  "Storage Area",
 ];
 
 const Page = () => {
-  const [businessName, setBusinessName] = useState("");
-  const [category, setCategory] = useState("");
-  const [gstin, setGstin] = useState("");
-  const [years, setYears] = useState("");
-  const [businessAddress, setBusinessAddress] = useState("");
-  const [landmark, setLandmark] = useState("");
-  const [pinCode, setPinCode] = useState("");
-  const [cities, setCities] = useState("");
+  const [decortype, setdecortype] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Business Name:", businessName);
-    console.log("Category:", category);
-    console.log("GSTIN:", gstin);
-    console.log("Years in Operation:", years);
-    console.log("Business Address:", businessAddress);
-    console.log("Landmark:", landmark);
-    console.log("Pin Code:", pinCode);
-    console.log("Operational Cities:", cities);
+    console.log("DecorType:", decortype);
   };
 
   return (
@@ -134,11 +120,11 @@ const Page = () => {
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-start justify-between gap-2">
               <div className="flex min-w-[40%] flex-col gap-4">
-                <label htmlFor="category">Venue Type</label>
+                <label htmlFor="category">Decor Services</label>
                 <Combobox
                   options={decorType}
                   placeholder="Select Decor Type"
-                  setFunction={setYears}
+                  setFunction={setdecortype}
                   className="flex items-center justify-between rounded-xl border-2 py-6 hover:text-[#2E3192]"
                 />
               </div>
