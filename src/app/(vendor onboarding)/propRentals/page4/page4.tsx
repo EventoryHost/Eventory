@@ -89,6 +89,8 @@ export interface page4Props {
   percentageValuePage5: number;
   formState: FormState;
   handleChange: (key: keyof FormState, value: any) => void;
+  pricingEntries: any;
+  handleAddPricingEntry: (entry: PricingEntry) => void;
 }
 
 function Page4({

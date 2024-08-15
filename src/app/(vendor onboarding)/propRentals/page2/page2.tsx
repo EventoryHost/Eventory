@@ -10,6 +10,12 @@ interface formState {
   handleChange: (key: string, value: any) => void;
 }
 
+type PricingEntry = {
+  name: string;
+  min: number;
+  max: number;
+};
+
 export interface page2Props {
   formState: formState;
   handleChange: (key: string, value: any) => void;
@@ -32,6 +38,12 @@ export interface page2Props {
   percentageValuePage3: number;
   percentageValuePage4: number;
   percentageValuePage5: number;
+  pricingEntries: any;
+  tentPricingEntries: any;
+  audioPricingEntries: any;
+  handleAddPricingEntry: (entry: PricingEntry) => void;
+  handleAddTentPricingEntry: (entry: PricingEntry) => void;
+  handleAddAudioPricingEntry: (entry: PricingEntry) => void;
 }
 
 const Page2: React.FC<page2Props> = ({

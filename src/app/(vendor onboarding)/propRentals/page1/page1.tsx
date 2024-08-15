@@ -1,7 +1,6 @@
 "use client";
 
 import StepBar from "@/app/(components)/stepBar";
-import ThreeStepBar from "@/app/(components)/threeStepBar";
 import { Combobox } from "@/components/ui/combobox";
 import React, { SetStateAction } from "react";
 
@@ -29,7 +28,14 @@ interface formState {
   percentageValuePage3: number;
   percentageValuePage4: number;
   percentageValuePage5: number;
+
 }
+
+type PricingEntry = {
+  name: string;
+  min: number;
+  max: number;
+};
 
 export interface page1Props {
   formState: formState;
@@ -51,6 +57,12 @@ export interface page1Props {
   selectedLightOptions: string[];
   setSelectedLightOptions: (value: any) => void;
   percentageValuePage3: number;
+  pricingEntries: any;
+  tentPricingEntries: any;
+  audioPricingEntries: any;
+  handleAddPricingEntry: (entry: PricingEntry) => void;
+  handleAddTentPricingEntry: (entry: PricingEntry) => void;
+  handleAddAudioPricingEntry: (entry: PricingEntry) => void;
 }
 
 const Page1: React.FC<page1Props> = ({

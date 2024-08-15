@@ -28,6 +28,8 @@ type FormState = {
   selectedAppetizers: string[];
   selectedDecor: string[];
   pricingEntries: PricingEntry[];
+  tentPricingEntries: PricingEntry[];
+  audioPricingEntries: PricingEntry[];
   hourlyCheckbox: boolean;
   packageTypePage3: string;
   packageMinRate: string;
@@ -81,6 +83,8 @@ const RootPage = () => {
     selectedAppetizers: [],
     selectedDecor: [],
     pricingEntries: [],
+    tentPricingEntries: [],
+    audioPricingEntries: [],
 
     hourlyCheckbox: false,
     packageTypePage3: "",
@@ -131,14 +135,35 @@ const RootPage = () => {
     }));
   };
 
-  const addPricingEntry = () => {
+  const handleAddPricingEntry = (entry: PricingEntry) => {
     setFormState((prevState) => ({
       ...prevState,
       pricingEntries: [
         ...prevState.pricingEntries,
-        { name: "", min: 0, max: 0 },
+        entry,
       ],
     }));
+    console.log(formState.pricingEntries);
+  };
+  const handleAddTentPricingEntry = (entry: PricingEntry) => {
+    setFormState((prevState) => ({
+      ...prevState,
+      tentPricingEntries: [
+        ...prevState.tentPricingEntries,
+        entry,
+      ],
+    }));
+    console.log(formState.tentPricingEntries);
+  };
+  const handleAddAudioPricingEntry = (entry: PricingEntry) => {
+    setFormState((prevState) => ({
+      ...prevState,
+      audioPricingEntries: [
+        ...prevState.audioPricingEntries,
+        entry,
+      ],
+    }));
+    console.log(formState.audioPricingEntries);
   };
 
   // Function to handle changes for nested fields
@@ -210,6 +235,13 @@ const RootPage = () => {
         percentageValuePage3={percentageValuePage3}
         percentageValuePage4={percentageValuePage4}
         percentageValuePage5={percentageValuePage5}
+        pricingEntries={formState.pricingEntries}
+        tentPricingEntries={formState.tentPricingEntries}
+        audioPricingEntries={formState.audioPricingEntries}
+        handleAddPricingEntry={handleAddPricingEntry}
+        handleAddTentPricingEntry={handleAddTentPricingEntry}
+        handleAddAudioPricingEntry={handleAddAudioPricingEntry}
+
       />
       <div className="my-9 mr-[5%] flex flex-row justify-end gap-7">
         {currentPage > 0 && (

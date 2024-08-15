@@ -3,7 +3,7 @@
 import StepBar from "@/app/(components)/stepBar";
 import Appetizers from "@/app/(vendor onboarding)/propRentals/(components)/Appetizers";
 import { Upload } from "lucide-react";
-import { SetStateAction, useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
 import Page4, {
   page4Props,
 } from "@/app/(vendor onboarding)/propRentals/page4/page4";
@@ -60,6 +60,8 @@ type FormState = {
   selectedAppetizers: string[];
   selectedDecor: string[];
   pricingEntries: PricingEntry[];
+  tentPricingEntries: PricingEntry[];
+  audioPricingEntries: PricingEntry[];
   hourlyCheckbox: boolean;
   packageTypePage3: string;
   packageMinRate: string;
@@ -113,7 +115,15 @@ type page3Props = {
   percentageValuePage3: number;
   percentageValuePage4: number;
   percentageValuePage5: number;
+  pricingEntries: PricingEntry[];
+  tentPricingEntries: PricingEntry[];
+  audioPricingEntries: PricingEntry[];
+  handleAddPricingEntry: (entry: PricingEntry) => void;
+  handleAddTentPricingEntry: (entry: PricingEntry) => void;
+  handleAddAudioPricingEntry: (entry: PricingEntry) => void;
 };
+
+
 
 function Page3({
   selectedCategory,
@@ -137,25 +147,15 @@ function Page3({
   formState,
   setFormState,
   advancePaymentCheckbox,
+  pricingEntries,
+  tentPricingEntries,
+  audioPricingEntries,
+  handleAddPricingEntry,
+  handleAddTentPricingEntry,
+  handleAddAudioPricingEntry,
 }: page3Props & page4Props & page5Props) {
-  const [hourlypackageRates, sethourlypackageRates] = useState<PricingEntry[]>(
-    [],
-  );
-  const [dealpackageRates, setdealpackageRates] = useState<PricingEntry[]>([]);
-  const [ratesByWorkers, setratesByWorkers] = useState<PricingEntry[]>([]);
 
-  const handleAddPricingEntry = (
-    type: "hourly" | "deal" | "worker",
-    entry: PricingEntry,
-  ) => {
-    if (type === "hourly") {
-      sethourlypackageRates([...hourlypackageRates, entry]);
-    } else if (type === "deal") {
-      setdealpackageRates([...dealpackageRates, entry]);
-    } else if (type === "worker") {
-      setratesByWorkers([...ratesByWorkers, entry]);
-    }
-  };
+  
 
   const [formPage, setFormPage] = useState(1);
   const handleCategorySelection = (category: string) => {
@@ -300,7 +300,7 @@ function Page3({
                   <form
                     onSubmit={(e) => {
                       e.preventDefault();
-                      const form = e.currentTarget as HTMLFormElement; // Type assertion to HTMLFormElement
+                      const form = e.currentTarget as HTMLFormElement;
                       const name = (
                         form.elements.namedItem("name") as HTMLInputElement
                       ).value;
@@ -312,7 +312,7 @@ function Page3({
                         (form.elements.namedItem("maxRate") as HTMLInputElement)
                           .value,
                       );
-                      handleAddPricingEntry("hourly", {
+                      handleAddPricingEntry({
                         name,
                         min: minRate,
                         max: maxRate,
@@ -359,14 +359,16 @@ function Page3({
                       </button>
                     </div>
                   </form>
-
                   <ul>
-                    {hourlypackageRates.map((entry, index) => (
+                    {formState.pricingEntries.map((entry, index) => (
                       <li
                         key={index}
                       >{`${entry.name}: ${entry.min} - ${entry.max}`}</li>
                     ))}
                   </ul>
+
+
+                  
                 </div>
 
                 <div className="mt-8 flex flex-col gap-5">
@@ -386,7 +388,7 @@ function Page3({
                         (form.elements.namedItem("maxRate") as HTMLInputElement)
                           .value,
                       );
-                      handleAddPricingEntry("deal", {
+                      handleAddTentPricingEntry({
                         name,
                         min: minRate,
                         max: maxRate,
@@ -434,7 +436,7 @@ function Page3({
                     </div>
                   </form>
                   <ul>
-                    {dealpackageRates.map((entry, index) => (
+                    {formState.tentPricingEntries.map((entry, index) => (
                       <li
                         key={index}
                       >{`${entry.name}: ${entry.min} - ${entry.max}`}</li>
@@ -459,7 +461,7 @@ function Page3({
                         (form.elements.namedItem("maxRate") as HTMLInputElement)
                           .value,
                       );
-                      handleAddPricingEntry("worker", {
+                      handleAddAudioPricingEntry({
                         name,
                         min: minRate,
                         max: maxRate,
@@ -507,7 +509,7 @@ function Page3({
                     </div>
                   </form>
                   <ul>
-                    {ratesByWorkers.map((entry, index) => (
+                    {formState.audioPricingEntries.map((entry, index) => (
                       <li
                         key={index}
                       >{`${entry.name}: ${entry.min} - ${entry.max}`}</li>
@@ -518,7 +520,7 @@ function Page3({
                     <input
                       type="checkbox"
                       className="h-6 w-6 appearance-none rounded-lg border-2 border-[#2E3192] bg-white checked:bg-[#2E3192] focus:outline-none"
-                      // checked={formState.advancedPaymentCheckbox}
+                      checked={formState.advancedPaymentCheckbox}
                       onChange={(e) =>
                         handleChange(
                           "advancedPaymentCheckbox",
@@ -592,7 +594,7 @@ function Page3({
                   privacyPolicy: string;
                   selectedAppetizers: string[];
                   selectedDecor: string[];
-                  pricingEntries: { name: string; min: number; max: number }[];
+                  pricingEntries: { name: string; min: number; max: number; }[];
                   hourlyCheckbox: boolean;
                   packageTypePage3: string;
                   packageMinRate: string;
@@ -618,7 +620,7 @@ function Page3({
                   workerCheckboxPage5: boolean;
                   advancedPaymentCheckboxPage5: boolean;
                 },
-                value: any,
+                value: any
               ): void {
                 throw new Error("Function not implemented.");
               },
@@ -669,7 +671,7 @@ function Page3({
                 privacyPolicy: string;
                 selectedAppetizers: string[];
                 selectedDecor: string[];
-                pricingEntries: { name: string; min: number; max: number }[];
+                pricingEntries: { name: string; min: number; max: number; }[];
                 hourlyCheckbox: boolean;
                 packageTypePage3: string;
                 packageMinRate: string;
@@ -695,11 +697,12 @@ function Page3({
                 workerCheckboxPage5: boolean;
                 advancedPaymentCheckboxPage5: boolean;
               },
-              value: any,
+              value: any
             ): void {
               throw new Error("Function not implemented.");
-            }}
-          />
+            } } pricingEntries={undefined} handleAddPricingEntry={function (): void {
+              throw new Error("Function not implemented.");
+            } }          />
         )}
 
         {selectedCategory === "Audio-Visual" && (
@@ -711,8 +714,9 @@ function Page3({
             selectedLightOptions={selectedLightOptions}
             setSelectedLightOptions={setSelectedLightOptions}
             percentageValuePage4={0}
-            percentageValuePage5={0}
-          />
+            percentageValuePage5={0} pricingEntries={undefined} handleAddPricingEntry={function (): void {
+              throw new Error("Function not implemented.");
+            } }          />
         )}
       </div>
     </div>
