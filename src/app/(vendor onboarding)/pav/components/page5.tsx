@@ -85,7 +85,7 @@ const Page5: React.FC<PageProps> = ({
               className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row"
             >
               <div className="flex min-w-[40%] flex-col gap-4">
-                <div className="flex items-center w-[100%] justify-start gap-2">
+                <div className="flex w-[100%] items-center justify-start gap-2">
                   <Checkbox
                     sx={{
                       "&.Mui-checked": {
@@ -248,12 +248,12 @@ const Page5: React.FC<PageProps> = ({
 
         <div className="flex w-[100%] flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
-          <div
+            <div
               key={-1}
               className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row"
             >
               <div className="flex min-w-[40%] flex-col gap-4">
-                <div className="flex items-center w-[100%] justify-start gap-2">
+                <div className="flex w-[100%] items-center justify-start gap-2">
                   <Checkbox
                     sx={{
                       "&.Mui-checked": {

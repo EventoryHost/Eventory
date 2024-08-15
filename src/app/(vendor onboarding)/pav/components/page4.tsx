@@ -42,8 +42,8 @@ const Page1 = ({
   return (
     <form className="flex flex-col items-start gap-7 overflow-y-scroll rounded-xl bg-white p-3 xs:w-[100%] xs:min-w-[90%] xs:justify-start md:p-6">
       <h1 className="text-3xl font-semibold">Basic Details</h1>
-      <div className="flex md:flex-row flex-col min-w-[100%] items-start justify-between gap-9">
-        <div className="flex h-[100%] md:w-[50%] flex-col items-start justify-between gap-9">
+      <div className="flex min-w-[100%] flex-col items-start justify-between gap-9 md:flex-row">
+        <div className="flex h-[100%] flex-col items-start justify-between gap-9 md:w-[50%]">
           <div className="flex flex-col gap-5">
             <p className="text-md font-md">
               do you provide design proposals to clients ?
@@ -83,9 +83,7 @@ const Page1 = ({
             </div>
           </div>
           <div className="flex flex-col gap-5">
-            <p className="text-md font-md">
-              do you provide advance set-up ?
-            </p>
+            <p className="text-md font-md">do you provide advance set-up ?</p>
             <div className="flex gap-7">
               <div className="flex items-center gap-3">
                 <input type="radio" />
@@ -159,7 +157,7 @@ const Page1 = ({
             </div>
           </div>
         </div>
-        <div className="flex h-[100%] md:w-[50%] flex-col items-start justify-start gap-9">
+        <div className="flex h-[100%] flex-col items-start justify-start gap-9 md:w-[50%]">
           <div className="flex w-[100%] flex-col gap-1">
             <label htmlFor="businessName">Client Testimonials</label>
             <button className="mt-5 flex w-fit items-center justify-center gap-5 rounded-xl border-2 border-dashed border-gray-400 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">

@@ -82,7 +82,7 @@ const Organization = ({
               setFunction={(val) => {
                 setBusinessDetails({ ...businessDetails, cities: [val] });
               }}
-              className="flex items-center justify-between rounded-xl border-2 mt-3 py-6 hover:text-[#2E3192]"
+              className="mt-3 flex items-center justify-between rounded-xl border-2 py-6 hover:text-[#2E3192]"
             />
           </div>
           <div className="flex w-[100%] flex-col gap-1">

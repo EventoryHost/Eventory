@@ -46,9 +46,9 @@ const Page1 = ({
 }: Page1Props) => {
   return (
     <form className="flex h-[100%] flex-col items-start gap-7 overflow-y-scroll rounded-xl p-3 xs:w-[100%] xs:min-w-[90%] xs:justify-start md:p-6">
-      <div className="flex md:flex-row flex-col w-[100%] justify-start gap-9 rounded-xl bg-white p-5">
+      <div className="flex w-[100%] flex-col justify-start gap-9 rounded-xl bg-white p-5 md:flex-row">
         <h1 className="text-3xl font-semibold">Basic Details</h1>
-        <div className="flex md:flex-row flex-col gap-5">
+        <div className="flex flex-col gap-5 md:flex-row">
           <div className="flex items-center gap-3">
             <input type="radio" />
             <label htmlFor="radio">Both</label>
@@ -105,19 +105,19 @@ const Page1 = ({
                 </div>
               </div>
               <div className="items-strech mt-9 flex flex-row gap-7 self-end">
-              <button
-                className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={handleContinue}
-              >
-                Skip
-              </button>
-              <button
-                className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={handleContinue}
-              >
-                Continue
-              </button>
-            </div>
+                <button
+                  className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+                  onClick={handleContinue}
+                >
+                  Skip
+                </button>
+                <button
+                  className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+                  onClick={handleContinue}
+                >
+                  Continue
+                </button>
+              </div>
             </div>
           </div>
         </div>

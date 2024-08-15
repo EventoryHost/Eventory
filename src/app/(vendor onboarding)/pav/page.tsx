@@ -117,17 +117,17 @@ const Page = () => {
             handleContinue={() => setCurrentPage(3)}
           />
         );
-        case 3:
-          return (
-            <Page3
+      case 3:
+        return (
+          <Page3
             selectedAppetizers={selectedAppetizers}
             setSelectedAppetizers={setSelectedAppetizers}
             handleContinue={() => setCurrentPage(4)}
-            />
-          );
-        case 4:
-          return (
-            <Page4
+          />
+        );
+      case 4:
+        return (
+          <Page4
             businessName={businessName}
             setBusinessName={setBusinessName}
             cuisineSpecialties={cuisineSpecialties}
@@ -137,22 +137,22 @@ const Page = () => {
             serviceStyles={serviceStyles}
             setServiceStyles={setServiceStyles}
             handleContinue={() => setCurrentPage(5)}
-            />
-          );
-        case 5:
-          return (
-            <Page5
-              hourlyPackages={hourlyPackages}
-              setHourlyPackages={setHourlyPackages}
-              dailyPackages={dailyPackages}
-              setDailyPackages={setDailyPackages}
-              seasonalPackages={seasonalPackages}
-              setSeasonalPackages={setSeasonalPackages}
-              handlePackageChange={handlePackageChange}
-              addPackage={addPackage}
-              handleContinue={() => setCurrentPage(6)}
-            />
-          );
+          />
+        );
+      case 5:
+        return (
+          <Page5
+            hourlyPackages={hourlyPackages}
+            setHourlyPackages={setHourlyPackages}
+            dailyPackages={dailyPackages}
+            setDailyPackages={setDailyPackages}
+            seasonalPackages={seasonalPackages}
+            setSeasonalPackages={setSeasonalPackages}
+            handlePackageChange={handlePackageChange}
+            addPackage={addPackage}
+            handleContinue={() => setCurrentPage(6)}
+          />
+        );
       //   case 6:
       //     return (
       //       <Page6

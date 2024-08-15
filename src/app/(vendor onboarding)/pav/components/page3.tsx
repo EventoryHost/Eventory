@@ -4,26 +4,25 @@ import { Upload } from "lucide-react";
 import React from "react";
 import Appetizers from "../../caterer/(components)/Appetizers";
 
-const equipments=[
-"Audio Recording",
-"Ambient Lighting",
-"Colour Washes",
-"Custom Soundtracks",
-"Custom Lighting Design",
-"Dj Services",
-"Led Screens",
-"Lenses",
-"Lighting Equipments",
-"Lighting Services",
-"Microphones",
-"Sound Services",
-"Speakers",
-"Spotlighting",
-"Special Effects",
-"Tripods",
-"Others"
-]
-
+const equipments = [
+  "Audio Recording",
+  "Ambient Lighting",
+  "Colour Washes",
+  "Custom Soundtracks",
+  "Custom Lighting Design",
+  "Dj Services",
+  "Led Screens",
+  "Lenses",
+  "Lighting Equipments",
+  "Lighting Services",
+  "Microphones",
+  "Sound Services",
+  "Speakers",
+  "Spotlighting",
+  "Special Effects",
+  "Tripods",
+  "Others",
+];
 
 type Page1Props = {
   handleContinue: () => void;

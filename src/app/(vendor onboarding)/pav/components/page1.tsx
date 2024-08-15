@@ -5,7 +5,6 @@ import Individual from "./(page1)/individual";
 import Group from "./(page1)/group";
 import Organization from "./(page1)/organization";
 
-
 type Page1Props = {
   businessName: string;
   setBusinessName: React.Dispatch<React.SetStateAction<string>>;
