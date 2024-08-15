@@ -28,7 +28,6 @@ interface formState {
   percentageValuePage3: number;
   percentageValuePage4: number;
   percentageValuePage5: number;
-
 }
 
 type PricingEntry = {

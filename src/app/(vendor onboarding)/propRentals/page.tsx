@@ -138,30 +138,21 @@ const RootPage = () => {
   const handleAddPricingEntry = (entry: PricingEntry) => {
     setFormState((prevState) => ({
       ...prevState,
-      pricingEntries: [
-        ...prevState.pricingEntries,
-        entry,
-      ],
+      pricingEntries: [...prevState.pricingEntries, entry],
     }));
     console.log(formState.pricingEntries);
   };
   const handleAddTentPricingEntry = (entry: PricingEntry) => {
     setFormState((prevState) => ({
       ...prevState,
-      tentPricingEntries: [
-        ...prevState.tentPricingEntries,
-        entry,
-      ],
+      tentPricingEntries: [...prevState.tentPricingEntries, entry],
     }));
     console.log(formState.tentPricingEntries);
   };
   const handleAddAudioPricingEntry = (entry: PricingEntry) => {
     setFormState((prevState) => ({
       ...prevState,
-      audioPricingEntries: [
-        ...prevState.audioPricingEntries,
-        entry,
-      ],
+      audioPricingEntries: [...prevState.audioPricingEntries, entry],
     }));
     console.log(formState.audioPricingEntries);
   };
@@ -241,7 +232,6 @@ const RootPage = () => {
         handleAddPricingEntry={handleAddPricingEntry}
         handleAddTentPricingEntry={handleAddTentPricingEntry}
         handleAddAudioPricingEntry={handleAddAudioPricingEntry}
-
       />
       <div className="my-9 mr-[5%] flex flex-row justify-end gap-7">
         {currentPage > 0 && (

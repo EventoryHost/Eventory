@@ -123,8 +123,6 @@ type page3Props = {
   handleAddAudioPricingEntry: (entry: PricingEntry) => void;
 };
 
-
-
 function Page3({
   selectedCategory,
   selectedAppetizers,
@@ -154,9 +152,6 @@ function Page3({
   handleAddTentPricingEntry,
   handleAddAudioPricingEntry,
 }: page3Props & page4Props & page5Props) {
-
-  
-
   const [formPage, setFormPage] = useState(1);
   const handleCategorySelection = (category: string) => {
     setSelectedCategory(category);
@@ -366,9 +361,6 @@ function Page3({
                       >{`${entry.name}: ${entry.min} - ${entry.max}`}</li>
                     ))}
                   </ul>
-
-
-                  
                 </div>
 
                 <div className="mt-8 flex flex-col gap-5">
@@ -594,7 +586,7 @@ function Page3({
                   privacyPolicy: string;
                   selectedAppetizers: string[];
                   selectedDecor: string[];
-                  pricingEntries: { name: string; min: number; max: number; }[];
+                  pricingEntries: { name: string; min: number; max: number }[];
                   hourlyCheckbox: boolean;
                   packageTypePage3: string;
                   packageMinRate: string;
@@ -620,7 +612,7 @@ function Page3({
                   workerCheckboxPage5: boolean;
                   advancedPaymentCheckboxPage5: boolean;
                 },
-                value: any
+                value: any,
               ): void {
                 throw new Error("Function not implemented.");
               },
@@ -671,7 +663,7 @@ function Page3({
                 privacyPolicy: string;
                 selectedAppetizers: string[];
                 selectedDecor: string[];
-                pricingEntries: { name: string; min: number; max: number; }[];
+                pricingEntries: { name: string; min: number; max: number }[];
                 hourlyCheckbox: boolean;
                 packageTypePage3: string;
                 packageMinRate: string;
@@ -697,12 +689,15 @@ function Page3({
                 workerCheckboxPage5: boolean;
                 advancedPaymentCheckboxPage5: boolean;
               },
-              value: any
+              value: any,
             ): void {
               throw new Error("Function not implemented.");
-            } } pricingEntries={undefined} handleAddPricingEntry={function (): void {
+            }}
+            pricingEntries={undefined}
+            handleAddPricingEntry={function (): void {
               throw new Error("Function not implemented.");
-            } }          />
+            }}
+          />
         )}
 
         {selectedCategory === "Audio-Visual" && (
@@ -714,9 +709,12 @@ function Page3({
             selectedLightOptions={selectedLightOptions}
             setSelectedLightOptions={setSelectedLightOptions}
             percentageValuePage4={0}
-            percentageValuePage5={0} pricingEntries={undefined} handleAddPricingEntry={function (): void {
+            percentageValuePage5={0}
+            pricingEntries={undefined}
+            handleAddPricingEntry={function (): void {
               throw new Error("Function not implemented.");
-            } }          />
+            }}
+          />
         )}
       </div>
     </div>

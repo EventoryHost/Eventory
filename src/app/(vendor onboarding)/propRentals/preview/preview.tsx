@@ -337,16 +337,15 @@ function Preview({
             Pricing Structure
           </span>
 
-
           <div className="ml-8 flex flex-col">
             <div className="text-xl font-semibold">Hourly package rates</div>
             <div className="mt-4 flex flex-col">
               {formState.pricingEntries.length > 0 ? (
                 formState.pricingEntries.map((entry, index) => (
-                  <div key={index} className="flex flex-col mb-2">
+                  <div key={index} className="mb-2 flex flex-col">
                     <span>{entry.name}</span>
                     <span className="font-semibold">
-                    ₹ {entry.min} - ₹{entry.max}
+                      ₹ {entry.min} - ₹{entry.max}
                     </span>
                   </div>
                 ))
@@ -361,7 +360,7 @@ function Preview({
             <div className="mt-4 flex flex-col">
               {formState.tentPricingEntries.length > 0 ? (
                 formState.tentPricingEntries.map((entry, index) => (
-                  <div key={index} className="flex flex-col mb-2">
+                  <div key={index} className="mb-2 flex flex-col">
                     <span>{entry.name}</span>
                     <span className="font-semibold">
                       ₹ {entry.min} - ₹{entry.max}
@@ -379,10 +378,10 @@ function Preview({
             <div className="mt-4 flex flex-col">
               {formState.audioPricingEntries.length > 0 ? (
                 formState.audioPricingEntries.map((entry, index) => (
-                  <div key={index} className="flex flex-col mb-2">
+                  <div key={index} className="mb-2 flex flex-col">
                     <span>{entry.name}</span>
                     <span className="font-semibold">
-                    ₹ {entry.min} - ₹{entry.max}
+                      ₹ {entry.min} - ₹{entry.max}
                     </span>
                   </div>
                 ))
@@ -391,9 +390,6 @@ function Preview({
               )}
             </div>
           </div>
-
-
-          
         </div>
 
         <div className="ml-8 mr-4 flex justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
@@ -553,10 +549,6 @@ function Preview({
               </div>
             </div>
           </div>
-
-
-
-
         </div>
       </div>
     </div>
