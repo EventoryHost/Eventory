@@ -78,7 +78,7 @@ const RootPage = () => {
     workDescription: "",
     yearsOfExperience: "",
     numberOfWorkers: "",
-    handleChange: (key: keyof FormState, value: any) => { },
+    handleChange: (key: keyof FormState, value: any) => {},
     insurancePolicy: "",
     cancellationPolicy: "",
     termsAndConditions: "",
@@ -128,7 +128,6 @@ const RootPage = () => {
     setFormState((prevState) => ({ ...prevState, [key]: value }));
   };
 
-
   const handleAddPricingEntry = (entry: PricingEntry) => {
     setFormState((prevState) => ({
       ...prevState,
@@ -140,10 +139,14 @@ const RootPage = () => {
     console.log(formState.furnitureHourlyPricingEntries);
   };
 
-  const handleAddTentHourlyPricingEntries = (entry: { name: string; min: number; max: number; }) => {
-    console.log('Adding entry:', entry); // Log the new entry
+  const handleAddTentHourlyPricingEntries = (entry: {
+    name: string;
+    min: number;
+    max: number;
+  }) => {
+    console.log("Adding entry:", entry); // Log the new entry
     setFormState((prevState) => {
-      console.log('Previous state:', prevState);
+      console.log("Previous state:", prevState);
       return {
         ...prevState,
         tentHourlyPricingEntries: [
@@ -154,15 +157,12 @@ const RootPage = () => {
     });
   };
 
-
-
   useEffect(() => {
-    console.log('Tent hourly pricing entries:', formState.tentHourlyPricingEntries);
+    console.log(
+      "Tent hourly pricing entries:",
+      formState.tentHourlyPricingEntries,
+    );
   }, [formState.tentHourlyPricingEntries]);
-
-
-
-
 
   const handleAddTentPricingEntry = (entry: PricingEntry) => {
     setFormState((prevState) => ({
@@ -250,19 +250,19 @@ const RootPage = () => {
 
   function handleSubmit() {
     console.log("Form State before submission:", formState);
-  
+
     const venId = getVendorId();
     if (!venId) {
       console.error("No vendorId found!");
       return;
     }
-  
+
     const token = localStorage.getItem("token");
     if (!token) {
       console.error("No token found!");
       return;
     }
-  
+
     const formData = new FormData();
     formData.append("venId", venId);
     formData.append("contactPersonName", formState.contactName || "");
@@ -270,34 +270,60 @@ const RootPage = () => {
     formData.append("descriptionOfWork", formState.workDescription || "");
     formData.append("yearsOfExperience", formState.yearsOfExperience || "");
     formData.append("numberOfWorkers", formState.numberOfWorkers || "");
-  
+
     formData.append("furnitureAndDecor[listUrl]", "");
-    formData.append("furnitureAndDecor[furniture]", JSON.stringify(formState.selectedDecor || []));
-    formData.append("furnitureAndDecor[decor]", JSON.stringify(formState.selectedDecor || []));
-    formData.append("furnitureAndDecor[packageRates][hourly]", JSON.stringify(formState.furnitureHourlyPricingEntries || []));
-    formData.append("furnitureAndDecor[packageRates][deal]", JSON.stringify(formState.furnitureDealPricingEntries || []));
-    formData.append("furnitureAndDecor[packageRates][worker]", JSON.stringify(formState.furnitureWorkerPricingEntries || []));
-  
+    formData.append(
+      "furnitureAndDecor[furniture]",
+      JSON.stringify(formState.selectedDecor || []),
+    );
+    formData.append(
+      "furnitureAndDecor[decor]",
+      JSON.stringify(formState.selectedDecor || []),
+    );
+    formData.append(
+      "furnitureAndDecor[packageRates][hourly]",
+      JSON.stringify(formState.furnitureHourlyPricingEntries || []),
+    );
+    formData.append(
+      "furnitureAndDecor[packageRates][deal]",
+      JSON.stringify(formState.furnitureDealPricingEntries || []),
+    );
+    formData.append(
+      "furnitureAndDecor[packageRates][worker]",
+      JSON.stringify(formState.furnitureWorkerPricingEntries || []),
+    );
+
     formData.append("tentAndCanopy[listUrl]", "");
-    formData.append("tentAndCanopy[items]", JSON.stringify(formState.selectedDecor || []));
-    formData.append("tentAndCanopy[packageRates][hourly]", JSON.stringify(formState.tentHourlyPricingEntries || []));
-    formData.append("tentAndCanopy[packageRates][deal]", JSON.stringify(formState.furnitureDealPricingEntries || []));
-    formData.append("tentAndCanopy[packageRates][worker]", JSON.stringify(formState.furnitureWorkerPricingEntries || []));
-  
+    formData.append(
+      "tentAndCanopy[items]",
+      JSON.stringify(formState.selectedDecor || []),
+    );
+    formData.append(
+      "tentAndCanopy[packageRates][hourly]",
+      JSON.stringify(formState.tentHourlyPricingEntries || []),
+    );
+    formData.append(
+      "tentAndCanopy[packageRates][deal]",
+      JSON.stringify(formState.furnitureDealPricingEntries || []),
+    );
+    formData.append(
+      "tentAndCanopy[packageRates][worker]",
+      JSON.stringify(formState.furnitureWorkerPricingEntries || []),
+    );
+
     formData.append("insurancePolicy", formState.insurancePolicy || "");
     formData.append("cancellationPolicy", formState.cancellationPolicy || "");
     formData.append("termsAndConditions", formState.termsAndConditions || "");
     formData.append("privacyPolicy", formState.privacyPolicy || "");
-  // @ts-ignore
+    // @ts-ignore
     for (let [key, value] of formData.entries()) {
       console.log(`${key}: ${value}`);
     }
-  
+
     console.log("This is the formdata in root page:", formData);
-  
+
     addPropRental(formData);
   }
-  
 
   return (
     <div>
