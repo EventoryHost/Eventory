@@ -44,7 +44,6 @@ const lightOptions = [
   "LED lights",
   "conventional lights",
   "lighting control",
-  "lighting accessories",
   "lighting stands",
   "lighting effects",
   "lighting filters",
@@ -75,7 +74,8 @@ export interface page5Props {
   setSelectedLightOptions: (value: any) => void;
   percentageValuePage4: number;
   percentageValuePage5: number;
-  pricingEntries: any;
+  furnitureHourlyPricingEntries: any;
+  tentHourlyPricingEntries: any;
   handleAddPricingEntry: (entry: PricingEntry) => void;
 }
 

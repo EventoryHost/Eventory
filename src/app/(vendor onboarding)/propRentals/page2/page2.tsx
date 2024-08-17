@@ -38,10 +38,12 @@ export interface page2Props {
   percentageValuePage3: number;
   percentageValuePage4: number;
   percentageValuePage5: number;
-  pricingEntries: any;
-  tentPricingEntries: any;
-  audioPricingEntries: any;
+  furnitureHourlyPricingEntries: any;
+  tentHourlyPricingEntries: any;
+  furnitureDealPricingEntries: any;
+  furnitureWorkerPricingEntries: any;
   handleAddPricingEntry: (entry: PricingEntry) => void;
+  handleAddTentHourlyPricingEntries: (entry: PricingEntry) => void;
   handleAddTentPricingEntry: (entry: PricingEntry) => void;
   handleAddAudioPricingEntry: (entry: PricingEntry) => void;
 }
@@ -111,7 +113,7 @@ const Page2: React.FC<page2Props> = ({
                   type="text"
                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                   placeholder="Enter your venue description"
-                  value={formState.insurancePolicy}
+                  value={formState.insurancePolicy || ""}
                   onChange={(e) =>
                     handleChange("insurancePolicy", e.target.value)
                   }
@@ -124,7 +126,7 @@ const Page2: React.FC<page2Props> = ({
                   type="text"
                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                   placeholder="Enter your venue description"
-                  value={formState.cancellationPolicy}
+                  value={formState.cancellationPolicy || ""}
                   onChange={(e) =>
                     handleChange("cancellationPolicy", e.target.value)
                   }
@@ -167,7 +169,7 @@ const Page2: React.FC<page2Props> = ({
                   type="text"
                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                   placeholder="Enter your venue description"
-                  value={formState.termsAndConditions}
+                  value={formState.termsAndConditions || ""}
                   onChange={(e) =>
                     handleChange("termsAndConditions", e.target.value)
                   }
@@ -180,7 +182,7 @@ const Page2: React.FC<page2Props> = ({
                   type="text"
                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                   placeholder="Enter your venue description"
-                  value={formState.privacyPolicy}
+                  value={formState.privacyPolicy || ""}
                   onChange={(e) =>
                     handleChange("privacyPolicy", e.target.value)
                   }

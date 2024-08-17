@@ -59,9 +59,9 @@ type FormState = {
   // Page3
   selectedAppetizers: string[];
   selectedDecor: string[];
-  pricingEntries: PricingEntry[];
-  tentPricingEntries: PricingEntry[];
-  audioPricingEntries: PricingEntry[];
+  furnitureHourlyPricingEntries: PricingEntry[];
+  furnitureDealPricingEntries: PricingEntry[];
+  furnitureWorkerPricingEntries: PricingEntry[];
   hourlyCheckbox: boolean;
   packageTypePage3: string;
   packageMinRate: string;
@@ -115,10 +115,12 @@ type page3Props = {
   percentageValuePage3: number;
   percentageValuePage4: number;
   percentageValuePage5: number;
-  pricingEntries: PricingEntry[];
-  tentPricingEntries: PricingEntry[];
-  audioPricingEntries: PricingEntry[];
+  furnitureHourlyPricingEntries: PricingEntry[];
+  tentHourlyPricingEntries: PricingEntry[];
+  furnitureDealPricingEntries: PricingEntry[];
+  furnitureWorkerPricingEntries: PricingEntry[];
   handleAddPricingEntry: (entry: PricingEntry) => void;
+  handleAddTentHourlyPricingEntries: (entry: PricingEntry) => void;
   handleAddTentPricingEntry: (entry: PricingEntry) => void;
   handleAddAudioPricingEntry: (entry: PricingEntry) => void;
 };
@@ -141,16 +143,13 @@ function Page3({
   selectedvisualOptions,
   setSelectedVisualOptions,
   handleChange,
-  percentageValuePage3,
-  percentageValuePage4,
-  percentageValuePage5,
   formState,
   setFormState,
-  advancePaymentCheckbox,
-  pricingEntries,
-  tentPricingEntries,
-  audioPricingEntries,
+  tentHourlyPricingEntries,
+  furnitureDealPricingEntries,
+  furnitureWorkerPricingEntries,
   handleAddPricingEntry,
+  handleAddTentHourlyPricingEntries,
   handleAddTentPricingEntry,
   handleAddAudioPricingEntry,
 }: page3Props & page4Props & page5Props) {
@@ -180,7 +179,8 @@ function Page3({
           {selectedCategory === "Tent and Canopy" && (
             <StepBar currentStep={4} />
           )}
-          {selectedCategory === "Audio-Visual" && <StepBar currentStep={5} />}
+          {selectedCategory === "Audio-Visual" && 
+            <StepBar currentStep={5} />}
         </div>
         <div className="ml-8 flex h-[50%] flex-col items-start justify-center gap-9 px-9 xs:pl-5 md:px-11 lg:p-8">
           <h1 className="text-2xl font-semibold md:text-4xl lg:text-5xl">
@@ -360,7 +360,7 @@ function Page3({
                     </div>
                   </form>
                   <ul>
-                    {formState.pricingEntries.map((entry, index) => (
+                    {formState.furnitureHourlyPricingEntries.map((entry, index) => (
                       <li
                         key={index}
                       >{`${entry.name}: ${entry.min} - ${entry.max}`}</li>
@@ -436,7 +436,7 @@ function Page3({
                     </div>
                   </form>
                   <ul>
-                    {formState.tentPricingEntries.map((entry, index) => (
+                    {formState.furnitureDealPricingEntries.map((entry, index) => (
                       <li
                         key={index}
                       >{`${entry.name}: ${entry.min} - ${entry.max}`}</li>
@@ -509,7 +509,7 @@ function Page3({
                     </div>
                   </form>
                   <ul>
-                    {formState.audioPricingEntries.map((entry, index) => (
+                    {formState.furnitureWorkerPricingEntries.map((entry, index) => (
                       <li
                         key={index}
                       >{`${entry.name}: ${entry.min} - ${entry.max}`}</li>
@@ -535,7 +535,7 @@ function Page3({
                     <div className="flex flex-col">
                       <label className="mb-4">Set Percentage Value</label>
                       <input
-                        value={formState.percentageValuePage3}
+                        value={formState.percentageValuePage3 || 0}
                         onInput={(e) =>
                           handleChange(
                             "percentageValuePage3",
@@ -594,7 +594,8 @@ function Page3({
                   privacyPolicy: string;
                   selectedAppetizers: string[];
                   selectedDecor: string[];
-                  pricingEntries: { name: string; min: number; max: number; }[];
+                  furnitureHourlyPricingEntries: { name: string; min: number; max: number; }[];
+                  tentHourlyPricingEntries: { name: string; min: number; max: number; }[];
                   hourlyCheckbox: boolean;
                   packageTypePage3: string;
                   packageMinRate: string;
@@ -630,7 +631,8 @@ function Page3({
               privacyPolicy: "",
               selectedAppetizers: [],
               selectedDecor: [],
-              pricingEntries: [],
+              furnitureHourlyPricingEntries: [],
+              tentHourlyPricingEntries: [],
               hourlyCheckbox: false,
               packageTypePage3: "",
               packageMinRate: "",
@@ -671,7 +673,8 @@ function Page3({
                 privacyPolicy: string;
                 selectedAppetizers: string[];
                 selectedDecor: string[];
-                pricingEntries: { name: string; min: number; max: number; }[];
+                furnitureHourlyPricingEntries: { name: string; min: number; max: number; }[];
+                tentHourlyPricingEntries: { name: string; min: number; max: number; }[];
                 hourlyCheckbox: boolean;
                 packageTypePage3: string;
                 packageMinRate: string;
@@ -700,9 +703,9 @@ function Page3({
               value: any
             ): void {
               throw new Error("Function not implemented.");
-            } } pricingEntries={undefined} handleAddPricingEntry={function (): void {
+            } } handleAddPricingEntry={function (): void {
               throw new Error("Function not implemented.");
-            } }          />
+            } } tentHourlyPricingEntries={tentHourlyPricingEntries} handleAddTentHourlyPricingEntries={handleAddTentHourlyPricingEntries}           />
         )}
 
         {selectedCategory === "Audio-Visual" && (
@@ -714,9 +717,9 @@ function Page3({
             selectedLightOptions={selectedLightOptions}
             setSelectedLightOptions={setSelectedLightOptions}
             percentageValuePage4={0}
-            percentageValuePage5={0} pricingEntries={undefined} handleAddPricingEntry={function (): void {
+            percentageValuePage5={0} furnitureHourlyPricingEntries={undefined} handleAddPricingEntry={function (): void {
               throw new Error("Function not implemented.");
-            } }          />
+            } } tentHourlyPricingEntries={undefined}          />
         )}
       </div>
     </div>

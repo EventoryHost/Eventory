@@ -57,10 +57,12 @@ export interface page1Props {
   selectedLightOptions: string[];
   setSelectedLightOptions: (value: any) => void;
   percentageValuePage3: number;
-  pricingEntries: any;
-  tentPricingEntries: any;
-  audioPricingEntries: any;
+  furnitureHourlyPricingEntries: any;
+  tentHourlyPricingEntries: any;
+  furnitureDealPricingEntries: any;
+  furnitureWorkerPricingEntries: any;
   handleAddPricingEntry: (entry: PricingEntry) => void;
+  handleAddTentHourlyPricingEntries: (entry: PricingEntry) => void;
   handleAddTentPricingEntry: (entry: PricingEntry) => void;
   handleAddAudioPricingEntry: (entry: PricingEntry) => void;
 }
@@ -107,7 +109,7 @@ const Page1: React.FC<page1Props> = ({
                   <input
                     id="vendorName"
                     type="text"
-                    value={formState.contactName}
+                    value={formState.contactName || ""}
                     onChange={(e) =>
                       handleChange("contactName", e.target.value)
                     }
@@ -125,7 +127,7 @@ const Page1: React.FC<page1Props> = ({
                   <input
                     id="contactNumber"
                     type="text"
-                    value={formState.phoneNumber}
+                    value={formState.phoneNumber || ""}
                     onChange={(e) =>
                       handleChange("phoneNumber", e.target.value)
                     }
@@ -145,7 +147,7 @@ const Page1: React.FC<page1Props> = ({
                   <input
                     id="contactNumber"
                     type="text"
-                    value={formState.workDescription}
+                    value={formState.workDescription || ""}
                     onChange={(e) =>
                       handleChange("workDescription", e.target.value)
                     }
