@@ -338,7 +338,6 @@ function Preview({
             Pricing Structure
           </span>
 
-
           <div className="ml-8 flex flex-col">
             <div className="text-xl font-semibold">Hourly package rates</div>
             <div className="mt-4 flex flex-col">
@@ -347,7 +346,7 @@ function Preview({
                   <div key={index} className="flex flex-col mb-2">
                     <span>{entry.name}</span>
                     <span className="font-semibold">
-                    ₹ {entry.min} - ₹{entry.max}
+                      ₹ {entry.min} - ₹{entry.max}
                     </span>
                   </div>
                 ))
@@ -383,7 +382,7 @@ function Preview({
                   <div key={index} className="flex flex-col mb-2">
                     <span>{entry.name}</span>
                     <span className="font-semibold">
-                    ₹ {entry.min} - ₹{entry.max}
+                      ₹ {entry.min} - ₹{entry.max}
                     </span>
                   </div>
                 ))
@@ -392,9 +391,6 @@ function Preview({
               )}
             </div>
           </div>
-
-
-          
         </div>
 
         <div className="ml-8 mr-4 flex justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
@@ -560,10 +556,6 @@ function Preview({
               </div>
             </div>
           </div>
-
-
-
-
         </div>
       </div>
     </div>

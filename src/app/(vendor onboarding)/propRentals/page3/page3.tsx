@@ -125,8 +125,6 @@ type page3Props = {
   handleAddAudioPricingEntry: (entry: PricingEntry) => void;
 };
 
-
-
 function Page3({
   selectedCategory,
   selectedAppetizers,
@@ -153,9 +151,6 @@ function Page3({
   handleAddTentPricingEntry,
   handleAddAudioPricingEntry,
 }: page3Props & page4Props & page5Props) {
-
-  
-
   const [formPage, setFormPage] = useState(1);
   const handleCategorySelection = (category: string) => {
     setSelectedCategory(category);
@@ -366,9 +361,6 @@ function Page3({
                       >{`${entry.name}: ${entry.min} - ${entry.max}`}</li>
                     ))}
                   </ul>
-
-
-                  
                 </div>
 
                 <div className="mt-8 flex flex-col gap-5">
@@ -621,7 +613,7 @@ function Page3({
                   workerCheckboxPage5: boolean;
                   advancedPaymentCheckboxPage5: boolean;
                 },
-                value: any
+                value: any,
               ): void {
                 throw new Error("Function not implemented.");
               },
@@ -700,7 +692,7 @@ function Page3({
                 workerCheckboxPage5: boolean;
                 advancedPaymentCheckboxPage5: boolean;
               },
-              value: any
+              value: any,
             ): void {
               throw new Error("Function not implemented.");
             } } handleAddPricingEntry={function (): void {

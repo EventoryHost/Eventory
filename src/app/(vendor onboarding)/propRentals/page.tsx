@@ -332,7 +332,6 @@ const RootPage = () => {
         handleAddTentHourlyPricingEntries={handleAddTentHourlyPricingEntries}
         handleAddTentPricingEntry={handleAddTentPricingEntry}
         handleAddAudioPricingEntry={handleAddAudioPricingEntry}
-
       />
       <div className="my-9 mr-[5%] flex flex-row justify-end gap-7">
         {currentPage > 0 && (
