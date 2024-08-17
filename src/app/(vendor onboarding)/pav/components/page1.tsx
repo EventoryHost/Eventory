@@ -1,70 +1,81 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import Individual from "./(page1)/individual";
 import Group from "./(page1)/group";
 import Organization from "./(page1)/organization";
+import { pavtypes } from "@/types/types";
 
 type Page1Props = {
-  businessName: string;
-  setBusinessName: React.Dispatch<React.SetStateAction<string>>;
-  cuisineSpecialties: string[];
-  setCuisineSpecialties: React.Dispatch<React.SetStateAction<string[]>>;
-  regionalSpecialties: string[];
-  setRegionalSpecialties: React.Dispatch<React.SetStateAction<string[]>>;
-  serviceStyles: string[];
-  setServiceStyles: React.Dispatch<React.SetStateAction<string[]>>;
+  type: pavtypes;
+  setType: (type: pavtypes) => void;
+  fullName: string;
+  setFullName: (fullName: string) => void;
+  clientTestimonials: string | File;
+  setClientTestimonials: (clientTestimonials: string | File) => void;
+  portfolio: string | File;
+  setPortfolio: (portfolio: string | File) => void;
+  groupMembers: string;
+  setGroupMembers: (groupMembers: string) => void;
+  organizationMembers: string;
+  setOrganizationMembers: (organizationMembers: string) => void;
   handleContinue: () => void;
 };
 
 const Page1 = ({
-  businessName,
-  setBusinessName,
-  cuisineSpecialties,
-  setCuisineSpecialties,
-  regionalSpecialties,
-  setRegionalSpecialties,
-  serviceStyles,
-  setServiceStyles,
+  type,
+  setType,
+  fullName,
+  setFullName,
+  clientTestimonials,
+  setClientTestimonials,
+  portfolio,
+  setPortfolio,
+  groupMembers,
+  setGroupMembers,
+  organizationMembers,
+  setOrganizationMembers,
   handleContinue,
 }: Page1Props) => {
-  const [selectedOption, setSelectedOption] = useState("individual");
+
+  // State to manage the selected option (individual, group, organization)
+  const [selectedOption, setSelectedOption] = useState<pavtypes>("individual");
 
   const renderComponent = () => {
     switch (selectedOption) {
       case "individual":
         return (
           <Individual
-            businessName={businessName}
-            setBusinessName={setBusinessName}
+            fullname={fullName}
+            setFullname={setFullName}
+            portfolio={portfolio}
+            setPortfolio={setPortfolio}
+            clientTestimonials={clientTestimonials}
+            setClientTestimonials={setClientTestimonials}
             handleContinue={handleContinue}
           />
         );
-      case "group":
+      case "grp":
         return (
           <Group
-            businessName={businessName}
-            setBusinessName={setBusinessName}
-            cuisineSpecialties={cuisineSpecialties}
-            setCuisineSpecialties={setCuisineSpecialties}
-            regionalSpecialties={regionalSpecialties}
-            setRegionalSpecialties={setRegionalSpecialties}
-            serviceStyles={serviceStyles}
-            setServiceStyles={setServiceStyles}
+            fullName={fullName}
+            setFullName={setFullName}
+            portfolio={portfolio}
+            setPortfolio={setPortfolio}
+            groupMembers={groupMembers}
+            setGroupMembers={setGroupMembers}
             handleContinue={handleContinue}
           />
         );
-      case "organization":
+      case "org":
         return (
           <Organization
-            businessName={businessName}
-            setBusinessName={setBusinessName}
-            cuisineSpecialties={cuisineSpecialties}
-            setCuisineSpecialties={setCuisineSpecialties}
-            regionalSpecialties={regionalSpecialties}
-            setRegionalSpecialties={setRegionalSpecialties}
-            serviceStyles={serviceStyles}
-            setServiceStyles={setServiceStyles}
+            fullName={fullName}
+            setFullName={setFullName}
+            organizationMembers={organizationMembers}
+            setOrganizationMembers={setOrganizationMembers}
+            clientTestimonials={clientTestimonials}
+            setClientTestimonials={setClientTestimonials}
             handleContinue={handleContinue}
           />
         );
@@ -85,7 +96,10 @@ const Page1 = ({
               name="type"
               value="individual"
               checked={selectedOption === "individual"}
-              onChange={() => setSelectedOption("individual")}
+              onChange={() => {
+                setSelectedOption("individual");
+                setType("individual");
+              }}
             />
             <label htmlFor="individual">Individual</label>
           </div>
@@ -95,8 +109,11 @@ const Page1 = ({
               id="group"
               name="type"
               value="group"
-              checked={selectedOption === "group"}
-              onChange={() => setSelectedOption("group")}
+              checked={selectedOption === "grp"}
+              onChange={() => {
+                setSelectedOption("grp");
+                setType("grp");
+              }}
             />
             <label htmlFor="group">Group</label>
           </div>
@@ -106,8 +123,11 @@ const Page1 = ({
               id="organization"
               name="type"
               value="organization"
-              checked={selectedOption === "organization"}
-              onChange={() => setSelectedOption("organization")}
+              checked={selectedOption === "org"}
+              onChange={() => {
+                setSelectedOption("org");
+                setType("org");
+              }}
             />
             <label htmlFor="organization">Organization</label>
           </div>

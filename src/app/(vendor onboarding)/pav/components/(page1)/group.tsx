@@ -4,15 +4,13 @@ import React, { useState } from "react";
 import { Upload } from "lucide-react";
 import { Combobox } from "@/components/ui/combobox";
 
-type Page1Props = {
-  businessName: string;
-  setBusinessName: React.Dispatch<React.SetStateAction<string>>;
-  cuisineSpecialties: string[];
-  setCuisineSpecialties: React.Dispatch<React.SetStateAction<string[]>>;
-  regionalSpecialties: string[];
-  setRegionalSpecialties: React.Dispatch<React.SetStateAction<string[]>>;
-  serviceStyles: string[];
-  setServiceStyles: React.Dispatch<React.SetStateAction<string[]>>;
+type GroupProps = {
+  fullName: string;
+  setFullName: (fullName: string) => void;
+  portfolio: string | File;
+  setPortfolio: (portfolio: string | File) => void;
+  groupMembers: string;
+  setGroupMembers: (groupMembers: string) => void;
   handleContinue: () => void;
 };
 
@@ -36,30 +34,35 @@ export type businessDetails = {
 };
 
 const Group = ({
-  businessName,
-  setBusinessName,
+  fullName,
+  setFullName,
+  portfolio,
+  setPortfolio,
+  groupMembers,
+  setGroupMembers,
   handleContinue,
-}: Page1Props) => {
+}: GroupProps) => {
   const [businessDetails, setBusinessDetails] = useState<businessDetails>(
     {} as businessDetails,
   );
+
   return (
     <>
       <div className="flex min-w-[100%] items-center justify-between gap-9">
         <div className="flex h-[100%] w-[50%] flex-col items-start justify-between gap-9">
           <div className="flex w-[100%] flex-col gap-4">
-            <label htmlFor="businessName">Full Name</label>
+            <label htmlFor="fullName">Full Name</label>
             <input
-              id="businessName"
+              id="fullName"
               type="text"
               className="w-fit rounded-xl border-2 bg-white p-5 py-3 outline-none"
               placeholder="Enter your full name"
-              value={businessName}
-              onChange={(e) => setBusinessName(e.target.value)}
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
             />
           </div>
           <div className="flex w-[100%] flex-col gap-1">
-            <label htmlFor="businessName">Portfolio of Past Work</label>
+            <label htmlFor="portfolio">Portfolio of Past Work</label>
             <button className="mt-5 flex w-fit items-center justify-center gap-5 rounded-xl border-2 border-dashed border-gray-400 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
               <Upload />
               Upload
@@ -70,12 +73,14 @@ const Group = ({
               rows={5}
               placeholder="enter url"
               className="mt-5 w-fit resize-none rounded-xl border-2 border-gray-300 p-3"
+              value={typeof portfolio === "string" ? portfolio : ""}
+              onChange={(e) => setPortfolio(e.target.value)}
             ></textarea>
           </div>
         </div>
         <div className="flex h-[100%] w-[50%] flex-col items-start justify-between gap-9">
           <div className="flex w-[100%] flex-col gap-1">
-            <label htmlFor="businessName">Client Testimonials</label>
+            <label htmlFor="cities">Operational Cities</label>
             <Combobox
               options={op}
               placeholder="Select Operational Cities"
@@ -86,17 +91,15 @@ const Group = ({
             />
           </div>
           <div className="flex w-[100%] flex-col gap-1">
-            <label htmlFor="businessName">Client Testimonials</label>
-            <button className="mt-5 flex w-fit items-center justify-center gap-5 rounded-xl border-2 border-dashed border-gray-400 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
-              <Upload />
-              Upload
-            </button>
-            <p className="text-md mt-5">or Provide Via</p>
+            <label htmlFor="groupMembers">Group Members</label>
             <textarea
+              id="groupMembers"
               cols={30}
               rows={5}
-              placeholder="enter url"
+              placeholder="Enter group members"
               className="mt-5 resize-none rounded-xl border-2 border-gray-300 p-3"
+              value={groupMembers}
+              onChange={(e) => setGroupMembers(e.target.value)}
             ></textarea>
           </div>
         </div>
