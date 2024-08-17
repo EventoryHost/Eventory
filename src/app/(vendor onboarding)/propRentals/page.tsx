@@ -248,20 +248,10 @@ const RootPage = () => {
     }
   }
 
-  function handleSubmit() {
+  async function handleSubmit() {
     console.log("Form State before submission:", formState);
 
-    const venId = getVendorId();
-    if (!venId) {
-      console.error("No vendorId found!");
-      return;
-    }
-
-    const token = localStorage.getItem("token");
-    if (!token) {
-      console.error("No token found!");
-      return;
-    }
+    const venId = getVendorId()!;
 
     const formData = new FormData();
     formData.append("venId", venId);
@@ -320,9 +310,12 @@ const RootPage = () => {
       console.log(`${key}: ${value}`);
     }
 
-    console.log("This is the formdata in root page:", formData);
-
-    addPropRental(formData);
+    try {
+      console.log("This is the formdata in root page:", formData);
+      await addPropRental(formData);
+    } catch (error) {
+      console.error("Error adding prop rentals: ", error);
+    }
   }
 
   return (
