@@ -11,7 +11,9 @@ type Page1Props = {
   advanceSetup: boolean;
   setAdvanceSetup: (advanceSetup: boolean) => void;
   collaborationWithOtherVendors: boolean;
-  setCollaborationWithOtherVendors: (collaborationWithOtherVendors: boolean) => void;
+  setCollaborationWithOtherVendors: (
+    collaborationWithOtherVendors: boolean,
+  ) => void;
   setupsInstallations: boolean;
   setSetupsInstallations: (setupsInstallations: boolean) => void;
   bookingDeposit: boolean;
@@ -55,7 +57,9 @@ const Page1 = ({
         <div className="flex h-[100%] flex-col items-start justify-between gap-9 md:w-[50%]">
           {/* Proposals to Clients */}
           <div className="flex flex-col gap-5">
-            <p className="text-md font-md">Do you provide design proposals to clients?</p>
+            <p className="text-md font-md">
+              Do you provide design proposals to clients?
+            </p>
             <div className="flex gap-7">
               <div className="flex items-center gap-3">
                 <input
@@ -80,7 +84,9 @@ const Page1 = ({
 
           {/* Free Initial Consultation */}
           <div className="flex flex-col gap-5">
-            <p className="text-md font-md">Do you provide free initial consultation?</p>
+            <p className="text-md font-md">
+              Do you provide free initial consultation?
+            </p>
             <div className="flex gap-7">
               <div className="flex items-center gap-3">
                 <input
@@ -130,7 +136,9 @@ const Page1 = ({
 
           {/* Collaboration with Other Vendors */}
           <div className="flex flex-col gap-5">
-            <p className="text-md font-md">Do you collaborate with other vendors?</p>
+            <p className="text-md font-md">
+              Do you collaborate with other vendors?
+            </p>
             <div className="flex gap-7">
               <div className="flex items-center gap-3">
                 <input
@@ -155,7 +163,9 @@ const Page1 = ({
 
           {/* Setups & Installations */}
           <div className="flex flex-col gap-5">
-            <p className="text-md font-md">Do you provide setup & installation?</p>
+            <p className="text-md font-md">
+              Do you provide setup & installation?
+            </p>
             <div className="flex gap-7">
               <div className="flex items-center gap-3">
                 <input
@@ -180,7 +190,9 @@ const Page1 = ({
 
           {/* Booking Deposit */}
           <div className="flex flex-col gap-5">
-            <p className="text-md font-md">Do you require any booking deposit for your services?</p>
+            <p className="text-md font-md">
+              Do you require any booking deposit for your services?
+            </p>
             <div className="flex gap-7">
               <div className="flex items-center gap-3">
                 <input
@@ -221,7 +233,9 @@ const Page1 = ({
             <textarea
               cols={30}
               rows={1}
-              value={typeof cancellationPolicy === 'string' ? cancellationPolicy : ''}
+              value={
+                typeof cancellationPolicy === "string" ? cancellationPolicy : ""
+              }
               onChange={(e) => setCancellationPolicy(e.target.value)}
               placeholder="Enter cancellation policy"
               className="mt-5 resize-none rounded-xl border-2 border-gray-300 p-3"
@@ -243,7 +257,7 @@ const Page1 = ({
             <textarea
               cols={30}
               rows={1}
-              value={typeof tnc === 'string' ? tnc : ''}
+              value={typeof tnc === "string" ? tnc : ""}
               onChange={(e) => setTnc(e.target.value)}
               placeholder="Enter terms and conditions"
               className="mt-5 resize-none rounded-xl border-2 border-gray-300 p-3"

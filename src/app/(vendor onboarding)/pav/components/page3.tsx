@@ -25,7 +25,9 @@ const equipments = [
 
 type Page3Props = {
   customizableSoundLightingRates: boolean;
-  setCustomizableSoundLightingRates: (customizableSoundLightingRates: boolean) => void;
+  setCustomizableSoundLightingRates: (
+    customizableSoundLightingRates: boolean,
+  ) => void;
   Selectedequipments: string[];
   setSelectedEquipments: React.Dispatch<React.SetStateAction<string[]>>;
   handleContinue: () => void;
@@ -86,7 +88,7 @@ const Page3 = ({
                 selectedAppetizers={Selectedequipments}
                 setSelectedAppetizers={setSelectedEquipments}
               />
-              <div className="items-stretch mt-9 flex flex-row gap-7 self-end">
+              <div className="mt-9 flex flex-row items-stretch gap-7 self-end">
                 <button
                   type="button"
                   className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
