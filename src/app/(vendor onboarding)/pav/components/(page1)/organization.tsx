@@ -5,14 +5,12 @@ import { Upload } from "lucide-react";
 import { Combobox } from "@/components/ui/combobox";
 
 type Page1Props = {
-  businessName: string;
-  setBusinessName: React.Dispatch<React.SetStateAction<string>>;
-  cuisineSpecialties: string[];
-  setCuisineSpecialties: React.Dispatch<React.SetStateAction<string[]>>;
-  regionalSpecialties: string[];
-  setRegionalSpecialties: React.Dispatch<React.SetStateAction<string[]>>;
-  serviceStyles: string[];
-  setServiceStyles: React.Dispatch<React.SetStateAction<string[]>>;
+  fullName: string;
+  setFullName: (fullName: string) => void;
+  organizationMembers: string;
+  setOrganizationMembers: (organizationMembers: string) => void;
+  clientTestimonials: string | File;
+  setClientTestimonials: (clientTestimonials: string | File) => void;
   handleContinue: () => void;
 };
 
@@ -36,30 +34,35 @@ export type businessDetails = {
 };
 
 const Organization = ({
-  businessName,
-  setBusinessName,
+  fullName,
+  setFullName,
+  organizationMembers,
+  setOrganizationMembers,
+  clientTestimonials,
+  setClientTestimonials,
   handleContinue,
 }: Page1Props) => {
   const [businessDetails, setBusinessDetails] = useState<businessDetails>(
     {} as businessDetails,
   );
+
   return (
     <>
       <div className="flex min-w-[100%] items-center justify-between gap-9">
         <div className="flex h-[100%] w-[50%] flex-col items-start justify-between gap-9">
           <div className="flex w-[100%] flex-col gap-4">
-            <label htmlFor="businessName">Full Name</label>
+            <label htmlFor="fullName">Full Name</label>
             <input
-              id="businessName"
+              id="fullName"
               type="text"
               className="w-fit rounded-xl border-2 bg-white p-5 py-3 outline-none"
               placeholder="Enter your full name"
-              value={businessName}
-              onChange={(e) => setBusinessName(e.target.value)}
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
             />
           </div>
           <div className="flex w-[100%] flex-col gap-1">
-            <label htmlFor="businessName">Portfolio of Past Work</label>
+            <label htmlFor="portfolio">Portfolio of Past Work</label>
             <button className="mt-5 flex w-fit items-center justify-center gap-5 rounded-xl border-2 border-dashed border-gray-400 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
               <Upload />
               Upload
@@ -70,12 +73,14 @@ const Organization = ({
               rows={5}
               placeholder="enter url"
               className="mt-5 w-fit resize-none rounded-xl border-2 border-gray-300 p-3"
+              value={organizationMembers}
+              onChange={(e) => setOrganizationMembers(e.target.value)}
             ></textarea>
           </div>
         </div>
         <div className="flex h-[100%] w-[50%] flex-col items-start justify-between gap-9">
           <div className="flex w-[100%] flex-col gap-1">
-            <label htmlFor="businessName">Client Testimonials</label>
+            <label htmlFor="cities">Operational Cities</label>
             <Combobox
               options={op}
               placeholder="Select Operational Cities"
@@ -86,8 +91,19 @@ const Organization = ({
             />
           </div>
           <div className="flex w-[100%] flex-col gap-1">
-            <label htmlFor="businessName">Client Testimonials</label>
-            <button className="mt-5 flex w-fit items-center justify-center gap-5 rounded-xl border-2 border-dashed border-gray-400 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
+            <label htmlFor="clientTestimonials">Client Testimonials</label>
+            <button
+              className="mt-5 flex w-fit items-center justify-center gap-5 rounded-xl border-2 border-dashed border-gray-400 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white"
+              onClick={(e) => {
+                const fileInput = document.createElement("input");
+                fileInput.type = "file";
+                fileInput.onchange = (event: any) => {
+                  const file = event.target.files[0];
+                  setClientTestimonials(file);
+                };
+                fileInput.click();
+              }}
+            >
               <Upload />
               Upload
             </button>
@@ -97,7 +113,14 @@ const Organization = ({
               rows={5}
               placeholder="enter url"
               className="mt-5 resize-none rounded-xl border-2 border-gray-300 p-3"
+              value={
+                typeof clientTestimonials === "string" ? clientTestimonials : ""
+              }
+              onChange={(e) => setClientTestimonials(e.target.value)}
             ></textarea>
+            {typeof clientTestimonials === "object" && (
+              <p className="mt-2 text-gray-500">{clientTestimonials.name}</p>
+            )}
           </div>
         </div>
       </div>

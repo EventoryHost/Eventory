@@ -2,34 +2,68 @@ import React from "react";
 import { Upload } from "lucide-react";
 
 type Page1Props = {
-  businessName: string;
-  setBusinessName: React.Dispatch<React.SetStateAction<string>>;
+  fullname: string;
+  setFullname: (fullname: string) => void;
+  portfolio: string | File;
+  setPortfolio: (portfolio: string | File) => void;
+  clientTestimonials: string | File;
+  setClientTestimonials: (clientTestimonials: string | File) => void;
   handleContinue: () => void;
 };
 
 const Individual = ({
-  businessName,
-  setBusinessName,
+  fullname,
+  setFullname,
+  portfolio,
+  setPortfolio,
+  clientTestimonials,
+  setClientTestimonials,
   handleContinue,
 }: Page1Props) => {
+  const handleFileUpload = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    setState: (value: string | File) => void,
+  ) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      setState(file);
+    }
+  };
+
+  const handleTextChange = (
+    event: React.ChangeEvent<HTMLTextAreaElement>,
+    setState: (value: string) => void,
+  ) => {
+    setState(event.target.value);
+  };
+
   return (
     <>
       <div className="flex min-w-[100%] items-center justify-between gap-9">
         <div className="flex h-[100%] w-[50%] flex-col items-start justify-between gap-9">
           <div className="flex w-[100%] flex-col gap-4">
-            <label htmlFor="businessName">Full Name</label>
+            <label htmlFor="fullname">Full Name</label>
             <input
-              id="businessName"
+              id="fullname"
               type="text"
               className="w-fit rounded-xl border-2 bg-white p-5 py-3 outline-none"
               placeholder="Enter your full name"
-              value={businessName}
-              onChange={(e) => setBusinessName(e.target.value)}
+              value={fullname}
+              onChange={(e) => setFullname(e.target.value)}
             />
           </div>
           <div className="flex w-[100%] flex-col gap-1">
-            <label htmlFor="businessName">Portfolio of Past Work</label>
-            <button className="mt-5 flex w-fit items-center justify-center gap-5 rounded-xl border-2 border-dashed border-gray-400 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
+            <label htmlFor="portfolio">Portfolio of Past Work</label>
+            <input
+              id="portfolio"
+              type="file"
+              className="hidden"
+              onChange={(e) => handleFileUpload(e, setPortfolio)}
+            />
+            <button
+              className="mt-5 flex w-fit items-center justify-center gap-5 rounded-xl border-2 border-dashed border-gray-400 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white"
+              onClick={() => document.getElementById("portfolio")?.click()}
+            >
               <Upload />
               Upload
             </button>
@@ -39,13 +73,28 @@ const Individual = ({
               rows={1}
               placeholder="enter url"
               className="mt-5 w-fit resize-none rounded-xl border-2 border-gray-300 p-3"
+              value={typeof portfolio === "string" ? portfolio : ""}
+              onChange={(e) =>
+                handleTextChange(e, setPortfolio as (value: string) => void)
+              }
             ></textarea>
           </div>
         </div>
         <div className="flex h-[100%] w-[50%] flex-col items-start justify-between gap-9">
           <div className="flex w-[100%] flex-col gap-1">
-            <label htmlFor="businessName">Client Testimonials</label>
-            <button className="mt-5 flex w-fit items-center justify-center gap-5 rounded-xl border-2 border-dashed border-gray-400 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
+            <label htmlFor="clientTestimonials">Client Testimonials</label>
+            <input
+              id="clientTestimonials"
+              type="file"
+              className="hidden"
+              onChange={(e) => handleFileUpload(e, setClientTestimonials)}
+            />
+            <button
+              className="mt-5 flex w-fit items-center justify-center gap-5 rounded-xl border-2 border-dashed border-gray-400 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white"
+              onClick={() =>
+                document.getElementById("clientTestimonials")?.click()
+              }
+            >
               <Upload />
               Upload
             </button>
@@ -55,6 +104,15 @@ const Individual = ({
               rows={5}
               placeholder="enter url"
               className="mt-5 resize-none rounded-xl border-2 border-gray-300 p-3"
+              value={
+                typeof clientTestimonials === "string" ? clientTestimonials : ""
+              }
+              onChange={(e) =>
+                handleTextChange(
+                  e,
+                  setClientTestimonials as (value: string) => void,
+                )
+              }
             ></textarea>
           </div>
         </div>

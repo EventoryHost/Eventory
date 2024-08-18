@@ -7,34 +7,79 @@ import Page4 from "./components/page4";
 import Page5 from "./components/page5";
 import React, { useState } from "react";
 import Image from "next/image";
+import { pavtypes, Package, pavFormState, BasicDetails } from "@/types/types";
+import { set } from "date-fns";
 
 const Page = () => {
-  // States for Page1
-  const [businessName, setBusinessName] = useState("");
-  const [cuisineSpecialties, setCuisineSpecialties] = useState<string[]>([]);
-  const [regionalSpecialties, setRegionalSpecialties] = useState<string[]>([]);
-  const [serviceStyles, setServiceStyles] = useState<string[]>([]);
+  const [formState, setFormState] = useState<pavFormState>({
+    type: "individual",
+    fullName: "",
+    client_testimonials: "",
+    portfolio: "",
+    group_members: "",
+    organization_members: "",
+    basic_Detail: "photo",
+    styles: [],
+    events: [],
+    customizable_package: false,
+    customizable_sound_lighting_rates: false,
+    equipments: [],
+    proposals_to_clients: false,
+    free_initial_consultation: false,
+    advance_setup: false,
+    collaboration_with_other_vendors: false,
+    setups_installations: false,
+    booking_deposit: false,
+    cancellation_policy: "",
+    tnc: "",
+    hourlyPackages: [],
+    dailyPackages: [],
+  });
+
+  //states for page1
+  const [type, setType] = useState<pavtypes>("individual");
+  const [fullName, setFullName] = useState("");
+  const [clientTestimonials, setClientTestimonials] = useState<string | File>(
+    "",
+  );
+  const [portfolio, setPortfolio] = useState<string | File>("");
+  const [groupMembers, setGroupMembers] = useState("");
+  const [organizationMembers, setOrganizationMembers] = useState("");
 
   //states for page2
-  const [selectedAppetizers, setSelectedAppetizers] = useState<string[]>([]);
-  const [selectedBeverages, setSelectedBeverages] = useState<string[]>([]);
-  const [selectedMainCourses, setSelectedMainCourses] = useState<string[]>([]);
-  const [selectedDietaryOptions, setSelectedDietaryOptions] = useState<
-    string[]
-  >([]);
+  const [basicDetail, setBasicDetail] = useState<BasicDetails>("photo");
+  const [styles, setStyles] = useState<string[]>([]);
+  const [events, setEvents] = useState<string[]>([]);
+  const [customizablePackage, setCustomizablePackage] =
+    useState<boolean>(false);
 
   //states for page3
-  const [eventTypes, setEventTypes] = useState<string[]>([]);
-  const [additionalServices, setAdditionalServices] = useState<string[]>([]);
+  const [customizableSoundLightingRates, setCustomizableSoundLightingRates] =
+    useState<boolean>(false);
+  const [equipments, setEquipments] = useState<string[]>([]);
 
-  //states forpage4
-  const [staffProvides, setStaffProvides] = useState<string[]>([]);
-  const [equipmentsProvided, setEquipmentsProvided] = useState<string[]>([]);
+  //states for page4
+  const [proposalsToClients, setProposalsToClients] = useState<boolean>(false);
+  const [freeInitialConsultation, setFreeInitialConsultation] =
+    useState<boolean>(false);
+  const [advanceSetup, setAdvanceSetup] = useState<boolean>(false);
+  const [collaborationWithOtherVendors, setCollaborationWithOtherVendors] =
+    useState<boolean>(false);
+  const [setupsInstallations, setSetupsInstallations] =
+    useState<boolean>(false);
+  const [bookingDeposit, setBookingDeposit] = useState<boolean>(false);
+  const [cancellationPolicy, setCancellationPolicy] = useState<File | string>(
+    "",
+  );
+  const [tnc, setTnc] = useState<File | string>("");
 
-  // states for page6
-  const [tastingSessions, setTastingSessions] = useState<boolean>(false);
-  const [businessLicenses, setBusinessLicenses] = useState<boolean>(false);
-  const [foodSafety, setFoodSafety] = useState<boolean>(false);
+  //states for page5
+  const [hourlyPackages, setHourlyPackages] = useState<Package[]>([
+    { type: "", priceRange: [0, 0] },
+  ]);
+  const [dailyPackages, setDailyPackages] = useState<Package[]>([
+    { type: "", priceRange: [0, 0] },
+  ]);
 
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -45,9 +90,6 @@ const Page = () => {
   }
 
   // State for packages
-  const [hourlyPackages, setHourlyPackages] = useState<Package[]>([]);
-  const [dailyPackages, setDailyPackages] = useState<Package[]>([]);
-  const [seasonalPackages, setSeasonalPackages] = useState<Package[]>([]);
 
   // Function to handle package change
   const handlePackageChange = (
@@ -82,15 +124,59 @@ const Page = () => {
 
   const handleContinue = () => {
     console.log({
-      businessName,
-      cuisineSpecialties,
-      regionalSpecialties,
-      serviceStyles,
-      selectedAppetizers,
-      selectedBeverages,
-      selectedMainCourses,
-      selectedDietaryOptions,
+      type,
+      fullName,
+      clientTestimonials,
+      portfolio,
+      groupMembers,
+      organizationMembers,
+      styles,
+      events,
+      customizablePackage,
+      customizableSoundLightingRates,
+      equipments,
+      proposalsToClients,
+      freeInitialConsultation,
+      advanceSetup,
+      collaborationWithOtherVendors,
+      setupsInstallations,
+      bookingDeposit,
+      cancellationPolicy,
+      tnc,
+      hourlyPackages,
+      dailyPackages,
     });
+    setCurrentPage(currentPage + 1);
+  };
+
+  const handleSubmit = () => {
+    setFormState({
+      type,
+      fullName,
+      client_testimonials: clientTestimonials,
+      portfolio,
+      group_members: groupMembers,
+      organization_members: organizationMembers,
+      basic_Detail: basicDetail,
+      styles,
+      events,
+      customizable_package: customizablePackage,
+      customizable_sound_lighting_rates: customizableSoundLightingRates,
+      equipments,
+      proposals_to_clients: proposalsToClients,
+      free_initial_consultation: freeInitialConsultation,
+      advance_setup: advanceSetup,
+      collaboration_with_other_vendors: collaborationWithOtherVendors,
+      setups_installations: setupsInstallations,
+      booking_deposit: bookingDeposit,
+      cancellation_policy: cancellationPolicy,
+      tnc,
+      hourlyPackages,
+      dailyPackages,
+    });
+
+    // Print the final form state
+    console.log("Final Form State:", formState);
   };
 
   const renderPage = () => {
@@ -98,45 +184,67 @@ const Page = () => {
       case 1:
         return (
           <Page1
-            businessName={businessName}
-            setBusinessName={setBusinessName}
-            cuisineSpecialties={cuisineSpecialties}
-            setCuisineSpecialties={setCuisineSpecialties}
-            regionalSpecialties={regionalSpecialties}
-            setRegionalSpecialties={setRegionalSpecialties}
-            serviceStyles={serviceStyles}
-            setServiceStyles={setServiceStyles}
-            handleContinue={() => setCurrentPage(2)}
+            type={type}
+            setType={setType}
+            fullName={fullName}
+            setFullName={setFullName}
+            clientTestimonials={clientTestimonials}
+            setClientTestimonials={setClientTestimonials}
+            portfolio={portfolio}
+            setPortfolio={setPortfolio}
+            groupMembers={groupMembers}
+            setGroupMembers={setGroupMembers}
+            organizationMembers={organizationMembers}
+            setOrganizationMembers={setOrganizationMembers}
+            handleContinue={handleContinue}
           />
         );
       case 2:
         return (
           <Page2
-            selectedAppetizers={selectedAppetizers}
-            setSelectedAppetizers={setSelectedAppetizers}
-            handleContinue={() => setCurrentPage(3)}
+            basicDetail={basicDetail}
+            setBasicDetail={setBasicDetail}
+            Selectedstyles={styles}
+            setStyles={setStyles}
+            Selectedevents={events}
+            setEvents={setEvents}
+            customozablePackage={customizablePackage}
+            setCustomozablePackage={setCustomizablePackage}
+            handleContinue={handleContinue}
           />
         );
       case 3:
         return (
           <Page3
-            selectedAppetizers={selectedAppetizers}
-            setSelectedAppetizers={setSelectedAppetizers}
-            handleContinue={() => setCurrentPage(4)}
+            customizableSoundLightingRates={customizableSoundLightingRates}
+            setCustomizableSoundLightingRates={
+              setCustomizableSoundLightingRates
+            }
+            Selectedequipments={equipments}
+            setSelectedEquipments={setEquipments}
+            handleContinue={handleContinue}
           />
         );
       case 4:
         return (
           <Page4
-            businessName={businessName}
-            setBusinessName={setBusinessName}
-            cuisineSpecialties={cuisineSpecialties}
-            setCuisineSpecialties={setCuisineSpecialties}
-            regionalSpecialties={regionalSpecialties}
-            setRegionalSpecialties={setRegionalSpecialties}
-            serviceStyles={serviceStyles}
-            setServiceStyles={setServiceStyles}
-            handleContinue={() => setCurrentPage(5)}
+            proposalsToClients={proposalsToClients}
+            setProposalsToClients={setProposalsToClients}
+            freeInitialConsultation={freeInitialConsultation}
+            setFreeInitialConsultation={setFreeInitialConsultation}
+            advanceSetup={advanceSetup}
+            setAdvanceSetup={setAdvanceSetup}
+            collaborationWithOtherVendors={collaborationWithOtherVendors}
+            setCollaborationWithOtherVendors={setCollaborationWithOtherVendors}
+            setupsInstallations={setupsInstallations}
+            setSetupsInstallations={setSetupsInstallations}
+            bookingDeposit={bookingDeposit}
+            setBookingDeposit={setBookingDeposit}
+            cancellationPolicy={cancellationPolicy}
+            setCancellationPolicy={setCancellationPolicy}
+            tnc={tnc}
+            setTnc={setTnc}
+            handleContinue={handleContinue}
           />
         );
       case 5:
@@ -146,25 +254,11 @@ const Page = () => {
             setHourlyPackages={setHourlyPackages}
             dailyPackages={dailyPackages}
             setDailyPackages={setDailyPackages}
-            seasonalPackages={seasonalPackages}
-            setSeasonalPackages={setSeasonalPackages}
             handlePackageChange={handlePackageChange}
             addPackage={addPackage}
-            handleContinue={() => setCurrentPage(6)}
+            handleContinue={handleSubmit}
           />
         );
-      //   case 6:
-      //     return (
-      //       <Page6
-      //         tastingSessions={tastingSessions}
-      //         setTastingSessions={setTastingSessions}
-      //         businessLicenses={businessLicenses}
-      //         setBusinessLicenses={setBusinessLicenses}
-      //         foodSafety={foodSafety}
-      //         setFoodSafety={setFoodSafety}
-      //         handleContinue={handleContinue}
-      //       />
-      //     );
       default:
         return <div>Completed</div>;
     }

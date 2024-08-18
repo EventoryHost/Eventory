@@ -3,8 +3,9 @@
 import { Upload } from "lucide-react";
 import React from "react";
 import Appetizers from "../../caterer/(components)/Appetizers";
+import { BasicDetails } from "@/types/types";
 
-const regional = [
+const styles = [
   "Aerial",
   "Black and White",
   "Candid",
@@ -30,35 +31,66 @@ const events = [
   "Farewell",
   "Others",
 ];
-const service = ["Buffet", "Plated Meals", "Family Style", "Food Stations"];
-const cuisine = ["North Indian", "South Indian", "Chinese", "Italian"];
 
 type Page1Props = {
+  basicDetail: BasicDetails;
+  setBasicDetail: (basicDetail: BasicDetails) => void;
+  Selectedstyles: string[];
+  setStyles: React.Dispatch<React.SetStateAction<string[]>>;
+  Selectedevents: string[];
+  setEvents: React.Dispatch<React.SetStateAction<string[]>>;
+  customozablePackage: boolean;
+  setCustomozablePackage: (customozablePackage: boolean) => void;
   handleContinue: () => void;
-  selectedAppetizers: string[];
-  setSelectedAppetizers: React.Dispatch<React.SetStateAction<string[]>>;
 };
 
 const Page1 = ({
+  basicDetail,
+  setBasicDetail,
+  Selectedstyles,
+  setStyles,
+  Selectedevents,
+  setEvents,
+  customozablePackage,
+  setCustomozablePackage,
   handleContinue,
-  selectedAppetizers,
-  setSelectedAppetizers,
 }: Page1Props) => {
   return (
-    <form className="flex h-[100%] flex-col items-start gap-7 overflow-y-scroll rounded-xl p-3 xs:w-[100%] xs:min-w-[90%] xs:justify-start md:p-6">
+    <form
+      className="flex h-[100%] flex-col items-start gap-7 overflow-y-scroll rounded-xl p-3 xs:w-[100%] xs:min-w-[90%] xs:justify-start md:p-6"
+      onSubmit={(e) => e.preventDefault()}
+    >
       <div className="flex w-[100%] flex-col justify-start gap-9 rounded-xl bg-white p-5 md:flex-row">
         <h1 className="text-3xl font-semibold">Basic Details</h1>
         <div className="flex flex-col gap-5 md:flex-row">
           <div className="flex items-center gap-3">
-            <input type="radio" />
+            <input
+              type="radio"
+              name="detail"
+              value="Both"
+              checked={basicDetail === "both"}
+              onChange={(e) => setBasicDetail("both")}
+            />
             <label htmlFor="radio">Both</label>
           </div>
           <div className="flex items-center gap-3">
-            <input type="radio" />
+            <input
+              type="radio"
+              name="detail"
+              value="photo"
+              checked={basicDetail === "photo"}
+              onChange={(e) => setBasicDetail("photo")}
+            />
             <label htmlFor="radio">Photographer</label>
           </div>
           <div className="flex items-center gap-3">
-            <input type="radio" />
+            <input
+              type="radio"
+              name="detail"
+              value="Videographer"
+              checked={basicDetail === "video"}
+              onChange={(e) => setBasicDetail("video")}
+            />
             <label htmlFor="radio">Videographer</label>
           </div>
         </div>
@@ -71,9 +103,9 @@ const Page1 = ({
                 Types Of Styles
               </label>
               <Appetizers
-                appetizers={regional}
-                selectedAppetizers={selectedAppetizers}
-                setSelectedAppetizers={setSelectedAppetizers}
+                appetizers={styles}
+                selectedAppetizers={Selectedstyles}
+                setSelectedAppetizers={setStyles}
               />
             </div>
           </div>
@@ -84,27 +116,39 @@ const Page1 = ({
               </label>
               <Appetizers
                 appetizers={events}
-                selectedAppetizers={selectedAppetizers}
-                setSelectedAppetizers={setSelectedAppetizers}
+                selectedAppetizers={Selectedevents}
+                setSelectedAppetizers={setEvents}
               />
             </div>
           </div>
           <div className="flex min-w-full flex-col items-start justify-between gap-5 rounded-xl bg-white p-5 md:flex-row">
             <div className="flex min-w-[100%] flex-col gap-7">
               <label className="text-lg" htmlFor="beverages">
-                Customizable photography & videography package ?
+                Customizable photography & videography package?
               </label>
               <div className="flex gap-5">
                 <div className="flex items-center gap-3">
-                  <input type="radio" />
+                  <input
+                    type="radio"
+                    name="customPackage"
+                    value="Yes"
+                    checked={customozablePackage === true}
+                    onChange={() => setCustomozablePackage(true)}
+                  />
                   <label htmlFor="radio">Yes</label>
                 </div>
                 <div className="flex items-center gap-3">
-                  <input type="radio" />
+                  <input
+                    type="radio"
+                    name="customPackage"
+                    value="No"
+                    checked={customozablePackage === false}
+                    onChange={() => setCustomozablePackage(false)}
+                  />
                   <label htmlFor="radio">No</label>
                 </div>
               </div>
-              <div className="items-strech mt-9 flex flex-row gap-7 self-end">
+              <div className="mt-9 flex flex-row items-stretch gap-7 self-end">
                 <button
                   className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
                   onClick={handleContinue}
