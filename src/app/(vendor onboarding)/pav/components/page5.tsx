@@ -175,38 +175,6 @@ const Page5: React.FC<PageProps> = ({
 
         <div className="flex w-[100%] flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
-            <div
-              key={0}
-              className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row"
-            >
-              <div className="flex min-w-[40%] flex-col gap-4">
-                <div className="flex w-[100%] items-center justify-start gap-2">
-                  <Checkbox
-                    sx={{
-                      "&.Mui-checked": {
-                        color: "#2E3192",
-                      },
-                    }}
-                  />
-                  Daily Package Rates
-                </div>
-                <label htmlFor={`dailyPackageType${-1}`}>Name</label>
-                <input
-                  id={`dailyPackageType${-1}`}
-                  type="text"
-                  className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
-                  placeholder="Type of package , Eg: Day time"
-                  onChange={(e) =>
-                    handlePackageChange(
-                      setDailyPackages,
-                      0,
-                      "type",
-                      e.target.value,
-                    )
-                  }
-                />
-              </div>
-            </div>
             {dailyPackages.map((pkg, index) => (
               <div
                 key={index}
