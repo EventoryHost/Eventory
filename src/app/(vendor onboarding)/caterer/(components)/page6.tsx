@@ -177,7 +177,9 @@ const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
                     cols={30}
                     rows={7}
                     placeholder="Enter your venue details"
-                    onChange={(e) => updateFormState({ termsAndConditions: e.target.value })}
+                    onChange={(e) =>
+                      updateFormState({ termsAndConditions: e.target.value })
+                    }
                     className="mt-5 resize-none rounded-xl border-2 border-gray-300 p-3"
                   ></textarea>
                 </div>
@@ -207,7 +209,9 @@ const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
                   cols={30}
                   rows={7}
                   placeholder="Enter your venue details"
-                  onChange={(e) => updateFormState({ cancellationPolicy: e.target.value })}
+                  onChange={(e) =>
+                    updateFormState({ cancellationPolicy: e.target.value })
+                  }
                   className="mt-5 resize-none rounded-xl border-2 border-gray-300 p-3"
                 ></textarea>
               </div>
