@@ -67,8 +67,8 @@ const Page = () => {
   const [tnc, setTnc] = useState<File | string>("");
 
   //states for page5
-  const [hourlyPackages, setHourlyPackages] = useState<Package[]>([]);
-  const [dailyPackages, setDailyPackages] = useState<Package[]>([]);
+  const [hourlyPackages, setHourlyPackages] = useState<Package[]>([{type: '', priceRange: [0, 0]}]);
+  const [dailyPackages, setDailyPackages] = useState<Package[]>([{type: '', priceRange:[0,0]}]);
 
 
   const [currentPage, setCurrentPage] = useState(1);
