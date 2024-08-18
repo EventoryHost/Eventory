@@ -22,7 +22,7 @@ const Individual = ({
 }: Page1Props) => {
   const handleFileUpload = (
     event: React.ChangeEvent<HTMLInputElement>,
-    setState: (value: string | File) => void
+    setState: (value: string | File) => void,
   ) => {
     const file = event.target.files?.[0];
     if (file) {
@@ -32,7 +32,7 @@ const Individual = ({
 
   const handleTextChange = (
     event: React.ChangeEvent<HTMLTextAreaElement>,
-    setState: (value: string) => void
+    setState: (value: string) => void,
   ) => {
     setState(event.target.value);
   };
@@ -74,7 +74,9 @@ const Individual = ({
               placeholder="enter url"
               className="mt-5 w-fit resize-none rounded-xl border-2 border-gray-300 p-3"
               value={typeof portfolio === "string" ? portfolio : ""}
-              onChange={(e) => handleTextChange(e, setPortfolio as (value: string) => void)}
+              onChange={(e) =>
+                handleTextChange(e, setPortfolio as (value: string) => void)
+              }
             ></textarea>
           </div>
         </div>
@@ -102,8 +104,15 @@ const Individual = ({
               rows={5}
               placeholder="enter url"
               className="mt-5 resize-none rounded-xl border-2 border-gray-300 p-3"
-              value={typeof clientTestimonials === "string" ? clientTestimonials : ""}
-              onChange={(e) => handleTextChange(e, setClientTestimonials as (value: string) => void)}
+              value={
+                typeof clientTestimonials === "string" ? clientTestimonials : ""
+              }
+              onChange={(e) =>
+                handleTextChange(
+                  e,
+                  setClientTestimonials as (value: string) => void,
+                )
+              }
             ></textarea>
           </div>
         </div>

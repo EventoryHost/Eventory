@@ -113,13 +113,13 @@ const Organization = ({
               rows={5}
               placeholder="enter url"
               className="mt-5 resize-none rounded-xl border-2 border-gray-300 p-3"
-              value={typeof clientTestimonials === "string" ? clientTestimonials : ""}
+              value={
+                typeof clientTestimonials === "string" ? clientTestimonials : ""
+              }
               onChange={(e) => setClientTestimonials(e.target.value)}
             ></textarea>
             {typeof clientTestimonials === "object" && (
-              <p className="mt-2 text-gray-500">
-                {clientTestimonials.name}
-              </p>
+              <p className="mt-2 text-gray-500">{clientTestimonials.name}</p>
             )}
           </div>
         </div>

@@ -37,7 +37,6 @@ const Page1 = ({
   setOrganizationMembers,
   handleContinue,
 }: Page1Props) => {
-
   // State to manage the selected option (individual, group, organization)
   const [selectedOption, setSelectedOption] = useState<pavtypes>("individual");
 

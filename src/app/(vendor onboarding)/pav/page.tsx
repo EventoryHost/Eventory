@@ -10,9 +10,7 @@ import Image from "next/image";
 import { pavtypes, Package, pavFormState, BasicDetails } from "@/types/types";
 import { set } from "date-fns";
 
-
 const Page = () => {
-
   const [formState, setFormState] = useState<pavFormState>({
     type: "individual",
     fullName: "",
@@ -36,12 +34,14 @@ const Page = () => {
     tnc: "",
     hourlyPackages: [],
     dailyPackages: [],
-  })
+  });
 
   //states for page1
   const [type, setType] = useState<pavtypes>("individual");
   const [fullName, setFullName] = useState("");
-  const [clientTestimonials, setClientTestimonials] = useState<string | File>("");
+  const [clientTestimonials, setClientTestimonials] = useState<string | File>(
+    "",
+  );
   const [portfolio, setPortfolio] = useState<string | File>("");
   const [groupMembers, setGroupMembers] = useState("");
   const [organizationMembers, setOrganizationMembers] = useState("");
@@ -50,26 +50,32 @@ const Page = () => {
   const [basicDetail, setBasicDetail] = useState<BasicDetails>("photo");
   const [styles, setStyles] = useState<string[]>([]);
   const [events, setEvents] = useState<string[]>([]);
-  const [customizablePackage, setCustomizablePackage] = useState<boolean>(false);
+  const [customizablePackage, setCustomizablePackage] =
+    useState<boolean>(false);
 
   //states for page3
-  const [customizableSoundLightingRates, setCustomizableSoundLightingRates] = useState<boolean>(false);
+  const [customizableSoundLightingRates, setCustomizableSoundLightingRates] =
+    useState<boolean>(false);
   const [equipments, setEquipments] = useState<string[]>([]);
 
   //states for page4
   const [proposalsToClients, setProposalsToClients] = useState<boolean>(false);
-  const [freeInitialConsultation, setFreeInitialConsultation] = useState<boolean>(false);
+  const [freeInitialConsultation, setFreeInitialConsultation] =
+    useState<boolean>(false);
   const [advanceSetup, setAdvanceSetup] = useState<boolean>(false);
-  const [collaborationWithOtherVendors, setCollaborationWithOtherVendors] = useState<boolean>(false);
-  const [setupsInstallations, setSetupsInstallations] = useState<boolean>(false);
+  const [collaborationWithOtherVendors, setCollaborationWithOtherVendors] =
+    useState<boolean>(false);
+  const [setupsInstallations, setSetupsInstallations] =
+    useState<boolean>(false);
   const [bookingDeposit, setBookingDeposit] = useState<boolean>(false);
-  const [cancellationPolicy, setCancellationPolicy] = useState<File | string>("");
+  const [cancellationPolicy, setCancellationPolicy] = useState<File | string>(
+    "",
+  );
   const [tnc, setTnc] = useState<File | string>("");
 
   //states for page5
   const [hourlyPackages, setHourlyPackages] = useState<Package[]>([{type: '', priceRange: [0, 0]}]);
   const [dailyPackages, setDailyPackages] = useState<Package[]>([{type: '', priceRange:[0,0]}]);
-
 
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -207,7 +213,9 @@ const Page = () => {
         return (
           <Page3
             customizableSoundLightingRates={customizableSoundLightingRates}
-            setCustomizableSoundLightingRates={setCustomizableSoundLightingRates}
+            setCustomizableSoundLightingRates={
+              setCustomizableSoundLightingRates
+            }
             Selectedequipments={equipments}
             setSelectedEquipments={setEquipments}
             handleContinue={handleContinue}
@@ -245,7 +253,7 @@ const Page = () => {
             handlePackageChange={handlePackageChange}
             addPackage={addPackage}
             handleContinue={handleSubmit}
-            />
+          />
         );
       default:
         return <div>Completed</div>;
