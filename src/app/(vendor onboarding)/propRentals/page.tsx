@@ -46,7 +46,7 @@ type FormState = {
   workerMinRate: string;
   workerMaxRate: string;
 
-  advancedPaymentCheckboxPage3: boolean;
+  advancedPaymentCheckboxPage3: false;
   percentageValuePage3: number;
   percentageValuePage4: number;
   percentageValuePage5: number;
@@ -55,13 +55,13 @@ type FormState = {
   hourlyCheckboxPage4: boolean;
   dealCheckboxPage4: boolean;
   workerCheckboxPage4: boolean;
-  advancedPaymentCheckboxPage4: boolean;
+  advancedPaymentCheckboxPage4: false;
 
   // Page5
   hourlyCheckboxPage5: boolean;
   dealCheckboxPage5: boolean;
   workerCheckboxPage5: boolean;
-  advancedPaymentCheckboxPage5: boolean;
+  advancedPaymentCheckboxPage5: false;
 };
 
 type PricingEntry = {
@@ -297,7 +297,7 @@ const RootPage = () => {
   
     addPropRental(formData);
   }
-  
+   
 
   return (
     <div>

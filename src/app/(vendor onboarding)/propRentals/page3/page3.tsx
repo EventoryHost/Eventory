@@ -75,7 +75,7 @@ type FormState = {
   workerMinRate: string;
   workerMaxRate: string;
 
-  advancedPaymentCheckboxPage3: boolean;
+  advancedPaymentCheckboxPage3: false;
   percentageValuePage3: number;
   percentageValuePage4: number;
   percentageValuePage5: number;
@@ -84,13 +84,13 @@ type FormState = {
   hourlyCheckboxPage4: boolean;
   dealCheckboxPage4: boolean;
   workerCheckboxPage4: boolean;
-  advancedPaymentCheckboxPage4: boolean;
+  advancedPaymentCheckboxPage4: false;
 
   // Page5
   hourlyCheckboxPage5: boolean;
   dealCheckboxPage5: boolean;
   workerCheckboxPage5: boolean;
-  advancedPaymentCheckboxPage5: boolean;
+  advancedPaymentCheckboxPage5: false;
 };
 
 type page3Props = {
@@ -512,7 +512,7 @@ function Page3({
                     <input
                       type="checkbox"
                       className="h-6 w-6 appearance-none rounded-lg border-2 border-[#2E3192] bg-white checked:bg-[#2E3192] focus:outline-none"
-                      checked={formState.advancedPaymentCheckbox}
+                      checked={formState.advancedPaymentCheckbox || false}
                       onChange={(e) =>
                         handleChange(
                           "advancedPaymentCheckbox",
@@ -600,18 +600,18 @@ function Page3({
                   workerType: string;
                   workerMinRate: string;
                   workerMaxRate: string;
-                  advancedPaymentCheckboxPage3: boolean;
+                  advancedPaymentCheckboxPage3: false;
                   percentageValuePage3: number;
                   percentageValuePage4: number;
                   percentageValuePage5: number;
                   hourlyCheckboxPage4: boolean;
                   dealCheckboxPage4: boolean;
                   workerCheckboxPage4: boolean;
-                  advancedPaymentCheckboxPage4: boolean;
+                  advancedPaymentCheckboxPage4: false;
                   hourlyCheckboxPage5: boolean;
                   dealCheckboxPage5: boolean;
                   workerCheckboxPage5: boolean;
-                  advancedPaymentCheckboxPage5: boolean;
+                  advancedPaymentCheckboxPage5: false;
                 },
                 value: any,
               ): void {
@@ -679,18 +679,18 @@ function Page3({
                 workerType: string;
                 workerMinRate: string;
                 workerMaxRate: string;
-                advancedPaymentCheckboxPage3: boolean;
+                advancedPaymentCheckboxPage3: false;
                 percentageValuePage3: number;
                 percentageValuePage4: number;
                 percentageValuePage5: number;
                 hourlyCheckboxPage4: boolean;
                 dealCheckboxPage4: boolean;
                 workerCheckboxPage4: boolean;
-                advancedPaymentCheckboxPage4: boolean;
+                advancedPaymentCheckboxPage4: false;
                 hourlyCheckboxPage5: boolean;
                 dealCheckboxPage5: boolean;
                 workerCheckboxPage5: boolean;
-                advancedPaymentCheckboxPage5: boolean;
+                advancedPaymentCheckboxPage5: false;
               },
               value: any,
             ): void {
