@@ -101,16 +101,14 @@ interface TentHourlyPricingEntry {
   max: number;
 }
 
-
 function Page4({
   selectedTentOptions,
   setSelectedTentOptions,
   formState,
   handleChange,
   tentHourlyPricingEntries,
-  handleAddTentHourlyPricingEntries
+  handleAddTentHourlyPricingEntries,
 }: page4Props) {
-
   // useEffect(() => {
   //   console.log('Tent hourly pricing entries updated:', formState.tentHourlyPricingEntries);
   // }, [formState.tentHourlyPricingEntries]);
@@ -119,11 +117,14 @@ function Page4({
     e.preventDefault();
     const form = e.currentTarget as HTMLFormElement;
     const name = (form.elements.namedItem("name") as HTMLInputElement).value;
-    const minRate = parseInt((form.elements.namedItem("minRate") as HTMLInputElement).value);
-    const maxRate = parseInt((form.elements.namedItem("maxRate") as HTMLInputElement).value);
+    const minRate = parseInt(
+      (form.elements.namedItem("minRate") as HTMLInputElement).value,
+    );
+    const maxRate = parseInt(
+      (form.elements.namedItem("maxRate") as HTMLInputElement).value,
+    );
     handleAddTentHourlyPricingEntries({ name, min: minRate, max: maxRate });
   };
-
 
   return (
     <>
@@ -157,56 +158,60 @@ function Page4({
       <div className="mx-12 flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
         <div className="flex min-h-full min-w-full flex-col gap-5">
           <h1 className="text-3xl font-semibold">Pricing Structure</h1>
-              <div className="flex flex-col gap-5">
-                <h2 className="text-2xl font-semibold">Hourly Package Rates</h2>
-                <form onSubmit={handleSubmit}>
-                  <div className="flex gap-4">
-                    <input
-                      type="text"
-                      name="name"
-                      placeholder="Service Name"
-                      className="rounded border p-2"
+          <div className="flex flex-col gap-5">
+            <h2 className="text-2xl font-semibold">Hourly Package Rates</h2>
+            <form onSubmit={handleSubmit}>
+              <div className="flex gap-4">
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Service Name"
+                  className="rounded border p-2"
+                />
+                <input
+                  type="number"
+                  name="minRate"
+                  placeholder="Min Rate"
+                  className="rounded border p-2"
+                />
+                <input
+                  type="number"
+                  name="maxRate"
+                  placeholder="Max Rate"
+                  className="rounded border p-2"
+                />
+                <button
+                  type="submit"
+                  className="cursor-pointer rounded-lg bg-[#E6E6E6] p-2 hover:shadow-xl"
+                >
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M12 5.5V17.5M6 11.5H18"
+                      stroke="#2E3192"
+                      strokeWidth="1.2"
+                      strokeLinecap="round"
                     />
-                    <input
-                      type="number"
-                      name="minRate"
-                      placeholder="Min Rate"
-                      className="rounded border p-2"
-                    />
-                    <input
-                      type="number"
-                      name="maxRate"
-                      placeholder="Max Rate"
-                      className="rounded border p-2"
-                    />
-                    <button
-                      type="submit"
-                      className="cursor-pointer rounded-lg bg-[#E6E6E6] p-2 hover:shadow-xl"
-                    >
-                      <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M12 5.5V17.5M6 11.5H18"
-                          stroke="#2E3192"
-                          strokeWidth="1.2"
-                          strokeLinecap="round"
-                        />
-                      </svg>
-                    </button>
-                  </div>
-                  <ul>
-                    <li>This is start</li>
-                    {formState.tentHourlyPricingEntries.map((entry: TentHourlyPricingEntry, index: number) => (
-                      <li key={index}>{`${entry.name}: ${entry.min} - ${entry.max}`}</li>
-                    ))}
-                  </ul>
-                </form>
+                  </svg>
+                </button>
               </div>
+              <ul>
+                <li>This is start</li>
+                {formState.tentHourlyPricingEntries.map(
+                  (entry: TentHourlyPricingEntry, index: number) => (
+                    <li
+                      key={index}
+                    >{`${entry.name}: ${entry.min} - ${entry.max}`}</li>
+                  ),
+                )}
+              </ul>
+            </form>
+          </div>
 
           <div className="mt-8 flex flex-col gap-5">
             <h2 className="text-2xl font-semibold">Deal Package Rates</h2>

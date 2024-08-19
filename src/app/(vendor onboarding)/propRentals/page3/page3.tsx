@@ -174,8 +174,7 @@ function Page3({
           {selectedCategory === "Tent and Canopy" && (
             <StepBar currentStep={4} />
           )}
-          {selectedCategory === "Audio-Visual" && 
-            <StepBar currentStep={5} />}
+          {selectedCategory === "Audio-Visual" && <StepBar currentStep={5} />}
         </div>
         <div className="ml-8 flex h-[50%] flex-col items-start justify-center gap-9 px-9 xs:pl-5 md:px-11 lg:p-8">
           <h1 className="text-2xl font-semibold md:text-4xl lg:text-5xl">
@@ -355,11 +354,13 @@ function Page3({
                     </div>
                   </form>
                   <ul>
-                    {formState.furnitureHourlyPricingEntries.map((entry, index) => (
-                      <li
-                        key={index}
-                      >{`${entry.name}: ${entry.min} - ${entry.max}`}</li>
-                    ))}
+                    {formState.furnitureHourlyPricingEntries.map(
+                      (entry, index) => (
+                        <li
+                          key={index}
+                        >{`${entry.name}: ${entry.min} - ${entry.max}`}</li>
+                      ),
+                    )}
                   </ul>
                 </div>
 
@@ -428,11 +429,13 @@ function Page3({
                     </div>
                   </form>
                   <ul>
-                    {formState.furnitureDealPricingEntries.map((entry, index) => (
-                      <li
-                        key={index}
-                      >{`${entry.name}: ${entry.min} - ${entry.max}`}</li>
-                    ))}
+                    {formState.furnitureDealPricingEntries.map(
+                      (entry, index) => (
+                        <li
+                          key={index}
+                        >{`${entry.name}: ${entry.min} - ${entry.max}`}</li>
+                      ),
+                    )}
                   </ul>
                 </div>
 
@@ -501,11 +504,13 @@ function Page3({
                     </div>
                   </form>
                   <ul>
-                    {formState.furnitureWorkerPricingEntries.map((entry, index) => (
-                      <li
-                        key={index}
-                      >{`${entry.name}: ${entry.min} - ${entry.max}`}</li>
-                    ))}
+                    {formState.furnitureWorkerPricingEntries.map(
+                      (entry, index) => (
+                        <li
+                          key={index}
+                        >{`${entry.name}: ${entry.min} - ${entry.max}`}</li>
+                      ),
+                    )}
                   </ul>
 
                   <div className="flex gap-2">
@@ -586,8 +591,16 @@ function Page3({
                   privacyPolicy: string;
                   selectedAppetizers: string[];
                   selectedDecor: string[];
-                  furnitureHourlyPricingEntries: { name: string; min: number; max: number; }[];
-                  tentHourlyPricingEntries: { name: string; min: number; max: number; }[];
+                  furnitureHourlyPricingEntries: {
+                    name: string;
+                    min: number;
+                    max: number;
+                  }[];
+                  tentHourlyPricingEntries: {
+                    name: string;
+                    min: number;
+                    max: number;
+                  }[];
                   hourlyCheckbox: boolean;
                   packageTypePage3: string;
                   packageMinRate: string;
@@ -665,8 +678,16 @@ function Page3({
                 privacyPolicy: string;
                 selectedAppetizers: string[];
                 selectedDecor: string[];
-                furnitureHourlyPricingEntries: { name: string; min: number; max: number; }[];
-                tentHourlyPricingEntries: { name: string; min: number; max: number; }[];
+                furnitureHourlyPricingEntries: {
+                  name: string;
+                  min: number;
+                  max: number;
+                }[];
+                tentHourlyPricingEntries: {
+                  name: string;
+                  min: number;
+                  max: number;
+                }[];
                 hourlyCheckbox: boolean;
                 packageTypePage3: string;
                 packageMinRate: string;
@@ -695,9 +716,15 @@ function Page3({
               value: any,
             ): void {
               throw new Error("Function not implemented.");
-            } } handleAddPricingEntry={function (): void {
+            }}
+            handleAddPricingEntry={function (): void {
               throw new Error("Function not implemented.");
-            } } tentHourlyPricingEntries={tentHourlyPricingEntries} handleAddTentHourlyPricingEntries={handleAddTentHourlyPricingEntries}           />
+            }}
+            tentHourlyPricingEntries={tentHourlyPricingEntries}
+            handleAddTentHourlyPricingEntries={
+              handleAddTentHourlyPricingEntries
+            }
+          />
         )}
 
         {selectedCategory === "Audio-Visual" && (
@@ -709,9 +736,13 @@ function Page3({
             selectedLightOptions={selectedLightOptions}
             setSelectedLightOptions={setSelectedLightOptions}
             percentageValuePage4={0}
-            percentageValuePage5={0} furnitureHourlyPricingEntries={undefined} handleAddPricingEntry={function (): void {
+            percentageValuePage5={0}
+            furnitureHourlyPricingEntries={undefined}
+            handleAddPricingEntry={function (): void {
               throw new Error("Function not implemented.");
-            } } tentHourlyPricingEntries={undefined}          />
+            }}
+            tentHourlyPricingEntries={undefined}
+          />
         )}
       </div>
     </div>

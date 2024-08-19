@@ -2,7 +2,7 @@ import axios from "axios";
 
 async function addPropRental(data: any) {
   console.log("This is the formdata in service propRental page:", data);
-  
+
   try {
     console.log("Sending request..."); // Log the request being sent
     const response = await axios.post(

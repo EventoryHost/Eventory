@@ -343,7 +343,7 @@ function Preview({
             <div className="mt-4 flex flex-col">
               {formState.furnitureHourlyPricingEntries.length > 0 ? (
                 formState.furnitureHourlyPricingEntries.map((entry, index) => (
-                  <div key={index} className="flex flex-col mb-2">
+                  <div key={index} className="mb-2 flex flex-col">
                     <span>{entry.name}</span>
                     <span className="font-semibold">
                       ₹ {entry.min} - ₹{entry.max}
@@ -361,7 +361,7 @@ function Preview({
             <div className="mt-4 flex flex-col">
               {formState.furnitureDealPricingEntries.length > 0 ? (
                 formState.furnitureDealPricingEntries.map((entry, index) => (
-                  <div key={index} className="flex flex-col mb-2">
+                  <div key={index} className="mb-2 flex flex-col">
                     <span>{entry.name}</span>
                     <span className="font-semibold">
                       ₹ {entry.min} - ₹{entry.max}
@@ -379,7 +379,7 @@ function Preview({
             <div className="mt-4 flex flex-col">
               {formState.furnitureWorkerPricingEntries.length > 0 ? (
                 formState.furnitureWorkerPricingEntries.map((entry, index) => (
-                  <div key={index} className="flex flex-col mb-2">
+                  <div key={index} className="mb-2 flex flex-col">
                     <span>{entry.name}</span>
                     <span className="font-semibold">
                       ₹ {entry.min} - ₹{entry.max}
@@ -432,10 +432,10 @@ function Preview({
             <div className="mt-4 flex flex-col">
               {formState.tentHourlyPricingEntries.length > 0 ? (
                 formState.tentHourlyPricingEntries.map((entry, index) => (
-                  <div key={index} className="flex flex-col mb-2">
+                  <div key={index} className="mb-2 flex flex-col">
                     <span>{entry.name}</span>
                     <span className="font-semibold">
-                    ₹ {entry.min} - ₹{entry.max}
+                      ₹ {entry.min} - ₹{entry.max}
                     </span>
                   </div>
                 ))
