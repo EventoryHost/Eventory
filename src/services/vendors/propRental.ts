@@ -1,7 +1,6 @@
 import axios from "axios";
 
 async function addPropRental(data: any) {
-
   try {
     console.log("Sending request..."); // Log the request being sent
     const response = await axios.post(
