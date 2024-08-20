@@ -12,7 +12,6 @@ import { addPhotographer } from "@/services/vendors/photographer";
 import { json } from "stream/consumers";
 
 const Page = () => {
-  
   // function updateFormState(newState: Partial<pav>) {
   //   setFormState((prev) => ({ ...prev, ...newState }));
   // }
@@ -49,7 +48,9 @@ const Page = () => {
   const [setupsInstallations, setSetupsInstallations] =
     useState<boolean>(false);
   const [bookingDeposit, setBookingDeposit] = useState<boolean>(false);
-  const [cancellationPolicy, setCancellationPolicy] = useState<File | string>("");
+  const [cancellationPolicy, setCancellationPolicy] = useState<File | string>(
+    "",
+  );
   const [tnc, setTnc] = useState<File | string>("");
 
   //states for page5
@@ -129,52 +130,65 @@ const Page = () => {
   };
 
   const handleSubmit = async () => {
+    const formData = new FormData();
 
+    // Convert File objects to strings if necessary
+    // const portfolioString = portfolio instanceof File ? portfolio.name : portfolio;
+    // const cancellationPolicyString = cancellationPolicy instanceof File ? cancellationPolicy.name : cancellationPolicy;
+    // const tncString = tnc instanceof File ? tnc.name : tnc;
 
-  const formData = new FormData();
+    formData.append("venId", "SomeVenID");
+    formData.append("type", type);
+    formData.append("name", name);
+    formData.append(
+      "clientTestimonials",
+      clientTestimonials instanceof File
+        ? clientTestimonials.name
+        : clientTestimonials,
+    );
+    formData.append("portfolio", portfolio);
+    formData.append(
+      "numberOfMembers",
+      groupMembers == "" ? organizationMembers : groupMembers,
+    );
+    formData.append("organizationMembers", organizationMembers);
+    formData.append("basicDetail", basicDetail);
+    formData.append("styles", JSON.stringify(styles));
+    formData.append("events", JSON.stringify(events));
+    formData.append("customizablePackage", JSON.stringify(customizablePackage));
+    formData.append(
+      "customizableSoundLightingRates",
+      JSON.stringify(customizableSoundLightingRates),
+    );
+    formData.append("equipments", JSON.stringify(equipments));
+    formData.append("proposalsToClients", JSON.stringify(proposalsToClients));
+    formData.append(
+      "freeInitialConsultation",
+      JSON.stringify(freeInitialConsultation),
+    );
+    formData.append("advanceSetup", JSON.stringify(advanceSetup));
+    formData.append(
+      "collaborationWithOtherVendors",
+      JSON.stringify(collaborationWithOtherVendors),
+    );
+    formData.append("setupsInstallations", JSON.stringify(setupsInstallations));
+    formData.append("bookingDeposit", JSON.stringify(bookingDeposit));
+    formData.append("cancellationPolicy", cancellationPolicy);
+    formData.append("termsAndConditions", tnc);
+    formData.append("hourlyPackages", JSON.stringify(hourlyPackages));
+    formData.append("dailyPackages", JSON.stringify(dailyPackages));
 
-  // Convert File objects to strings if necessary
-  // const portfolioString = portfolio instanceof File ? portfolio.name : portfolio;
-  // const cancellationPolicyString = cancellationPolicy instanceof File ? cancellationPolicy.name : cancellationPolicy;
-  // const tncString = tnc instanceof File ? tnc.name : tnc;
+    console.log("cancel", cancellationPolicy);
 
-  
-  formData.append("venId", "SomeVenID");
-  formData.append("type", type);
-  formData.append("name", name); 
-  formData.append("clientTestimonials", clientTestimonials instanceof File ? clientTestimonials.name : clientTestimonials);
-  formData.append("portfolio", portfolio);
-  formData.append("numberOfMembers", groupMembers == "" ? organizationMembers : groupMembers);
-  formData.append("organizationMembers", organizationMembers);
-  formData.append("basicDetail", basicDetail);
-  formData.append("styles", JSON.stringify(styles));
-  formData.append("events", JSON.stringify(events));
-  formData.append("customizablePackage", JSON.stringify(customizablePackage));
-  formData.append("customizableSoundLightingRates", JSON.stringify(customizableSoundLightingRates));
-  formData.append("equipments", JSON.stringify(equipments));
-  formData.append("proposalsToClients", JSON.stringify(proposalsToClients));
-  formData.append("freeInitialConsultation", JSON.stringify(freeInitialConsultation));
-  formData.append("advanceSetup", JSON.stringify(advanceSetup));
-  formData.append("collaborationWithOtherVendors", JSON.stringify(collaborationWithOtherVendors));
-  formData.append("setupsInstallations", JSON.stringify(setupsInstallations));
-  formData.append("bookingDeposit", JSON.stringify(bookingDeposit));
-  formData.append("cancellationPolicy", cancellationPolicy);
-  formData.append("termsAndConditions", tnc);
-  formData.append("hourlyPackages", JSON.stringify(hourlyPackages));
-  formData.append("dailyPackages", JSON.stringify(dailyPackages));
+    // Add the missing required fields
 
-  console.log("cancel",cancellationPolicy);
-
-  // Add the missing required fields
-
-  try {
-    await addPhotographer(formData);
-    console.log("Photographer added successfully");
-  } catch (error) {
-    console.error("Error adding photographer:", error);
-  }
-};
-
+    try {
+      await addPhotographer(formData);
+      console.log("Photographer added successfully");
+    } catch (error) {
+      console.error("Error adding photographer:", error);
+    }
+  };
 
   const renderPage = () => {
     switch (currentPage) {
@@ -317,7 +331,11 @@ const Page = () => {
           />
         </div>
       </div>
-      <form method="POST" onSubmit={handleSubmit} className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] p-2 md:p-[1rem]">
+      <form
+        method="POST"
+        onSubmit={handleSubmit}
+        className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] p-2 md:p-[1rem]"
+      >
         {renderPage()}
       </form>
     </div>

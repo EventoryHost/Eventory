@@ -274,9 +274,12 @@ const Page5: React.FC<PageProps> = ({
         </div>
 
         <button
-          type="submit"   
+          type="submit"
           className="h-[4rem] w-[100%] rounded-xl bg-[#2E3192] p-3 text-sm font-semibold text-white outline-none md:w-[40%]"
-          onClick={(e) => {e.preventDefault(); handleContinue(e);}}
+          onClick={(e) => {
+            e.preventDefault();
+            handleContinue(e);
+          }}
         >
           Continue
         </button>
