@@ -25,7 +25,7 @@ type Page1Props = {
   handleContinue: () => void;
 };
 
-const Page1 = ({
+const Page4 = ({
   proposalsToClients,
   setProposalsToClients,
   freeInitialConsultation,
@@ -45,7 +45,7 @@ const Page1 = ({
   handleContinue,
 }: Page1Props) => {
   return (
-    <form
+    <div
       className="flex flex-col items-start gap-7 overflow-y-scroll rounded-xl bg-white p-3 xs:w-[100%] xs:min-w-[90%] xs:justify-start md:p-6"
       onSubmit={(e) => {
         e.preventDefault();
@@ -66,7 +66,7 @@ const Page1 = ({
                   type="radio"
                   name="proposalsToClients"
                   checked={proposalsToClients}
-                  onChange={() => setProposalsToClients(true)}
+                  onChange={(e) => {e.preventDefault(); setProposalsToClients(true);}}
                 />
                 <label className="text-sm">Yes</label>
               </div>
@@ -75,7 +75,7 @@ const Page1 = ({
                   type="radio"
                   name="proposalsToClients"
                   checked={!proposalsToClients}
-                  onChange={() => setProposalsToClients(false)}
+                  onChange={(e) => {e.preventDefault(); setProposalsToClients(false);}}
                 />
                 <label className="text-sm">No</label>
               </div>
@@ -93,7 +93,7 @@ const Page1 = ({
                   type="radio"
                   name="freeInitialConsultation"
                   checked={freeInitialConsultation}
-                  onChange={() => setFreeInitialConsultation(true)}
+                  onChange={(e) => {e.preventDefault(); setFreeInitialConsultation(true);}}
                 />
                 <label className="text-sm">Yes</label>
               </div>
@@ -102,7 +102,7 @@ const Page1 = ({
                   type="radio"
                   name="freeInitialConsultation"
                   checked={!freeInitialConsultation}
-                  onChange={() => setFreeInitialConsultation(false)}
+                  onChange={(e) => {e.preventDefault(); setFreeInitialConsultation(false);}}
                 />
                 <label className="text-sm">No</label>
               </div>
@@ -118,7 +118,7 @@ const Page1 = ({
                   type="radio"
                   name="advanceSetup"
                   checked={advanceSetup}
-                  onChange={() => setAdvanceSetup(true)}
+                  onChange={(e) => {e.preventDefault(); setAdvanceSetup(true);}}
                 />
                 <label className="text-sm">Yes</label>
               </div>
@@ -127,7 +127,7 @@ const Page1 = ({
                   type="radio"
                   name="advanceSetup"
                   checked={!advanceSetup}
-                  onChange={() => setAdvanceSetup(false)}
+                  onChange={(e) => {e.preventDefault(); setAdvanceSetup(false);}}
                 />
                 <label className="text-sm">No</label>
               </div>
@@ -145,7 +145,7 @@ const Page1 = ({
                   type="radio"
                   name="collaborationWithOtherVendors"
                   checked={collaborationWithOtherVendors}
-                  onChange={() => setCollaborationWithOtherVendors(true)}
+                  onChange={(e) => {e.preventDefault(); setCollaborationWithOtherVendors(true);}}
                 />
                 <label className="text-sm">Yes</label>
               </div>
@@ -154,7 +154,7 @@ const Page1 = ({
                   type="radio"
                   name="collaborationWithOtherVendors"
                   checked={!collaborationWithOtherVendors}
-                  onChange={() => setCollaborationWithOtherVendors(false)}
+                  onChange={(e) => {e.preventDefault(); setCollaborationWithOtherVendors(false);}}
                 />
                 <label className="text-sm">No</label>
               </div>
@@ -172,7 +172,7 @@ const Page1 = ({
                   type="radio"
                   name="setupsInstallations"
                   checked={setupsInstallations}
-                  onChange={() => setSetupsInstallations(true)}
+                  onChange={(e) => {e.preventDefault(); setSetupsInstallations(true);}}
                 />
                 <label className="text-sm">Yes</label>
               </div>
@@ -181,7 +181,7 @@ const Page1 = ({
                   type="radio"
                   name="setupsInstallations"
                   checked={!setupsInstallations}
-                  onChange={() => setSetupsInstallations(false)}
+                  onChange={(e) => {e.preventDefault(); setSetupsInstallations(false);}}
                 />
                 <label className="text-sm">No</label>
               </div>
@@ -199,7 +199,7 @@ const Page1 = ({
                   type="radio"
                   name="bookingDeposit"
                   checked={bookingDeposit}
-                  onChange={() => setBookingDeposit(true)}
+                  onChange={(e) => {e.preventDefault(); setBookingDeposit(true);}}
                 />
                 <label className="text-sm">Yes</label>
               </div>
@@ -208,7 +208,7 @@ const Page1 = ({
                   type="radio"
                   name="bookingDeposit"
                   checked={!bookingDeposit}
-                  onChange={() => setBookingDeposit(false)}
+                  onChange={(e) => {e.preventDefault(); setBookingDeposit(false);}}
                 />
                 <label className="text-sm">No</label>
               </div>
@@ -223,19 +223,15 @@ const Page1 = ({
             <input
               type="file"
               id="cancellationPolicy"
-              onChange={(e) => {
-                const file = e.target.files?.[0];
-                if (file) setCancellationPolicy(file);
-              }}
+              name="cancellationPolicy"
+              accept="image/png, .pdf, image/jpg"
+              onChange={(e) => { e.preventDefault(); setCancellationPolicy(e.target.files![0]); }}
               className="mt-5 flex w-fit items-center justify-center rounded-xl border-2 border-dashed border-gray-400 bg-gray-200 p-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white"
             />
             <p className="text-md mt-5">or Provide Via</p>
             <textarea
               cols={30}
               rows={1}
-              value={
-                typeof cancellationPolicy === "string" ? cancellationPolicy : ""
-              }
               onChange={(e) => setCancellationPolicy(e.target.value)}
               placeholder="Enter cancellation policy"
               className="mt-5 resize-none rounded-xl border-2 border-gray-300 p-3"
@@ -247,17 +243,15 @@ const Page1 = ({
             <input
               type="file"
               id="tnc"
-              onChange={(e) => {
-                const file = e.target.files?.[0];
-                if (file) setTnc(file);
-              }}
+              name="tnc"
+              accept="image/png, .pdf, image/jpg"
+              onChange={(e) => { e.preventDefault(); setTnc(e.target.files![0]); }}
               className="mt-5 flex w-fit items-center justify-center rounded-xl border-2 border-dashed border-gray-400 bg-gray-200 p-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white"
             />
             <p className="text-md mt-5">or Provide Via</p>
             <textarea
               cols={30}
               rows={1}
-              value={typeof tnc === "string" ? tnc : ""}
               onChange={(e) => setTnc(e.target.value)}
               placeholder="Enter terms and conditions"
               className="mt-5 resize-none rounded-xl border-2 border-gray-300 p-3"
@@ -267,13 +261,13 @@ const Page1 = ({
       </div>
 
       <button
-        type="submit"
+      onClick={handleContinue}
         className="flex w-full items-center justify-center rounded-xl bg-[#2E3192] py-3 text-white hover:bg-[#2E3192]/90"
       >
         Continue
       </button>
-    </form>
+    </div>
   );
 };
 
-export default Page1;
+export default Page4;

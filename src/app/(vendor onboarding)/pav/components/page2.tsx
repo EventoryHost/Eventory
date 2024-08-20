@@ -56,7 +56,7 @@ const Page1 = ({
   handleContinue,
 }: Page1Props) => {
   return (
-    <form
+    <div
       className="flex h-[100%] flex-col items-start gap-7 overflow-y-scroll rounded-xl p-3 xs:w-[100%] xs:min-w-[90%] xs:justify-start md:p-6"
       onSubmit={(e) => e.preventDefault()}
     >
@@ -166,7 +166,7 @@ const Page1 = ({
           </div>
         </div>
       </div>
-    </form>
+    </div>
   );
 };
 

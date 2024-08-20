@@ -7,38 +7,19 @@ import Page4 from "./components/page4";
 import Page5 from "./components/page5";
 import React, { useState } from "react";
 import Image from "next/image";
-import { pavtypes, Package, pavFormState, BasicDetails } from "@/types/types";
-import { set } from "date-fns";
+import { pavtypes, pavFormState, BasicDetails } from "@/types/types";
+import { addPhotographer } from "@/services/vendors/photographer";
+import { json } from "stream/consumers";
 
 const Page = () => {
-  const [formState, setFormState] = useState<pavFormState>({
-    type: "individual",
-    fullName: "",
-    client_testimonials: "",
-    portfolio: "",
-    group_members: "",
-    organization_members: "",
-    basic_Detail: "photo",
-    styles: [],
-    events: [],
-    customizable_package: false,
-    customizable_sound_lighting_rates: false,
-    equipments: [],
-    proposals_to_clients: false,
-    free_initial_consultation: false,
-    advance_setup: false,
-    collaboration_with_other_vendors: false,
-    setups_installations: false,
-    booking_deposit: false,
-    cancellation_policy: "",
-    tnc: "",
-    hourlyPackages: [],
-    dailyPackages: [],
-  });
+  
+  // function updateFormState(newState: Partial<pav>) {
+  //   setFormState((prev) => ({ ...prev, ...newState }));
+  // }
 
   //states for page1
   const [type, setType] = useState<pavtypes>("individual");
-  const [fullName, setFullName] = useState("");
+  const [name, setFullName] = useState("");
   const [clientTestimonials, setClientTestimonials] = useState<string | File>(
     "",
   );
@@ -68,9 +49,7 @@ const Page = () => {
   const [setupsInstallations, setSetupsInstallations] =
     useState<boolean>(false);
   const [bookingDeposit, setBookingDeposit] = useState<boolean>(false);
-  const [cancellationPolicy, setCancellationPolicy] = useState<File | string>(
-    "",
-  );
+  const [cancellationPolicy, setCancellationPolicy] = useState<File | string>("");
   const [tnc, setTnc] = useState<File | string>("");
 
   //states for page5
@@ -125,7 +104,7 @@ const Page = () => {
   const handleContinue = () => {
     console.log({
       type,
-      fullName,
+      name,
       clientTestimonials,
       portfolio,
       groupMembers,
@@ -149,35 +128,53 @@ const Page = () => {
     setCurrentPage(currentPage + 1);
   };
 
-  const handleSubmit = () => {
-    setFormState({
-      type,
-      fullName,
-      client_testimonials: clientTestimonials,
-      portfolio,
-      group_members: groupMembers,
-      organization_members: organizationMembers,
-      basic_Detail: basicDetail,
-      styles,
-      events,
-      customizable_package: customizablePackage,
-      customizable_sound_lighting_rates: customizableSoundLightingRates,
-      equipments,
-      proposals_to_clients: proposalsToClients,
-      free_initial_consultation: freeInitialConsultation,
-      advance_setup: advanceSetup,
-      collaboration_with_other_vendors: collaborationWithOtherVendors,
-      setups_installations: setupsInstallations,
-      booking_deposit: bookingDeposit,
-      cancellation_policy: cancellationPolicy,
-      tnc,
-      hourlyPackages,
-      dailyPackages,
-    });
+  const handleSubmit = async () => {
 
-    // Print the final form state
-    console.log("Final Form State:", formState);
-  };
+
+  const formData = new FormData();
+
+  // Convert File objects to strings if necessary
+  // const portfolioString = portfolio instanceof File ? portfolio.name : portfolio;
+  // const cancellationPolicyString = cancellationPolicy instanceof File ? cancellationPolicy.name : cancellationPolicy;
+  // const tncString = tnc instanceof File ? tnc.name : tnc;
+
+  
+  formData.append("venId", "SomeVenID");
+  formData.append("type", type);
+  formData.append("name", name); 
+  formData.append("clientTestimonials", clientTestimonials instanceof File ? clientTestimonials.name : clientTestimonials);
+  formData.append("portfolio", portfolio);
+  formData.append("numberOfMembers", groupMembers == "" ? organizationMembers : groupMembers);
+  formData.append("organizationMembers", organizationMembers);
+  formData.append("basicDetail", basicDetail);
+  formData.append("styles", JSON.stringify(styles));
+  formData.append("events", JSON.stringify(events));
+  formData.append("customizablePackage", JSON.stringify(customizablePackage));
+  formData.append("customizableSoundLightingRates", JSON.stringify(customizableSoundLightingRates));
+  formData.append("equipments", JSON.stringify(equipments));
+  formData.append("proposalsToClients", JSON.stringify(proposalsToClients));
+  formData.append("freeInitialConsultation", JSON.stringify(freeInitialConsultation));
+  formData.append("advanceSetup", JSON.stringify(advanceSetup));
+  formData.append("collaborationWithOtherVendors", JSON.stringify(collaborationWithOtherVendors));
+  formData.append("setupsInstallations", JSON.stringify(setupsInstallations));
+  formData.append("bookingDeposit", JSON.stringify(bookingDeposit));
+  formData.append("cancellationPolicy", cancellationPolicy);
+  formData.append("termsAndConditions", tnc);
+  formData.append("hourlyPackages", JSON.stringify(hourlyPackages));
+  formData.append("dailyPackages", JSON.stringify(dailyPackages));
+
+  console.log("cancel",cancellationPolicy);
+
+  // Add the missing required fields
+
+  try {
+    await addPhotographer(formData);
+    console.log("Photographer added successfully");
+  } catch (error) {
+    console.error("Error adding photographer:", error);
+  }
+};
+
 
   const renderPage = () => {
     switch (currentPage) {
@@ -186,7 +183,7 @@ const Page = () => {
           <Page1
             type={type}
             setType={setType}
-            fullName={fullName}
+            fullName={name}
             setFullName={setFullName}
             clientTestimonials={clientTestimonials}
             setClientTestimonials={setClientTestimonials}
@@ -320,9 +317,9 @@ const Page = () => {
           />
         </div>
       </div>
-      <div className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] p-2 md:p-[1rem]">
+      <form method="POST" onSubmit={handleSubmit} className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] p-2 md:p-[1rem]">
         {renderPage()}
-      </div>
+      </form>
     </div>
   );
 };

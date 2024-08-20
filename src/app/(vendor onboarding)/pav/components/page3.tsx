@@ -41,7 +41,7 @@ const Page3 = ({
   handleContinue,
 }: Page3Props) => {
   return (
-    <form className="flex h-[100%] flex-col items-start gap-7 overflow-y-scroll rounded-xl p-3 xs:w-[100%] xs:min-w-[90%] xs:justify-start md:p-6">
+    <div className="flex h-[100%] flex-col items-start gap-7 overflow-y-scroll rounded-xl p-3 xs:w-[100%] xs:min-w-[90%] xs:justify-start md:p-6">
       <div className="flex w-[100%] flex-col justify-start gap-9 rounded-xl bg-white p-5">
         <h1 className="text-3xl font-semibold">Basic Details</h1>
         <div className="flex flex-col gap-5">
@@ -108,7 +108,7 @@ const Page3 = ({
           </div>
         </div>
       </div>
-    </form>
+    </div>
   );
 };
 

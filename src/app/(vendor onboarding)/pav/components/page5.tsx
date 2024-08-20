@@ -23,7 +23,7 @@ interface PageProps {
   addPackage: (
     setPackages: React.Dispatch<React.SetStateAction<Package[]>>,
   ) => void;
-  handleContinue: () => void;
+  handleContinue: (e: React.FormEvent) => Promise<void>;
 }
 
 const Page5: React.FC<PageProps> = ({
@@ -274,8 +274,9 @@ const Page5: React.FC<PageProps> = ({
         </div>
 
         <button
+          type="submit"   
           className="h-[4rem] w-[100%] rounded-xl bg-[#2E3192] p-3 text-sm font-semibold text-white outline-none md:w-[40%]"
-          onClick={handleSubmit}
+          onClick={(e) => {e.preventDefault(); handleContinue(e);}}
         >
           Continue
         </button>
