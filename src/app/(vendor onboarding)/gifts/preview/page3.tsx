@@ -63,17 +63,17 @@ const Preview: React.FC<PreviewProps> = ({
   }
 
   return (
-    <div className="flex flex-col lg:flex-row h-full min-h-[calc(100vh-5.2rem)] w-full overflow-hidden">
+    <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden lg:flex-row">
       {/* Sidebar */}
-      <div className="lg:flex lg:w-[30%] lg:fixed lg:top-[5.2rem] lg:left-0 lg:bg-[#FFFFFF] lg:overflow-hidden lg:h-[calc(100vh-5.2rem)] lg:flex-col lg:items-start lg:gap-9 lg:px-8 hidden">
-        <div className="flex items-center justify-start gap-1 mt-4">
+      <div className="hidden lg:fixed lg:left-0 lg:top-[5.2rem] lg:flex lg:h-[calc(100vh-5.2rem)] lg:w-[30%] lg:flex-col lg:items-start lg:gap-9 lg:overflow-hidden lg:bg-[#FFFFFF] lg:px-8">
+        <div className="mt-4 flex items-center justify-start gap-1">
           <ThreeStepBar currentStep={3} />
         </div>
-        <div className="flex-grow flex flex-col items-start justify-center gap-9 px-6 py-4">
+        <div className="flex flex-grow flex-col items-start justify-center gap-9 px-6 py-4">
           <h1 className="text-2xl font-semibold md:text-3xl lg:text-4xl">
             Fill out your Basic details
           </h1>
-          <p className="text-gray-600 text-sm md:text-base lg:text-lg">
+          <p className="text-sm text-gray-600 md:text-base lg:text-lg">
             Please provide the details of the business offered by your company.
           </p>
         </div>
@@ -87,7 +87,7 @@ const Preview: React.FC<PreviewProps> = ({
       </div>
 
       {/* Main Content */}
-      <div className="lg:ml-[30%] flex flex-col w-full bg-[#F7F6F9] p-4 md:p-6">
+      <div className="flex w-full flex-col bg-[#F7F6F9] p-4 md:p-6 lg:ml-[30%]">
         <div className="flex flex-col gap-6 rounded-xl bg-white p-4 md:p-6">
           <div className="mb-4 text-2xl font-bold text-gray-800">
             {formState.vendorName} / Gifts
@@ -95,7 +95,7 @@ const Preview: React.FC<PreviewProps> = ({
           <div className="space-y-4">
             {/* Basic Details */}
             <div className="flex flex-col gap-4">
-              <div className="flex justify-between items-center bg-gray-200 p-2 rounded-xl text-xl font-medium">
+              <div className="flex items-center justify-between rounded-xl bg-gray-200 p-2 text-xl font-medium">
                 <span>1. Basic Details</span>
                 <button
                   onClick={() => navigateToPage(0)}
@@ -105,8 +105,8 @@ const Preview: React.FC<PreviewProps> = ({
                 </button>
               </div>
 
-              <div className="flex flex-col md:flex-row gap-4">
-                <div className="flex flex-col flex-grow">
+              <div className="flex flex-col gap-4 md:flex-row">
+                <div className="flex flex-grow flex-col">
                   <label
                     className="mb-2 text-lg font-medium text-gray-700"
                     htmlFor="description"
@@ -117,13 +117,13 @@ const Preview: React.FC<PreviewProps> = ({
                     id="description"
                     rows={4}
                     disabled
-                    className="resize-none p-2 w-full border rounded-lg bg-white text-gray-700"
+                    className="w-full resize-none rounded-lg border bg-white p-2 text-gray-700"
                   >
                     {formState.venueDescription}
                   </textarea>
                 </div>
 
-                <div className="flex flex-col flex-grow">
+                <div className="flex flex-grow flex-col">
                   <h2 className="mb-2 text-lg font-medium text-gray-700">
                     Do You Provide Customizable Gifts?
                   </h2>
@@ -133,8 +133,8 @@ const Preview: React.FC<PreviewProps> = ({
                 </div>
               </div>
 
-              <div className="flex flex-col md:flex-row gap-4">
-                <div className="flex flex-col flex-grow">
+              <div className="flex flex-col gap-4 md:flex-row">
+                <div className="flex flex-grow flex-col">
                   <h2 className="mb-2 text-lg font-medium text-gray-700">
                     Do You Provide Delivery Service?
                   </h2>
@@ -142,7 +142,7 @@ const Preview: React.FC<PreviewProps> = ({
                     {formState.deliveryCharges.min}
                   </span>
                 </div>
-                <div className="flex flex-col flex-grow">
+                <div className="flex flex-grow flex-col">
                   <h2 className="mb-2 text-lg font-medium text-gray-700">
                     Do You Offer products in bulk quantity?
                   </h2>
@@ -156,13 +156,15 @@ const Preview: React.FC<PreviewProps> = ({
                 <h2 className="mb-2 text-lg font-medium text-gray-700">
                   What is the minimum quantity of orders?
                 </h2>
-                <span className="font-semibold">{formState.minimumQuantity}</span>
+                <span className="font-semibold">
+                  {formState.minimumQuantity}
+                </span>
               </div>
             </div>
 
             {/* Catalog Details */}
             <div className="flex flex-col gap-4">
-              <div className="flex justify-between items-center bg-gray-200 p-2 rounded-xl text-xl font-medium">
+              <div className="flex items-center justify-between rounded-xl bg-gray-200 p-2 text-xl font-medium">
                 <span>2. Catalog Details</span>
                 <button
                   onClick={() => navigateToPage(1)}
@@ -188,7 +190,7 @@ const Preview: React.FC<PreviewProps> = ({
 
             {/* Pricing and Policies */}
             <div className="flex flex-col gap-4">
-              <div className="flex justify-between items-center bg-gray-200 p-2 rounded-xl text-xl font-medium">
+              <div className="flex items-center justify-between rounded-xl bg-gray-200 p-2 text-xl font-medium">
                 <span>3. Pricing and Policies</span>
                 <button
                   onClick={() => navigateToPage(2)}

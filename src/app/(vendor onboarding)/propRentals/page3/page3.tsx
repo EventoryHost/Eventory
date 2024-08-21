@@ -204,10 +204,11 @@ function Page3({
                 setSelectedCategory("Furniture & Decor");
                 handleCategorySelection("Furniture & Decor");
               }}
-              className={`rounded-3xl px-4 py-2 text-[#2E3192] ${selectedCategory === "Furniture & Decor"
-                ? "bg-[#2E3192] text-white"
-                : ""
-                }`}
+              className={`rounded-3xl px-4 py-2 text-[#2E3192] ${
+                selectedCategory === "Furniture & Decor"
+                  ? "bg-[#2E3192] text-white"
+                  : ""
+              }`}
             >
               Furniture & Decor
             </button>
@@ -216,10 +217,11 @@ function Page3({
                 setSelectedCategory("Tent and Canopy");
                 handleCategorySelection("Tent and Canopy");
               }}
-              className={`rounded-3xl px-4 py-2 text-[#2E3192] ${selectedCategory === "Tent and Canopy"
-                ? "bg-[#2E3192] text-white"
-                : ""
-                }`}
+              className={`rounded-3xl px-4 py-2 text-[#2E3192] ${
+                selectedCategory === "Tent and Canopy"
+                  ? "bg-[#2E3192] text-white"
+                  : ""
+              }`}
             >
               Tent and Canopy
             </button>
@@ -228,10 +230,11 @@ function Page3({
                 setSelectedCategory("Audio-Visual");
                 handleCategorySelection("Audio-Visual");
               }}
-              className={`rounded-3xl px-4 py-2 text-[#2E3192] ${selectedCategory === "Audio-Visual"
-                ? "bg-[#2E3192] text-white"
-                : ""
-                }`}
+              className={`rounded-3xl px-4 py-2 text-[#2E3192] ${
+                selectedCategory === "Audio-Visual"
+                  ? "bg-[#2E3192] text-white"
+                  : ""
+              }`}
             >
               Audio-Visual
             </button>
@@ -250,7 +253,7 @@ function Page3({
                     Upload list
                   </label>
                   <p className="text-gray-500">PNG, PDF, JPG</p>
-                  <button className="mt-2  flex w-1/2 items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
+                  <button className="mt-2 flex w-1/2 items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
                     <Upload />
                     Upload
                   </button>
@@ -280,13 +283,17 @@ function Page3({
               </div>
             </div>
 
-            <div className="mx-2 w-full md:mx-12 flex flex-col gap-7 rounded-xl bg-white max-w-screen-xs p-4 xs:min-w-[90%] md:p-6">
-            <div className="flex flex-col gap-2">
-                <h1 className="text-2xl md:text-3xl font-semibold">Pricing Structure</h1>
+            <div className="mx-2 flex w-full max-w-screen-xs flex-col gap-7 rounded-xl bg-white p-4 xs:min-w-[90%] md:mx-12 md:p-6">
+              <div className="flex flex-col gap-2">
+                <h1 className="text-2xl font-semibold md:text-3xl">
+                  Pricing Structure
+                </h1>
 
                 {/* Hourly Package Rates */}
                 <div className="flex flex-col gap-5">
-                  <h2 className="text-xl md:text-2xl font-semibold">Hourly Package Rates</h2>
+                  <h2 className="text-xl font-semibold md:text-2xl">
+                    Hourly Package Rates
+                  </h2>
                   <form
                     onSubmit={(e) => {
                       e.preventDefault();
@@ -295,10 +302,12 @@ function Page3({
                         form.elements.namedItem("name") as HTMLInputElement
                       ).value;
                       const minRate = parseInt(
-                        (form.elements.namedItem("minRate") as HTMLInputElement).value,
+                        (form.elements.namedItem("minRate") as HTMLInputElement)
+                          .value,
                       );
                       const maxRate = parseInt(
-                        (form.elements.namedItem("maxRate") as HTMLInputElement).value,
+                        (form.elements.namedItem("maxRate") as HTMLInputElement)
+                          .value,
                       );
                       handleAddPricingEntry({
                         name,
@@ -312,19 +321,19 @@ function Page3({
                         type="text"
                         name="name"
                         placeholder="Service Name"
-                        className="rounded border p-2 w-full md:w-auto"
+                        className="w-full rounded border p-2 md:w-auto"
                       />
                       <input
                         type="number"
                         name="minRate"
                         placeholder="Min Rate"
-                        className="rounded border p-2 w-full md:w-auto"
+                        className="w-full rounded border p-2 md:w-auto"
                       />
                       <input
                         type="number"
                         name="maxRate"
                         placeholder="Max Rate"
-                        className="rounded border p-2 w-full md:w-auto"
+                        className="w-full rounded border p-2 md:w-auto"
                       />
                       <button
                         type="submit"
@@ -348,15 +357,21 @@ function Page3({
                     </div>
                   </form>
                   <ul>
-                    {formState.furnitureHourlyPricingEntries.map((entry, index) => (
-                      <li key={index}>{`${entry.name}: ${entry.min} - ${entry.max}`}</li>
-                    ))}
+                    {formState.furnitureHourlyPricingEntries.map(
+                      (entry, index) => (
+                        <li
+                          key={index}
+                        >{`${entry.name}: ${entry.min} - ${entry.max}`}</li>
+                      ),
+                    )}
                   </ul>
                 </div>
 
                 {/* Deal Package Rates */}
                 <div className="mt-8 flex flex-col gap-5">
-                  <h2 className="text-xl md:text-2xl font-semibold">Deal Package Rates</h2>
+                  <h2 className="text-xl font-semibold md:text-2xl">
+                    Deal Package Rates
+                  </h2>
                   <form
                     onSubmit={(e) => {
                       e.preventDefault();
@@ -365,10 +380,12 @@ function Page3({
                         form.elements.namedItem("name") as HTMLInputElement
                       ).value;
                       const minRate = parseInt(
-                        (form.elements.namedItem("minRate") as HTMLInputElement).value,
+                        (form.elements.namedItem("minRate") as HTMLInputElement)
+                          .value,
                       );
                       const maxRate = parseInt(
-                        (form.elements.namedItem("maxRate") as HTMLInputElement).value,
+                        (form.elements.namedItem("maxRate") as HTMLInputElement)
+                          .value,
                       );
                       handleAddTentPricingEntry({
                         name,
@@ -382,19 +399,19 @@ function Page3({
                         type="text"
                         name="name"
                         placeholder="Service Name"
-                        className="rounded border p-2 w-full md:w-auto"
+                        className="w-full rounded border p-2 md:w-auto"
                       />
                       <input
                         type="number"
                         name="minRate"
                         placeholder="Min Rate"
-                        className="rounded border p-2 w-full md:w-auto"
+                        className="w-full rounded border p-2 md:w-auto"
                       />
                       <input
                         type="number"
                         name="maxRate"
                         placeholder="Max Rate"
-                        className="rounded border p-2 w-full md:w-auto"
+                        className="w-full rounded border p-2 md:w-auto"
                       />
                       <button
                         type="submit"
@@ -418,15 +435,21 @@ function Page3({
                     </div>
                   </form>
                   <ul>
-                    {formState.furnitureDealPricingEntries.map((entry, index) => (
-                      <li key={index}>{`${entry.name}: ${entry.min} - ${entry.max}`}</li>
-                    ))}
+                    {formState.furnitureDealPricingEntries.map(
+                      (entry, index) => (
+                        <li
+                          key={index}
+                        >{`${entry.name}: ${entry.min} - ${entry.max}`}</li>
+                      ),
+                    )}
                   </ul>
                 </div>
 
                 {/* Rates by Workers */}
                 <div className="mt-8 flex flex-col gap-5">
-                  <h2 className="text-xl md:text-2xl font-semibold">Rates by Workers</h2>
+                  <h2 className="text-xl font-semibold md:text-2xl">
+                    Rates by Workers
+                  </h2>
                   <form
                     onSubmit={(e) => {
                       e.preventDefault();
@@ -435,10 +458,12 @@ function Page3({
                         form.elements.namedItem("name") as HTMLInputElement
                       ).value;
                       const minRate = parseInt(
-                        (form.elements.namedItem("minRate") as HTMLInputElement).value,
+                        (form.elements.namedItem("minRate") as HTMLInputElement)
+                          .value,
                       );
                       const maxRate = parseInt(
-                        (form.elements.namedItem("maxRate") as HTMLInputElement).value,
+                        (form.elements.namedItem("maxRate") as HTMLInputElement)
+                          .value,
                       );
                       handleAddAudioPricingEntry({
                         name,
@@ -452,19 +477,19 @@ function Page3({
                         type="text"
                         name="name"
                         placeholder="Service Name"
-                        className="rounded border p-2 w-full md:w-auto"
+                        className="w-full rounded border p-2 md:w-auto"
                       />
                       <input
                         type="number"
                         name="minRate"
                         placeholder="Min Rate"
-                        className="rounded border p-2 w-full md:w-auto"
+                        className="w-full rounded border p-2 md:w-auto"
                       />
                       <input
                         type="number"
                         name="maxRate"
                         placeholder="Max Rate"
-                        className="rounded border p-2 w-full md:w-auto"
+                        className="w-full rounded border p-2 md:w-auto"
                       />
                       <button
                         type="submit"
@@ -488,9 +513,13 @@ function Page3({
                     </div>
                   </form>
                   <ul>
-                    {formState.furnitureWorkerPricingEntries.map((entry, index) => (
-                      <li key={index}>{`${entry.name}: ${entry.min} - ${entry.max}`}</li>
-                    ))}
+                    {formState.furnitureWorkerPricingEntries.map(
+                      (entry, index) => (
+                        <li
+                          key={index}
+                        >{`${entry.name}: ${entry.min} - ${entry.max}`}</li>
+                      ),
+                    )}
                   </ul>
 
                   {/* Advanced Payment Section */}
@@ -500,7 +529,10 @@ function Page3({
                       className="h-6 w-6 rounded-lg border-2 border-[#2E3192] bg-white checked:bg-[#2E3192] focus:outline-none"
                       checked={formState.advancedPaymentCheckbox || false}
                       onChange={(e) =>
-                        handleChange("advancedPaymentCheckbox", e.target.checked)
+                        handleChange(
+                          "advancedPaymentCheckbox",
+                          e.target.checked,
+                        )
                       }
                     />
                     <span className="font-semibold">Advanced Payment</span>
@@ -512,7 +544,10 @@ function Page3({
                     <input
                       value={formState.percentageValuePage3 || 0}
                       onInput={(e) =>
-                        handleChange("percentageValuePage3", (e.target as HTMLInputElement).value)
+                        handleChange(
+                          "percentageValuePage3",
+                          (e.target as HTMLInputElement).value,
+                        )
                       }
                       type="range"
                       min="0"
@@ -530,8 +565,6 @@ function Page3({
                 </div>
               </div>
             </div>
-
-
           </>
         )}
         {selectedCategory === "Tent and Canopy" && (
@@ -721,7 +754,7 @@ function Page3({
           />
         )}
       </div>
-    </div >
+    </div>
   );
 }
 

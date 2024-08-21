@@ -81,110 +81,114 @@ const Page2: React.FC<page2Props> = ({
             <h1 className="text-3xl font-semibold">Mandatory Details</h1>
           </div>
           <div className="flex flex-col items-center gap-5 p-4 md:p-6">
-  {/* Row 1: Insurance Coverage Policy & Cancellation Policy */}
-  <div className="flex flex-col gap-4 w-full md:flex-row md:gap-6">
-    <div className="flex flex-col gap-4 w-full md:w-1/2">
-      <label className="font-semibold" htmlFor="insuranceCoverage">
-        Insurance Coverage Policy
-      </label>
-      <p className="text-gray-500">PNG, PDF, JPG</p>
-      <button className="flex items-center justify-center gap-3 rounded-xl border-2 bg-gray-200 px-6 py-2 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
-        <Upload />
-        Upload
-      </button>
-    </div>
-    <div className="flex flex-col gap-4 w-full md:w-1/2">
-      <label className="font-semibold" htmlFor="cancellationPolicy">
-        Cancellation Policy
-      </label>
-      <p className="text-gray-500">PNG, PDF, JPG</p>
-      <button className="flex items-center justify-center gap-3 rounded-xl border-2 bg-gray-200 px-6 py-2 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
-        <Upload />
-        Upload
-      </button>
-    </div>
-  </div>
+            {/* Row 1: Insurance Coverage Policy & Cancellation Policy */}
+            <div className="flex w-full flex-col gap-4 md:flex-row md:gap-6">
+              <div className="flex w-full flex-col gap-4 md:w-1/2">
+                <label className="font-semibold" htmlFor="insuranceCoverage">
+                  Insurance Coverage Policy
+                </label>
+                <p className="text-gray-500">PNG, PDF, JPG</p>
+                <button className="flex items-center justify-center gap-3 rounded-xl border-2 bg-gray-200 px-6 py-2 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
+                  <Upload />
+                  Upload
+                </button>
+              </div>
+              <div className="flex w-full flex-col gap-4 md:w-1/2">
+                <label className="font-semibold" htmlFor="cancellationPolicy">
+                  Cancellation Policy
+                </label>
+                <p className="text-gray-500">PNG, PDF, JPG</p>
+                <button className="flex items-center justify-center gap-3 rounded-xl border-2 bg-gray-200 px-6 py-2 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
+                  <Upload />
+                  Upload
+                </button>
+              </div>
+            </div>
 
-  {/* Row 2: Insurance Policy & Cancellation Policy Inputs */}
-  <div className="flex flex-col gap-4 w-full md:flex-row md:gap-6">
-    <div className="flex flex-col gap-4 w-full md:w-1/2">
-      <label htmlFor="insurancePolicy">Or Provide Via</label>
-      <input
-        id="insurancePolicy"
-        type="text"
-        className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
-        placeholder="Enter your insurance policy description"
-        value={formState.insurancePolicy || ""}
-        onChange={(e) => handleChange("insurancePolicy", e.target.value)}
-      />
-    </div>
-    <div className="flex flex-col gap-4 w-full md:w-1/2">
-      <label htmlFor="cancellationPolicy">Or Provide Via</label>
-      <input
-        id="cancellationPolicy"
-        type="text"
-        className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
-        placeholder="Enter your cancellation policy description"
-        value={formState.cancellationPolicy || ""}
-        onChange={(e) => handleChange("cancellationPolicy", e.target.value)}
-      />
-    </div>
-  </div>
-</div>
-
+            {/* Row 2: Insurance Policy & Cancellation Policy Inputs */}
+            <div className="flex w-full flex-col gap-4 md:flex-row md:gap-6">
+              <div className="flex w-full flex-col gap-4 md:w-1/2">
+                <label htmlFor="insurancePolicy">Or Provide Via</label>
+                <input
+                  id="insurancePolicy"
+                  type="text"
+                  className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
+                  placeholder="Enter your insurance policy description"
+                  value={formState.insurancePolicy || ""}
+                  onChange={(e) =>
+                    handleChange("insurancePolicy", e.target.value)
+                  }
+                />
+              </div>
+              <div className="flex w-full flex-col gap-4 md:w-1/2">
+                <label htmlFor="cancellationPolicy">Or Provide Via</label>
+                <input
+                  id="cancellationPolicy"
+                  type="text"
+                  className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
+                  placeholder="Enter your cancellation policy description"
+                  value={formState.cancellationPolicy || ""}
+                  onChange={(e) =>
+                    handleChange("cancellationPolicy", e.target.value)
+                  }
+                />
+              </div>
+            </div>
+          </div>
         </div>
         <div className="flex flex-col gap-7 rounded-xl bg-white p-4 xs:min-w-[90%] md:p-6">
-  {/* Row 1: Terms and Conditions & Privacy Policy Uploads */}
-  <div className="flex flex-col gap-6 w-full md:flex-row md:gap-6">
-    <div className="flex flex-col gap-4 w-full md:w-1/2">
-      <label className="font-semibold" htmlFor="termsAndConditions">
-        Terms and Conditions
-      </label>
-      <p className="text-gray-500">PNG, PDF, JPG</p>
-      <button className="flex items-center justify-center gap-3 rounded-xl border-2 bg-gray-200 px-6 py-2 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
-        <Upload />
-        Upload
-      </button>
-    </div>
-    <div className="flex flex-col gap-4 w-full md:w-1/2">
-      <label className="font-semibold" htmlFor="privacyPolicy">
-        Privacy Policy
-      </label>
-      <p className="text-gray-500">PNG, PDF, JPG</p>
-      <button className="flex items-center justify-center gap-3 rounded-xl border-2 bg-gray-200 px-6 py-2 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
-        <Upload />
-        Upload
-      </button>
-    </div>
-  </div>
+          {/* Row 1: Terms and Conditions & Privacy Policy Uploads */}
+          <div className="flex w-full flex-col gap-6 md:flex-row md:gap-6">
+            <div className="flex w-full flex-col gap-4 md:w-1/2">
+              <label className="font-semibold" htmlFor="termsAndConditions">
+                Terms and Conditions
+              </label>
+              <p className="text-gray-500">PNG, PDF, JPG</p>
+              <button className="flex items-center justify-center gap-3 rounded-xl border-2 bg-gray-200 px-6 py-2 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
+                <Upload />
+                Upload
+              </button>
+            </div>
+            <div className="flex w-full flex-col gap-4 md:w-1/2">
+              <label className="font-semibold" htmlFor="privacyPolicy">
+                Privacy Policy
+              </label>
+              <p className="text-gray-500">PNG, PDF, JPG</p>
+              <button className="flex items-center justify-center gap-3 rounded-xl border-2 bg-gray-200 px-6 py-2 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
+                <Upload />
+                Upload
+              </button>
+            </div>
+          </div>
 
-  {/* Row 2: Terms and Conditions & Privacy Policy Inputs */}
-  <div className="flex flex-col gap-6 w-full md:flex-row md:gap-6">
-    <div className="flex flex-col gap-4 w-full md:w-1/2">
-      <label htmlFor="termsAndConditionsInput">Or Provide Via</label>
-      <input
-        id="termsAndConditionsInput"
-        type="text"
-        className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
-        placeholder="Enter your terms and conditions description"
-        value={formState.termsAndConditions || ""}
-        onChange={(e) => handleChange("termsAndConditions", e.target.value)}
-      />
-    </div>
-    <div className="flex flex-col gap-4 w-full md:w-1/2">
-      <label htmlFor="privacyPolicyInput">Or Provide Via</label>
-      <input
-        id="privacyPolicyInput"
-        type="text"
-        className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
-        placeholder="Enter your privacy policy description"
-        value={formState.privacyPolicy || ""}
-        onChange={(e) => handleChange("privacyPolicy", e.target.value)}
-      />
-    </div>
-  </div>
-</div>
-
+          {/* Row 2: Terms and Conditions & Privacy Policy Inputs */}
+          <div className="flex w-full flex-col gap-6 md:flex-row md:gap-6">
+            <div className="flex w-full flex-col gap-4 md:w-1/2">
+              <label htmlFor="termsAndConditionsInput">Or Provide Via</label>
+              <input
+                id="termsAndConditionsInput"
+                type="text"
+                className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
+                placeholder="Enter your terms and conditions description"
+                value={formState.termsAndConditions || ""}
+                onChange={(e) =>
+                  handleChange("termsAndConditions", e.target.value)
+                }
+              />
+            </div>
+            <div className="flex w-full flex-col gap-4 md:w-1/2">
+              <label htmlFor="privacyPolicyInput">Or Provide Via</label>
+              <input
+                id="privacyPolicyInput"
+                type="text"
+                className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
+                placeholder="Enter your privacy policy description"
+                value={formState.privacyPolicy || ""}
+                onChange={(e) => handleChange("privacyPolicy", e.target.value)}
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
