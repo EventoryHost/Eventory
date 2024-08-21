@@ -97,7 +97,9 @@ const Page1: React.FC<page1Props> = ({
         </div>
         <div className="flex w-full flex-col items-center justify-center bg-[#F7F6F9] p-4 md:p-6">
           <div className="flex flex-col gap-6 rounded-xl bg-white p-4 xs:min-w-[90%] md:p-6">
-            <span className="text-xl font-semibold md:text-2xl">Basic Information</span>
+            <span className="text-xl font-semibold md:text-2xl">
+              Basic Information
+            </span>
 
             <div className="flex flex-col gap-6 md:flex-row md:gap-8">
               <div className="flex w-full flex-col gap-4 md:w-1/2">
@@ -130,46 +132,55 @@ const Page1: React.FC<page1Props> = ({
             </div>
 
             <div className="flex flex-col gap-6 md:flex-row md:gap-8">
-  <div className="flex w-full flex-col gap-4 md:w-1/2 h-full">
-    <label className="font-medium" htmlFor="workDescription">
-      What work do you do?
-    </label>
-    <input
-      id="workDescription"
-      type="text"
-      value={formState.workDescription || ""}
-      onChange={(e) => handleChange("workDescription", e.target.value)}
-      className="w-full rounded-xl border-2 bg-white p-4 outline-none h-full"
-      placeholder="Enter the work you do"
-    />
-  </div>
+              <div className="flex h-full w-full flex-col gap-4 md:w-1/2">
+                <label className="font-medium" htmlFor="workDescription">
+                  What work do you do?
+                </label>
+                <input
+                  id="workDescription"
+                  type="text"
+                  value={formState.workDescription || ""}
+                  onChange={(e) =>
+                    handleChange("workDescription", e.target.value)
+                  }
+                  className="h-full w-full rounded-xl border-2 bg-white p-4 outline-none"
+                  placeholder="Enter the work you do"
+                />
+              </div>
 
-  <div className="flex w-full flex-col gap-4 md:w-1/2 h-full">
-    <label htmlFor="yearsOfExperience">Years of Experience</label>
-    <Combobox
-      options={yearsOptions}
-      placeholder={formState.yearsOfExperience || "Select your years of experience"}
-      setFunction={(value) => handleChange("yearsOfExperience", value)}
-      className="flex items-center justify-between rounded-xl border-2 py-3 text-gray-500 hover:text-[#2E3192] h-full"
-    />
-  </div>
-</div>
+              <div className="flex h-full w-full flex-col gap-4 md:w-1/2">
+                <label htmlFor="yearsOfExperience">Years of Experience</label>
+                <Combobox
+                  options={yearsOptions}
+                  placeholder={
+                    formState.yearsOfExperience ||
+                    "Select your years of experience"
+                  }
+                  setFunction={(value) =>
+                    handleChange("yearsOfExperience", value)
+                  }
+                  className="flex h-full items-center justify-between rounded-xl border-2 py-3 text-gray-500 hover:text-[#2E3192]"
+                />
+              </div>
+            </div>
 
-<div className="flex flex-col gap-6 md:flex-row md:gap-8">
-  <div className="flex w-full flex-col gap-4 md:w-1/2 h-full">
-    <label htmlFor="numberOfWorkers">Number of Workers</label>
-    <Combobox
-      options={workerOptions}
-      placeholder={formState.numberOfWorkers || "Select your number of workers"}
-      setFunction={(value) => handleChange("numberOfWorkers", value)}
-      className="flex items-center justify-between rounded-xl border-2 py-3 text-gray-500 hover:text-[#2E3192] h-full"
-    />
-  </div>
-</div>
-
+            <div className="flex flex-col gap-6 md:flex-row md:gap-8">
+              <div className="flex h-full w-full flex-col gap-4 md:w-1/2">
+                <label htmlFor="numberOfWorkers">Number of Workers</label>
+                <Combobox
+                  options={workerOptions}
+                  placeholder={
+                    formState.numberOfWorkers || "Select your number of workers"
+                  }
+                  setFunction={(value) =>
+                    handleChange("numberOfWorkers", value)
+                  }
+                  className="flex h-full items-center justify-between rounded-xl border-2 py-3 text-gray-500 hover:text-[#2E3192]"
+                />
+              </div>
+            </div>
           </div>
         </div>
-
       </div>
     </>
   );
