@@ -11,7 +11,6 @@ async function sendQuery(data: any) {
         },
       },
     );
-    console.log(response.data);
     return response;
   } catch (error) {
     if (axios.isAxiosError(error)) {
