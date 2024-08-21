@@ -26,7 +26,11 @@ const Hero = (props: Props) => {
             <button className="w-fit rounded-xl bg-[#2E3192] p-5 font-light text-white">
               Get Started
             </button>
-            <Link href={"/"} className="text-[#2E3192] underline">
+            <Link
+              href={""}
+              onClick={(e) => e.preventDefault()}
+              className="text-[#2E3192] underline"
+            >
               Terms & Conditions
             </Link>
           </div>
@@ -47,10 +51,10 @@ const Hero = (props: Props) => {
               <div className="relative flex items-center justify-center rounded-xl bg-[rgba(96,94,216,0.9)] p-0 px-4 md:p-7">
                 <div className="flex w-[90%] items-center justify-center gap-[1rem] px-4 py-7 text-white md:gap-[4rem] lg:gap-[6rem] xl:h-[11rem]">
                   <div className="flex h-full flex-wrap text-center text-xs font-semibold leading-relaxed md:text-xl lg:text-3xl xl:text-3xl">
-                    Team Members 12+
+                    Team Members 20+
                   </div>
                   <div className="flex h-full flex-wrap text-center text-xs font-semibold leading-relaxed md:text-xl lg:text-3xl xl:text-3xl">
-                    Serving Cities 2+
+                    Serving Cities 1
                   </div>
                   <div className="flex h-full flex-wrap text-center text-xs font-semibold leading-relaxed md:text-xl lg:text-3xl xl:text-3xl">
                     Event Categories 40+
