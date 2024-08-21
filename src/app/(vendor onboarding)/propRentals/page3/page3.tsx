@@ -204,11 +204,10 @@ function Page3({
                 setSelectedCategory("Furniture & Decor");
                 handleCategorySelection("Furniture & Decor");
               }}
-              className={`rounded-3xl px-4 py-2 text-[#2E3192] ${
-                selectedCategory === "Furniture & Decor"
-                  ? "bg-[#2E3192] text-white"
-                  : ""
-              }`}
+              className={`rounded-3xl px-4 py-2 text-[#2E3192] ${selectedCategory === "Furniture & Decor"
+                ? "bg-[#2E3192] text-white"
+                : ""
+                }`}
             >
               Furniture & Decor
             </button>
@@ -217,11 +216,10 @@ function Page3({
                 setSelectedCategory("Tent and Canopy");
                 handleCategorySelection("Tent and Canopy");
               }}
-              className={`rounded-3xl px-4 py-2 text-[#2E3192] ${
-                selectedCategory === "Tent and Canopy"
-                  ? "bg-[#2E3192] text-white"
-                  : ""
-              }`}
+              className={`rounded-3xl px-4 py-2 text-[#2E3192] ${selectedCategory === "Tent and Canopy"
+                ? "bg-[#2E3192] text-white"
+                : ""
+                }`}
             >
               Tent and Canopy
             </button>
@@ -230,11 +228,10 @@ function Page3({
                 setSelectedCategory("Audio-Visual");
                 handleCategorySelection("Audio-Visual");
               }}
-              className={`rounded-3xl px-4 py-2 text-[#2E3192] ${
-                selectedCategory === "Audio-Visual"
-                  ? "bg-[#2E3192] text-white"
-                  : ""
-              }`}
+              className={`rounded-3xl px-4 py-2 text-[#2E3192] ${selectedCategory === "Audio-Visual"
+                ? "bg-[#2E3192] text-white"
+                : ""
+                }`}
             >
               Audio-Visual
             </button>
@@ -253,7 +250,7 @@ function Page3({
                     Upload list
                   </label>
                   <p className="text-gray-500">PNG, PDF, JPG</p>
-                  <button className="mt-2 flex w-1/3 items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
+                  <button className="mt-2  flex w-1/2 items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
                     <Upload />
                     Upload
                   </button>
@@ -283,14 +280,13 @@ function Page3({
               </div>
             </div>
 
-            <div className="mx-12 flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
-              <div className="flex min-h-full min-w-full flex-col gap-5">
-                <h1 className="text-3xl font-semibold">Pricing Structure</h1>
+            <div className="mx-2 w-full md:mx-12 flex flex-col gap-7 rounded-xl bg-white max-w-screen-xs p-4 xs:min-w-[90%] md:p-6">
+            <div className="flex flex-col gap-2">
+                <h1 className="text-2xl md:text-3xl font-semibold">Pricing Structure</h1>
 
+                {/* Hourly Package Rates */}
                 <div className="flex flex-col gap-5">
-                  <h2 className="text-2xl font-semibold">
-                    Hourly Package Rates
-                  </h2>
+                  <h2 className="text-xl md:text-2xl font-semibold">Hourly Package Rates</h2>
                   <form
                     onSubmit={(e) => {
                       e.preventDefault();
@@ -299,12 +295,10 @@ function Page3({
                         form.elements.namedItem("name") as HTMLInputElement
                       ).value;
                       const minRate = parseInt(
-                        (form.elements.namedItem("minRate") as HTMLInputElement)
-                          .value,
+                        (form.elements.namedItem("minRate") as HTMLInputElement).value,
                       );
                       const maxRate = parseInt(
-                        (form.elements.namedItem("maxRate") as HTMLInputElement)
-                          .value,
+                        (form.elements.namedItem("maxRate") as HTMLInputElement).value,
                       );
                       handleAddPricingEntry({
                         name,
@@ -313,24 +307,24 @@ function Page3({
                       });
                     }}
                   >
-                    <div className="flex gap-4">
+                    <div className="flex flex-col gap-4 md:flex-row md:gap-4">
                       <input
                         type="text"
                         name="name"
                         placeholder="Service Name"
-                        className="rounded border p-2"
+                        className="rounded border p-2 w-full md:w-auto"
                       />
                       <input
                         type="number"
                         name="minRate"
                         placeholder="Min Rate"
-                        className="rounded border p-2"
+                        className="rounded border p-2 w-full md:w-auto"
                       />
                       <input
                         type="number"
                         name="maxRate"
                         placeholder="Max Rate"
-                        className="rounded border p-2"
+                        className="rounded border p-2 w-full md:w-auto"
                       />
                       <button
                         type="submit"
@@ -354,18 +348,15 @@ function Page3({
                     </div>
                   </form>
                   <ul>
-                    {formState.furnitureHourlyPricingEntries.map(
-                      (entry, index) => (
-                        <li
-                          key={index}
-                        >{`${entry.name}: ${entry.min} - ${entry.max}`}</li>
-                      ),
-                    )}
+                    {formState.furnitureHourlyPricingEntries.map((entry, index) => (
+                      <li key={index}>{`${entry.name}: ${entry.min} - ${entry.max}`}</li>
+                    ))}
                   </ul>
                 </div>
 
+                {/* Deal Package Rates */}
                 <div className="mt-8 flex flex-col gap-5">
-                  <h2 className="text-2xl font-semibold">Deal Package Rates</h2>
+                  <h2 className="text-xl md:text-2xl font-semibold">Deal Package Rates</h2>
                   <form
                     onSubmit={(e) => {
                       e.preventDefault();
@@ -374,12 +365,10 @@ function Page3({
                         form.elements.namedItem("name") as HTMLInputElement
                       ).value;
                       const minRate = parseInt(
-                        (form.elements.namedItem("minRate") as HTMLInputElement)
-                          .value,
+                        (form.elements.namedItem("minRate") as HTMLInputElement).value,
                       );
                       const maxRate = parseInt(
-                        (form.elements.namedItem("maxRate") as HTMLInputElement)
-                          .value,
+                        (form.elements.namedItem("maxRate") as HTMLInputElement).value,
                       );
                       handleAddTentPricingEntry({
                         name,
@@ -388,99 +377,24 @@ function Page3({
                       });
                     }}
                   >
-                    <div className="flex gap-4">
+                    <div className="flex flex-col gap-4 md:flex-row md:gap-4">
                       <input
                         type="text"
                         name="name"
                         placeholder="Service Name"
-                        className="rounded border p-2"
+                        className="rounded border p-2 w-full md:w-auto"
                       />
                       <input
                         type="number"
                         name="minRate"
                         placeholder="Min Rate"
-                        className="rounded border p-2"
+                        className="rounded border p-2 w-full md:w-auto"
                       />
                       <input
                         type="number"
                         name="maxRate"
                         placeholder="Max Rate"
-                        className="rounded border p-2"
-                      />
-                      <button
-                        type="submit"
-                        className="cursor-pointer rounded-lg bg-[#E6E6E6] p-2 hover:shadow-xl"
-                      >
-                        <svg
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M12 5.5V17.5M6 11.5H18"
-                            stroke="#2E3192"
-                            strokeWidth="1.2"
-                            strokeLinecap="round"
-                          />
-                        </svg>
-                      </button>{" "}
-                    </div>
-                  </form>
-                  <ul>
-                    {formState.furnitureDealPricingEntries.map(
-                      (entry, index) => (
-                        <li
-                          key={index}
-                        >{`${entry.name}: ${entry.min} - ${entry.max}`}</li>
-                      ),
-                    )}
-                  </ul>
-                </div>
-
-                <div className="mt-8 flex flex-col gap-5">
-                  <h2 className="text-2xl font-semibold">Rates by Workers</h2>
-                  <form
-                    onSubmit={(e) => {
-                      e.preventDefault();
-                      const form = e.currentTarget as HTMLFormElement;
-                      const name = (
-                        form.elements.namedItem("name") as HTMLInputElement
-                      ).value;
-                      const minRate = parseInt(
-                        (form.elements.namedItem("minRate") as HTMLInputElement)
-                          .value,
-                      );
-                      const maxRate = parseInt(
-                        (form.elements.namedItem("maxRate") as HTMLInputElement)
-                          .value,
-                      );
-                      handleAddAudioPricingEntry({
-                        name,
-                        min: minRate,
-                        max: maxRate,
-                      });
-                    }}
-                  >
-                    <div className="flex gap-4">
-                      <input
-                        type="text"
-                        name="name"
-                        placeholder="Service Name"
-                        className="rounded border p-2"
-                      />
-                      <input
-                        type="number"
-                        name="minRate"
-                        placeholder="Min Rate"
-                        className="rounded border p-2"
-                      />
-                      <input
-                        type="number"
-                        name="maxRate"
-                        placeholder="Max Rate"
-                        className="rounded border p-2"
+                        className="rounded border p-2 w-full md:w-auto"
                       />
                       <button
                         type="submit"
@@ -504,58 +418,120 @@ function Page3({
                     </div>
                   </form>
                   <ul>
-                    {formState.furnitureWorkerPricingEntries.map(
-                      (entry, index) => (
-                        <li
-                          key={index}
-                        >{`${entry.name}: ${entry.min} - ${entry.max}`}</li>
-                      ),
-                    )}
+                    {formState.furnitureDealPricingEntries.map((entry, index) => (
+                      <li key={index}>{`${entry.name}: ${entry.min} - ${entry.max}`}</li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Rates by Workers */}
+                <div className="mt-8 flex flex-col gap-5">
+                  <h2 className="text-xl md:text-2xl font-semibold">Rates by Workers</h2>
+                  <form
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      const form = e.currentTarget as HTMLFormElement;
+                      const name = (
+                        form.elements.namedItem("name") as HTMLInputElement
+                      ).value;
+                      const minRate = parseInt(
+                        (form.elements.namedItem("minRate") as HTMLInputElement).value,
+                      );
+                      const maxRate = parseInt(
+                        (form.elements.namedItem("maxRate") as HTMLInputElement).value,
+                      );
+                      handleAddAudioPricingEntry({
+                        name,
+                        min: minRate,
+                        max: maxRate,
+                      });
+                    }}
+                  >
+                    <div className="flex flex-col gap-4 md:flex-row md:gap-4">
+                      <input
+                        type="text"
+                        name="name"
+                        placeholder="Service Name"
+                        className="rounded border p-2 w-full md:w-auto"
+                      />
+                      <input
+                        type="number"
+                        name="minRate"
+                        placeholder="Min Rate"
+                        className="rounded border p-2 w-full md:w-auto"
+                      />
+                      <input
+                        type="number"
+                        name="maxRate"
+                        placeholder="Max Rate"
+                        className="rounded border p-2 w-full md:w-auto"
+                      />
+                      <button
+                        type="submit"
+                        className="cursor-pointer rounded-lg bg-[#E6E6E6] p-2 hover:shadow-xl"
+                      >
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M12 5.5V17.5M6 11.5H18"
+                            stroke="#2E3192"
+                            strokeWidth="1.2"
+                            strokeLinecap="round"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  </form>
+                  <ul>
+                    {formState.furnitureWorkerPricingEntries.map((entry, index) => (
+                      <li key={index}>{`${entry.name}: ${entry.min} - ${entry.max}`}</li>
+                    ))}
                   </ul>
 
-                  <div className="flex gap-2">
+                  {/* Advanced Payment Section */}
+                  <div className="flex items-center gap-2">
                     <input
                       type="checkbox"
-                      className="h-6 w-6 appearance-none rounded-lg border-2 border-[#2E3192] bg-white checked:bg-[#2E3192] focus:outline-none"
+                      className="h-6 w-6 rounded-lg border-2 border-[#2E3192] bg-white checked:bg-[#2E3192] focus:outline-none"
                       checked={formState.advancedPaymentCheckbox || false}
                       onChange={(e) =>
-                        handleChange(
-                          "advancedPaymentCheckbox",
-                          e.target.checked,
-                        )
+                        handleChange("advancedPaymentCheckbox", e.target.checked)
                       }
                     />
-                    <span className="semi-bold">Advanced Payment</span>
+                    <span className="font-semibold">Advanced Payment</span>
                   </div>
 
-                  <div className="flex flex-row gap-6">
-                    <div className="flex flex-col">
-                      <label className="mb-4">Set Percentage Value</label>
-                      <input
-                        value={formState.percentageValuePage3 || 0}
-                        onInput={(e) =>
-                          handleChange(
-                            "percentageValuePage3",
-                            (e.target as HTMLInputElement).value,
-                          )
-                        }
-                        type="range"
-                        min="0"
-                        max="100"
-                        step="1"
-                        className="w-full rounded-xl border-2 outline-none"
-                        style={{
-                          padding: 0,
-                          backgroundColor: "white",
-                          borderColor: "#2E3192",
-                        }}
-                      />
-                      <span>{formState.percentageValuePage3}%</span>
-                    </div>
+                  {/* Percentage Value Section */}
+                  <div className="flex max-w-48 flex-col gap-4">
+                    <label className="mb-2">Set Percentage Value</label>
+                    <input
+                      value={formState.percentageValuePage3 || 0}
+                      onInput={(e) =>
+                        handleChange("percentageValuePage3", (e.target as HTMLInputElement).value)
+                      }
+                      type="range"
+                      min="0"
+                      max="100"
+                      step="1"
+                      className="w-full rounded-xl border-2 outline-none"
+                      style={{
+                        padding: 0,
+                        backgroundColor: "white",
+                        borderColor: "#2E3192",
+                      }}
+                    />
+                    <span>{formState.percentageValuePage3}%</span>
                   </div>
                 </div>
               </div>
             </div>
+
+
           </>
         )}
         {selectedCategory === "Tent and Canopy" && (
@@ -745,7 +721,7 @@ function Page3({
           />
         )}
       </div>
-    </div>
+    </div >
   );
 }
 

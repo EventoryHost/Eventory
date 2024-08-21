@@ -95,96 +95,81 @@ const Page1: React.FC<page1Props> = ({
             />
           </div>
         </div>
-        <div className="flex w-full flex-col items-center justify-center bg-[#F7F6F9] p-2 md:p-[1rem]">
-          <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
-            <span className="text-2xl font-semibold">Basic Information</span>
+        <div className="flex w-full flex-col items-center justify-center bg-[#F7F6F9] p-4 md:p-6">
+          <div className="flex flex-col gap-6 rounded-xl bg-white p-4 xs:min-w-[90%] md:p-6">
+            <span className="text-xl font-semibold md:text-2xl">Basic Information</span>
 
-            <div className="flex">
-              <div className="flex w-1/2 flex-col items-center justify-between gap-5 md:flex-row">
-                <div className="flex w-full flex-col gap-4 md:w-[60%]">
-                  <label className="font-medium" htmlFor="vendorName">
-                    Contact Person Name
-                  </label>
-                  <input
-                    id="vendorName"
-                    type="text"
-                    value={formState.contactName || ""}
-                    onChange={(e) =>
-                      handleChange("contactName", e.target.value)
-                    }
-                    className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
-                    placeholder="Enter the full name"
-                  />
-                </div>
+            <div className="flex flex-col gap-6 md:flex-row md:gap-8">
+              <div className="flex w-full flex-col gap-4 md:w-1/2">
+                <label className="font-medium" htmlFor="vendorName">
+                  Contact Person Name
+                </label>
+                <input
+                  id="vendorName"
+                  type="text"
+                  value={formState.contactName || ""}
+                  onChange={(e) => handleChange("contactName", e.target.value)}
+                  className="w-full rounded-xl border-2 bg-white p-4 outline-none"
+                  placeholder="Enter the full name"
+                />
               </div>
 
-              <div className="flex w-1/2 flex-col items-center justify-between gap-5 md:flex-row">
-                <div className="flex w-full flex-col gap-4 md:w-[60%]">
-                  <label className="font-medium" htmlFor="contactNumber">
-                    Conact Phone Number
-                  </label>
-                  <input
-                    id="contactNumber"
-                    type="text"
-                    value={formState.phoneNumber || ""}
-                    onChange={(e) =>
-                      handleChange("phoneNumber", e.target.value)
-                    }
-                    className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
-                    placeholder="Enter your contact Number"
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="flex">
-              <div className="flex w-1/2 flex-col items-center justify-between gap-5 md:flex-row">
-                <div className="flex w-full flex-col gap-4 md:w-[60%]">
-                  <label className="font-medium" htmlFor="contactNumber">
-                    What work do you do?
-                  </label>
-                  <input
-                    id="contactNumber"
-                    type="text"
-                    value={formState.workDescription || ""}
-                    onChange={(e) =>
-                      handleChange("workDescription", e.target.value)
-                    }
-                    className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
-                    placeholder="Enter the work you do"
-                  />
-                </div>
-              </div>
-              <div className="flex w-full flex-col gap-4 md:w-[48%]">
-                <label htmlFor="workers">Number of workers</label>
-                <Combobox
-                  options={yearsOptions}
-                  placeholder={
-                    `${formState.yearsOfExperience}` ||
-                    "Select your years of experience "
-                  }
-                  setFunction={(value) =>
-                    handleChange("yearsOfExperience", value)
-                  }
-                  className="flex items-center justify-between rounded-xl border-2 py-6 text-gray-500 hover:text-[#2E3192]"
+              <div className="flex w-full flex-col gap-4 md:w-1/2">
+                <label className="font-medium" htmlFor="contactNumber">
+                  Contact Phone Number
+                </label>
+                <input
+                  id="contactNumber"
+                  type="text"
+                  value={formState.phoneNumber || ""}
+                  onChange={(e) => handleChange("phoneNumber", e.target.value)}
+                  className="w-full rounded-xl border-2 bg-white p-4 outline-none"
+                  placeholder="Enter your contact number"
                 />
               </div>
             </div>
 
-            <div className="flex w-full flex-col gap-4 md:w-[48%]">
-              <label htmlFor="workers">Number of workers</label>
-              <Combobox
-                options={workerOptions}
-                placeholder={
-                  `${formState.numberOfWorkers}` ||
-                  "Select your number of workers"
-                }
-                setFunction={(value) => handleChange("numberOfWorkers", value)}
-                className="flex items-center justify-between rounded-xl border-2 py-6 text-gray-500 hover:text-[#2E3192]"
-              />
-            </div>
+            <div className="flex flex-col gap-6 md:flex-row md:gap-8">
+  <div className="flex w-full flex-col gap-4 md:w-1/2 h-full">
+    <label className="font-medium" htmlFor="workDescription">
+      What work do you do?
+    </label>
+    <input
+      id="workDescription"
+      type="text"
+      value={formState.workDescription || ""}
+      onChange={(e) => handleChange("workDescription", e.target.value)}
+      className="w-full rounded-xl border-2 bg-white p-4 outline-none h-full"
+      placeholder="Enter the work you do"
+    />
+  </div>
+
+  <div className="flex w-full flex-col gap-4 md:w-1/2 h-full">
+    <label htmlFor="yearsOfExperience">Years of Experience</label>
+    <Combobox
+      options={yearsOptions}
+      placeholder={formState.yearsOfExperience || "Select your years of experience"}
+      setFunction={(value) => handleChange("yearsOfExperience", value)}
+      className="flex items-center justify-between rounded-xl border-2 py-3 text-gray-500 hover:text-[#2E3192] h-full"
+    />
+  </div>
+</div>
+
+<div className="flex flex-col gap-6 md:flex-row md:gap-8">
+  <div className="flex w-full flex-col gap-4 md:w-1/2 h-full">
+    <label htmlFor="numberOfWorkers">Number of Workers</label>
+    <Combobox
+      options={workerOptions}
+      placeholder={formState.numberOfWorkers || "Select your number of workers"}
+      setFunction={(value) => handleChange("numberOfWorkers", value)}
+      className="flex items-center justify-between rounded-xl border-2 py-3 text-gray-500 hover:text-[#2E3192] h-full"
+    />
+  </div>
+</div>
+
           </div>
         </div>
+
       </div>
     </>
   );

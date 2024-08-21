@@ -60,41 +60,42 @@ const Page1: React.FC<PageProps> = ({
         <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
           <span className="text-2xl font-semibold">Basic Details</span>
 
-          <div className="flex">
-            <div className="flex w-1/2 flex-col items-center justify-between gap-5 md:flex-row">
-              <div className="flex w-full flex-col gap-4 md:w-[60%]">
-                <label className="font-medium" htmlFor="vendorName">
-                  Vendor Name (Manager)
-                </label>
-                <input
-                  id="vendorName"
-                  type="text"
-                  value={formState.vendorName}
-                  onChange={(e) => handleChange("vendorName", e.target.value)}
-                  className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
-                  placeholder="Enter your full name"
-                />
-              </div>
-            </div>
+          <div className="flex flex-col md:flex-row md:gap-5">
+  {/* <!-- Vendor Name Section --> */}
+  <div className="flex flex-col w-full md:w-1/2 gap-5">
+    <div className="flex flex-col gap-4">
+      <label className="font-medium" htmlFor="vendorName">
+        Vendor Name (Manager)
+      </label>
+      <input
+        id="vendorName"
+        type="text"
+        value={formState.vendorName}
+        onChange={(e) => handleChange("vendorName", e.target.value)}
+        className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
+        placeholder="Enter your full name"
+      />
+    </div>
+  </div>
 
-            <div className="flex w-1/2 flex-col items-center justify-between gap-5 md:flex-row">
-              <div className="flex w-full flex-col gap-4 md:w-[60%]">
-                <label className="font-medium" htmlFor="contactNumber">
-                  Contact Number (POC)
-                </label>
-                <input
-                  id="contactNumber"
-                  type="text"
-                  value={formState.contactNumber}
-                  onChange={(e) =>
-                    handleChange("contactNumber", e.target.value)
-                  }
-                  className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
-                  placeholder="Enter your contact number"
-                />
-              </div>
-            </div>
-          </div>
+  {/* <!-- Contact Number Section --> */}
+  <div className="flex flex-col w-full md:w-1/2 gap-5">
+    <div className="flex flex-col gap-4">
+      <label className="font-medium" htmlFor="contactNumber">
+        Contact Number (POC)
+      </label>
+      <input
+        id="contactNumber"
+        type="text"
+        value={formState.contactNumber}
+        onChange={(e) => handleChange("contactNumber", e.target.value)}
+        className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
+        placeholder="Enter your contact number"
+      />
+    </div>
+  </div>
+</div>
+
           <div className="container">
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               <div className="space-y-4">
