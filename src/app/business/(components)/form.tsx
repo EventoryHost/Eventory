@@ -1,4 +1,6 @@
 "use client";
+import { sendQuery } from "@/services/query";
+import { send } from "process";
 import React, { useState } from "react";
 
 const Form = () => {
@@ -11,6 +13,14 @@ const Form = () => {
 
     const formData = {
       fullName,
+      email,
+      message,
+    };
+
+    const fullname = fullName;
+
+    const formData1 = {
+      fullname,
       email,
       message,
     };
@@ -28,6 +38,22 @@ const Form = () => {
       );
 
       if (response.ok) {
+        alert("Your message has been sent successfully!");
+        // Clear form fields
+        setFullName("");
+        setEmail("");
+        setMessage("");
+      } else {
+        alert("Failed to send your message. Please try again later.");
+      }
+    } catch (error) {
+      console.error("Error sending message:", error);
+      alert("An error occurred while sending your message.");
+    }
+
+    try {
+      const response = await sendQuery(formData1);
+      if (response!.status === 200) {
         alert("Your message has been sent successfully!");
         // Clear form fields
         setFullName("");
