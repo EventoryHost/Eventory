@@ -1,10 +1,12 @@
 "use client";
+import jwt from "jsonwebtoken";
 // RootPage.tsx
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import page1, { page1Props } from "./page1/page1";
 import page2, { page2Props } from "./page2/page2";
 import page3 from "./page3/page3";
 import preview from "./preview/preview";
+import { addPropRental } from "@/services/vendors/propRental";
 
 const Pages = [page1, page2, page3, preview];
 
@@ -27,7 +29,10 @@ type FormState = {
   // Page3
   selectedAppetizers: string[];
   selectedDecor: string[];
-  pricingEntries: PricingEntry[];
+  furnitureHourlyPricingEntries: PricingEntry[];
+  tentHourlyPricingEntries: PricingEntry[];
+  furnitureDealPricingEntries: PricingEntry[];
+  furnitureWorkerPricingEntries: PricingEntry[];
   hourlyCheckbox: boolean;
   packageTypePage3: string;
   packageMinRate: string;
@@ -41,7 +46,7 @@ type FormState = {
   workerMinRate: string;
   workerMaxRate: string;
 
-  advancedPaymentCheckboxPage3: boolean;
+  advancedPaymentCheckboxPage3: false;
   percentageValuePage3: number;
   percentageValuePage4: number;
   percentageValuePage5: number;
@@ -50,13 +55,13 @@ type FormState = {
   hourlyCheckboxPage4: boolean;
   dealCheckboxPage4: boolean;
   workerCheckboxPage4: boolean;
-  advancedPaymentCheckboxPage4: boolean;
+  advancedPaymentCheckboxPage4: false;
 
   // Page5
   hourlyCheckboxPage5: boolean;
   dealCheckboxPage5: boolean;
   workerCheckboxPage5: boolean;
-  advancedPaymentCheckboxPage5: boolean;
+  advancedPaymentCheckboxPage5: false;
 };
 
 type PricingEntry = {
@@ -80,7 +85,10 @@ const RootPage = () => {
     privacyPolicy: "",
     selectedAppetizers: [],
     selectedDecor: [],
-    pricingEntries: [],
+    furnitureHourlyPricingEntries: [],
+    tentHourlyPricingEntries: [],
+    furnitureDealPricingEntries: [],
+    furnitureWorkerPricingEntries: [],
 
     hourlyCheckbox: false,
     packageTypePage3: "",
@@ -120,25 +128,61 @@ const RootPage = () => {
     setFormState((prevState) => ({ ...prevState, [key]: value }));
   };
 
-  const handleCheckboxChange = (
-    page: number,
-    checkboxName: string,
-    value: boolean,
-  ) => {
+  const handleAddPricingEntry = (entry: PricingEntry) => {
     setFormState((prevState) => ({
       ...prevState,
-      [`${checkboxName}Page${page}`]: value,
-    }));
-  };
-
-  const addPricingEntry = () => {
-    setFormState((prevState) => ({
-      ...prevState,
-      pricingEntries: [
-        ...prevState.pricingEntries,
-        { name: "", min: 0, max: 0 },
+      furnitureHourlyPricingEntries: [
+        ...prevState.furnitureHourlyPricingEntries,
+        entry,
       ],
     }));
+    console.log(formState.furnitureHourlyPricingEntries);
+  };
+
+  const handleAddTentHourlyPricingEntries = (entry: {
+    name: string;
+    min: number;
+    max: number;
+  }) => {
+    console.log("Adding entry:", entry); // Log the new entry
+    setFormState((prevState) => {
+      console.log("Previous state:", prevState);
+      return {
+        ...prevState,
+        tentHourlyPricingEntries: [
+          ...prevState.tentHourlyPricingEntries,
+          entry,
+        ],
+      };
+    });
+  };
+
+  useEffect(() => {
+    console.log(
+      "Tent hourly pricing entries:",
+      formState.tentHourlyPricingEntries,
+    );
+  }, [formState.tentHourlyPricingEntries]);
+
+  const handleAddTentPricingEntry = (entry: PricingEntry) => {
+    setFormState((prevState) => ({
+      ...prevState,
+      furnitureDealPricingEntries: [
+        ...prevState.furnitureDealPricingEntries,
+        entry,
+      ],
+    }));
+    console.log(formState.furnitureDealPricingEntries);
+  };
+  const handleAddAudioPricingEntry = (entry: PricingEntry) => {
+    setFormState((prevState) => ({
+      ...prevState,
+      furnitureWorkerPricingEntries: [
+        ...prevState.furnitureWorkerPricingEntries,
+        entry,
+      ],
+    }));
+    console.log(formState.furnitureWorkerPricingEntries);
   };
 
   // Function to handle changes for nested fields
@@ -181,8 +225,104 @@ const RootPage = () => {
   const [percentageValuePage4, setPercentageValuePage4] = useState(0);
   const [percentageValuePage5, setPercentageValuePage5] = useState(0);
 
-  function handleSubmit() {
-    console.log(formState);
+  function getVendorId(): string | null {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      console.log("No token found!");
+      return null;
+    }
+    try {
+      const decodedToken = jwt.decode(token) as {
+        userId?: string;
+        email?: string;
+      };
+      if (!decodedToken || !decodedToken.userId) {
+        console.error("Invalid token or token does not contain userId.");
+        return null;
+      }
+      return decodedToken.userId;
+    } catch (error) {
+      console.error("Error decoding token:", error);
+      return null;
+    }
+  }
+
+  async function handleSubmit() {
+    console.log("Form State before submission:", formState);
+
+    const venId = getVendorId()!;
+
+    const formData = new FormData();
+    formData.append("venId", venId);
+    formData.append("contactPersonName", formState.contactName || "");
+    formData.append("contactPhoneNumber", formState.phoneNumber || "");
+    formData.append("descriptionOfWork", formState.workDescription || "");
+    formData.append("yearsOfExperience", formState.yearsOfExperience || "");
+    formData.append("numberOfWorkers", formState.numberOfWorkers || "");
+
+    formData.append(
+      "furnitureAndDecor[listUrl]",
+      formState.furnitureAndDecor.listUrl || "",
+    );
+    formData.append(
+      "furnitureAndDecor[furniture]",
+      JSON.stringify(formState.furnitureAndDecor.furniture || []),
+    );
+    formData.append(
+      "furnitureAndDecor[decor]",
+      JSON.stringify(formState.furnitureAndDecor.decor || []),
+    );
+    formData.append(
+      "furnitureAndDecor[packageRates][hourly]",
+      JSON.stringify(formState.furnitureAndDecor.packageRates.hourly || []),
+    );
+    formData.append(
+      "furnitureAndDecor[packageRates][deal]",
+      JSON.stringify(formState.furnitureAndDecor.packageRates.deal || []),
+    );
+    formData.append(
+      "furnitureAndDecor[packageRates][worker]",
+      JSON.stringify(formState.furnitureAndDecor.packageRates.worker || []),
+    );
+
+    formData.append(
+      "tentAndCanopy[listUrl]",
+      formState.tentAndCanopy.listUrl || "",
+    );
+    formData.append(
+      "tentAndCanopy[items]",
+      JSON.stringify(formState.tentAndCanopy.items || []),
+    );
+    formData.append(
+      "tentAndCanopy[packageRates][hourly]",
+      JSON.stringify(formState.tentAndCanopy.packageRates.hourly || []),
+    );
+    formData.append(
+      "tentAndCanopy[packageRates][deal]",
+      JSON.stringify(formState.tentAndCanopy.packageRates.deal || []),
+    );
+    formData.append(
+      "tentAndCanopy[packageRates][worker]",
+      JSON.stringify(formState.tentAndCanopy.packageRates.worker || []),
+    );
+
+    formData.append("insurancePolicy", formState.insurancePolicy || "");
+    formData.append("cancellationPolicy", formState.cancellationPolicy || "");
+    formData.append("termsAndConditions", formState.termsAndConditions || "");
+    formData.append("privacyPolicy", formState.privacyPolicy || "");
+
+    console.log("This is the formdata in root page");
+    // @ts-ignore
+    for (let [key, value] of formData.entries()) {
+      console.log(`${key}: ${value}`);
+    }
+
+    try {
+      await addPropRental(formData);
+    } catch (error) {
+      console.error("Error adding prop rentals: ", error);
+    }
   }
 
   return (
@@ -210,6 +350,14 @@ const RootPage = () => {
         percentageValuePage3={percentageValuePage3}
         percentageValuePage4={percentageValuePage4}
         percentageValuePage5={percentageValuePage5}
+        furnitureHourlyPricingEntries={formState.furnitureHourlyPricingEntries}
+        tentHourlyPricingEntries={formState.tentHourlyPricingEntries}
+        furnitureDealPricingEntries={formState.furnitureDealPricingEntries}
+        furnitureWorkerPricingEntries={formState.furnitureWorkerPricingEntries}
+        handleAddPricingEntry={handleAddPricingEntry}
+        handleAddTentHourlyPricingEntries={handleAddTentHourlyPricingEntries}
+        handleAddTentPricingEntry={handleAddTentPricingEntry}
+        handleAddAudioPricingEntry={handleAddAudioPricingEntry}
       />
       <div className="my-9 mr-[5%] flex flex-row justify-end gap-7">
         {currentPage > 0 && (

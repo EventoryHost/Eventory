@@ -1,4 +1,3 @@
-// Preview.tsx
 import React from "react";
 import ThreeStepBar from "@/app/(components)/threeStepBar";
 import { EditIcon } from "lucide-react";
@@ -64,145 +63,162 @@ const Preview: React.FC<PreviewProps> = ({
   }
 
   return (
-    <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full overflow-hidden lg:flex-row">
-      <div className="fixed left-0 top-[5.2rem] z-10 h-[calc(100vh-5.2rem)] w-[30%] overflow-hidden bg-[#FFFFFF]">
-        <div className="flex h-full flex-col">
-          <div className="flex items-center justify-start gap-1 xs:self-start xs:pl-5 lg:mt-[2rem]">
-            <ThreeStepBar currentStep={3} />
-          </div>
-          <div className="ml-8 flex flex-grow flex-col items-start justify-center gap-9 px-9 xs:pl-5 md:px-11 lg:p-8">
-            <h1 className="text-2xl font-semibold md:text-4xl lg:text-5xl">
-              Fill out your Basic details
-            </h1>
-            <p className="text-gray-600 xs:text-sm md:w-[90%] lg:text-lg">
-              Please provide the details of the business offered by your
-              company.
-            </p>
-          </div>
-          <div className="relative h-[10rem] lg:w-full">
-            <img
-              src={"/tajmahal.png"}
-              alt="Taj Mahal"
-              className="h-full w-full object-cover"
-            />
-          </div>
+    <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden lg:flex-row">
+      {/* Sidebar */}
+      <div className="hidden lg:fixed lg:left-0 lg:top-[5.2rem] lg:flex lg:h-[calc(100vh-5.2rem)] lg:w-[30%] lg:flex-col lg:items-start lg:gap-9 lg:overflow-hidden lg:bg-[#FFFFFF] lg:px-8">
+        <div className="mt-4 flex items-center justify-start gap-1">
+          <ThreeStepBar currentStep={3} />
+        </div>
+        <div className="flex flex-grow flex-col items-start justify-center gap-9 px-6 py-4">
+          <h1 className="text-2xl font-semibold md:text-3xl lg:text-4xl">
+            Fill out your Basic details
+          </h1>
+          <p className="text-sm text-gray-600 md:text-base lg:text-lg">
+            Please provide the details of the business offered by your company.
+          </p>
+        </div>
+        <div className="relative h-48">
+          <img
+            src={"/tajmahal.png"}
+            alt="Taj Mahal"
+            className="h-full w-full object-cover"
+          />
         </div>
       </div>
 
-      <div className="ml-[30%] flex w-full flex-col items-center justify-center bg-[#F7F6F9] p-2 md:p-[1rem]">
-        <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
+      {/* Main Content */}
+      <div className="flex w-full flex-col bg-[#F7F6F9] p-4 md:p-6 lg:ml-[30%]">
+        <div className="flex flex-col gap-6 rounded-xl bg-white p-4 md:p-6">
           <div className="mb-4 text-2xl font-bold text-gray-800">
             {formState.vendorName} / Gifts
           </div>
-          <div className="">
-            <div className="mr-4 mt-4 flex justify-between rounded-xl bg-gray-200 p-2 pl-4 text-2xl font-medium">
-              1. Basic Details
-              <div
-                onClick={() => navigateToPage(0)}
-                className="align-center flex justify-center p-1"
-              >
-                <EditIcon size={28} />
+          <div className="space-y-4">
+            {/* Basic Details */}
+            <div className="flex flex-col gap-4">
+              <div className="flex items-center justify-between rounded-xl bg-gray-200 p-2 text-xl font-medium">
+                <span>1. Basic Details</span>
+                <button
+                  onClick={() => navigateToPage(0)}
+                  className="flex items-center justify-center p-1"
+                >
+                  <EditIcon size={28} />
+                </button>
+              </div>
+
+              <div className="flex flex-col gap-4 md:flex-row">
+                <div className="flex flex-grow flex-col">
+                  <label
+                    className="mb-2 text-lg font-medium text-gray-700"
+                    htmlFor="description"
+                  >
+                    Your Description
+                  </label>
+                  <textarea
+                    id="description"
+                    rows={4}
+                    disabled
+                    className="w-full resize-none rounded-lg border bg-white p-2 text-gray-700"
+                  >
+                    {formState.venueDescription}
+                  </textarea>
+                </div>
+
+                <div className="flex flex-grow flex-col">
+                  <h2 className="mb-2 text-lg font-medium text-gray-700">
+                    Do You Provide Customizable Gifts?
+                  </h2>
+                  <span className="font-semibold">
+                    {formState.customizableGifts}
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-4 md:flex-row">
+                <div className="flex flex-grow flex-col">
+                  <h2 className="mb-2 text-lg font-medium text-gray-700">
+                    Do You Provide Delivery Service?
+                  </h2>
+                  <span className="font-semibold">
+                    {formState.deliveryCharges.min}
+                  </span>
+                </div>
+                <div className="flex flex-grow flex-col">
+                  <h2 className="mb-2 text-lg font-medium text-gray-700">
+                    Do You Offer products in bulk quantity?
+                  </h2>
+                  <span className="font-semibold">
+                    {formState.bulkQuantity}
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex flex-col">
+                <h2 className="mb-2 text-lg font-medium text-gray-700">
+                  What is the minimum quantity of orders?
+                </h2>
+                <span className="font-semibold">
+                  {formState.minimumQuantity}
+                </span>
               </div>
             </div>
 
-            <div className="mb-2 flex flex-row">
-              <div>
-                <label
-                  className="mb-2 mt-4 block text-xl font-medium text-gray-700"
-                  htmlFor="description"
+            {/* Catalog Details */}
+            <div className="flex flex-col gap-4">
+              <div className="flex items-center justify-between rounded-xl bg-gray-200 p-2 text-xl font-medium">
+                <span>2. Catalog Details</span>
+                <button
+                  onClick={() => navigateToPage(1)}
+                  className="flex items-center justify-center p-1"
                 >
-                  Your Description
+                  <EditIcon size={28} />
+                </button>
+              </div>
+
+              <div className="flex flex-col">
+                <label className="mb-2 text-lg font-medium text-gray-700">
+                  List Of Gifts
                 </label>
-                <textarea
-                  className="focus:shadow-outline mr-8 h-28 w-96 resize-none appearance-none py-2 font-semibold leading-tight text-gray-700 focus:outline-none"
-                  id="description"
-                  rows={4}
-                  disabled
+                <div className="flex flex-col gap-5 md:flex-row">
+                  <Appetizers
+                    appetizers={giftTypes}
+                    selectedAppetizers={selectedGiftTypes}
+                    setSelectedAppetizers={setSelectedGiftTypes}
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Pricing and Policies */}
+            <div className="flex flex-col gap-4">
+              <div className="flex items-center justify-between rounded-xl bg-gray-200 p-2 text-xl font-medium">
+                <span>3. Pricing and Policies</span>
+                <button
+                  onClick={() => navigateToPage(2)}
+                  className="flex items-center justify-center p-1"
                 >
-                  {formState.venueDescription}
-                </textarea>
+                  <EditIcon size={28} />
+                </button>
               </div>
 
-              <div>
-                <h2 className="mb-2 mt-4 block text-xl font-medium text-gray-700">
-                  Do You Provide Customizable Gifts?
+              <div className="flex flex-col">
+                <h2 className="mb-2 text-lg font-medium text-gray-700">
+                  Terms And Conditions
                 </h2>
                 <span className="font-semibold">
-                  {formState.customizableGifts}
+                  {formState.termsAndConditions}
                 </span>
               </div>
             </div>
 
-            <div className="flex">
-              <div>
-                <h2 className="mb-2 mr-24 mt-4 block text-xl font-medium text-gray-700">
-                  Do You Provide Delivery Service?
-                </h2>
-                <span className="font-semibold">
-                  {formState.deliveryCharges.min}
-                </span>
-              </div>
-              <div>
-                <h2 className="mb-2 mt-4 block text-xl font-medium text-gray-700">
-                  Do You Offer products in bulk quantity?
-                </h2>
-                <span className="font-semibold">{formState.bulkQuantity}</span>
-              </div>
-            </div>
-            <div className="mt-16">
-              <h2 className="mb-2 mt-4 block text-xl font-medium text-gray-700">
-                What is the minimum quantity of orders?
-              </h2>
-              <span className="font-semibold">{formState.minimumQuantity}</span>
-            </div>
-
-            <div className="mr-4 mt-4 flex justify-between rounded-xl bg-gray-200 p-2 pl-4 text-2xl font-medium">
-              2. Catalog Details
-              <div
-                onClick={() => navigateToPage(1)}
-                className="align-center flex justify-center p-1"
-              >
-                <EditIcon size={28} />
-              </div>
-            </div>
-
-            <div className="mb-2">
-              <label className="mb-2 mt-4 block text-lg font-medium text-gray-700">
-                List Of Gifts
-              </label>
-              <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-                <Appetizers
-                  appetizers={giftTypes}
-                  selectedAppetizers={selectedGiftTypes}
-                  setSelectedAppetizers={setSelectedGiftTypes}
-                />
-              </div>
-            </div>
-            <div className="mr-4 mt-4 flex justify-between rounded-xl bg-gray-200 p-2 pl-4 text-2xl font-medium">
-              3. Pricing and Policies
-              <div
-                onClick={() => navigateToPage(1)}
-                className="align-center flex justify-center p-1"
-              >
-                <EditIcon size={28} />
-              </div>
-            </div>
-            <div className="mt-4">
-              <h2 className="mb-2 mt-4 block text-xl font-medium text-gray-700">
-                Terms And Conditions
+            {/* Price Range */}
+            <div className="flex flex-col">
+              <h2 className="mb-2 text-lg font-medium text-gray-700">
+                Price Range
               </h2>
               <span className="font-semibold">
-                {formState.termsAndConditions}
+                ₹{formState.priceRange.min} - ₹{formState.priceRange.max}
               </span>
             </div>
-          </div>
-          <div className="mt-4">
-            <h2 className="mb-2 mt-4 block text-xl font-medium text-gray-700">
-              Price Range
-            </h2>
-            <span className="font-semibold">
-              ₹{formState.priceRange.min} - ₹{formState.priceRange.max}
-            </span>
           </div>
         </div>
       </div>

@@ -3,7 +3,7 @@
 import StepBar from "@/app/(components)/stepBar";
 import Appetizers from "@/app/(vendor onboarding)/propRentals/(components)/Appetizers";
 import { Upload } from "lucide-react";
-import { SetStateAction, useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
 import Page4, {
   page4Props,
 } from "@/app/(vendor onboarding)/propRentals/page4/page4";
@@ -59,7 +59,9 @@ type FormState = {
   // Page3
   selectedAppetizers: string[];
   selectedDecor: string[];
-  pricingEntries: PricingEntry[];
+  furnitureHourlyPricingEntries: PricingEntry[];
+  furnitureDealPricingEntries: PricingEntry[];
+  furnitureWorkerPricingEntries: PricingEntry[];
   hourlyCheckbox: boolean;
   packageTypePage3: string;
   packageMinRate: string;
@@ -73,7 +75,7 @@ type FormState = {
   workerMinRate: string;
   workerMaxRate: string;
 
-  advancedPaymentCheckboxPage3: boolean;
+  advancedPaymentCheckboxPage3: false;
   percentageValuePage3: number;
   percentageValuePage4: number;
   percentageValuePage5: number;
@@ -82,13 +84,13 @@ type FormState = {
   hourlyCheckboxPage4: boolean;
   dealCheckboxPage4: boolean;
   workerCheckboxPage4: boolean;
-  advancedPaymentCheckboxPage4: boolean;
+  advancedPaymentCheckboxPage4: false;
 
   // Page5
   hourlyCheckboxPage5: boolean;
   dealCheckboxPage5: boolean;
   workerCheckboxPage5: boolean;
-  advancedPaymentCheckboxPage5: boolean;
+  advancedPaymentCheckboxPage5: false;
 };
 
 type page3Props = {
@@ -113,6 +115,14 @@ type page3Props = {
   percentageValuePage3: number;
   percentageValuePage4: number;
   percentageValuePage5: number;
+  furnitureHourlyPricingEntries: PricingEntry[];
+  tentHourlyPricingEntries: PricingEntry[];
+  furnitureDealPricingEntries: PricingEntry[];
+  furnitureWorkerPricingEntries: PricingEntry[];
+  handleAddPricingEntry: (entry: PricingEntry) => void;
+  handleAddTentHourlyPricingEntries: (entry: PricingEntry) => void;
+  handleAddTentPricingEntry: (entry: PricingEntry) => void;
+  handleAddAudioPricingEntry: (entry: PricingEntry) => void;
 };
 
 function Page3({
@@ -131,32 +141,16 @@ function Page3({
   selectedvisualOptions,
   setSelectedVisualOptions,
   handleChange,
-  percentageValuePage3,
-  percentageValuePage4,
-  percentageValuePage5,
   formState,
   setFormState,
-  advancePaymentCheckbox,
+  tentHourlyPricingEntries,
+  furnitureDealPricingEntries,
+  furnitureWorkerPricingEntries,
+  handleAddPricingEntry,
+  handleAddTentHourlyPricingEntries,
+  handleAddTentPricingEntry,
+  handleAddAudioPricingEntry,
 }: page3Props & page4Props & page5Props) {
-  const [hourlypackageRates, sethourlypackageRates] = useState<PricingEntry[]>(
-    [],
-  );
-  const [dealpackageRates, setdealpackageRates] = useState<PricingEntry[]>([]);
-  const [ratesByWorkers, setratesByWorkers] = useState<PricingEntry[]>([]);
-
-  const handleAddPricingEntry = (
-    type: "hourly" | "deal" | "worker",
-    entry: PricingEntry,
-  ) => {
-    if (type === "hourly") {
-      sethourlypackageRates([...hourlypackageRates, entry]);
-    } else if (type === "deal") {
-      setdealpackageRates([...dealpackageRates, entry]);
-    } else if (type === "worker") {
-      setratesByWorkers([...ratesByWorkers, entry]);
-    }
-  };
-
   const [formPage, setFormPage] = useState(1);
   const handleCategorySelection = (category: string) => {
     setSelectedCategory(category);
@@ -259,7 +253,7 @@ function Page3({
                     Upload list
                   </label>
                   <p className="text-gray-500">PNG, PDF, JPG</p>
-                  <button className="mt-2 flex w-1/3 items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
+                  <button className="mt-2 flex w-1/2 items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
                     <Upload />
                     Upload
                   </button>
@@ -289,91 +283,20 @@ function Page3({
               </div>
             </div>
 
-            <div className="mx-12 flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
-              <div className="flex min-h-full min-w-full flex-col gap-5">
-                <h1 className="text-3xl font-semibold">Pricing Structure</h1>
+            <div className="mx-2 flex w-full max-w-screen-xs flex-col gap-7 rounded-xl bg-white p-4 xs:min-w-[90%] md:mx-12 md:p-6">
+              <div className="flex flex-col gap-2">
+                <h1 className="text-2xl font-semibold md:text-3xl">
+                  Pricing Structure
+                </h1>
 
+                {/* Hourly Package Rates */}
                 <div className="flex flex-col gap-5">
-                  <h2 className="text-2xl font-semibold">
+                  <h2 className="text-xl font-semibold md:text-2xl">
                     Hourly Package Rates
                   </h2>
                   <form
                     onSubmit={(e) => {
                       e.preventDefault();
-                      const form = e.currentTarget as HTMLFormElement; // Type assertion to HTMLFormElement
-                      const name = (
-                        form.elements.namedItem("name") as HTMLInputElement
-                      ).value;
-                      const minRate = parseInt(
-                        (form.elements.namedItem("minRate") as HTMLInputElement)
-                          .value,
-                      );
-                      const maxRate = parseInt(
-                        (form.elements.namedItem("maxRate") as HTMLInputElement)
-                          .value,
-                      );
-                      handleAddPricingEntry("hourly", {
-                        name,
-                        min: minRate,
-                        max: maxRate,
-                      });
-                    }}
-                  >
-                    <div className="flex gap-4">
-                      <input
-                        type="text"
-                        name="name"
-                        placeholder="Service Name"
-                        className="rounded border p-2"
-                      />
-                      <input
-                        type="number"
-                        name="minRate"
-                        placeholder="Min Rate"
-                        className="rounded border p-2"
-                      />
-                      <input
-                        type="number"
-                        name="maxRate"
-                        placeholder="Max Rate"
-                        className="rounded border p-2"
-                      />
-                      <button
-                        type="submit"
-                        className="cursor-pointer rounded-lg bg-[#E6E6E6] p-2 hover:shadow-xl"
-                      >
-                        <svg
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M12 5.5V17.5M6 11.5H18"
-                            stroke="#2E3192"
-                            strokeWidth="1.2"
-                            strokeLinecap="round"
-                          />
-                        </svg>
-                      </button>
-                    </div>
-                  </form>
-
-                  <ul>
-                    {hourlypackageRates.map((entry, index) => (
-                      <li
-                        key={index}
-                      >{`${entry.name}: ${entry.min} - ${entry.max}`}</li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="mt-8 flex flex-col gap-5">
-                  <h2 className="text-2xl font-semibold">Deal Package Rates</h2>
-                  <form
-                    onSubmit={(e) => {
-                      e.preventDefault();
                       const form = e.currentTarget as HTMLFormElement;
                       const name = (
                         form.elements.namedItem("name") as HTMLInputElement
@@ -386,104 +309,31 @@ function Page3({
                         (form.elements.namedItem("maxRate") as HTMLInputElement)
                           .value,
                       );
-                      handleAddPricingEntry("deal", {
+                      handleAddPricingEntry({
                         name,
                         min: minRate,
                         max: maxRate,
                       });
                     }}
                   >
-                    <div className="flex gap-4">
+                    <div className="flex flex-col gap-4 md:flex-row md:gap-4">
                       <input
                         type="text"
                         name="name"
                         placeholder="Service Name"
-                        className="rounded border p-2"
+                        className="w-full rounded border p-2 md:w-auto"
                       />
                       <input
                         type="number"
                         name="minRate"
                         placeholder="Min Rate"
-                        className="rounded border p-2"
+                        className="w-full rounded border p-2 md:w-auto"
                       />
                       <input
                         type="number"
                         name="maxRate"
                         placeholder="Max Rate"
-                        className="rounded border p-2"
-                      />
-                      <button
-                        type="submit"
-                        className="cursor-pointer rounded-lg bg-[#E6E6E6] p-2 hover:shadow-xl"
-                      >
-                        <svg
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M12 5.5V17.5M6 11.5H18"
-                            stroke="#2E3192"
-                            strokeWidth="1.2"
-                            strokeLinecap="round"
-                          />
-                        </svg>
-                      </button>{" "}
-                    </div>
-                  </form>
-                  <ul>
-                    {dealpackageRates.map((entry, index) => (
-                      <li
-                        key={index}
-                      >{`${entry.name}: ${entry.min} - ${entry.max}`}</li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="mt-8 flex flex-col gap-5">
-                  <h2 className="text-2xl font-semibold">Rates by Workers</h2>
-                  <form
-                    onSubmit={(e) => {
-                      e.preventDefault();
-                      const form = e.currentTarget as HTMLFormElement;
-                      const name = (
-                        form.elements.namedItem("name") as HTMLInputElement
-                      ).value;
-                      const minRate = parseInt(
-                        (form.elements.namedItem("minRate") as HTMLInputElement)
-                          .value,
-                      );
-                      const maxRate = parseInt(
-                        (form.elements.namedItem("maxRate") as HTMLInputElement)
-                          .value,
-                      );
-                      handleAddPricingEntry("worker", {
-                        name,
-                        min: minRate,
-                        max: maxRate,
-                      });
-                    }}
-                  >
-                    <div className="flex gap-4">
-                      <input
-                        type="text"
-                        name="name"
-                        placeholder="Service Name"
-                        className="rounded border p-2"
-                      />
-                      <input
-                        type="number"
-                        name="minRate"
-                        placeholder="Min Rate"
-                        className="rounded border p-2"
-                      />
-                      <input
-                        type="number"
-                        name="maxRate"
-                        placeholder="Max Rate"
-                        className="rounded border p-2"
+                        className="w-full rounded border p-2 md:w-auto"
                       />
                       <button
                         type="submit"
@@ -507,18 +357,177 @@ function Page3({
                     </div>
                   </form>
                   <ul>
-                    {ratesByWorkers.map((entry, index) => (
-                      <li
-                        key={index}
-                      >{`${entry.name}: ${entry.min} - ${entry.max}`}</li>
-                    ))}
+                    {formState.furnitureHourlyPricingEntries.map(
+                      (entry, index) => (
+                        <li
+                          key={index}
+                        >{`${entry.name}: ${entry.min} - ${entry.max}`}</li>
+                      ),
+                    )}
+                  </ul>
+                </div>
+
+                {/* Deal Package Rates */}
+                <div className="mt-8 flex flex-col gap-5">
+                  <h2 className="text-xl font-semibold md:text-2xl">
+                    Deal Package Rates
+                  </h2>
+                  <form
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      const form = e.currentTarget as HTMLFormElement;
+                      const name = (
+                        form.elements.namedItem("name") as HTMLInputElement
+                      ).value;
+                      const minRate = parseInt(
+                        (form.elements.namedItem("minRate") as HTMLInputElement)
+                          .value,
+                      );
+                      const maxRate = parseInt(
+                        (form.elements.namedItem("maxRate") as HTMLInputElement)
+                          .value,
+                      );
+                      handleAddTentPricingEntry({
+                        name,
+                        min: minRate,
+                        max: maxRate,
+                      });
+                    }}
+                  >
+                    <div className="flex flex-col gap-4 md:flex-row md:gap-4">
+                      <input
+                        type="text"
+                        name="name"
+                        placeholder="Service Name"
+                        className="w-full rounded border p-2 md:w-auto"
+                      />
+                      <input
+                        type="number"
+                        name="minRate"
+                        placeholder="Min Rate"
+                        className="w-full rounded border p-2 md:w-auto"
+                      />
+                      <input
+                        type="number"
+                        name="maxRate"
+                        placeholder="Max Rate"
+                        className="w-full rounded border p-2 md:w-auto"
+                      />
+                      <button
+                        type="submit"
+                        className="cursor-pointer rounded-lg bg-[#E6E6E6] p-2 hover:shadow-xl"
+                      >
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M12 5.5V17.5M6 11.5H18"
+                            stroke="#2E3192"
+                            strokeWidth="1.2"
+                            strokeLinecap="round"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  </form>
+                  <ul>
+                    {formState.furnitureDealPricingEntries.map(
+                      (entry, index) => (
+                        <li
+                          key={index}
+                        >{`${entry.name}: ${entry.min} - ${entry.max}`}</li>
+                      ),
+                    )}
+                  </ul>
+                </div>
+
+                {/* Rates by Workers */}
+                <div className="mt-8 flex flex-col gap-5">
+                  <h2 className="text-xl font-semibold md:text-2xl">
+                    Rates by Workers
+                  </h2>
+                  <form
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      const form = e.currentTarget as HTMLFormElement;
+                      const name = (
+                        form.elements.namedItem("name") as HTMLInputElement
+                      ).value;
+                      const minRate = parseInt(
+                        (form.elements.namedItem("minRate") as HTMLInputElement)
+                          .value,
+                      );
+                      const maxRate = parseInt(
+                        (form.elements.namedItem("maxRate") as HTMLInputElement)
+                          .value,
+                      );
+                      handleAddAudioPricingEntry({
+                        name,
+                        min: minRate,
+                        max: maxRate,
+                      });
+                    }}
+                  >
+                    <div className="flex flex-col gap-4 md:flex-row md:gap-4">
+                      <input
+                        type="text"
+                        name="name"
+                        placeholder="Service Name"
+                        className="w-full rounded border p-2 md:w-auto"
+                      />
+                      <input
+                        type="number"
+                        name="minRate"
+                        placeholder="Min Rate"
+                        className="w-full rounded border p-2 md:w-auto"
+                      />
+                      <input
+                        type="number"
+                        name="maxRate"
+                        placeholder="Max Rate"
+                        className="w-full rounded border p-2 md:w-auto"
+                      />
+                      <button
+                        type="submit"
+                        className="cursor-pointer rounded-lg bg-[#E6E6E6] p-2 hover:shadow-xl"
+                      >
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M12 5.5V17.5M6 11.5H18"
+                            stroke="#2E3192"
+                            strokeWidth="1.2"
+                            strokeLinecap="round"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  </form>
+                  <ul>
+                    {formState.furnitureWorkerPricingEntries.map(
+                      (entry, index) => (
+                        <li
+                          key={index}
+                        >{`${entry.name}: ${entry.min} - ${entry.max}`}</li>
+                      ),
+                    )}
                   </ul>
 
-                  <div className="flex gap-2">
+                  {/* Advanced Payment Section */}
+                  <div className="flex items-center gap-2">
                     <input
                       type="checkbox"
-                      className="h-6 w-6 appearance-none rounded-lg border-2 border-[#2E3192] bg-white checked:bg-[#2E3192] focus:outline-none"
-                      // checked={formState.advancedPaymentCheckbox}
+                      className="h-6 w-6 rounded-lg border-2 border-[#2E3192] bg-white checked:bg-[#2E3192] focus:outline-none"
+                      checked={formState.advancedPaymentCheckbox || false}
                       onChange={(e) =>
                         handleChange(
                           "advancedPaymentCheckbox",
@@ -526,33 +535,32 @@ function Page3({
                         )
                       }
                     />
-                    <span className="semi-bold">Advanced Payment</span>
+                    <span className="font-semibold">Advanced Payment</span>
                   </div>
 
-                  <div className="flex flex-row gap-6">
-                    <div className="flex flex-col">
-                      <label className="mb-4">Set Percentage Value</label>
-                      <input
-                        value={formState.percentageValuePage3}
-                        onInput={(e) =>
-                          handleChange(
-                            "percentageValuePage3",
-                            (e.target as HTMLInputElement).value,
-                          )
-                        }
-                        type="range"
-                        min="0"
-                        max="100"
-                        step="1"
-                        className="w-full rounded-xl border-2 outline-none"
-                        style={{
-                          padding: 0,
-                          backgroundColor: "white",
-                          borderColor: "#2E3192",
-                        }}
-                      />
-                      <span>{formState.percentageValuePage3}%</span>
-                    </div>
+                  {/* Percentage Value Section */}
+                  <div className="flex max-w-48 flex-col gap-4">
+                    <label className="mb-2">Set Percentage Value</label>
+                    <input
+                      value={formState.percentageValuePage3 || 0}
+                      onInput={(e) =>
+                        handleChange(
+                          "percentageValuePage3",
+                          (e.target as HTMLInputElement).value,
+                        )
+                      }
+                      type="range"
+                      min="0"
+                      max="100"
+                      step="1"
+                      className="w-full rounded-xl border-2 outline-none"
+                      style={{
+                        padding: 0,
+                        backgroundColor: "white",
+                        borderColor: "#2E3192",
+                      }}
+                    />
+                    <span>{formState.percentageValuePage3}%</span>
                   </div>
                 </div>
               </div>
@@ -592,7 +600,16 @@ function Page3({
                   privacyPolicy: string;
                   selectedAppetizers: string[];
                   selectedDecor: string[];
-                  pricingEntries: { name: string; min: number; max: number }[];
+                  furnitureHourlyPricingEntries: {
+                    name: string;
+                    min: number;
+                    max: number;
+                  }[];
+                  tentHourlyPricingEntries: {
+                    name: string;
+                    min: number;
+                    max: number;
+                  }[];
                   hourlyCheckbox: boolean;
                   packageTypePage3: string;
                   packageMinRate: string;
@@ -605,18 +622,18 @@ function Page3({
                   workerType: string;
                   workerMinRate: string;
                   workerMaxRate: string;
-                  advancedPaymentCheckboxPage3: boolean;
+                  advancedPaymentCheckboxPage3: false;
                   percentageValuePage3: number;
                   percentageValuePage4: number;
                   percentageValuePage5: number;
                   hourlyCheckboxPage4: boolean;
                   dealCheckboxPage4: boolean;
                   workerCheckboxPage4: boolean;
-                  advancedPaymentCheckboxPage4: boolean;
+                  advancedPaymentCheckboxPage4: false;
                   hourlyCheckboxPage5: boolean;
                   dealCheckboxPage5: boolean;
                   workerCheckboxPage5: boolean;
-                  advancedPaymentCheckboxPage5: boolean;
+                  advancedPaymentCheckboxPage5: false;
                 },
                 value: any,
               ): void {
@@ -628,7 +645,8 @@ function Page3({
               privacyPolicy: "",
               selectedAppetizers: [],
               selectedDecor: [],
-              pricingEntries: [],
+              furnitureHourlyPricingEntries: [],
+              tentHourlyPricingEntries: [],
               hourlyCheckbox: false,
               packageTypePage3: "",
               packageMinRate: "",
@@ -669,7 +687,16 @@ function Page3({
                 privacyPolicy: string;
                 selectedAppetizers: string[];
                 selectedDecor: string[];
-                pricingEntries: { name: string; min: number; max: number }[];
+                furnitureHourlyPricingEntries: {
+                  name: string;
+                  min: number;
+                  max: number;
+                }[];
+                tentHourlyPricingEntries: {
+                  name: string;
+                  min: number;
+                  max: number;
+                }[];
                 hourlyCheckbox: boolean;
                 packageTypePage3: string;
                 packageMinRate: string;
@@ -682,23 +709,30 @@ function Page3({
                 workerType: string;
                 workerMinRate: string;
                 workerMaxRate: string;
-                advancedPaymentCheckboxPage3: boolean;
+                advancedPaymentCheckboxPage3: false;
                 percentageValuePage3: number;
                 percentageValuePage4: number;
                 percentageValuePage5: number;
                 hourlyCheckboxPage4: boolean;
                 dealCheckboxPage4: boolean;
                 workerCheckboxPage4: boolean;
-                advancedPaymentCheckboxPage4: boolean;
+                advancedPaymentCheckboxPage4: false;
                 hourlyCheckboxPage5: boolean;
                 dealCheckboxPage5: boolean;
                 workerCheckboxPage5: boolean;
-                advancedPaymentCheckboxPage5: boolean;
+                advancedPaymentCheckboxPage5: false;
               },
               value: any,
             ): void {
               throw new Error("Function not implemented.");
             }}
+            handleAddPricingEntry={function (): void {
+              throw new Error("Function not implemented.");
+            }}
+            tentHourlyPricingEntries={tentHourlyPricingEntries}
+            handleAddTentHourlyPricingEntries={
+              handleAddTentHourlyPricingEntries
+            }
           />
         )}
 
@@ -712,6 +746,11 @@ function Page3({
             setSelectedLightOptions={setSelectedLightOptions}
             percentageValuePage4={0}
             percentageValuePage5={0}
+            furnitureHourlyPricingEntries={undefined}
+            handleAddPricingEntry={function (): void {
+              throw new Error("Function not implemented.");
+            }}
+            tentHourlyPricingEntries={undefined}
           />
         )}
       </div>

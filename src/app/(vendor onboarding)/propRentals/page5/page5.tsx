@@ -1,10 +1,7 @@
 "use client";
 
-import StepBar from "@/app/(components)/stepBar";
 import Appetizers from "@/app/(vendor onboarding)/propRentals/(components)/Appetizers";
-import { light } from "@mui/material/styles/createPalette";
 import { Upload } from "lucide-react";
-import { SetStateAction, useState } from "react";
 
 const audioOptions = [
   "Speakers",
@@ -47,7 +44,6 @@ const lightOptions = [
   "LED lights",
   "conventional lights",
   "lighting control",
-  "lighting accessories",
   "lighting stands",
   "lighting effects",
   "lighting filters",
@@ -63,6 +59,12 @@ const lightOptions = [
   "Others",
 ];
 
+type PricingEntry = {
+  name: string;
+  min: number;
+  max: number;
+};
+
 export interface page5Props {
   selectedAudioOptions: string[];
   setSelectedAudioOptions: (value: any) => void;
@@ -72,6 +74,9 @@ export interface page5Props {
   setSelectedLightOptions: (value: any) => void;
   percentageValuePage4: number;
   percentageValuePage5: number;
+  furnitureHourlyPricingEntries: any;
+  tentHourlyPricingEntries: any;
+  handleAddPricingEntry: (entry: PricingEntry) => void;
 }
 
 function Page5({

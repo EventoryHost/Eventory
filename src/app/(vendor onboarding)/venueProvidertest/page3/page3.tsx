@@ -1,11 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
-import { ComboboxDemo } from "@/components/dropdown";
-import { Dropdown } from "react-day-picker";
-import { Combobox } from "@/components/ui/combobox";
-import { ArrowUpSquare, Upload } from "lucide-react";
-import Appetizers from "../(components)/Appetizers";
+import { Upload } from "lucide-react";
 
 interface FormState {
   termsAndConditions: string | File;

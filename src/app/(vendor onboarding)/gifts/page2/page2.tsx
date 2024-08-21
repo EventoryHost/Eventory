@@ -104,11 +104,13 @@ const Page2: React.FC<PageProps> = ({
       </div>
 
       <div className="flex w-full flex-col items-center justify-center bg-[#F7F6F9]">
-        <div className="flex w-[95%] flex-col gap-7 rounded-xl bg-white p-12">
-          <h2 className="text-3xl font-semibold">Catalog Details</h2>
-          <h3 className="text-xl font-medium">List of Gifts</h3>
-          <div className="flex min-h-full min-w-full flex-col items-center gap-5">
-            <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+        <div className="mx-auto flex max-w-7xl flex-col gap-7 rounded-xl bg-white p-6 md:w-[62em] md:p-12">
+          <h2 className="text-2xl font-semibold md:text-3xl">
+            Catalog Details
+          </h2>
+          <h3 className="text-lg font-medium md:text-xl">List of Gifts</h3>
+          <div className="flex flex-col items-center gap-5">
+            <div className="flex w-full flex-col gap-5 md:flex-row md:gap-5">
               <Appetizers
                 appetizers={_buttonTexts}
                 selectedAppetizers={selectedGiftTypes}
@@ -117,6 +119,7 @@ const Page2: React.FC<PageProps> = ({
             </div>
           </div>
         </div>
+
         <div className="flex w-full flex-col items-center justify-center bg-[#F7F6F9] p-2">
           <div className="flex w-[95%] flex-col gap-7 rounded-xl bg-white p-12">
             <h2 className="text-3xl font-semibold">Pricing and Policies</h2>
@@ -222,7 +225,7 @@ const Page2: React.FC<PageProps> = ({
             <input
               type="text"
               placeholder="Select your category"
-              className="w-1/3 rounded-xl border-2 px-3 py-2 focus:border-[#2E3192] focus:outline-none focus:ring-blue-500"
+              className="w-1/2 rounded-xl border-2 px-3 py-2 focus:border-[#2E3192] focus:outline-none focus:ring-blue-500 md:w-1/3"
             />
           </div>
         </div>

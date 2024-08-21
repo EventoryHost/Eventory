@@ -82,7 +82,6 @@ const lightOptions = [
   "LED lights",
   "conventional lights",
   "lighting control",
-  "lighting accessories",
   "lighting stands",
   "lighting effects",
   "lighting filters",
@@ -99,6 +98,8 @@ const lightOptions = [
 ];
 
 type PricingEntry = {
+  min: number;
+  max: number;
   name: string;
   minRate: string;
   maxRate: string;
@@ -123,7 +124,10 @@ type FormState = {
   // Page3
   selectedAppetizers: string[];
   selectedDecor: string[];
-  pricingEntries: PricingEntry[];
+  furnitureHourlyPricingEntries: PricingEntry[];
+  tentHourlyPricingEntries: PricingEntry[];
+  furnitureDealPricingEntries: PricingEntry[];
+  furnitureWorkerPricingEntries: PricingEntry[];
   hourlyCheckbox: boolean;
   packageTypePage3: string;
   packageMinRate: string;
@@ -177,6 +181,13 @@ type PagePreviewProps = {
   percentageValuePage3: number;
   percentageValuePage4: number;
   percentageValuePage5: number;
+  furnitureHourlyPricingEntries: PricingEntry[];
+  tentHourlyPricingEntries: PricingEntry[];
+  handleAddPricingEntry: (entry: PricingEntry) => void;
+  furnitureDealPricingEntries: PricingEntry[];
+  furnitureWorkerPricingEntries: PricingEntry[];
+  handleAddTentPricingEntry: (entry: PricingEntry) => void;
+  handleAddAudioPricingEntry: (entry: PricingEntry) => void;
 };
 
 function Preview({
@@ -329,37 +340,55 @@ function Preview({
 
           <div className="ml-8 flex flex-col">
             <div className="text-xl font-semibold">Hourly package rates</div>
-            <div className="mt-4 flex">
-              <div className="flex w-1/2 flex-col">
-                <span> {formState.packageTypePage3}</span>
-                <span className="font-semibold">
-                  ₹ {formState.packageMinRate} - ₹{formState.packageMaxRate}
-                </span>
-              </div>
+            <div className="mt-4 flex flex-col">
+              {formState.furnitureHourlyPricingEntries.length > 0 ? (
+                formState.furnitureHourlyPricingEntries.map((entry, index) => (
+                  <div key={index} className="mb-2 flex flex-col">
+                    <span>{entry.name}</span>
+                    <span className="font-semibold">
+                      ₹ {entry.min} - ₹{entry.max}
+                    </span>
+                  </div>
+                ))
+              ) : (
+                <div>No hourly package rates available</div>
+              )}
             </div>
           </div>
 
           <div className="ml-8 mt-4 flex flex-col">
             <div className="text-xl font-semibold">Daily package rates</div>
-            <div className="mt-4 flex flex-row">
-              <div className="flex w-1/2 flex-col">
-                <span>{formState.serviceType}</span>
-                <span className="font-semibold">
-                  ₹ {formState.dealMinRate} - ₹{formState.dealMaxRate}
-                </span>
-              </div>
+            <div className="mt-4 flex flex-col">
+              {formState.furnitureDealPricingEntries.length > 0 ? (
+                formState.furnitureDealPricingEntries.map((entry, index) => (
+                  <div key={index} className="mb-2 flex flex-col">
+                    <span>{entry.name}</span>
+                    <span className="font-semibold">
+                      ₹ {entry.min} - ₹{entry.max}
+                    </span>
+                  </div>
+                ))
+              ) : (
+                <div>No daily package rates available</div>
+              )}
             </div>
           </div>
 
           <div className="ml-8 mt-4 flex flex-col">
-            <div className="text-xl font-semibold">Type of workers</div>
-            <div className="mt-4 flex">
-              <div className="flex w-1/2 flex-col">
-                <span>{formState.cargoType}</span>
-                <span className="font-semibold">
-                  ₹ {formState.workerMinRate} - ₹{formState.workerMaxRate}
-                </span>
-              </div>
+            <div className="text-xl font-semibold">Daily package rates</div>
+            <div className="mt-4 flex flex-col">
+              {formState.furnitureWorkerPricingEntries.length > 0 ? (
+                formState.furnitureWorkerPricingEntries.map((entry, index) => (
+                  <div key={index} className="mb-2 flex flex-col">
+                    <span>{entry.name}</span>
+                    <span className="font-semibold">
+                      ₹ {entry.min} - ₹{entry.max}
+                    </span>
+                  </div>
+                ))
+              ) : (
+                <div>No daily package rates available</div>
+              )}
             </div>
           </div>
         </div>
@@ -400,13 +429,19 @@ function Preview({
 
           <div className="ml-8 flex flex-col">
             <div className="text-xl font-semibold">Hourly package rates</div>
-            <div className="mt-4 flex">
-              <div className="flex w-1/2 flex-col">
-                <span> {formState.packageTypePage3}</span>
-                <span className="font-semibold">
-                  ₹ {formState.packageMinRate} - ₹{formState.packageMaxRate}
-                </span>
-              </div>
+            <div className="mt-4 flex flex-col">
+              {formState.tentHourlyPricingEntries.length > 0 ? (
+                formState.tentHourlyPricingEntries.map((entry, index) => (
+                  <div key={index} className="mb-2 flex flex-col">
+                    <span>{entry.name}</span>
+                    <span className="font-semibold">
+                      ₹ {entry.min} - ₹{entry.max}
+                    </span>
+                  </div>
+                ))
+              ) : (
+                <div>No hourly package rates available</div>
+              )}
             </div>
           </div>
 
