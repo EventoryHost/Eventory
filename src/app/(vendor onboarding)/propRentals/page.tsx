@@ -78,7 +78,7 @@ const RootPage = () => {
     workDescription: "",
     yearsOfExperience: "",
     numberOfWorkers: "",
-    handleChange: (key: keyof FormState, value: any) => { },
+    handleChange: (key: keyof FormState, value: any) => {},
     insurancePolicy: "",
     cancellationPolicy: "",
     termsAndConditions: "",
@@ -261,21 +261,51 @@ const RootPage = () => {
     formData.append("yearsOfExperience", formState.yearsOfExperience || "");
     formData.append("numberOfWorkers", formState.numberOfWorkers || "");
 
+    formData.append(
+      "furnitureAndDecor[listUrl]",
+      formState.furnitureAndDecor.listUrl || "",
+    );
+    formData.append(
+      "furnitureAndDecor[furniture]",
+      JSON.stringify(formState.furnitureAndDecor.furniture || []),
+    );
+    formData.append(
+      "furnitureAndDecor[decor]",
+      JSON.stringify(formState.furnitureAndDecor.decor || []),
+    );
+    formData.append(
+      "furnitureAndDecor[packageRates][hourly]",
+      JSON.stringify(formState.furnitureAndDecor.packageRates.hourly || []),
+    );
+    formData.append(
+      "furnitureAndDecor[packageRates][deal]",
+      JSON.stringify(formState.furnitureAndDecor.packageRates.deal || []),
+    );
+    formData.append(
+      "furnitureAndDecor[packageRates][worker]",
+      JSON.stringify(formState.furnitureAndDecor.packageRates.worker || []),
+    );
 
-
-    formData.append("furnitureAndDecor[listUrl]", formState.furnitureAndDecor.listUrl || "");
-    formData.append("furnitureAndDecor[furniture]", JSON.stringify(formState.furnitureAndDecor.furniture || []));
-    formData.append("furnitureAndDecor[decor]", JSON.stringify(formState.furnitureAndDecor.decor || []));
-    formData.append("furnitureAndDecor[packageRates][hourly]", JSON.stringify(formState.furnitureAndDecor.packageRates.hourly || []));
-    formData.append("furnitureAndDecor[packageRates][deal]", JSON.stringify(formState.furnitureAndDecor.packageRates.deal || []));
-    formData.append("furnitureAndDecor[packageRates][worker]", JSON.stringify(formState.furnitureAndDecor.packageRates.worker || []));
-
-
-    formData.append("tentAndCanopy[listUrl]", formState.tentAndCanopy.listUrl || "");
-    formData.append("tentAndCanopy[items]", JSON.stringify(formState.tentAndCanopy.items || []));
-    formData.append("tentAndCanopy[packageRates][hourly]", JSON.stringify(formState.tentAndCanopy.packageRates.hourly || []));
-    formData.append("tentAndCanopy[packageRates][deal]", JSON.stringify(formState.tentAndCanopy.packageRates.deal || []));
-    formData.append("tentAndCanopy[packageRates][worker]", JSON.stringify(formState.tentAndCanopy.packageRates.worker || []));
+    formData.append(
+      "tentAndCanopy[listUrl]",
+      formState.tentAndCanopy.listUrl || "",
+    );
+    formData.append(
+      "tentAndCanopy[items]",
+      JSON.stringify(formState.tentAndCanopy.items || []),
+    );
+    formData.append(
+      "tentAndCanopy[packageRates][hourly]",
+      JSON.stringify(formState.tentAndCanopy.packageRates.hourly || []),
+    );
+    formData.append(
+      "tentAndCanopy[packageRates][deal]",
+      JSON.stringify(formState.tentAndCanopy.packageRates.deal || []),
+    );
+    formData.append(
+      "tentAndCanopy[packageRates][worker]",
+      JSON.stringify(formState.tentAndCanopy.packageRates.worker || []),
+    );
 
     formData.append("insurancePolicy", formState.insurancePolicy || "");
     formData.append("cancellationPolicy", formState.cancellationPolicy || "");
