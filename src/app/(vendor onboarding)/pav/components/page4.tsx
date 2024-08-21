@@ -66,7 +66,10 @@ const Page4 = ({
                   type="radio"
                   name="proposalsToClients"
                   checked={proposalsToClients}
-                  onChange={(e) => {e.preventDefault(); setProposalsToClients(true);}}
+                  onChange={(e) => {
+                    e.preventDefault();
+                    setProposalsToClients(true);
+                  }}
                 />
                 <label className="text-sm">Yes</label>
               </div>
@@ -75,7 +78,10 @@ const Page4 = ({
                   type="radio"
                   name="proposalsToClients"
                   checked={!proposalsToClients}
-                  onChange={(e) => {e.preventDefault(); setProposalsToClients(false);}}
+                  onChange={(e) => {
+                    e.preventDefault();
+                    setProposalsToClients(false);
+                  }}
                 />
                 <label className="text-sm">No</label>
               </div>
@@ -93,7 +99,10 @@ const Page4 = ({
                   type="radio"
                   name="freeInitialConsultation"
                   checked={freeInitialConsultation}
-                  onChange={(e) => {e.preventDefault(); setFreeInitialConsultation(true);}}
+                  onChange={(e) => {
+                    e.preventDefault();
+                    setFreeInitialConsultation(true);
+                  }}
                 />
                 <label className="text-sm">Yes</label>
               </div>
@@ -102,7 +111,10 @@ const Page4 = ({
                   type="radio"
                   name="freeInitialConsultation"
                   checked={!freeInitialConsultation}
-                  onChange={(e) => {e.preventDefault(); setFreeInitialConsultation(false);}}
+                  onChange={(e) => {
+                    e.preventDefault();
+                    setFreeInitialConsultation(false);
+                  }}
                 />
                 <label className="text-sm">No</label>
               </div>
@@ -118,7 +130,10 @@ const Page4 = ({
                   type="radio"
                   name="advanceSetup"
                   checked={advanceSetup}
-                  onChange={(e) => {e.preventDefault(); setAdvanceSetup(true);}}
+                  onChange={(e) => {
+                    e.preventDefault();
+                    setAdvanceSetup(true);
+                  }}
                 />
                 <label className="text-sm">Yes</label>
               </div>
@@ -127,7 +142,10 @@ const Page4 = ({
                   type="radio"
                   name="advanceSetup"
                   checked={!advanceSetup}
-                  onChange={(e) => {e.preventDefault(); setAdvanceSetup(false);}}
+                  onChange={(e) => {
+                    e.preventDefault();
+                    setAdvanceSetup(false);
+                  }}
                 />
                 <label className="text-sm">No</label>
               </div>
@@ -145,7 +163,10 @@ const Page4 = ({
                   type="radio"
                   name="collaborationWithOtherVendors"
                   checked={collaborationWithOtherVendors}
-                  onChange={(e) => {e.preventDefault(); setCollaborationWithOtherVendors(true);}}
+                  onChange={(e) => {
+                    e.preventDefault();
+                    setCollaborationWithOtherVendors(true);
+                  }}
                 />
                 <label className="text-sm">Yes</label>
               </div>
@@ -154,7 +175,10 @@ const Page4 = ({
                   type="radio"
                   name="collaborationWithOtherVendors"
                   checked={!collaborationWithOtherVendors}
-                  onChange={(e) => {e.preventDefault(); setCollaborationWithOtherVendors(false);}}
+                  onChange={(e) => {
+                    e.preventDefault();
+                    setCollaborationWithOtherVendors(false);
+                  }}
                 />
                 <label className="text-sm">No</label>
               </div>
@@ -172,7 +196,10 @@ const Page4 = ({
                   type="radio"
                   name="setupsInstallations"
                   checked={setupsInstallations}
-                  onChange={(e) => {e.preventDefault(); setSetupsInstallations(true);}}
+                  onChange={(e) => {
+                    e.preventDefault();
+                    setSetupsInstallations(true);
+                  }}
                 />
                 <label className="text-sm">Yes</label>
               </div>
@@ -181,7 +208,10 @@ const Page4 = ({
                   type="radio"
                   name="setupsInstallations"
                   checked={!setupsInstallations}
-                  onChange={(e) => {e.preventDefault(); setSetupsInstallations(false);}}
+                  onChange={(e) => {
+                    e.preventDefault();
+                    setSetupsInstallations(false);
+                  }}
                 />
                 <label className="text-sm">No</label>
               </div>
@@ -199,7 +229,10 @@ const Page4 = ({
                   type="radio"
                   name="bookingDeposit"
                   checked={bookingDeposit}
-                  onChange={(e) => {e.preventDefault(); setBookingDeposit(true);}}
+                  onChange={(e) => {
+                    e.preventDefault();
+                    setBookingDeposit(true);
+                  }}
                 />
                 <label className="text-sm">Yes</label>
               </div>
@@ -208,7 +241,10 @@ const Page4 = ({
                   type="radio"
                   name="bookingDeposit"
                   checked={!bookingDeposit}
-                  onChange={(e) => {e.preventDefault(); setBookingDeposit(false);}}
+                  onChange={(e) => {
+                    e.preventDefault();
+                    setBookingDeposit(false);
+                  }}
                 />
                 <label className="text-sm">No</label>
               </div>
@@ -225,7 +261,10 @@ const Page4 = ({
               id="cancellationPolicy"
               name="cancellationPolicy"
               accept="image/png, .pdf, image/jpg"
-              onChange={(e) => { e.preventDefault(); setCancellationPolicy(e.target.files![0]); }}
+              onChange={(e) => {
+                e.preventDefault();
+                setCancellationPolicy(e.target.files![0]);
+              }}
               className="mt-5 flex w-fit items-center justify-center rounded-xl border-2 border-dashed border-gray-400 bg-gray-200 p-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white"
             />
             <p className="text-md mt-5">or Provide Via</p>
@@ -245,7 +284,10 @@ const Page4 = ({
               id="tnc"
               name="tnc"
               accept="image/png, .pdf, image/jpg"
-              onChange={(e) => { e.preventDefault(); setTnc(e.target.files![0]); }}
+              onChange={(e) => {
+                e.preventDefault();
+                setTnc(e.target.files![0]);
+              }}
               className="mt-5 flex w-fit items-center justify-center rounded-xl border-2 border-dashed border-gray-400 bg-gray-200 p-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white"
             />
             <p className="text-md mt-5">or Provide Via</p>
@@ -261,7 +303,7 @@ const Page4 = ({
       </div>
 
       <button
-      onClick={handleContinue}
+        onClick={handleContinue}
         className="flex w-full items-center justify-center rounded-xl bg-[#2E3192] py-3 text-white hover:bg-[#2E3192]/90"
       >
         Continue
