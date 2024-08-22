@@ -1,4 +1,5 @@
 "use client";
+import { sendQuery } from "@/services/query";
 import React, { useState } from "react";
 
 const Form = () => {
@@ -16,11 +17,19 @@ const Form = () => {
       message,
     };
 
+    const fullname = fullName;
+    // why 2 different objects?
+    const formData1 = {
+      fullname,
+      email,
+      message,
+    };
+
     setLoading(true);
 
     try {
       const response = await fetch(
-        "http://localhost:4000/api/email/send-email",
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/email/send-email`,
         {
           method: "POST",
           headers: {
@@ -72,6 +81,7 @@ const Form = () => {
             className="w-full rounded-lg p-4"
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
+            required
           />
           <label htmlFor="email" className="self-start">
             Email
@@ -82,6 +92,7 @@ const Form = () => {
             className="w-full rounded-lg p-4"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
           <label htmlFor="message" className="self-start">
             Message
@@ -92,6 +103,7 @@ const Form = () => {
             className="w-full rounded-lg p-4"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
+            required
           />
           <button
             type="submit"
