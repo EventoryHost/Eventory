@@ -10,6 +10,12 @@ const Form = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    // Validate fields
+    if (!fullName || !email || !message) {
+      alert("All fields are required!");
+      return;
+    }
+
     const formData = {
       fullName,
       email,
@@ -27,7 +33,7 @@ const Form = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(formData),
-        },
+        }
       );
 
       if (response.ok) {
