@@ -1,11 +1,11 @@
 "use client";
-import { sendQuery } from "@/services/query";
 import React, { useState } from "react";
 
 const Form = () => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -16,17 +16,11 @@ const Form = () => {
       message,
     };
 
-    const fullname = fullName;
-    // why 2 different objects?
-    const formData1 = {
-      fullname,
-      email,
-      message,
-    };
+    setLoading(true);
 
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/email/send-email`,
+        "http://localhost:4000/api/email/send-email",
         {
           method: "POST",
           headers: {
@@ -48,19 +42,8 @@ const Form = () => {
     } catch (error) {
       console.error("Error sending message:", error);
       alert("An error occurred while sending your message.");
-    }
-
-    try {
-      const response = await sendQuery(formData1);
-      if (response!.status === 200) {
-        // Clear form fields
-        setFullName("");
-        setEmail("");
-        setMessage("");
-      }
-    } catch (error) {
-      console.error("Error sending message:", error);
-      alert("An error occurred while sending your message.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -112,9 +95,14 @@ const Form = () => {
           />
           <button
             type="submit"
-            className="w-full rounded-xl bg-[#2E3192] p-4 text-white"
+            className="flex w-full items-center justify-center rounded-xl bg-[#2E3192] p-4 text-white"
+            disabled={loading}
           >
-            Submit
+            {loading ? (
+              <div className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent"></div>
+            ) : (
+              "Submit"
+            )}
           </button>
         </form>
       </div>
