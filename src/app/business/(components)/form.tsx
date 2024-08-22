@@ -36,7 +36,7 @@ const Form = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(formData),
-        },
+        }
       );
 
       if (response.ok) {
@@ -81,6 +81,7 @@ const Form = () => {
             className="w-full rounded-lg p-4"
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
+            required
           />
           <label htmlFor="email" className="self-start">
             Email
@@ -91,6 +92,7 @@ const Form = () => {
             className="w-full rounded-lg p-4"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
           <label htmlFor="message" className="self-start">
             Message
@@ -101,6 +103,7 @@ const Form = () => {
             className="w-full rounded-lg p-4"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
+            required
           />
           <button
             type="submit"
