@@ -95,11 +95,11 @@ const Form = () => {
           />
           <button
             type="submit"
-            className="w-full rounded-xl bg-[#2E3192] p-4 text-white flex justify-center items-center"
+            className="flex w-full items-center justify-center rounded-xl bg-[#2E3192] p-4 text-white"
             disabled={loading}
           >
             {loading ? (
-              <div className="h-5 w-5 animate-spin rounded-full border-2 border-t-transparent border-white"></div>
+              <div className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent"></div>
             ) : (
               "Submit"
             )}
