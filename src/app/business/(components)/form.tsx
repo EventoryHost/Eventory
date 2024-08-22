@@ -54,6 +54,19 @@ const Form = () => {
     } finally {
       setLoading(false);
     }
+
+    try {
+      const response = await sendQuery(formData1);
+      if (response!.status === 200) {
+        // Clear form fields
+        setFullName("");
+        setEmail("");
+        setMessage("");
+      }
+    } catch (error) {
+      console.error("Error sending message:", error);
+      alert("An error occurred while sending your message.");
+    }
   };
 
   return (
