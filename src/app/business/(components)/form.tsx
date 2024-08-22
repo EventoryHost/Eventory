@@ -1,10 +1,11 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 
 const Form = () => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -14,6 +15,8 @@ const Form = () => {
       email,
       message,
     };
+
+    setLoading(true);
 
     try {
       const response = await fetch("http://localhost:4000/api/email/send-email", {
@@ -36,6 +39,8 @@ const Form = () => {
     } catch (error) {
       console.error("Error sending message:", error);
       alert("An error occurred while sending your message.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -87,9 +92,14 @@ const Form = () => {
           />
           <button
             type="submit"
-            className="w-full rounded-xl bg-[#2E3192] p-4 text-white"
+            className="w-full rounded-xl bg-[#2E3192] p-4 text-white flex justify-center items-center"
+            disabled={loading}
           >
-            Submit
+            {loading ? (
+              <div className="h-5 w-5 animate-spin rounded-full border-2 border-t-transparent border-white"></div>
+            ) : (
+              "Submit"
+            )}
           </button>
         </form>
       </div>
