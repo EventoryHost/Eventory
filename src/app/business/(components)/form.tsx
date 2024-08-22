@@ -24,7 +24,7 @@ const Form = () => {
       email,
       message,
     };
-    
+
     setLoading(true);
 
     try {
@@ -36,7 +36,7 @@ const Form = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(formData),
-        }
+        },
       );
 
       if (response.ok) {
