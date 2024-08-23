@@ -50,7 +50,7 @@ const Hero = (props: Props) => {
                     Team Members 20+
                   </div>
                   <div className="flex h-full flex-wrap text-center text-xs font-semibold leading-relaxed md:text-xl lg:text-3xl xl:text-3xl">
-                    Serving Cities 2+
+                    Serving Cities 1
                   </div>
                   <div className="flex h-full flex-wrap text-center text-xs font-semibold leading-relaxed md:text-xl lg:text-3xl xl:text-3xl">
                     Event Categories 40+
