@@ -3,27 +3,43 @@
 import { useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 
 import auth from "@/services/auth";
 import OtpModal from "@/components/ui/otp-modal";
 import tajmahal from "/public/tajmahal.png";
 
-type Props = {};
+const fields: {
+  id: keyof basicDetails;
+  label: string;
+  type: string;
+  placeholder: string;
+}[] = [
+  {
+    id: "name",
+    label: "Full Name",
+    type: "text",
+    placeholder: "Enter your full name",
+  },
+  {
+    id: "mobile",
+    label: "Mobile No.",
+    type: "number",
+    placeholder: "Enter your mobile no.",
+  },
+];
+
 type basicDetails = {
   name: string;
   mobile: number;
   otp: number;
 };
 
-const SignUp = (props: Props) => {
+const SignUp = (props: {}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [basicDetails, setBasicDetails] = useState<basicDetails>(
     {} as basicDetails,
   );
   const [formError, setFormError] = useState<string | null>(null);
-  const router = useRouter();
-
   const refs = useRef(
     {} as Record<keyof basicDetails, HTMLInputElement | null>,
   );
@@ -58,7 +74,6 @@ const SignUp = (props: Props) => {
     if (res!.newUser) {
       toggleModal();
     } else if (!res!.newUser) {
-      router.push("/login");
       // TODO add toast message
     }
   };
@@ -81,26 +96,6 @@ const SignUp = (props: Props) => {
   const renderError = (): [boolean, string] => {
     return formError ? [true, formError] : [false, ""];
   };
-
-  const fields: {
-    id: keyof basicDetails;
-    label: string;
-    type: string;
-    placeholder: string;
-  }[] = [
-    {
-      id: "name",
-      label: "Full Name",
-      type: "text",
-      placeholder: "Enter your full name",
-    },
-    {
-      id: "mobile",
-      label: "Mobile No.",
-      type: "number",
-      placeholder: "Enter your mobile no.",
-    },
-  ];
 
   return (
     <div className="flex w-full flex-col overflow-hidden lg:flex-row">

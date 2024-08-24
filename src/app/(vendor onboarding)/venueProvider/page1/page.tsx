@@ -1,30 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
+
+import tajmahal from "/public/tajmahal.png";
 import { ComboboxDemo } from "@/components/dropdown";
 import { Dropdown } from "react-day-picker";
 import { Combobox } from "@/components/ui/combobox";
-
-const regional = [
-  { value: "gujrati", label: "Gujrati" },
-  { value: "rajasthani", label: "Rajasthani" },
-  { value: "bengali", label: "Bengali" },
-  { value: "other", label: "Other" },
-];
-
-const service = [
-  { value: "buffet", label: "Buffet" },
-  { value: "plated", label: "Plated Meals" },
-  { value: "family", label: "Family Style" },
-  { value: "station", label: "Food Stations" },
-];
-
-const cuisine = [
-  { value: "north", label: "North Indian" },
-  { value: "south", label: "South Indian" },
-  { value: "chinese", label: "Chinese" },
-  { value: "italian", label: "Italian" },
-];
 
 const venueType = [
   { value: "indoor", label: "Indoor" },
@@ -48,26 +30,50 @@ const standingOptions = [
   { value: "moreThan500", label: "> 500 persons" },
 ];
 
+const timeOptions = [
+  { value: "00:00", label: "00:01 AM" },
+  { value: "01:00", label: "01:00 AM" },
+  { value: "02:00", label: "02:00 AM" },
+  { value: "03:00", label: "03:00 AM" },
+  { value: "04:00", label: "04:00 AM" },
+  { value: "05:00", label: "05:00 AM" },
+  { value: "06:00", label: "06:00 AM" },
+  { value: "07:00", label: "07:00 AM" },
+  { value: "08:00", label: "08:00 AM" },
+  { value: "09:00", label: "09:00 AM" },
+  { value: "10:00", label: "10:00 AM" },
+  { value: "11:00", label: "11:00 AM" },
+  { value: "12:00", label: "12:00 PM" },
+  { value: "13:00", label: "1:00 PM" },
+  { value: "14:00", label: "2:00 PM" },
+  { value: "15:00", label: "3:00 PM" },
+  { value: "16:00", label: "4:00 PM" },
+  { value: "17:00", label: "5:00 PM" },
+  { value: "18:00", label: "6:00 PM" },
+  { value: "19:00", label: "7:00 PM" },
+  { value: "20:00", label: "8:00 PM" },
+  { value: "21:00", label: "9:00 PM" },
+  { value: "22:00", label: "10:00 PM" },
+  { value: "23:00", label: "11:00 PM" },
+  { value: "24:00", label: "11:59 PM" },
+];
+
 const Page = () => {
-  const [businessName, setBusinessName] = useState("");
-  const [category, setCategory] = useState("");
-  const [gstin, setGstin] = useState("");
-  const [years, setYears] = useState("");
-  const [businessAddress, setBusinessAddress] = useState("");
-  const [landmark, setLandmark] = useState("");
-  const [pinCode, setPinCode] = useState("");
-  const [cities, setCities] = useState("");
+  const [venuetype, setVenueType] = useState("");
+  const [seatingCapacity, setSeatingCapacity] = useState("");
+  const [standingCapacity, setStandingOptions] = useState("");
+  const [startOperatingHours, setstartOperatingHours] = useState("");
+  const [endOperatingHours, setendOperatingHours] = useState("");
+  const [venueDescription, setVenueDescription] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Business Name:", businessName);
-    console.log("Category:", category);
-    console.log("GSTIN:", gstin);
-    console.log("Years in Operation:", years);
-    console.log("Business Address:", businessAddress);
-    console.log("Landmark:", landmark);
-    console.log("Pin Code:", pinCode);
-    console.log("Operational Cities:", cities);
+    console.log("Venue Type:", venuetype);
+    console.log("Seating Capacity:", seatingCapacity);
+    console.log("Standing Capacity:", standingCapacity);
+    console.log("starting Operating Time:", startOperatingHours);
+    console.log("ending Operating Time:", endOperatingHours);
+    console.log("Venue Description:", venueDescription);
   };
 
   return (
@@ -109,9 +115,9 @@ const Page = () => {
           </p>
         </div>
         <div className="relative h-[10rem] lg:w-full">
-          <img
-            src={"/tajmahal.png"}
-            alt=""
+          <Image
+            src={tajmahal}
+            alt="Image of Indian monuments"
             className="h-full w-full object-cover"
           />
         </div>
@@ -126,7 +132,7 @@ const Page = () => {
                 <Combobox
                   options={venueType}
                   placeholder="Select your category"
-                  setFunction={setYears}
+                  setFunction={setVenueType}
                   className="flex items-center justify-between rounded-xl border-2 py-6 hover:text-[#2E3192]"
                 />
               </div>
@@ -135,7 +141,7 @@ const Page = () => {
                 <Combobox
                   options={seatingOptions}
                   placeholder="Select your category"
-                  setFunction={setYears}
+                  setFunction={setSeatingCapacity}
                   className="flex items-center justify-between rounded-xl border-2 py-6 hover:text-[#2E3192]"
                 />
               </div>
@@ -144,9 +150,19 @@ const Page = () => {
               <div className="flex min-w-[40%] flex-col gap-4">
                 <label htmlFor="category">Operating hours</label>
                 <Combobox
-                  options={regional}
+                  options={timeOptions}
                   placeholder="Select your category"
-                  setFunction={setYears}
+                  setFunction={setstartOperatingHours}
+                  className="flex items-center justify-between rounded-xl border-2 py-6 hover:text-[#2E3192]"
+                />
+                <label htmlFor="category" className="text-center">
+                  to
+                </label>
+
+                <Combobox
+                  options={timeOptions}
+                  placeholder="Select your category"
+                  setFunction={setendOperatingHours}
                   className="flex items-center justify-between rounded-xl border-2 py-6 hover:text-[#2E3192]"
                 />
               </div>
@@ -155,21 +171,10 @@ const Page = () => {
                 <Combobox
                   options={standingOptions}
                   placeholder="Select your category"
-                  setFunction={setYears}
+                  setFunction={setStandingOptions}
                   className="flex items-center justify-between rounded-xl border-2 py-6 hover:text-[#2E3192]"
                 />
               </div>
-              {/* <div className="flex min-w-[40%] flex-col gap-4">
-                <label htmlFor="businessName">Venue Description</label>
-                <input
-                  id="businessName"
-                  type="text"
-                  className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 outline-none"
-                  placeholder="Enter your business name"
-                  value={businessName}
-                  onChange={(e) => setBusinessName(e.target.value)}
-                />
-              </div> */}
             </div>
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <div className="flex min-w-[40%] flex-col gap-4">
@@ -179,8 +184,8 @@ const Page = () => {
                   type="text"
                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                   placeholder="Enter your Venue Description"
-                  value={businessName}
-                  onChange={(e) => setBusinessName(e.target.value)}
+                  value={venueDescription}
+                  onChange={(e) => setVenueDescription(e.target.value)}
                 />
               </div>
             </div>

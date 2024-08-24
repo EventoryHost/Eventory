@@ -428,7 +428,7 @@ const Navbar = () => {
                       strokeWidth="1.5"
                     />
                   </svg>
-                  <p className="bottom-0 text-xs">Inventory</p>
+                  <p className="bottom-0 mt-[1px] text-xs">Inventory</p>
                 </div>
               </li>
               <li id="profile" className="flex flex-col">
