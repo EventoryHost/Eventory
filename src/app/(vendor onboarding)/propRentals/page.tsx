@@ -113,7 +113,7 @@ const RootPage = () => {
     dealCheckboxPage5: false,
     workerCheckboxPage5: false,
     advancedPaymentCheckboxPage5: false,
-  
+
     tentAndCanopy: {
       listUrl: "",
       items: [],
@@ -123,7 +123,7 @@ const RootPage = () => {
         worker: [],
       },
     },
-  
+
     // Initialize furnitureAndDecor with appropriate properties
     furnitureAndDecor: {
       listUrl: "",
@@ -135,9 +135,6 @@ const RootPage = () => {
       },
     },
   });
-  
-  
-  
 
   const handleChange = (key: keyof FormState, value: any) => {
     setFormState((prevState) => ({ ...prevState, [key]: value }));
@@ -277,45 +274,81 @@ const RootPage = () => {
     formData.append("numberOfWorkers", formState.numberOfWorkers || "");
 
     // Appending arrays without stringifying
-    formData.append("furnitureAndDecor[listUrl]", formState.furnitureAndDecor.listUrl || "");
+    formData.append(
+      "furnitureAndDecor[listUrl]",
+      formState.furnitureAndDecor.listUrl || "",
+    );
 
-    formState.furnitureAndDecor.furniture?.forEach((item: string | Blob, index: any) => {
+    formState.furnitureAndDecor.furniture?.forEach(
+      (item: string | Blob, index: any) => {
         formData.append(`furnitureAndDecor[furniture][${index}]`, item);
-    });
+      },
+    );
 
-    formState.furnitureAndDecor.decor?.forEach((item: string | Blob, index: any) => {
+    formState.furnitureAndDecor.decor?.forEach(
+      (item: string | Blob, index: any) => {
         formData.append(`furnitureAndDecor[decor][${index}]`, item);
-    });
+      },
+    );
 
-    formState.furnitureAndDecor.packageRates.hourly?.forEach((rate: string | Blob, index: any) => {
-        formData.append(`furnitureAndDecor[packageRates][hourly][${index}]`, rate);
-    });
+    formState.furnitureAndDecor.packageRates.hourly?.forEach(
+      (rate: string | Blob, index: any) => {
+        formData.append(
+          `furnitureAndDecor[packageRates][hourly][${index}]`,
+          rate,
+        );
+      },
+    );
 
-    formState.furnitureAndDecor.packageRates.deal?.forEach((deal: string | Blob, index: any) => {
-        formData.append(`furnitureAndDecor[packageRates][deal][${index}]`, deal);
-    });
+    formState.furnitureAndDecor.packageRates.deal?.forEach(
+      (deal: string | Blob, index: any) => {
+        formData.append(
+          `furnitureAndDecor[packageRates][deal][${index}]`,
+          deal,
+        );
+      },
+    );
 
-    formState.furnitureAndDecor.packageRates.worker?.forEach((worker: string | Blob, index: any) => {
-        formData.append(`furnitureAndDecor[packageRates][worker][${index}]`, worker);
-    });
+    formState.furnitureAndDecor.packageRates.worker?.forEach(
+      (worker: string | Blob, index: any) => {
+        formData.append(
+          `furnitureAndDecor[packageRates][worker][${index}]`,
+          worker,
+        );
+      },
+    );
 
-    formData.append("tentAndCanopy[listUrl]", formState.tentAndCanopy.listUrl || "");
+    formData.append(
+      "tentAndCanopy[listUrl]",
+      formState.tentAndCanopy.listUrl || "",
+    );
 
-    formState.tentAndCanopy.items?.forEach((item: string | Blob, index: any) => {
+    formState.tentAndCanopy.items?.forEach(
+      (item: string | Blob, index: any) => {
         formData.append(`tentAndCanopy[items][${index}]`, item);
-    });
+      },
+    );
 
-    formState.tentAndCanopy.packageRates.hourly?.forEach((rate: string | Blob, index: any) => {
+    formState.tentAndCanopy.packageRates.hourly?.forEach(
+      (rate: string | Blob, index: any) => {
         formData.append(`tentAndCanopy[packageRates][hourly][${index}]`, rate);
-    });
+      },
+    );
 
-    formState.tentAndCanopy.packageRates.deal?.forEach((deal: string | Blob, index: any) => {
+    formState.tentAndCanopy.packageRates.deal?.forEach(
+      (deal: string | Blob, index: any) => {
         formData.append(`tentAndCanopy[packageRates][deal][${index}]`, deal);
-    });
+      },
+    );
 
-    formState.tentAndCanopy.packageRates.worker?.forEach((worker: string | Blob, index: any) => {
-        formData.append(`tentAndCanopy[packageRates][worker][${index}]`, worker);
-    });
+    formState.tentAndCanopy.packageRates.worker?.forEach(
+      (worker: string | Blob, index: any) => {
+        formData.append(
+          `tentAndCanopy[packageRates][worker][${index}]`,
+          worker,
+        );
+      },
+    );
 
     formData.append("insurancePolicy", formState.insurancePolicy || "");
     formData.append("cancellationPolicy", formState.cancellationPolicy || "");
@@ -333,8 +366,7 @@ const RootPage = () => {
     } catch (error) {
       console.error("Error adding prop rentals: ", error);
     }
-}
-
+  }
 
   return (
     <div>
