@@ -144,16 +144,10 @@ const Page5: React.FC<Page5Props> = ({
           </div>
           <div className="items-strech mt-9 flex flex-row gap-7 self-end">
             <button
-              className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-              onClick={handleSubmit}
-            >
-              Skip
-            </button>
-            <button
               className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
               onClick={handleSubmit}
             >
-              Continue
+              Submit
             </button>
           </div>
         </div>

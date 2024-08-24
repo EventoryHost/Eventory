@@ -124,6 +124,19 @@ const VenueForm: React.FC = () => {
     return userId;
   }
 
+  const handleContinue = () => {
+    console.log({
+      venueName: formState.venueName,
+      venueType: formState.venueType,
+      startOperatingHours: formState.startOperatingHours,
+      endOperatingHours: formState.endOperatingHours,
+      venueDescription: formState.venueDescription,
+      seatingCapacity: formState.seatingCapacity,
+      standingCapacity: formState.standingCapacity,
+      decorType: formState.decorType,
+    });
+  }
+
   const handleSubmit = async () => {
     const formData = new FormData();
 
@@ -182,7 +195,7 @@ const VenueForm: React.FC = () => {
     });
 
     try {
-      await addVenue(formData);
+      // await addVenue(formData);
       console.log("Venue added successfully");
     } catch (error) {
       console.error("Error adding venue:", error);
@@ -193,8 +206,15 @@ const VenueForm: React.FC = () => {
     switch (currentPage) {
       case 1:
         return (
-          <Page1 formState={formState} updateFormState={updateFormState} />
-        );
+          <Page1
+            formState={formState}
+            updateFormState={updateFormState}
+            handleContinue={() => {
+              setCurrentPage(2);
+              handleContinue();
+            }}
+            />
+          );
       case 2:
         return (
           <Page2
@@ -206,12 +226,23 @@ const VenueForm: React.FC = () => {
             setAccessibilityFeatures={setAccessibilityFeatures}
             facilities={facilities}
             setFacilities={setFacilities}
+            handleContinue={() => {
+              setCurrentPage(3);
+              handleContinue();
+            }}
           />
         );
       case 3:
         console.log("Upload termsAndConditions:", formState.termsAndConditions);
         return (
-          <Page3 formState={formState} updateFormState={updateFormState} />
+          <Page3
+            formState={formState}
+            updateFormState={updateFormState}
+            handleContinue={() => {
+              setCurrentPage(4);
+              handleContinue();
+            }}
+          />
         );
       case 4:
         return (
@@ -224,6 +255,10 @@ const VenueForm: React.FC = () => {
             setSeasonalPackages={setSeasonalPackages}
             handlePackageChange={handlePackageChange}
             addPackage={addPackage}
+            handleContinue={() => {
+              setCurrentPage(5);
+              handleContinue();
+            }}
           />
         );
       case 5:
@@ -235,12 +270,22 @@ const VenueForm: React.FC = () => {
             setVenue_restrictions={setVenue_restrictions}
             venue_special_features={venue_special_features}
             setVenue_special_features={setVenue_special_features}
-            handleSubmit={handleSubmit}
+            handleSubmit={() => {
+              handleContinue();
+              handleSubmit();
+            }}
           />
         );
       default:
         return (
-          <Page1 formState={formState} updateFormState={updateFormState} />
+          <Page1
+            formState={formState}
+            updateFormState={updateFormState}
+            handleContinue={() => {
+              setCurrentPage(2);
+              handleContinue();
+            }}
+          />
         );
     }
   };

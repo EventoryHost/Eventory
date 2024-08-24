@@ -52,6 +52,7 @@ const _facilities = [
   "Others",
   "Storage Area",
 ];
+
 interface FormState {
   venueType: string;
   venueDescription: string;
@@ -71,6 +72,7 @@ interface Page2Props {
 
   formState: FormState;
   updateFormState: (newState: Partial<FormState>) => void;
+  handleContinue: () => void;
 }
 
 const Page2: React.FC<Page2Props> = ({
@@ -82,13 +84,9 @@ const Page2: React.FC<Page2Props> = ({
   setAccessibilityFeatures,
   facilities,
   setFacilities,
+  handleContinue,
 }) => {
   const { decorType } = formState;
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("DecorType:", formState.decorType);
-  };
 
   return (
     <div className="flex flex-col items-start gap-7 overflow-y-scroll rounded-xl bg-white p-3 xs:w-[100%] xs:min-w-[90%] xs:justify-start md:p-6">
@@ -151,13 +149,13 @@ const Page2: React.FC<Page2Props> = ({
           <div className="items-strech mt-9 flex flex-row gap-7 self-end">
             <button
               className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-              onClick={handleSubmit}
+              onClick={handleContinue}
             >
               Skip
             </button>
             <button
               className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-              onClick={handleSubmit}
+              onClick={handleContinue}
             >
               Continue
             </button>
