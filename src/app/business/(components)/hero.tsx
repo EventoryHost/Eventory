@@ -26,7 +26,11 @@ const Hero = (props: Props) => {
             <button className="w-fit rounded-xl bg-[#2E3192] p-5 font-light text-white">
               Get Started
             </button>
-            <Link href={""} className="text-[#2E3192] underline">
+            <Link
+              href={""}
+              onClick={(e) => e.preventDefault()}
+              className="text-[#2E3192] underline"
+            >
               Terms & Conditions
             </Link>
           </div>
