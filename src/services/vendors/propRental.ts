@@ -15,7 +15,7 @@ async function addPropRental(data: any) {
     console.log("Response data:", response.data); // Log the response data
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      console.log("Axios error:", error.message);
+      console.error("Axios error:", error.message);
     } else {
       console.error("Unexpected error:", error);
     }
