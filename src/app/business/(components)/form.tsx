@@ -1,4 +1,5 @@
 "use client";
+import { sendQuery } from "@/services/query";
 import React, { useState } from "react";
 
 const Form = () => {
@@ -10,14 +11,16 @@ const Form = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Validate fields
-    if (!fullName || !email || !message) {
-      alert("All fields are required!");
-      return;
-    }
-
     const formData = {
       fullName,
+      email,
+      message,
+    };
+
+    const fullname = fullName;
+    // why 2 different objects?
+    const formData1 = {
+      fullname,
       email,
       message,
     };
@@ -26,14 +29,14 @@ const Form = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:4000/api/email/send-email",
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/email/send-email`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(formData),
-        }
+        },
       );
 
       if (response.ok) {
@@ -50,6 +53,19 @@ const Form = () => {
       alert("An error occurred while sending your message.");
     } finally {
       setLoading(false);
+    }
+
+    try {
+      const response = await sendQuery(formData1);
+      if (response!.status === 200) {
+        // Clear form fields
+        setFullName("");
+        setEmail("");
+        setMessage("");
+      }
+    } catch (error) {
+      console.error("Error sending message:", error);
+      alert("An error occurred while sending your message.");
     }
   };
 
@@ -78,6 +94,7 @@ const Form = () => {
             className="w-full rounded-lg p-4"
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
+            required
           />
           <label htmlFor="email" className="self-start">
             Email
@@ -88,6 +105,7 @@ const Form = () => {
             className="w-full rounded-lg p-4"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
           <label htmlFor="message" className="self-start">
             Message
@@ -98,14 +116,15 @@ const Form = () => {
             className="w-full rounded-lg p-4"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
+            required
           />
           <button
             type="submit"
-            className="w-full rounded-xl bg-[#2E3192] p-4 text-white flex justify-center items-center"
+            className="flex w-full items-center justify-center rounded-xl bg-[#2E3192] p-4 text-white"
             disabled={loading}
           >
             {loading ? (
-              <div className="h-5 w-5 animate-spin rounded-full border-2 border-t-transparent border-white"></div>
+              <div className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent"></div>
             ) : (
               "Submit"
             )}
