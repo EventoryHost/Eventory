@@ -1,7 +1,8 @@
 "use client";
 
-import { Upload } from "lucide-react";
-import React from "react";
+import { CheckCircle, Upload } from "lucide-react";
+import React, { useState } from "react";
+import FileInput from "@/components/fileInput";
 
 type Page1Props = {
   proposalsToClients: boolean;
@@ -44,6 +45,8 @@ const Page4 = ({
   setTnc,
   handleContinue,
 }: Page1Props) => {
+  const [cancellationFileName, setCancellationFileName] = useState<string>("");
+  const [tncFileName, setTncFileName] = useState<string>("");
   return (
     <div
       className="flex flex-col items-start gap-7 overflow-y-scroll rounded-xl bg-white p-3 xs:w-[100%] xs:min-w-[90%] xs:justify-start md:p-6"
@@ -256,16 +259,10 @@ const Page4 = ({
         <div className="flex h-[100%] flex-col items-start justify-start gap-9 md:w-[50%]">
           <div className="flex w-[100%] flex-col gap-1">
             <label htmlFor="cancellationPolicy">Cancellation Policy</label>
-            <input
-              type="file"
-              id="cancellationPolicy"
-              name="cancellationPolicy"
-              accept="image/png, .pdf, image/jpg"
-              onChange={(e) => {
-                e.preventDefault();
-                setCancellationPolicy(e.target.files![0]);
-              }}
-              className="mt-5 flex w-fit items-center justify-center rounded-xl border-2 border-dashed border-gray-400 bg-gray-200 p-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white"
+            <FileInput
+              label="Cancellation Policy"
+              onFileSelect={setCancellationPolicy}
+              acceptedFileTypes="image/png, .pdf, image/jpg"
             />
             <p className="text-md mt-5">or Provide Via</p>
             <textarea
@@ -279,16 +276,10 @@ const Page4 = ({
 
           <div className="flex w-[100%] flex-col gap-1">
             <label htmlFor="tnc">Terms & Conditions</label>
-            <input
-              type="file"
-              id="tnc"
-              name="tnc"
-              accept="image/png, .pdf, image/jpg"
-              onChange={(e) => {
-                e.preventDefault();
-                setTnc(e.target.files![0]);
-              }}
-              className="mt-5 flex w-fit items-center justify-center rounded-xl border-2 border-dashed border-gray-400 bg-gray-200 p-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white"
+            <FileInput
+              label="Terms & Conditions"
+              onFileSelect={setTnc}
+              acceptedFileTypes="image/png, .pdf, image/jpg"
             />
             <p className="text-md mt-5">or Provide Via</p>
             <textarea

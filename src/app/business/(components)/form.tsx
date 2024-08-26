@@ -6,6 +6,7 @@ const Form = () => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,6 +24,8 @@ const Form = () => {
       email,
       message,
     };
+
+    setLoading(true);
 
     try {
       const response = await fetch(
@@ -48,6 +51,8 @@ const Form = () => {
     } catch (error) {
       console.error("Error sending message:", error);
       alert("An error occurred while sending your message.");
+    } finally {
+      setLoading(false);
     }
 
     try {
@@ -89,6 +94,7 @@ const Form = () => {
             className="w-full rounded-lg p-4"
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
+            required
           />
           <label htmlFor="email" className="self-start">
             Email
@@ -99,6 +105,7 @@ const Form = () => {
             className="w-full rounded-lg p-4"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
           <label htmlFor="message" className="self-start">
             Message
@@ -109,12 +116,18 @@ const Form = () => {
             className="w-full rounded-lg p-4"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
+            required
           />
           <button
             type="submit"
-            className="w-full rounded-xl bg-[#2E3192] p-4 text-white"
+            className="flex w-full items-center justify-center rounded-xl bg-[#2E3192] p-4 text-white"
+            disabled={loading}
           >
-            Submit
+            {loading ? (
+              <div className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent"></div>
+            ) : (
+              "Submit"
+            )}
           </button>
         </form>
       </div>

@@ -133,12 +133,12 @@ const SignUp = (props: Props) => {
                 >
                   Login
                 </button>
-                <button
+                {/* <button
                   className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-3 xs:py-2 xs:text-sm md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
                   onClick={toggleModal}
                 >
                   Open Modal
-                </button>
+                </button> */}
               </div>
             </div>
           </div>

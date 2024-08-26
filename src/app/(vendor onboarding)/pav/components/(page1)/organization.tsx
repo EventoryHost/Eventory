@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Upload } from "lucide-react";
+import FileInput from "@/components/fileInput"; // Import the reusable FileInput component
 import { Combobox } from "@/components/ui/combobox";
 
 type Page1Props = {
@@ -46,6 +46,13 @@ const Organization = ({
     {} as businessDetails,
   );
 
+  const handleTextChange = (
+    event: React.ChangeEvent<HTMLTextAreaElement>,
+    setState: (value: string) => void,
+  ) => {
+    setState(event.target.value);
+  };
+
   return (
     <>
       <div className="flex min-w-[100%] items-center justify-between gap-9">
@@ -62,16 +69,12 @@ const Organization = ({
             />
           </div>
           <div className="flex w-[100%] flex-col gap-1">
-            <label htmlFor="portfolio">Portfolio of Past Work</label>
-            <button className="mt-5 flex w-fit items-center justify-center gap-5 rounded-xl border-2 border-dashed border-gray-400 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
-              <Upload />
-              Upload
-            </button>
-            <p className="text-md mt-5">or Provide Via</p>
+            <label htmlFor="organizationMembers">Organization Members</label>
             <textarea
+              id="organizationMembers"
               cols={40}
               rows={5}
-              placeholder="enter url"
+              placeholder="Enter organization members"
               className="mt-5 w-fit resize-none rounded-xl border-2 border-gray-300 p-3"
               value={organizationMembers}
               onChange={(e) => setOrganizationMembers(e.target.value)}
@@ -92,21 +95,11 @@ const Organization = ({
           </div>
           <div className="flex w-[100%] flex-col gap-1">
             <label htmlFor="clientTestimonials">Client Testimonials</label>
-            <button
-              className="mt-5 flex w-fit items-center justify-center gap-5 rounded-xl border-2 border-dashed border-gray-400 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white"
-              onClick={(e) => {
-                const fileInput = document.createElement("input");
-                fileInput.type = "file";
-                fileInput.onchange = (event: any) => {
-                  const file = event.target.files[0];
-                  setClientTestimonials(file);
-                };
-                fileInput.click();
-              }}
-            >
-              <Upload />
-              Upload
-            </button>
+            <FileInput
+              label="Client Testimonials"
+              onFileSelect={setClientTestimonials}
+              acceptedFileTypes="image/png, .pdf, image/jpg"
+            />
             <p className="text-md mt-5">or Provide Via</p>
             <textarea
               cols={30}
@@ -116,7 +109,12 @@ const Organization = ({
               value={
                 typeof clientTestimonials === "string" ? clientTestimonials : ""
               }
-              onChange={(e) => setClientTestimonials(e.target.value)}
+              onChange={(e) =>
+                handleTextChange(
+                  e,
+                  setClientTestimonials as (value: string) => void,
+                )
+              }
             ></textarea>
             {typeof clientTestimonials === "object" && (
               <p className="mt-2 text-gray-500">{clientTestimonials.name}</p>
