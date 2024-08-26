@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Upload } from "lucide-react";
+import FileInput from "@/components/fileInput"; // Import the reusable FileInput component
 import { Combobox } from "@/components/ui/combobox";
 
 type GroupProps = {
@@ -46,6 +46,13 @@ const Group = ({
     {} as businessDetails,
   );
 
+  const handleTextChange = (
+    event: React.ChangeEvent<HTMLTextAreaElement>,
+    setState: (value: string) => void,
+  ) => {
+    setState(event.target.value);
+  };
+
   return (
     <>
       <div className="flex min-w-[100%] items-center justify-between gap-9">
@@ -63,10 +70,11 @@ const Group = ({
           </div>
           <div className="flex w-[100%] flex-col gap-1">
             <label htmlFor="portfolio">Portfolio of Past Work</label>
-            <button className="mt-5 flex w-fit items-center justify-center gap-5 rounded-xl border-2 border-dashed border-gray-400 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
-              <Upload />
-              Upload
-            </button>
+            <FileInput
+              label="Portfolio"
+              onFileSelect={setPortfolio}
+              acceptedFileTypes="image/png, .pdf, image/jpg"
+            />
             <p className="text-md mt-5">or Provide Via</p>
             <textarea
               cols={40}
@@ -74,7 +82,9 @@ const Group = ({
               placeholder="enter url"
               className="mt-5 w-fit resize-none rounded-xl border-2 border-gray-300 p-3"
               value={typeof portfolio === "string" ? portfolio : ""}
-              onChange={(e) => setPortfolio(e.target.value)}
+              onChange={(e) =>
+                handleTextChange(e, setPortfolio as (value: string) => void)
+              }
             ></textarea>
           </div>
         </div>

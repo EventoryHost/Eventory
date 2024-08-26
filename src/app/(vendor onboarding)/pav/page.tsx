@@ -9,7 +9,8 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { pavtypes, pavFormState, BasicDetails } from "@/types/types";
 import { addPhotographer } from "@/services/vendors/photographer";
-import { json } from "stream/consumers";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Page = () => {
   // function updateFormState(newState: Partial<pav>) {
@@ -132,11 +133,6 @@ const Page = () => {
   const handleSubmit = async () => {
     const formData = new FormData();
 
-    // Convert File objects to strings if necessary
-    // const portfolioString = portfolio instanceof File ? portfolio.name : portfolio;
-    // const cancellationPolicyString = cancellationPolicy instanceof File ? cancellationPolicy.name : cancellationPolicy;
-    // const tncString = tnc instanceof File ? tnc.name : tnc;
-
     formData.append("venId", "SomeVenID");
     formData.append("type", type);
     formData.append("name", name);
@@ -180,11 +176,9 @@ const Page = () => {
 
     console.log("cancel", cancellationPolicy);
 
-    // Add the missing required fields
 
     try {
-      await addPhotographer(formData);
-      console.log("Photographer added successfully");
+      const res = await addPhotographer(formData);
     } catch (error) {
       console.error("Error adding photographer:", error);
     }

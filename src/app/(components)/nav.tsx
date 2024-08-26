@@ -192,12 +192,12 @@ const Navbar = () => {
                         To manage your account and do bookings for your events.
                       </p>
                       <div className="mb-4 flex justify-around">
-                        <Link href="/customerlogin">
+                        <Link href="/login">
                           <button className="rounded-lg border border-gray-700 px-5 py-[7px] duration-100 hover:bg-[rgba(46,49,146,1)] hover:text-[#fcfcfc]">
                             Log In
                           </button>
                         </Link>
-                        <Link href="/customersignup">
+                        <Link href="/signup">
                           <button className="rounded-lg bg-[rgba(46,49,146,1)] px-4 py-2 text-white">
                             Sign up
                           </button>
@@ -477,12 +477,12 @@ const Navbar = () => {
                           events.
                         </p>
                         <div className="mb-4 flex justify-around">
-                          <Link href="/customerlogin">
+                          <Link href="/login">
                             <button className="rounded-lg border border-gray-700 px-5 py-[7px] duration-100 hover:bg-[rgba(46,49,146,1)] hover:text-[#fcfcfc]">
                               Log In
                             </button>
                           </Link>
-                          <Link href="/customersignup">
+                          <Link href="/signup">
                             <button className="rounded-lg bg-[rgba(46,49,146,1)] px-4 py-2 text-white">
                               Sign up
                             </button>

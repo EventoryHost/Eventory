@@ -1,5 +1,5 @@
 import React from "react";
-import { Upload } from "lucide-react";
+import FileInput from "@/components/fileInput"; // Import the reusable FileInput component
 
 type Page1Props = {
   fullname: string;
@@ -20,16 +20,6 @@ const Individual = ({
   setClientTestimonials,
   handleContinue,
 }: Page1Props) => {
-  const handleFileUpload = (
-    event: React.ChangeEvent<HTMLInputElement>,
-    setState: (value: string | File) => void,
-  ) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      setState(file);
-    }
-  };
-
   const handleTextChange = (
     event: React.ChangeEvent<HTMLTextAreaElement>,
     setState: (value: string) => void,
@@ -54,19 +44,11 @@ const Individual = ({
           </div>
           <div className="flex w-[100%] flex-col gap-1">
             <label htmlFor="portfolio">Portfolio of Past Work</label>
-            <input
-              id="portfolio"
-              type="file"
-              className="hidden"
-              onChange={(e) => handleFileUpload(e, setPortfolio)}
+            <FileInput
+              label="Portfolio"
+              onFileSelect={setPortfolio}
+              acceptedFileTypes="image/png, .pdf, image/jpg"
             />
-            <button
-              className="mt-5 flex w-fit items-center justify-center gap-5 rounded-xl border-2 border-dashed border-gray-400 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white"
-              onClick={() => document.getElementById("portfolio")?.click()}
-            >
-              <Upload />
-              Upload
-            </button>
             <p className="text-md mt-5">or Provide Via</p>
             <textarea
               cols={40}
@@ -83,21 +65,11 @@ const Individual = ({
         <div className="flex h-[100%] w-[50%] flex-col items-start justify-between gap-9">
           <div className="flex w-[100%] flex-col gap-1">
             <label htmlFor="clientTestimonials">Client Testimonials</label>
-            <input
-              id="clientTestimonials"
-              type="file"
-              className="hidden"
-              onChange={(e) => handleFileUpload(e, setClientTestimonials)}
+            <FileInput
+              label="Client Testimonials"
+              onFileSelect={setClientTestimonials}
+              acceptedFileTypes="image/png, .pdf, image/jpg"
             />
-            <button
-              className="mt-5 flex w-fit items-center justify-center gap-5 rounded-xl border-2 border-dashed border-gray-400 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white"
-              onClick={() =>
-                document.getElementById("clientTestimonials")?.click()
-              }
-            >
-              <Upload />
-              Upload
-            </button>
             <p className="text-md mt-5">or Provide Via</p>
             <textarea
               cols={30}
