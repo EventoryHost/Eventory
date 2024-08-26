@@ -77,6 +77,7 @@ export interface page5Props {
   furnitureHourlyPricingEntries: any;
   tentHourlyPricingEntries: any;
   handleAddPricingEntry: (entry: PricingEntry) => void;
+  updateFormState: (value: any) => void;
 }
 
 function Page5({
@@ -86,6 +87,7 @@ function Page5({
   setSelectedVisualOptions,
   selectedLightOptions,
   setSelectedLightOptions,
+  updateFormState
 }: page5Props) {
   return (
     <>
@@ -100,6 +102,18 @@ function Page5({
             <button className="mt-2 flex w-1/3 items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
               <Upload />
               Upload
+              <input
+                    type="file"
+                    id="audioVisualListUrl"
+                    name="audioVisualListUrl"
+                    accept="image/png, .pdf, image/jpg"
+                    onChange={(e) => {
+                      const file = e.target.files![0];
+                      updateFormState({
+                        audioVisualListUrl: e.target.files![0],
+                      });
+                    }}
+                  />
             </button>
           </div>
         </div>

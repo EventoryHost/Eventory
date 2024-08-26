@@ -36,10 +36,12 @@ type FormState = {
   [key: string]: any;
 
   // Page2
-  insurancePolicy: string;
-  cancellationPolicy: string;
-  termsAndConditions: string;
-  privacyPolicy: string;
+  insurancePolicy: string | File;
+  cancellationPolicy: string | File;
+  termsAndConditions: string | File;
+  privacyPolicy: string | File;
+  furnitureAndDecorListUrl: string | File;
+  tentAndCanopyListUrl: string | File;
 
   // Page3
   selectedAppetizers: string[];
@@ -93,6 +95,7 @@ export interface page4Props {
   tentHourlyPricingEntries: PricingEntry[];
   handleAddPricingEntry: (entry: PricingEntry) => void;
   handleAddTentHourlyPricingEntries: (entry: PricingEntry) => void;
+  updateFormState: (value: any) => void;
 }
 
 interface TentHourlyPricingEntry {
@@ -108,6 +111,7 @@ function Page4({
   handleChange,
   tentHourlyPricingEntries,
   handleAddTentHourlyPricingEntries,
+  updateFormState
 }: page4Props) {
   // useEffect(() => {
   //   console.log('Tent hourly pricing entries updated:', formState.tentHourlyPricingEntries);
@@ -139,6 +143,18 @@ function Page4({
             <button className="mt-2 flex w-1/3 items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
               <Upload />
               Upload
+              <input
+                type="file"
+                name="tentAndCanopyListUrl"
+                accept=".png,.pdf,.jpg"
+                onChange={(e) => {
+                  const file = e.target.files![0];
+                  updateFormState({
+                    tentAndCanopyListUrl: e.target.files![0],
+                  });
+                }}
+              />
+
             </button>
           </div>
         </div>

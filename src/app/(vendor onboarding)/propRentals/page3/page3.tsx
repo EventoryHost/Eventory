@@ -51,10 +51,11 @@ type FormState = {
   [key: string]: any;
 
   // Page2
-  insurancePolicy: string;
-  cancellationPolicy: string;
-  termsAndConditions: string;
-  privacyPolicy: string;
+  insurancePolicy: string | File;
+  cancellationPolicy: string | File;
+  termsAndConditions: string | File;
+  privacyPolicy: string | File;
+  furnitureAndDecorListUrl: string | File;
 
   // Page3
   selectedAppetizers: string[];
@@ -123,6 +124,8 @@ type page3Props = {
   handleAddTentHourlyPricingEntries: (entry: PricingEntry) => void;
   handleAddTentPricingEntry: (entry: PricingEntry) => void;
   handleAddAudioPricingEntry: (entry: PricingEntry) => void;
+  updateFormState: (value: any) => void;
+
 };
 
 function Page3({
@@ -150,6 +153,8 @@ function Page3({
   handleAddTentHourlyPricingEntries,
   handleAddTentPricingEntry,
   handleAddAudioPricingEntry,
+  updateFormState,
+  
 }: page3Props & page4Props & page5Props) {
   const [formPage, setFormPage] = useState(1);
   const handleCategorySelection = (category: string) => {
@@ -256,6 +261,18 @@ function Page3({
                   <button className="mt-2 flex w-1/2 items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
                     <Upload />
                     Upload
+                    <input
+                    type="file"
+                    id="furnitureAndDecorListUrl"
+                    name="furnitureAndDecorListUrl"
+                    accept="image/png, .pdf, image/jpg"
+                    onChange={(e) => {
+                      const file = e.target.files![0];
+                      updateFormState({
+                        furnitureAndDecorListUrl: e.target.files![0],
+                      });
+                    }}
+                  />
                   </button>
                 </div>
               </div>
@@ -581,15 +598,21 @@ function Page3({
             percentageValuePage5={0}
             formState={{
               contactName: "",
+              furnitureAndDecorListUrl: "",
+              tentAndCanopyListUrl: "",
               phoneNumber: "",
               workDescription: "",
               yearsOfExperience: "",
               numberOfWorkers: "",
+              updateFormState: { updateFormState },
               handleChange: function (
                 key: keyof {
                   [key: string]: any;
                   contactName: string;
                   phoneNumber: string;
+                  tentAndCanopyListUrl: string;
+                  furnitureAndDecorListUrl: string;
+                  updateFormState: (value: any) => void;
                   workDescription: string;
                   yearsOfExperience: string;
                   numberOfWorkers: string;
@@ -635,7 +658,7 @@ function Page3({
                   workerCheckboxPage5: boolean;
                   advancedPaymentCheckboxPage5: false;
                 },
-                value: any,
+                value: any
               ): void {
                 throw new Error("Function not implemented.");
               },
@@ -722,18 +745,15 @@ function Page3({
                 workerCheckboxPage5: boolean;
                 advancedPaymentCheckboxPage5: false;
               },
-              value: any,
+              value: any
             ): void {
               throw new Error("Function not implemented.");
-            }}
+            } }
             handleAddPricingEntry={function (): void {
               throw new Error("Function not implemented.");
-            }}
+            } }
             tentHourlyPricingEntries={tentHourlyPricingEntries}
-            handleAddTentHourlyPricingEntries={
-              handleAddTentHourlyPricingEntries
-            }
-          />
+            handleAddTentHourlyPricingEntries={handleAddTentHourlyPricingEntries} updateFormState={updateFormState}          />
         )}
 
         {selectedCategory === "Audio-Visual" && (
@@ -749,9 +769,8 @@ function Page3({
             furnitureHourlyPricingEntries={undefined}
             handleAddPricingEntry={function (): void {
               throw new Error("Function not implemented.");
-            }}
-            tentHourlyPricingEntries={undefined}
-          />
+            } }
+            tentHourlyPricingEntries={undefined} updateFormState={updateFormState}          />
         )}
       </div>
     </div>

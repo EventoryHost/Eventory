@@ -3,10 +3,10 @@ import { Upload } from "lucide-react";
 import { SetStateAction } from "react";
 
 interface formState {
-  insurancePolicy: string;
-  cancellationPolicy: string;
-  termsAndConditions: string;
-  privacyPolicy: string;
+  insurancePolicy: string | File;
+  cancellationPolicy: string | File;
+  termsAndConditions: string | File;
+  privacyPolicy: string | File;
   handleChange: (key: string, value: any) => void;
 }
 
@@ -46,12 +46,14 @@ export interface page2Props {
   handleAddTentHourlyPricingEntries: (entry: PricingEntry) => void;
   handleAddTentPricingEntry: (entry: PricingEntry) => void;
   handleAddAudioPricingEntry: (entry: PricingEntry) => void;
+  updateFormState: (value: any) => void;
 }
 
 const Page2: React.FC<page2Props> = ({
   formState,
   handleChange,
   handleNestedChange,
+  updateFormState
 }) => {
   return (
     <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden lg:flex-row">
@@ -84,13 +86,25 @@ const Page2: React.FC<page2Props> = ({
             {/* Row 1: Insurance Coverage Policy & Cancellation Policy */}
             <div className="flex w-full flex-col gap-4 md:flex-row md:gap-6">
               <div className="flex w-full flex-col gap-4 md:w-1/2">
-                <label className="font-semibold" htmlFor="insuranceCoverage">
+                <label className="font-semibold" htmlFor="insurancePolicy">
                   Insurance Coverage Policy
                 </label>
                 <p className="text-gray-500">PNG, PDF, JPG</p>
                 <button className="flex items-center justify-center gap-3 rounded-xl border-2 bg-gray-200 px-6 py-2 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
                   <Upload />
                   Upload
+                  <input
+                    type="file"
+                    id="insurancePolicy"
+                    name="insurancePolicy"
+                    accept="image/png, .pdf, image/jpg"
+                    onChange={(e) => {
+                      const file = e.target.files![0];
+                      updateFormState({
+                        insurancePolicy: e.target.files![0],
+                      });
+                    }}
+                  />
                 </button>
               </div>
               <div className="flex w-full flex-col gap-4 md:w-1/2">
@@ -101,6 +115,18 @@ const Page2: React.FC<page2Props> = ({
                 <button className="flex items-center justify-center gap-3 rounded-xl border-2 bg-gray-200 px-6 py-2 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
                   <Upload />
                   Upload
+                  <input
+                    type="file"
+                    id="cancellationPolicy"
+                    name="cancellationPolicy"
+                    accept="image/png, .pdf, image/jpg"
+                    onChange={(e) => {
+                      const file = e.target.files![0];
+                      updateFormState({
+                        cancellationPolicy: e.target.files![0],
+                      });
+                    }}
+                  />
                 </button>
               </div>
             </div>
@@ -114,7 +140,7 @@ const Page2: React.FC<page2Props> = ({
                   type="text"
                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                   placeholder="Enter your insurance policy description"
-                  value={formState.insurancePolicy || ""}
+                  value={typeof formState.insurancePolicy === 'string' ? formState.insurancePolicy : formState.insurancePolicy?.name || ""}
                   onChange={(e) =>
                     handleChange("insurancePolicy", e.target.value)
                   }
@@ -127,7 +153,7 @@ const Page2: React.FC<page2Props> = ({
                   type="text"
                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                   placeholder="Enter your cancellation policy description"
-                  value={formState.cancellationPolicy || ""}
+                  value={typeof formState.cancellationPolicy === 'string' ? formState.cancellationPolicy : formState.cancellationPolicy?.name || ""}
                   onChange={(e) =>
                     handleChange("cancellationPolicy", e.target.value)
                   }
@@ -147,6 +173,18 @@ const Page2: React.FC<page2Props> = ({
               <button className="flex items-center justify-center gap-3 rounded-xl border-2 bg-gray-200 px-6 py-2 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
                 <Upload />
                 Upload
+                <input
+                    type="file"
+                    id="termsAndConditions"
+                    name="termsAndConditions"
+                    accept="image/png, .pdf, image/jpg"
+                    onChange={(e) => {
+                      const file = e.target.files![0];
+                      updateFormState({
+                        termsAndConditions: e.target.files![0],
+                      });
+                    }}
+                  />
               </button>
             </div>
             <div className="flex w-full flex-col gap-4 md:w-1/2">
@@ -157,6 +195,18 @@ const Page2: React.FC<page2Props> = ({
               <button className="flex items-center justify-center gap-3 rounded-xl border-2 bg-gray-200 px-6 py-2 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
                 <Upload />
                 Upload
+                <input
+                    type="file"
+                    id="privacyPolicy"
+                    name="privacyPolicy"
+                    accept="image/png, .pdf, image/jpg"
+                    onChange={(e) => {
+                      const file = e.target.files![0];
+                      updateFormState({
+                        privacyPolicy: e.target.files![0],
+                      });
+                    }}
+                  />
               </button>
             </div>
           </div>
@@ -164,26 +214,26 @@ const Page2: React.FC<page2Props> = ({
           {/* Row 2: Terms and Conditions & Privacy Policy Inputs */}
           <div className="flex w-full flex-col gap-6 md:flex-row md:gap-6">
             <div className="flex w-full flex-col gap-4 md:w-1/2">
-              <label htmlFor="termsAndConditionsInput">Or Provide Via</label>
+              <label htmlFor="termsAndConditions">Or Provide Via</label>
               <input
-                id="termsAndConditionsInput"
+                id="termsAndConditions"
                 type="text"
                 className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                 placeholder="Enter your terms and conditions description"
-                value={formState.termsAndConditions || ""}
+                value={typeof formState.termsAndConditions === 'string' ? formState.termsAndConditions : formState.termsAndConditions?.name || ""}
                 onChange={(e) =>
                   handleChange("termsAndConditions", e.target.value)
                 }
               />
             </div>
             <div className="flex w-full flex-col gap-4 md:w-1/2">
-              <label htmlFor="privacyPolicyInput">Or Provide Via</label>
+              <label htmlFor="privacyPolicy">Or Provide Via</label>
               <input
-                id="privacyPolicyInput"
+                id="privacyPolicy"
                 type="text"
                 className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                 placeholder="Enter your privacy policy description"
-                value={formState.privacyPolicy || ""}
+                value={typeof formState.privacyPolicy === 'string' ? formState.privacyPolicy : formState.privacyPolicy?.name || ""}
                 onChange={(e) => handleChange("privacyPolicy", e.target.value)}
               />
             </div>
