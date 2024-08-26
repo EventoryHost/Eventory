@@ -276,11 +276,11 @@ const Page4 = ({
 
           <div className="flex w-[100%] flex-col gap-1">
             <label htmlFor="tnc">Terms & Conditions</label>
-              <FileInput
-                label="Terms & Conditions"
-                onFileSelect={setTnc}
-                acceptedFileTypes="image/png, .pdf, image/jpg"
-              />
+            <FileInput
+              label="Terms & Conditions"
+              onFileSelect={setTnc}
+              acceptedFileTypes="image/png, .pdf, image/jpg"
+            />
             <p className="text-md mt-5">or Provide Via</p>
             <textarea
               cols={30}

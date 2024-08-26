@@ -176,7 +176,6 @@ const Page = () => {
 
     console.log("cancel", cancellationPolicy);
 
-
     try {
       const res = await addPhotographer(formData);
     } catch (error) {

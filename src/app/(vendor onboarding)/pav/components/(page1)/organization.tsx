@@ -110,7 +110,10 @@ const Organization = ({
                 typeof clientTestimonials === "string" ? clientTestimonials : ""
               }
               onChange={(e) =>
-                handleTextChange(e, setClientTestimonials as (value: string) => void)
+                handleTextChange(
+                  e,
+                  setClientTestimonials as (value: string) => void,
+                )
               }
             ></textarea>
             {typeof clientTestimonials === "object" && (
