@@ -1,11 +1,13 @@
-import React from 'react'
+import React from "react";
 
-type Props = {}
+type Props = {};
 
 const Coming = (props: Props) => {
   return (
-    <div className='w-screen h-screen flex items-center justify-center text-3xl'>Coming Soon</div>
-  )
-}
+    <div className="flex h-screen w-screen items-center justify-center text-3xl">
+      Coming Soon
+    </div>
+  );
+};
 
-export default Coming
+export default Coming;

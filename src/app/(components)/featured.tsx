@@ -82,7 +82,10 @@ export function Featured() {
             Select and contact any vendors you like from the following
           </p>
         </div>
-        <Link href={"/comingsoon"} className="mt-4 flex items-center justify-center w-[50%] max-w-[10rem] rounded-md bg-[#2E3192] p-2 text-xs text-gray-200 shadow-md hover:bg-indigo-600 md:mt-0 md:rounded-xl md:p-3 md:px-8 md:text-sm">
+        <Link
+          href={"/comingsoon"}
+          className="mt-4 flex w-[50%] max-w-[10rem] items-center justify-center rounded-md bg-[#2E3192] p-2 text-xs text-gray-200 shadow-md hover:bg-indigo-600 md:mt-0 md:rounded-xl md:p-3 md:px-8 md:text-sm"
+        >
           See all
         </Link>
       </div>

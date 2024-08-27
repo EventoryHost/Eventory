@@ -13,7 +13,10 @@ export function Categories() {
             Search through all types of events through categories
           </p>
         </div>
-        <Link href="/comingsoon" className="animate mt-3 w-[50%] max-w-[9rem] transform rounded-md bg-[#2E3192] p-1 py-2 text-xs text-gray-200 shadow-md hover:bg-indigo-400 hover:text-[#2E3192] md:rounded-xl md:px-8 md:py-3 md:text-sm">
+        <Link
+          href="/comingsoon"
+          className="animate mt-3 w-[50%] max-w-[9rem] transform rounded-md bg-[#2E3192] p-1 py-2 text-xs text-gray-200 shadow-md hover:bg-indigo-400 hover:text-[#2E3192] md:rounded-xl md:px-8 md:py-3 md:text-sm"
+        >
           View More
         </Link>
       </div>

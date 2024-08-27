@@ -45,7 +45,10 @@ export function Partner() {
           weddings, corporate events, birthday parties, and any special
           occasion.
         </p>
-        <Link href="/comingsoon" className="animate flex transform items-center justify-center gap-2 rounded-md bg-[#2E3192] p-4 text-lg text-white hover:bg-indigo-400 hover:text-[#2E3192]">
+        <Link
+          href="/comingsoon"
+          className="animate flex transform items-center justify-center gap-2 rounded-md bg-[#2E3192] p-4 text-lg text-white hover:bg-indigo-400 hover:text-[#2E3192]"
+        >
           <span>Know More</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
