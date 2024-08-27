@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/carousel";
 import StarIcon from "@mui/icons-material/Star";
 import Autoplay from "embla-carousel-autoplay";
+import Link from "next/link";
 
 const venues = [
   {
@@ -81,9 +82,12 @@ export function Featured() {
             Select and contact any vendors you like from the following
           </p>
         </div>
-        <button className="mt-4 w-[50%] max-w-[10rem] rounded-md bg-[#2E3192] p-2 text-xs text-gray-200 shadow-md hover:bg-indigo-600 md:mt-0 md:rounded-xl md:p-3 md:px-8 md:text-sm">
+        <Link
+          href={"/comingsoon"}
+          className="mt-4 flex w-[50%] max-w-[10rem] items-center justify-center rounded-md bg-[#2E3192] p-2 text-xs text-gray-200 shadow-md hover:bg-indigo-600 md:mt-0 md:rounded-xl md:p-3 md:px-8 md:text-sm"
+        >
           See all
-        </button>
+        </Link>
       </div>
       <Carousel
         plugins={[plugin.current]}

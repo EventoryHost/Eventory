@@ -9,24 +9,47 @@ import { WandSparkles } from "lucide-react";
 
 const frameworks = [
   {
-    value: "next.js",
-    label: "Next.js",
+    value: "Birthday",
+    label: "Birthday",
   },
   {
-    value: "sveltekit",
-    label: "SvelteKit",
+    value: "Marriage",
+    label: "Marriage",
   },
   {
-    value: "nuxt.js",
-    label: "Nuxt.js",
+    value: "Anniversary",
+    label: "Anniversary",
   },
   {
-    value: "remix",
-    label: "Remix",
+    value: "Special Guest",
+    label: "Special Guest",
   },
   {
-    value: "astro",
-    label: "Astro",
+    value: "Tradional",
+    label: "Tradional",
+  },
+];
+
+const cities = [
+  {
+    value: "Delhi",
+    label: "Delhi",
+  },
+  {
+    value: "Mumbai",
+    label: "Mumbai",
+  },
+  {
+    value: "Kolkata",
+    label: "Kolkata",
+  },
+  {
+    value: "Chennai",
+    label: "Chennai",
+  },
+  {
+    value: "Bangalore",
+    label: "Bangalore",
   },
 ];
 
@@ -43,15 +66,15 @@ export function DropdownBar() {
         className="rounded-b-none rounded-t-xl py-7 hover:text-[#2E3192] lpt:rounded-l-xl lpt:rounded-t-none lpt:rounded-tl-xl"
       />
       <ComboboxDemo
-        options={frameworks}
+        options={cities}
         placeholder="Select Location"
         setFunction={setLocation}
         className="flex items-center justify-between rounded-none py-7 hover:text-[#2E3192]"
       />
       <DatePickerWithRange className="max-w-fit rounded-none py-7" />
-      <button className="group flex w-[300px] items-center justify-center rounded-b-xl bg-[#2E3192] px-3 py-4 text-white hover:bg-indigo-400 hover:text-[#2E3192] md:h-[65px] md:w-[500px] lpt:w-fit lpt:rounded-b-none lpt:rounded-r-xl lpt:rounded-br-xl">
-        <WandSparkles className="hidden h-6 w-6 group-hover:animate-pulse lpt:block" />
-        <a href="#" className="font-roboto lpt:hidden">
+      <button className="group flex w-[300px] items-center justify-center rounded-b-xl bg-[#2E3192] px-3 py-4 text-white hover:bg-indigo-400 hover:text-[#2E3192] md:h-[65px] md:w-[500px] lpt:w-[150px] lpt:rounded-b-none lpt:rounded-r-xl lpt:rounded-br-xl">
+        {/* <WandSparkles className="hidden h-6 w-6 group-hover:animate-pulse lpt:block" /> */}
+        <a href="/comingsoon" className="text-lg">
           Explore
         </a>
       </button>
