@@ -14,7 +14,7 @@ interface FormState {
   priceRange: { min: string; max: string };
   appetizers: string[];
   deliveryCharges: { min: string; max: string };
-  termsAndConditions: string;
+  termsAndConditions: string | File;
   category: string;
 }
 

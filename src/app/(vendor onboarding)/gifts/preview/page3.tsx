@@ -33,7 +33,7 @@ interface FormState {
   priceRange: { min: string; max: string };
   appetizers: string[];
   deliveryCharges: { min: string; max: string };
-  termsAndConditions: string;
+  termsAndConditions: string | File;
   category: string;
 }
 
@@ -205,7 +205,7 @@ const Preview: React.FC<PreviewProps> = ({
                   Terms And Conditions
                 </h2>
                 <span className="font-semibold">
-                  {formState.termsAndConditions}
+                  {typeof formState.termsAndConditions === 'string' ? formState.termsAndConditions : formState.termsAndConditions.name}
                 </span>
               </div>
             </div>

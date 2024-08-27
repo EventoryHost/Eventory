@@ -38,7 +38,7 @@ interface FormState {
   appetizers: string[];
   priceRange: { min: string; max: string };
   deliveryCharges: { min: string; max: string };
-  termsAndConditions: string;
+  termsAndConditions: string | File;
   category: string;
 }
 
@@ -53,6 +53,7 @@ interface PageProps {
   ) => void;
   setSelectedGiftTypes: (value: any) => void;
   selectedGiftTypes: any; // Add this line
+  updateFormState: (value: any) => void;
 }
 
 const Page2: React.FC<PageProps> = ({
@@ -61,6 +62,7 @@ const Page2: React.FC<PageProps> = ({
   handleNestedChange,
   setSelectedGiftTypes,
   selectedGiftTypes,
+  updateFormState
 }) => {
   const [isDeliveryChargesChecked, setIsDeliveryChargesChecked] =
     useState<boolean>(false);
@@ -213,14 +215,38 @@ const Page2: React.FC<PageProps> = ({
                 </div>
               </div>
             )}
-            <div className="flex flex-col">
+            <div className="flex flex-col space-y-2">
               <h2 className="text-xl font-medium">Terms and Conditions</h2>
               <p className="text-sm text-gray-500">PNG, PDF, JPG</p>
-              <button className="mt-2 flex w-48 items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
-                <Upload size={24} />
-                Upload
-              </button>
+              <div className="relative mt-2 w-full max-w-xs">
+                <button
+                  className="flex w-full items-center justify-center gap-3 rounded-xl border-2 bg-gray-200 px-4 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white"
+                  type="button"
+                >
+                  <Upload size={24} />
+                  Upload
+                </button>
+                <input
+                  type="file"
+                  id="termsAndConditions"
+                  name="termsAndConditions"
+                  accept="image/png, .pdf, image/jpg"
+                  className="absolute top-0 left-0 h-full w-full opacity-0 cursor-pointer"
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    updateFormState({
+                      termsAndConditions: file,
+                    });
+                  }}
+                />
+              </div>
+              {formState.termsAndConditions && (
+                <span className="mt-2 w-full truncate text-sm text-gray-600">
+                  {typeof formState.termsAndConditions === 'string' ? formState.termsAndConditions : formState.termsAndConditions?.name}
+                </span>
+              )}
             </div>
+
             <h2 className="text-xl font-medium">Or continue via</h2>
             <input
               type="text"
