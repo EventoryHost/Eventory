@@ -192,7 +192,7 @@ const Navbar = () => {
                         To manage your account and do bookings for your events.
                       </p>
                       <div className="mb-4 flex justify-around">
-                        <Link href="/login">
+                        <Link href="/">
                           <button className="rounded-lg border border-gray-700 px-5 py-[7px] duration-100 hover:bg-[rgba(46,49,146,1)] hover:text-[#fcfcfc]">
                             Log In
                           </button>
@@ -204,7 +204,7 @@ const Navbar = () => {
                         </Link>
                       </div>
                     </div>
-                    <ul className="flex flex-col items-start font-poppins text-sm font-semibold text-[rgba(0,0,0,1)]">
+                    {/* <ul className="flex flex-col items-start font-poppins text-sm font-semibold text-[rgba(0,0,0,1)]">
                       <li className="flex w-full flex-row items-center justify-between py-2">
                         <a href="#" className=" ">
                           <p className=""> Account Details </p>
@@ -247,7 +247,7 @@ const Navbar = () => {
                         </a>
                         <span>&gt;</span>
                       </li>
-                    </ul>
+                    </ul> */}
                   </div>
                 </ul>
               </div>
@@ -477,19 +477,19 @@ const Navbar = () => {
                           events.
                         </p>
                         <div className="mb-4 flex justify-around">
-                          <Link href="/login">
+                          {/* <Link href="/login">
                             <button className="rounded-lg border border-gray-700 px-5 py-[7px] duration-100 hover:bg-[rgba(46,49,146,1)] hover:text-[#fcfcfc]">
                               Log In
                             </button>
-                          </Link>
+                          </Link> */}
                           <Link href="/signup">
                             <button className="rounded-lg bg-[rgba(46,49,146,1)] px-4 py-2 text-white">
-                              Sign up
+                              Register as Vendor
                             </button>
                           </Link>
                         </div>
                       </div>
-                      <ul className="item-start -ml-1 flex flex-col font-poppins text-sm font-semibold text-[rgba(0,0,0,1)]">
+                      {/* <ul className="item-start -ml-1 flex flex-col font-poppins text-sm font-semibold text-[rgba(0,0,0,1)]">
                         <li className="flex w-full flex-row items-center justify-between py-2">
                           <a href="#" className=" ">
                             <p className="text-sm md:text-base">
@@ -539,7 +539,7 @@ const Navbar = () => {
                           </a>
                           <span>&gt;</span>
                         </li>
-                      </ul>
+                      </ul> */}
                     </div>
                   </ul>
                 </div>
