@@ -69,7 +69,11 @@ interface Page1Props {
   handleContinue: () => void;
 }
 
-const Page1: React.FC<Page1Props> = ({ formState, updateFormState, handleContinue }) => {
+const Page1: React.FC<Page1Props> = ({
+  formState,
+  updateFormState,
+  handleContinue,
+}) => {
   const {
     venueName,
     VenueAddress,

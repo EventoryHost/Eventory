@@ -135,7 +135,7 @@ const VenueForm: React.FC = () => {
       standingCapacity: formState.standingCapacity,
       decorType: formState.decorType,
     });
-  }
+  };
 
   const handleSubmit = async () => {
     const formData = new FormData();
@@ -213,8 +213,8 @@ const VenueForm: React.FC = () => {
               setCurrentPage(2);
               handleContinue();
             }}
-            />
-          );
+          />
+        );
       case 2:
         return (
           <Page2
