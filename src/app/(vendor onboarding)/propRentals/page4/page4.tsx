@@ -111,7 +111,7 @@ function Page4({
   handleChange,
   tentHourlyPricingEntries,
   handleAddTentHourlyPricingEntries,
-  updateFormState
+  updateFormState,
 }: page4Props) {
   // useEffect(() => {
   //   console.log('Tent hourly pricing entries updated:', formState.tentHourlyPricingEntries);
@@ -154,7 +154,6 @@ function Page4({
                   });
                 }}
               />
-
             </button>
           </div>
         </div>

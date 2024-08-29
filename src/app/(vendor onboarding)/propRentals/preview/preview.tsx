@@ -271,13 +271,17 @@ function Preview({
           <div className="flex w-1/2 flex-col">
             <span className="text-xl">Insurance coverage policy</span>
             <span className="mt-4 font-semibold">
-              {typeof formState.insurancePolicy === 'string' ? formState.insurancePolicy : formState.insurancePolicy?.name || "Not uploaded"}
+              {typeof formState.insurancePolicy === "string"
+                ? formState.insurancePolicy
+                : formState.insurancePolicy?.name || "Not uploaded"}
             </span>
           </div>
           <div className="flex w-1/2 flex-col">
             <span className="text-xl">Cancellation policy</span>
             <span className="mt-4 font-semibold">
-            {typeof formState.cancellationPolicy === 'string' ? formState.cancellationPolicy : (formState.cancellationPolicy?.name) || "Not uploaded"}
+              {typeof formState.cancellationPolicy === "string"
+                ? formState.cancellationPolicy
+                : formState.cancellationPolicy?.name || "Not uploaded"}
             </span>
           </div>
         </div>
@@ -286,13 +290,17 @@ function Preview({
           <div className="flex w-1/2 flex-col">
             <span className="text-xl">Terms and Conditions</span>
             <span className="mt-4 font-semibold">
-              {typeof formState.termsAndConditions === 'string' ? formState.termsAndConditions : formState.termsAndConditions?.name || "Not uploaded"}
+              {typeof formState.termsAndConditions === "string"
+                ? formState.termsAndConditions
+                : formState.termsAndConditions?.name || "Not uploaded"}
             </span>
           </div>
           <div className="flex w-1/2 flex-col">
             <span className="text-xl">Privacy Policy</span>
             <span className="mt-4 font-semibold">
-              {typeof formState.privacyPolicy === 'string' ? formState.privacyPolicy : formState.privacyPolicy?.name || "Not uploaded"}
+              {typeof formState.privacyPolicy === "string"
+                ? formState.privacyPolicy
+                : formState.privacyPolicy?.name || "Not uploaded"}
             </span>
           </div>
         </div>
@@ -313,7 +321,6 @@ function Preview({
               <span>
                 {formState.furnitureAndDecorListUrl.name || "No File Uploaded"}
               </span>
-              
             </span>
           </div>
         </div>

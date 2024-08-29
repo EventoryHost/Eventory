@@ -62,7 +62,7 @@ const Page2: React.FC<PageProps> = ({
   handleNestedChange,
   setSelectedGiftTypes,
   selectedGiftTypes,
-  updateFormState
+  updateFormState,
 }) => {
   const [isDeliveryChargesChecked, setIsDeliveryChargesChecked] =
     useState<boolean>(false);
@@ -231,7 +231,7 @@ const Page2: React.FC<PageProps> = ({
                   id="termsAndConditions"
                   name="termsAndConditions"
                   accept="image/png, .pdf, image/jpg"
-                  className="absolute top-0 left-0 h-full w-full opacity-0 cursor-pointer"
+                  className="absolute left-0 top-0 h-full w-full cursor-pointer opacity-0"
                   onChange={(e) => {
                     const file = e.target.files?.[0];
                     updateFormState({
@@ -242,7 +242,9 @@ const Page2: React.FC<PageProps> = ({
               </div>
               {formState.termsAndConditions && (
                 <span className="mt-2 w-full truncate text-sm text-gray-600">
-                  {typeof formState.termsAndConditions === 'string' ? formState.termsAndConditions : formState.termsAndConditions?.name}
+                  {typeof formState.termsAndConditions === "string"
+                    ? formState.termsAndConditions
+                    : formState.termsAndConditions?.name}
                 </span>
               )}
             </div>

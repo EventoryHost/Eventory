@@ -125,7 +125,6 @@ type page3Props = {
   handleAddTentPricingEntry: (entry: PricingEntry) => void;
   handleAddAudioPricingEntry: (entry: PricingEntry) => void;
   updateFormState: (value: any) => void;
-
 };
 
 function Page3({
@@ -154,7 +153,6 @@ function Page3({
   handleAddTentPricingEntry,
   handleAddAudioPricingEntry,
   updateFormState,
-  
 }: page3Props & page4Props & page5Props) {
   const [formPage, setFormPage] = useState(1);
   const handleCategorySelection = (category: string) => {
@@ -262,17 +260,17 @@ function Page3({
                     <Upload />
                     Upload
                     <input
-                    type="file"
-                    id="furnitureAndDecorListUrl"
-                    name="furnitureAndDecorListUrl"
-                    accept="image/png, .pdf, image/jpg"
-                    onChange={(e) => {
-                      const file = e.target.files![0];
-                      updateFormState({
-                        furnitureAndDecorListUrl: e.target.files![0],
-                      });
-                    }}
-                  />
+                      type="file"
+                      id="furnitureAndDecorListUrl"
+                      name="furnitureAndDecorListUrl"
+                      accept="image/png, .pdf, image/jpg"
+                      onChange={(e) => {
+                        const file = e.target.files![0];
+                        updateFormState({
+                          furnitureAndDecorListUrl: e.target.files![0],
+                        });
+                      }}
+                    />
                   </button>
                 </div>
               </div>
@@ -658,7 +656,7 @@ function Page3({
                   workerCheckboxPage5: boolean;
                   advancedPaymentCheckboxPage5: false;
                 },
-                value: any
+                value: any,
               ): void {
                 throw new Error("Function not implemented.");
               },
@@ -745,15 +743,19 @@ function Page3({
                 workerCheckboxPage5: boolean;
                 advancedPaymentCheckboxPage5: false;
               },
-              value: any
+              value: any,
             ): void {
               throw new Error("Function not implemented.");
-            } }
+            }}
             handleAddPricingEntry={function (): void {
               throw new Error("Function not implemented.");
-            } }
+            }}
             tentHourlyPricingEntries={tentHourlyPricingEntries}
-            handleAddTentHourlyPricingEntries={handleAddTentHourlyPricingEntries} updateFormState={updateFormState}          />
+            handleAddTentHourlyPricingEntries={
+              handleAddTentHourlyPricingEntries
+            }
+            updateFormState={updateFormState}
+          />
         )}
 
         {selectedCategory === "Audio-Visual" && (
@@ -769,8 +771,10 @@ function Page3({
             furnitureHourlyPricingEntries={undefined}
             handleAddPricingEntry={function (): void {
               throw new Error("Function not implemented.");
-            } }
-            tentHourlyPricingEntries={undefined} updateFormState={updateFormState}          />
+            }}
+            tentHourlyPricingEntries={undefined}
+            updateFormState={updateFormState}
+          />
         )}
       </div>
     </div>

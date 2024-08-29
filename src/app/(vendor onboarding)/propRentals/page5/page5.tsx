@@ -87,7 +87,7 @@ function Page5({
   setSelectedVisualOptions,
   selectedLightOptions,
   setSelectedLightOptions,
-  updateFormState
+  updateFormState,
 }: page5Props) {
   return (
     <>
@@ -103,17 +103,17 @@ function Page5({
               <Upload />
               Upload
               <input
-                    type="file"
-                    id="audioVisualListUrl"
-                    name="audioVisualListUrl"
-                    accept="image/png, .pdf, image/jpg"
-                    onChange={(e) => {
-                      const file = e.target.files![0];
-                      updateFormState({
-                        audioVisualListUrl: e.target.files![0],
-                      });
-                    }}
-                  />
+                type="file"
+                id="audioVisualListUrl"
+                name="audioVisualListUrl"
+                accept="image/png, .pdf, image/jpg"
+                onChange={(e) => {
+                  const file = e.target.files![0];
+                  updateFormState({
+                    audioVisualListUrl: e.target.files![0],
+                  });
+                }}
+              />
             </button>
           </div>
         </div>

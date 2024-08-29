@@ -25,9 +25,9 @@ type FormState = {
   cancellationPolicy: string | File;
   termsAndConditions: string | File;
   privacyPolicy: string | File;
-  furnitureAndDecorListUrl : string | File;
-  tentAndCanopyListUrl : string | File;
-  audioVisualListUrl : string | File;
+  furnitureAndDecorListUrl: string | File;
+  tentAndCanopyListUrl: string | File;
+  audioVisualListUrl: string | File;
 
   // Page3
   selectedAppetizers: string[];
@@ -83,7 +83,7 @@ const RootPage = () => {
     numberOfWorkers: "",
     handleChange: (key: keyof FormState, value: any) => {},
 
-// URL's for the files
+    // URL's for the files
     insurancePolicy: "",
     cancellationPolicy: "",
     termsAndConditions: "",
@@ -91,7 +91,6 @@ const RootPage = () => {
     furnitureAndDecorListUrl: "",
     tentAndCanopyListUrl: "",
     audioVisualListUrl: "",
-
 
     selectedAppetizers: [],
     selectedDecor: [],
@@ -149,9 +148,6 @@ const RootPage = () => {
   function updateFormState(newState: Partial<FormState>) {
     setFormState((prev) => ({ ...prev, ...newState }));
   }
-  
-  
-  
 
   const handleChange = (key: keyof FormState, value: any) => {
     setFormState((prevState) => ({ ...prevState, [key]: value }));
@@ -185,7 +181,6 @@ const RootPage = () => {
       };
     });
   };
-
 
   const handleAddTentPricingEntry = (entry: PricingEntry) => {
     setFormState((prevState) => ({
@@ -365,8 +360,14 @@ const RootPage = () => {
     formData.append("cancellationPolicy", formState.cancellationPolicy || "");
     formData.append("termsAndConditions", formState.termsAndConditions || "");
     formData.append("privacyPolicy", formState.privacyPolicy || "");
-    formData.append("furnitureAndDecorListUrl", formState.furnitureAndDecorListUrl || "");
-    formData.append("tentAndCanopyListUrl", formState.furnitureAndDecorListUrl || "");
+    formData.append(
+      "furnitureAndDecorListUrl",
+      formState.furnitureAndDecorListUrl || "",
+    );
+    formData.append(
+      "tentAndCanopyListUrl",
+      formState.furnitureAndDecorListUrl || "",
+    );
 
     console.log("This is the formdata in root page");
     // @ts-ignore

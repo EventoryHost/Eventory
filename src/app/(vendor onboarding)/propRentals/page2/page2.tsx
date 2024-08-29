@@ -53,7 +53,7 @@ const Page2: React.FC<page2Props> = ({
   formState,
   handleChange,
   handleNestedChange,
-  updateFormState
+  updateFormState,
 }) => {
   return (
     <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden lg:flex-row">
@@ -140,7 +140,11 @@ const Page2: React.FC<page2Props> = ({
                   type="text"
                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                   placeholder="Enter your insurance policy description"
-                  value={typeof formState.insurancePolicy === 'string' ? formState.insurancePolicy : formState.insurancePolicy?.name || ""}
+                  value={
+                    typeof formState.insurancePolicy === "string"
+                      ? formState.insurancePolicy
+                      : formState.insurancePolicy?.name || ""
+                  }
                   onChange={(e) =>
                     handleChange("insurancePolicy", e.target.value)
                   }
@@ -153,7 +157,11 @@ const Page2: React.FC<page2Props> = ({
                   type="text"
                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                   placeholder="Enter your cancellation policy description"
-                  value={typeof formState.cancellationPolicy === 'string' ? formState.cancellationPolicy : formState.cancellationPolicy?.name || ""}
+                  value={
+                    typeof formState.cancellationPolicy === "string"
+                      ? formState.cancellationPolicy
+                      : formState.cancellationPolicy?.name || ""
+                  }
                   onChange={(e) =>
                     handleChange("cancellationPolicy", e.target.value)
                   }
@@ -174,17 +182,17 @@ const Page2: React.FC<page2Props> = ({
                 <Upload />
                 Upload
                 <input
-                    type="file"
-                    id="termsAndConditions"
-                    name="termsAndConditions"
-                    accept="image/png, .pdf, image/jpg"
-                    onChange={(e) => {
-                      const file = e.target.files![0];
-                      updateFormState({
-                        termsAndConditions: e.target.files![0],
-                      });
-                    }}
-                  />
+                  type="file"
+                  id="termsAndConditions"
+                  name="termsAndConditions"
+                  accept="image/png, .pdf, image/jpg"
+                  onChange={(e) => {
+                    const file = e.target.files![0];
+                    updateFormState({
+                      termsAndConditions: e.target.files![0],
+                    });
+                  }}
+                />
               </button>
             </div>
             <div className="flex w-full flex-col gap-4 md:w-1/2">
@@ -196,17 +204,17 @@ const Page2: React.FC<page2Props> = ({
                 <Upload />
                 Upload
                 <input
-                    type="file"
-                    id="privacyPolicy"
-                    name="privacyPolicy"
-                    accept="image/png, .pdf, image/jpg"
-                    onChange={(e) => {
-                      const file = e.target.files![0];
-                      updateFormState({
-                        privacyPolicy: e.target.files![0],
-                      });
-                    }}
-                  />
+                  type="file"
+                  id="privacyPolicy"
+                  name="privacyPolicy"
+                  accept="image/png, .pdf, image/jpg"
+                  onChange={(e) => {
+                    const file = e.target.files![0];
+                    updateFormState({
+                      privacyPolicy: e.target.files![0],
+                    });
+                  }}
+                />
               </button>
             </div>
           </div>
@@ -220,7 +228,11 @@ const Page2: React.FC<page2Props> = ({
                 type="text"
                 className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                 placeholder="Enter your terms and conditions description"
-                value={typeof formState.termsAndConditions === 'string' ? formState.termsAndConditions : formState.termsAndConditions?.name || ""}
+                value={
+                  typeof formState.termsAndConditions === "string"
+                    ? formState.termsAndConditions
+                    : formState.termsAndConditions?.name || ""
+                }
                 onChange={(e) =>
                   handleChange("termsAndConditions", e.target.value)
                 }
@@ -233,7 +245,11 @@ const Page2: React.FC<page2Props> = ({
                 type="text"
                 className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                 placeholder="Enter your privacy policy description"
-                value={typeof formState.privacyPolicy === 'string' ? formState.privacyPolicy : formState.privacyPolicy?.name || ""}
+                value={
+                  typeof formState.privacyPolicy === "string"
+                    ? formState.privacyPolicy
+                    : formState.privacyPolicy?.name || ""
+                }
                 onChange={(e) => handleChange("privacyPolicy", e.target.value)}
               />
             </div>

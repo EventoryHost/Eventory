@@ -205,7 +205,9 @@ const Preview: React.FC<PreviewProps> = ({
                   Terms And Conditions
                 </h2>
                 <span className="font-semibold">
-                  {typeof formState.termsAndConditions === 'string' ? formState.termsAndConditions : formState.termsAndConditions.name}
+                  {typeof formState.termsAndConditions === "string"
+                    ? formState.termsAndConditions
+                    : formState.termsAndConditions.name}
                 </span>
               </div>
             </div>
