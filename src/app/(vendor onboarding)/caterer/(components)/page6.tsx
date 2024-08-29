@@ -164,6 +164,7 @@ const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
                       accept="image/png, .pdf, image/jpg"
                       // className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
                       onChange={(e) => {
+                        e.preventDefault();
                         const file = e.target.files![0];
                         updateFormState({
                           termsAndConditions: e.target.files![0],
@@ -176,6 +177,9 @@ const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
                     cols={30}
                     rows={7}
                     placeholder="Enter your venue details"
+                    onChange={(e) =>
+                      updateFormState({ termsAndConditions: e.target.value })
+                    }
                     className="mt-5 resize-none rounded-xl border-2 border-gray-300 p-3"
                   ></textarea>
                 </div>
@@ -192,6 +196,7 @@ const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
                     accept="image/png, .pdf, image/jpg"
                     // className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
                     onChange={(e) => {
+                      e.preventDefault();
                       const file = e.target.files![0];
                       updateFormState({
                         cancellationPolicy: e.target.files![0],
@@ -204,6 +209,9 @@ const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
                   cols={30}
                   rows={7}
                   placeholder="Enter your venue details"
+                  onChange={(e) =>
+                    updateFormState({ cancellationPolicy: e.target.value })
+                  }
                   className="mt-5 resize-none rounded-xl border-2 border-gray-300 p-3"
                 ></textarea>
               </div>
@@ -214,22 +222,13 @@ const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
             </div>
             <div className="items-strech mt-9 flex flex-row gap-7 self-end">
               <button
-                className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleContinue();
-                }}
-              >
-                Skip
-              </button>
-              <button
                 className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
                 onClick={(e) => {
                   e.preventDefault();
                   handleContinue();
                 }}
               >
-                Continue
+                Submit
               </button>
             </div>
           </div>

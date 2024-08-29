@@ -186,7 +186,7 @@ const Caterer = () => {
       formData.append(`event_types_catered[${index}]`, item);
     });
     equipmentsProvided.forEach((item, index) => {
-      formData.append(`additional_services[${index}]`, item);
+      formData.append(`equipment_provided[${index}]`, item);
     });
     hourlyPackages.forEach((item, index) => {
       formData.append(`rates[hourly][${index}]`, JSON.stringify(item));
@@ -202,9 +202,12 @@ const Caterer = () => {
     formData.append("foodSafety", formState.foodSafety.toString());
     formData.append("cateringServiceImages", formState.cateringServiceImages);
     formData.append("videoEvent", formState.videoEvent);
-    formData.append("termsAndConditions", formState.termsAndConditions);
-    formData.append("cancellationPolicy", formState.cancellationPolicy);
+    formData.append("terms_and_conditions", formState.termsAndConditions);
+    formData.append("cancellation_policy", formState.cancellationPolicy);
     try {
+      formData.forEach((value, key) => {
+        console.log(`${key}: ${value}`);
+      });
       await addCaterer(formData);
       console.log("Caterer added successfully");
     } catch (error) {
@@ -296,7 +299,10 @@ const Caterer = () => {
           <Page6
             formState={formState}
             updateFormState={updateFormState}
-            handleContinue={handleContinue}
+            handleContinue={() => {
+              handleContinue();
+              handleSubmit();
+            }}
           />
         );
       default:
