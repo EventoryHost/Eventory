@@ -326,7 +326,7 @@ const Navbar = () => {
                 </Link>
               </li>
               <li className="top-margin">
-                <Link href={"/business"}>
+                <Link href="/business">
                   <p>Business</p>
                 </Link>
               </li>

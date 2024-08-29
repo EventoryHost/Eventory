@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Grow from "./(components)/grow";
 import Hero from "./(components)/hero";
