@@ -18,7 +18,7 @@ type FormState = {
   priceRange: { min: string; max: string };
   appetizers: string[];
   deliveryCharges: { min: string; max: string };
-  termsAndConditions: string;
+  termsAndConditions: string | File;
   category: string;
 };
 
@@ -76,6 +76,10 @@ const RootPage = () => {
     }));
   };
 
+  function updateFormState(newState: Partial<FormState>) {
+    setFormState((prev) => ({ ...prev, ...newState }));
+  }
+
   const CurrentPageComponent = Pages[currentPage];
   const [selectedGiftTypes, setSelectedGiftTypes] = useState<string[]>([]);
 
@@ -93,6 +97,7 @@ const RootPage = () => {
         navigateToPage={navigateToPage}
         selectedGiftTypes={selectedGiftTypes}
         setSelectedGiftTypes={setSelectedGiftTypes}
+        updateFormState={updateFormState}
       />
       <div className="my-9 mr-[5%] flex flex-row justify-end gap-7">
         {currentPage > 0 && (

@@ -116,7 +116,7 @@ type FormState = {
   [key: string]: any;
 
   // Page2
-  insurancePolicy: string;
+  insurancePolicy: string | File;
   cancellationPolicy: string;
   termsAndConditions: string;
   privacyPolicy: string;
@@ -271,13 +271,17 @@ function Preview({
           <div className="flex w-1/2 flex-col">
             <span className="text-xl">Insurance coverage policy</span>
             <span className="mt-4 font-semibold">
-              {formState.insurancePolicy}
+              {typeof formState.insurancePolicy === "string"
+                ? formState.insurancePolicy
+                : formState.insurancePolicy?.name || "Not uploaded"}
             </span>
           </div>
           <div className="flex w-1/2 flex-col">
             <span className="text-xl">Cancellation policy</span>
             <span className="mt-4 font-semibold">
-              {formState.cancellationPolicy}
+              {typeof formState.cancellationPolicy === "string"
+                ? formState.cancellationPolicy
+                : formState.cancellationPolicy?.name || "Not uploaded"}
             </span>
           </div>
         </div>
@@ -286,13 +290,17 @@ function Preview({
           <div className="flex w-1/2 flex-col">
             <span className="text-xl">Terms and Conditions</span>
             <span className="mt-4 font-semibold">
-              {formState.termsAndConditions}
+              {typeof formState.termsAndConditions === "string"
+                ? formState.termsAndConditions
+                : formState.termsAndConditions?.name || "Not uploaded"}
             </span>
           </div>
           <div className="flex w-1/2 flex-col">
             <span className="text-xl">Privacy Policy</span>
             <span className="mt-4 font-semibold">
-              {formState.privacyPolicy}
+              {typeof formState.privacyPolicy === "string"
+                ? formState.privacyPolicy
+                : formState.privacyPolicy?.name || "Not uploaded"}
             </span>
           </div>
         </div>
@@ -310,8 +318,9 @@ function Preview({
           <div className="flex w-1/2 flex-col">
             <span className="text-xl">Uploaded List</span>
             <span className="ml-8 mt-2 flex items-center font-semibold">
-              <span>Doc1.pdf</span>
-              <Check size={24} />
+              <span>
+                {formState.furnitureAndDecorListUrl.name || "No File Uploaded"}
+              </span>
             </span>
           </div>
         </div>
@@ -406,8 +415,9 @@ function Preview({
           <div className="flex w-1/2 flex-col">
             <span className="text-xl">Uploaded List</span>
             <span className="ml-8 mt-2 flex items-center font-semibold">
-              <span>Doc1.pdf</span>
-              <Check size={24} />
+              <span>
+                {formState.tentAndCanopyListUrl.name || "No File Uploaded"}
+              </span>
             </span>
           </div>
         </div>
@@ -483,8 +493,7 @@ function Preview({
           <div className="flex w-1/2 flex-col">
             <span className="text-xl">Uploaded List</span>
             <span className="ml-8 mt-2 flex items-center font-semibold">
-              <span>Doc1.pdf</span>
-              <Check size={24} />
+              <span>{formState.audioVisualListUrl.name}</span>
             </span>
           </div>
         </div>

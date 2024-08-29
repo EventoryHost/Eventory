@@ -21,10 +21,13 @@ type FormState = {
   [key: string]: any;
 
   // Page2
-  insurancePolicy: string;
-  cancellationPolicy: string;
-  termsAndConditions: string;
-  privacyPolicy: string;
+  insurancePolicy: string | File;
+  cancellationPolicy: string | File;
+  termsAndConditions: string | File;
+  privacyPolicy: string | File;
+  furnitureAndDecorListUrl: string | File;
+  tentAndCanopyListUrl: string | File;
+  audioVisualListUrl: string | File;
 
   // Page3
   selectedAppetizers: string[];
@@ -79,10 +82,16 @@ const RootPage = () => {
     yearsOfExperience: "",
     numberOfWorkers: "",
     handleChange: (key: keyof FormState, value: any) => {},
+
+    // URL's for the files
     insurancePolicy: "",
     cancellationPolicy: "",
     termsAndConditions: "",
     privacyPolicy: "",
+    furnitureAndDecorListUrl: "",
+    tentAndCanopyListUrl: "",
+    audioVisualListUrl: "",
+
     selectedAppetizers: [],
     selectedDecor: [],
     furnitureHourlyPricingEntries: [],
@@ -136,6 +145,10 @@ const RootPage = () => {
     },
   });
 
+  function updateFormState(newState: Partial<FormState>) {
+    setFormState((prev) => ({ ...prev, ...newState }));
+  }
+
   const handleChange = (key: keyof FormState, value: any) => {
     setFormState((prevState) => ({ ...prevState, [key]: value }));
   };
@@ -168,13 +181,6 @@ const RootPage = () => {
       };
     });
   };
-
-  useEffect(() => {
-    console.log(
-      "Tent hourly pricing entries:",
-      formState.tentHourlyPricingEntries,
-    );
-  }, [formState.tentHourlyPricingEntries]);
 
   const handleAddTentPricingEntry = (entry: PricingEntry) => {
     setFormState((prevState) => ({
@@ -354,6 +360,14 @@ const RootPage = () => {
     formData.append("cancellationPolicy", formState.cancellationPolicy || "");
     formData.append("termsAndConditions", formState.termsAndConditions || "");
     formData.append("privacyPolicy", formState.privacyPolicy || "");
+    formData.append(
+      "furnitureAndDecorListUrl",
+      formState.furnitureAndDecorListUrl || "",
+    );
+    formData.append(
+      "tentAndCanopyListUrl",
+      formState.furnitureAndDecorListUrl || "",
+    );
 
     console.log("This is the formdata in root page");
     // @ts-ignore
@@ -401,6 +415,7 @@ const RootPage = () => {
         handleAddTentHourlyPricingEntries={handleAddTentHourlyPricingEntries}
         handleAddTentPricingEntry={handleAddTentPricingEntry}
         handleAddAudioPricingEntry={handleAddAudioPricingEntry}
+        updateFormState={updateFormState}
       />
       <div className="my-9 mr-[5%] flex flex-row justify-end gap-7">
         {currentPage > 0 && (
