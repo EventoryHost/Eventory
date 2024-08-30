@@ -85,10 +85,6 @@ const BusinessDetails = () => {
         if (!refElement || !refElement.value.trim()) {
             return;
         }
-      const refElement = refs.current[key as keyof businessDetails];
-      if (!refElement || !refElement.value.trim()) {
-        return; // Stop further processing if any required field is empty
-      }
     }
 
     if (!businessDetails.category) {
