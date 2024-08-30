@@ -7,6 +7,7 @@ import Image from "next/image";
 import auth from "@/services/auth";
 import OtpModal from "@/components/ui/otp-modal";
 import tajmahal from "/public/tajmahal.png";
+import Router from "next/router"; 
 
 const fields: {
   id: keyof basicDetails;
@@ -78,20 +79,28 @@ const SignUp = (props: {}) => {
     }
   };
 
-  const handleVerify = (e: React.FormEvent) => {
+  const handleVerify = async (e: React.FormEvent) => {
     e.preventDefault();
     const inputOtp = basicDetails.otp.toString(); // Current OTP value
-
+  
     // Check if OTP is 6 digits long
     if (inputOtp.length !== 6) {
       setFormError(`Please fill in the OTP correctly`);
       return;
     }
-
-    setFormError(null); // Reset error msg
-    console.log(inputOtp);
-    auth.verifySignUpOtp(basicDetails.mobile.toString(), inputOtp);
+  
+    setFormError(null); // Reset error message
+  
+    try {
+      await auth.verifySignUpOtp(basicDetails.mobile.toString(), inputOtp);
+      console.log("OTP verified successfully");
+      Router.push("/businessDetails"); // Ensure this is reachable
+    } catch (error) {
+      console.error("Failed to verify OTP", error);
+      setFormError("Failed to verify OTP. Please try again.");
+    }
   };
+  
 
   const renderError = (): [boolean, string] => {
     return formError ? [true, formError] : [false, ""];
@@ -242,7 +251,7 @@ const SignUp = (props: {}) => {
             setBasicDetails({ ...basicDetails, otp: Number(value) });
             console.log("OTP:", basicDetails.otp);
           }}
-          resendOtpRedirect="/signup"
+          resendOtpRedirect="/signup" 
           renderError={renderError}
         />
       )}
