@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import Appetizers from "../(components)/Appetizers";
+import Appetizers from "../../(components)/Appetizers";
 import { set } from "date-fns";
 
 const _makeupTypes = [
@@ -123,6 +123,7 @@ const Page: React.FC<Page4Props> = ({
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
+              field={'_makeupTypes'}
                 appetizers={_makeupTypes}
                 selectedAppetizers={makeupTypes}
                 setSelectedAppetizers={setMakeupTypes}

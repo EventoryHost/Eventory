@@ -2,7 +2,7 @@
 
 import { Upload } from "lucide-react";
 import React from "react";
-import Appetizers from "../../caterer/(components)/Appetizers";
+import Appetizers from "../../(components)/Appetizers";
 import { BasicDetails } from "@/types/types";
 
 const styles = [

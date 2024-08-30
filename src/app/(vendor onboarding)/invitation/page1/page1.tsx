@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import Appetizers from "../(components)/Appetizers";
+import Appetizers from "../../(components)/Appetizers";
 import { Upload } from "lucide-react";
 import { Combobox } from "@/components/ui/combobox";
 

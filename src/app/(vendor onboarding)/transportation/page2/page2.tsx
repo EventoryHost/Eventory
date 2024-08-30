@@ -3,7 +3,7 @@
 import StepBar from "@/app/(components)/stepBar";
 import { Upload } from "lucide-react";
 import React, { useState, useEffect } from "react";
-import Appetizers from "../../caterer/(components)/Appetizers";
+import Appetizers from "../../(components)/Appetizers";
 
 const vehicleTypes = [
   "Sedan",

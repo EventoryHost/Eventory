@@ -1,7 +1,7 @@
 "use client";
 
 import { Combobox } from "@/components/ui/combobox";
-import Appetizers from "../(components)/Appetizers";
+import Appetizers from "../../(components)/Appetizers";
 
 const _decorTypes = [
   { value: "indoor", label: "Inhouse Decor" },
@@ -115,6 +115,7 @@ const Page2: React.FC<Page2Props> = ({
         <div className="flex min-h-full min-w-full flex-col items-center gap-5">
           <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
             <Appetizers
+            field={'_audioEquipment'}
               appetizers={_audioEquipment}
               selectedAppetizers={audioVisualEquipment}
               setSelectedAppetizers={setAudioVisualEquipment}
@@ -129,6 +130,7 @@ const Page2: React.FC<Page2Props> = ({
         <div className="flex min-h-full min-w-full flex-col items-center gap-5">
           <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
             <Appetizers
+            field={'_accessibilityFeatures'}
               appetizers={_accessibilityFeatures}
               selectedAppetizers={accessibilityFeatures}
               setSelectedAppetizers={setAccessibilityFeatures}
@@ -141,6 +143,7 @@ const Page2: React.FC<Page2Props> = ({
         <div className="flex min-h-full min-w-full flex-col items-center gap-5">
           <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
             <Appetizers
+            field={'_facilities'}
               appetizers={_facilities}
               selectedAppetizers={facilities}
               setSelectedAppetizers={setFacilities}

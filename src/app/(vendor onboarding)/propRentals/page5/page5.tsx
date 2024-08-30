@@ -1,6 +1,6 @@
 "use client";
 
-import Appetizers from "@/app/(vendor onboarding)/propRentals/(components)/Appetizers";
+import Appetizers from "../../(components)/Appetizers";
 import { Upload } from "lucide-react";
 
 const audioOptions = [
@@ -123,9 +123,10 @@ function Page5({
         <div className="flex min-h-full min-w-full flex-col gap-5">
           <h1 className="text-3xl font-semibold">Audio Equipment</h1>
           <Appetizers
+          field={'audioOptions'}
             appetizers={audioOptions}
             selectedAppetizers={selectedAudioOptions}
-            setselectedAppetizers={setSelectedAudioOptions}
+            setSelectedAppetizers={setSelectedAudioOptions}
           />
         </div>
       </div>
@@ -134,9 +135,10 @@ function Page5({
         <div className="flex min-h-full min-w-full flex-col gap-5">
           <h1 className="text-3xl font-semibold">Visual Equipment </h1>
           <Appetizers
+          field={'visualOptions'}
             appetizers={visualOptions}
             selectedAppetizers={selectedvisualOptions}
-            setselectedAppetizers={setSelectedVisualOptions}
+            setSelectedAppetizers={setSelectedVisualOptions}
           />
         </div>
       </div>
@@ -145,9 +147,10 @@ function Page5({
         <div className="flex min-h-full min-w-full flex-col gap-5">
           <h1 className="text-3xl font-semibold">Light Equipment</h1>
           <Appetizers
+          field={'lightOptions'}
             appetizers={lightOptions}
             selectedAppetizers={selectedLightOptions}
-            setselectedAppetizers={setSelectedLightOptions}
+            setSelectedAppetizers={setSelectedLightOptions}
           />
         </div>
       </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import Appetizers from "../../caterer/(components)/Appetizers";
+import Appetizers from "../../(components)/Appetizers";
 
 const equipments = [
   "Audio Recording",

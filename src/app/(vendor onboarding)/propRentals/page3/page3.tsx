@@ -1,7 +1,7 @@
 "use client";
 
 import StepBar from "@/app/(components)/stepBar";
-import Appetizers from "@/app/(vendor onboarding)/propRentals/(components)/Appetizers";
+import Appetizers from "../../(components)/Appetizers";
 import { Upload } from "lucide-react";
 import { SetStateAction, useEffect, useState } from "react";
 import Page4, {
@@ -280,9 +280,10 @@ function Page3({
               <div className="flex min-h-full min-w-full flex-col gap-5">
                 <h1 className="text-3xl font-semibold">Furniture</h1>
                 <Appetizers
+                field={'furnitureOptions'}
                   appetizers={furnitureOptions}
                   selectedAppetizers={selectedAppetizers}
-                  setselectedAppetizers={setselectedAppetizers}
+                  setSelectedAppetizers={setselectedAppetizers}
                 />
               </div>
             </div>
@@ -291,9 +292,10 @@ function Page3({
               <div className="flex min-h-full min-w-full flex-col gap-5">
                 <h1 className="text-3xl font-semibold">Decor</h1>
                 <Appetizers
+                field={'DecorOptions'}
                   appetizers={DecorOptions}
                   selectedAppetizers={selectedDecor}
-                  setselectedAppetizers={setSelectedDecor}
+                  setSelectedAppetizers={setSelectedDecor}
                 />
               </div>
             </div>

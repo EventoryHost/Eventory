@@ -5,7 +5,7 @@ import { ComboboxDemo } from "@/components/dropdown";
 import { Dropdown } from "react-day-picker";
 import { Combobox } from "@/components/ui/combobox";
 import { ArrowUpSquare, Upload } from "lucide-react";
-import Appetizers from "../(components)/Appetizers";
+import Appetizers from "../../(components)/Appetizers";
 
 const _makeupArtists_individual = [
   "Airbrush Makeup Artists",
@@ -356,6 +356,7 @@ const Page: React.FC = ({}) => {
             <div className="flex min-h-full min-w-full flex-col items-center gap-5">
               <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
                 <Appetizers
+                field={'_makeupArtists_individual'}
                   appetizers={_makeupArtists_individual}
                   selectedAppetizers={makeupArtists_individual}
                   setSelectedAppetizers={setMakeupArtist_individual}
@@ -387,6 +388,7 @@ const Page: React.FC = ({}) => {
             <div className="flex min-h-full min-w-full flex-col items-center gap-5">
               <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
                 <Appetizers
+                field={'_makeupArtists_groups'}
                   appetizers={_makeupArtists_groups}
                   selectedAppetizers={makeupArtists_groups}
                   setSelectedAppetizers={setMakeupArtist_group}
@@ -418,6 +420,7 @@ const Page: React.FC = ({}) => {
             <div className="flex min-h-full min-w-full flex-col items-center gap-5">
               <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
                 <Appetizers
+                field={'_makeupArtists_organisation'}
                   appetizers={_makeupArtists_organisation}
                   selectedAppetizers={makeupArtists_organisation}
                   setSelectedAppetizers={setMakeupArtist_organisation}
