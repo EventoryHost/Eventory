@@ -8,7 +8,7 @@ interface FormState {
   contactNumber: string;
   venueDescription: string;
   minimumQuantity: string;
-  bulkQuantity: string;
+  bulkQuantityAvailable: string;
   customizableGifts: string;
   typesOfGifts: string[];
   priceRange: { min: string; max: string };
@@ -144,29 +144,29 @@ const Page1: React.FC<PageProps> = ({
                   </label>
                   <div className="flex items-center">
                     <input
-                      id="bulkQuantityYes"
+                      id="bulkQuantityAvailableYes"
                       type="radio"
-                      name="bulkQuantity"
-                      checked={formState.bulkQuantity === "yes"}
-                      onChange={() => handleChange("bulkQuantity", "yes")}
+                      name="bulkQuantityAvailable"
+                      checked={formState.bulkQuantityAvailable === "yes"}
+                      onChange={() => handleChange("bulkQuantityAvailable", "yes")}
                       className="form-radio h-4 w-4 text-indigo-600 focus:ring-indigo-500"
                     />
                     <label
-                      htmlFor="bulkQuantityYes"
+                      htmlFor="bulkQuantityAvailableYes"
                       className="ml-2 block text-sm font-medium text-gray-900"
                     >
                       Yes
                     </label>
                     <input
-                      id="bulkQuantityNo"
+                      id="bulkQuantityAvailableNo"
                       type="radio"
-                      name="bulkQuantity"
-                      checked={formState.bulkQuantity === "no"}
-                      onChange={() => handleChange("bulkQuantity", "no")}
+                      name="bulkQuantityAvailable"
+                      checked={formState.bulkQuantityAvailable === "no"}
+                      onChange={() => handleChange("bulkQuantityAvailable", "no")}
                       className="form-radio ml-4 h-4 w-4 text-indigo-600 focus:ring-indigo-500"
                     />
                     <label
-                      htmlFor="bulkQuantityNo"
+                      htmlFor="bulkQuantityAvailableNo"
                       className="ml-2 block text-sm font-medium text-gray-900"
                     >
                       No
