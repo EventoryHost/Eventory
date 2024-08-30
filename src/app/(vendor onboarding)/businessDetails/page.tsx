@@ -18,11 +18,11 @@ const frameworks = [
 ];
 
 const categories = [
-  { value : 'pav', label: "PaV"},
-  { value : 'caterer' , label: "Caterers"},
-  { value : 'decorators', label: "Decorator"},
-  { value : 'propRentals', label: "Prop Rentals"},
-  { value : 'makeupArtist', label: "Makeup Artist"},
+  { value: "pav", label: "PaV" },
+  { value: "caterer", label: "Caterers" },
+  { value: "decorators", label: "Decorator" },
+  { value: "propRentals", label: "Prop Rentals" },
+  { value: "makeupArtist", label: "Makeup Artist" },
 ];
 
 const yearsInOperation = [
@@ -85,6 +85,10 @@ const BusinessDetails = () => {
         if (!refElement || !refElement.value.trim()) {
             return;
         }
+      const refElement = refs.current[key as keyof businessDetails];
+      if (!refElement || !refElement.value.trim()) {
+        return; // Stop further processing if any required field is empty
+      }
     }
 
     if (!businessDetails.category) {
@@ -92,14 +96,14 @@ const BusinessDetails = () => {
     }
 
     const newDetails: businessDetails = {
-        businessName: refs.current.businessName!.value,
-        category: businessDetails.category,
-        gstin: refs.current.gstin!.value,
-        years: businessDetails.years,
-        businessAddress: refs.current.businessAddress!.value,
-        landmark: refs.current.landmark!.value,
-        pinCode: Number(refs.current.pinCode!.value),
-        cities: businessDetails.cities,
+      businessName: refs.current.businessName!.value,
+      category: businessDetails.category,
+      gstin: refs.current.gstin!.value,
+      years: businessDetails.years,
+      businessAddress: refs.current.businessAddress!.value,
+      landmark: refs.current.landmark!.value,
+      pinCode: Number(refs.current.pinCode!.value),
+      cities: businessDetails.cities,
     };
 
     setBusinessDetails(newDetails);
@@ -107,16 +111,15 @@ const BusinessDetails = () => {
 
     const token = localStorage.getItem("token")!;
     const { userId, email } = jwt.decode(token) as {
-        userId: string;
-        email: string;
+      userId: string;
+      email: string;
     };
 
     addBusinessDetails(userId, newDetails);
 
     // Redirect to the selected category's page
     Router.push(`/${businessDetails.category}`);
-};
-
+  };
 
   return (
     <div className="flex h-full min-h-screen w-full flex-col overflow-hidden lg:flex-row">

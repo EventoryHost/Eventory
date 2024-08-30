@@ -7,7 +7,7 @@ import Image from "next/image";
 import auth from "@/services/auth";
 import OtpModal from "@/components/ui/otp-modal";
 import tajmahal from "/public/tajmahal.png";
-import Router from "next/router"; 
+import Router from "next/router";
 
 const fields: {
   id: keyof basicDetails;
@@ -82,15 +82,15 @@ const SignUp = (props: {}) => {
   const handleVerify = async (e: React.FormEvent) => {
     e.preventDefault();
     const inputOtp = basicDetails.otp.toString(); // Current OTP value
-  
+
     // Check if OTP is 6 digits long
     if (inputOtp.length !== 6) {
       setFormError(`Please fill in the OTP correctly`);
       return;
     }
-  
+
     setFormError(null); // Reset error message
-  
+
     try {
       await auth.verifySignUpOtp(basicDetails.mobile.toString(), inputOtp);
       console.log("OTP verified successfully");
@@ -100,7 +100,6 @@ const SignUp = (props: {}) => {
       setFormError("Failed to verify OTP. Please try again.");
     }
   };
-  
 
   const renderError = (): [boolean, string] => {
     return formError ? [true, formError] : [false, ""];
@@ -251,7 +250,7 @@ const SignUp = (props: {}) => {
             setBasicDetails({ ...basicDetails, otp: Number(value) });
             console.log("OTP:", basicDetails.otp);
           }}
-          resendOtpRedirect="/signup" 
+          resendOtpRedirect="/signup"
           renderError={renderError}
         />
       )}
