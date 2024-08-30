@@ -32,7 +32,7 @@ interface FormState {
   contactNumber: string;
   venueDescription: string;
   minimumQuantity: string;
-  bulkQuantity: string;
+  bulkQuantityAvailable: string;
   customizableGifts: string;
   typesOfGifts: string[];
   appetizers: string[];
@@ -51,8 +51,8 @@ interface PageProps {
     nestedKey: string,
     value: any,
   ) => void;
-  setSelectedGiftTypes: (value: any) => void;
-  selectedGiftTypes: any; // Add this line
+  setlistOfGifts: (value: any) => void;
+  listOfGifts: any; 
   updateFormState: (value: any) => void;
 }
 
@@ -60,9 +60,9 @@ const Page2: React.FC<PageProps> = ({
   formState,
   handleChange,
   handleNestedChange,
-  setSelectedGiftTypes,
-  selectedGiftTypes,
-  updateFormState,
+  setlistOfGifts,
+  listOfGifts,
+  updateFormState
 }) => {
   const [isDeliveryChargesChecked, setIsDeliveryChargesChecked] =
     useState<boolean>(false);
@@ -115,8 +115,8 @@ const Page2: React.FC<PageProps> = ({
             <div className="flex w-full flex-col gap-5 md:flex-row md:gap-5">
               <Appetizers
                 appetizers={_buttonTexts}
-                selectedAppetizers={selectedGiftTypes}
-                setSelectedAppetizers={setSelectedGiftTypes}
+                selectedAppetizers={listOfGifts}
+                setSelectedAppetizers={setlistOfGifts}
               />
             </div>
           </div>
