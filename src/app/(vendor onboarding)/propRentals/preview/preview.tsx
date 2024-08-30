@@ -117,9 +117,9 @@ type FormState = {
 
   // Page2
   insurancePolicy: string | File;
-  cancellationPolicy: string;
-  termsAndConditions: string;
-  privacyPolicy: string;
+  cancellationPolicy: string | File;
+  termsAndConditions: string | File;
+  privacyPolicy: string | File;
 
   // Page3
   selectedAppetizers: string[];

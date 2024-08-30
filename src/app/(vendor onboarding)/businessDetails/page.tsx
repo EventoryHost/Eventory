@@ -83,13 +83,12 @@ const BusinessDetails = () => {
     for (const key in refs.current) {
         const refElement = refs.current[key as keyof businessDetails];
         if (!refElement || !refElement.value.trim()) {
-            return; // Stop further processing if any required field is empty
+            return;
         }
     }
 
-    // Make sure the user has selected a category
     if (!businessDetails.category) {
-        return; // Stop further processing if category is not selected
+        return; 
     }
 
     const newDetails: businessDetails = {
