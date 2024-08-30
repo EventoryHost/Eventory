@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 
 const Agreement = () => {
 
@@ -71,7 +72,7 @@ const Agreement = () => {
                 </div>
                 <div className="flex w-[66.06rem] gap-3 p-4 items-end  bottom-0 relative justify-end">
                     <button className="border-[rgba(46,49,146,1)]  text-[rgba(46,49,146,1)]  border-1 rounded-2xl p-4 font-poppins flex justify-center items-center h-[48px] w-[164px]"><h2>Cancel</h2></button>
-                    <button className=" text-white bg-[rgba(46,49,146,1)] rounded-2xl p-4 font-poppins flex justify-center items-center h-[48px] w-[164px]">Agree & Pay</button>
+                    <Link href="/plans" ><button className=" text-white bg-[rgba(46,49,146,1)] rounded-2xl p-4 font-poppins flex justify-center items-center h-[48px] w-[164px]">Agree & Pay</button></Link>
                 </div>
             </div>
         </div>
