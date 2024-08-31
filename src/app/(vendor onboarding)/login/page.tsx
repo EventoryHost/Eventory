@@ -7,22 +7,20 @@ import Link from "next/link";
 import auth from "@/services/auth";
 import OtpModal from "@/components/ui/otp-modal";
 import tajmahal from "/public/tajmahal.png";
+import { set } from "date-fns";
 
-type Props = {};
 type loginDetails = {
-  email: string;
-  mobile: number;
-  password: string;
-  otp: number;
+  mobile: string;
+  otp?: string;
+  session?: string;
 };
 
-const Login = (props: Props) => {
+const Login = ( ) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loginDetails, setLoginDetails] = useState<loginDetails>(
     {} as loginDetails,
   );
   const [formError, setFormError] = useState<string | null>(null);
-  const [session, setSession] = useState<string | null>(null);
 
   const refs = useRef(
     {} as Record<keyof loginDetails, HTMLInputElement | null>,
@@ -30,53 +28,54 @@ const Login = (props: Props) => {
 
   const toggleModal = () => setIsModalOpen(!isModalOpen);
 
-  const handleLogin = async (e: React.FormEvent) => {
+  // called when login button is clicked
+  async function handleLogin (e: React.FormEvent) {
     e.preventDefault();
+    const mobileNumber = refs.current['mobile']!.value;
+    
 
-    // Check if any required field is empty
-    for (const key in refs.current) {
-      if (refs.current[key as keyof loginDetails]?.value.trim() === "") {
-        setFormError(`Please fill in the ${key}`);
-        return; // Stop further processing
-      }
-    }
-
-    // Reset form error if all fields are filled
-    setFormError(null);
-    const newDetails: loginDetails = {
-      email: refs.current.email!.value,
-      mobile: Number(refs.current.mobile!.value),
-      password: refs.current.password!.value,
-      otp: 0,
-    };
-    setLoginDetails(newDetails);
-
-    // console.log("Email:", newDetails.email);
-    // console.log("Mobile:", newDetails.mobile);
-    // console.log("Password:", newDetails.password);
-    // console.log("mobile details: ", newDetails.mobile.toString());
-
-    const res = await auth.login(newDetails.mobile.toString());
-    if (res) {
-      console.log("Response: ", res.data.data.Session);
-      setSession(res.data.data.Session);
-    }
-    toggleModal();
-  };
-
-  const handleVerify = (e: React.FormEvent) => {
-    e.preventDefault();
-    const inputOtp = loginDetails.otp.toString();
-
-    if (inputOtp.length !== 6) {
-      setFormError(`Please fill in the OTP correctly`);
-      console.log(`Invalid OTP`);
+    // validate mobile number
+    if (mobileNumber === '') {
+      setFormError(`Please fill in the mobile number`);
+      return;
+    } else if (mobileNumber.length !== 10 || mobileNumber[0] === '0') {
+      setFormError(`Enter a valid 10 digit mobile number`);
       return;
     }
 
     setFormError(null);
-    console.log(inputOtp);
-    auth.verifyLoginOtp(loginDetails.mobile.toString(), inputOtp, session!);
+    const newDetails: loginDetails = {
+      mobile: mobileNumber,
+    };
+    setLoginDetails(newDetails);
+
+    const res = await auth.login(newDetails.mobile);
+    if (res) {
+      console.log("Response: ", res.data.data.Session);
+      setLoginDetails({ ...loginDetails, session: res.data.data.Session });
+    }
+
+    toggleModal();
+  };
+
+  async function handleVerify (e: React.FormEvent) {
+    e.preventDefault();
+    const inputOtp = loginDetails.otp!;
+    
+    // validate OTP length
+    if (inputOtp.length !== 6) {
+      setFormError(`Please fill in the OTP correctly`);
+      return;
+    }
+
+    setFormError(null);
+    console.log("Login deets: ", loginDetails);
+    console.log("inp: ", inputOtp);
+
+    const res = await auth.verifyLoginOtp(loginDetails.mobile, inputOtp, loginDetails.session!);
+    // res.status === 200 ? console.log("Login successful") : console.log("Login failed");
+    console.log(res);
+    
     // collect refresh token to local storage
   };
 
@@ -122,7 +121,7 @@ const Login = (props: Props) => {
         <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
           <h1 className="text-3xl font-bold">Login</h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
-            <form onSubmit={(val) => handleLogin(val)}>
+            <form onSubmit={(e) => handleLogin(e)}>
               <div className="grid grid-cols-2 gap-5">
                 {fields.map((field) => (
                   <div
@@ -138,12 +137,13 @@ const Login = (props: Props) => {
                       ref={(el) => {
                         refs.current[field.id] = el;
                       }}
-                      required
                     />
                   </div>
                 ))}
-                {formError && <div className="text-red-500">{formError}</div>}
               </div>
+              {formError && (
+                <div className="pl-5 text-red-500">{formError}</div>
+              )}
               <div className="mt-9 flex w-full flex-col-reverse justify-between gap-3 self-start md:mt-0 md:flex-row md:items-center md:px-0">
                 <div className="mt-5 flex gap-2 xs:text-sm md:mt-9 md:gap-3">
                   <Link
@@ -213,10 +213,9 @@ const Login = (props: Props) => {
           mobileNo={loginDetails.mobile}
           notYouRedirect={toggleModal}
           verifyFunction={handleVerify}
-          onChangeFunction={(value) => {
-            setLoginDetails({ ...loginDetails, otp: Number(value) });
-            console.log(loginDetails);
-          }}
+          onChangeFunction={(value) =>
+            setLoginDetails({ ...loginDetails, otp: value })
+          }
           resendOtpRedirect="/login"
           renderError={renderError}
         />
