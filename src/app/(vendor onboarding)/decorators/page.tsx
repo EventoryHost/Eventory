@@ -8,7 +8,6 @@ import Page4 from "./page4/page4";
 import Page5 from "./page5/page5";
 import Page6 from "./page6/page6";
 import Page7 from "./page7/page7";
-import Page8 from "./preview/page8";
 
 interface Package {
   type: string;
@@ -320,37 +319,8 @@ const Decorators: React.FC = () => {
 
       default:
         return (
-          <Page8
-          typeOfevents={typesOfEvents}
-            setTypesOfEvents={setTypesOfEvents}
-            weddingEvents={weddingEvents}
-            setWeddingEvents={setWeddingEvents}
-            corporateEvents={corporateEvents}
-            setCorporateEvents={setCorporateEvents}
-            seasonalEvents={seasonalEvents}
-            setSeasonalEvents={setSeasonalEvents}
-            culturalEvents={culturalEvents}
-            setCulturalEvents={setCulturalEvents}
+          <Page7 formState={formState} updateFormState={updateFormState} />
 
-            formState={formState}
-            updateFormState={updateFormState}
-            themesOffered={themesOffered}
-            setThemesOffered={setThemesOffered}
-
-            themesElements={themesElements}
-            setThemesElements={setThemesElements}
-
-            hourlyPackages={hourlyPackages}
-            setHourlyPackages={setHourlyPackages}
-            dailyPackages={dailyPackages}
-            setDailyPackages={setDailyPackages}
-            additionalCharges={additionalCharges}
-            setAdditionalCharges={setAdditionalCharges}
-            handlePackageChange={handlePackageChange}
-            addPackage={addPackage}
-            advancePayment={advancePayment}
-            setAdvancePayment={setAdvancePayment}
-          />
         );
     }
   };
