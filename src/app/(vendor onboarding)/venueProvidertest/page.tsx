@@ -8,6 +8,7 @@ import Page2 from "./page2/page2";
 import Page3 from "./page3/page3";
 import Page4 from "./page4/page4";
 import Page5 from "./page5/page5";
+import Page6 from "./page6/page6";
 import { addVenue } from "../../../services/vendors/venue";
 
 interface Package {
@@ -29,6 +30,14 @@ interface FormState {
   cancellationPolicy: string | File;
   instaURL: string;
   websiteURL: string;
+  audioVisualEquipment: string[];
+  accessibilityFeatures: string[];
+  facilities: string[];
+  hourlyPackages: Package[];
+  dailyPackages: Package[];
+  seasonalPackages: Package[];
+  _venue_restrictions: string[];
+  _venue_special_features: string[];
 }
 
 const VenueForm: React.FC = () => {
@@ -51,6 +60,14 @@ const VenueForm: React.FC = () => {
 
     instaURL: "",
     websiteURL: "",
+    audioVisualEquipment: [],
+    accessibilityFeatures: [],
+    facilities: [],
+    hourlyPackages: [{ type: "", priceRange: [0, 0] }],
+    dailyPackages: [{ type: "", priceRange: [0, 0] }],
+    seasonalPackages: [{ type: "", priceRange: [0, 0] }],
+    _venue_restrictions: [],
+    _venue_special_features: [],
   });
 
   const updateFormState = (newState: Partial<FormState>) => {
@@ -237,6 +254,23 @@ const VenueForm: React.FC = () => {
             handleSubmit={handleSubmit}
           />
         );
+        case 6:
+          return (
+            <Page6
+              formState={formState}
+              updateFormState={updateFormState}
+              handleSubmit={handleSubmit}
+              audioVisualEquipment={audioVisualEquipment}
+              accessibilityFeatures={accessibilityFeatures}
+              facilities={facilities}
+              hourlyPackages={hourlyPackages}
+              dailyPackages={dailyPackages}
+              seasonalPackages={seasonalPackages}
+              _venue_restrictions={venue_restrictions}
+              _venue_special_features={venue_special_features}
+              
+            />
+          );
       default:
         return (
           <Page1 formState={formState} updateFormState={updateFormState} />
@@ -256,7 +290,7 @@ const VenueForm: React.FC = () => {
             Previous
           </button>
         )}
-        {currentPage < 5 && (
+        {currentPage < 6 && (
           <button
             onClick={() => setCurrentPage(currentPage + 1)}
             className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
@@ -264,7 +298,7 @@ const VenueForm: React.FC = () => {
             Next
           </button>
         )}
-        {currentPage === 5 && (
+        {currentPage === 6 && (
           <button
             onClick={handleSubmit}
             className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
