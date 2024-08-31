@@ -6,6 +6,7 @@ import Page2 from "./page2/page2";
 import Page3 from "./page3/page3";
 import Page4 from "./page4/page4";
 import Page5 from "./page5/page5";
+import Page6 from "./preview/page6";
 
 interface Package {
   type: string;
@@ -283,29 +284,8 @@ const Invitation: React.FC = () => {
         );
       default:
         return (
-          <Page1
-            formState={formState}
-            updateFormState={updateFormState}
-            typesOfInvitationsYouDesign={typesOfInvitationsYouDesign}
-            setTypesOfInvitationsYouDesign={setTypesOfInvitationsYouDesign}
-            formalinvitation={formalinvitation}
-            setFormalInvitation={setFormalInvitation}
-            casualinvitation={casualinvitation}
-            setCasualInvitation={setCasualInvitation}
-            Electronicinvitation={Electronicinvitation}
-            setElectronicInvitation={setElectronicInvitation}
-            handmadeinvitation={handmadeinvitation}
-            setHandmadeInvitation={setHandmadeInvitation}
-            printedInvitation={printedInvitation}
-            setPrintedInvitation={setPrintedInvitation}
-            specialyInvitation={specialyInvitation}
-            setSpecialyInvitation={setSpecialyInvitation}
-            uniqueInvitation={uniqueInvitation}
-            setUniqueInvitation={setUniqueInvitation}
-            relegiousInvitation={relegiousInvitation}
-            setRelegiousInvitation={setRelegiousInvitation}
-            otherInvitation={otherInvitation}
-            setOtherInvitation={setOtherInvitation}
+          <Page6
+            
           />
         );
     }
