@@ -10,6 +10,7 @@ import {
   IconSignature,
   IconTableColumn,
 } from "@tabler/icons-react";
+import Link from "next/link";
 
 export function Partner() {
   return (
@@ -44,7 +45,10 @@ export function Partner() {
           weddings, corporate events, birthday parties, and any special
           occasion.
         </p>
-        <button className="animate flex transform items-center justify-center gap-2 rounded-md bg-[#2E3192] p-4 text-lg text-white hover:bg-indigo-400 hover:text-[#2E3192]">
+        <Link
+          href="/comingsoon"
+          className="animate flex transform items-center justify-center gap-2 rounded-md bg-[#2E3192] p-4 text-lg text-white hover:bg-indigo-400 hover:text-[#2E3192]"
+        >
           <span>Know More</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -60,7 +64,7 @@ export function Partner() {
               d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25"
             />
           </svg>
-        </button>
+        </Link>
       </div>
     </div>
   );

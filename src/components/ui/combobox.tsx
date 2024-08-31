@@ -1,6 +1,6 @@
 "use client";
 
-import * as React from "react";
+import { useState } from "react";
 import { Check, ChevronsUpDown } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -26,21 +26,16 @@ type FrameworkOption = {
 };
 
 // Define the props for the component
-interface ComboboxDemoProps {
+interface ComboboxProps {
   options: FrameworkOption[];
   className?: string;
   placeholder?: string;
-  setFunction: React.Dispatch<React.SetStateAction<string>>;
+  setFunction: (value: string) => void;
 }
 
-export function Combobox({
-  options,
-  className,
-  placeholder,
-  setFunction,
-}: ComboboxDemoProps) {
-  const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState("");
+export function Combobox(props: ComboboxProps) {
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState("");
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -49,28 +44,31 @@ export function Combobox({
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className={cn("w-[100%] min-w-[245px] justify-between", className)}
+          className={cn(
+            "w-[100%] min-w-[245px] justify-between",
+            props.className,
+          )}
         >
           {value
-            ? options.find((option) => option.value === value)?.label
-            : placeholder || "Select framework..."}
+            ? props.options.find((option) => option.value === value)?.label
+            : props.placeholder}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[200px] p-0">
+      <PopoverContent className="p-0[n w-[250px]">
         <Command>
           <CommandInput placeholder="Search framework..." />
           <CommandList>
             <CommandEmpty>No framework found.</CommandEmpty>
             <CommandGroup>
-              {options.map((option) => (
+              {props.options.map((option) => (
                 <CommandItem
                   key={option.value}
                   value={option.value}
                   onSelect={(currentValue) => {
                     setValue(currentValue === value ? "" : currentValue);
                     setOpen(false);
-                    setFunction(currentValue);
+                    props.setFunction(currentValue);
                   }}
                 >
                   <Check

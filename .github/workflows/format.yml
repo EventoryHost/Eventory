@@ -16,8 +16,8 @@ jobs:
         with:
           node-version: "20"
 
-      - run: npm i -D prettier@latest
-      - run: npx prettier . --write
+      - run: npm i -D prettier@latest prettier-plugin-tailwindcss
+      - run: npx prettier --write . --plugin=prettier-plugin-tailwindcss
 
       # Building a multiline commit message
       - run: 'echo "chore: apply formatting changes" >> commitmessage.txt'

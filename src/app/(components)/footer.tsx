@@ -27,7 +27,7 @@ const Footer = (props: Props) => {
           </div>
           <div>
             <div className="-mr-4 -mt-1.5 w-[6rem] rounded-xl bg-[#2E3192] py-3 text-sm text-white shadow-md md:mt-0 md:w-[9rem] md:rounded-xl md:px-5 md:py-4">
-              <a href="#" className="block h-full w-full text-center">
+              <a href="/comingsoon" className="block h-full w-full text-center">
                 Book now
               </a>
             </div>
