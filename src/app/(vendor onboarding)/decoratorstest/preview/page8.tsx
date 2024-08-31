@@ -46,7 +46,9 @@ interface Package {
 type FormState = {
   // Page-specific states
   // Page 1
-
+  businessName: string;
+  references: boolean;
+  experience: string;
   // Page 2
   propthemesOffered: boolean;
   adobtThemes: boolean;
@@ -196,6 +198,8 @@ function Preview({
       </div>
       <div className="scroll-touch flex max-h-[calc(100vh-5.2rem)] flex-col min-w-[70%] gap-5 overflow-y-scroll bg-[#F7F6F9] p-6 ">
         <div className=" w-[100%] flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-2">
+        <span className="my-5 mx-2 text-3xl font-semibold">{formState.businessName} / Decorators</span>
+
           <div className="flex gap-9">
             <div className=" w-[100%]   flex justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
               Basic Details
