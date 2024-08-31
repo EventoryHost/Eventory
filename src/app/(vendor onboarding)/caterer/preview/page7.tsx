@@ -158,7 +158,7 @@ function Preview({
         <div className="m-6 mt-4 flex flex-col">
           <span className="text-xl">Cuisine Speciliaty</span>
           <Appetizers
-            appetizers={_cuisine}
+            appetizers={cuisineSpecialties}
             selectedAppetizers={cuisineSpecialties}
             setSelectedAppetizers={setCuisineSpecialties}
           />
@@ -166,7 +166,7 @@ function Preview({
         <div className="m-6 mt-4 flex flex-col">
           <span className="text-xl">Regional Specialties</span>
           <Appetizers
-            appetizers={regional}
+            appetizers={regionalSpecialties}
             selectedAppetizers={regionalSpecialties}
             setSelectedAppetizers={setRegionalSpecialties}
           />
@@ -175,7 +175,7 @@ function Preview({
         <div className="m-6 mt-4 flex flex-col">
           <span className="text-xl">Service Styles Offered</span>
           <Appetizers
-            appetizers={service}
+            appetizers={serviceStyles}
             selectedAppetizers={serviceStyles}
             setSelectedAppetizers={setServiceStyles}
           />
@@ -193,7 +193,7 @@ function Preview({
         <div className="m-6 mt-4 flex flex-col">
           <span className="text-xl">Appetizers</span>
           <Appetizers
-            appetizers={appetizers}
+            appetizers={selectedAppetizers}
             selectedAppetizers={selectedAppetizers}
             setSelectedAppetizers={setSelectedAppetizers}
           />
@@ -203,7 +203,7 @@ function Preview({
         <div className="m-6 mt-4 flex flex-col">
           <span className="text-xl">Beverages</span>
           <Appetizers
-            appetizers={beverages}
+            appetizers={selectedBeverages}
             selectedAppetizers={selectedBeverages}
             setSelectedAppetizers={setSelectedBeverages}
           />
@@ -211,7 +211,7 @@ function Preview({
         <div className="m-6 mt-4 flex flex-col">
           <span className="text-xl">Main Courses</span>
           <Appetizers
-            appetizers={mainCourses}
+            appetizers={selectedMainCourses}
             selectedAppetizers={selectedMainCourses}
             setSelectedAppetizers={setSelectedMainCourses}
           />
@@ -219,7 +219,7 @@ function Preview({
         <div className="m-6 mt-4 flex flex-col">
           <span className="text-xl">Dietary Options</span>
           <Appetizers
-            appetizers={dietaryOptions}
+            appetizers={selectedDietaryOptions}
             selectedAppetizers={selectedDietaryOptions}
             setSelectedAppetizers={setSelectedDietaryOptions}
           />
@@ -237,7 +237,7 @@ function Preview({
         <div className="m-6 mt-4 flex flex-col">
           <span className="text-xl">Event Options</span>
           <Appetizers
-            appetizers={eventTypes}
+            appetizers={selectedEventTypes}
             selectedAppetizers={selectedEventTypes}
             setSelectedAppetizers={setSelectedEventTypes}
           />
@@ -245,7 +245,7 @@ function Preview({
         <div className="m-6 mt-4 flex flex-col">
           <span className="text-xl">Additional Services</span>
           <Appetizers
-            appetizers={additionalServices}
+            appetizers={selectedAdditionalServices}
             selectedAppetizers={selectedAdditionalServices}
             setSelectedAppetizers={setSelectedAdditionalServices}
           />
@@ -263,7 +263,7 @@ function Preview({
         <div className="m-6 mt-4 flex flex-col">
           <span className="text-xl">Staff provides</span>
           <Appetizers
-            appetizers={staff}
+            appetizers={selectedStaffProvider}
             selectedAppetizers={selectedStaffProvider}
             setSelectedAppetizers={setSelectedStaffProvider}
           />
@@ -272,7 +272,7 @@ function Preview({
         <div className="m-6 mt-4 flex flex-col">
           <span className="text-xl">Equipments provided</span>
           <Appetizers
-            appetizers={equipment}
+            appetizers={selectedEquipmentsProvided}
             selectedAppetizers={selectedEquipmentsProvided}
             setSelectedAppetizers={setSelectedEquipmentsProvided}
           />

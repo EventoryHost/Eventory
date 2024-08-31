@@ -196,6 +196,7 @@ function Preview({
         </div>
 
       </div>
+      
       <div className="scroll-touch flex max-h-[calc(100vh-5.2rem)] flex-col min-w-[70%] gap-5 overflow-y-scroll bg-[#F7F6F9] p-6 ">
         <div className=" w-[100%] flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-2">
         <span className="my-5 mx-2 text-3xl font-semibold">{formState.businessName} / Decorators</span>
@@ -214,7 +215,7 @@ function Preview({
             <div className="m-6 mt-4 flex flex-col">
               <span className="text-xl">Types of Event</span>
               <Appetizers
-                appetizers={eventTypes}
+                appetizers={typeOfevents}
                 selectedAppetizers={typeOfevents}
                 setSelectedAppetizers={setTypesOfEvents}
               />
@@ -223,7 +224,7 @@ function Preview({
             <div className="m-6 mt-4 flex flex-col">
               <span className="text-xl">Wedding Events</span>
               <Appetizers
-                appetizers={eventTypes}
+                appetizers={weddingEvents}
                 selectedAppetizers={weddingEvents}
                 setSelectedAppetizers={setWeddingEvents}
               />
@@ -231,7 +232,7 @@ function Preview({
             <div className="m-6 mt-4 flex flex-col">
               <span className="text-xl">Corporate Events</span>
               <Appetizers
-                appetizers={eventTypes}
+                appetizers={corporateEvents}
                 selectedAppetizers={corporateEvents}
                 setSelectedAppetizers={setCorporateEvents}
               />
@@ -239,7 +240,7 @@ function Preview({
             <div className="m-6 mt-4 flex flex-col">
               <span className="text-xl">Seasonal Event</span>
               <Appetizers
-                appetizers={eventTypes}
+                appetizers={seasonalEvents}
                 selectedAppetizers={seasonalEvents}
                 setSelectedAppetizers={setSeasonalEvents}
               />
@@ -247,7 +248,7 @@ function Preview({
             <div className="m-6 mt-4 flex flex-col">
               <span className="text-xl">Cultural Events</span>
               <Appetizers
-                appetizers={eventTypes}
+                appetizers={culturalEvents}
                 selectedAppetizers={culturalEvents}
                 setSelectedAppetizers={setCulturalEvents}
               />
@@ -269,7 +270,7 @@ function Preview({
             <div className="m-6 mt-4 flex flex-col">
               <span className="text-xl">Themes</span>
               <Appetizers
-                appetizers={eventTypes}
+                appetizers={themesOffered}
                 selectedAppetizers={themesOffered}
                 setSelectedAppetizers={setThemesOffered}
               />
@@ -321,7 +322,7 @@ function Preview({
             <div className="m-6 mt-4 flex flex-col">
               <span className="text-xl">Themes Elements</span>
               <Appetizers
-                appetizers={eventTypes}
+                appetizers={themesElements}
                 selectedAppetizers={themesElements}
                 setSelectedAppetizers={setThemesElements}
               />
