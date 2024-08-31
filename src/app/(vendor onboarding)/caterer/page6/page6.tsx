@@ -58,6 +58,7 @@ const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
                   Upload
                   <input
                     type="file"
+                    className="hidden"
                     id="cateringServiceImages"
                     name="cateringServiceImages"
                     accept="image/png, .pdf, image/jpg"
@@ -111,6 +112,7 @@ const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
                   Upload
                   <input
                     type="file"
+                    className="hidden"
                     id="videoEvent"
                     name="videoEvent"
                     accept=".mp4, .avi, .mov, .wmv"
@@ -159,6 +161,7 @@ const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
                     Upload
                     <input
                       type="file"
+                      className="hidden"
                       id="termsAndConditions"
                       name="termsAndConditions"
                       accept="image/png, .pdf, image/jpg"
@@ -191,6 +194,7 @@ const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
                   Upload
                   <input
                     type="file"
+                    className="hidden"
                     id="cancellationPolicy"
                     name="cancellationPolicy"
                     accept="image/png, .pdf, image/jpg"

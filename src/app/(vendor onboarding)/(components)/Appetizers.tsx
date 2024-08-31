@@ -23,7 +23,8 @@ const Appetizers: React.FC<AppetizersProps> = ({
     if (storedAppetizers) {
       setCustomAppetizers(JSON.parse(storedAppetizers));
     }
-  }, [field]);
+    console.log(selectedAppetizers)
+  }, [field,selectedAppetizers]);
 
   const handleButtonClick = (
     e: React.MouseEvent<HTMLButtonElement>,
@@ -36,11 +37,12 @@ const Appetizers: React.FC<AppetizersProps> = ({
       if (customAppetizers.includes(appetizer)) {
         const updatedCustomAppetizers = customAppetizers.filter((item) => item !== appetizer);
         setCustomAppetizers(updatedCustomAppetizers);
-        localStorage.setItem(`${field}`, JSON.stringify(updatedCustomAppetizers));
+        // localStorage.setItem(`${field}`, JSON.stringify(updatedCustomAppetizers));
       }
     } else {
       setSelectedAppetizers([...selectedAppetizers, appetizer]);
     }
+    
   };
 
   const handleAddCustomAppetizer = (appetizer: string) => {
@@ -51,20 +53,31 @@ const Appetizers: React.FC<AppetizersProps> = ({
     localStorage.setItem(`${field}`, JSON.stringify(updatedCustomAppetizers));
   };
 
+  const b=(e: React.MouseEvent<HTMLButtonElement>,
+    appetizer: string,)=>{
+    e.preventDefault();
+    if (customAppetizers.includes(appetizer)) {
+      const updatedCustomAppetizers = customAppetizers.filter((item) => item !== appetizer);
+      setCustomAppetizers(updatedCustomAppetizers);
+      setSelectedAppetizers(selectedAppetizers.filter((item) => item !== appetizer));
+      localStorage.setItem(`${field}`, JSON.stringify(updatedCustomAppetizers));
+    }
+  }
+
   const toggleCustomInput = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setShowCustomInput((prev) => !prev);
   };
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 w-[100%]">
       <div className="grid min-h-[100%] min-w-[100%] grid-cols-2 gap-3 md:grid-cols-4">
         {appetizers.map((appetizer, index) =>
           appetizer.toLowerCase() !== 'others' ? (
             <button
               key={index}
               onClick={(e) => handleButtonClick(e, appetizer)}
-              className={`text col-span-1 row-span-1 flex min-w-[7rem] items-center justify-center rounded-2xl border border-none px-2 py-3 text-[3.5vw] font-medium outline-none md:text-[2vw] lg:text-[1vw] ${selectedAppetizers.includes(appetizer) ? 'bg-[#2E3192] text-white' : 'bg-[rgba(242,242,242,1)] text-gray-600'}`}
+              className={`text col-span-1 row-span-1 flex min-w-[7rem] items-center justify-center rounded-2xl border  px-2 py-3 text-[3.5vw] font-medium outline-none md:text-[2vw] lg:text-[1vw] ${selectedAppetizers.includes(appetizer) ? 'bg-white text-[#2E3192] border-2 border-[#2E3192]' : 'bg-[rgba(242,242,242,1)] text-gray-600 '}`}
             >
               {appetizer}
             </button>
@@ -73,20 +86,34 @@ const Appetizers: React.FC<AppetizersProps> = ({
 
         {/* Render custom appetizers before the "Others" button */}
         {customAppetizers.map((customApp, index) => (
+          <div 
+          className={`justify-evenly flex text col-span-1 row-span-1  min-w-[7rem] items-center  rounded-2xl border  px-2 py-3 text-[3.5vw] font-medium outline-none md:text-[2vw] lg:text-[1vw] ${selectedAppetizers.includes(customApp) ? 'bg-white text-[#2E3192] border-2 border-[#2E3192]' : 'bg-[rgba(242,242,242,1)] text-gray-600'}`}
+
+          >
           <button
             key={`custom-${index}`}
             onClick={(e) => handleButtonClick(e, customApp)}
-            className={`text col-span-1 row-span-1 flex min-w-[7rem] items-center justify-center rounded-2xl border border-none px-2 py-3 text-[3.5vw] font-medium outline-none md:text-[2vw] lg:text-[1vw] ${selectedAppetizers.includes(customApp) ? 'bg-[#2E3192] text-white' : 'bg-[rgba(242,242,242,1)] text-gray-600'}`}
           >
             {customApp}
-          </button>
+            </button>
+
+          <button
+           onClick={(e) => b(e, customApp)}
+          
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+        
+</div>
         ))}
 
         {/* Render the "Others" button */}
         {appetizers.includes('Others') && (
           <button
             onClick={toggleCustomInput}
-            className={`text col-span-1 row-span-1 flex min-w-[7rem] items-center justify-center rounded-2xl border border-none px-2 py-3 text-[3.5vw] font-medium outline-none md:text-[2vw] lg:text-[1vw] ${showCustomInput ? 'bg-[#2E3192] text-white' : 'bg-[rgba(242,242,242,1)] text-gray-600'}`}
+            className={`text col-span-1 row-span-1 flex min-w-[7rem] items-center justify-center rounded-2xl border px-2 py-3 text-[3.5vw] font-medium outline-none md:text-[2vw] lg:text-[1vw] ${showCustomInput ? 'bg-white text-[#2E3192] border-2 border-[#2E3192]' : 'bg-[rgba(242,242,242,1)] text-gray-600'}`}
           >
             Others
           </button>

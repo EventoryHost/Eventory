@@ -39,10 +39,11 @@ const Page3 :React.FC<page3Props>= ({
       <div className="scroll-touch items-strech flex max-h-[calc(100vh-5.2rem)] w-[100%] flex-col gap-9 overflow-y-scroll bg-[#F7F6F9] p-2 md:p-[3rem]">
         <div className="flex flex-col gap-9 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
           <h1 className="text-2xl font-semibold md:text-3xl">Event Details</h1>
-          <div className="flex min-h-full min-w-full flex-col items-center gap-5">
-            <h1 className="self-start text-lg font-normal md:text-2xl">
+          <h1 className="self-start text-lg font-normal md:text-2xl">
               Event Types Catered:
             </h1>
+          <div className="flex min-h-full min-w-full flex-col items-center gap-5">
+            
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
                 field={'EventTypes'}
@@ -51,6 +52,7 @@ const Page3 :React.FC<page3Props>= ({
                 setSelectedAppetizers={setSelectedEventTypes}
               />
             </div>
+            
           </div>
         </div>
         <div className="flex flex-col gap-9 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
