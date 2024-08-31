@@ -18,8 +18,8 @@ const CustomAppetizerInput: React.FC<CustomAppetizerInputProps> = ({ onAddCustom
   };
 
   return (
-    <div className="flex items-center space-x-2">
-  <div className="flex-grow flex items-center rounded-lg border border-gray-700 p-2 text-[3.5vw] font-medium md:text-[2vw] lg:text-[1vw]">
+    <div className="flex items-center space-x-4">
+  <div className="flex-grow flex items-center rounded-lg border border-gray-700 p-2 py-3 text-[3.5vw] font-medium md:text-[2vw] lg:text-[1vw]">
     <button className="text-gray-700">
       
       <img src="./Search.png"   />
