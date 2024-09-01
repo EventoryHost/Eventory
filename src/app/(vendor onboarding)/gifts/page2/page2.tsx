@@ -2,7 +2,7 @@
 import ThreeStepBar from "@/app/(components)/threeStepBar";
 import { Upload } from "lucide-react";
 import React, { useState } from "react";
-import Appetizers from "../../decorators/(components)/Appetizers";
+import Appetizers from "../../(components)/Appetizers";
 
 // Define types for the component state and props
 type AppetizerType = string;
@@ -114,6 +114,7 @@ const Page2: React.FC<PageProps> = ({
           <div className="flex flex-col items-center gap-5">
             <div className="flex w-full flex-col gap-5 md:flex-row md:gap-5">
               <Appetizers
+              field={'_buttonTexts'}
                 appetizers={_buttonTexts}
                 selectedAppetizers={selectedGiftTypes}
                 setSelectedAppetizers={setSelectedGiftTypes}

@@ -34,11 +34,12 @@ const Page2 = ({
   return (
     <div className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll rounded-xl bg-white p-3 xs:w-[100%] xs:min-w-[90%] md:p-6">
       <h1 className="my-5 text-3xl font-semibold">Menu Details</h1>
-      <div className="flex min-h-full min-w-full flex-col items-start justify-around gap-5">
-        <div className="flex min-w-full flex-col items-start justify-between gap-5">
-          <div className="flex min-w-fit flex-col gap-4">
+      <div className="flex min-h-full min-w-full flex-col items-start justify-around gap-5 ">
+        <div className="flex min-w-full flex-col items-start justify-between gap-5 ">
+          <div className="flex min-w-fit flex-col gap-4 ">
             <label htmlFor="appetizers">Appetizers</label>
             <Appetizers
+            field={'_appetizers'}
               appetizers={_appetizers}
               selectedAppetizers={selectedAppetizers}
               setSelectedAppetizers={setSelectedAppetizers}
@@ -50,6 +51,7 @@ const Page2 = ({
           <div className="flex min-w-[40%] flex-col gap-4">
             <label htmlFor="beverages">Beverages</label>
             <Appetizers
+            field={'_beverages'}
               appetizers={_beverages}
               selectedAppetizers={selectedBeverages}
               setSelectedAppetizers={setSelectedBeverages}
@@ -60,6 +62,7 @@ const Page2 = ({
           <div className="flex min-w-[40%] flex-col gap-4">
             <label htmlFor="mainCourses">Main Courses</label>
             <Appetizers
+            field={'_mainCourses'}
               appetizers={_mainCourses}
               selectedAppetizers={selectedMainCourses}
               setSelectedAppetizers={setSelectedMainCourses}
@@ -70,6 +73,7 @@ const Page2 = ({
           <div className="flex min-w-[40%] flex-col gap-4">
             <label htmlFor="dietaryOptions">Dietary Options</label>
             <Appetizers
+             field={'_dietaryOptions'}
               appetizers={_dietaryOptions}
               selectedAppetizers={selectedDietaryOptions}
               setSelectedAppetizers={setSelectedDietaryOptions}

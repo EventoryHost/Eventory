@@ -1,7 +1,7 @@
 import React from "react";
 import ThreeStepBar from "@/app/(components)/threeStepBar";
 import { EditIcon } from "lucide-react";
-import Appetizers from "../../decorators/(components)/Appetizers";
+import Appetizers from "../../(components)/Appetizers";
 
 const giftTypes = [
   "Books and Media Gifts",
@@ -19,7 +19,7 @@ const giftTypes = [
   "Subscription Services Gifts",
   "Fashion and Apparel Gifts",
   "Sports and Fitness Gifts",
-  "Other",
+  "Others",
 ];
 
 interface FormState {
@@ -180,6 +180,7 @@ const Preview: React.FC<PreviewProps> = ({
                 </label>
                 <div className="flex flex-col gap-5 md:flex-row">
                   <Appetizers
+                  field={'giftTypes'}
                     appetizers={giftTypes}
                     selectedAppetizers={selectedGiftTypes}
                     setSelectedAppetizers={setSelectedGiftTypes}

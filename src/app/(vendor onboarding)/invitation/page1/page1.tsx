@@ -299,6 +299,7 @@ const Page = ({
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
+              field={'_typesOfInvitationsYouDesign'}
                 appetizers={_typesOfInvitationsYouDesign}
                 selectedAppetizers={typesOfInvitationsYouDesign}
                 setSelectedAppetizers={setTypesOfInvitationsYouDesign}
@@ -311,6 +312,7 @@ const Page = ({
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
+              field={'_formalInvitations'}
                 appetizers={_formalInvitations}
                 selectedAppetizers={formalinvitation}
                 setSelectedAppetizers={setFormalInvitation}
@@ -323,6 +325,7 @@ const Page = ({
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
+              field={'_casualInvitations'}
                 appetizers={_casualInvitations}
                 selectedAppetizers={casualinvitation}
                 setSelectedAppetizers={setCasualInvitation}
@@ -335,6 +338,8 @@ const Page = ({
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
+                            field={'_electronicInvitations'}
+
                 appetizers={_electronicInvitations}
                 selectedAppetizers={Electronicinvitation}
                 setSelectedAppetizers={setElectronicInvitation}
@@ -347,6 +352,7 @@ const Page = ({
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
+              field={'_handmadeInvitations'}
                 appetizers={_handmadeInvitations}
                 selectedAppetizers={handmadeinvitation}
                 setSelectedAppetizers={setHandmadeInvitation}
@@ -359,6 +365,7 @@ const Page = ({
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
+              field={'_printedInvitations'}
                 appetizers={_printedInvitations}
                 selectedAppetizers={printedInvitation}
                 setSelectedAppetizers={setPrintedInvitation}
@@ -371,6 +378,7 @@ const Page = ({
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
+              field={'_specialtyInvitations'}
                 appetizers={_specialtyInvitations}
                 selectedAppetizers={specialyInvitation}
                 setSelectedAppetizers={setSpecialyInvitation}
@@ -383,6 +391,7 @@ const Page = ({
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
+              field={'_uniqueInvitations'}
                 appetizers={_uniqueInvitations}
                 selectedAppetizers={uniqueInvitation}
                 setSelectedAppetizers={setUniqueInvitation}
@@ -397,6 +406,7 @@ const Page = ({
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
+              field={'_religiousAndCulturalInvitations'}
                 appetizers={_religiousAndCulturalInvitations}
                 selectedAppetizers={relegiousInvitation}
                 setSelectedAppetizers={setRelegiousInvitation}

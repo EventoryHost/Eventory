@@ -1,6 +1,6 @@
 import { Check, EditIcon } from "lucide-react";
 import { SetStateAction } from "react";
-import Appetizers from "../(components)/Appetizers";
+import Appetizers from "../../(components)/Appetizers";
 
 const furnitureOptions = [
   "Chair",
@@ -330,7 +330,7 @@ function Preview({
           <Appetizers
             appetizers={furnitureOptions}
             selectedAppetizers={selectedAppetizers}
-            setselectedAppetizers={setselectedAppetizers}
+            setSelectedAppetizers={setselectedAppetizers}
           />
         </div>
         <div className="m-6 mt-6 flex flex-col">
@@ -338,7 +338,7 @@ function Preview({
           <Appetizers
             appetizers={DecorOptions}
             selectedAppetizers={selectedDecor}
-            setselectedAppetizers={setSelectedDecor}
+            setSelectedAppetizers={setSelectedDecor}
           />
         </div>
 
@@ -427,7 +427,7 @@ function Preview({
           <Appetizers
             appetizers={tentOptions}
             selectedAppetizers={selectedTentOptions}
-            setselectedAppetizers={setSelectedTentOptions}
+            setSelectedAppetizers={setSelectedTentOptions}
           />
         </div>
 
@@ -503,7 +503,7 @@ function Preview({
           <Appetizers
             appetizers={audioOptions}
             selectedAppetizers={selectedAudioOptions}
-            setselectedAppetizers={setSelectedAudioOptions}
+            setSelectedAppetizers={setSelectedAudioOptions}
           />
         </div>
 
@@ -512,7 +512,7 @@ function Preview({
           <Appetizers
             appetizers={visualOptions}
             selectedAppetizers={selectedvisualOptions}
-            setselectedAppetizers={setSelectedVisualOptions}
+            setSelectedAppetizers={setSelectedVisualOptions}
           />
         </div>
 
@@ -521,7 +521,7 @@ function Preview({
           <Appetizers
             appetizers={lightOptions}
             selectedAppetizers={selectedLightOptions}
-            setselectedAppetizers={setSelectedLightOptions}
+            setSelectedAppetizers={setSelectedLightOptions}
           />
         </div>
 

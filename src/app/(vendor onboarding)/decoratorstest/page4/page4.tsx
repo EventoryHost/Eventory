@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import Appetizers from "../(components)/Appetizers";
+import Appetizers from "../../(components)/Appetizers";
 
 interface FormState {
   freeInitialConsultation: boolean;

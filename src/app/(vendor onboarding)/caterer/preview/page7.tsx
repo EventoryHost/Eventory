@@ -1,6 +1,6 @@
 import { Check, EditIcon } from "lucide-react";
 import { SetStateAction } from "react";
-import Appetizers from "../(components)/Appetizers";
+import Appetizers from "../../(components)/Appetizers";
 import File from "../(components)/File"
 const _cuisine = ["North Indian", "South Indian", "Chinese", "Italian"];
 const regional = [
@@ -193,6 +193,7 @@ function Preview({
         <div className="m-6 mt-4 flex flex-col">
           <span className="text-xl">Appetizers</span>
           <Appetizers
+          // field={'_appetizers'}
             appetizers={selectedAppetizers}
             selectedAppetizers={selectedAppetizers}
             setSelectedAppetizers={setSelectedAppetizers}
@@ -203,6 +204,7 @@ function Preview({
         <div className="m-6 mt-4 flex flex-col">
           <span className="text-xl">Beverages</span>
           <Appetizers
+          // field={'_beverages'}
             appetizers={selectedBeverages}
             selectedAppetizers={selectedBeverages}
             setSelectedAppetizers={setSelectedBeverages}
@@ -211,6 +213,7 @@ function Preview({
         <div className="m-6 mt-4 flex flex-col">
           <span className="text-xl">Main Courses</span>
           <Appetizers
+          //  field={'_mainCourses'}
             appetizers={selectedMainCourses}
             selectedAppetizers={selectedMainCourses}
             setSelectedAppetizers={setSelectedMainCourses}
@@ -219,6 +222,7 @@ function Preview({
         <div className="m-6 mt-4 flex flex-col">
           <span className="text-xl">Dietary Options</span>
           <Appetizers
+          // field={'_dietaryOptions'}
             appetizers={selectedDietaryOptions}
             selectedAppetizers={selectedDietaryOptions}
             setSelectedAppetizers={setSelectedDietaryOptions}
@@ -237,6 +241,7 @@ function Preview({
         <div className="m-6 mt-4 flex flex-col">
           <span className="text-xl">Event Options</span>
           <Appetizers
+          // field={'EventTypes'}
             appetizers={selectedEventTypes}
             selectedAppetizers={selectedEventTypes}
             setSelectedAppetizers={setSelectedEventTypes}
@@ -245,6 +250,7 @@ function Preview({
         <div className="m-6 mt-4 flex flex-col">
           <span className="text-xl">Additional Services</span>
           <Appetizers
+          // field={'additionalServices'}
             appetizers={selectedAdditionalServices}
             selectedAppetizers={selectedAdditionalServices}
             setSelectedAppetizers={setSelectedAdditionalServices}
@@ -263,6 +269,7 @@ function Preview({
         <div className="m-6 mt-4 flex flex-col">
           <span className="text-xl">Staff provides</span>
           <Appetizers
+          // field={'staffProvides'}
             appetizers={selectedStaffProvider}
             selectedAppetizers={selectedStaffProvider}
             setSelectedAppetizers={setSelectedStaffProvider}
@@ -272,6 +279,7 @@ function Preview({
         <div className="m-6 mt-4 flex flex-col">
           <span className="text-xl">Equipments provided</span>
           <Appetizers
+          // field={'equipmentsProvided'}
             appetizers={selectedEquipmentsProvided}
             selectedAppetizers={selectedEquipmentsProvided}
             setSelectedAppetizers={setSelectedEquipmentsProvided}
