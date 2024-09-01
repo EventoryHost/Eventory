@@ -148,7 +148,9 @@ const Page1: React.FC<PageProps> = ({
                       type="radio"
                       name="bulkQuantityAvailable"
                       checked={formState.bulkQuantityAvailable === "yes"}
-                      onChange={() => handleChange("bulkQuantityAvailable", "yes")}
+                      onChange={() =>
+                        handleChange("bulkQuantityAvailable", "yes")
+                      }
                       className="form-radio h-4 w-4 text-indigo-600 focus:ring-indigo-500"
                     />
                     <label
@@ -162,7 +164,9 @@ const Page1: React.FC<PageProps> = ({
                       type="radio"
                       name="bulkQuantityAvailable"
                       checked={formState.bulkQuantityAvailable === "no"}
-                      onChange={() => handleChange("bulkQuantityAvailable", "no")}
+                      onChange={() =>
+                        handleChange("bulkQuantityAvailable", "no")
+                      }
                       className="form-radio ml-4 h-4 w-4 text-indigo-600 focus:ring-indigo-500"
                     />
                     <label

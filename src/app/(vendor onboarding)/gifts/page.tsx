@@ -1,6 +1,6 @@
 "use client";
 // RootPage.tsx
-import React, { useState , useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import jwt from "jsonwebtoken";
 import Page1 from "./page1/page1";
 import Page2 from "./page2/page2";
@@ -95,7 +95,6 @@ const RootPage = () => {
       listOfGifts: listOfGifts,
     }));
   }, [listOfGifts]);
-  
 
   function getVendorId(): string | null {
     const token = localStorage.getItem("token");
@@ -120,7 +119,7 @@ const RootPage = () => {
     }
   }
 
-  const handleSubmit = async() => {
+  const handleSubmit = async () => {
     console.log("Form State before submission:", formState);
 
     const venId = getVendorId()!;
@@ -134,13 +133,11 @@ const RootPage = () => {
     formData.append("bulkQuantityAvailable", formState.bulkQuantityAvailable);
     formData.append("customizableGifts", formState.customizableGifts);
 
-    
-
     formData.append("priceRange[min]", formState.priceRange.min);
     formData.append("priceRange[max]", formState.priceRange.max);
 
     formState.appetizers.forEach((appetizer) =>
-      formData.append("appetizers[]", appetizer)
+      formData.append("appetizers[]", appetizer),
     );
 
     formData.append("deliveryCharges[min]", formState.deliveryCharges.min);
@@ -153,9 +150,9 @@ const RootPage = () => {
     }
 
     formData.append("category", formState.category);
-    
+
     formState.listOfGifts.forEach((gift) =>
-      formData.append("listOfGifts[]", gift)
+      formData.append("listOfGifts[]", gift),
     );
 
     try {
@@ -163,7 +160,7 @@ const RootPage = () => {
     } catch (error) {
       console.error("Error submitting form:", error);
     }
-  }
+  };
 
   return (
     <div>

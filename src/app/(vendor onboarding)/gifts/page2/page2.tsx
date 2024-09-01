@@ -52,7 +52,7 @@ interface PageProps {
     value: any,
   ) => void;
   setlistOfGifts: (value: any) => void;
-  listOfGifts: any; 
+  listOfGifts: any;
   updateFormState: (value: any) => void;
 }
 
@@ -62,7 +62,7 @@ const Page2: React.FC<PageProps> = ({
   handleNestedChange,
   setlistOfGifts,
   listOfGifts,
-  updateFormState
+  updateFormState,
 }) => {
   const [isDeliveryChargesChecked, setIsDeliveryChargesChecked] =
     useState<boolean>(false);

@@ -290,23 +290,22 @@ const VenueForm: React.FC = () => {
             handleSubmit={handleSubmit}
           />
         );
-        case 6:
-          return (
-            <Page6
-              formState={formState}
-              updateFormState={updateFormState}
-              handleSubmit={handleSubmit}
-              audioVisualEquipment={audioVisualEquipment}
-              accessibilityFeatures={accessibilityFeatures}
-              facilities={facilities}
-              hourlyPackages={hourlyPackages}
-              dailyPackages={dailyPackages}
-              seasonalPackages={seasonalPackages}
-              _venue_restrictions={venue_restrictions}
-              _venue_special_features={venue_special_features}
-              
-            />
-          );
+      case 6:
+        return (
+          <Page6
+            formState={formState}
+            updateFormState={updateFormState}
+            handleSubmit={handleSubmit}
+            audioVisualEquipment={audioVisualEquipment}
+            accessibilityFeatures={accessibilityFeatures}
+            facilities={facilities}
+            hourlyPackages={hourlyPackages}
+            dailyPackages={dailyPackages}
+            seasonalPackages={seasonalPackages}
+            _venue_restrictions={venue_restrictions}
+            _venue_special_features={venue_special_features}
+          />
+        );
       default:
         return (
           <Page1
