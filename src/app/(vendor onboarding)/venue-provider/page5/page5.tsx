@@ -1,7 +1,9 @@
 "use client";
 
+import React from "react";
 import { Upload } from "lucide-react";
-import Appetizers from "../(components)/Appetizers";
+import Appetizers from "../../caterer/(components)/Appetizers";
+// import Appetizers from "../(components)/Appetizers";
 
 const _venue_restrictions = [
   "Alcohol",
@@ -39,7 +41,7 @@ interface FormState {
 interface Page5Props {
   formState: FormState;
   updateFormState: (newState: Partial<FormState>) => void;
-  handleSubmit: (e: React.FormEvent) => void;
+  handleContinue: () => void;
   venue_restrictions: string[];
   setVenue_restrictions: React.Dispatch<React.SetStateAction<string[]>>;
   venue_special_features: string[];
@@ -49,7 +51,7 @@ interface Page5Props {
 const Page5: React.FC<Page5Props> = ({
   formState,
   updateFormState,
-  handleSubmit,
+  handleContinue,
   venue_restrictions,
   setVenue_restrictions,
   venue_special_features,
@@ -144,10 +146,16 @@ const Page5: React.FC<Page5Props> = ({
           </div>
           <div className="items-strech mt-9 flex flex-row gap-7 self-end">
             <button
-              className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-              onClick={handleSubmit}
+              className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+              onClick={handleContinue}
             >
-              Submit
+              Skip
+            </button>
+            <button
+              className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+              onClick={handleContinue}
+            >
+              Continue
             </button>
           </div>
         </div>
