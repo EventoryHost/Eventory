@@ -328,7 +328,7 @@ function Preview({
         <div className="m-6 mt-4 flex flex-col">
           <span className="text-xl">Selected Decor</span>
           <Appetizers
-            appetizers={furnitureOptions}
+            appetizers={selectedAppetizers}
             selectedAppetizers={selectedAppetizers}
             setSelectedAppetizers={setselectedAppetizers}
           />
@@ -336,7 +336,7 @@ function Preview({
         <div className="m-6 mt-6 flex flex-col">
           <span className="text-xl">Selected Appetizers</span>
           <Appetizers
-            appetizers={DecorOptions}
+            appetizers={selectedDecor}
             selectedAppetizers={selectedDecor}
             setSelectedAppetizers={setSelectedDecor}
           />
@@ -425,7 +425,7 @@ function Preview({
         <div className="m-6 mt-4 flex flex-col">
           <span className="text-xl">Tent and Canopy</span>
           <Appetizers
-            appetizers={tentOptions}
+            appetizers={selectedTentOptions}
             selectedAppetizers={selectedTentOptions}
             setSelectedAppetizers={setSelectedTentOptions}
           />
@@ -501,7 +501,7 @@ function Preview({
         <div className="m-6 mt-4 flex flex-col">
           <span className="text-xl">Audio Equipment</span>
           <Appetizers
-            appetizers={audioOptions}
+            appetizers={selectedAudioOptions}
             selectedAppetizers={selectedAudioOptions}
             setSelectedAppetizers={setSelectedAudioOptions}
           />
@@ -510,7 +510,7 @@ function Preview({
         <div className="m-6 mt-6 flex flex-col">
           <span className="text-xl">Visual Equipment</span>
           <Appetizers
-            appetizers={visualOptions}
+            appetizers={selectedvisualOptions}
             selectedAppetizers={selectedvisualOptions}
             setSelectedAppetizers={setSelectedVisualOptions}
           />
@@ -519,7 +519,7 @@ function Preview({
         <div className="m-6 mt-6 flex flex-col">
           <span className="text-xl">Light Equipment</span>
           <Appetizers
-            appetizers={lightOptions}
+            appetizers={selectedLightOptions}
             selectedAppetizers={selectedLightOptions}
             setSelectedAppetizers={setSelectedLightOptions}
           />

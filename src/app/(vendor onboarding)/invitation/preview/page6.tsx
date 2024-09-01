@@ -250,7 +250,7 @@ function Preview({
           <div className="m-6 mt-4 flex flex-col">
             <span className="text-xl">Types of Invitations you design</span>
             <Appetizers
-              appetizers={regional}
+              appetizers={typesOfInvitationsYouDesign}
               selectedAppetizers={typesOfInvitationsYouDesign}
               setSelectedAppetizers={setTypesOfInvitationsYouDesign}
             />
@@ -258,7 +258,7 @@ function Preview({
           <div className="m-6 mt-4 flex flex-col">
             <span className="text-xl">Formal Invitations</span>
             <Appetizers
-              appetizers={regional}
+              appetizers={formalinvitation}
               selectedAppetizers={formalinvitation}
               setSelectedAppetizers={setFormalInvitation}
             />
@@ -266,7 +266,7 @@ function Preview({
           <div className="m-6 mt-4 flex flex-col">
             <span className="text-xl">Casual Invitations</span>
             <Appetizers
-              appetizers={regional}
+              appetizers={casualinvitation}
               selectedAppetizers={casualinvitation}
               setSelectedAppetizers={setCasualInvitation}
             />
@@ -274,7 +274,7 @@ function Preview({
           <div className="m-6 mt-4 flex flex-col">
             <span className="text-xl">Electronic Invitations</span>
             <Appetizers
-              appetizers={regional}
+              appetizers={Electronicinvitation}
               selectedAppetizers={Electronicinvitation}
               setSelectedAppetizers={setElectronicInvitation}
             />
@@ -282,7 +282,7 @@ function Preview({
           <div className="m-6 mt-4 flex flex-col">
             <span className="text-xl">Handmade Invitations</span>
             <Appetizers
-              appetizers={regional}
+              appetizers={handmadeinvitation}
               selectedAppetizers={handmadeinvitation}
               setSelectedAppetizers={setHandmadeInvitation}
             />
@@ -290,7 +290,7 @@ function Preview({
           <div className="m-6 mt-4 flex flex-col">
             <span className="text-xl">Printed Invitations</span>
             <Appetizers
-              appetizers={regional}
+              appetizers={printedInvitation}
               selectedAppetizers={printedInvitation}
               setSelectedAppetizers={setPrintedInvitation}
             />
@@ -298,7 +298,7 @@ function Preview({
           <div className="m-6 mt-4 flex flex-col">
             <span className="text-xl">Specialty Invitations</span>
             <Appetizers
-              appetizers={regional}
+              appetizers={specialyInvitation}
               selectedAppetizers={specialyInvitation}
               setSelectedAppetizers={setSpecialyInvitation}
             />
@@ -306,7 +306,7 @@ function Preview({
           <div className="m-6 mt-4 flex flex-col">
             <span className="text-xl">Unique Invitations</span>
             <Appetizers
-              appetizers={regional}
+              appetizers={uniqueInvitation}
               selectedAppetizers={uniqueInvitation}
               setSelectedAppetizers={setUniqueInvitation}
             />
@@ -314,7 +314,7 @@ function Preview({
           <div className="m-6 mt-4 flex flex-col">
             <span className="text-xl">Religious and Cultural  Invitations</span>
             <Appetizers
-              appetizers={regional}
+              appetizers={relegiousInvitation}
               selectedAppetizers={relegiousInvitation}
               setSelectedAppetizers={setRelegiousInvitation}
             />
@@ -390,7 +390,7 @@ function Preview({
           <div className="m-6 mt-4 flex flex-col">
             <span className="text-xl">Types of Paper used for Invitations ?</span>
             <Appetizers
-              appetizers={regional}
+              appetizers={paperType}
               selectedAppetizers={paperType}
               setSelectedAppetizers={setPaperType}
             />

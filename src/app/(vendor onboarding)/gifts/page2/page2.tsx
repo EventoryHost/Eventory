@@ -23,7 +23,7 @@ const _buttonTexts: AppetizerType[] = [
   "Subscription Services Gifts",
   "Fashion and Apparel Gifts",
   "Sports and Fitness Gifts",
-  "Other",
+  "Others",
 ];
 
 // Define types for form state
@@ -111,9 +111,9 @@ const Page2: React.FC<PageProps> = ({
             Catalog Details
           </h2>
           <h3 className="text-lg font-medium md:text-xl">List of Gifts</h3>
-          <div className="flex flex-col items-center gap-5">
-            <div className="flex w-full flex-col gap-5 md:flex-row md:gap-5">
-              <Appetizers
+          <div className="flex min-h-full min-w-full flex-col items-center gap-5">
+          <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+          <Appetizers
               field={'_buttonTexts'}
                 appetizers={_buttonTexts}
                 selectedAppetizers={selectedGiftTypes}

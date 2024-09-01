@@ -48,7 +48,7 @@ interface FormState {
 }
 
 const Invitation: React.FC = () => {
-  const [currentPage, setCurrentPage] = useState(6);
+  const [currentPage, setCurrentPage] = useState(1);
   // global variables
   const [formState, setFormState] = useState<FormState>({
     //page1
