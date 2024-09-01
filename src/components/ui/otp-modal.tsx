@@ -6,7 +6,7 @@ import {
 import auth from "@/services/auth";
 
 type Props = {
-  mobileNo: number| string;
+  mobileNo: number | string;
   notYouRedirect: () => void;
   verifyFunction: (e: React.FormEvent) => void;
   onChangeFunction: (value: string) => void;

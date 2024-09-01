@@ -15,7 +15,7 @@ type loginDetails = {
   session?: string;
 };
 
-const Login = ( ) => {
+const Login = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loginDetails, setLoginDetails] = useState<loginDetails>(
     {} as loginDetails,
@@ -29,16 +29,15 @@ const Login = ( ) => {
   const toggleModal = () => setIsModalOpen(!isModalOpen);
 
   // called when login button is clicked
-  async function handleLogin (e: React.FormEvent) {
+  async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
-    const mobileNumber = refs.current['mobile']!.value;
-    
+    const mobileNumber = refs.current["mobile"]!.value;
 
     // validate mobile number
-    if (mobileNumber === '') {
+    if (mobileNumber === "") {
       setFormError(`Please fill in the mobile number`);
       return;
-    } else if (mobileNumber.length !== 10 || mobileNumber[0] === '0') {
+    } else if (mobileNumber.length !== 10 || mobileNumber[0] === "0") {
       setFormError(`Enter a valid 10 digit mobile number`);
       return;
     }
@@ -56,12 +55,12 @@ const Login = ( ) => {
     }
 
     toggleModal();
-  };
+  }
 
-  async function handleVerify (e: React.FormEvent) {
+  async function handleVerify(e: React.FormEvent) {
     e.preventDefault();
     const inputOtp = loginDetails.otp!;
-    
+
     // validate OTP length
     if (inputOtp.length !== 6) {
       setFormError(`Please fill in the OTP correctly`);
@@ -72,12 +71,16 @@ const Login = ( ) => {
     console.log("Login deets: ", loginDetails);
     console.log("inp: ", inputOtp);
 
-    const res = await auth.verifyLoginOtp(loginDetails.mobile, inputOtp, loginDetails.session!);
+    const res = await auth.verifyLoginOtp(
+      loginDetails.mobile,
+      inputOtp,
+      loginDetails.session!,
+    );
     // res.status === 200 ? console.log("Login successful") : console.log("Login failed");
     console.log(res);
-    
+
     // collect refresh token to local storage
-  };
+  }
 
   const renderError = (): [boolean, string] => {
     return formError ? [true, formError] : [false, ""];
