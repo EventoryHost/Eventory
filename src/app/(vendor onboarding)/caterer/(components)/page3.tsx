@@ -15,16 +15,16 @@ const appetizers = [
 const beverages = ["Setup Services", "Cleanup Services", "Others"];
 
 const Page3 = ({
-  selectedAppetizers,
-  setSelectedAppetizers,
-  selectedBeverages,
-  setSelectedBeverages,
+  selectedEventTypes,
+  setSelectedEventTypes,
+  selectedAdditionalServices,
+  setSelectedAdditionalServices,
   handleContinue,
 }: {
-  selectedAppetizers: string[];
-  setSelectedAppetizers: React.Dispatch<React.SetStateAction<string[]>>;
-  selectedBeverages: string[];
-  setSelectedBeverages: React.Dispatch<React.SetStateAction<string[]>>;
+  selectedEventTypes: string[];
+  setSelectedEventTypes: React.Dispatch<React.SetStateAction<string[]>>;
+  selectedAdditionalServices: string[];
+  setSelectedAdditionalServices: React.Dispatch<React.SetStateAction<string[]>>;
   handleContinue: () => void;
 }) => {
   const handleSubmit = (e: React.FormEvent) => {
@@ -44,8 +44,8 @@ const Page3 = ({
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
                 appetizers={appetizers}
-                selectedAppetizers={selectedAppetizers}
-                setSelectedAppetizers={setSelectedAppetizers}
+                selectedAppetizers={selectedEventTypes}
+                setSelectedAppetizers={setSelectedEventTypes}
               />
             </div>
           </div>
@@ -58,8 +58,8 @@ const Page3 = ({
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
                 appetizers={beverages}
-                selectedAppetizers={selectedBeverages}
-                setSelectedAppetizers={setSelectedBeverages}
+                selectedAppetizers={selectedAdditionalServices}
+                setSelectedAppetizers={setSelectedAdditionalServices}
               />
             </div>
             <div className="items-strech mt-9 flex flex-row gap-7 self-end">
