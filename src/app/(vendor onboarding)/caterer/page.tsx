@@ -302,17 +302,17 @@ const Caterer = () => {
             formState={formState}
             updateFormState={updateFormState}
             handleContinue={() => {
-              setCurrentPage(7)
+              setCurrentPage(7);
               handleContinue();
               // handleSubmit();
             }}
           />
         );
-      
+
       default:
-        return(
+        return (
           <Page7
-          formState={formState}
+            formState={formState}
             updateFormState={updateFormState}
             cuisineSpecialties={cuisineSpecialties}
             setCuisineSpecialties={setCuisineSpecialties}
@@ -320,7 +320,6 @@ const Caterer = () => {
             setRegionalSpecialties={setRegionalSpecialties}
             serviceStyles={serviceStyles}
             setServiceStyles={setServiceStyles}
-
             selectedAppetizers={selectedAppetizers}
             setSelectedAppetizers={setSelectedAppetizers}
             selectedBeverages={selectedBeverages}
@@ -329,17 +328,14 @@ const Caterer = () => {
             setSelectedMainCourses={setSelectedMainCourses}
             selectedDietaryOptions={selectedDietaryOptions}
             setSelectedDietaryOptions={setSelectedDietaryOptions}
-
             selectedEventTypes={eventTypes}
             setSelectedEventTypes={setEventTypes}
             selectedAdditionalServices={additionalServices}
             setSelectedAdditionalServices={setAdditionalServices}
-            
             selectedStaffProvider={staffProvides}
             setSelectedStaffProvider={setStaffProvides}
             selectedEquipmentsProvided={equipmentsProvided}
             setSelectedEquipmentsProvided={setEquipmentsProvided}
-
             hourlyPackages={hourlyPackages}
             setHourlyPackages={setHourlyPackages}
             dailyPackages={dailyPackages}
@@ -349,7 +345,7 @@ const Caterer = () => {
             handlePackageChange={handlePackageChange}
             addPackage={addPackage}
           />
-        )
+        );
     }
   };
 

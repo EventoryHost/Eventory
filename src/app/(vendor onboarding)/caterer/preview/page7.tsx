@@ -1,7 +1,7 @@
 import { Check, EditIcon } from "lucide-react";
 import { SetStateAction } from "react";
 import Appetizers from "../(components)/Appetizers";
-import File from "../(components)/File"
+import File from "../(components)/File";
 const _cuisine = ["North Indian", "South Indian", "Chinese", "Italian"];
 const regional = [
   "Gujrati",
@@ -142,11 +142,12 @@ function Preview({
   addPackage,
 }: PagePreviewProps) {
   return (
+    <div className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll rounded-xl bg-white p-3 xs:w-[100%] xs:min-w-[90%] md:p-6">
+      <span className="my-5 text-3xl font-semibold">
+        {formState.businessName} / Caterers
+      </span>
 
-    <div className="flex h-full  flex-col items-start justify-start gap-5 overflow-y-scroll rounded-xl bg-white p-3 xs:w-[100%] xs:min-w-[90%] md:p-6">
-      <span className="my-5 text-3xl font-semibold">{formState.businessName} / Caterers</span>
-
-      <div className=" w-[100%]   flex justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
+      <div className="flex w-[100%] justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
         Basic Details
         <div className="align-center flex justify-center p-1">
           <button>
@@ -181,7 +182,7 @@ function Preview({
           />
         </div>
       </div>
-      <div className="   w-[100%] flex justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
+      <div className="flex w-[100%] justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
         Menu Details
         <div className="align-center flex justify-center p-1">
           <button>
@@ -198,7 +199,6 @@ function Preview({
             setSelectedAppetizers={setSelectedAppetizers}
           />
         </div>
-
 
         <div className="m-6 mt-4 flex flex-col">
           <span className="text-xl">Beverages</span>
@@ -225,7 +225,7 @@ function Preview({
           />
         </div>
       </div>
-      <div className="   w-[100%] flex justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
+      <div className="flex w-[100%] justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
         Event Details
         <div className="align-center flex justify-center p-1">
           <button>
@@ -251,7 +251,7 @@ function Preview({
           />
         </div>
       </div>
-      <div className="   w-[100%] flex justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
+      <div className="flex w-[100%] justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
         Staff & Equipments
         <div className="align-center flex justify-center p-1">
           <button>
@@ -278,7 +278,7 @@ function Preview({
           />
         </div>
       </div>
-      <div className="   w-[100%] flex justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
+      <div className="flex w-[100%] justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
         Booking & Pricing
         <div className="align-center flex justify-center p-1">
           <button>
@@ -287,11 +287,10 @@ function Preview({
         </div>
       </div>
 
-
       {hourlyPackages.map((pkg, index) => (
         <div
           key={index}
-          className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row px-4"
+          className="flex min-w-full flex-col items-start justify-between gap-5 px-4 md:flex-row"
         >
           <div className="flex min-w-[40%] flex-col gap-4">
             <label htmlFor={`hourlyPackageType${index}`}>
@@ -299,7 +298,6 @@ function Preview({
             </label>
             <div key={index} className="mb-2 flex flex-col">
               <span>{pkg.type}</span>
-
             </div>
           </div>
           <div className="flex h-full min-w-[40%] flex-col items-start justify-center gap-2">
@@ -318,74 +316,53 @@ function Preview({
         </div>
       ))}
 
-      <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row px-4">
-
+      <div className="flex min-w-full flex-col items-start justify-between gap-5 px-4 md:flex-row">
         <div className="flex h-full min-w-[40%] flex-col items-start justify-center gap-2">
-          <label
-            className="self-start font-bold"
-          >
-            Per plate rates
-          </label>
+          <label className="self-start font-bold">Per plate rates</label>
           {dailyPackages.map((pkg, index) => (
             <div
               key={index}
-              className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row "
+              className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row"
             >
               <div className="flex min-w-[40%] flex-col gap-4">
-
                 <div key={index} className="mb-2 flex flex-col">
                   <span>{pkg.type}</span>
                   <span className="font-semibold">
                     ₹{pkg.priceRange[0]} - ₹{pkg.priceRange[1]}
                   </span>
-
                 </div>
               </div>
-
             </div>
           ))}
         </div>
 
         <div className="flex h-full min-w-[40%] flex-col items-start justify-center gap-2">
-          <label
-            className="self-start font-bold"
-          >
-            Deal Package rates
-          </label>
+          <label className="self-start font-bold">Deal Package rates</label>
           {seasonalPackages.map((pkg, index) => (
             <div
               key={index}
-              className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row "
+              className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row"
             >
               <div className="flex min-w-[40%] flex-col gap-4">
-
                 <div key={index} className="mb-2 flex flex-col">
                   <span>{pkg.type}</span>
                   <span className="font-semibold">
                     ₹{pkg.priceRange[0]} - ₹{pkg.priceRange[1]}
                   </span>
-
                 </div>
               </div>
-
             </div>
           ))}
         </div>
-
       </div>
 
-      <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row px-4">
+      <div className="flex min-w-full flex-col items-start justify-between gap-5 px-4 md:flex-row">
         <div className="flex h-full min-w-[40%] flex-col items-start justify-center gap-2">
-          <label
-            className="self-start font-bold"
-          >
-            Advance Payment
-          </label>
-
+          <label className="self-start font-bold">Advance Payment</label>
         </div>
       </div>
 
-      <div className="   w-[100%] flex justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
+      <div className="flex w-[100%] justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
         Additional Features
         <div className="align-center flex justify-center p-1">
           <button>
@@ -394,60 +371,65 @@ function Preview({
         </div>
       </div>
       <div className="w-[100%]">
-        <div className=" flex gap-16 py-2">
+        <div className="flex gap-16 py-2">
           <div className="flex w-1/2 flex-col px-4">
             <span className="">Tasting sessions</span>
 
-            <span className="font-semibold">{formState.tastingSessions ? 'yes' : 'no'}</span>
+            <span className="font-semibold">
+              {formState.tastingSessions ? "yes" : "no"}
+            </span>
           </div>
           <div className="flex w-1/2 flex-col">
             <span className="">Buisness Licenses</span>
-            <span className="font-semibold">{formState.businessLicenses ? 'yes' : 'no'}</span>
+            <span className="font-semibold">
+              {formState.businessLicenses ? "yes" : "no"}
+            </span>
           </div>
         </div>
         <div className="flex w-1/2 flex-col px-4">
           <span className="">Food Safety Certificate</span>
           <span className="font-semibold">
-            {formState.foodSafety ? 'yes' : 'no'}
+            {formState.foodSafety ? "yes" : "no"}
           </span>
         </div>
       </div>
 
       <div className="w-[100%]">
-        <div className=" flex gap-16 py-2">
+        <div className="flex gap-16 py-2">
           <div className="flex w-1/2 flex-col px-4">
             <span className="">Terms and Condition</span>
 
             <span className="font-semibold">
-              {typeof formState.termsAndConditions === 'string'
-                ? formState.termsAndConditions
-                : <File file={formState.termsAndConditions} />}
+              {typeof formState.termsAndConditions === "string" ? (
+                formState.termsAndConditions
+              ) : (
+                <File file={formState.termsAndConditions} />
+              )}
             </span>
           </div>
           <div className="flex w-1/2 flex-col">
             <span className="">Cancellation Policy</span>
             <span className="font-semibold">
-              {typeof formState.cancellationPolicy === 'string'
-                ? formState.cancellationPolicy
-                : <File file={formState.cancellationPolicy} />}
+              {typeof formState.cancellationPolicy === "string" ? (
+                formState.cancellationPolicy
+              ) : (
+                <File file={formState.cancellationPolicy} />
+              )}
             </span>
           </div>
         </div>
         <div className="flex w-1/2 flex-col px-4">
           <span className="">Portfolio</span>
           <span className="font-semibold">
-            {typeof formState.cateringServiceImages === 'string'
-              ? formState.cateringServiceImages
-              : <File file={formState.cateringServiceImages} />}
+            {typeof formState.cateringServiceImages === "string" ? (
+              formState.cateringServiceImages
+            ) : (
+              <File file={formState.cateringServiceImages} />
+            )}
           </span>
         </div>
       </div>
-
     </div>
-
-
-
-
   );
 }
 

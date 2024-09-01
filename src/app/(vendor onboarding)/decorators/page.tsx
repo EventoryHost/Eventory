@@ -320,7 +320,6 @@ const Decorators: React.FC = () => {
       default:
         return (
           <Page7 formState={formState} updateFormState={updateFormState} />
-
         );
     }
   };
@@ -329,7 +328,7 @@ const Decorators: React.FC = () => {
     <div>
       {renderPage()}
       <div className="my-9 mr-[5%] flex flex-row justify-end gap-7">
-        {currentPage > 1 && currentPage!== 8&&(
+        {currentPage > 1 && currentPage !== 8 && (
           <button
             className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
             onClick={() => setCurrentPage(currentPage - 1)}
@@ -346,16 +345,14 @@ const Decorators: React.FC = () => {
           </button>
         )}
         {currentPage === 8 && (
-          
           <button
-          className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-          onClick={() => setCurrentPage(currentPage - 1)}
-        >
-          View T/C
-        </button>
+            className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+            onClick={() => setCurrentPage(currentPage - 1)}
+          >
+            View T/C
+          </button>
         )}
         {currentPage === 8 && (
-
           <button
             onClick={handleSubmit}
             className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"

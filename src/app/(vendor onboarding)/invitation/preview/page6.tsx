@@ -1,7 +1,7 @@
 import { Check, EditIcon } from "lucide-react";
 import { SetStateAction } from "react";
 import Appetizers from "../../caterer/(components)/Appetizers";
-import File from "../../caterer/(components)/File"
+import File from "../../caterer/(components)/File";
 const _cuisine = ["North Indian", "South Indian", "Chinese", "Italian"];
 const regional = [
   "Gujrati",
@@ -75,7 +75,7 @@ type FormState = {
   clienttestimonials: string;
   extracharges: boolean;
   deposit: boolean;
-}
+};
 type PagePreviewProps = {
   formState: FormState;
   updateFormState: (newState: Partial<FormState>) => void;
@@ -123,7 +123,7 @@ type PagePreviewProps = {
   addPackage: (
     setPackages: React.Dispatch<React.SetStateAction<Package[]>>,
   ) => void;
-}
+};
 
 function Preview({
   formState,
@@ -165,7 +165,6 @@ function Preview({
   addPackage,
 }: PagePreviewProps) {
   return (
-
     <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden lg:flex-row">
       <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-5 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
         <div className="flex items-center justify-start gap-1 xs:self-start xs:pl-5 md:px-11 lg:mt-[2rem]">
@@ -207,14 +206,13 @@ function Preview({
             className="h-full w-full object-cover"
           />
         </div>
-
       </div>
 
-      <div className="scroll-touch flex max-h-[calc(100vh-5.2rem)] flex-col min-w-[70%] gap-5 overflow-y-scroll bg-[#F7F6F9] p-6 ">
-        <div className=" w-[100%] flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-2">
-          <span className="my-5 mx-2 text-3xl font-semibold">/ Invitation</span>
+      <div className="scroll-touch flex max-h-[calc(100vh-5.2rem)] min-w-[70%] flex-col gap-5 overflow-y-scroll bg-[#F7F6F9] p-6">
+        <div className="flex w-[100%] flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-2">
+          <span className="mx-2 my-5 text-3xl font-semibold">/ Invitation</span>
           <div className="flex gap-9">
-            <div className=" w-[100%]   flex justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
+            <div className="flex w-[100%] justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
               Rating & Reviews
               <div className="align-center flex justify-center p-1">
                 <button>
@@ -224,27 +222,30 @@ function Preview({
             </div>
           </div>
           <div className="w-[100%]">
-            <div className=" flex gap-16 py-2">
+            <div className="flex gap-16 py-2">
               <div className="flex w-1/2 flex-col px-4">
                 <span className="">Portfolio of Past Work</span>
 
                 <span className="font-semibold">
-                  {typeof formState.portfolio === 'string'
-                    ? 'no file selected'
-                    : <File file={formState.portfolio} />}
+                  {typeof formState.portfolio === "string" ? (
+                    "no file selected"
+                  ) : (
+                    <File file={formState.portfolio} />
+                  )}
                 </span>
               </div>
               <div className="flex w-1/2 flex-col">
-                <span className="">Do you provide references upon request ?</span>
-                <span className="font-semibold">{formState.references ? 'yes' : 'no'}</span>
-
+                <span className="">
+                  Do you provide references upon request ?
+                </span>
+                <span className="font-semibold">
+                  {formState.references ? "yes" : "no"}
+                </span>
               </div>
             </div>
-            <div className=" mt-4 flex w-3/4 flex-col px-4">
+            <div className="mt-4 flex w-3/4 flex-col px-4">
               <span className="mb-2">Years of Experience ?</span>
-              <span className="font-semibold mt-2">
-                {formState.experience}
-              </span>
+              <span className="mt-2 font-semibold">{formState.experience}</span>
             </div>
           </div>
           <div className="m-6 mt-4 flex flex-col">
@@ -312,7 +313,7 @@ function Preview({
             />
           </div>
           <div className="m-6 mt-4 flex flex-col">
-            <span className="text-xl">Religious and Cultural  Invitations</span>
+            <span className="text-xl">Religious and Cultural Invitations</span>
             <Appetizers
               appetizers={regional}
               selectedAppetizers={relegiousInvitation}
@@ -321,7 +322,7 @@ function Preview({
           </div>
 
           <div className="flex gap-9">
-            <div className=" w-[100%]   flex justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
+            <div className="flex w-[100%] justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
               Rating & Reviews
               <div className="align-center flex justify-center p-1">
                 <button>
@@ -331,64 +332,84 @@ function Preview({
             </div>
           </div>
           <div className="w-[100%] font-semibold">
-            <div className=" flex gap-16 py-2">
+            <div className="flex gap-16 py-2">
               <div className="flex w-1/2 flex-col px-4">
-                <span className="text-lg">Do you create custom invitations from the
-                  scratch?</span>
-                <span className="font-semibold ">{formState.customInvitationsFromScratch ? 'yes' : 'no'}</span>
-
+                <span className="text-lg">
+                  Do you create custom invitations from the scratch?
+                </span>
+                <span className="font-semibold">
+                  {formState.customInvitationsFromScratch ? "yes" : "no"}
+                </span>
               </div>
               <div className="flex w-1/2 flex-col">
-                <span className="text-lg">Do you offer letter-press printing for more
-                  luxurious look ?</span>
-                <span className="font-semibold">{formState.letterPressPrinting ? 'yes' : 'no'}</span>
-
+                <span className="text-lg">
+                  Do you offer letter-press printing for more luxurious look ?
+                </span>
+                <span className="font-semibold">
+                  {formState.letterPressPrinting ? "yes" : "no"}
+                </span>
               </div>
             </div>
-            <div className=" flex gap-16 py-2">
+            <div className="flex gap-16 py-2">
               <div className="flex w-1/2 flex-col px-4">
-                <span className="text-lg">Do you create semi - custom invitations ?</span>
-                <span className="font-semibold ">{formState.semiCustomInvitations ? 'yes' : 'no'}</span>
-
+                <span className="text-lg">
+                  Do you create semi - custom invitations ?
+                </span>
+                <span className="font-semibold">
+                  {formState.semiCustomInvitations ? "yes" : "no"}
+                </span>
               </div>
               <div className="flex w-1/2 flex-col">
-                <span className="text-lg">Do you have pre-designed cards available ?</span>
-                <span className="font-semibold">{formState.preDesignedCards ? 'yes' : 'no'}</span>
-
+                <span className="text-lg">
+                  Do you have pre-designed cards available ?
+                </span>
+                <span className="font-semibold">
+                  {formState.preDesignedCards ? "yes" : "no"}
+                </span>
               </div>
             </div>
-            <div className=" flex gap-16 py-2">
+            <div className="flex gap-16 py-2">
               <div className="flex w-1/2 flex-col px-4">
-                <span className="text-lg">Do they offer foil stamping for metallic
-                accents ?</span>
-                <span className="font-semibold ">{formState.foilStamping ? 'yes' : 'no'}</span>
-
+                <span className="text-lg">
+                  Do they offer foil stamping for metallic accents ?
+                </span>
+                <span className="font-semibold">
+                  {formState.foilStamping ? "yes" : "no"}
+                </span>
               </div>
               <div className="flex w-1/2 flex-col">
-                <span className="text-lg">Do you offer different cardstock weights for
-                invitations?</span>
-                <span className="font-semibold">{formState.differentCardstockWeights ? 'yes' : 'no'}</span>
-
+                <span className="text-lg">
+                  Do you offer different cardstock weights for invitations?
+                </span>
+                <span className="font-semibold">
+                  {formState.differentCardstockWeights ? "yes" : "no"}
+                </span>
               </div>
             </div>
-            <div className=" flex gap-16 py-2">
+            <div className="flex gap-16 py-2">
               <div className="flex w-1/2 flex-col px-4">
-                <span className="text-lg">Do they offer engraving for a classic and 
-                elegant look ?</span>
-                <span className="font-semibold ">{formState.engraving ? 'yes' : 'no'}</span>
-
+                <span className="text-lg">
+                  Do they offer engraving for a classic and elegant look ?
+                </span>
+                <span className="font-semibold">
+                  {formState.engraving ? "yes" : "no"}
+                </span>
               </div>
               <div className="flex w-1/2 flex-col">
-                <span className="text-lg">Do you design information inserts for  additional event
-                details ?</span>
-                <span className="font-semibold">{formState.informationInserts ? 'yes' : 'no'}</span>
-
+                <span className="text-lg">
+                  Do you design information inserts for additional event details
+                  ?
+                </span>
+                <span className="font-semibold">
+                  {formState.informationInserts ? "yes" : "no"}
+                </span>
               </div>
             </div>
-            
           </div>
           <div className="m-6 mt-4 flex flex-col">
-            <span className="text-xl">Types of Paper used for Invitations ?</span>
+            <span className="text-xl">
+              Types of Paper used for Invitations ?
+            </span>
             <Appetizers
               appetizers={regional}
               selectedAppetizers={paperType}
@@ -396,9 +417,8 @@ function Preview({
             />
           </div>
 
-
           <div className="flex gap-9">
-            <div className=" w-[100%]   flex justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
+            <div className="flex w-[100%] justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
               Pricing & Policies
               <div className="align-center flex justify-center p-1">
                 <button>
@@ -408,44 +428,47 @@ function Preview({
             </div>
           </div>
           <div className="w-[100%]">
-            <div className=" flex gap-16 py-2">
+            <div className="flex gap-16 py-2">
               <div className="flex w-1/2 flex-col px-4">
                 <span className="">Terms & Condition</span>
 
                 <span className="font-semibold">
-                  {typeof formState.termsandConditions === 'string'
-                    ? formState.termsandConditions
-                    : <File file={formState.termsandConditions} />}
+                  {typeof formState.termsandConditions === "string" ? (
+                    formState.termsandConditions
+                  ) : (
+                    <File file={formState.termsandConditions} />
+                  )}
                 </span>
               </div>
               <div className="flex w-1/2 flex-col">
                 <span className="">Cancellation Policy</span>
                 <span className="font-semibold">
-                  {typeof formState.cancellationPolicy === 'string'
-                    ? formState.cancellationPolicy
-                    : <File file={formState.cancellationPolicy} />}
+                  {typeof formState.cancellationPolicy === "string" ? (
+                    formState.cancellationPolicy
+                  ) : (
+                    <File file={formState.cancellationPolicy} />
+                  )}
                 </span>
               </div>
             </div>
 
-            <div className=" flex gap-16 py-2">
+            <div className="flex gap-16 py-2">
               <div className="flex w-1/2 flex-col px-4">
                 <span className="">Client Testimonials</span>
 
                 <span className="font-semibold">
-                  {typeof formState.clienttestimonials === 'string'
-                    ?formState.clienttestimonials
-                    : <File file={formState.clienttestimonials} />}
+                  {typeof formState.clienttestimonials === "string" ? (
+                    formState.clienttestimonials
+                  ) : (
+                    <File file={formState.clienttestimonials} />
+                  )}
                 </span>
               </div>
-              
             </div>
-
           </div>
         </div>
       </div>
     </div>
-
   );
 }
 

@@ -1,7 +1,7 @@
 import { Check, EditIcon } from "lucide-react";
 import { SetStateAction } from "react";
 import Appetizers from "../../caterer/(components)/Appetizers";
-import File from "../../caterer/(components)/File"
+import File from "../../caterer/(components)/File";
 const _cuisine = ["North Indian", "South Indian", "Chinese", "Italian"];
 const regional = [
   "Gujrati",
@@ -152,7 +152,6 @@ function Preview({
   setAdvancePayment,
 }: PagePreviewProps) {
   return (
-
     <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden lg:flex-row">
       <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-5 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
         <div className="flex items-center justify-start gap-1 xs:self-start xs:pl-5 md:px-11 lg:mt-[2rem]">
@@ -194,15 +193,16 @@ function Preview({
             className="h-full w-full object-cover"
           />
         </div>
-
       </div>
-      
-      <div className="scroll-touch flex max-h-[calc(100vh-5.2rem)] flex-col min-w-[70%] gap-5 overflow-y-scroll bg-[#F7F6F9] p-6 ">
-        <div className=" w-[100%] flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-2">
-        <span className="my-5 mx-2 text-3xl font-semibold">{formState.businessName} / Decorators</span>
+
+      <div className="scroll-touch flex max-h-[calc(100vh-5.2rem)] min-w-[70%] flex-col gap-5 overflow-y-scroll bg-[#F7F6F9] p-6">
+        <div className="flex w-[100%] flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-2">
+          <span className="mx-2 my-5 text-3xl font-semibold">
+            {formState.businessName} / Decorators
+          </span>
 
           <div className="flex gap-9">
-            <div className=" w-[100%]   flex justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
+            <div className="flex w-[100%] justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
               Basic Details
               <div className="align-center flex justify-center p-1">
                 <button>
@@ -256,7 +256,7 @@ function Preview({
           </div>
 
           <div className="flex gap-9">
-            <div className=" w-[100%]   flex justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
+            <div className="flex w-[100%] justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
               Themes Offered
               <div className="align-center flex justify-center p-1">
                 <button>
@@ -277,38 +277,54 @@ function Preview({
             </div>
 
             <div className="w-[100%] px-2 font-semibold">
-              <div className=" flex gap-16 py-2">
+              <div className="flex gap-16 py-2">
                 <div className="flex w-1/2 flex-col px-4">
-                  <span className="">Do you offer prop selection for themes ?</span>
+                  <span className="">
+                    Do you offer prop selection for themes ?
+                  </span>
 
-                  <span className="font-semibold">{formState.propthemesOffered ? 'yes' : 'no'}</span>
+                  <span className="font-semibold">
+                    {formState.propthemesOffered ? "yes" : "no"}
+                  </span>
                 </div>
                 <div className="flex w-1/2 flex-col">
-                  <span className="">Do you adapt themes to different venue sizes ?</span>
-                  <span className="font-semibold">{formState.adobtThemes ? 'yes' : 'no'}</span>
+                  <span className="">
+                    Do you adapt themes to different venue sizes ?
+                  </span>
+                  <span className="font-semibold">
+                    {formState.adobtThemes ? "yes" : "no"}
+                  </span>
                 </div>
               </div>
-              <div className=" flex gap-16 py-2">
+              <div className="flex gap-16 py-2">
                 <div className="flex w-1/2 flex-col px-4">
-                  <span className="">Do you adapt themes to different venue sizes ?</span>
+                  <span className="">
+                    Do you adapt themes to different venue sizes ?
+                  </span>
 
-                  <span className="font-semibold">{formState.colorschmes ? 'yes' : 'no'}</span>
+                  <span className="font-semibold">
+                    {formState.colorschmes ? "yes" : "no"}
+                  </span>
                 </div>
                 <div className="flex w-1/2 flex-col">
-                  <span className="">Do you offer customization of themes ?</span>
-                  <span className="font-semibold">{formState.customizationsThemes ? 'yes' : 'no'}</span>
+                  <span className="">
+                    Do you offer customization of themes ?
+                  </span>
+                  <span className="font-semibold">
+                    {formState.customizationsThemes ? "yes" : "no"}
+                  </span>
                 </div>
               </div>
-              <div className=" mt-4 flex w-3/4 flex-col px-4">
+              <div className="mt-4 flex w-3/4 flex-col px-4">
                 <span className="mb-2">Custom design process</span>
-                <span className="font-semibold mt-2">
+                <span className="mt-2 font-semibold">
                   {formState.customDesignProcess}
                 </span>
               </div>
             </div>
           </div>
           <div className="flex gap-9">
-            <div className=" w-[100%]   flex justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
+            <div className="flex w-[100%] justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
               Themes Element
               <div className="align-center flex justify-center p-1">
                 <button>
@@ -329,20 +345,29 @@ function Preview({
             </div>
 
             <div className="w-[100%] px-2 font-semibold">
-              <div className=" flex gap-16 py-2">
-                <div className="flex w-1/2 flex-col px-4 ">
+              <div className="flex gap-16 py-2">
+                <div className="flex w-1/2 flex-col px-4">
                   <span className="mb-2">Description of backdrop options</span>
 
-                  <p className="font-semibold w-3/4  break-words">{formState.backDropoptions}</p>
+                  <p className="w-3/4 break-words font-semibold">
+                    {formState.backDropoptions}
+                  </p>
                 </div>
                 <div className="flex w-1/2 flex-col">
-                  <span className="mb-2">Description of stage decoration options</span>
-                  <span className="font-semibold w-3/4 break-words">{formState.decorationoptions}</span>
+                  <span className="mb-2">
+                    Description of stage decoration options
+                  </span>
+                  <span className="w-3/4 break-words font-semibold">
+                    {formState.decorationoptions}
+                  </span>
                 </div>
               </div>
-              <div className=" mt-4 flex w-1/2 flex-col px-4">
-                <span className="mb-2"> Description of prop & accessory selection</span>
-                <span className="font-semibold w-3/4 break-words">
+              <div className="mt-4 flex w-1/2 flex-col px-4">
+                <span className="mb-2">
+                  {" "}
+                  Description of prop & accessory selection
+                </span>
+                <span className="w-3/4 break-words font-semibold">
                   {formState.backDropoptions}
                 </span>
               </div>
@@ -350,7 +375,7 @@ function Preview({
           </div>
 
           <div className="flex gap-9">
-            <div className=" w-[100%]   flex justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
+            <div className="flex w-[100%] justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
               Consultation Details
               <div className="align-center flex justify-center p-1">
                 <button>
@@ -362,32 +387,47 @@ function Preview({
           <div className="w-full">
             <div className="w-[100%] px-2 font-semibold">
               <div className="mb-4 flex gap-16 py-2">
-                <div className="flex w-1/2 flex-col px-4 ">
-                  <span className="mb-2">Do you offer free initial consultations?</span>
+                <div className="flex w-1/2 flex-col px-4">
+                  <span className="mb-2">
+                    Do you offer free initial consultations?
+                  </span>
 
-                  <p className="font-semibold break-words">{formState.freeInitialConsultation ? 'yes' : 'no'}</p>
+                  <p className="break-words font-semibold">
+                    {formState.freeInitialConsultation ? "yes" : "no"}
+                  </p>
                 </div>
                 <div className="flex w-1/2 flex-col">
-                  <span className="mb-2">Do you offer revisions to the initial theme proposal?</span>
-                  <span className="font-semibold break-words">{formState.revisionPolicy ? 'yes' : 'no'}</span>
+                  <span className="mb-2">
+                    Do you offer revisions to the initial theme proposal?
+                  </span>
+                  <span className="break-words font-semibold">
+                    {formState.revisionPolicy ? "yes" : "no"}
+                  </span>
                 </div>
               </div>
               <div className="mb-4 flex gap-16 py-2">
-                <div className="flex w-1/2 flex-col px-4 ">
-                  <span className="mb-2">Do you provide a written theme proposal after consultation?</span>
+                <div className="flex w-1/2 flex-col px-4">
+                  <span className="mb-2">
+                    Do you provide a written theme proposal after consultation?
+                  </span>
 
-                  <p className="font-semibold break-words">{formState.writtenthemeProposal ? 'yes' : 'no'}</p>
+                  <p className="break-words font-semibold">
+                    {formState.writtenthemeProposal ? "yes" : "no"}
+                  </p>
                 </div>
                 <div className="flex w-1/2 flex-col">
-                  <span className="mb-2">Do you handle setup and installation of the decor?</span>
-                  <span className="font-semibold break-words">{formState.setup_installation ? 'yes' : 'no'}</span>
+                  <span className="mb-2">
+                    Do you handle setup and installation of the decor?
+                  </span>
+                  <span className="break-words font-semibold">
+                    {formState.setup_installation ? "yes" : "no"}
+                  </span>
                 </div>
               </div>
-
             </div>
           </div>
           <div className="flex gap-9">
-            <div className=" w-[100%]   flex justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
+            <div className="flex w-[100%] justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
               Pricing Structure
               <div className="align-center flex justify-center p-1">
                 <button>
@@ -399,89 +439,74 @@ function Preview({
           <div className="w-full">
             <div className="w-[100%] px-2 font-semibold">
               <div className="mb-4 flex gap-16 py-2">
-                <div className="flex w-1/2 flex-col px-4 ">
+                <div className="flex w-1/2 flex-col px-4">
                   <span className="mb-2">Hourly package rates</span>
 
                   {hourlyPackages.map((pkg, index) => (
                     <div
                       key={index}
-                      className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row "
+                      className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row"
                     >
                       <div className="flex min-w-[40%] flex-col gap-4">
-
                         <div key={index} className="mb-2 flex flex-col">
                           <span>{pkg.type}</span>
                           <span className="font-semibold">
                             ₹{pkg.priceRange[0]} - ₹{pkg.priceRange[1]}
                           </span>
-
                         </div>
                       </div>
-
                     </div>
                   ))}
                 </div>
-                <div className="flex w-1/2 flex-col px-4 ">
+                <div className="flex w-1/2 flex-col px-4">
                   <span className="mb-2">Daily package rates</span>
 
                   {dailyPackages.map((pkg, index) => (
                     <div
                       key={index}
-                      className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row "
+                      className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row"
                     >
                       <div className="flex min-w-[40%] flex-col gap-4">
-
                         <div key={index} className="mb-2 flex flex-col">
                           <span>{pkg.type}</span>
                           <span className="font-semibold">
                             ₹{pkg.priceRange[0]} - ₹{pkg.priceRange[1]}
                           </span>
-
                         </div>
                       </div>
-
                     </div>
                   ))}
                 </div>
-
-
               </div>
-              <div className="flex w-1/2 flex-col px-4 ">
+              <div className="flex w-1/2 flex-col px-4">
                 <span className="mb-2">Additional charges rates</span>
 
                 {additionalCharges.map((pkg, index) => (
                   <div
                     key={index}
-                    className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row "
+                    className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row"
                   >
                     <div className="flex min-w-[40%] flex-col gap-4">
-
                       <div key={index} className="mb-2 flex flex-col">
                         <span>{pkg.type}</span>
                         <span className="font-semibold">
                           ₹{pkg.priceRange[0]} - ₹{pkg.priceRange[1]}
                         </span>
-
                       </div>
                     </div>
-
                   </div>
                 ))}
               </div>
 
-              <div className="mt-4 flex w-1/2 flex-col px-4 ">
+              <div className="mt-4 flex w-1/2 flex-col px-4">
                 <span className="mb-2">Advance Payment</span>
-                <span className="font-semibold">
-                  {advancePayment}%
-                </span>
+                <span className="font-semibold">{advancePayment}%</span>
               </div>
-
-
             </div>
           </div>
 
           <div className="flex gap-9">
-            <div className=" w-[100%]   flex justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
+            <div className="flex w-[100%] justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
               Rating & Reviews
               <div className="align-center flex justify-center p-1">
                 <button>
@@ -492,50 +517,57 @@ function Preview({
           </div>
 
           <div className="w-[100%]">
-            <div className=" flex gap-16 py-2">
+            <div className="flex gap-16 py-2">
               <div className="flex w-1/2 flex-col px-4">
                 <span className="">Portfolio</span>
 
                 <span className="font-semibold">
-                  {typeof formState.portfolio === 'string'
-                    ? 'no file selected'
-                    : <File file={formState.portfolio} />}
+                  {typeof formState.portfolio === "string" ? (
+                    "no file selected"
+                  ) : (
+                    <File file={formState.portfolio} />
+                  )}
                 </span>
               </div>
               <div className="flex w-1/2 flex-col">
                 <span className="">Online Ratings and Reviews</span>
                 <span className="font-semibold">
-                  {typeof formState.ratings_reviews === 'string'
-                    ? 'no file selected'
-                    : <File file={formState.ratings_reviews} />}
+                  {typeof formState.ratings_reviews === "string" ? (
+                    "no file selected"
+                  ) : (
+                    <File file={formState.ratings_reviews} />
+                  )}
                 </span>
               </div>
             </div>
 
-            <div className=" flex gap-16 py-2">
+            <div className="flex gap-16 py-2">
               <div className="flex w-1/2 flex-col px-4">
                 <span className="">Client Testimonials </span>
 
                 <span className="font-semibold">
-                  {typeof formState.clientTestimonials === 'string'
-                    ? 'no file selected'
-                    : <File file={formState.clientTestimonials} />}
+                  {typeof formState.clientTestimonials === "string" ? (
+                    "no file selected"
+                  ) : (
+                    <File file={formState.clientTestimonials} />
+                  )}
                 </span>
               </div>
               <div className="flex w-1/2 flex-col">
                 <span className="">Certificate or award</span>
                 <span className="font-semibold">
-                  {typeof formState.certificates_awards === 'string'
-                    ? 'no file selected'
-                    : <File file={formState.certificates_awards} />}
+                  {typeof formState.certificates_awards === "string" ? (
+                    "no file selected"
+                  ) : (
+                    <File file={formState.certificates_awards} />
+                  )}
                 </span>
               </div>
             </div>
-
           </div>
 
           <div className="flex gap-9">
-            <div className=" w-[100%]   flex justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
+            <div className="flex w-[100%] justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
               Mandatory Details
               <div className="align-center flex justify-center p-1">
                 <button>
@@ -545,52 +577,57 @@ function Preview({
             </div>
           </div>
           <div className="w-[100%]">
-            <div className=" flex gap-16 py-2">
+            <div className="flex gap-16 py-2">
               <div className="flex w-1/2 flex-col px-4">
                 <span className="">Insurance coverage policy</span>
 
                 <span className="font-semibold">
-                  {typeof formState.insurancePolicy === 'string'
-                    ? 'no file selected'
-                    : <File file={formState.insurancePolicy} />}
+                  {typeof formState.insurancePolicy === "string" ? (
+                    "no file selected"
+                  ) : (
+                    <File file={formState.insurancePolicy} />
+                  )}
                 </span>
               </div>
               <div className="flex w-1/2 flex-col">
                 <span className="">Cancellation Policy</span>
                 <span className="font-semibold">
-                  {typeof formState.cancellationPolicy === 'string'
-                    ? 'no file selected'
-                    : <File file={formState.cancellationPolicy} />}
+                  {typeof formState.cancellationPolicy === "string" ? (
+                    "no file selected"
+                  ) : (
+                    <File file={formState.cancellationPolicy} />
+                  )}
                 </span>
               </div>
             </div>
 
-            <div className=" flex gap-16 py-2">
+            <div className="flex gap-16 py-2">
               <div className="flex w-1/2 flex-col px-4">
                 <span className="">Terms & Condition</span>
 
                 <span className="font-semibold">
-                  {typeof formState.termsAndConditions === 'string'
-                    ? 'no file selected'
-                    : <File file={formState.termsAndConditions} />}
+                  {typeof formState.termsAndConditions === "string" ? (
+                    "no file selected"
+                  ) : (
+                    <File file={formState.termsAndConditions} />
+                  )}
                 </span>
               </div>
               <div className="flex w-1/2 flex-col">
                 <span className="">Privacy Policy</span>
                 <span className="font-semibold">
-                  {typeof formState.privacyPolicy === 'string'
-                    ? 'no file selected'
-                    : <File file={formState.privacyPolicy} />}
+                  {typeof formState.privacyPolicy === "string" ? (
+                    "no file selected"
+                  ) : (
+                    <File file={formState.privacyPolicy} />
+                  )}
                 </span>
               </div>
             </div>
-
           </div>
         </div>
-
       </div>
     </div>
-
   );
 }
 
