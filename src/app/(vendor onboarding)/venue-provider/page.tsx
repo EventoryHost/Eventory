@@ -17,7 +17,7 @@ interface Package {
   priceRange: [number, number];
 }
 
-interface FormState {
+export interface FormState {
   venueName: string;
   VenueAddress: string;
   venueType: string;
@@ -287,7 +287,10 @@ const VenueForm: React.FC = () => {
             setVenue_restrictions={setVenue_restrictions}
             venue_special_features={venue_special_features}
             setVenue_special_features={setVenue_special_features}
-            handleSubmit={handleSubmit}
+            handleContinue={() => {
+              setCurrentPage(6);
+              handleContinue();
+            }}
           />
         );
       case 6:
@@ -321,33 +324,83 @@ const VenueForm: React.FC = () => {
   };
 
   return (
-    <div>
-      {renderPage()}
-      <div className="my-9 mr-[5%] flex flex-row justify-end gap-7">
-        {currentPage > 1 && (
-          <button
-            className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-            onClick={() => setCurrentPage(currentPage - 1)}
-          >
-            Previous
-          </button>
-        )}
-        {currentPage < 6 && (
-          <button
-            onClick={() => setCurrentPage(currentPage + 1)}
-            className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-          >
-            Next
-          </button>
-        )}
-        {currentPage === 6 && (
-          <button
-            onClick={handleSubmit}
-            className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-          >
-            Submit
-          </button>
-        )}
+    <div className="m-0 flex w-full flex-col overflow-x-hidden lg:h-[calc(100vh-4.2rem)] lg:flex-row">
+      <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
+        <div className="flex w-[100%] flex-col gap-5 lg:gap-3">
+          <div className="flex items-center justify-start gap-1 px-3 lg:mt-[2rem]">
+            <button
+              className={`flex h-10 w-10 items-center justify-center rounded-full p-5 ${currentPage >= 1 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+              onClick={() => setCurrentPage(1)}
+            >
+              1
+            </button>
+            <div
+              className={`h-[0.3rem] w-[4rem] rounded-xl ${currentPage > 1 ? "bg-[#2E3192]" : "bg-gray-300"}`}
+            />
+            <button
+              className={`flex h-10 w-10 items-center justify-center rounded-full p-5 ${currentPage >= 2 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+              onClick={() => setCurrentPage(2)}
+            >
+              2
+            </button>
+            <div
+              className={`h-[0.3rem] w-[4rem] rounded-xl ${currentPage > 2 ? "bg-[#2E3192]" : "bg-gray-300"}`}
+            />
+            <button
+              className={`flex h-10 w-10 items-center justify-center rounded-full p-5 ${currentPage >= 3 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+              onClick={() => setCurrentPage(3)}
+            >
+              3
+            </button>
+          </div>
+          <div className="flex items-center justify-start gap-1 px-3 lg:mt-[1rem]">
+            <button
+              className={`flex h-10 w-10 items-center justify-center rounded-full p-5 ${currentPage >= 4 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+              onClick={() => setCurrentPage(4)}
+            >
+              4
+            </button>
+            <div
+              className={`h-[0.3rem] w-[4rem] rounded-xl ${currentPage > 4 ? "bg-[#2E3192]" : "bg-gray-300"}`}
+            />
+            <button
+              className={`flex h-10 w-10 items-center justify-center rounded-full p-5 ${currentPage >= 5 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+              onClick={() => setCurrentPage(5)}
+            >
+              5
+            </button>
+            <div
+              className={`h-[0.3rem] w-[4rem] rounded-xl ${currentPage > 5 ? "bg-[#2E3192]" : "bg-gray-300"}`}
+            />
+            <button
+              className={`flex h-10 w-10 items-center justify-center rounded-full p-5 ${currentPage >= 6 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+              onClick={() => setCurrentPage(6)}
+            >
+              6
+            </button>
+          </div>
+        </div>
+        <div className="flex h-[50%] flex-col items-start justify-center gap-9 px-3 md:px-3">
+          <h1 className="text-[8vw] font-bold md:text-[3vw]">
+            Tell us about your business
+          </h1>
+          <p className="text-black xs:text-sm md:w-[90%]">
+            Fill out your Business details to get verified and proceed to
+            registration process.
+          </p>
+        </div>
+        <div className="relative h-[10rem] lg:w-full">
+          <Image
+            src={"/tajmahal.png"}
+            alt=""
+            width={400}
+            height={200}
+            className="h-full w-full object-cover"
+          />
+        </div>
+      </div>
+      <div className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] p-2 md:p-[1rem]">
+        {renderPage()}
       </div>
     </div>
   );
