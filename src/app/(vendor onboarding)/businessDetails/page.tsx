@@ -7,6 +7,7 @@ import jwt from "jsonwebtoken";
 import { addBusinessDetails } from "@/services/auth";
 import tajmahal from "/public/tajmahal.png";
 import { Combobox } from "@/components/ui/combobox";
+import Router from "next/router";
 
 const frameworks = [
   { value: "next.js", label: "Next.js" },
@@ -14,6 +15,14 @@ const frameworks = [
   { value: "nuxt.js", label: "Nuxt.js" },
   { value: "remix", label: "Remix" },
   { value: "astro", label: "Astro" },
+];
+
+const categories = [
+  { value: "pav", label: "PaV" },
+  { value: "caterer", label: "Caterers" },
+  { value: "decorators", label: "Decorator" },
+  { value: "propRentals", label: "Prop Rentals" },
+  { value: "makeupArtist", label: "Makeup Artist" },
 ];
 
 const yearsInOperation = [
@@ -74,8 +83,12 @@ const BusinessDetails = () => {
     for (const key in refs.current) {
       const refElement = refs.current[key as keyof businessDetails];
       if (!refElement || !refElement.value.trim()) {
-        return; // Stop further processing
+        return;
       }
+    }
+
+    if (!businessDetails.category) {
+      return;
     }
 
     const newDetails: businessDetails = {
@@ -88,6 +101,7 @@ const BusinessDetails = () => {
       pinCode: Number(refs.current.pinCode!.value),
       cities: businessDetails.cities,
     };
+
     setBusinessDetails(newDetails);
     console.log("Business Details:", newDetails);
 
@@ -96,7 +110,11 @@ const BusinessDetails = () => {
       userId: string;
       email: string;
     };
+
     addBusinessDetails(userId, newDetails);
+
+    // Redirect to the selected category's page
+    Router.push(`/${businessDetails.category}`);
   };
 
   return (
@@ -150,7 +168,7 @@ const BusinessDetails = () => {
                 <div className="flex min-w-[40%] flex-col gap-4">
                   <label htmlFor="category">Category</label>
                   <Combobox
-                    options={frameworks}
+                    options={categories}
                     placeholder="Select Category"
                     setFunction={(val) => {
                       setBusinessDetails({ ...businessDetails, category: val });
@@ -244,7 +262,7 @@ const BusinessDetails = () => {
                   type="submit"
                   className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
                 >
-                  Verify
+                  Continue
                 </button>
               </div>
             </div>

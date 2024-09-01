@@ -16,7 +16,7 @@ const _EventTypes = [
 const _additionalServices = ["Setup Services", "Cleanup Services", "Others",];
 
 interface page3Props{
-  selectedEventTypes: string[];
+ selectedEventTypes: string[];
   setSelectedEventTypes: React.Dispatch<React.SetStateAction<string[]>>;
   selectedAdditionalServices: string[];
   setSelectedAdditionalServices: React.Dispatch<React.SetStateAction<string[]>>;

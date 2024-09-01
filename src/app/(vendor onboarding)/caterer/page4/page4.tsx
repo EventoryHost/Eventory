@@ -7,16 +7,16 @@ const _staffProvides = ["Chefs", "Bartenders", "Servers", "Cleaners", "Others"];
 const _equipmentsProvided = ["Setup Services", "Cleanup Services", "Others"];
 
 const Page4 = ({
-  selectedAppetizers,
-  setSelectedAppetizers,
-  selectedBeverages,
-  setSelectedBeverages,
+  selectedStaffProvider,
+  setSelectedStaffProvider,
+  selectedEquipmentsProvided,
+  setSelectedEquipmentsProvided,
   handleContinue,
 }: {
-  selectedAppetizers: string[];
-  setSelectedAppetizers: React.Dispatch<React.SetStateAction<string[]>>;
-  selectedBeverages: string[];
-  setSelectedBeverages: React.Dispatch<React.SetStateAction<string[]>>;
+  selectedStaffProvider: string[];
+  setSelectedStaffProvider: React.Dispatch<React.SetStateAction<string[]>>;
+  selectedEquipmentsProvided: string[];
+  setSelectedEquipmentsProvided: React.Dispatch<React.SetStateAction<string[]>>;
   handleContinue: () => void;
 }) => {
   const handleSubmit = (e: React.FormEvent) => {
@@ -39,8 +39,8 @@ const Page4 = ({
               <Appetizers
               field={'staffProvides'}
                 appetizers={_staffProvides}
-                selectedAppetizers={selectedAppetizers}
-                setSelectedAppetizers={setSelectedAppetizers}
+                selectedAppetizers={selectedStaffProvider}
+                setSelectedAppetizers={setSelectedStaffProvider}
               />
             </div>
           </div>
@@ -54,8 +54,8 @@ const Page4 = ({
               <Appetizers
               field={'equipmentsProvided'}
                 appetizers={_equipmentsProvided}
-                selectedAppetizers={selectedBeverages}
-                setSelectedAppetizers={setSelectedBeverages}
+                selectedAppetizers={selectedEquipmentsProvided}
+                setSelectedAppetizers={setSelectedEquipmentsProvided}
               />
             </div>
             <div className="items-strech mt-9 flex flex-row gap-7 self-end">

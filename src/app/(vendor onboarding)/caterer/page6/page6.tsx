@@ -165,7 +165,7 @@ const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
                       id="termsAndConditions"
                       name="termsAndConditions"
                       accept="image/png, .pdf, image/jpg"
-                      // className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
+                      //  className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
                       onChange={(e) => {
                         e.preventDefault();
                         const file = e.target.files![0];
@@ -194,7 +194,7 @@ const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
                   Upload
                   <input
                     type="file"
-                    className="hidden"
+                    
                     id="cancellationPolicy"
                     name="cancellationPolicy"
                     accept="image/png, .pdf, image/jpg"
@@ -232,7 +232,7 @@ const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
                   handleContinue();
                 }}
               >
-                Submit
+                continue
               </button>
             </div>
           </div>

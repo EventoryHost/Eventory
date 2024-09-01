@@ -10,6 +10,9 @@ import Page3 from "./page3/page3";
 import Page4 from "./page4/page4";
 import Page5 from "./page5/page5";
 import Page6 from "./page6/page6";
+
+import Page7 from "./preview/page7";
+
 import { addCaterer } from "@/services/vendors/caterer";
 
 interface Package {
@@ -255,10 +258,11 @@ const Caterer = () => {
       case 3:
         return (
           <Page3
-          selectedEventTypes={eventTypes}
-          setSelectedEventTypes={setEventTypes}
-          selectedAdditionalServices={additionalServices}
-          setSelectedAdditionalServices={setAdditionalServices}
+
+            selectedEventTypes={eventTypes}
+            setSelectedEventTypes={setEventTypes}
+            selectedAdditionalServices={additionalServices}
+            setSelectedAdditionalServices={setAdditionalServices}
             handleContinue={() => {
               setCurrentPage(4);
               handleContinue();
@@ -268,10 +272,10 @@ const Caterer = () => {
       case 4:
         return (
           <Page4
-            selectedAppetizers={staffProvides}
-            setSelectedAppetizers={setStaffProvides}
-            selectedBeverages={equipmentsProvided}
-            setSelectedBeverages={setEquipmentsProvided}
+            selectedStaffProvider={staffProvides}
+            setSelectedStaffProvider={setStaffProvides}
+            selectedEquipmentsProvided={equipmentsProvided}
+            setSelectedEquipmentsProvided={setEquipmentsProvided}
             handleContinue={() => {
               setCurrentPage(5);
               handleContinue();
@@ -301,13 +305,54 @@ const Caterer = () => {
             formState={formState}
             updateFormState={updateFormState}
             handleContinue={() => {
+              setCurrentPage(7)
               handleContinue();
-              handleSubmit();
+              // handleSubmit();
             }}
           />
         );
+      
       default:
-        return <div>Completed</div>;
+        return(
+          <Page7
+          formState={formState}
+            updateFormState={updateFormState}
+            cuisineSpecialties={cuisineSpecialties}
+            setCuisineSpecialties={setCuisineSpecialties}
+            regionalSpecialties={regionalSpecialties}
+            setRegionalSpecialties={setRegionalSpecialties}
+            serviceStyles={serviceStyles}
+            setServiceStyles={setServiceStyles}
+
+            selectedAppetizers={selectedAppetizers}
+            setSelectedAppetizers={setSelectedAppetizers}
+            selectedBeverages={selectedBeverages}
+            setSelectedBeverages={setSelectedBeverages}
+            selectedMainCourses={selectedMainCourses}
+            setSelectedMainCourses={setSelectedMainCourses}
+            selectedDietaryOptions={selectedDietaryOptions}
+            setSelectedDietaryOptions={setSelectedDietaryOptions}
+
+            selectedEventTypes={eventTypes}
+            setSelectedEventTypes={setEventTypes}
+            selectedAdditionalServices={additionalServices}
+            setSelectedAdditionalServices={setAdditionalServices}
+            
+            selectedStaffProvider={staffProvides}
+            setSelectedStaffProvider={setStaffProvides}
+            selectedEquipmentsProvided={equipmentsProvided}
+            setSelectedEquipmentsProvided={setEquipmentsProvided}
+
+            hourlyPackages={hourlyPackages}
+            setHourlyPackages={setHourlyPackages}
+            dailyPackages={dailyPackages}
+            setDailyPackages={setDailyPackages}
+            seasonalPackages={seasonalPackages}
+            setSeasonalPackages={setSeasonalPackages}
+            handlePackageChange={handlePackageChange}
+            addPackage={addPackage}
+          />
+        )
     }
   };
 

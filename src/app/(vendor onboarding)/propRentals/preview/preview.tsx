@@ -117,9 +117,9 @@ type FormState = {
 
   // Page2
   insurancePolicy: string | File;
-  cancellationPolicy: string;
-  termsAndConditions: string;
-  privacyPolicy: string;
+  cancellationPolicy: string | File;
+  termsAndConditions: string | File;
+  privacyPolicy: string | File;
 
   // Page3
   selectedAppetizers: string[];
@@ -324,7 +324,7 @@ function Preview({
             </span>
           </div>
         </div>
-
+        
         <div className="m-6 mt-4 flex flex-col">
           <span className="text-xl">Selected Decor</span>
           <Appetizers
