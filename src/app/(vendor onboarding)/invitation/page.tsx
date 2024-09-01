@@ -6,6 +6,7 @@ import Page2 from "./page2/page2";
 import Page3 from "./page3/page3";
 import Page4 from "./page4/page4";
 import Page5 from "./page5/page5";
+import Page6 from "./preview/page6";
 
 interface Package {
   type: string;
@@ -47,7 +48,7 @@ interface FormState {
 }
 
 const Invitation: React.FC = () => {
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(6);
   // global variables
   const [formState, setFormState] = useState<FormState>({
     //page1
@@ -283,7 +284,7 @@ const Invitation: React.FC = () => {
         );
       default:
         return (
-          <Page1
+          <Page6
             formState={formState}
             updateFormState={updateFormState}
             typesOfInvitationsYouDesign={typesOfInvitationsYouDesign}
@@ -306,6 +307,18 @@ const Invitation: React.FC = () => {
             setRelegiousInvitation={setRelegiousInvitation}
             otherInvitation={otherInvitation}
             setOtherInvitation={setOtherInvitation}
+            paperType={paperType}
+            setPaperType={setPaperType}
+            envelopeTypes={envelopTypes}
+            setEnvelopeTypes={setEnvelopTypes}
+            perPeicePriceRange={perPeicePriceRange}
+            setperPeicePriceRange={setperPeicePriceRange}
+            bulkPriceRange={bulkPriceRange}
+            setbulkPriceRange={setbulkPriceRange}
+            advancePayment={advancePayment}
+            setAdvancePayment={setAdvancePayment}
+            handlePackageChange={handlePackageChange}
+            addPackage={addPackage}
           />
         );
     }
@@ -323,7 +336,7 @@ const Invitation: React.FC = () => {
             Previous
           </button>
         )}
-        {currentPage < 5 && (
+        {currentPage < 6 && (
           <button
             onClick={() => setCurrentPage(currentPage + 1)}
             className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
@@ -331,7 +344,7 @@ const Invitation: React.FC = () => {
             Next
           </button>
         )}
-        {currentPage === 5 && (
+        {currentPage === 6 && (
           <button
             onClick={handleSubmit}
             className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
