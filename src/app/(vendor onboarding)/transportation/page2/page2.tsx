@@ -178,7 +178,7 @@ const Page2: React.FC<Page2Props> = ({ formState, handleChange }) => {
           <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:w-full md:p-6">
             <span className="font-semibold">Vehicle types</span>
             <Appetizers
-            field={'_vehicleTypes'}
+              field={"_vehicleTypes"}
               appetizers={vehicleTypes}
               selectedAppetizers={formState.selectedVehicleTypes}
               setSelectedAppetizers={(selectedappetizers) =>
@@ -192,7 +192,7 @@ const Page2: React.FC<Page2Props> = ({ formState, handleChange }) => {
           <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:w-full md:p-6">
             <span className="font-semibold">Brands</span>
             <Appetizers
-            field={'_brands'}
+              field={"_brands"}
               appetizers={brands}
               selectedAppetizers={formState.selectedBrands}
               setSelectedAppetizers={(selectedBrands) =>
@@ -206,7 +206,7 @@ const Page2: React.FC<Page2Props> = ({ formState, handleChange }) => {
           <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:w-full md:p-6">
             <span className="font-semibold">Models</span>
             <Appetizers
-            field={'_models'}
+              field={"_models"}
               appetizers={models}
               selectedAppetizers={formState.selectedModels}
               setSelectedAppetizers={(selectedModels) =>

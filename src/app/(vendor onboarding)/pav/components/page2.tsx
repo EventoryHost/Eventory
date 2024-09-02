@@ -103,7 +103,7 @@ const Page1 = ({
                 Types Of Styles
               </label>
               <Appetizers
-              field={'_styles'}
+                field={"_styles"}
                 appetizers={styles}
                 selectedAppetizers={Selectedstyles}
                 setSelectedAppetizers={setStyles}
@@ -116,7 +116,7 @@ const Page1 = ({
                 Types Of Events
               </label>
               <Appetizers
-               field={'_events'}
+                field={"_events"}
                 appetizers={events}
                 selectedAppetizers={Selectedevents}
                 setSelectedAppetizers={setEvents}

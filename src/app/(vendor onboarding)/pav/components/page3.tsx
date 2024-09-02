@@ -84,7 +84,7 @@ const Page3 = ({
                 Types of Equipments Available
               </label>
               <Appetizers
-              field={'_equipments'}
+                field={"_equipments"}
                 appetizers={equipments}
                 selectedAppetizers={Selectedequipments}
                 setSelectedAppetizers={setSelectedEquipments}

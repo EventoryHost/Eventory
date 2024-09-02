@@ -86,7 +86,7 @@ const Page3: React.FC<Page3Props> = ({
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
-              field={'_themesElement'}
+                field={"_themesElement"}
                 appetizers={_themesElement}
                 selectedAppetizers={themesElements}
                 setSelectedAppetizers={setThemesElements}

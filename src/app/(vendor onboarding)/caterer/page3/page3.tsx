@@ -5,7 +5,6 @@ import Appetizers from "../../(components)/Appetizers";
 import Image from "next/image";
 
 const _EventTypes = [
-  
   "Corporate",
   "Birthdays",
   "Anniversary",
@@ -13,16 +12,16 @@ const _EventTypes = [
   "Weddings",
 ];
 
-const _additionalServices = ["Setup Services", "Cleanup Services", "Others",];
+const _additionalServices = ["Setup Services", "Cleanup Services", "Others"];
 
-interface page3Props{
- selectedEventTypes: string[];
+interface page3Props {
+  selectedEventTypes: string[];
   setSelectedEventTypes: React.Dispatch<React.SetStateAction<string[]>>;
   selectedAdditionalServices: string[];
   setSelectedAdditionalServices: React.Dispatch<React.SetStateAction<string[]>>;
   handleContinue: () => void;
 }
-const Page3 :React.FC<page3Props>= ({
+const Page3: React.FC<page3Props> = ({
   selectedEventTypes,
   setSelectedEventTypes,
   selectedAdditionalServices,
@@ -40,19 +39,17 @@ const Page3 :React.FC<page3Props>= ({
         <div className="flex flex-col gap-9 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
           <h1 className="text-2xl font-semibold md:text-3xl">Event Details</h1>
           <h1 className="self-start text-lg font-normal md:text-2xl">
-              Event Types Catered:
-            </h1>
+            Event Types Catered:
+          </h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
-            
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
-                field={'EventTypes'}
+                field={"EventTypes"}
                 appetizers={_EventTypes}
                 selectedAppetizers={selectedEventTypes}
                 setSelectedAppetizers={setSelectedEventTypes}
               />
             </div>
-            
           </div>
         </div>
         <div className="flex flex-col gap-9 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
@@ -62,7 +59,7 @@ const Page3 :React.FC<page3Props>= ({
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
-                field={'additionalServices'}
+                field={"additionalServices"}
                 appetizers={_additionalServices}
                 selectedAppetizers={selectedAdditionalServices}
                 setSelectedAppetizers={setSelectedAdditionalServices}

@@ -1,5 +1,5 @@
-import React from 'react';
-import { FiFile } from 'react-icons/fi';
+import React from "react";
+import { FiFile } from "react-icons/fi";
 
 interface FileDisplayProps {
   file?: {
@@ -17,11 +17,13 @@ const FileDisplay: React.FC<FileDisplayProps> = ({ file }) => {
   };
 
   return (
-    <div className="flex items-center space-x-2 p-2 border rounded-lg">
+    <div className="flex items-center space-x-2 rounded-lg border p-2">
       <FiFile className="text-blue-500" /> {/* File icon */}
       <div className="flex flex-col">
         {/* Check if file and file.name exist before rendering */}
-        <span className="font-semibold">{file?.name || 'No file selected'}</span>
+        <span className="font-semibold">
+          {file?.name || "No file selected"}
+        </span>
         {/* Check if file.size exists before formatting and rendering */}
         {file?.size !== undefined && (
           <span className="text-sm text-gray-500">{formatSize(file.size)}</span>

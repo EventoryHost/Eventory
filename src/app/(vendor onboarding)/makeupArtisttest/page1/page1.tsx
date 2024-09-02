@@ -391,7 +391,7 @@ const Page: React.FC<Page1Props> = ({
             <div className="flex min-h-full min-w-full flex-col items-center gap-5">
               <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
                 <Appetizers
-                field={'_makeupArtists_individual'}
+                  field={"_makeupArtists_individual"}
                   appetizers={_makeupArtists_individual}
                   selectedAppetizers={makeupArtists_individual}
                   setSelectedAppetizers={setMakeupArtist_individual}
@@ -423,7 +423,7 @@ const Page: React.FC<Page1Props> = ({
             <div className="flex min-h-full min-w-full flex-col items-center gap-5">
               <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
                 <Appetizers
-                field={'_makeupArtists_groups'}
+                  field={"_makeupArtists_groups"}
                   appetizers={_makeupArtists_groups}
                   selectedAppetizers={makeupArtists_groups}
                   setSelectedAppetizers={setMakeupArtist_group}
@@ -455,7 +455,7 @@ const Page: React.FC<Page1Props> = ({
             <div className="flex min-h-full min-w-full flex-col items-center gap-5">
               <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
                 <Appetizers
-                field={'_makeupArtists_organisation'}
+                  field={"_makeupArtists_organisation"}
                   appetizers={_makeupArtists_organisation}
                   selectedAppetizers={makeupArtists_organisation}
                   setSelectedAppetizers={setMakeupArtist_organisation}

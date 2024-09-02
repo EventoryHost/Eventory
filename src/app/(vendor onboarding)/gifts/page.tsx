@@ -1,9 +1,11 @@
 "use client";
 // RootPage.tsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import jwt from "jsonwebtoken";
 import Page1 from "./page1/page1";
 import Page2 from "./page2/page2";
 import Preview from "./preview/page3";
+import { addGift } from "@/services/vendors/gift";
 
 const Pages = [Page1, Page2, Preview];
 
@@ -12,7 +14,7 @@ type FormState = {
   contactNumber: string;
   venueDescription: string;
   minimumQuantity: string;
-  bulkQuantity: string;
+  bulkQuantityAvailable: string;
   customizableGifts: string;
   typesOfGifts: string[];
   priceRange: { min: string; max: string };
@@ -20,6 +22,7 @@ type FormState = {
   deliveryCharges: { min: string; max: string };
   termsAndConditions: string | File;
   category: string;
+  listOfGifts: string[];
 };
 
 const RootPage = () => {
@@ -31,7 +34,7 @@ const RootPage = () => {
     contactNumber: "",
     venueDescription: "",
     minimumQuantity: "",
-    bulkQuantity: "",
+    bulkQuantityAvailable: "",
     customizableGifts: "",
     typesOfGifts: [],
     priceRange: { min: "", max: "" },
@@ -39,10 +42,12 @@ const RootPage = () => {
     deliveryCharges: { min: "", max: "" },
     termsAndConditions: "",
     category: "",
+    listOfGifts: [],
   });
 
   // Function to handle changes for form fields
   const handleChange = (key: keyof FormState, value: any) => {
+    console.log(`Updating ${key} with value:`, value);
     setFormState((prevState) => ({ ...prevState, [key]: value }));
   };
 
@@ -81,11 +86,81 @@ const RootPage = () => {
   }
 
   const CurrentPageComponent = Pages[currentPage];
-  const [selectedGiftTypes, setSelectedGiftTypes] = useState<string[]>([]);
+  const [listOfGifts, setlistOfGifts] = useState<string[]>([]);
 
-  function handleSubmit() {
-    console.log(formState);
+  useEffect(() => {
+    console.log("The updated listOfGifts is:", listOfGifts);
+    setFormState((prevState) => ({
+      ...prevState,
+      listOfGifts: listOfGifts,
+    }));
+  }, [listOfGifts]);
+
+  function getVendorId(): string | null {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      console.log("No token found!");
+      return null;
+    }
+    try {
+      const decodedToken = jwt.decode(token) as {
+        userId?: string;
+        email?: string;
+      };
+      if (!decodedToken || !decodedToken.userId) {
+        console.error("Invalid token or token does not contain userId.");
+        return null;
+      }
+      return decodedToken.userId;
+    } catch (error) {
+      console.error("Error decoding token:", error);
+      return null;
+    }
   }
+
+  const handleSubmit = async () => {
+    console.log("Form State before submission:", formState);
+
+    const venId = getVendorId()!;
+    const formData = new FormData();
+    formData.append("venId", venId);
+
+    formData.append("vendorName", formState.vendorName);
+    formData.append("contactNumber", formState.contactNumber);
+    formData.append("venueDescription", formState.venueDescription);
+    formData.append("minimumQuantity", formState.minimumQuantity);
+    formData.append("bulkQuantityAvailable", formState.bulkQuantityAvailable);
+    formData.append("customizableGifts", formState.customizableGifts);
+
+    formData.append("priceRange[min]", formState.priceRange.min);
+    formData.append("priceRange[max]", formState.priceRange.max);
+
+    formState.appetizers.forEach((appetizer) =>
+      formData.append("appetizers[]", appetizer),
+    );
+
+    formData.append("deliveryCharges[min]", formState.deliveryCharges.min);
+    formData.append("deliveryCharges[max]", formState.deliveryCharges.max);
+
+    if (formState.termsAndConditions instanceof File) {
+      formData.append("termsAndConditions", formState.termsAndConditions);
+    } else {
+      formData.append("termsAndConditions", formState.termsAndConditions);
+    }
+
+    formData.append("category", formState.category);
+
+    formState.listOfGifts.forEach((gift) =>
+      formData.append("listOfGifts[]", gift),
+    );
+
+    try {
+      await addGift(formData);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
+  };
 
   return (
     <div>
@@ -95,8 +170,8 @@ const RootPage = () => {
         handleChange={handleChange}
         handleNestedChange={handleNestedChange}
         navigateToPage={navigateToPage}
-        selectedGiftTypes={selectedGiftTypes}
-        setSelectedGiftTypes={setSelectedGiftTypes}
+        listOfGifts={listOfGifts}
+        setlistOfGifts={setlistOfGifts}
         updateFormState={updateFormState}
       />
       <div className="my-9 mr-[5%] flex flex-row justify-end gap-7">

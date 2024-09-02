@@ -280,7 +280,7 @@ function Page3({
               <div className="flex min-h-full min-w-full flex-col gap-5">
                 <h1 className="text-3xl font-semibold">Furniture</h1>
                 <Appetizers
-                field={'furnitureOptions'}
+                  field={"furnitureOptions"}
                   appetizers={furnitureOptions}
                   selectedAppetizers={selectedAppetizers}
                   setSelectedAppetizers={setselectedAppetizers}
@@ -292,7 +292,7 @@ function Page3({
               <div className="flex min-h-full min-w-full flex-col gap-5">
                 <h1 className="text-3xl font-semibold">Decor</h1>
                 <Appetizers
-                field={'DecorOptions'}
+                  field={"DecorOptions"}
                   appetizers={DecorOptions}
                   selectedAppetizers={selectedDecor}
                   setSelectedAppetizers={setSelectedDecor}

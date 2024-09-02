@@ -27,7 +27,7 @@ interface FormState {
   contactNumber: string;
   venueDescription: string;
   minimumQuantity: string;
-  bulkQuantity: string;
+  bulkQuantityAvailable: string;
   customizableGifts: string;
   typesOfGifts: string[];
   priceRange: { min: string; max: string };
@@ -46,8 +46,8 @@ interface PreviewProps {
     value: any,
   ) => void;
   navigateToPage: (pageIndex: number) => void;
-  selectedGiftTypes: string[];
-  setSelectedGiftTypes: React.Dispatch<React.SetStateAction<string[]>>;
+  listOfGifts: string[];
+  setlistOfGifts: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
 const Preview: React.FC<PreviewProps> = ({
@@ -55,8 +55,8 @@ const Preview: React.FC<PreviewProps> = ({
   handleChange,
   handleNestedChange,
   navigateToPage,
-  selectedGiftTypes,
-  setSelectedGiftTypes,
+  listOfGifts,
+  setlistOfGifts,
 }) => {
   function handleSubmit() {
     // Submission logic goes here
@@ -147,7 +147,7 @@ const Preview: React.FC<PreviewProps> = ({
                     Do You Offer products in bulk quantity?
                   </h2>
                   <span className="font-semibold">
-                    {formState.bulkQuantity}
+                    {formState.bulkQuantityAvailable}
                   </span>
                 </div>
               </div>
@@ -180,7 +180,7 @@ const Preview: React.FC<PreviewProps> = ({
                 </label>
                 <div className="flex flex-col gap-5 md:flex-row">
                   <Appetizers
-                  field={'giftTypes'}
+                    field={"giftTypes"}
                     appetizers={selectedGiftTypes}
                     selectedAppetizers={selectedGiftTypes}
                     setSelectedAppetizers={setSelectedGiftTypes}

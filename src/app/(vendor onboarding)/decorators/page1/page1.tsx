@@ -154,7 +154,7 @@ const Page1: React.FC<Page1Props> = ({
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
-                field={'_typesOfEvent'}
+                field={"_typesOfEvent"}
                 appetizers={_typesOfEvent}
                 selectedAppetizers={typeOfevents}
                 setSelectedAppetizers={setTypesOfEvents}
@@ -167,7 +167,7 @@ const Page1: React.FC<Page1Props> = ({
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
-                field={'_weddingEvents'}
+                field={"_weddingEvents"}
                 appetizers={_weddingEvents}
                 selectedAppetizers={weddingEvents}
                 setSelectedAppetizers={setWeddingEvents}
@@ -180,7 +180,7 @@ const Page1: React.FC<Page1Props> = ({
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
-                field={'_corporateEvents'}
+                field={"_corporateEvents"}
                 appetizers={_corporateEvents}
                 selectedAppetizers={corporateEvents}
                 setSelectedAppetizers={setCorporateEvents}
@@ -193,7 +193,7 @@ const Page1: React.FC<Page1Props> = ({
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
-                field={'_seasonalEvents'}
+                field={"_seasonalEvents"}
                 appetizers={_seasonalEvents}
                 selectedAppetizers={seasonalEvents}
                 setSelectedAppetizers={setSeasonalEvents}
@@ -206,7 +206,7 @@ const Page1: React.FC<Page1Props> = ({
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
-                field={'_culturalEvents'}
+                field={"_culturalEvents"}
                 appetizers={_culturalEvents}
                 selectedAppetizers={culturalEvents}
                 setSelectedAppetizers={setCulturalEvents}
