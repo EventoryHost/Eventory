@@ -107,7 +107,7 @@ const Page = () => {
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
-              field={'makeupTypes'}
+                field={"makeupTypes"}
                 appetizers={makeupTypes}
                 selectedAppetizers={makeupTypes}
                 setSelectedAppetizers={setMakeupTypes}

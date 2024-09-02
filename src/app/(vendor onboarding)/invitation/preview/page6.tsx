@@ -1,7 +1,7 @@
 import { Check, EditIcon } from "lucide-react";
 import { SetStateAction } from "react";
 import Appetizers from "../..//(components)/Appetizers";
-import File from "../../caterer/(components)/File"
+import File from "../../caterer/(components)/File";
 const _cuisine = ["North Indian", "South Indian", "Chinese", "Italian"];
 const regional = [
   "Gujrati",

@@ -180,7 +180,7 @@ const Preview: React.FC<PreviewProps> = ({
                 </label>
                 <div className="flex flex-col gap-5 md:flex-row">
                   <Appetizers
-                  field={'giftTypes'}
+                    field={"giftTypes"}
                     appetizers={selectedGiftTypes}
                     selectedAppetizers={selectedGiftTypes}
                     setSelectedAppetizers={setSelectedGiftTypes}

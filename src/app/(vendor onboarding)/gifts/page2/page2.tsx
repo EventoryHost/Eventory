@@ -112,9 +112,9 @@ const Page2: React.FC<PageProps> = ({
           </h2>
           <h3 className="text-lg font-medium md:text-xl">List of Gifts</h3>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
-          <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-          <Appetizers
-              field={'_buttonTexts'}
+            <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+              <Appetizers
+                field={"_buttonTexts"}
                 appetizers={_buttonTexts}
                 selectedAppetizers={listOfGifts}
                 setSelectedAppetizers={setlistOfGifts}

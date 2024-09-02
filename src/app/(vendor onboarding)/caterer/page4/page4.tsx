@@ -37,7 +37,7 @@ const Page4 = ({
             </h1>
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
-              field={'staffProvides'}
+                field={"staffProvides"}
                 appetizers={_staffProvides}
                 selectedAppetizers={selectedStaffProvider}
                 setSelectedAppetizers={setSelectedStaffProvider}
@@ -52,7 +52,7 @@ const Page4 = ({
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
-              field={'equipmentsProvided'}
+                field={"equipmentsProvided"}
                 appetizers={_equipmentsProvided}
                 selectedAppetizers={selectedEquipmentsProvided}
                 setSelectedAppetizers={setSelectedEquipmentsProvided}

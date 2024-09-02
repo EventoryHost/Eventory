@@ -247,7 +247,7 @@ const Decorators: React.FC = () => {
     formData.forEach((value, key) => {
       console.log(`${key}: ${value}`);
     });
-    localStorage.clear()
+    localStorage.clear();
   };
 
   const renderPage = () => {

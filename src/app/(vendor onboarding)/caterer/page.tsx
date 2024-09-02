@@ -258,7 +258,6 @@ const Caterer = () => {
       case 3:
         return (
           <Page3
-
             selectedEventTypes={eventTypes}
             setSelectedEventTypes={setEventTypes}
             selectedAdditionalServices={additionalServices}

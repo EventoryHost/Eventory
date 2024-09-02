@@ -163,7 +163,7 @@ function Page4({
         <div className="flex min-h-full min-w-full flex-col gap-5">
           <h1 className="text-3xl font-semibold">Tent and Canopy</h1>
           <Appetizers
-          field={'tentOptions'}
+            field={"tentOptions"}
             appetizers={tentOptions}
             selectedAppetizers={selectedTentOptions}
             setSelectedAppetizers={setSelectedTentOptions}

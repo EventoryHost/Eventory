@@ -123,7 +123,7 @@ function Page5({
         <div className="flex min-h-full min-w-full flex-col gap-5">
           <h1 className="text-3xl font-semibold">Audio Equipment</h1>
           <Appetizers
-          field={'audioOptions'}
+            field={"audioOptions"}
             appetizers={audioOptions}
             selectedAppetizers={selectedAudioOptions}
             setSelectedAppetizers={setSelectedAudioOptions}
@@ -135,7 +135,7 @@ function Page5({
         <div className="flex min-h-full min-w-full flex-col gap-5">
           <h1 className="text-3xl font-semibold">Visual Equipment </h1>
           <Appetizers
-          field={'visualOptions'}
+            field={"visualOptions"}
             appetizers={visualOptions}
             selectedAppetizers={selectedvisualOptions}
             setSelectedAppetizers={setSelectedVisualOptions}
@@ -147,7 +147,7 @@ function Page5({
         <div className="flex min-h-full min-w-full flex-col gap-5">
           <h1 className="text-3xl font-semibold">Light Equipment</h1>
           <Appetizers
-          field={'lightOptions'}
+            field={"lightOptions"}
             appetizers={lightOptions}
             selectedAppetizers={selectedLightOptions}
             setSelectedAppetizers={setSelectedLightOptions}
