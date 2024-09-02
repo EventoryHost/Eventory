@@ -194,7 +194,6 @@ const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
                   Upload
                   <input
                     type="file"
-                    
                     id="cancellationPolicy"
                     name="cancellationPolicy"
                     accept="image/png, .pdf, image/jpg"

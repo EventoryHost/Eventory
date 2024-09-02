@@ -1,13 +1,13 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import jwt from "jsonwebtoken";
 
 import { addBusinessDetails } from "@/services/auth";
 import tajmahal from "/public/tajmahal.png";
 import { Combobox } from "@/components/ui/combobox";
-import Router from "next/router";
 
 const frameworks = [
   { value: "next.js", label: "Next.js" },
@@ -22,7 +22,7 @@ const categories = [
   { value: "caterer", label: "Caterers" },
   { value: "decorators", label: "Decorator" },
   { value: "propRentals", label: "Prop Rentals" },
-  { value: "makeupArtist", label: "Makeup Artist" },
+  { value: "makeupArtisttest", label: "Makeup Artist" },
 ];
 
 const yearsInOperation = [
@@ -51,6 +51,7 @@ export type businessDetails = {
 };
 
 const BusinessDetails = () => {
+  const router = useRouter();
   const [businessDetails, setBusinessDetails] = useState<businessDetails>(
     {} as businessDetails,
   );
@@ -114,7 +115,7 @@ const BusinessDetails = () => {
     addBusinessDetails(userId, newDetails);
 
     // Redirect to the selected category's page
-    Router.push(`/${businessDetails.category}`);
+    router.push(`/${businessDetails.category}`);
   };
 
   return (

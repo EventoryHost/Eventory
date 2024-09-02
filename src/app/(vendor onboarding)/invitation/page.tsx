@@ -307,13 +307,10 @@ const Invitation: React.FC = () => {
             setRelegiousInvitation={setRelegiousInvitation}
             otherInvitation={otherInvitation}
             setOtherInvitation={setOtherInvitation}
-
             paperType={paperType}
             setPaperType={setPaperType}
-
             envelopeTypes={envelopTypes}
             setEnvelopeTypes={setEnvelopTypes}
-
             perPeicePriceRange={perPeicePriceRange}
             setperPeicePriceRange={setperPeicePriceRange}
             bulkPriceRange={bulkPriceRange}
