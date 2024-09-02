@@ -181,9 +181,9 @@ const Preview: React.FC<PreviewProps> = ({
                 <div className="flex flex-col gap-5 md:flex-row">
                   <Appetizers
                     field={"giftTypes"}
-                    appetizers={selectedGiftTypes}
-                    selectedAppetizers={selectedGiftTypes}
-                    setSelectedAppetizers={setSelectedGiftTypes}
+                    appetizers={listOfGifts}
+                    selectedAppetizers={listOfGifts}
+                    setSelectedAppetizers={setlistOfGifts}
                   />
                 </div>
               </div>
