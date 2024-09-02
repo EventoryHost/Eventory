@@ -98,6 +98,7 @@ const Appetizers: React.FC<AppetizersProps> = ({
          </button>
        
          <button
+         key={`custom-${index}`}
            className='flex items-center justify-center'
            onClick={(e) => b(e, customApp)}
          >
