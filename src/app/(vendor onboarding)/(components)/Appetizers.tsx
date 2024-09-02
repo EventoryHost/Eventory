@@ -93,10 +93,10 @@ const Appetizers: React.FC<AppetizersProps> = ({
         {/* Render custom appetizers before the "Others" button */}
         {customAppetizers.map((customApp, index) => (
           <div
-            className={`col-span-1 row-span-1 flex min-w-[7rem] items-center justify-between rounded-2xl border px-4 py-3 text-[3.5vw] font-medium outline-none md:text-[2vw] lg:text-[1vw] ${selectedAppetizers.includes(customApp) ? "border-2 border-[#2E3192] bg-white text-[#2E3192]" : "bg-[rgba(242,242,242,1)] text-gray-600"}`}
+            key={index} className={`col-span-1 row-span-1 flex min-w-[7rem] items-center justify-between rounded-2xl border px-4 py-3 text-[3.5vw] font-medium outline-none md:text-[2vw] lg:text-[1vw] ${selectedAppetizers.includes(customApp) ? "border-2 border-[#2E3192] bg-white text-[#2E3192]" : "bg-[rgba(242,242,242,1)] text-gray-600"}`}
           >
             <button
-              key={`custom-${index}`}
+
               className="flex-1 text-center"
               onClick={(e) => handleButtonClick(e, customApp)}
             >
