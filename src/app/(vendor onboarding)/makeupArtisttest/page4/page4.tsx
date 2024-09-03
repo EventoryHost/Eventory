@@ -5,7 +5,7 @@ import Appetizers from "../../(components)/Appetizers";
 
 const _makeupTypes = [
   "Bridal Makeup",
-  "Daily Makeup", 
+  "Daily Makeup",
   "Editorial Makeup",
   "Film and TV Makeup",
   "Runway Makeup",
@@ -22,9 +22,6 @@ interface Page4Props {
   setOnsiteMakeup: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-
-
-
 const Page: React.FC<Page4Props> = ({
   makeupTypes,
   setMakeupTypes,
@@ -38,8 +35,6 @@ const Page: React.FC<Page4Props> = ({
       setOnsiteMakeup(false);
     }
   };
-
-  
 
   return (
     <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden lg:flex-row">

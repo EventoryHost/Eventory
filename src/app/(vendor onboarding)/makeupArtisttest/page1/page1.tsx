@@ -99,10 +99,7 @@ const Page: React.FC<Page1Props> = ({
   makeupArtists_organisation,
   setMakeupArtist_organisation,
 }) => {
-  const {
-    artistDescription,
-    portfolioUrls,
-  } = formState;
+  const { artistDescription, portfolioUrls } = formState;
 
   function handlePortfolioSelect(file: File): void {
     updateFormState({ portfolioUrls: file });
@@ -255,7 +252,11 @@ const Page: React.FC<Page1Props> = ({
                       type="text"
                       className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                       placeholder="Enter URL"
-                      value={typeof portfolioUrls === "string" ? portfolioUrls : portfolioUrls.name}
+                      value={
+                        typeof portfolioUrls === "string"
+                          ? portfolioUrls
+                          : portfolioUrls.name
+                      }
                       onChange={(e) =>
                         updateFormState({ portfolioUrls: e.target.value })
                       }
@@ -317,7 +318,11 @@ const Page: React.FC<Page1Props> = ({
                       type="text"
                       className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                       placeholder="portfolio url"
-                      value={typeof portfolioUrls === "string" ? portfolioUrls : portfolioUrls.name}
+                      value={
+                        typeof portfolioUrls === "string"
+                          ? portfolioUrls
+                          : portfolioUrls.name
+                      }
                       onChange={(e) =>
                         updateFormState({ portfolioUrls: e.target.value })
                       }
@@ -379,7 +384,11 @@ const Page: React.FC<Page1Props> = ({
                       type="text"
                       className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                       placeholder="portfolio url"
-                      value={typeof portfolioUrls === "string" ? portfolioUrls : portfolioUrls.name}
+                      value={
+                        typeof portfolioUrls === "string"
+                          ? portfolioUrls
+                          : portfolioUrls.name
+                      }
                       onChange={(e) =>
                         updateFormState({ portfolioUrls: e.target.value })
                       }

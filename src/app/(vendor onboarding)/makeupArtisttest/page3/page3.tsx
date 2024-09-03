@@ -206,7 +206,6 @@ const Page: React.FC<Page3Props> = ({
               </div>
             ))}
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-              
               <div className="item-start flex flex-col justify-between gap-2">
                 <button
                   className="cursor-pointer rounded-lg bg-[#E6E6E6] p-2 hover:shadow-xl"
@@ -305,7 +304,6 @@ const Page: React.FC<Page3Props> = ({
               </div>
             ))}
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-              
               <div className="item-start flex flex-col justify-between gap-2">
                 <button
                   className="cursor-pointer rounded-lg bg-[#E6E6E6] p-2 hover:shadow-xl"
@@ -404,7 +402,6 @@ const Page: React.FC<Page3Props> = ({
               </div>
             ))}
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-              
               <div className="item-start flex flex-col justify-between gap-2">
                 <button
                   className="cursor-pointer rounded-lg bg-[#E6E6E6] p-2 hover:shadow-xl"
