@@ -1,11 +1,14 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Page1 from "./page1/page1";
 import Page2 from "./page2/page2";
 import Page3 from "./page3/page3";
 import Page4 from "./page4/page4";
-import { set } from "date-fns";
+import Page5 from "./page5/page5";
+import { add } from "date-fns";
+import { addMakeUpArtist } from "@/services/vendors/makeupArtist";
+import jwt from "jsonwebtoken";
 
 interface Package {
   type: string;
@@ -15,13 +18,25 @@ interface Package {
 interface FormState {
   // Page-specific states
   // Page 1
+  artistName: string;
+  category: string;
+  makeupArtists_individual: string[];
+  makeupArtists_groups: string[];
+  makeupArtists_organisation: string[];
+  advancePayment: number;
+  hourlyPackage: { type: string; priceRange: [number, number] }[];
+  dealPackage: { type: string; priceRange: [number, number] }[];
+  ratesbyWorker: { type: string; priceRange: [number, number] }[];
+  makeupTypes: string[];
+  onsiteMakeup: boolean;
+
   artistDescription: string;
-  portfolioUrl: string;
+  portfolioUrls: string | File;
   makeup_groupmembers: string;
   organisationMembers: string;
   // Page 2
-  termsAndConditions: string;
-  cancellationPolicy: string;
+  termsAndConditions: string | File;
+  cancellationPolicy: string | File;
   // Page 3
   // Page 4
 }
@@ -30,12 +45,23 @@ const VenueForm: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   // global variables
   const [formState, setFormState] = useState<FormState>({
+    artistName: "",
     artistDescription: "",
-    portfolioUrl: "",
+    portfolioUrls: "",
     makeup_groupmembers: "",
     organisationMembers: "",
     termsAndConditions: "",
     cancellationPolicy: "",
+    category: "",
+    makeupArtists_individual: [],
+    makeupArtists_groups: [],
+    makeupArtists_organisation: [],
+    advancePayment: 25,
+    hourlyPackage: [{ type: "", priceRange: [0, 0] }],
+    dealPackage: [{ type: "", priceRange: [0, 0] }],
+    ratesbyWorker: [{ type: "", priceRange: [0, 0] }],
+    makeupTypes: [],
+    onsiteMakeup: true,
   });
   const [category, setCategory] = useState("Individual");
 
@@ -107,12 +133,32 @@ const VenueForm: React.FC = () => {
     setCategory(newCategory);
   };
 
+  function getVendorId(): string | null {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("Token not found");
+      return null;
+    }
+
+    const { userId, email } = jwt.decode(token) as {
+      userId: string;
+      email: string;
+    };
+    return userId;
+  }
+
   const handleSubmit = async () => {
+    // print the formState
+    console.log(formState);
+
     const formData = new FormData();
+
+    formData.append("id", getVendorId()!);
     // Append form data
+    formData.append("artistName", formState.artistName);
     formData.append("category", category);
     formData.append("artistDescription", formState.artistDescription);
-    formData.append("portfolioUrl", formState.portfolioUrl);
+    formData.append("portfolioUrls", formState.portfolioUrls);
     formData.append("makeup_groupmembers", formState.makeup_groupmembers);
     formData.append("organisationMembers", formState.organisationMembers);
 
@@ -134,6 +180,13 @@ const VenueForm: React.FC = () => {
     formData.forEach((value, key) => {
       console.log(`${key}: ${value}`);
     });
+
+    try {
+      addMakeUpArtist(formData);
+      console.log("Makeup Artist added successfully");
+    } catch (error) {
+      console.log(" error adding makeup artist" + error);
+    }
   };
 
   const renderPage = () => {
@@ -143,6 +196,7 @@ const VenueForm: React.FC = () => {
           <Page1
             formState={formState}
             updateFormState={updateFormState}
+            artistName={formState.artistName}
             category={category}
             handleCategoryChange={handleCategoryChange}
             makeupArtists_individual={makeupArtists_individual}
@@ -151,6 +205,7 @@ const VenueForm: React.FC = () => {
             setMakeupArtist_group={setMakeupArtist_group}
             makeupArtists_organisation={makeupArtists_organisation}
             setMakeupArtist_organisation={setMakeupArtist_organisation}
+            portfolioUrls={formState.portfolioUrls}
           />
         );
       case 2:
@@ -163,10 +218,10 @@ const VenueForm: React.FC = () => {
             advancePayment={advancePayment}
             setAdvancePayment={setAdvancePayment}
             hourlyPackage={hourlyPackage}
-            setHourlyPackages={setHourlyPackages}
             dealPackage={dealPackage}
-            setdealPackage={setdealPackage}
             ratesbyWorker={ratesbyWorker}
+            setHourlyPackages={setHourlyPackages}
+            setdealPackage={setdealPackage}
             setratesbyWorker={setratesbyWorker}
             handlePackageChange={handlePackageChange}
             addPackage={addPackage}
@@ -181,11 +236,34 @@ const VenueForm: React.FC = () => {
             setOnsiteMakeup={setOnsiteMakeup}
           />
         );
+      case 5:
+        return (
+          <Page5
+            formState={formState}
+            updateFormState={updateFormState}
+            category={category}
+            makeupArtists_individual={makeupArtists_individual}
+            makeupArtists_groups={makeupArtists_groups}
+            makeupArtists_organisation={makeupArtists_organisation}
+            advancePayment={advancePayment}
+            hourlyPackage={hourlyPackage}
+            dealPackage={dealPackage}
+            ratesbyWorker={ratesbyWorker}
+            makeupTypes={makeupTypes}
+            onsiteMakeup={onsiteMakeup}
+            artistName={formState.artistName}
+            organisationMembers={formState.organisationMembers}
+            artistDescription={formState.artistDescription}
+            portfolioUrls={formState.portfolioUrls}
+            setCurrentPage={setCurrentPage}
+          />
+        );
       default:
         return (
           <Page1
             formState={formState}
             updateFormState={updateFormState}
+            artistName={formState.artistName}
             category={category}
             handleCategoryChange={handleCategoryChange}
             makeupArtists_individual={makeupArtists_individual}
@@ -194,6 +272,7 @@ const VenueForm: React.FC = () => {
             setMakeupArtist_group={setMakeupArtist_group}
             makeupArtists_organisation={makeupArtists_organisation}
             setMakeupArtist_organisation={setMakeupArtist_organisation}
+            portfolioUrls={formState.portfolioUrls}
           />
         );
     }
@@ -211,7 +290,7 @@ const VenueForm: React.FC = () => {
             Previous
           </button>
         )}
-        {currentPage < 4 && (
+        {currentPage < 5 && (
           <button
             onClick={() => setCurrentPage(currentPage + 1)}
             className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
@@ -219,7 +298,7 @@ const VenueForm: React.FC = () => {
             Next
           </button>
         )}
-        {currentPage === 4 && (
+        {currentPage === 5 && (
           <button
             onClick={handleSubmit}
             className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"

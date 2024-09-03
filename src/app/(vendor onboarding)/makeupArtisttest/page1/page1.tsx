@@ -7,6 +7,7 @@ import { Combobox } from "@/components/ui/combobox";
 import { ArrowUpSquare, Upload } from "lucide-react";
 import Appetizers from "../../(components)/Appetizers";
 import { set } from "date-fns";
+import FileInput from "@/components/fileInput";
 
 const _makeupArtists_individual = [
   "Airbrush Makeup Artists",
@@ -61,15 +62,18 @@ const _groupMembers = [
 ];
 
 interface FormState {
+  artistName: string;
   artistDescription: string;
-  portfolioUrl: string;
+  portfolioUrls: string | File;
   makeup_groupmembers: string;
   organisationMembers: string;
 }
 
 interface Page1Props {
   formState: FormState;
+  portfolioUrls: string | File;
   updateFormState: (newState: Partial<FormState>) => void;
+  artistName: string;
   category: string;
   handleCategoryChange: (
     newCategory: "Individual" | "Group" | "Organisation",
@@ -85,6 +89,7 @@ interface Page1Props {
 const Page: React.FC<Page1Props> = ({
   formState,
   updateFormState,
+  artistName,
   category,
   handleCategoryChange,
   makeupArtists_individual,
@@ -94,29 +99,11 @@ const Page: React.FC<Page1Props> = ({
   makeupArtists_organisation,
   setMakeupArtist_organisation,
 }) => {
-  const {
-    artistDescription,
-    portfolioUrl,
-    makeup_groupmembers,
-    organisationMembers,
-  } = formState;
+  const { artistDescription, portfolioUrls } = formState;
 
-  //common state
-
-  //group state
-
-  const handleSubmit = (e: React.FormEvent) => {
-    // Handle form submission
-    e.preventDefault();
-    console.log("category:", category);
-    console.log("artistDescription:", artistDescription);
-    console.log("portfolioUrl:", portfolioUrl);
-    console.log("makeup_groupmembers:", makeup_groupmembers);
-    console.log("organisationMembers:", organisationMembers);
-    console.log("makeupArtists_individual:", makeupArtists_individual);
-    console.log("makeupArtists_groups:", makeupArtists_groups);
-    console.log("makeupArtists_organisation:", makeupArtists_organisation);
-  };
+  function handlePortfolioSelect(file: File): void {
+    updateFormState({ portfolioUrls: file });
+  }
 
   return (
     <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden lg:flex-row">
@@ -221,6 +208,24 @@ const Page: React.FC<Page1Props> = ({
                       updateFormState({ artistDescription: e.target.value })
                     }
                   />
+
+                  {/* Make a label and input box for artist name */}
+                  <label
+                    className="text-xl font-semibold"
+                    htmlFor="businessName"
+                  >
+                    Artist Name
+                  </label>
+                  <input
+                    id="artistName"
+                    type="text"
+                    className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
+                    placeholder="Enter your Venue Description"
+                    value={artistName}
+                    onChange={(e) =>
+                      updateFormState({ artistName: e.target.value })
+                    }
+                  />
                 </div>
                 <div className="flex min-w-[40%] flex-col gap-4">
                   <div className="flex min-w-full flex-col items-start justify-between gap-2">
@@ -228,11 +233,11 @@ const Page: React.FC<Page1Props> = ({
                       Portfolio of past work
                     </p>
                     <p className="text-gray-500">PNG, PDF, JPG</p>
-                    <button className="mt-5 flex items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
-                      {" "}
-                      <Upload />
-                      Upload
-                    </button>
+                    <FileInput
+                      label="Portfolio"
+                      onFileSelect={handlePortfolioSelect}
+                      acceptedFileTypes=".pdf,.doc,.docx"
+                    />
                   </div>
 
                   <div className="">
@@ -246,10 +251,14 @@ const Page: React.FC<Page1Props> = ({
                       id="businessName"
                       type="text"
                       className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
-                      placeholder="Enter your Venue Description"
-                      value={portfolioUrl}
+                      placeholder="Enter URL"
+                      value={
+                        typeof portfolioUrls === "string"
+                          ? portfolioUrls
+                          : portfolioUrls.name
+                      }
                       onChange={(e) =>
-                        updateFormState({ portfolioUrl: e.target.value })
+                        updateFormState({ portfolioUrls: e.target.value })
                       }
                     />
                   </div>
@@ -278,11 +287,11 @@ const Page: React.FC<Page1Props> = ({
                     <div className="flex min-w-full flex-col items-start justify-between gap-2">
                       <label htmlFor="category">Portfolio of past work</label>
                       <p className="text-gray-500">PNG, PDF, JPG</p>
-                      <button className="flex items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
-                        {" "}
-                        <Upload />
-                        Upload
-                      </button>
+                      <FileInput
+                        label=""
+                        onFileSelect={handlePortfolioSelect}
+                        acceptedFileTypes=".pdf,.doc,.docx"
+                      />
                     </div>
                   </div>
                 </div>
@@ -309,9 +318,13 @@ const Page: React.FC<Page1Props> = ({
                       type="text"
                       className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                       placeholder="portfolio url"
-                      value={portfolioUrl}
+                      value={
+                        typeof portfolioUrls === "string"
+                          ? portfolioUrls
+                          : portfolioUrls.name
+                      }
                       onChange={(e) =>
-                        updateFormState({ portfolioUrl: e.target.value })
+                        updateFormState({ portfolioUrls: e.target.value })
                       }
                     />
                   </div>
@@ -340,11 +353,11 @@ const Page: React.FC<Page1Props> = ({
                     <div className="flex min-w-full flex-col items-start justify-between gap-2">
                       <label htmlFor="category">Portfolio of past work</label>
                       <p className="text-gray-500">PNG, PDF, JPG</p>
-                      <button className="flex items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
-                        {" "}
-                        <Upload />
-                        Upload
-                      </button>
+                      <FileInput
+                        label=""
+                        onFileSelect={handlePortfolioSelect}
+                        acceptedFileTypes=".pdf,.doc,.docx"
+                      />
                     </div>
                   </div>
                 </div>
@@ -371,9 +384,13 @@ const Page: React.FC<Page1Props> = ({
                       type="text"
                       className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                       placeholder="portfolio url"
-                      value={portfolioUrl}
+                      value={
+                        typeof portfolioUrls === "string"
+                          ? portfolioUrls
+                          : portfolioUrls.name
+                      }
                       onChange={(e) =>
-                        updateFormState({ portfolioUrl: e.target.value })
+                        updateFormState({ portfolioUrls: e.target.value })
                       }
                     />
                   </div>
@@ -397,20 +414,6 @@ const Page: React.FC<Page1Props> = ({
                   setSelectedAppetizers={setMakeupArtist_individual}
                 />
               </div>
-              <div className="items-strech mt-9 flex flex-row gap-7 self-end">
-                <button
-                  className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                  onClick={handleSubmit}
-                >
-                  Skip
-                </button>
-                <button
-                  className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                  onClick={handleSubmit}
-                >
-                  Continue
-                </button>
-              </div>
             </div>
           </div>
         )}
@@ -428,20 +431,6 @@ const Page: React.FC<Page1Props> = ({
                   selectedAppetizers={makeupArtists_groups}
                   setSelectedAppetizers={setMakeupArtist_group}
                 />
-              </div>
-              <div className="items-strech mt-9 flex flex-row gap-7 self-end">
-                <button
-                  className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                  onClick={handleSubmit}
-                >
-                  Skip
-                </button>
-                <button
-                  className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                  onClick={handleSubmit}
-                >
-                  Continue
-                </button>
               </div>
             </div>
           </div>
@@ -461,20 +450,6 @@ const Page: React.FC<Page1Props> = ({
                   setSelectedAppetizers={setMakeupArtist_organisation}
                 />
               </div>
-              {/* <div className="items-strech mt-9 flex flex-row gap-7 self-end">
-                <button
-                  className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                  onClick={handleSubmit}
-                >
-                  Skip
-                </button>
-                <button
-                  className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                  onClick={handleSubmit}
-                >
-                  Continue
-                </button>
-              </div> */}
             </div>
           </div>
         )}
