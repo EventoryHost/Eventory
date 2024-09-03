@@ -129,7 +129,7 @@ const Page: React.FC<Page2Props> = ({ formState, updateFormState }) => {
               </div>
             </div>
 
-            <div className="items-strech mt-9 flex flex-row gap-7 self-end">
+            {/* <div className="items-strech mt-9 flex flex-row gap-7 self-end">
               <button
                 className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
                 onClick={handleSubmit}
@@ -142,7 +142,7 @@ const Page: React.FC<Page2Props> = ({ formState, updateFormState }) => {
               >
                 Continue
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

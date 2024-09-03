@@ -1,6 +1,6 @@
 import { Check, EditIcon } from "lucide-react";
 import { SetStateAction } from "react";
-import Appetizers from "../(components)/Appetizers";
+import Appetizers from "../../(components)/Appetizers";
 
 const furnitureOptions = [
   "Chair",
@@ -328,17 +328,17 @@ function Preview({
         <div className="m-6 mt-4 flex flex-col">
           <span className="text-xl">Selected Decor</span>
           <Appetizers
-            appetizers={furnitureOptions}
+            appetizers={selectedAppetizers}
             selectedAppetizers={selectedAppetizers}
-            setselectedAppetizers={setselectedAppetizers}
+            setSelectedAppetizers={setselectedAppetizers}
           />
         </div>
         <div className="m-6 mt-6 flex flex-col">
           <span className="text-xl">Selected Appetizers</span>
           <Appetizers
-            appetizers={DecorOptions}
+            appetizers={selectedDecor}
             selectedAppetizers={selectedDecor}
-            setselectedAppetizers={setSelectedDecor}
+            setSelectedAppetizers={setSelectedDecor}
           />
         </div>
 
@@ -425,9 +425,9 @@ function Preview({
         <div className="m-6 mt-4 flex flex-col">
           <span className="text-xl">Tent and Canopy</span>
           <Appetizers
-            appetizers={tentOptions}
+            appetizers={selectedTentOptions}
             selectedAppetizers={selectedTentOptions}
-            setselectedAppetizers={setSelectedTentOptions}
+            setSelectedAppetizers={setSelectedTentOptions}
           />
         </div>
 
@@ -501,27 +501,27 @@ function Preview({
         <div className="m-6 mt-4 flex flex-col">
           <span className="text-xl">Audio Equipment</span>
           <Appetizers
-            appetizers={audioOptions}
+            appetizers={selectedAudioOptions}
             selectedAppetizers={selectedAudioOptions}
-            setselectedAppetizers={setSelectedAudioOptions}
+            setSelectedAppetizers={setSelectedAudioOptions}
           />
         </div>
 
         <div className="m-6 mt-6 flex flex-col">
           <span className="text-xl">Visual Equipment</span>
           <Appetizers
-            appetizers={visualOptions}
+            appetizers={selectedvisualOptions}
             selectedAppetizers={selectedvisualOptions}
-            setselectedAppetizers={setSelectedVisualOptions}
+            setSelectedAppetizers={setSelectedVisualOptions}
           />
         </div>
 
         <div className="m-6 mt-6 flex flex-col">
           <span className="text-xl">Light Equipment</span>
           <Appetizers
-            appetizers={lightOptions}
+            appetizers={selectedLightOptions}
             selectedAppetizers={selectedLightOptions}
-            setselectedAppetizers={setSelectedLightOptions}
+            setSelectedAppetizers={setSelectedLightOptions}
           />
         </div>
 

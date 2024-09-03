@@ -5,7 +5,7 @@ import { ComboboxDemo } from "@/components/dropdown";
 import { Dropdown } from "react-day-picker";
 import { Combobox } from "@/components/ui/combobox";
 import { ArrowUpSquare, Upload } from "lucide-react";
-import Appetizers from "../(components)/Appetizers";
+import Appetizers from "../../(components)/Appetizers";
 import { set } from "date-fns";
 
 const _makeupArtists_individual = [
@@ -391,6 +391,7 @@ const Page: React.FC<Page1Props> = ({
             <div className="flex min-h-full min-w-full flex-col items-center gap-5">
               <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
                 <Appetizers
+                  field={"_makeupArtists_individual"}
                   appetizers={_makeupArtists_individual}
                   selectedAppetizers={makeupArtists_individual}
                   setSelectedAppetizers={setMakeupArtist_individual}
@@ -422,6 +423,7 @@ const Page: React.FC<Page1Props> = ({
             <div className="flex min-h-full min-w-full flex-col items-center gap-5">
               <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
                 <Appetizers
+                  field={"_makeupArtists_groups"}
                   appetizers={_makeupArtists_groups}
                   selectedAppetizers={makeupArtists_groups}
                   setSelectedAppetizers={setMakeupArtist_group}
@@ -453,12 +455,13 @@ const Page: React.FC<Page1Props> = ({
             <div className="flex min-h-full min-w-full flex-col items-center gap-5">
               <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
                 <Appetizers
+                  field={"_makeupArtists_organisation"}
                   appetizers={_makeupArtists_organisation}
                   selectedAppetizers={makeupArtists_organisation}
                   setSelectedAppetizers={setMakeupArtist_organisation}
                 />
               </div>
-              <div className="items-strech mt-9 flex flex-row gap-7 self-end">
+              {/* <div className="items-strech mt-9 flex flex-row gap-7 self-end">
                 <button
                   className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
                   onClick={handleSubmit}
@@ -471,7 +474,7 @@ const Page: React.FC<Page1Props> = ({
                 >
                   Continue
                 </button>
-              </div>
+              </div> */}
             </div>
           </div>
         )}

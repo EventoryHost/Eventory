@@ -9,7 +9,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { pavtypes, pavFormState, BasicDetails } from "@/types/types";
 import { addPhotographer } from "@/services/vendors/photographer";
-import { ToastContainer, toast } from "react-toastify";
+// import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Page = () => {

@@ -1,5 +1,5 @@
 "use client";
-import Appetizers from "@/app/(vendor onboarding)/propRentals/(components)/Appetizers";
+import Appetizers from "../../(components)/Appetizers";
 import { Upload } from "lucide-react";
 import { Key, SetStateAction, useEffect, useState } from "react";
 
@@ -163,9 +163,10 @@ function Page4({
         <div className="flex min-h-full min-w-full flex-col gap-5">
           <h1 className="text-3xl font-semibold">Tent and Canopy</h1>
           <Appetizers
+            field={"tentOptions"}
             appetizers={tentOptions}
             selectedAppetizers={selectedTentOptions}
-            setselectedAppetizers={setSelectedTentOptions}
+            setSelectedAppetizers={setSelectedTentOptions}
           />
         </div>
       </div>

@@ -4,12 +4,13 @@ import React, { useState } from "react";
 import jwt from "jsonwebtoken";
 import Image from "next/image";
 
-import Page1 from "./(components)/page1";
-import Page2 from "./(components)/page2";
-import Page3 from "./(components)/page3";
-import Page4 from "./(components)/page4";
-import Page5 from "./(components)/page5";
-import Page6 from "./(components)/page6";
+import Page1 from "./page1/page1";
+import Page2 from "./page2/page2";
+import Page3 from "./page3/page3";
+import Page4 from "./page4/page4";
+import Page5 from "./page5/page5";
+import Page6 from "./page6/page6";
+
 import Page7 from "./preview/page7";
 
 import { addCaterer } from "@/services/vendors/caterer";
@@ -211,6 +212,7 @@ const Caterer = () => {
         console.log(`${key}: ${value}`);
       });
       await addCaterer(formData);
+      localStorage.clear();
       console.log("Caterer added successfully");
     } catch (error) {
       console.error("Error adding caterer:", error);

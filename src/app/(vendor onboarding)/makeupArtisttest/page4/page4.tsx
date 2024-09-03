@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import Appetizers from "../(components)/Appetizers";
+import Appetizers from "../../(components)/Appetizers";
 import { set } from "date-fns";
 
 const _makeupTypes = [
@@ -123,12 +123,13 @@ const Page: React.FC<Page4Props> = ({
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
+                field={"_makeupTypes"}
                 appetizers={_makeupTypes}
                 selectedAppetizers={makeupTypes}
                 setSelectedAppetizers={setMakeupTypes}
               />
             </div>
-            <div className="items-strech mt-9 flex flex-row gap-7 self-end">
+            {/* <div className="items-strech mt-9 flex flex-row gap-7 self-end">
               <button
                 className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
                 onClick={handleSubmit}
@@ -141,7 +142,7 @@ const Page: React.FC<Page4Props> = ({
               >
                 Continue
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
