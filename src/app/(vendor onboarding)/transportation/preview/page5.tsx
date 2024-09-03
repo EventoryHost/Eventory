@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Check, EditIcon } from "lucide-react";
-import Appetizers from "../../caterer/(components)/Appetizers";
+import Appetizers from "../../(components)/Appetizers";
 
 const vehicleTypes = [
   "Sedan",

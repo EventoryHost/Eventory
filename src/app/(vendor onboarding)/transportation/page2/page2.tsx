@@ -3,7 +3,7 @@
 import StepBar from "@/app/(components)/stepBar";
 import { Upload } from "lucide-react";
 import React, { useState, useEffect } from "react";
-import Appetizers from "../../caterer/(components)/Appetizers";
+import Appetizers from "../../(components)/Appetizers";
 
 const vehicleTypes = [
   "Sedan",
@@ -178,6 +178,7 @@ const Page2: React.FC<Page2Props> = ({ formState, handleChange }) => {
           <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:w-full md:p-6">
             <span className="font-semibold">Vehicle types</span>
             <Appetizers
+              field={"_vehicleTypes"}
               appetizers={vehicleTypes}
               selectedAppetizers={formState.selectedVehicleTypes}
               setSelectedAppetizers={(selectedappetizers) =>
@@ -191,6 +192,7 @@ const Page2: React.FC<Page2Props> = ({ formState, handleChange }) => {
           <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:w-full md:p-6">
             <span className="font-semibold">Brands</span>
             <Appetizers
+              field={"_brands"}
               appetizers={brands}
               selectedAppetizers={formState.selectedBrands}
               setSelectedAppetizers={(selectedBrands) =>
@@ -204,6 +206,7 @@ const Page2: React.FC<Page2Props> = ({ formState, handleChange }) => {
           <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:w-full md:p-6">
             <span className="font-semibold">Models</span>
             <Appetizers
+              field={"_models"}
               appetizers={models}
               selectedAppetizers={formState.selectedModels}
               setSelectedAppetizers={(selectedModels) =>

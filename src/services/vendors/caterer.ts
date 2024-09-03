@@ -11,7 +11,7 @@ async function addCaterer(data: any) {
         },
       },
     );
-    console.log(response.data);
+    console.log("backend", response.data);
   } catch (error) {
     if (axios.isAxiosError(error)) {
       console.log(error.message);

@@ -1,12 +1,12 @@
 "use client";
 
 import React from "react";
-import Appetizers from "./Appetizers";
+import Appetizers from "../../(components)/Appetizers";
 
-const dietaryOptions = ["Vegetarian", "Vegan", "Gluten-Free", "Nut-Free"];
-const mainCourses = ["Biryani", "Tandoori", "Pasta", "Pizza"];
-const beverages = ["Tea", "Coffee", "Juice", "Soda"];
-const appetizers = ["Samosa", "Spring Roll", "Chicken Wings", "Bruschetta"];
+const _dietaryOptions = ["Vegetarian", "Vegan", "Gluten-Free", "Nut-Free"];
+const _mainCourses = ["Biryani", "Tandoori", "Pasta", "Pizza"];
+const _beverages = ["Tea", "Coffee", "Juice", "Soda"];
+const _appetizers = ["Samosa", "Spring Roll", "Chicken Wings", "Bruschetta"];
 
 type Page2Props = {
   selectedAppetizers: string[];
@@ -32,14 +32,15 @@ const Page2 = ({
   handleContinue,
 }: Page2Props) => {
   return (
-    <form className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll rounded-xl bg-white p-3 xs:w-[100%] xs:min-w-[90%] md:p-6">
+    <div className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll rounded-xl bg-white p-3 xs:w-[100%] xs:min-w-[90%] md:p-6">
       <h1 className="my-5 text-3xl font-semibold">Menu Details</h1>
       <div className="flex min-h-full min-w-full flex-col items-start justify-around gap-5">
         <div className="flex min-w-full flex-col items-start justify-between gap-5">
           <div className="flex min-w-fit flex-col gap-4">
             <label htmlFor="appetizers">Appetizers</label>
             <Appetizers
-              appetizers={appetizers}
+              field={"_appetizers"}
+              appetizers={_appetizers}
               selectedAppetizers={selectedAppetizers}
               setSelectedAppetizers={setSelectedAppetizers}
             />
@@ -50,7 +51,8 @@ const Page2 = ({
           <div className="flex min-w-[40%] flex-col gap-4">
             <label htmlFor="beverages">Beverages</label>
             <Appetizers
-              appetizers={beverages}
+              field={"_beverages"}
+              appetizers={_beverages}
               selectedAppetizers={selectedBeverages}
               setSelectedAppetizers={setSelectedBeverages}
             />
@@ -60,7 +62,8 @@ const Page2 = ({
           <div className="flex min-w-[40%] flex-col gap-4">
             <label htmlFor="mainCourses">Main Courses</label>
             <Appetizers
-              appetizers={mainCourses}
+              field={"_mainCourses"}
+              appetizers={_mainCourses}
               selectedAppetizers={selectedMainCourses}
               setSelectedAppetizers={setSelectedMainCourses}
             />
@@ -70,7 +73,8 @@ const Page2 = ({
           <div className="flex min-w-[40%] flex-col gap-4">
             <label htmlFor="dietaryOptions">Dietary Options</label>
             <Appetizers
-              appetizers={dietaryOptions}
+              field={"_dietaryOptions"}
+              appetizers={_dietaryOptions}
               selectedAppetizers={selectedDietaryOptions}
               setSelectedAppetizers={setSelectedDietaryOptions}
             />
@@ -91,7 +95,7 @@ const Page2 = ({
           Continue
         </button>
       </div>
-    </form>
+    </div>
   );
 };
 

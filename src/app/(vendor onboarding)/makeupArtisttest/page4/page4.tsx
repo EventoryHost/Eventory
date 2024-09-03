@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useEffect } from "react";
-import Appetizers from "../(components)/Appetizers";
+import React from "react";
+import Appetizers from "../../(components)/Appetizers";
 
 const _makeupTypes = [
   "Bridal Makeup",
@@ -121,6 +121,7 @@ const Page: React.FC<Page4Props> = ({
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
+                field={"_makeupTypes"}
                 appetizers={_makeupTypes}
                 selectedAppetizers={makeupTypes}
                 setSelectedAppetizers={setMakeupTypes}

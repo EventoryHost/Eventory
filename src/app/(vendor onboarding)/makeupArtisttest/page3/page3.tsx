@@ -1,11 +1,8 @@
 "use client";
 
-import React, { useState, ChangeEvent } from "react";
-import { Percent, Upload } from "lucide-react";
-import PriceSlider from "../(components)/priceSlider";
+import React from "react";
 import Checkbox from "@mui/material/Checkbox";
 import Percentage from "../(components)/percentage";
-import { set } from "date-fns";
 
 interface Package {
   type: string;
