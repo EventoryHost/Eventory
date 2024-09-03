@@ -209,14 +209,7 @@ const Page: React.FC<Page3Props> = ({
               </div>
             ))}
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-              <div className="flex flex-col items-start justify-between gap-2">
-                <p className="text-gray-500">Or Provide Via</p>
-                <button className="flex items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
-                  {" "}
-                  <Upload />
-                  Upload
-                </button>
-              </div>
+              
               <div className="item-start flex flex-col justify-between gap-2">
                 <button
                   className="cursor-pointer rounded-lg bg-[#E6E6E6] p-2 hover:shadow-xl"
@@ -315,14 +308,7 @@ const Page: React.FC<Page3Props> = ({
               </div>
             ))}
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-              <div className="flex flex-col items-start justify-between gap-2">
-                <p className="text-gray-500">Or Provide Via</p>
-                <button className="flex items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
-                  {" "}
-                  <Upload />
-                  Upload
-                </button>
-              </div>
+              
               <div className="item-start flex flex-col justify-between gap-2">
                 <button
                   className="cursor-pointer rounded-lg bg-[#E6E6E6] p-2 hover:shadow-xl"
@@ -421,14 +407,7 @@ const Page: React.FC<Page3Props> = ({
               </div>
             ))}
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-              <div className="flex flex-col items-start justify-between gap-2">
-                <p className="text-gray-500">Or Provide Via</p>
-                <button className="flex items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
-                  {" "}
-                  <Upload />
-                  Upload
-                </button>
-              </div>
+              
               <div className="item-start flex flex-col justify-between gap-2">
                 <button
                   className="cursor-pointer rounded-lg bg-[#E6E6E6] p-2 hover:shadow-xl"
@@ -476,22 +455,6 @@ const Page: React.FC<Page3Props> = ({
                   onChange={handlePercentageChange}
                 />
               </div>
-            </div>
-
-            {/* continue and skip button */}
-            <div className="mt-9 flex flex-row items-stretch gap-7 self-end">
-              <button
-                className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={handleSubmit}
-              >
-                Skip
-              </button>
-              <button
-                className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={handleSubmit}
-              >
-                Continue
-              </button>
             </div>
           </div>
         </div>

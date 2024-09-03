@@ -1,12 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import Appetizers from "../(components)/Appetizers";
-import { set } from "date-fns";
 
 const _makeupTypes = [
   "Bridal Makeup",
-  "Daily Makeup", // Assuming misspelling in the image
+  "Daily Makeup", 
   "Editorial Makeup",
   "Film and TV Makeup",
   "Runway Makeup",
@@ -23,6 +22,9 @@ interface Page4Props {
   setOnsiteMakeup: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+
+
+
 const Page: React.FC<Page4Props> = ({
   makeupTypes,
   setMakeupTypes,
@@ -37,11 +39,7 @@ const Page: React.FC<Page4Props> = ({
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("onsiteMakeup", onsiteMakeup);
-    console.log("makeupTypes", makeupTypes);
-  };
+  
 
   return (
     <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden lg:flex-row">
@@ -127,20 +125,6 @@ const Page: React.FC<Page4Props> = ({
                 selectedAppetizers={makeupTypes}
                 setSelectedAppetizers={setMakeupTypes}
               />
-            </div>
-            <div className="items-strech mt-9 flex flex-row gap-7 self-end">
-              <button
-                className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={handleSubmit}
-              >
-                Skip
-              </button>
-              <button
-                className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={handleSubmit}
-              >
-                Continue
-              </button>
             </div>
           </div>
         </div>

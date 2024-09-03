@@ -2,10 +2,11 @@
 
 import React, { useState } from "react";
 import { Upload } from "lucide-react";
+import FileInput from "@/components/fileInput";
 
 interface FormState {
-  termsAndConditions: string;
-  cancellationPolicy: string;
+  termsAndConditions: string | File;
+  cancellationPolicy: string | File;
 }
 
 interface Page2Props {
@@ -16,13 +17,12 @@ interface Page2Props {
 const Page: React.FC<Page2Props> = ({ formState, updateFormState }) => {
   const { termsAndConditions, cancellationPolicy } = formState;
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (termsAndConditions !== "" || cancellationPolicy !== "") {
-      console.log("Terms and Conditions:", termsAndConditions);
-      console.log("Cancellation Policy:", cancellationPolicy);
-    }
-  };
+  function handleTermsAndConditions(file: File): void {
+    updateFormState({ termsAndConditions: file });
+  }
+  function handleCancellationPolicy(file: File): void {
+    updateFormState({ cancellationPolicy: file });
+  }
 
   return (
     <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden lg:flex-row">
@@ -80,11 +80,11 @@ const Page: React.FC<Page2Props> = ({ formState, updateFormState }) => {
                 <div className="flex min-w-full flex-col items-start justify-between gap-2">
                   <p className="text-xl font-semibold">Terms and Conditions</p>
                   <p className="text-gray-500">PNG, PDF, JPG</p>
-                  <button className="flex items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
-                    {" "}
-                    <Upload />
-                    Upload
-                  </button>
+                  <FileInput
+                    label="Terms and Conditions"
+                    onFileSelect={handleTermsAndConditions}
+                    acceptedFileTypes=".pdf,.doc,.docx" // Specify accepted file types
+                  />
                 </div>
               </div>
               <div className="flex min-w-[40%] flex-col gap-4">
@@ -92,11 +92,12 @@ const Page: React.FC<Page2Props> = ({ formState, updateFormState }) => {
                 <div className="flex min-w-full flex-col items-start justify-between gap-2">
                   <p className="text-xl font-semibold">Cancellation Policy</p>
                   <p className="text-gray-500">PNG, PDF, JPG</p>
-                  <button className="flex items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
-                    {" "}
-                    <Upload />
-                    Upload
-                  </button>
+                  
+                    <FileInput
+                    label="Cancellation Policy"
+                    onFileSelect={handleCancellationPolicy}
+                    acceptedFileTypes=".pdf,.doc,.docx" 
+                    />
                 </div>
               </div>
             </div>
@@ -108,7 +109,7 @@ const Page: React.FC<Page2Props> = ({ formState, updateFormState }) => {
                   type="text"
                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 pb-[8vw] text-sm outline-none"
                   placeholder="Enter Your Terms And Conditions"
-                  value={termsAndConditions}
+                  value={typeof termsAndConditions === 'string' ? termsAndConditions : termsAndConditions.name}
                   onChange={(e) =>
                     updateFormState({ termsAndConditions: e.target.value })
                   }
@@ -121,27 +122,12 @@ const Page: React.FC<Page2Props> = ({ formState, updateFormState }) => {
                   type="text"
                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 pb-[8vw] text-sm outline-none"
                   placeholder="Enter Your Cancellation Policy"
-                  value={cancellationPolicy}
+                  value={typeof cancellationPolicy === 'string' ? cancellationPolicy : cancellationPolicy.name}
                   onChange={(e) =>
                     updateFormState({ cancellationPolicy: e.target.value })
                   }
                 />
               </div>
-            </div>
-
-            <div className="items-strech mt-9 flex flex-row gap-7 self-end">
-              <button
-                className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={handleSubmit}
-              >
-                Skip
-              </button>
-              <button
-                className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={handleSubmit}
-              >
-                Continue
-              </button>
             </div>
           </div>
         </div>

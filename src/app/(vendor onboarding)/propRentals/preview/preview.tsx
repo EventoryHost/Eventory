@@ -213,7 +213,7 @@ function Preview({
     <div>
       <div className="flex w-screen flex-col gap-2 p-2">
         <span className="align-center flex justify-start p-4 text-3xl font-semibold">
-          {formState.contactName} / Invitation
+          {formState.contactName} / Prop-Rentals
         </span>
 
         <div className="ml-8 mr-4 flex justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
