@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import Appetizers from "../(components)/Appetizers";
+import Appetizers from "../../(components)/Appetizers";
 
 const _typesOfPaperUsedForInvitations = [
   "Cardstock",
@@ -324,6 +324,7 @@ const Page: React.FC<Page2Props> = ({
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
+                field={"_typesOfPaperUsedForInvitations"}
                 appetizers={_typesOfPaperUsedForInvitations}
                 selectedAppetizers={paperType}
                 setSelectedAppetizers={setPaperType}

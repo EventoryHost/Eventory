@@ -2,8 +2,7 @@
 
 import React from "react";
 import { Upload } from "lucide-react";
-import Appetizers from "../../caterer/(components)/Appetizers";
-// import Appetizers from "../(components)/Appetizers";
+import Appetizers from "../../(components)/Appetizers";
 
 const _venue_restrictions = [
   "Alcohol",
@@ -125,6 +124,7 @@ const Page5: React.FC<Page5Props> = ({
         <div className="flex min-h-full min-w-full flex-col items-center gap-5">
           <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
             <Appetizers
+              field={"_venue_restrictions"}
               appetizers={_venue_restrictions}
               selectedAppetizers={venue_restrictions}
               setSelectedAppetizers={setVenue_restrictions}
@@ -139,6 +139,7 @@ const Page5: React.FC<Page5Props> = ({
         <div className="flex min-h-full min-w-full flex-col items-center gap-5">
           <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
             <Appetizers
+              field={"_venue_features"}
               appetizers={_venue_features}
               selectedAppetizers={venue_special_features}
               setSelectedAppetizers={setVenue_special_features}

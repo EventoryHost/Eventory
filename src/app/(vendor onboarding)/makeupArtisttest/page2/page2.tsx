@@ -92,12 +92,12 @@ const Page: React.FC<Page2Props> = ({ formState, updateFormState }) => {
                 <div className="flex min-w-full flex-col items-start justify-between gap-2">
                   <p className="text-xl font-semibold">Cancellation Policy</p>
                   <p className="text-gray-500">PNG, PDF, JPG</p>
-                  
-                    <FileInput
+
+                  <FileInput
                     label="Cancellation Policy"
                     onFileSelect={handleCancellationPolicy}
-                    acceptedFileTypes=".pdf,.doc,.docx" 
-                    />
+                    acceptedFileTypes=".pdf,.doc,.docx"
+                  />
                 </div>
               </div>
             </div>
@@ -109,7 +109,11 @@ const Page: React.FC<Page2Props> = ({ formState, updateFormState }) => {
                   type="text"
                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 pb-[8vw] text-sm outline-none"
                   placeholder="Enter Your Terms And Conditions"
-                  value={typeof termsAndConditions === 'string' ? termsAndConditions : termsAndConditions.name}
+                  value={
+                    typeof termsAndConditions === "string"
+                      ? termsAndConditions
+                      : termsAndConditions.name
+                  }
                   onChange={(e) =>
                     updateFormState({ termsAndConditions: e.target.value })
                   }
@@ -122,7 +126,11 @@ const Page: React.FC<Page2Props> = ({ formState, updateFormState }) => {
                   type="text"
                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 pb-[8vw] text-sm outline-none"
                   placeholder="Enter Your Cancellation Policy"
-                  value={typeof cancellationPolicy === 'string' ? cancellationPolicy : cancellationPolicy.name}
+                  value={
+                    typeof cancellationPolicy === "string"
+                      ? cancellationPolicy
+                      : cancellationPolicy.name
+                  }
                   onChange={(e) =>
                     updateFormState({ cancellationPolicy: e.target.value })
                   }

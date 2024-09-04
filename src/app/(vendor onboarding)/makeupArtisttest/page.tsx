@@ -62,7 +62,6 @@ const VenueForm: React.FC = () => {
     ratesbyWorker: [{ type: "", priceRange: [0, 0] }],
     makeupTypes: [],
     onsiteMakeup: true,
-
   });
   const [category, setCategory] = useState("Individual");
 
@@ -149,7 +148,7 @@ const VenueForm: React.FC = () => {
   }
 
   const handleSubmit = async () => {
-    // print the formState 
+    // print the formState
     console.log(formState);
 
     const formData = new FormData();
@@ -185,17 +184,12 @@ const VenueForm: React.FC = () => {
     try {
       addMakeUpArtist(formData);
       console.log("Makeup Artist added successfully");
-      
     } catch (error) {
-      console.log(" error adding makeup artist" + error); ;     
+      console.log(" error adding makeup artist" + error);
     }
   };
 
-
-
   const renderPage = () => {
-
-
     switch (currentPage) {
       case 1:
         return (
@@ -256,7 +250,7 @@ const VenueForm: React.FC = () => {
             dealPackage={dealPackage}
             ratesbyWorker={ratesbyWorker}
             makeupTypes={makeupTypes}
-            onsiteMakeup={onsiteMakeup} 
+            onsiteMakeup={onsiteMakeup}
             artistName={formState.artistName}
             organisationMembers={formState.organisationMembers}
             artistDescription={formState.artistDescription}

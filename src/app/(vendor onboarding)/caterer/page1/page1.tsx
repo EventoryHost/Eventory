@@ -1,9 +1,9 @@
 "use client";
 
 import { FormState } from "../page";
-import Appetizers from "./Appetizers";
+import Appetizers from "../../(components)/Appetizers";
 
-const regional = [
+const _regional = [
   "Gujrati",
   "Rajasthani",
   "Bengali",
@@ -13,7 +13,7 @@ const regional = [
   "Rajasthani",
   "Bengali",
 ];
-const service = ["Buffet", "Plated Meals", "Family Style", "Food Stations"];
+const _service = ["Buffet", "Plated Meals", "Family Style", "Food Stations"];
 const _cuisine = ["North Indian", "South Indian", "Chinese", "Italian"];
 
 type Page1Props = {
@@ -40,7 +40,7 @@ const Page1 = ({
   handleContinue,
 }: Page1Props) => {
   return (
-    <form className="flex flex-col items-start gap-7 overflow-y-scroll rounded-xl bg-white p-3 xs:w-[100%] xs:min-w-[90%] xs:justify-start md:p-6">
+    <div className="flex flex-col items-start gap-7 overflow-y-scroll rounded-xl bg-white p-3 xs:w-[100%] xs:min-w-[90%] xs:justify-start md:p-6">
       <h1 className="text-3xl font-semibold">Basic Details</h1>
       <div className="flex w-[100%] items-start gap-9"></div>
       <div className="flex min-w-full flex-col items-center gap-9">
@@ -76,7 +76,7 @@ const Page1 = ({
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
-                appetizers={service}
+                appetizers={_service}
                 selectedAppetizers={serviceStyles}
                 setSelectedAppetizers={setServiceStyles}
               />
@@ -89,7 +89,7 @@ const Page1 = ({
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
-                appetizers={regional}
+                appetizers={_regional}
                 selectedAppetizers={regionalSpecialties}
                 setSelectedAppetizers={setRegionalSpecialties}
               />
@@ -103,7 +103,7 @@ const Page1 = ({
       >
         Continue
       </button>
-    </form>
+    </div>
   );
 };
 
