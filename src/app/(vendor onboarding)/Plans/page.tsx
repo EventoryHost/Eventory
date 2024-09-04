@@ -72,21 +72,21 @@ const Plans = () => {
 
     const planDetails: PlanDetails[] = [
         {
-            title: "Basic Plan",
+            title: "Basic",
             description: "Show Social Proof notifications to increase leads and sales.",
             price: 99,
             period: "one time",
             details: ["All analytics features", "Up to 250,000 tracked visits", "Normal support", "Up to 3 team members"],
         },
         {
-            title: "Medium Plan",
+            title: "Medium",
             description: "Show Social Proof notifications to increase leads and sales.",
             price: 999,
             period: "month",
             details: ["All analytics features", "Up to 250,000 tracked visits", "Normal support", "Up to 3 team members"],
         },
         {
-            title: "Annual Plan",
+            title: "Annual",
             description: "Show Social Proof notifications to increase leads and sales.",
             price: 9999,
             period: "year",
