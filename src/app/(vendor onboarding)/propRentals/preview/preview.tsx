@@ -1,6 +1,8 @@
 import { Check, EditIcon } from "lucide-react";
 import { SetStateAction } from "react";
 import Appetizers from "../(components)/Appetizers";
+import ThreeStepBar from "@/app/(components)/threeStepBar";
+import StepBar from "@/app/(components)/stepBar";
 
 const furnitureOptions = [
   "Chair",
@@ -204,14 +206,32 @@ function Preview({
   setSelectedVisualOptions,
   selectedLightOptions,
   setSelectedLightOptions,
-  handleChange,
-  advancePaymentCheckbox,
-  percentageValuePage3,
-  percentageValuePage4,
 }: PagePreviewProps) {
   return (
-    <div>
-      <div className="flex w-screen flex-col gap-2 p-2">
+    <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden lg:flex-row">
+      {/* Sidebar */}
+      <div className="hidden lg:fixed lg:left-0 lg:top-[5.2rem] lg:flex lg:h-[calc(100vh-5.2rem)] lg:w-[30%] lg:flex-col lg:items-start lg:gap-9 lg:overflow-hidden lg:bg-[#FFFFFF] lg:px-8">
+        <div className="mt-4 flex items-center justify-start gap-1">
+          <StepBar currentStep={5}/>
+        </div>
+        <div className="flex flex-grow flex-col items-start justify-center gap-9 px-6 py-4">
+          <h1 className="text-2xl font-semibold md:text-3xl lg:text-4xl">
+            Fill out your Basic details
+          </h1>
+          <p className="text-sm text-gray-600 md:text-base lg:text-lg">
+          Please check the details provided by you.
+          </p>
+        </div>
+        <div className="relative h-48">
+          <img
+            src={"/tajmahal.png"}
+            alt="Taj Mahal"
+            className="h-full w-full object-cover"
+          />
+        </div>
+      </div>
+      {/* Main content */}
+      <div className="flex w-full flex-col gap-2 p-2 lg:ml-[30%]">
         <span className="align-center flex justify-start p-4 text-3xl font-semibold">
           {formState.contactName} / Prop-Rentals
         </span>

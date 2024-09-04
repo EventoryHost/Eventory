@@ -91,6 +91,7 @@ const Form = () => {
           <input
             type="text"
             id="fullName"
+            placeholder="Enter Your full name"
             className="w-full rounded-lg p-4"
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
@@ -102,6 +103,7 @@ const Form = () => {
           <input
             type="email"
             id="email"
+            placeholder="Enter Your Email"
             className="w-full rounded-lg p-4"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -113,6 +115,7 @@ const Form = () => {
           <textarea
             id="message"
             rows={7}
+            placeholder="Write a Message"
             className="w-full rounded-lg p-4"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
