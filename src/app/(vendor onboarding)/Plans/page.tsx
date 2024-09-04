@@ -3,6 +3,7 @@
 import jwt from "jsonwebtoken";
 import Script from "next/script";
 import { handlePayment } from "@/services/payment";
+import { getvendor } from "@/services/auth";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation"; // Import from 'next/navigation'
 import Link from "next/link";
@@ -19,31 +20,47 @@ const Plans = () => {
     const [vendorId, setVendorId] = useState(""); // Adjust this as needed
     const router = useRouter();
 
+    const fetchVendor = async (
+        userId: string,
+        email: string,
+        mobile: string
+    ) => {
+        const res = await getvendor(userId, email, mobile);
+        return res;
+    };
+
     useEffect(() => {
-        const token = localStorage.getItem("token");
+        const fetchData = async () => {
+            const token = localStorage.getItem("token");
 
-        if (token) {
-            try {
-                const { userId, email } = jwt.decode(token) as {
-                    userId: string;
-                    email: string;
-                };
+            if (token) {
+                try {
+                    const { userId, email } = jwt.decode(token) as {
+                        userId: string;
+                        email: string;
+                    };
 
-                if (userId && email) {
-                    setVendorId(userId);
-                    setVendorName(email)
-                    //console.log("User ID:", userId);
-                    // console.log("Email:", email);
-                } else {
-                    console.error("Token does not contain expected data.");
+                    if (userId && email) {
+                        const user = await fetchVendor(userId, email, "");
+                        //console.log(user);
+                        setVendorId(user.id);
+                        setVendorName(user.name);
+                        //console.log(user.id);
+                        //console.log(user?.name);
+                    } else {
+                        console.error("Token does not contain expected data.");
+                    }
+                } catch (error) {
+                    console.error("Failed to decode token:", error);
                 }
-            } catch (error) {
-                console.error("Failed to decode token:", error);
+            } else {
+                console.log("No token found in localStorage.");
             }
-        } else {
-            console.log("No token found in localStorage.");
-        }
+        };
+
+        fetchData();
     }, []);
+
 
     const navigateToSuccess = () => {
         router.push('/Registration-Completed');
@@ -85,13 +102,13 @@ const Plans = () => {
             />
             <div className="bg-[#F7F6F9] py-[3.5rem] w-screen">
                 <div className="flex flex-col  justify-center pl-[72px] gap-6 w-[264px]">
-                    <Link href="/agreement"> 
-                    <div className="flex gap-3 justify-start">
-                        <svg width="25" height="26" viewBox="0 0 25 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M11.35 9.55L8.71317 12.1868C8.26407 12.6359 8.26407 13.3641 8.71317 13.8132L11.35 16.45M9.05 13H17.1M12.5 1.5C6.14873 1.5 1 6.64873 1 13C1 19.3513 6.14873 24.5 12.5 24.5C18.8513 24.5 24 19.3513 24 13C24 6.64873 18.8513 1.5 12.5 1.5Z" stroke="#2B3F6C" stroke-width="1.5" stroke-linecap="round" />
-                        </svg>
-                        <h2 className="font-poppins font-normal text-[rgba(55, 65, 81, 1)] text-xl">Back To T&Cs</h2>
-                    </div>
+                    <Link href="/agreement">
+                        <div className="flex gap-3 justify-start">
+                            <svg width="25" height="26" viewBox="0 0 25 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M11.35 9.55L8.71317 12.1868C8.26407 12.6359 8.26407 13.3641 8.71317 13.8132L11.35 16.45M9.05 13H17.1M12.5 1.5C6.14873 1.5 1 6.64873 1 13C1 19.3513 6.14873 24.5 12.5 24.5C18.8513 24.5 24 19.3513 24 13C24 6.64873 18.8513 1.5 12.5 1.5Z" stroke="#2B3F6C" stroke-width="1.5" stroke-linecap="round" />
+                            </svg>
+                            <h2 className="font-poppins font-normal text-[rgba(55, 65, 81, 1)] text-xl">Back To T&Cs</h2>
+                        </div>
                     </Link>
                     <div className=" w-screen  h-[20px]">
                         <h4 className="font-poppins mb-4 text-[32px]  font-medium text-[rgba(19, 47, 65, 1)]">Select a Plans</h4>
@@ -125,9 +142,9 @@ const Plans = () => {
                                         plan.details.map((data, i) => (
                                             <div key={i} className="flex gap-[14px] justify-left items-center md:h-10">
                                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <g clip-path="url(#clip0_4505_21018)">
+                                                    <g clipPath="url(#clip0_4505_21018)">
                                                         <path d="M10 20C15.523 20 20 15.523 20 10C20 4.477 15.523 0 10 0C4.477 0 0 4.477 0 10C0 15.523 4.477 20 10 20Z" fill="#4A3AFF" />
-                                                        <path d="M5.47461 10.6466L8.06062 13.2326L14.5257 6.76758" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                                        <path d="M5.47461 10.6466L8.06062 13.2326L14.5257 6.76758" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                                     </g>
                                                     <defs>
                                                         <clipPath id="clip0_4505_21018">
