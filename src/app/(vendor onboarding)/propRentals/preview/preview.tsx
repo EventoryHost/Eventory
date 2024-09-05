@@ -1,8 +1,8 @@
 import { Check, EditIcon } from "lucide-react";
 import { SetStateAction } from "react";
-import Appetizers from "../(components)/Appetizers";
 import ThreeStepBar from "@/app/(components)/threeStepBar";
 import StepBar from "@/app/(components)/stepBar";
+import Appetizers from "../../(components)/Appetizers";
 
 const furnitureOptions = [
   "Chair",
