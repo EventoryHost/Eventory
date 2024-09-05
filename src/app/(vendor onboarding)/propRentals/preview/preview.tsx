@@ -212,14 +212,14 @@ function Preview({
       {/* Sidebar */}
       <div className="hidden lg:fixed lg:left-0 lg:top-[5.2rem] lg:flex lg:h-[calc(100vh-5.2rem)] lg:w-[30%] lg:flex-col lg:items-start lg:gap-9 lg:overflow-hidden lg:bg-[#FFFFFF] lg:px-8">
         <div className="mt-4 flex items-center justify-start gap-1">
-          <StepBar currentStep={5}/>
+          <StepBar currentStep={5} />
         </div>
         <div className="flex flex-grow flex-col items-start justify-center gap-9 px-6 py-4">
           <h1 className="text-2xl font-semibold md:text-3xl lg:text-4xl">
             Fill out your Basic details
           </h1>
           <p className="text-sm text-gray-600 md:text-base lg:text-lg">
-          Please check the details provided by you.
+            Please check the details provided by you.
           </p>
         </div>
         <div className="relative h-48">

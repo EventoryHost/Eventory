@@ -132,7 +132,7 @@ const Preview = ({ formState, navigateToPage, handleChange }: PreviewProps) => {
           </div>
         </div>
         <div className="flex w-full flex-col gap-2 p-2 lg:ml-[30%]">
-        <span className="align-center flex justify-start p-4 text-3xl font-semibold">
+          <span className="align-center flex justify-start p-4 text-3xl font-semibold">
             {formState.contactName} / Transportation
           </span>
 
@@ -148,7 +148,9 @@ const Preview = ({ formState, navigateToPage, handleChange }: PreviewProps) => {
           <div className="mx-8 mt-6 flex gap-16">
             <div className="flex w-1/2 flex-col">
               <span className="text-xl">Contact Person Name</span>
-              <span className="mt-4 font-semibold">{formState.contactName}</span>
+              <span className="mt-4 font-semibold">
+                {formState.contactName}
+              </span>
             </div>
             <div className="flex w-1/2 flex-col">
               <span className="text-xl">Total Workers</span>
@@ -165,7 +167,9 @@ const Preview = ({ formState, navigateToPage, handleChange }: PreviewProps) => {
             </div>
             <div className="flex w-1/2 flex-col">
               <span className="text-xl">Portfolio of past work</span>
-              <span className="mt-4 font-semibold">{formState.portfolioUrl}</span>
+              <span className="mt-4 font-semibold">
+                {formState.portfolioUrl}
+              </span>
             </div>
           </div>
 
@@ -201,7 +205,9 @@ const Preview = ({ formState, navigateToPage, handleChange }: PreviewProps) => {
           <div>
             <div className="p-4 pl-8">
               <span className="text-xl">Vehicle Types</span>
-              <span className="mt-4 font-semibold">{formState.vehicleType}</span>
+              <span className="mt-4 font-semibold">
+                {formState.vehicleType}
+              </span>
             </div>
 
             <div className="ml-8 flex flex-wrap gap-2">
