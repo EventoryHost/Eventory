@@ -24,7 +24,7 @@ const CategoryBar: React.FC<CategoryBarProps> = ({
   };
 
   return (
-    <div className='border-b-2 border-[#DFDFDF] rounded-lg mb-4'>
+    <div className='border-b-2 border-[#DFDFDF] rounded-lg '>
       <div className='p-6'>
         {event && <h1 className='text-sm p-2'>Home/{event}/SearchResult</h1>}
         <div className="flex items-center justify-between pt-4 px-6 mt-3 ">
