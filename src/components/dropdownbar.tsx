@@ -73,7 +73,7 @@ export function DropdownBar() {
       />
       <DatePickerWithRange className="max-w-fit rounded-none py-7" />
       <button className="group flex w-[300px] items-center justify-center rounded-b-xl bg-[#2E3192] px-3 py-4 text-white hover:bg-indigo-400 hover:text-[#2E3192] md:h-[65px] md:w-[500px] lpt:w-[150px] lpt:rounded-b-none lpt:rounded-r-xl lpt:rounded-br-xl">
-        <a href={`/comingsoon?event=${encodeURIComponent(event)}`} className="text-lg">
+        <a href={`/SearchPage?event=${encodeURIComponent(event)}`} className="text-lg">
           Explore
         </a>
       </button>
