@@ -24,13 +24,13 @@ const CategoryBar: React.FC<CategoryBarProps> = ({
   };
 
   return (
-    <div className='border-b-2 border-[#DFDFDF] rounded-lg '>
-      <div className='p-6'>
-        {event && <h1 className='text-sm p-2'>Home/{event}/SearchResult</h1>}
-        <div className="flex items-center justify-between pt-4 px-6 mt-3 ">
+    <div className='border-b-2 border-[#DFDFDF] rounded-2xl '>
+      <div className=''>
+        {event && <h1 className='text-base py-6 px-16 bg-gray-100'>Home/{event}/SearchResult</h1>}
+        <div className="flex items-center justify-between  px-[72px] py-[24px] ">
           {/* Left section - Venues list */}
-          <ul className="flex items-center gap-10 mt-2 font-semibold">
-            {["Venues 1", "Venues 2", "Venues 3", "Venues 4", "Venues 5"].map(
+          <ul className="flex items-center gap-10 text-xl font-medium">
+            {["Venues", "Caterer", "Decorator", "Invitation", "Gifts"].map(
               (venue, index) => (
                 <li
                   key={index}
@@ -48,7 +48,7 @@ const CategoryBar: React.FC<CategoryBarProps> = ({
           </ul>
 
           {/* Right section - View options and sort */}
-          <div className="flex items-center gap-[21px] text-sm">
+          <div className="flex items-center gap-[21px] text-sm font-normal">
             <div className="flex items-center gap-[24px]">
               <div
                 className={`p-2 cursor-pointer flex items-center gap-2 ${
