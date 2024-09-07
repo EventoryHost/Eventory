@@ -22,6 +22,13 @@ const CategoryBar: React.FC<CategoryBarProps> = ({
   const handleViewSelect = (viewType: string) => {
     setView(viewType);
   };
+  const eventTabsMap: { [key: string]: string[] } = {
+    birthday: ["Venues", "Caterer", "Decorator", "Invitation", "Gifts"],
+    marriage: ["Cakes", "Entertainment", "Photography", "Decor", "Gifts"],
+    anniversary: ["Venues", "Caterer", "AV Equipment", "Transport", "Gifts"],
+  };
+
+  const tabs = eventTabsMap[event.toLowerCase()] || [];
 
   return (
     <div className='border-b-2 border-[#DFDFDF] rounded-2xl '>
@@ -30,7 +37,7 @@ const CategoryBar: React.FC<CategoryBarProps> = ({
         <div className="flex items-center justify-between  px-[72px] py-[24px] ">
           {/* Left section - Venues list */}
           <ul className="flex items-center gap-10 text-xl font-medium">
-            {["Venues", "Caterer", "Decorator", "Invitation", "Gifts"].map(
+            {tabs.map(
               (venue, index) => (
                 <li
                   key={index}
