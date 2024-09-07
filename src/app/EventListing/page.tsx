@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import ImageCarousel from './(components)/ImageCarousel';
+import Footer from '../(components)/footer';
 
 const CarouselPage = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -29,13 +30,29 @@ const CarouselPage = () => {
   const plugin = React.useRef(
     Autoplay({ delay: 2000, stopOnInteraction: true }),
   );
-const images=[
-  "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/featured/card_01.png",
-  "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/featured/card_02.png",
-  "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/featured/card_03.png",
-  "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/featured/card_01.png",
-  "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/featured/card_03.png",
-]
+  const images = [
+    {
+      src: "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/categories/cat_01.png",
+      text: "Category 1"
+    },
+    {
+      src: "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/categories/cat_02.png",
+      text: "Category 2"
+    },
+    {
+      src: "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/categories/cat_03.png",
+      text: "Category 3"
+    },
+    {
+      src: "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/categories/cat_01.png",
+      text: "Category 4"
+    },
+    {
+      src: "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/categories/cat_03.png",
+      text: "Category 5"
+    }
+  ];
+
   const venues = [
     {
       name: "Krishna Vendors",
@@ -202,8 +219,19 @@ const images=[
           </div>
         </div>
 
-        <ImageCarousel images={images}/>
+        <div className='flex w-full flex-col items-start mb-4'>
+          <div className="font-poppins text-2xl font-bold md:text-4xl justify-start">
+            Our Special Events
+          </div>
+          <div className="flex w-full justify-center">
+            <ImageCarousel images={images} />
+
+          </div>
+
+        </div>
+
       </div>
+      <Footer/>
     </div>
   );
 };
