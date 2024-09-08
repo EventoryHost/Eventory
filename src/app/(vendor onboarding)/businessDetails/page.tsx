@@ -23,7 +23,7 @@ const categories = [
   { value: "caterer", label: "Caterers" },
   { value: "decorator", label: "Decorator" },
   { value: "prop-rental", label: "Prop Rental" },
-  { value: "makeupArtisttest", label: "Makeup Artist" },
+  { value: "makeup-artist", label: "Makeup Artist" },
 ];
 
 const yearsInOperation = [
