@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
 import { Upload } from "lucide-react";
 import { FormState } from "../page";
+import FileInput from "@/components/fileInput";
 
 interface Page6Props {
   formState: FormState;
@@ -53,24 +53,13 @@ const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
               </div>
               <div className="flex min-w-[40%] flex-col items-start justify-center">
                 <label htmlFor="category">Catering Service Images</label>
-                <button className="mt-5 flex items-center justify-center gap-5 rounded-xl border-2 border-dashed border-gray-400 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
-                  <Upload />
-                  Upload
-                  <input
-                    type="file"
-                    className="hidden"
-                    id="cateringServiceImages"
-                    name="cateringServiceImages"
-                    accept="image/png, .pdf, image/jpg"
-                    // className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
-                    onChange={(e) => {
-                      const file = e.target.files![0];
-                      updateFormState({
-                        cateringServiceImages: e.target.files![0],
-                      });
-                    }}
-                  />
-                </button>
+                <FileInput
+                  label="catering images"
+                  onFileSelect={(file) => {
+                    updateFormState({ cateringServiceImages: file });
+                  }}
+                  acceptedFileTypes="image/png, .pdf, image/jpg"
+                />
               </div>
             </div>
             <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
@@ -107,24 +96,13 @@ const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
               </div>
               <div className="flex min-w-[40%] flex-col items-start justify-center">
                 <label htmlFor="category">Videos of Event Setups</label>
-                <button className="mt-5 flex items-center justify-center gap-5 rounded-xl border-2 border-dashed border-gray-400 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
-                  <Upload />
-                  Upload
-                  <input
-                    type="file"
-                    className="hidden"
-                    id="videoEvent"
-                    name="videoEvent"
-                    accept=".mp4, .avi, .mov, .wmv"
-                    // className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
-                    onChange={(e) => {
-                      const file = e.target.files![0];
-                      updateFormState({
-                        videoEvent: e.target.files![0],
-                      });
-                    }}
-                  />
-                </button>
+                <FileInput
+                  label="event videos"
+                  onFileSelect={(file) => {
+                    updateFormState({ videoEvent: file });
+                  }}
+                  acceptedFileTypes=".mp4, .avi, .mov, .wmv"
+                />
               </div>
             </div>
             <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
@@ -156,25 +134,13 @@ const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
                 </div>
                 <div className="flex min-w-[40%] flex-col items-start justify-center">
                   <label htmlFor="category">Terms & Conditions</label>
-                  <button className="mt-5 flex items-center justify-center gap-5 rounded-xl border-2 border-dashed border-gray-400 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
-                    <Upload />
-                    Upload
-                    <input
-                      type="file"
-                      className="hidden"
-                      id="termsAndConditions"
-                      name="termsAndConditions"
-                      accept="image/png, .pdf, image/jpg"
-                      //  className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
-                      onChange={(e) => {
-                        e.preventDefault();
-                        const file = e.target.files![0];
-                        updateFormState({
-                          termsAndConditions: e.target.files![0],
-                        });
-                      }}
-                    />
-                  </button>
+                  <FileInput
+                    label="tnc"
+                    onFileSelect={(file) => {
+                      updateFormState({ termsAndConditions: file });
+                    }}
+                    acceptedFileTypes="image/png, .pdf, image/jpg"
+                  />
                   <p className="mt-5 text-lg">or Provide Via</p>
                   <textarea
                     cols={30}
@@ -189,24 +155,13 @@ const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
               </div>
               <div className="flex min-w-[40%] flex-col items-start justify-center">
                 <label htmlFor="category">Cancellation Policies</label>
-                <button className="mt-5 flex items-center justify-center gap-5 rounded-xl border-2 border-dashed border-gray-400 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
-                  <Upload />
-                  Upload
-                  <input
-                    type="file"
-                    id="cancellationPolicy"
-                    name="cancellationPolicy"
-                    accept="image/png, .pdf, image/jpg"
-                    // className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
-                    onChange={(e) => {
-                      e.preventDefault();
-                      const file = e.target.files![0];
-                      updateFormState({
-                        cancellationPolicy: e.target.files![0],
-                      });
-                    }}
-                  />
-                </button>
+                <FileInput
+                  label="cancellation policy"
+                  onFileSelect={(file) => {
+                    updateFormState({ cancellationPolicy: file });
+                  }}
+                  acceptedFileTypes="image/png, .pdf, image/jpg"
+                />
                 <p className="mt-5 text-lg">or Provide Via</p>
                 <textarea
                   cols={30}
