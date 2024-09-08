@@ -1,9 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
-import Appetizers from "../../(components)/Appetizers";
 import { Upload } from "lucide-react";
-import { Combobox } from "@/components/ui/combobox";
+import FileInput from "@/components/fileInput";
 
 interface FormState {
   portfolio: string;
@@ -24,13 +22,6 @@ const Page6: React.FC<Page6Props> = ({ formState, updateFormState }) => {
     clientTestimonials,
     certificates_awards,
   } = formState;
-
-  // const [termdandConditions, setTermsAndConditions] = useState("");
-  // const [canelationPolicy, setCancelationPolicy] = useState("");
-
-  // const [extracharges, setExtraCharges] = useState(false);
-  // const  [deposit, setDeposit] = useState(false);
-  // const [clienttestimonials, setClientTestimonials] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -89,20 +80,24 @@ const Page6: React.FC<Page6Props> = ({ formState, updateFormState }) => {
               <div className="flex min-w-[40%] flex-col gap-4">
                 <label htmlFor="category">Portfolio </label>
                 <p className="text-gray-500">PNG, PDF, JPG</p>
-                <button className="flex items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
-                  {" "}
-                  <Upload />
-                  Upload
-                </button>
+                <FileInput
+                  label="portfolio"
+                  onFileSelect={(file) => {
+                    updateFormState({ portfolio: file });
+                  }}
+                  acceptedFileTypes="image/png, .pdf, image/jpg"
+                />
               </div>
               <div className="flex min-w-[40%] flex-col gap-4">
                 <label htmlFor="category">Online Ratings and Reviews</label>
                 <p className="text-gray-500">PNG, PDF, JPG</p>
-                <button className="flex items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
-                  {" "}
-                  <Upload />
-                  Upload
-                </button>
+                <FileInput
+                  label="ratings reviews"
+                  onFileSelect={(file) => {
+                    updateFormState({ ratings_reviews: file });
+                  }}
+                  acceptedFileTypes="image/png, .pdf, image/jpg"
+                />
               </div>
             </div>
             <div className="flex min-w-full flex-row items-start justify-between gap-2">
@@ -141,20 +136,24 @@ const Page6: React.FC<Page6Props> = ({ formState, updateFormState }) => {
               <div className="flex min-w-[40%] flex-col gap-4">
                 <label htmlFor="category">Client Testimonials </label>
                 <p className="text-gray-500">PNG, PDF, JPG</p>
-                <button className="flex items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
-                  {" "}
-                  <Upload />
-                  Upload
-                </button>
+                <FileInput
+                  label="client testimonials"
+                  onFileSelect={(file) => {
+                    updateFormState({ clientTestimonials: file });
+                  }}
+                  acceptedFileTypes="image/png, .pdf, image/jpg"
+                />
               </div>
               <div className="flex min-w-[40%] flex-col gap-4">
                 <label htmlFor="category">Certificate or award</label>
                 <p className="text-gray-500">PNG, PDF, JPG</p>
-                <button className="flex items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
-                  {" "}
-                  <Upload />
-                  Upload
-                </button>
+                <FileInput
+                  label="certificates awards"
+                  onFileSelect={(file) => {
+                    updateFormState({ certificates_awards: file });
+                  }}
+                  acceptedFileTypes="image/png, .pdf, image/jpg"
+                />
               </div>
             </div>
             <div className="flex min-w-full flex-row items-start justify-between gap-2">

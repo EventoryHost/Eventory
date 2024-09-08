@@ -200,15 +200,7 @@ const Page5: React.FC<Page5Props> = ({
                 </div>
               </div>
             ))}
-            <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-              <div className="flex flex-col items-start justify-between gap-2">
-                <p className="text-gray-500">Or Provide Via</p>
-                <button className="flex items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
-                  {" "}
-                  <Upload />
-                  Upload
-                </button>
-              </div>
+            <div className="flex min-w-full flex-col justify-end items-center gap-5 md:flex-row">
               <div className="item-start flex flex-col justify-between gap-2">
                 <button
                   className="cursor-pointer rounded-lg bg-[#E6E6E6] p-2 hover:shadow-xl"
@@ -308,15 +300,7 @@ const Page5: React.FC<Page5Props> = ({
                 </div>
               </div>
             ))}
-            <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-              <div className="flex flex-col items-start justify-between gap-2">
-                <p className="text-gray-500">Or Provide Via</p>
-                <button className="flex items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
-                  {" "}
-                  <Upload />
-                  Upload
-                </button>
-              </div>
+            <div className="flex min-w-full flex-col items-center justify-end gap-5 md:flex-row">
               <div className="item-start flex flex-col justify-between gap-2">
                 <button
                   className="cursor-pointer rounded-lg bg-[#E6E6E6] p-2 hover:shadow-xl"
@@ -416,15 +400,7 @@ const Page5: React.FC<Page5Props> = ({
                 </div>
               </div>
             ))}
-            <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-              <div className="flex flex-col items-start justify-between gap-2">
-                <p className="text-gray-500">Or Provide Via</p>
-                <button className="flex items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
-                  {" "}
-                  <Upload />
-                  Upload
-                </button>
-              </div>
+            <div className="flex min-w-full flex-col items-center justify-end gap-5 md:flex-row">
               <div className="item-start flex flex-col justify-between gap-2">
                 <button
                   className="cursor-pointer rounded-lg bg-[#E6E6E6] p-2 hover:shadow-xl"

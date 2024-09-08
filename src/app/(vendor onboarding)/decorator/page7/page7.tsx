@@ -1,8 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import FileInput from "@/components/fileInput";
 import { Upload } from "lucide-react";
-import { Combobox } from "@/components/ui/combobox";
 
 interface FormState {
   insurancePolicy: string;
@@ -23,13 +22,6 @@ const Page7: React.FC<Page7Props> = ({ formState, updateFormState }) => {
     termsAndConditions,
     privacyPolicy,
   } = formState;
-
-  // const [termdandConditions, setTermsAndConditions] = useState("");
-  // const [canelationPolicy, setCancelationPolicy] = useState("");
-
-  // const [extracharges, setExtraCharges] = useState(false);
-  // const  [deposit, setDeposit] = useState(false);
-  // const [clienttestimonials, setClientTestimonials] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -88,20 +80,24 @@ const Page7: React.FC<Page7Props> = ({ formState, updateFormState }) => {
               <div className="flex min-w-[40%] flex-col gap-4">
                 <label htmlFor="category">Insurance coverage policy</label>
                 <p className="text-gray-500">PNG, PDF, JPG</p>
-                <button className="flex items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
-                  {" "}
-                  <Upload />
-                  Upload
-                </button>
+                <FileInput
+                  label="insurance policy"
+                  onFileSelect={(file) =>
+                    updateFormState({ insurancePolicy: file })
+                  }
+                  acceptedFileTypes=".png,.pdf,.jpg"
+                />
               </div>
               <div className="flex min-w-[40%] flex-col gap-4">
                 <label htmlFor="category">Cancellation Policy</label>
                 <p className="text-gray-500">PNG, PDF, JPG</p>
-                <button className="flex items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
-                  {" "}
-                  <Upload />
-                  Upload
-                </button>
+                <FileInput
+                  label="cancellation policy"
+                  onFileSelect={(file) =>
+                    updateFormState({ cancellationPolicy: file })
+                  }
+                  acceptedFileTypes=".png,.pdf,.jpg"
+                />
               </div>
             </div>
             <div className="flex min-w-full flex-row items-start justify-between gap-2">
@@ -140,20 +136,24 @@ const Page7: React.FC<Page7Props> = ({ formState, updateFormState }) => {
               <div className="flex min-w-[40%] flex-col gap-4">
                 <label htmlFor="category">Terms & Condition</label>
                 <p className="text-gray-500">PNG, PDF, JPG</p>
-                <button className="flex items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
-                  {" "}
-                  <Upload />
-                  Upload
-                </button>
+                <FileInput
+                  label="terms and conditions"
+                  onFileSelect={(file) =>
+                    updateFormState({ termsAndConditions: file })
+                  }
+                  acceptedFileTypes=".png,.pdf,.jpg"
+                />
               </div>
               <div className="flex min-w-[40%] flex-col gap-4">
                 <label htmlFor="category">Privacy Policy</label>
                 <p className="text-gray-500">PNG, PDF, JPG</p>
-                <button className="flex items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
-                  {" "}
-                  <Upload />
-                  Upload
-                </button>
+                <FileInput
+                  label="privacy policy"
+                  onFileSelect={(file) =>
+                    updateFormState({ privacyPolicy: file })
+                  }
+                  acceptedFileTypes=".png,.pdf,.jpg"
+                />
               </div>
             </div>
             <div className="flex min-w-full flex-row items-start justify-between gap-2">
