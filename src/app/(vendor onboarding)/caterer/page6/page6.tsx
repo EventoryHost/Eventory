@@ -1,6 +1,5 @@
 "use client";
 
-import { Upload } from "lucide-react";
 import { FormState } from "../page";
 import FileInput from "@/components/fileInput";
 

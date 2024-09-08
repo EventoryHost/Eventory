@@ -1,7 +1,5 @@
 "use client";
 
-import React from "react";
-import { Upload } from "lucide-react";
 import Checkbox from "@mui/material/Checkbox";
 
 interface Package {
