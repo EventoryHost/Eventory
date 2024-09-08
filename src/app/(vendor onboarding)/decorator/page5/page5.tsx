@@ -200,7 +200,7 @@ const Page5: React.FC<Page5Props> = ({
                 </div>
               </div>
             ))}
-            <div className="flex min-w-full flex-col justify-end items-center gap-5 md:flex-row">
+            <div className="flex min-w-full flex-col items-center justify-end gap-5 md:flex-row">
               <div className="item-start flex flex-col justify-between gap-2">
                 <button
                   className="cursor-pointer rounded-lg bg-[#E6E6E6] p-2 hover:shadow-xl"
