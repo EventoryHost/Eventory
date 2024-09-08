@@ -5,14 +5,97 @@ import { useSearchParams } from "next/navigation";
 import CategoryBar from "../(components)/categoryBar";
 import FilterSection from '../(components)/FilterSection';
 import Footer from '@/app/(components)/footer';
-
+import ExploreSection from '../(components)/ExploreSection';
+import VendorCard from '../(components)/VendorCard';
+import tempSearchboxcardimg from '@/../public/tempSearchboxcardimg.png';
 const SearchPage = () => {
   const searchParams = useSearchParams();
   const event = searchParams.get("event") || 'all';
 
   const [selected, setSelected] = useState<string>("");
   const [view, setView] = useState<string>("List");
-
+  const cardsdata = [
+    {
+      imageSrc: '/tempSearchboxcardimg.png',
+      venueName: "Radison Blue",
+      location: "Vijaynagar, Indore",
+      description: "We offer best service in the city, book us to host your event.We offer best service in the city, book us to host your event. We offer best service in the city, book us to host your event. We offer best service in the city, book us to host your event.",
+      tags: ["Bunquet hall", "ball room"],
+      price: "₹ 2000",
+      rating: "4.2",
+      totalRatings: 25,
+    },
+    {
+      imageSrc: '/tempSearchboxcardimg.png',
+      venueName: "Radison Blue",
+      location: "Vijaynagar, Indore",
+      description: "We offer best service in the city, book us to host your event.We offer best service in the city, book us to host your event. We offer best service in the city, book us to host your event. We offer best service in the city, book us to host your event.",
+      tags: ["Bunquet hall", "ball room"],
+      price: "₹ 2000",
+      rating: "4.2",
+      totalRatings: 25,
+    },
+    {
+      imageSrc: '/tempSearchboxcardimg.png',
+      venueName: "Radison Blue",
+      location: "Vijaynagar, Indore",
+      description: "We offer best service in the city, book us to host your event.We offer best service in the city, book us to host your event. We offer best service in the city, book us to host your event. We offer best service in the city, book us to host your event.",
+      tags: ["Bunquet hall", "ball room"],
+      price: "₹ 2000",
+      rating: "4.2",
+      totalRatings: 25,
+    },
+    {
+      imageSrc: '/tempSearchboxcardimg.png',
+      venueName: "Radison Blue",
+      location: "Vijaynagar, Indore",
+      description: "We offer best service in the city, book us to host your event.We offer best service in the city, book us to host your event. We offer best service in the city, book us to host your event. We offer best service in the city, book us to host your event.",
+      tags: ["Bunquet hall", "ball room"],
+      price: "₹ 2000",
+      rating: "4.2",
+      totalRatings: 25,
+    },
+    {
+      imageSrc: '/tempSearchboxcardimg.png',
+      venueName: "Radison Blue",
+      location: "Vijaynagar, Indore",
+      description: "We offer best service in the city, book us to host your event.We offer best service in the city, book us to host your event. We offer best service in the city, book us to host your event. We offer best service in the city, book us to host your event.",
+      tags: ["Bunquet hall", "ball room"],
+      price: "₹ 2000",
+      rating: "4.2",
+      totalRatings: 25,
+    },
+    {
+      imageSrc: '/tempSearchboxcardimg.png',
+      venueName: "Radison Blue",
+      location: "Vijaynagar, Indore",
+      description: "We offer best service in the city, book us to host your event.We offer best service in the city, book us to host your event. We offer best service in the city, book us to host your event. We offer best service in the city, book us to host your event.",
+      tags: ["Bunquet hall", "ball room"],
+      price: "₹ 2000",
+      rating: "4.2",
+      totalRatings: 25,
+    },
+    {
+      imageSrc: '/tempSearchboxcardimg.png',
+      venueName: "Radison Blue",
+      location: "Vijaynagar, Indore",
+      description: "We offer best service in the city, book us to host your event.We offer best service in the city, book us to host your event. We offer best service in the city, book us to host your event. We offer best service in the city, book us to host your event.",
+      tags: ["Bunquet hall", "ball room"],
+      price: "₹ 2000",
+      rating: "4.2",
+      totalRatings: 25,
+    },
+    {
+      imageSrc: '/tempSearchboxcardimg.png',
+      venueName: "Radison Blue",
+      location: "Vijaynagar, Indore",
+      description: "We offer best service in the city, book us to host your event.We offer best service in the city, book us to host your event. We offer best service in the city, book us to host your event. We offer best service in the city, book us to host your event.",
+      tags: ["Bunquet hall", "ball room"],
+      price: "₹ 2000",
+      rating: "4.2",
+      totalRatings: 25,
+    },
+  ]
 
   const filters1 = ['Option 1', 'Option 2', 'Option 3'];
   const filters2 = ['Option 4', 'Option 5', 'Option 6'];
@@ -47,6 +130,9 @@ const SearchPage = () => {
   };
   return (
     <div className="">
+      <div className="mt-2">
+        <ExploreSection />
+      </div>
       <CategoryBar
         event={event}
         selected={selected}
@@ -55,9 +141,24 @@ const SearchPage = () => {
         setView={setView}
       />
       <div className='flex justify-between gap-8 flex-start p-8 bg-gray-100'>
-        <div className='flex-1 py-8 bg-slate-200'> main
+        <div className='flex-1 py-8  bg-grey-100'>
+          <div className='gap-8 grid grid-cols-1 grid-rows-1 h-max'>
+            {
+              cardsdata.map((card) => (
+                <VendorCard
+                  imageSrc={card.imageSrc}
+                  description={card.description}
+                  venueName={card.venueName}
+                  location={card.location}
+                  tags={card.tags}
+                  price={card.price}
+                  rating={card.rating}
+                  totalRatings={card.totalRatings}
+                />
+              ))
+            }
+          </div>
           <div>{selectedFiltersSection1}{selectedFiltersSection2}{selectedFiltersSection3}</div>
-
         </div>
         <div className=' flex-2 p-6 mx-6 flex flex-col gap-6 w-1/4 rounded-lg border border-gray-300 pb-4 bg-white'>
           <div className='flex '>
@@ -67,7 +168,6 @@ const SearchPage = () => {
 
             <div className="font-semibold text-2xl mx-2">Filters</div>
           </div>
-
 
           <FilterSection
             title="CAPACITY"
@@ -108,6 +208,7 @@ const SearchPage = () => {
       </div>
 
       <Footer />
+      
     </div>
   );
 };
