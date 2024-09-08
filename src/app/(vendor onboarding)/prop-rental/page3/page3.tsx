@@ -2,14 +2,14 @@
 
 import StepBar from "@/app/(components)/stepBar";
 import Appetizers from "../../(components)/Appetizers";
-import { Upload } from "lucide-react";
-import { SetStateAction, useEffect, useState } from "react";
+import { SetStateAction, useState } from "react";
 import Page4, {
   page4Props,
-} from "@/app/(vendor onboarding)/propRentals/page4/page4";
+} from "@/app/(vendor onboarding)/prop-rental/page4/page4";
 import Page5, {
   page5Props,
-} from "@/app/(vendor onboarding)/propRentals/page5/page5";
+} from "@/app/(vendor onboarding)/prop-rental/page5/page5";
+import FileInput from "@/components/fileInput";
 
 const furnitureOptions = [
   "Chair",
@@ -256,22 +256,13 @@ function Page3({
                     Upload list
                   </label>
                   <p className="text-gray-500">PNG, PDF, JPG</p>
-                  <button className="mt-2 flex w-1/2 items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
-                    <Upload />
-                    Upload
-                    <input
-                      type="file"
-                      id="furnitureAndDecorListUrl"
-                      name="furnitureAndDecorListUrl"
-                      accept="image/png, .pdf, image/jpg"
-                      onChange={(e) => {
-                        const file = e.target.files![0];
-                        updateFormState({
-                          furnitureAndDecorListUrl: e.target.files![0],
-                        });
-                      }}
-                    />
-                  </button>
+                  <FileInput
+                    label="furniture and decor list"
+                    onFileSelect={(file) => {
+                      updateFormState({ furnitureAndDecorListUrl: file });
+                    }}
+                    acceptedFileTypes="image/png, .pdf, image/jpg"
+                  />
                 </div>
               </div>
             </div>

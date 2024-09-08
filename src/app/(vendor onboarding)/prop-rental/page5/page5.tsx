@@ -1,5 +1,6 @@
 "use client";
 
+import FileInput from "@/components/fileInput";
 import Appetizers from "../../(components)/Appetizers";
 import { Upload } from "lucide-react";
 
@@ -99,7 +100,7 @@ function Page5({
               Upload list
             </label>
             <p className="text-gray-500">PNG, PDF, JPG</p>
-            <button className="mt-2 flex w-1/3 items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
+            {/* <button className="mt-2 flex w-1/3 items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
               <Upload />
               Upload
               <input
@@ -114,7 +115,14 @@ function Page5({
                   });
                 }}
               />
-            </button>
+            </button> */}
+            <FileInput
+              label="audio visual list"
+              onFileSelect={(file) => {
+                updateFormState({ audioVisualListUrl: file });
+              }}
+              acceptedFileTypes="image/png, .pdf, image/jpg"
+            />
           </div>
         </div>
       </div>

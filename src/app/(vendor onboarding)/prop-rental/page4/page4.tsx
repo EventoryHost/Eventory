@@ -1,4 +1,5 @@
 "use client";
+import FileInput from "@/components/fileInput";
 import Appetizers from "../../(components)/Appetizers";
 import { Upload } from "lucide-react";
 import { Key, SetStateAction, useEffect, useState } from "react";
@@ -140,21 +141,13 @@ function Page4({
               Upload list
             </label>
             <p className="text-gray-500">PNG, PDF, JPG</p>
-            <button className="mt-2 flex w-1/3 items-center justify-center gap-5 rounded-xl border-2 bg-gray-200 px-9 py-3 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
-              <Upload />
-              Upload
-              <input
-                type="file"
-                name="tentAndCanopyListUrl"
-                accept=".png,.pdf,.jpg"
-                onChange={(e) => {
-                  const file = e.target.files![0];
-                  updateFormState({
-                    tentAndCanopyListUrl: e.target.files![0],
-                  });
-                }}
-              />
-            </button>
+            <FileInput
+              label="tent and conopy list"
+              onFileSelect={(file) => {
+                updateFormState({ tentAndCanopyListUrl: file });
+              }}
+              acceptedFileTypes="image/png, .pdf, image/jpg"
+            />
           </div>
         </div>
       </div>

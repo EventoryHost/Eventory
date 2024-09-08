@@ -1,4 +1,5 @@
 import StepBar from "@/app/(components)/stepBar";
+import FileInput from "@/components/fileInput";
 import { Upload } from "lucide-react";
 import { SetStateAction } from "react";
 
@@ -90,44 +91,26 @@ const Page2: React.FC<page2Props> = ({
                   Insurance Coverage Policy
                 </label>
                 <p className="text-gray-500">PNG, PDF, JPG</p>
-                <button className="flex items-center justify-center gap-3 rounded-xl border-2 bg-gray-200 px-6 py-2 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
-                  <Upload />
-                  Upload
-                  <input
-                    type="file"
-                    id="insurancePolicy"
-                    name="insurancePolicy"
-                    accept="image/png, .pdf, image/jpg"
-                    onChange={(e) => {
-                      const file = e.target.files![0];
-                      updateFormState({
-                        insurancePolicy: e.target.files![0],
-                      });
-                    }}
-                  />
-                </button>
+                <FileInput
+                  label="insurance policy"
+                  onFileSelect={(file) => {
+                    updateFormState({ insurancePolicy: file });
+                  }}
+                  acceptedFileTypes="image/png, .pdf, image/jpg"
+                />
               </div>
               <div className="flex w-full flex-col gap-4 md:w-1/2">
                 <label className="font-semibold" htmlFor="cancellationPolicy">
                   Cancellation Policy
                 </label>
                 <p className="text-gray-500">PNG, PDF, JPG</p>
-                <button className="flex items-center justify-center gap-3 rounded-xl border-2 bg-gray-200 px-6 py-2 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
-                  <Upload />
-                  Upload
-                  <input
-                    type="file"
-                    id="cancellationPolicy"
-                    name="cancellationPolicy"
-                    accept="image/png, .pdf, image/jpg"
-                    onChange={(e) => {
-                      const file = e.target.files![0];
-                      updateFormState({
-                        cancellationPolicy: e.target.files![0],
-                      });
-                    }}
-                  />
-                </button>
+                <FileInput
+                  label="cancellation policy"
+                  onFileSelect={(file) => {
+                    updateFormState({ cancellationPolicy: file });
+                  }}
+                  acceptedFileTypes="image/png, .pdf, image/jpg"
+                />
               </div>
             </div>
 
@@ -178,44 +161,26 @@ const Page2: React.FC<page2Props> = ({
                 Terms and Conditions
               </label>
               <p className="text-gray-500">PNG, PDF, JPG</p>
-              <button className="flex items-center justify-center gap-3 rounded-xl border-2 bg-gray-200 px-6 py-2 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
-                <Upload />
-                Upload
-                <input
-                  type="file"
-                  id="termsAndConditions"
-                  name="termsAndConditions"
-                  accept="image/png, .pdf, image/jpg"
-                  onChange={(e) => {
-                    const file = e.target.files![0];
-                    updateFormState({
-                      termsAndConditions: e.target.files![0],
-                    });
-                  }}
-                />
-              </button>
+              <FileInput
+                label="terms and conditions"
+                onFileSelect={(file) => {
+                  updateFormState({ termsAndConditions: file });
+                }}
+                acceptedFileTypes="image/png, .pdf, image/jpg"
+              />
             </div>
             <div className="flex w-full flex-col gap-4 md:w-1/2">
               <label className="font-semibold" htmlFor="privacyPolicy">
                 Privacy Policy
               </label>
               <p className="text-gray-500">PNG, PDF, JPG</p>
-              <button className="flex items-center justify-center gap-3 rounded-xl border-2 bg-gray-200 px-6 py-2 text-[#2E3192] hover:bg-[#2E3192] hover:text-white">
-                <Upload />
-                Upload
-                <input
-                  type="file"
-                  id="privacyPolicy"
-                  name="privacyPolicy"
-                  accept="image/png, .pdf, image/jpg"
-                  onChange={(e) => {
-                    const file = e.target.files![0];
-                    updateFormState({
-                      privacyPolicy: e.target.files![0],
-                    });
-                  }}
-                />
-              </button>
+              <FileInput
+                label="privacy policy"
+                onFileSelect={(file) => {
+                  updateFormState({ privacyPolicy: file });
+                }}
+                acceptedFileTypes="image/png, .pdf, image/jpg"
+              />
             </div>
           </div>
 
