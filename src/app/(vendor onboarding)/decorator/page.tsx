@@ -18,7 +18,7 @@ interface Package {
   priceRange: [number, number];
 }
 
-interface FormState {
+export interface FormState {
   // Page-specific states
   // Page 1
   businessName: string;
@@ -43,16 +43,16 @@ interface FormState {
   consulationProcess: string;
 
   //page 6
-  portfolio: string;
-  ratings_reviews: string;
-  clientTestimonials: string;
-  certificates_awards: string;
+  portfolio: string | File;
+  ratings_reviews: string | File;
+  clientTestimonials: string | File;
+  certificates_awards: string | File;
 
   //page 7
-  insurancePolicy: string;
-  cancellationPolicy: string;
-  termsAndConditions: string;
-  privacyPolicy: string;
+  insurancePolicy: string | File;
+  cancellationPolicy: string | File;
+  termsAndConditions: string | File;
+  privacyPolicy: string | File;
 
   references: boolean;
   experience: string;

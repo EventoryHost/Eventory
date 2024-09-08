@@ -1,13 +1,12 @@
 "use client";
 
-import { Upload } from "lucide-react";
 import FileInput from "@/components/fileInput";
 
 interface FormState {
-  portfolio: string;
-  ratings_reviews: string;
-  clientTestimonials: string;
-  certificates_awards: string;
+  portfolio: string | File;
+  ratings_reviews: string | File;
+  clientTestimonials: string | File;
+  certificates_awards: string | File;
 }
 
 interface Page6Props {
@@ -108,7 +107,6 @@ const Page6: React.FC<Page6Props> = ({ formState, updateFormState }) => {
                   type="text"
                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                   placeholder="Enter url here"
-                  value={portfolio}
                   onChange={(e) =>
                     updateFormState({ portfolio: e.target.value })
                   }
@@ -121,7 +119,6 @@ const Page6: React.FC<Page6Props> = ({ formState, updateFormState }) => {
                   type="text"
                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                   placeholder="Enter url here"
-                  value={ratings_reviews}
                   onChange={(e) =>
                     updateFormState({ ratings_reviews: e.target.value })
                   }
@@ -164,7 +161,6 @@ const Page6: React.FC<Page6Props> = ({ formState, updateFormState }) => {
                   type="text"
                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                   placeholder="Enter url here"
-                  value={clientTestimonials}
                   onChange={(e) =>
                     updateFormState({ clientTestimonials: e.target.value })
                   }
@@ -177,7 +173,6 @@ const Page6: React.FC<Page6Props> = ({ formState, updateFormState }) => {
                   type="text"
                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                   placeholder="Enter url here"
-                  value={certificates_awards}
                   onChange={(e) =>
                     updateFormState({ certificates_awards: e.target.value })
                   }

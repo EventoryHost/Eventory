@@ -1,13 +1,12 @@
 "use client";
 
 import FileInput from "@/components/fileInput";
-import { Upload } from "lucide-react";
 
 interface FormState {
-  insurancePolicy: string;
-  cancellationPolicy: string;
-  termsAndConditions: string;
-  privacyPolicy: string;
+  insurancePolicy: string | File;
+  cancellationPolicy: string | File;
+  termsAndConditions: string | File;
+  privacyPolicy: string | File;
 }
 
 interface Page7Props {
@@ -108,7 +107,6 @@ const Page7: React.FC<Page7Props> = ({ formState, updateFormState }) => {
                   type="text"
                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                   placeholder="Enter url here"
-                  value={insurancePolicy}
                   onChange={(e) =>
                     updateFormState({ insurancePolicy: e.target.value })
                   }
@@ -121,7 +119,6 @@ const Page7: React.FC<Page7Props> = ({ formState, updateFormState }) => {
                   type="text"
                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                   placeholder="Enter url here"
-                  value={cancellationPolicy}
                   onChange={(e) =>
                     updateFormState({ cancellationPolicy: e.target.value })
                   }
@@ -164,7 +161,6 @@ const Page7: React.FC<Page7Props> = ({ formState, updateFormState }) => {
                   type="text"
                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                   placeholder="Enter url here"
-                  value={termsAndConditions}
                   onChange={(e) =>
                     updateFormState({ termsAndConditions: e.target.value })
                   }
@@ -177,7 +173,6 @@ const Page7: React.FC<Page7Props> = ({ formState, updateFormState }) => {
                   type="text"
                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                   placeholder="Enter url here"
-                  value={privacyPolicy}
                   onChange={(e) =>
                     updateFormState({ privacyPolicy: e.target.value })
                   }

@@ -1,7 +1,8 @@
-import { Check, EditIcon } from "lucide-react";
-import { SetStateAction } from "react";
+import { EditIcon } from "lucide-react";
 import Appetizers from "../../(components)/Appetizers";
 import File from "../../caterer/(components)/File";
+import { FormState } from "../page";
+
 const _cuisine = ["North Indian", "South Indian", "Chinese", "Italian"];
 const regional = [
   "Gujrati",
@@ -42,44 +43,6 @@ interface Package {
   type: string;
   priceRange: [number, number];
 }
-
-type FormState = {
-  // Page-specific states
-  // Page 1
-  businessName: string;
-  references: boolean;
-  experience: string;
-  // Page 2
-  propthemesOffered: boolean;
-  adobtThemes: boolean;
-  colorschmes: boolean;
-  customizationsThemes: boolean;
-  customDesignProcess: string;
-
-  // Page 3
-  backDropoptions: string;
-  decorationoptions: string;
-  prop_accessory: string;
-
-  // Page 4
-  freeInitialConsultation: boolean;
-  revisionPolicy: boolean;
-  writtenthemeProposal: boolean;
-  setup_installation: boolean;
-  consulationProcess: string;
-
-  //page 6
-  portfolio: string;
-  ratings_reviews: string;
-  clientTestimonials: string;
-  certificates_awards: string;
-
-  //page 7
-  insurancePolicy: string;
-  cancellationPolicy: string;
-  termsAndConditions: string;
-  privacyPolicy: string;
-};
 
 type PagePreviewProps = {
   typeOfevents: string[];

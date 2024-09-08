@@ -80,7 +80,7 @@ interface Page1Props {
   formState: {
     businessName: string;
     references: boolean;
-    portfolio: string;
+    portfolio: string | File;
     experience: string;
   };
   updateFormState: (newState: Partial<FormState>) => void;
