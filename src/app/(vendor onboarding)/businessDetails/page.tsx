@@ -21,7 +21,7 @@ const categories = [
   { value: "venue-provider", label: "Venue Provider" },
   { value: "pav", label: "PaV" },
   { value: "caterer", label: "Caterers" },
-  { value: "decorators", label: "Decorator" },
+  { value: "decorator", label: "Decorator" },
   { value: "prop-rental", label: "Prop Rental" },
   { value: "makeupArtisttest", label: "Makeup Artist" },
 ];
