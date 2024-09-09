@@ -1,8 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
 import Appetizers from "../../(components)/Appetizers";
-import Image from "next/image";
 
 const _EventTypes = [
   "Corporate",

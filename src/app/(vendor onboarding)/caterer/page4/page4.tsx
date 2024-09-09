@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import Appetizers from "../../(components)/Appetizers";
 const _staffProvides = ["Chefs", "Bartenders", "Servers", "Cleaners", "Others"];
 
