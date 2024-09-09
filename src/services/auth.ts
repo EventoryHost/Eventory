@@ -29,11 +29,10 @@ const signUp = async (mobile: String) => {
     const res = await axios(config);
     console.log(res);
 
-    return { newUser: true };
+    return res;
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      if (error.response!.status === 409) return { newUser: false };
-      else throw Error(error.message);
+      throw Error(error.message);
     }
   }
 };
@@ -58,11 +57,12 @@ const verifyLoginOtp = async (
   mobile: String,
   code: String,
   session: String,
+  name : String
 ) => {
   try {
     const res = await axios.post(
       `${process.env.NEXT_PUBLIC_BASE_URL}/auth/verify-otp-login`,
-      { mobile, code, session },
+      { mobile, code, session, name },
     );
     console.log(res);
     return res;

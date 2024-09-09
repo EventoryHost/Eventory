@@ -7,7 +7,9 @@ import Image from "next/image";
 import auth from "@/services/auth";
 import OtpModal from "@/components/ui/otp-modal";
 import tajmahal from "/public/tajmahal.png";
-import Router from "next/router";
+import { useRouter } from "next/navigation";
+import verifyLoginOtp from "@/services/auth";
+import BusinessDetails from "../businessDetails/page";
 
 const fields: {
   id: keyof basicDetails;
@@ -40,6 +42,7 @@ const SignUp = (props: {}) => {
   const [basicDetails, setBasicDetails] = useState<basicDetails>(
     {} as basicDetails,
   );
+  const [session, setSession] = useState<string>('');
   const [formError, setFormError] = useState<string | null>(null);
   const refs = useRef(
     {} as Record<keyof basicDetails, HTMLInputElement | null>,
@@ -72,34 +75,43 @@ const SignUp = (props: {}) => {
     // console.log("Mobile:", newDetails.mobile);
     // console.log("mobile details: ", newDetails.mobile.toString());
     const res = await auth.signUp(newDetails.mobile.toString());
-    if (res!.newUser) {
+    if(res){
+      console.log("Response: ", res.data.data.Session);
+      setSession(res.data.data.Session);
       toggleModal();
-    } else if (!res!.newUser) {
-      // TODO add toast message
     }
   };
-
-  const handleVerify = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const inputOtp = basicDetails.otp.toString(); // Current OTP value
-
-    // Check if OTP is 6 digits long
-    if (inputOtp.length !== 6) {
-      setFormError(`Please fill in the OTP correctly`);
-      return;
-    }
-
-    setFormError(null); // Reset error message
-
-    try {
-      await auth.verifySignUpOtp(basicDetails.mobile.toString(), inputOtp);
-      console.log("OTP verified successfully");
-      Router.push("/businessDetails"); // Ensure this is reachable
-    } catch (error) {
-      console.error("Failed to verify OTP", error);
-      setFormError("Failed to verify OTP. Please try again.");
-    }
+  
+  const useHandleVerify = () => {
+    const router = useRouter();
+  
+    const handleVerify = async (e: React.FormEvent) => {
+      e.preventDefault();
+      const inputOtp = basicDetails.otp.toString(); // Current OTP value
+  
+      // Check if OTP is 6 digits long
+      if (inputOtp.length !== 6) {
+        setFormError(`Please fill in the OTP correctly`);
+        return;
+      }
+  
+      setFormError(null); // Reset error message
+  
+      try {
+        await auth.verifyLoginOtp(basicDetails.mobile.toString(), inputOtp, session, basicDetails.name);
+        console.log("OTP verified successfully");
+        router.push("/businessDetails");
+      } catch (error) {
+        console.error("Failed to verify OTP", error);
+        setFormError("Failed to verify OTP. Please try again.");
+      }
+    };
+  
+    return handleVerify;
   };
+  
+  // Inside the SignUp component
+  const handleVerify = useHandleVerify();
 
   const renderError = (): [boolean, string] => {
     return formError ? [true, formError] : [false, ""];
