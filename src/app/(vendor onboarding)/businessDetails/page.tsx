@@ -81,14 +81,14 @@ const BusinessDetails = () => {
 
     // Check if any required field is empty
     for (const key in refs.current) {
-        const refElement = refs.current[key as keyof businessDetails];
-        if (!refElement || !refElement.value.trim()) {
-            return;
-        }
+      const refElement = refs.current[key as keyof businessDetails];
+      if (!refElement || !refElement.value.trim()) {
+        return;
+      }
     }
 
     if (!businessDetails.category) {
-        return; 
+      return;
     }
 
     const newDetails: businessDetails = {

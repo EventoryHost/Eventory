@@ -42,7 +42,7 @@ const SignUp = (props: {}) => {
   const [basicDetails, setBasicDetails] = useState<basicDetails>(
     {} as basicDetails,
   );
-  const [session, setSession] = useState<string>('');
+  const [session, setSession] = useState<string>("");
   const [formError, setFormError] = useState<string | null>(null);
   const refs = useRef(
     {} as Record<keyof basicDetails, HTMLInputElement | null>,
@@ -75,30 +75,35 @@ const SignUp = (props: {}) => {
     // console.log("Mobile:", newDetails.mobile);
     // console.log("mobile details: ", newDetails.mobile.toString());
     const res = await auth.signUp(newDetails.mobile.toString());
-    if(res){
+    if (res) {
       console.log("Response: ", res.data.data.Session);
       setSession(res.data.data.Session);
       toggleModal();
     }
   };
-  
+
   const useHandleVerify = () => {
     const router = useRouter();
-  
+
     const handleVerify = async (e: React.FormEvent) => {
       e.preventDefault();
       const inputOtp = basicDetails.otp.toString(); // Current OTP value
-  
+
       // Check if OTP is 6 digits long
       if (inputOtp.length !== 6) {
         setFormError(`Please fill in the OTP correctly`);
         return;
       }
-  
+
       setFormError(null); // Reset error message
-  
+
       try {
-        await auth.verifyLoginOtp(basicDetails.mobile.toString(), inputOtp, session, basicDetails.name);
+        await auth.verifyLoginOtp(
+          basicDetails.mobile.toString(),
+          inputOtp,
+          session,
+          basicDetails.name,
+        );
         console.log("OTP verified successfully");
         router.push("/businessDetails");
       } catch (error) {
@@ -106,10 +111,10 @@ const SignUp = (props: {}) => {
         setFormError("Failed to verify OTP. Please try again.");
       }
     };
-  
+
     return handleVerify;
   };
-  
+
   // Inside the SignUp component
   const handleVerify = useHandleVerify();
 
