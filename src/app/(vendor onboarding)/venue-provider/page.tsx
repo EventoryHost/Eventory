@@ -9,6 +9,7 @@ import Page2 from "./page2/page2";
 import Page3 from "./page3/page3";
 import Page4 from "./page4/page4";
 import Page5 from "./page5/page5";
+import Page6 from "./page6/page6";
 import { addVenue } from "../../../services/vendors/venue";
 
 interface Package {
@@ -16,7 +17,7 @@ interface Package {
   priceRange: [number, number];
 }
 
-interface FormState {
+export interface FormState {
   venueName: string;
   VenueAddress: string;
   venueType: string;
@@ -30,6 +31,14 @@ interface FormState {
   cancellationPolicy: string | File;
   instaURL: string;
   websiteURL: string;
+  audioVisualEquipment: string[];
+  accessibilityFeatures: string[];
+  facilities: string[];
+  hourlyPackages: Package[];
+  dailyPackages: Package[];
+  seasonalPackages: Package[];
+  _venue_restrictions: string[];
+  _venue_special_features: string[];
 }
 
 const VenueForm: React.FC = () => {
@@ -52,6 +61,14 @@ const VenueForm: React.FC = () => {
 
     instaURL: "",
     websiteURL: "",
+    audioVisualEquipment: [],
+    accessibilityFeatures: [],
+    facilities: [],
+    hourlyPackages: [{ type: "", priceRange: [0, 0] }],
+    dailyPackages: [{ type: "", priceRange: [0, 0] }],
+    seasonalPackages: [{ type: "", priceRange: [0, 0] }],
+    _venue_restrictions: [],
+    _venue_special_features: [],
   });
 
   const updateFormState = (newState: Partial<FormState>) => {
@@ -270,10 +287,26 @@ const VenueForm: React.FC = () => {
             setVenue_restrictions={setVenue_restrictions}
             venue_special_features={venue_special_features}
             setVenue_special_features={setVenue_special_features}
-            handleSubmit={() => {
+            handleContinue={() => {
+              setCurrentPage(6);
               handleContinue();
-              handleSubmit();
             }}
+          />
+        );
+      case 6:
+        return (
+          <Page6
+            formState={formState}
+            updateFormState={updateFormState}
+            handleSubmit={handleSubmit}
+            audioVisualEquipment={audioVisualEquipment}
+            accessibilityFeatures={accessibilityFeatures}
+            facilities={facilities}
+            hourlyPackages={hourlyPackages}
+            dailyPackages={dailyPackages}
+            seasonalPackages={seasonalPackages}
+            _venue_restrictions={venue_restrictions}
+            _venue_special_features={venue_special_features}
           />
         );
       default:
@@ -335,6 +368,15 @@ const VenueForm: React.FC = () => {
               onClick={() => setCurrentPage(5)}
             >
               5
+            </button>
+            <div
+              className={`h-[0.3rem] w-[4rem] rounded-xl ${currentPage > 5 ? "bg-[#2E3192]" : "bg-gray-300"}`}
+            />
+            <button
+              className={`flex h-10 w-10 items-center justify-center rounded-full p-5 ${currentPage >= 6 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+              onClick={() => setCurrentPage(6)}
+            >
+              6
             </button>
           </div>
         </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import Appetizers from "../(components)/Appetizers";
+import Appetizers from "../../(components)/Appetizers";
 import { Upload } from "lucide-react";
 import { Combobox } from "@/components/ui/combobox";
 
@@ -299,6 +299,7 @@ const Page = ({
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
+                field={"_typesOfInvitationsYouDesign"}
                 appetizers={_typesOfInvitationsYouDesign}
                 selectedAppetizers={typesOfInvitationsYouDesign}
                 setSelectedAppetizers={setTypesOfInvitationsYouDesign}
@@ -311,6 +312,7 @@ const Page = ({
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
+                field={"_formalInvitations"}
                 appetizers={_formalInvitations}
                 selectedAppetizers={formalinvitation}
                 setSelectedAppetizers={setFormalInvitation}
@@ -323,6 +325,7 @@ const Page = ({
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
+                field={"_casualInvitations"}
                 appetizers={_casualInvitations}
                 selectedAppetizers={casualinvitation}
                 setSelectedAppetizers={setCasualInvitation}
@@ -335,6 +338,7 @@ const Page = ({
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
+                field={"_electronicInvitations"}
                 appetizers={_electronicInvitations}
                 selectedAppetizers={Electronicinvitation}
                 setSelectedAppetizers={setElectronicInvitation}
@@ -347,6 +351,7 @@ const Page = ({
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
+                field={"_handmadeInvitations"}
                 appetizers={_handmadeInvitations}
                 selectedAppetizers={handmadeinvitation}
                 setSelectedAppetizers={setHandmadeInvitation}
@@ -359,6 +364,7 @@ const Page = ({
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
+                field={"_printedInvitations"}
                 appetizers={_printedInvitations}
                 selectedAppetizers={printedInvitation}
                 setSelectedAppetizers={setPrintedInvitation}
@@ -371,6 +377,7 @@ const Page = ({
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
+                field={"_specialtyInvitations"}
                 appetizers={_specialtyInvitations}
                 selectedAppetizers={specialyInvitation}
                 setSelectedAppetizers={setSpecialyInvitation}
@@ -383,6 +390,7 @@ const Page = ({
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
+                field={"_uniqueInvitations"}
                 appetizers={_uniqueInvitations}
                 selectedAppetizers={uniqueInvitation}
                 setSelectedAppetizers={setUniqueInvitation}
@@ -397,12 +405,13 @@ const Page = ({
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
+                field={"_religiousAndCulturalInvitations"}
                 appetizers={_religiousAndCulturalInvitations}
                 selectedAppetizers={relegiousInvitation}
                 setSelectedAppetizers={setRelegiousInvitation}
               />
             </div>
-            <div className="items-strech mt-9 flex flex-row gap-7 self-end">
+            {/* <div className="items-strech mt-9 flex flex-row gap-7 self-end">
               <button
                 className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
                 onClick={handleSubmit}
@@ -415,7 +424,7 @@ const Page = ({
               >
                 Continue
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

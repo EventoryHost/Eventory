@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import Appetizers from "../(components)/Appetizers";
+import Appetizers from "../../(components)/Appetizers";
 
 const _typesOfPaperUsedForInvitations = [
   "Cardstock",
@@ -274,7 +274,7 @@ const Page: React.FC<Page2Props> = ({
                     className="h-4 w-4 bg-[#2E3192] text-[#2E3192]"
                     type="radio"
                     checked={engraving === true}
-                    onChange={() => updateFormState({ foilStamping: true })}
+                    onChange={() => updateFormState({ engraving: true })}
                   />
                   <p>Yes</p>
 
@@ -282,7 +282,7 @@ const Page: React.FC<Page2Props> = ({
                     className="h-4 w-4 bg-[#2E3192] text-[#2E3192]"
                     type="radio"
                     checked={engraving === false}
-                    onChange={() => updateFormState({ foilStamping: false })}
+                    onChange={() => updateFormState({ engraving: false })}
                   />
                   <p>No</p>
                 </div>
@@ -318,18 +318,19 @@ const Page: React.FC<Page2Props> = ({
           </div>
         </div>
         <div className="flex flex-col gap-9 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
-          <h1 className="text-3xl font-semibold">
+          <h1 className="text-2xl font-semibold">
             Types of Paper used for Invitations ?
           </h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
+                field={"_typesOfPaperUsedForInvitations"}
                 appetizers={_typesOfPaperUsedForInvitations}
                 selectedAppetizers={paperType}
                 setSelectedAppetizers={setPaperType}
               />
             </div>
-            <div className="items-strech mt-9 flex flex-row gap-7 self-end">
+            {/* <div className="items-strech mt-9 flex flex-row gap-7 self-end">
               <button
                 className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
                 onClick={handleSubmit}
@@ -342,7 +343,7 @@ const Page: React.FC<Page2Props> = ({
               >
                 Continue
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

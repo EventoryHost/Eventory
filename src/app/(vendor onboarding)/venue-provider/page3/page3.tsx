@@ -18,8 +18,6 @@ const Page3: React.FC<Page3Props> = ({
   updateFormState,
   handleContinue,
 }) => {
-  const { termsAndConditions, cancellationPolicy } = formState;
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Terms and Conditions:", formState.termsAndConditions);

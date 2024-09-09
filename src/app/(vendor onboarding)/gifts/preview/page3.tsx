@@ -1,7 +1,7 @@
 import React from "react";
 import ThreeStepBar from "@/app/(components)/threeStepBar";
 import { EditIcon } from "lucide-react";
-import Appetizers from "../../decorators/(components)/Appetizers";
+import Appetizers from "../../(components)/Appetizers";
 
 const giftTypes = [
   "Books and Media Gifts",
@@ -19,7 +19,7 @@ const giftTypes = [
   "Subscription Services Gifts",
   "Fashion and Apparel Gifts",
   "Sports and Fitness Gifts",
-  "Other",
+  "Others",
 ];
 
 interface FormState {
@@ -27,7 +27,7 @@ interface FormState {
   contactNumber: string;
   venueDescription: string;
   minimumQuantity: string;
-  bulkQuantity: string;
+  bulkQuantityAvailable: string;
   customizableGifts: string;
   typesOfGifts: string[];
   priceRange: { min: string; max: string };
@@ -46,8 +46,8 @@ interface PreviewProps {
     value: any,
   ) => void;
   navigateToPage: (pageIndex: number) => void;
-  selectedGiftTypes: string[];
-  setSelectedGiftTypes: React.Dispatch<React.SetStateAction<string[]>>;
+  listOfGifts: string[];
+  setlistOfGifts: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
 const Preview: React.FC<PreviewProps> = ({
@@ -55,8 +55,8 @@ const Preview: React.FC<PreviewProps> = ({
   handleChange,
   handleNestedChange,
   navigateToPage,
-  selectedGiftTypes,
-  setSelectedGiftTypes,
+  listOfGifts,
+  setlistOfGifts,
 }) => {
   function handleSubmit() {
     // Submission logic goes here
@@ -147,7 +147,7 @@ const Preview: React.FC<PreviewProps> = ({
                     Do You Offer products in bulk quantity?
                   </h2>
                   <span className="font-semibold">
-                    {formState.bulkQuantity}
+                    {formState.bulkQuantityAvailable}
                   </span>
                 </div>
               </div>
@@ -180,9 +180,10 @@ const Preview: React.FC<PreviewProps> = ({
                 </label>
                 <div className="flex flex-col gap-5 md:flex-row">
                   <Appetizers
-                    appetizers={giftTypes}
-                    selectedAppetizers={selectedGiftTypes}
-                    setSelectedAppetizers={setSelectedGiftTypes}
+                    field={"giftTypes"}
+                    appetizers={listOfGifts}
+                    selectedAppetizers={listOfGifts}
+                    setSelectedAppetizers={setlistOfGifts}
                   />
                 </div>
               </div>
