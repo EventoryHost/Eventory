@@ -17,19 +17,23 @@ export default function ExploreSection() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setFade(true); 
+      setFade(true);
       setTimeout(() => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length); 
-        setFade(false); 
-      }, 1000); 
-    }, 3000); 
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+        setFade(false);
+      }, 1000);
+    }, 3000);
 
-    return () => clearInterval(interval); 
+    return () => clearInterval(interval);
   }, []);
 
   return (
-    <div className="relative flex h-[300px] w-full items-center justify-center bg-gradient-to-r from-[#4A00E0] to-[#8E2DE2] transition-opacity duration-1000 ease-in-out">
-      {/* Left Side: Heading + Search Bar */}
+    <div className="relative flex h-[300px] w-full items-center justify-between transition-opacity duration-1000 ease-in-out"
+      style={{
+        background: 'linear-gradient(90deg, #605ED8 0%, #4445B1 55.17%, #2E3192 100%)'
+      }}
+    >      
+    {/* Left Side: Heading + Search Bar */}
       <div className="flex flex-col items-start justify-center w-1/2 p-10 space-y-6 opacity-90">
         <h1 className="text-4xl font-bold text-white">
           Weddings in Jaipur
@@ -39,7 +43,7 @@ export default function ExploreSection() {
       </div>
 
       {/* Right Side: Image Carousel */}
-      <div className="relative w-1/2 h-full rounded-xl overflow-hidden">
+      <div className="relative w-[30%] h-full  rounded-xl overflow-hidden">
         {/* Image */}
         <div className={`absolute inset-0 transition-opacity duration-500 ${fade ? 'opacity-0' : 'opacity-100'}`}>
           <img

@@ -7,100 +7,114 @@ import FilterSection from '../(components)/FilterSection';
 import Footer from '@/app/(components)/footer';
 import ExploreSection from '../(components)/ExploreSection';
 import VendorCard from '../(components)/VendorCard';
-import tempSearchboxcardimg from '@/../public/tempSearchboxcardimg.png';
+import { Filter } from 'lucide-react';
+
 const SearchPage = () => {
   const searchParams = useSearchParams();
   const event = searchParams.get("event") || 'all';
 
   const [selected, setSelected] = useState<string>("");
   const [view, setView] = useState<string>("List");
+  const URLs = [
+    "https://images.unsplash.com/photo-1529636798458-92182e662485?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "https://images.unsplash.com/photo-1522413452208-996ff3f3e740?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "https://images.unsplash.com/photo-1485846299386-f367c81034d8?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "https://plus.unsplash.com/premium_photo-1661772661721-b16346fe5b0f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "https://plus.unsplash.com/premium_photo-1661937398460-82d0ce1922fd?q=80&w=2013&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "https://images.unsplash.com/photo-1682687219800-bba120d709c5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "https://images.unsplash.com/photo-1612617436260-69ddf5796523?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "https://images.unsplash.com/photo-1606498151733-344ed85af302?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "https://unsplash.com/photos/ZDQ1Fo8vjGU",
+    "https://unsplash.com/photos/JL3j_--PExQ",
+  ]
   const cardsdata = [
     {
-      imageSrc: '/tempSearchboxcardimg.png',
-      venueName: "Radison Blue",
+      imageSrc: [URLs[0]],
+      venueName: "Radisson Blu",
       location: "Vijaynagar, Indore",
-      description: "We offer best service in the city, book us to host your event.We offer best service in the city, book us to host your event. We offer best service in the city, book us to host your event. We offer best service in the city, book us to host your event.",
-      tags: ["Bunquet hall", "ball room"],
-      price: "₹ 2000",
-      rating: "4.2",
-      totalRatings: 25,
+      description: "Luxury venue offering top-notch services with elegant interiors. Perfect for weddings, corporate events, and parties.",
+      tags: ["Banquet hall", "Ballroom", "Luxury"],
+      price: "₹ 3000",
+      rating: "4.8",
+      totalRatings: 150,
     },
     {
-      imageSrc: '/tempSearchboxcardimg.png',
-      venueName: "Radison Blue",
-      location: "Vijaynagar, Indore",
-      description: "We offer best service in the city, book us to host your event.We offer best service in the city, book us to host your event. We offer best service in the city, book us to host your event. We offer best service in the city, book us to host your event.",
-      tags: ["Bunquet hall", "ball room"],
-      price: "₹ 2000",
-      rating: "4.2",
-      totalRatings: 25,
+      imageSrc: [URLs[1]],
+      venueName: "The Grand Celebration",
+      location: "MG Road, Indore",
+      description: "A spacious venue with a modern ambiance, ideal for large gatherings, social events, and conferences.",
+      tags: ["Banquet hall", "Conference hall", "Spacious"],
+      price: "₹ 2500",
+      rating: "4.5",
+      totalRatings: 98,
     },
     {
-      imageSrc: '/tempSearchboxcardimg.png',
-      venueName: "Radison Blue",
-      location: "Vijaynagar, Indore",
-      description: "We offer best service in the city, book us to host your event.We offer best service in the city, book us to host your event. We offer best service in the city, book us to host your event. We offer best service in the city, book us to host your event.",
-      tags: ["Bunquet hall", "ball room"],
+      imageSrc: [URLs[2]],
+      venueName: "Emerald Heights",
+      location: "Palasia, Indore",
+      description: "An outdoor venue with a garden setting, perfect for elegant weddings and receptions in a natural environment.",
+      tags: ["Garden", "Wedding venue", "Outdoor"],
       price: "₹ 2000",
-      rating: "4.2",
-      totalRatings: 25,
+      rating: "4.6",
+      totalRatings: 80,
     },
     {
-      imageSrc: '/tempSearchboxcardimg.png',
-      venueName: "Radison Blue",
-      location: "Vijaynagar, Indore",
-      description: "We offer best service in the city, book us to host your event.We offer best service in the city, book us to host your event. We offer best service in the city, book us to host your event. We offer best service in the city, book us to host your event.",
-      tags: ["Bunquet hall", "ball room"],
-      price: "₹ 2000",
-      rating: "4.2",
-      totalRatings: 25,
+      imageSrc: [URLs[3]],
+      venueName: "The Golden Palace",
+      location: "Bhawarkua, Indore",
+      description: "Royal-themed banquet hall offering grandeur and style for large gatherings, receptions, and corporate events.",
+      tags: ["Banquet hall", "Royal theme", "Luxury"],
+      price: "₹ 3500",
+      rating: "4.7",
+      totalRatings: 125,
     },
     {
-      imageSrc: '/tempSearchboxcardimg.png',
-      venueName: "Radison Blue",
-      location: "Vijaynagar, Indore",
-      description: "We offer best service in the city, book us to host your event.We offer best service in the city, book us to host your event. We offer best service in the city, book us to host your event. We offer best service in the city, book us to host your event.",
-      tags: ["Bunquet hall", "ball room"],
-      price: "₹ 2000",
-      rating: "4.2",
-      totalRatings: 25,
+      imageSrc: [URLs[4]],
+      venueName: "Sunshine Resort",
+      location: "Rau, Indore",
+      description: "A resort-style venue with lush green lawns, swimming pool, and event spaces for weddings and parties.",
+      tags: ["Resort", "Lawn", "Poolside"],
+      price: "₹ 2200",
+      rating: "4.3",
+      totalRatings: 60,
     },
     {
-      imageSrc: '/tempSearchboxcardimg.png',
-      venueName: "Radison Blue",
-      location: "Vijaynagar, Indore",
-      description: "We offer best service in the city, book us to host your event.We offer best service in the city, book us to host your event. We offer best service in the city, book us to host your event. We offer best service in the city, book us to host your event.",
-      tags: ["Bunquet hall", "ball room"],
-      price: "₹ 2000",
-      rating: "4.2",
-      totalRatings: 25,
+      imageSrc: [URLs[5]],
+      venueName: "Silver Bells",
+      location: "AB Road, Indore",
+      description: "Modern venue with contemporary designs, suitable for small to medium events such as birthdays and corporate meetings.",
+      tags: ["Modern", "Corporate", "Meeting space"],
+      price: "₹ 1800",
+      rating: "4.0",
+      totalRatings: 45,
     },
     {
-      imageSrc: '/tempSearchboxcardimg.png',
-      venueName: "Radison Blue",
-      location: "Vijaynagar, Indore",
-      description: "We offer best service in the city, book us to host your event.We offer best service in the city, book us to host your event. We offer best service in the city, book us to host your event. We offer best service in the city, book us to host your event.",
-      tags: ["Bunquet hall", "ball room"],
-      price: "₹ 2000",
-      rating: "4.2",
-      totalRatings: 25,
+      imageSrc: [URLs[6]],
+      venueName: "Royal Orchids",
+      location: "Sapna Sangeeta, Indore",
+      description: "Elegant indoor venue with great ambiance and excellent catering services, ideal for family gatherings and weddings.",
+      tags: ["Indoor", "Wedding", "Family"],
+      price: "₹ 2800",
+      rating: "4.4",
+      totalRatings: 70,
     },
     {
-      imageSrc: '/tempSearchboxcardimg.png',
-      venueName: "Radison Blue",
-      location: "Vijaynagar, Indore",
-      description: "We offer best service in the city, book us to host your event.We offer best service in the city, book us to host your event. We offer best service in the city, book us to host your event. We offer best service in the city, book us to host your event.",
-      tags: ["Bunquet hall", "ball room"],
-      price: "₹ 2000",
-      rating: "4.2",
-      totalRatings: 25,
+      imageSrc: [URLs[7]],
+      venueName: "Pearl Banquet",
+      location: "Khajrana, Indore",
+      description: "Chic banquet hall offering a luxurious feel with stunning interiors, designed for weddings, parties, and cultural events.",
+      tags: ["Banquet hall", "Luxury", "Cultural events"],
+      price: "₹ 3200",
+      rating: "4.9",
+      totalRatings: 200,
     },
-  ]
+  ];
 
-  const filters1 = ['Option 1', 'Option 2', 'Option 3'];
-  const filters2 = ['Option 4', 'Option 5', 'Option 6'];
-  const filters3 = ['Option 4', 'Option 5', 'Option 6'];
-  const filters4 = ['Option 4', 'Option 5', 'Option 6'];
+
+  const filters1 = ["0-99", "100-199", "200-299", "300-399", "400-499", "500-599", "600-699", "700-799", "800-899", "900-999"];
+  const filters2 = ["₹1000 - ₹2000", "₹2000 - ₹3000", "₹3000 - ₹4000", "₹4000 - ₹5000", "₹5000 - ₹6000", "₹6000 - ₹7000"];
+  const filters3 = ['<500', '500-1000', '1000-1500', '1500-2000', '2000-2500', '2500-3000', '3000-3500', '3500-4000', '4000-4500', '4500-5000', '5000-5500', '5500-6000'];
+  const filters4 = ['4.0 and above', '4.5 and above', '5.0 and above'];
 
 
   const [selectedFiltersSection1, setSelectedFiltersSection1] = useState<string[]>([]);
@@ -142,30 +156,28 @@ const SearchPage = () => {
       />
       <div className='flex justify-between gap-8 flex-start p-8 bg-gray-100'>
         <div className='flex-1 py-8  bg-grey-100'>
-          <div className='gap-8 grid grid-cols-1 grid-rows-1 h-max'>
-            {
-              cardsdata.map((card) => (
-                <VendorCard
-                  imageSrc={card.imageSrc}
-                  description={card.description}
-                  venueName={card.venueName}
-                  location={card.location}
-                  tags={card.tags}
-                  price={card.price}
-                  rating={card.rating}
-                  totalRatings={card.totalRatings}
-                />
-              ))
-            }
+          <div className={`gap-8 ${view === 'Grid' ? 'grid grid-cols-3' : 'grid grid-cols-1'} grid-rows-1 h-max`}>
+            {cardsdata.map((card, index) => (
+              <VendorCard
+              viewType={view} 
+                key={index}
+                imageSrc={card.imageSrc}
+                description={card.description}
+                venueName={card.venueName}
+                location={card.location}
+                tags={card.tags}
+                price={card.price}
+                rating={card.rating}
+                totalRatings={card.totalRatings}
+              />
+            ))}
           </div>
+
           <div>{selectedFiltersSection1}{selectedFiltersSection2}{selectedFiltersSection3}</div>
         </div>
         <div className=' flex-2 p-6 mx-6 flex flex-col gap-6 w-1/4 rounded-lg border border-gray-300 pb-4 bg-white'>
           <div className='flex '>
-            <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M2.5 4C2.5 2.89543 3.39543 2 4.5 2H20.5C21.6046 2 22.5 2.89543 22.5 4V4.81751C22.5 5.57739 22.2116 6.30895 21.6932 6.86447L16.0379 12.9237C15.6922 13.294 15.5 13.7817 15.5 14.2883V18.382C15.5 18.7607 15.286 19.107 14.9472 19.2764L10.9472 21.2764C10.2823 21.6088 9.5 21.1253 9.5 20.382V14.2883C9.5 13.7817 9.30776 13.294 8.96211 12.9237L3.30683 6.86446C2.78836 6.30895 2.5 5.57739 2.5 4.81751V4Z" stroke="#2B3F6C" stroke-width="1.5" />
-            </svg>
-
+            <Filter size={24} />
             <div className="font-semibold text-2xl mx-2">Filters</div>
           </div>
 
@@ -208,7 +220,7 @@ const SearchPage = () => {
       </div>
 
       <Footer />
-      
+
     </div>
   );
 };
