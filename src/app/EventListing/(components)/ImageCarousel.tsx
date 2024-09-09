@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
 interface ImageCarouselProps {
   images: { src: string; text: string }[];
@@ -33,27 +33,29 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
   };
 
   return (
-    <div className="relative w-full  mx-auto overflow-hidden m-8">
-      <div className="flex justify-center items-center my-8">
+    <div className="relative m-8 mx-auto w-full overflow-hidden">
+      <div className="my-8 flex items-center justify-center">
         {getVisibleImages().map(({ index, isMiddle }) => (
           <motion.div
             key={index}
-            className={`flex-shrink-0 w-1/3  flex items-center justify-center relative`}
+            className={`relative flex w-1/3 flex-shrink-0 items-center justify-center`}
             initial={{ scale: 1 }}
-            animate={{ 
-              scale: isMiddle ? 1.2 : 1, 
-              zIndex: isMiddle ? 11 : 1
+            animate={{
+              scale: isMiddle ? 1.2 : 1,
+              zIndex: isMiddle ? 11 : 1,
             }}
             transition={{ duration: 0.3 }}
           >
             <img
               src={images[index].src}
               alt={`Slide ${index + 1}`}
-              className="w-full h-auto object-cover rounded-lg "
+              className="h-auto w-full rounded-lg object-cover"
             />
             {isMiddle && (
-              <div className="absolute inset-0 flex items-end justify-center bg-black bg-opacity-50 rounded-lg p-4">
-                <span className="text-white text-lg text-center whitespace-normal break-words">{images[index].text}</span>
+              <div className="absolute inset-0 flex items-end justify-center rounded-lg bg-black bg-opacity-50 p-4">
+                <span className="whitespace-normal break-words text-center text-lg text-white">
+                  {images[index].text}
+                </span>
               </div>
             )}
           </motion.div>

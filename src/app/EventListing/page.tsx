@@ -1,6 +1,6 @@
-'use client'
-import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
+"use client";
+import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import {
   Carousel,
   CarouselContent,
@@ -9,15 +9,15 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
-import ImageCarousel from './(components)/ImageCarousel';
-import Footer from '../(components)/footer';
+import ImageCarousel from "./(components)/ImageCarousel";
+import Footer from "../(components)/footer";
 
 const CarouselPage = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slides = [
-    '/EventListing/eventlist_1.png',
-    '/landing_page/categories/cat_01.png',
-    '/landing_page/categories/cat_02.png'
+    "/EventListing/eventlist_1.png",
+    "/landing_page/categories/cat_01.png",
+    "/landing_page/categories/cat_02.png",
   ];
 
   useEffect(() => {
@@ -33,24 +33,24 @@ const CarouselPage = () => {
   const images = [
     {
       src: "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/categories/cat_01.png",
-      text: "Category 1"
+      text: "Category 1",
     },
     {
       src: "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/categories/cat_02.png",
-      text: "Category 2"
+      text: "Category 2",
     },
     {
       src: "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/categories/cat_03.png",
-      text: "Category 3"
+      text: "Category 3",
     },
     {
       src: "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/categories/cat_01.png",
-      text: "Category 4"
+      text: "Category 4",
     },
     {
       src: "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/categories/cat_03.png",
-      text: "Category 5"
-    }
+      text: "Category 5",
+    },
   ];
 
   const venues = [
@@ -106,13 +106,14 @@ const CarouselPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-100 ">
-      <div className="relative w-full h-[426px] overflow-hidden">
+    <div className="min-h-screen bg-gray-100">
+      <div className="relative h-[426px] w-full overflow-hidden">
         {slides.map((slide, index) => (
           <div
             key={index}
-            className={`absolute top-0 left-0 w-full h-full transition-opacity duration-1000 ease-in-out ${index === currentSlide ? 'opacity-100' : 'opacity-0'
-              }`}
+            className={`absolute left-0 top-0 h-full w-full transition-opacity duration-1000 ease-in-out ${
+              index === currentSlide ? "opacity-100" : "opacity-0"
+            }`}
           >
             <Image
               src={slide}
@@ -124,22 +125,24 @@ const CarouselPage = () => {
         ))}
       </div>
       {/* Navigation Dots */}
-      <div className=" flex justify-center space-x-2 m-4">
+      <div className="m-4 flex justify-center space-x-2">
         {slides.map((_, index) => (
           <button
             key={index}
-            className={`w-3 h-3 rounded-full ${index === currentSlide ? 'bg-[#2E3192]' : 'bg-white border-[#2E3192] border-2'
-              }`}
+            className={`h-3 w-3 rounded-full ${
+              index === currentSlide
+                ? "bg-[#2E3192]"
+                : "border-2 border-[#2E3192] bg-white"
+            }`}
             onClick={() => setCurrentSlide(index)}
             aria-label={`Go to slide ${index + 1}`}
           />
         ))}
       </div>
 
-
-      <div className='flex mx-auto mt-10 flex-col items-center justify-between gap-16 w-[85%] '>
-        <div className='flex w-full flex-col items-start '>
-          <div className="font-poppins text-2xl font-bold md:text-4xl justify-start">
+      <div className="mx-auto mt-10 flex w-[85%] flex-col items-center justify-between gap-16">
+        <div className="flex w-full flex-col items-start">
+          <div className="justify-start font-poppins text-2xl font-bold md:text-4xl">
             Regional Events
           </div>
           <div className="flex w-full justify-center">
@@ -164,10 +167,13 @@ const CarouselPage = () => {
                           objectFit="cover"
                           className="rounded-xl"
                         />
-                        <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center text-white p-4">
-                          <h3 className="text-lg font-semibold text-center mb-2">{venue.name}</h3>
-                          <p className="text-sm text-center">{venue.category}</p>
-
+                        <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50 p-4 text-white">
+                          <h3 className="mb-2 text-center text-lg font-semibold">
+                            {venue.name}
+                          </h3>
+                          <p className="text-center text-sm">
+                            {venue.category}
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -180,8 +186,8 @@ const CarouselPage = () => {
           </div>
         </div>
 
-        <div className='flex w-full flex-col items-start '>
-          <div className="font-poppins text-2xl font-bold md:text-4xl justify-start">
+        <div className="flex w-full flex-col items-start">
+          <div className="justify-start font-poppins text-2xl font-bold md:text-4xl">
             Popular Events
           </div>
           <div className="flex w-full justify-center">
@@ -206,9 +212,10 @@ const CarouselPage = () => {
                           objectFit="cover"
                           className="rounded-xl"
                         />
-
                       </div>
-                      <h3 className="text-lg font-semibold mb-2">{venue.name}</h3>
+                      <h3 className="mb-2 text-lg font-semibold">
+                        {venue.name}
+                      </h3>
                     </div>
                   </CarouselItem>
                 ))}
@@ -219,19 +226,16 @@ const CarouselPage = () => {
           </div>
         </div>
 
-        <div className='flex w-full flex-col items-start mb-4'>
-          <div className="font-poppins text-2xl font-bold md:text-4xl justify-start">
+        <div className="mb-4 flex w-full flex-col items-start">
+          <div className="justify-start font-poppins text-2xl font-bold md:text-4xl">
             Our Special Events
           </div>
           <div className="flex w-full justify-center">
             <ImageCarousel images={images} />
-
           </div>
-
         </div>
-
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };
