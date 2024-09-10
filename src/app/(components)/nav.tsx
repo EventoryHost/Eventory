@@ -341,7 +341,7 @@ const Navbar = () => {
                 </Link>
               </li>
               <li className="top-margin">
-                <Link href={"#"}>
+                <Link href={"/EventListing"}>
                   <p>Events</p>
                 </Link>
               </li>
