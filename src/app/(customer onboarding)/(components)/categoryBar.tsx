@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 
 type CategoryBarProps = {
@@ -26,6 +27,8 @@ const CategoryBar: React.FC<CategoryBarProps> = ({
     birthday: ["Venues", "Caterer", "Decorator", "Invitation", "Gifts"],
     marriage: ["Cakes", "Entertainment", "Photography", "Decor", "Gifts"],
     anniversary: ["Venues", "Caterer", "AV Equipment", "Transport", "Gifts"],
+    "special guest": ["Venues", "Caterer", "Decorator", "Invitation", "Gifts"],
+    tradional : ["Venues", "Caterer", "Decorator", "Invitation", "Gifts"],
   };
 
   const tabs = eventTabsMap[event.toLowerCase()] || [];
@@ -33,7 +36,7 @@ const CategoryBar: React.FC<CategoryBarProps> = ({
   return (
     <div className='border-b-2 border-[#DFDFDF] rounded-2xl '>
       <div className=''>
-        {event && <h1 className='text-base py-6 px-16 bg-gray-100'>Home/{event}/SearchResult</h1>}
+        {event && <h1 className='text-base py-6 px-16 bg-gray-100'> <Link href={"/"}>Home</Link> /{event}/SearchResult</h1>}
         <div className="flex items-center justify-between  px-[72px] py-[24px] ">
           {/* Left section - Venues list */}
           <ul className="flex items-center gap-10 text-xl font-medium">
