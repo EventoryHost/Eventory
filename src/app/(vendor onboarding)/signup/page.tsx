@@ -95,7 +95,7 @@ const SignUp = (props: {}) => {
       const response = await auth.verifySignUpOtp(basicDetails.mobile.toString(), inputOtp);
       if (response && response.data) {
         // Generate JWT token with an expiration time
-        const token = jwt.sign(response.data, process.env.NEXT_PUBLIC_JWT_SECRET as string, { expiresIn: '1h' });
+        const token = jwt.sign(response.data, process.env.NEXT_PUBLIC_JWT_SECRET as string);
         // Store token in local storage
         localStorage.setItem("token", token);
         console.log("Generated Token:", token);
