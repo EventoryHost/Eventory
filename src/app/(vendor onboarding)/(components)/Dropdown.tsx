@@ -21,7 +21,7 @@ const Dropdown: React.FC<DropdownProps> = ({ options, onSelect, placeholder = 'S
         <div className="relative w-full">
             <button
                 type="button"
-                className="flex items-center justify-between w-full p-5 py-3 text-sm border-2 font-medium text-left bg-white border-gray-300 rounded-xl shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                className="flex items-center justify-between w-full p-5 py-3  border-2  text-left bg-white rounded-xl shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 onClick={() => setIsOpen(!isOpen)}
             >
                 <span
