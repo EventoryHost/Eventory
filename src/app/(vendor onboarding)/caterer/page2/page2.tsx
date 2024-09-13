@@ -42,7 +42,7 @@ const Page2 = ({
   const { customizableMenu } = formState;
 
   return (
-    <div className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll  xs:w-[100%] xs:min-w-[90%] ">
+    <div className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll  xs:w-[95%] xs:min-w-[90%] ">
       <div className="flex min-w-full flex-col items-start justify-around gap-10 ">
 
         <div className=" flex min-w-full flex-col items-start rounded-xl   justify-around gap-10 bg-white md:p-6 p-3">

@@ -399,6 +399,11 @@ const Caterer = () => {
             addPackage={addPackage}
 
             advancePayment={advancePayment}
+
+            handleContinue={() => {
+              
+              handleSubmit();
+            }}
           />
         );
     }
@@ -480,7 +485,7 @@ const Caterer = () => {
           />
         </div>
       </div>
-      <div className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] p-2 md:p-[1rem]">
+      <div className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] p-6 md:p-[1rem]">
         {renderPage()}
       </div>
     </div>

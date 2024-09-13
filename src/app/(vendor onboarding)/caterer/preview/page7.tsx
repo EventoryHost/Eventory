@@ -110,9 +110,11 @@ type PagePreviewProps = {
   ) => void;
 
   advancePayment: number;
+  handleContinue: () => void;
 };
 
 function Preview({
+  handleContinue,
   advancePayment,
 
   formState,
@@ -155,7 +157,7 @@ function Preview({
   addPackage,
 }: PagePreviewProps) {
   return (
-    <div className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll rounded-xl bg-white p-3 xs:w-[100%] xs:min-w-[90%] md:p-6">
+    <div className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll rounded-xl bg-white p-6 xs:w-[95%] xs:min-w-[90%] md:p-6">
       <span className="my-5 text-3xl font-semibold">
         {formState.businessName} / Caterers
       </span>
@@ -226,7 +228,7 @@ function Preview({
           </div>
 
         <div className="m-6 mt-4 flex flex-col">
-          <span className="text-xl">Appetizers</span>
+          <span className="text-xl font-semibold">Appetizers</span>
           <Appetizers
             // field={'_appetizers'}
             appetizers={selectedAppetizers}
@@ -236,7 +238,7 @@ function Preview({
         </div>
 
         <div className="m-6 mt-4 flex flex-col">
-          <span className="text-xl">Beverages</span>
+          <span className="text-xl font-semibold">Beverages</span>
           <Appetizers
             // field={'_beverages'}
             appetizers={selectedBeverages}
@@ -245,7 +247,7 @@ function Preview({
           />
         </div>
         <div className="m-6 mt-4 flex flex-col">
-          <span className="text-xl">Main Courses</span>
+          <span className="text-xl font-semibold">Main Courses</span>
           <Appetizers
             //  field={'_mainCourses'}
             appetizers={selectedMainCourses}
@@ -254,7 +256,7 @@ function Preview({
           />
         </div>
         <div className="m-6 mt-4 flex flex-col">
-          <span className="text-xl">Dietary Options</span>
+          <span className="text-xl font-semibold">Dietary Options</span>
           <Appetizers
             // field={'_dietaryOptions'}
             appetizers={selectedDietaryOptions}
@@ -281,7 +283,7 @@ function Preview({
       </div>
       <div className="w-full">
         <div className="m-6 mt-4 flex flex-col">
-          <span className="text-xl">Event Options</span>
+          <span className="text-xl font-semibold">Event Options</span>
           <Appetizers
             // field={'EventTypes'}
             appetizers={selectedEventTypes}
@@ -290,7 +292,7 @@ function Preview({
           />
         </div>
         <div className="m-6 mt-4 flex flex-col">
-          <span className="text-xl">Additional Services</span>
+          <span className="text-xl font-semibold">Additional Services</span>
           <Appetizers
             // field={'additionalServices'}
             appetizers={selectedAdditionalServices}
@@ -309,7 +311,7 @@ function Preview({
       </div>
       <div className="w-full">
         <div className="m-6 mt-4 flex flex-col">
-          <span className="text-xl">Staff provides</span>
+          <span className="text-xl font-semibold">Staff provides</span>
           <Appetizers
             // field={'staffProvides'}
             appetizers={selectedStaffProvider}
@@ -319,7 +321,7 @@ function Preview({
         </div>
 
         <div className="m-6 mt-4 flex flex-col">
-          <span className="text-xl">Equipments provided</span>
+          <span className="text-xl font-semibold">Equipments provided</span>
           <Appetizers
             // field={'equipmentsProvided'}
             appetizers={selectedEquipmentsProvided}
@@ -421,24 +423,24 @@ function Preview({
           </button>
         </div>
       </div>
-      <div className="w-[100%]">
+      <div className="w-[100%] flex flex-col gap-8">
         <div className="flex gap-16 py-2">
           <div className="flex w-1/2 flex-col px-4">
-            <span className="">Tasting sessions</span>
+            <span className="text-xl font-semibold">Tasting sessions</span>
 
             <span className="font-semibold">
               {formState.tastingSessions ? "yes" : "no"}
             </span>
           </div>
           <div className="flex w-1/2 flex-col">
-            <span className="">Buisness Licenses</span>
+            <span className="text-xl font-semibold">Buisness Licenses</span>
             <span className="font-semibold">
               {formState.businessLicenses ? "yes" : "no"}
             </span>
           </div>
         </div>
         <div className="flex w-1/2 flex-col px-4">
-          <span className="">Food Safety Certificate</span>
+          <span className="text-xl font-semibold">Food Safety Certificate</span>
           <span className="font-semibold">
             {formState.foodSafety ? "yes" : "no"}
           </span>
@@ -448,7 +450,7 @@ function Preview({
       <div className="w-[100%] flex flex-col gap-10">
         <div className="flex gap-16 py-2">
           <div className="flex w-1/2 flex-col px-4">
-            <span className="">Terms and Condition</span>
+            <span className="text-xl font-semibold">Terms and Condition</span>
 
             <span className="font-semibold">
               {typeof formState.termsAndConditions === "string" ? (
@@ -459,7 +461,7 @@ function Preview({
             </span>
           </div>
           <div className="flex w-1/2 flex-col">
-            <span className="">Cancellation Policy</span>
+            <span className="text-xl font-semibold">Cancellation Policy</span>
             <span className="font-semibold">
               {typeof formState.cancellationPolicy === "string" ? (
                 formState.cancellationPolicy
@@ -470,7 +472,7 @@ function Preview({
           </div>
         </div>
         <div className="flex w-1/2 flex-col px-4">
-          <span className="">Portfolio</span>
+          <span className="text-xl font-semibold">Portfolio</span>
           <span className="font-semibold">
             {typeof formState.portfolio === "string" ? (
               formState.portfolio
@@ -480,6 +482,12 @@ function Preview({
           </span>
         </div>
       </div>
+      <button
+        className="flex w-fit items-center justify-center self-end rounded-xl bg-[#2E3192] p-5 text-white xs:text-[4vw] md:text-[2vw] lg:w-[10vw] lg:text-[1vw]"
+      onClick={handleContinue}
+      >
+        Continue
+      </button>
     </div>
   );
 }
