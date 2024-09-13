@@ -3,12 +3,12 @@
 import { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-
+import Router from "next/router";
 import auth from "@/services/auth";
 import OtpModal from "@/components/ui/otp-modal";
 import tajmahal from "/public/tajmahal.png";
 import { set } from "date-fns";
-
+import jwt from "jsonwebtoken";
 type loginDetails = {
   mobile: string;
   otp?: string;
@@ -71,15 +71,44 @@ const Login = () => {
     console.log("Login deets: ", loginDetails);
     console.log("inp: ", inputOtp);
 
-    const res = await auth.verifyLoginOtp(
+    const response = await auth.verifyLoginOtp(
       loginDetails.mobile,
       inputOtp,
       loginDetails.session!,
     );
-    // res.status === 200 ? console.log("Login successful") : console.log("Login failed");
-    console.log(res);
+    if (response && response.data.userData) {
+      // Generate JWT token with an expiration time
+      const token = jwt.sign(
+        response.data.userData,
+        process.env.NEXT_PUBLIC_JWT_SECRET as string,
+      );
+      // Store token in local storage
+      localStorage.setItem("token", token);
+      console.log("Generated Token:", token);
 
-    // collect refresh token to local storage
+      // Decode the token for testing
+      const decoded = jwt.decode(token) as {
+        name: string;
+        email: string;
+        mobile: string;
+        id: string;
+      } | null;
+
+      if (decoded) {
+        const { id, email, mobile, name } = decoded;
+        console.log("User ID:", id);
+        console.log("Email:", email);
+        console.log("Mobile:", mobile);
+        console.log("Name:", name);
+      } else {
+        console.error("Failed to decode token");
+      }
+
+      console.log("OTP verified successfully");
+      // Router.push("/");
+    } else {
+      console.error("OTP verification failed or response is invalid");
+    }
   }
 
   const renderError = (): [boolean, string] => {
