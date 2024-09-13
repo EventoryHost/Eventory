@@ -3,7 +3,7 @@
 import { useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-
+import jwt from "jsonwebtoken";
 import auth from "@/services/auth";
 import OtpModal from "@/components/ui/otp-modal";
 import tajmahal from "/public/tajmahal.png";
@@ -15,19 +15,19 @@ const fields: {
   type: string;
   placeholder: string;
 }[] = [
-  {
-    id: "name",
-    label: "Full Name",
-    type: "text",
-    placeholder: "Enter your full name",
-  },
-  {
-    id: "mobile",
-    label: "Mobile No.",
-    type: "number",
-    placeholder: "Enter your mobile no.",
-  },
-];
+    {
+      id: "name",
+      label: "Full Name",
+      type: "text",
+      placeholder: "Enter your full name",
+    },
+    {
+      id: "mobile",
+      label: "Mobile No.",
+      type: "number",
+      placeholder: "Enter your mobile no.",
+    },
+  ];
 
 type basicDetails = {
   name: string;
@@ -92,9 +92,37 @@ const SignUp = (props: {}) => {
     setFormError(null); // Reset error message
 
     try {
-      await auth.verifySignUpOtp(basicDetails.mobile.toString(), inputOtp);
-      console.log("OTP verified successfully");
-      Router.push("/businessDetails"); // Ensure this is reachable
+      const response = await auth.verifySignUpOtp(basicDetails.mobile.toString(), inputOtp);
+      if (response && response.data) {
+        // Generate JWT token with an expiration time
+        const token = jwt.sign(response.data, process.env.NEXT_PUBLIC_JWT_SECRET as string, { expiresIn: '1h' });
+        // Store token in local storage
+        localStorage.setItem("token", token);
+        console.log("Generated Token:", token);
+
+        // Decode the token for testing
+        const decoded = jwt.decode(token) as {
+          name: string;
+          email: string;
+          mobile: string;
+          id: string;
+        } | null;
+
+        if (decoded) {
+          const { id, email, mobile, name } = decoded;
+          console.log("User ID:", id);
+          console.log("Email:", email);
+          console.log("Mobile:", mobile);
+          console.log("Name:", name);
+        } else {
+          console.error("Failed to decode token");
+        }
+
+        console.log("OTP verified successfully");
+        Router.push("/businessDetails"); // Navigate to the next page
+      } else {
+        console.error("OTP verification failed or response is invalid");
+      }
     } catch (error) {
       console.error("Failed to verify OTP", error);
       setFormError("Failed to verify OTP. Please try again.");
