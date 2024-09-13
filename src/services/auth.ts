@@ -57,7 +57,7 @@ const verifyLoginOtp = async (
   mobile: String,
   code: String,
   session: String,
-  name: String,
+  name?: String,
 ) => {
   try {
     const res = await axios.post(
