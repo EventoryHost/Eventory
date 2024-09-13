@@ -7,7 +7,7 @@ import FilterSection from "../(components)/FilterSection";
 import Footer from "@/app/(components)/footer";
 import ExploreSection from "../(components)/ExploreSection";
 import VendorCard from "../(components)/VendorCard";
-import Filter from "lucide-react";
+import { Filter } from "lucide-react";
 
 const SearchPageHelper = () => {
   const searchParams = useSearchParams();
