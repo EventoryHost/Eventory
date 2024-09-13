@@ -186,7 +186,8 @@ const Caterer = () => {
     // collect all responses in formdata and send to backend
     const formData = new FormData();
     formData.append("venId", getVendorId()!);
-    formData.append("name", formState.businessName);
+    formData.append("name", formState.cateringName);
+    formData.append("managerName", formState.businessName);
     cuisineSpecialties.forEach((item, index) => {
       formData.append(`cuisine_specialities[${index}]`, item);
     });
@@ -197,8 +198,10 @@ const Caterer = () => {
     serviceStyles.forEach((item, index) => {
       formData.append(`service_style_offered[${index}]`, item);
     });
+    formData.append("menu", formState.menu);
+
     veg.forEach((item, index) => {
-      formData.append(`veg[${index}]`, item);
+      formData.append(`menuType`, item);
     });
     selectedAppetizers.forEach((item, index) => {
       formData.append(`appetizers[${index}]`, item);
@@ -233,20 +236,20 @@ const Caterer = () => {
     seasonalPackages.forEach((item, index) => {
       formData.append(`rates[seasonal][${index}]`, JSON.stringify(item));
     });
-
-    formData.append("advancePayment", advancePayment.toString());
+    
+    formData.append("deposit_required", advancePayment.toString());
     formData.append("portfolio",formState.portfolio);
     formData.append("tastingSessions", formState.tastingSessions.toString());
     formData.append("businessLicenses", formState.businessLicenses.toString());
     formData.append("foodSafety", formState.foodSafety.toString());
     formData.append("cateringServiceImages", formState.cateringServiceImages);
-    formData.append("videoEvent", formState.videoEvent);
+    // formData.append("videoEvent", formState.videoEvent);
     formData.append("terms_and_conditions", formState.termsAndConditions);
     formData.append("cancellation_policy", formState.cancellationPolicy);
     formData.append("pre_set_menu", formState.preSetMenu);
     formData.append("testimonials", formState.testimonials);
 
-    formData.append("customizable_menu", formState.customizableMenu.toString());
+    formData.append("customizable", formState.customizableMenu.toString());
 
     try {
       formData.forEach((value, key) => {
