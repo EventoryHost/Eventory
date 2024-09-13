@@ -47,6 +47,7 @@ const SignUp = (props: {}) => {
   const refs = useRef(
     {} as Record<keyof basicDetails, HTMLInputElement | null>,
   );
+  const router = useRouter();
 
   const toggleModal = () => setIsModalOpen(!isModalOpen);
 
@@ -82,32 +83,25 @@ const SignUp = (props: {}) => {
     }
   };
 
-  const useHandleVerify = () => {
-    const router = useRouter();
+  const handleVerify = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const inputOtp = basicDetails.otp.toString(); // Current OTP value
 
-    const handleVerify = async (e: React.FormEvent) => {
-      e.preventDefault();
-      const inputOtp = basicDetails.otp.toString(); // Current OTP value
+    // Check if OTP is 6 digits long
+    if (inputOtp.length !== 6) {
+      setFormError(`Please fill in the OTP correctly`);
+      return;
+    }
 
-      // Check if OTP is 6 digits long
-      if (inputOtp.length !== 6) {
-        setFormError(`Please fill in the OTP correctly`);
-        return;
-      }
+    setFormError(null); // Reset error message
 
-
-    
-      setFormError(null); // Reset error message
-
-      try {
-        const response = await auth.verifyLoginOtp(
-          basicDetails.mobile.toString(),
-          inputOtp,
-          session,
-          basicDetails.name,
-        );
-        
-      
+    try {
+      const response = await auth.verifyLoginOtp(
+        basicDetails.mobile.toString(),
+        inputOtp,
+        session,
+        basicDetails.name,
+      );
 
       if (response && response.data) {
         // Generate JWT token with an expiration time
@@ -138,7 +132,7 @@ const SignUp = (props: {}) => {
         }
 
         console.log("OTP verified successfully");
-        Router.push("/businessDetails"); // Navigate to the next page
+        router.push("/businessDetails"); // Navigate to the next page
       } else {
         console.error("OTP verification failed or response is invalid");
       }
@@ -146,11 +140,7 @@ const SignUp = (props: {}) => {
       console.error("Failed to verify OTP", error);
       setFormError("Failed to verify OTP. Please try again.");
     }
-
   };
-
-  // Inside the SignUp component
-  const handleVerify = useHandleVerify();
 
   const renderError = (): [boolean, string] => {
     return formError ? [true, formError] : [false, ""];

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import CategoryBar from "../(components)/categoryBar";
 import FilterSection from "../(components)/FilterSection";
@@ -9,7 +9,7 @@ import ExploreSection from "../(components)/ExploreSection";
 import VendorCard from "../(components)/VendorCard";
 import { Filter } from "lucide-react";
 
-const SearchPage = () => {
+const SearchPageHelper = () => {
   const searchParams = useSearchParams();
   const event = searchParams.get("event") || "all";
 
@@ -282,6 +282,14 @@ const SearchPage = () => {
 
       <Footer />
     </div>
+  );
+};
+
+const SearchPage = () => {
+  return (
+    <Suspense>
+      <SearchPageHelper />
+    </Suspense>
   );
 };
 
