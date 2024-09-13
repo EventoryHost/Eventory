@@ -75,7 +75,7 @@ const Page2 = ({
               acceptedFileTypes="image/png, .pdf, image/jpg"
             />
           </div>
-          <div className="font-semibold">Don't have a handy menu? no worries, you can add your items here</div>
+          <div className="font-semibold">Dont have a handy menu? no worries, you can add your items here</div>
           <div
             className="rounded-xl border-2 text-center border-[#2E3192] text-[#2E3192] xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
           >
