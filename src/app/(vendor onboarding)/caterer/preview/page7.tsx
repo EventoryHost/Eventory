@@ -47,10 +47,15 @@ type FormState = {
   // Page-specific states
   // Page 1
   businessName: string;
+  cateringName:string;
+  menu: string | File;
+  preSetMenu:string;
+  customizableMenu:boolean;
   // Page 6
+  portfolio: string | File;
   tastingSessions: boolean;
   businessLicenses: boolean;
-  foodSafety: boolean;
+  foodSafety: boolean | File;
   cateringServiceImages: string | File;
   videoEvent: string | File;
   termsAndConditions: string | File;
@@ -66,6 +71,8 @@ type PagePreviewProps = {
   setRegionalSpecialties: React.Dispatch<React.SetStateAction<string[]>>;
   serviceStyles: string[];
   setServiceStyles: React.Dispatch<React.SetStateAction<string[]>>;
+  servingCapacity: string[];
+  setServingCapacity: React.Dispatch<React.SetStateAction<string[]>>;
 
   selectedAppetizers: string[];
   setSelectedAppetizers: React.Dispatch<React.SetStateAction<string[]>>;
@@ -101,9 +108,13 @@ type PagePreviewProps = {
   addPackage: (
     setPackages: React.Dispatch<React.SetStateAction<Package[]>>,
   ) => void;
+
+  advancePayment: number;
 };
 
 function Preview({
+  advancePayment,
+
   formState,
   updateFormState,
   cuisineSpecialties,
@@ -112,6 +123,8 @@ function Preview({
   setRegionalSpecialties,
   serviceStyles,
   setServiceStyles,
+  servingCapacity,
+  setServingCapacity,
 
   selectedAppetizers,
   setSelectedAppetizers,
@@ -156,16 +169,25 @@ function Preview({
         </div>
       </div>
       <div className="w-full">
-        <div className="m-6 mt-4 flex flex-col">
-          <span className="text-xl">Cuisine Speciliaty</span>
+        <div className="m-6 mt-4 flex flex-col gap-1">
+          <span className="text-xl font-semibold">Catering Service Name</span>
+          <span className="text-lg font-semibold">{formState.cateringName}</span>
+        </div>
+        <div className="m-6 mt-4 flex flex-col gap-1">
+          <span className="text-xl font-semibold">Manager Name (POC)</span>
+          <span className="text-lg font-semibold">{formState.businessName}</span>
+        </div>
+
+        <div className="m-6 mt-4 flex flex-col gap-1">
+          <span className="text-xl font-semibold">Cuisine Speciliaty</span>
           <Appetizers
             appetizers={cuisineSpecialties}
             selectedAppetizers={cuisineSpecialties}
             setSelectedAppetizers={setCuisineSpecialties}
           />
         </div>
-        <div className="m-6 mt-4 flex flex-col">
-          <span className="text-xl">Regional Specialties</span>
+        <div className="m-6 mt-4 flex flex-col gap-1">
+          <span className="text-xl font-semibold">Regional Specialties</span>
           <Appetizers
             appetizers={regionalSpecialties}
             selectedAppetizers={regionalSpecialties}
@@ -173,8 +195,8 @@ function Preview({
           />
         </div>
 
-        <div className="m-6 mt-4 flex flex-col">
-          <span className="text-xl">Service Styles Offered</span>
+        <div className="m-6 mt-4 flex flex-col gap-1">
+          <span className="text-xl font-semibold">Service Styles Offered</span>
           <Appetizers
             appetizers={serviceStyles}
             selectedAppetizers={serviceStyles}
@@ -191,6 +213,18 @@ function Preview({
         </div>
       </div>
       <div className="w-full">
+      <div className="flex w-1/2 flex-col px-4 mb-2">
+            <span className="text-xl font-semibold">Uploaded Menu</span>
+
+            <span className="font-semibold">
+              {typeof formState.menu === "string" ? (
+                formState.menu
+              ) : (
+                <File file={formState.menu} />
+              )}
+            </span>
+          </div>
+
         <div className="m-6 mt-4 flex flex-col">
           <span className="text-xl">Appetizers</span>
           <Appetizers
@@ -227,6 +261,14 @@ function Preview({
             selectedAppetizers={selectedDietaryOptions}
             setSelectedAppetizers={setSelectedDietaryOptions}
           />
+        </div>
+        <div className="m-6 mt-4 flex flex-col gap-1">
+          <span className="text-xl font-semibold">Pre-Set Menu</span>
+          <p className="text-lg font-semibold break-words whitespace-normal">{formState.preSetMenu}</p>
+        </div>
+        <div className="m-6 mt-4 flex flex-col gap-1">
+          <span className="text-xl font-semibold">Customizable</span>
+          <span className="text-lg font-semibold">{formState.customizableMenu ? "yes" : "no"}</span>
         </div>
       </div>
       <div className="flex w-[100%] justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
@@ -301,7 +343,7 @@ function Preview({
           className="flex min-w-full flex-col items-start justify-between gap-5 px-4 md:flex-row"
         >
           <div className="flex min-w-[40%] flex-col gap-4">
-            <label htmlFor={`hourlyPackageType${index}`}>
+            <label htmlFor={`hourlyPackageType${index}`} className="font-bold">
               Minimum Order Requirements
             </label>
             <div key={index} className="mb-2 flex flex-col">
@@ -367,6 +409,7 @@ function Preview({
       <div className="flex min-w-full flex-col items-start justify-between gap-5 px-4 md:flex-row">
         <div className="flex h-full min-w-[40%] flex-col items-start justify-center gap-2">
           <label className="self-start font-bold">Advance Payment</label>
+          <span className="font-semibold">{advancePayment}%</span>
         </div>
       </div>
 
@@ -402,7 +445,7 @@ function Preview({
         </div>
       </div>
 
-      <div className="w-[100%]">
+      <div className="w-[100%] flex flex-col gap-10">
         <div className="flex gap-16 py-2">
           <div className="flex w-1/2 flex-col px-4">
             <span className="">Terms and Condition</span>
@@ -429,10 +472,10 @@ function Preview({
         <div className="flex w-1/2 flex-col px-4">
           <span className="">Portfolio</span>
           <span className="font-semibold">
-            {typeof formState.cateringServiceImages === "string" ? (
-              formState.cateringServiceImages
+            {typeof formState.portfolio === "string" ? (
+              formState.portfolio
             ) : (
-              <File file={formState.cateringServiceImages} />
+              <File file={formState.portfolio} />
             )}
           </span>
         </div>

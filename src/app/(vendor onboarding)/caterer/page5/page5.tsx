@@ -1,6 +1,7 @@
 "use client";
 
 import Checkbox from "@mui/material/Checkbox";
+import Percentage from "../../invitation/(components)/percentage";
 
 interface Package {
   type: string;
@@ -24,6 +25,8 @@ interface PageProps {
     setPackages: React.Dispatch<React.SetStateAction<Package[]>>,
   ) => void;
   handleContinue: () => void;
+  advancePayment: number;
+  setAdvancePayment: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const Page5: React.FC<PageProps> = ({
@@ -36,6 +39,8 @@ const Page5: React.FC<PageProps> = ({
   handlePackageChange,
   addPackage,
   handleContinue,
+  advancePayment,
+  setAdvancePayment
 }) => {
   const handleMinPriceChange = (
     setPackages: React.Dispatch<React.SetStateAction<Package[]>>,
@@ -72,6 +77,10 @@ const Page5: React.FC<PageProps> = ({
     console.log("Seasonal Packages:", seasonalPackages);
   };
 
+  const handlePercentageChange = (newValue: number) => {
+    setAdvancePayment(newValue);
+  };
+
   return (
     <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-y-scroll py-5 lg:flex-row">
       <div className="flex min-w-[100%] flex-col items-center gap-5 bg-[#F7F6F9] p-2 md:p-[1rem]">
@@ -84,7 +93,8 @@ const Page5: React.FC<PageProps> = ({
                 className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row"
               >
                 <div className="flex min-w-[40%] flex-col gap-4">
-                  <label htmlFor={`hourlyPackageType${index}`}>
+                  <label htmlFor={`hourlyPackageType${index}`} className="self-start font-semibold text-lg"
+                  >
                     Minimum Order Requirements
                   </label>
                   <input
@@ -106,7 +116,7 @@ const Page5: React.FC<PageProps> = ({
                 <div className="flex h-full min-w-[40%] flex-col items-start justify-center gap-6">
                   <label
                     htmlFor={`hourlyPriceRange${index}`}
-                    className="self-start font-bold"
+                    className="self-start font-semibold text-lg"
                   >
                     Advance Booking Period
                   </label>
@@ -130,49 +140,32 @@ const Page5: React.FC<PageProps> = ({
                 </div>
               </div>
             ))}
-            <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-              <div className="item-start flex flex-col justify-between gap-2">
-                <button
-                  className="cursor-pointer rounded-lg bg-[#E6E6E6] p-2 hover:shadow-xl"
-                  onClick={() => addPackage(setHourlyPackages)}
-                >
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M12 5.5V17.5M6 11.5H18"
-                      stroke="#2E3192"
-                      strokeWidth="1.2"
-                      strokeLinecap="round"
-                    />
-                  </svg>
-                </button>
-              </div>
-            </div>
+
           </div>
         </div>
 
-        <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
+        <div className="flex w-[100%] flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
+            <label className="self-start font-semibold text-lg" >
+              <Checkbox
+                sx={{
+                  "&.Mui-checked": {
+                    color: "#2E3192",
+                  },
+                }}
+              />
+              Per plate rates
+            </label>
             {dailyPackages.map((pkg, index) => (
               <div
                 key={index}
                 className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row"
               >
+
                 <div className="flex min-w-[40%] flex-col gap-4">
-                  <label htmlFor={`dailyPackageType${index}`}>
-                    <Checkbox
-                      sx={{
-                        "&.Mui-checked": {
-                          color: "#2E3192",
-                        },
-                      }}
-                    />
-                    Per plate rates
+                  <label className="self-start font-semibold text-lg" >
+
+                    Name
                   </label>
                   <input
                     id={`dailyPackageType${index}`}
@@ -191,8 +184,8 @@ const Page5: React.FC<PageProps> = ({
                   />
                 </div>
 
-                <div className="flex h-full min-w-[40%] flex-col items-center justify-between">
-                  <label htmlFor={`dailyPriceRange${index}`}>
+                <div className="flex h-full min-w-[40%] flex-col justify-between">
+                  <label htmlFor={`dailyPriceRange${index}`} className="self-start font-semibold text-lg">
                     Select price range
                   </label>
                   <div className="flex w-[80%] flex-row justify-between gap-4">
@@ -256,23 +249,26 @@ const Page5: React.FC<PageProps> = ({
           </div>
         </div>
 
-        <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
+        <div className="flex w-[100%] flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
+            <label className="self-start font-semibold text-lg">
+              <Checkbox
+                sx={{
+                  "&.Mui-checked": {
+                    color: "#2E3192",
+                  },
+                }}
+              />
+              Deal package rates
+            </label>
             {seasonalPackages.map((pkg, index) => (
               <div
                 key={index}
                 className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row"
               >
                 <div className="flex min-w-[40%] flex-col gap-4">
-                  <label htmlFor={`seasonalPackageType${index}`}>
-                    <Checkbox
-                      sx={{
-                        "&.Mui-checked": {
-                          color: "#2E3192",
-                        },
-                      }}
-                    />
-                    Deal package rates
+                  <label className="self-start font-semibold text-lg">
+                    Name
                   </label>
                   <input
                     id={`seasonalPackageType${index}`}
@@ -291,8 +287,8 @@ const Page5: React.FC<PageProps> = ({
                   />
                 </div>
 
-                <div className="flex h-full min-w-[40%] flex-col items-center justify-between">
-                  <label htmlFor={`seasonalPriceRange${index}`}>
+                <div className="flex h-full min-w-[40%] flex-col  justify-between">
+                  <label htmlFor={`seasonalPriceRange${index}`} className="self-start font-semibold text-lg">
                     Select price range
                   </label>
                   <div className="flex w-[80%] flex-row justify-between gap-4">
@@ -328,8 +324,37 @@ const Page5: React.FC<PageProps> = ({
                     />
                   </div>
                 </div>
+
+                
+
               </div>
+              
             ))}
+
+<div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
+                  <div className="flex min-w-[40%] flex-col gap-4">
+                    <label className="flex flex-row">
+                      <Checkbox
+                        sx={{
+                          "&.Mui-checked": {
+                            color: "#2E3192",
+                          },
+                        }}
+                      />
+                      <p className="flex items-center font-poppins text-lg font-semibold">
+                        Advance Payment
+                      </p>
+                    </label>
+                    <div className="flex flex-row gap-5">
+                      <p className="">set percentage(%)</p>
+                      {/* <div className="border-2 rounded-xl text-sm">{advancePayment}</div> */}
+                    </div>
+                    <Percentage
+                      initialValue={advancePayment}
+                      onChange={handlePercentageChange}
+                    />
+                  </div>
+                </div>
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <div className="item-start flex flex-col justify-between gap-2">
                 <button

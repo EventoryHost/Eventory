@@ -23,11 +23,19 @@ interface Package {
 export interface FormState {
   // Page-specific states
   // Page 1
+  cateringName: string
   businessName: string;
+
+  menu: string | File;
+  preSetMenu:string;
+  customizableMenu:boolean;
+
   // Page 6
+  portfolio: string | File;
+  testimonials: string | File;
   tastingSessions: boolean;
   businessLicenses: boolean;
-  foodSafety: boolean;
+  foodSafety: boolean|File;
   cateringServiceImages: string | File;
   videoEvent: string | File;
   termsAndConditions: string | File;
@@ -38,7 +46,11 @@ const Caterer = () => {
   // State for current page
   const [currentPage, setCurrentPage] = useState(1);
   const [formState, setFormState] = useState<FormState>({
+    cateringName: "",
     businessName: "",
+    menu:'',
+    preSetMenu:'',
+    customizableMenu:false,
     tastingSessions: false,
     businessLicenses: false,
     foodSafety: false,
@@ -46,6 +58,8 @@ const Caterer = () => {
     videoEvent: "",
     termsAndConditions: "",
     cancellationPolicy: "",
+    testimonials:"",
+    portfolio:""
   });
 
   function updateFormState(newState: Partial<FormState>) {
@@ -53,11 +67,15 @@ const Caterer = () => {
   }
 
   // States for Page1
+  const [servingCapacity, setServingCapacity] = useState<string[]>([]);
+
   const [cuisineSpecialties, setCuisineSpecialties] = useState<string[]>([]);
   const [regionalSpecialties, setRegionalSpecialties] = useState<string[]>([]);
   const [serviceStyles, setServiceStyles] = useState<string[]>([]);
 
   //states for page2
+  const [veg, setVeg] = useState<string[]>([]);
+
   const [selectedAppetizers, setSelectedAppetizers] = useState<string[]>([]);
   const [selectedBeverages, setSelectedBeverages] = useState<string[]>([]);
   const [selectedMainCourses, setSelectedMainCourses] = useState<string[]>([]);
@@ -72,6 +90,8 @@ const Caterer = () => {
   //states forpage4
   const [staffProvides, setStaffProvides] = useState<string[]>([]);
   const [equipmentsProvided, setEquipmentsProvided] = useState<string[]>([]);
+
+  const [advancePayment, setAdvancePayment] = useState(25);
 
   // State for packages
   const [hourlyPackages, setHourlyPackages] = useState<Package[]>([
@@ -128,7 +148,13 @@ const Caterer = () => {
 
   const handleContinue = () => {
     console.log({
+      veg,
+      cateringName: formState.cateringName,
       BusinessName: formState.businessName,
+      menu: formState.menu,
+      preSetMenu:formState.preSetMenu,
+      customizableMenu:formState.customizableMenu,
+      servingCapacity,
       cuisineSpecialties,
       regionalSpecialties,
       serviceStyles,
@@ -150,6 +176,9 @@ const Caterer = () => {
       VideoEvent: formState.videoEvent,
       TermsAndConditions: formState.termsAndConditions,
       CancellationPolicy: formState.cancellationPolicy,
+      advancePayment,
+      portfolio:formState.portfolio,
+      testimonials:formState.testimonials
     });
   };
 
@@ -164,8 +193,12 @@ const Caterer = () => {
     regionalSpecialties.forEach((item, index) => {
       formData.append(`regional_specialities[${index}]`, item);
     });
+    
     serviceStyles.forEach((item, index) => {
       formData.append(`service_style_offered[${index}]`, item);
+    });
+    veg.forEach((item, index) => {
+      formData.append(`veg[${index}]`, item);
     });
     selectedAppetizers.forEach((item, index) => {
       formData.append(`appetizers[${index}]`, item);
@@ -200,6 +233,9 @@ const Caterer = () => {
     seasonalPackages.forEach((item, index) => {
       formData.append(`rates[seasonal][${index}]`, JSON.stringify(item));
     });
+
+    formData.append("advancePayment", advancePayment.toString());
+    formData.append("portfolio",formState.portfolio);
     formData.append("tastingSessions", formState.tastingSessions.toString());
     formData.append("businessLicenses", formState.businessLicenses.toString());
     formData.append("foodSafety", formState.foodSafety.toString());
@@ -207,6 +243,11 @@ const Caterer = () => {
     formData.append("videoEvent", formState.videoEvent);
     formData.append("terms_and_conditions", formState.termsAndConditions);
     formData.append("cancellation_policy", formState.cancellationPolicy);
+    formData.append("pre_set_menu", formState.preSetMenu);
+    formData.append("testimonials", formState.testimonials);
+
+    formData.append("customizable_menu", formState.customizableMenu.toString());
+
     try {
       formData.forEach((value, key) => {
         console.log(`${key}: ${value}`);
@@ -226,6 +267,8 @@ const Caterer = () => {
           <Page1
             formState={formState}
             updateFormState={updateFormState}
+            servingCapacity={servingCapacity}
+            setServingCapacity={setServingCapacity}
             cuisineSpecialties={cuisineSpecialties}
             setCuisineSpecialties={setCuisineSpecialties}
             regionalSpecialties={regionalSpecialties}
@@ -241,6 +284,10 @@ const Caterer = () => {
       case 2:
         return (
           <Page2
+          formState={formState}
+            updateFormState={updateFormState}
+            veg={veg}
+            setVeg={setVeg}
             selectedAppetizers={selectedAppetizers}
             setSelectedAppetizers={setSelectedAppetizers}
             selectedBeverages={selectedBeverages}
@@ -284,6 +331,8 @@ const Caterer = () => {
       case 5:
         return (
           <Page5
+          advancePayment={advancePayment}
+            setAdvancePayment={setAdvancePayment}
             hourlyPackages={hourlyPackages}
             setHourlyPackages={setHourlyPackages}
             dailyPackages={dailyPackages}
@@ -315,6 +364,8 @@ const Caterer = () => {
         return (
           <Page7
             formState={formState}
+            servingCapacity={servingCapacity}
+            setServingCapacity={setServingCapacity}
             updateFormState={updateFormState}
             cuisineSpecialties={cuisineSpecialties}
             setCuisineSpecialties={setCuisineSpecialties}
@@ -346,6 +397,8 @@ const Caterer = () => {
             setSeasonalPackages={setSeasonalPackages}
             handlePackageChange={handlePackageChange}
             addPackage={addPackage}
+
+            advancePayment={advancePayment}
           />
         );
     }

@@ -19,7 +19,7 @@ const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
           <h1 className="text-3xl font-semibold">Additional Details</h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
-              <div className="flex flex-col gap-7">
+              <div className="flex min-w-[40%] flex-col gap-7">
                 <p className="text-lg">Tasting Sessions</p>
                 <div className="flex gap-9">
                   <div className="flex min-w-[40%] gap-4">
@@ -50,19 +50,7 @@ const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
                   </div>
                 </div>
               </div>
-              <div className="flex min-w-[40%] flex-col items-start justify-center">
-                <label htmlFor="category">Catering Service Images</label>
-                <FileInput
-                  label="catering images"
-                  onFileSelect={(file) => {
-                    updateFormState({ cateringServiceImages: file });
-                  }}
-                  acceptedFileTypes="image/png, .pdf, image/jpg"
-                />
-              </div>
-            </div>
-            <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
-              <div className="flex flex-col gap-7">
+              <div className="flex min-w-[40%] flex-col gap-7">
                 <p className="text-lg">Business Licenses</p>
                 <div className="flex gap-9">
                   <div className="flex min-w-[40%] gap-4">
@@ -93,7 +81,20 @@ const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
                   </div>
                 </div>
               </div>
-              <div className="flex min-w-[40%] flex-col items-start justify-center">
+              {/* <div className="flex min-w-[40%] flex-col items-start justify-center">
+                <label htmlFor="category">Catering Service Images</label>
+                <FileInput
+                  label="catering images"
+                  onFileSelect={(file) => {
+                    updateFormState({ cateringServiceImages: file });
+                  }}
+                  acceptedFileTypes="image/png, .pdf, image/jpg"
+                />
+              </div> */}
+            </div>
+            <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
+
+              {/* <div className="flex min-w-[40%] flex-col items-start justify-center">
                 <label htmlFor="category">Videos of Event Setups</label>
                 <FileInput
                   label="event videos"
@@ -102,19 +103,19 @@ const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
                   }}
                   acceptedFileTypes=".mp4, .avi, .mov, .wmv"
                 />
-              </div>
+              </div> */}
             </div>
             <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
-              <div className="flex flex-col gap-7">
+              <div className="flex flex-col ">
                 <p className="text-lg">Food Safety Certificates</p>
-                <div className="flex">
+                <div className="flex ">
                   <div className="flex min-w-[40%] gap-4">
                     <input
                       id="foodSafetyYes"
                       type="radio"
                       name="foodSafety"
                       value="true"
-                      checked={foodSafety}
+                      checked={!!foodSafety}
                       onChange={() => updateFormState({ foodSafety: true })}
                     />
                     <label htmlFor="foodSafetyYes">Yes</label>
@@ -130,9 +131,18 @@ const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
                     />
                     <label htmlFor="foodSafetyNo">No</label>
                   </div>
+
                 </div>
-                <div className="flex min-w-[40%] flex-col items-start justify-center">
-                  <label htmlFor="category">Terms & Conditions</label>
+                <FileInput
+                  label="foodSafety"
+                  onFileSelect={(file) => {
+                    updateFormState({ foodSafety: file });
+                  }}
+
+                  acceptedFileTypes="image/png, .pdf, image/jpg"
+                />
+                <div className="flex min-w-[40%] flex-col items-start justify-center mt-6">
+                  <p className="text-lg">Terms & Conditions</p>
                   <FileInput
                     label="tnc"
                     onFileSelect={(file) => {
@@ -151,26 +161,59 @@ const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
                     className="mt-5 resize-none rounded-xl border-2 border-gray-300 p-3"
                   ></textarea>
                 </div>
+                <div className="flex min-w-[40%] flex-col items-start justify-center mt-6">
+                  <p className="text-lg">Client Testimonials</p>
+                  <FileInput
+                    label="testimonials"
+                    onFileSelect={(file) => {
+                      updateFormState({ testimonials: file });
+                    }}
+                    acceptedFileTypes="image/png, .pdf, image/jpg"
+                  />
+                  <p className="mt-5 text-lg">or Provide Via</p>
+                  <textarea
+                    cols={30}
+                    rows={7}
+                    placeholder="Enter your venue details"
+                    onChange={(e) =>
+                      updateFormState({ testimonials: e.target.value })
+                    }
+                    className="mt-5 resize-none rounded-xl border-2 border-gray-300 p-3"
+                  ></textarea>
+                </div>
               </div>
-              <div className="flex min-w-[40%] flex-col items-start justify-center">
-                <label htmlFor="category">Cancellation Policies</label>
-                <FileInput
-                  label="cancellation policy"
-                  onFileSelect={(file) => {
-                    updateFormState({ cancellationPolicy: file });
-                  }}
-                  acceptedFileTypes="image/png, .pdf, image/jpg"
-                />
-                <p className="mt-5 text-lg">or Provide Via</p>
-                <textarea
-                  cols={30}
-                  rows={7}
-                  placeholder="Enter your venue details"
-                  onChange={(e) =>
-                    updateFormState({ cancellationPolicy: e.target.value })
-                  }
-                  className="mt-5 resize-none rounded-xl border-2 border-gray-300 p-3"
-                ></textarea>
+              <div className="flex min-w-[40%] flex-col gap-7">
+                <div className="flex  flex-col items-start justify-center">
+                  <p className="text-lg">Portfolio</p>
+                  <FileInput
+                    label="portfolio"
+                    onFileSelect={(file) => {
+                      updateFormState({ portfolio: file });
+                    }}
+                    acceptedFileTypes="image/png, .pdf, image/jpg"
+                  />
+
+                </div>
+                <div className="flex  flex-col items-start justify-center">
+                  <p className="text-lg">Cancellation Policies</p>
+                  <FileInput
+                    label="cancellation policy"
+                    onFileSelect={(file) => {
+                      updateFormState({ cancellationPolicy: file });
+                    }}
+                    acceptedFileTypes="image/png, .pdf, image/jpg"
+                  />
+                  <p className="mt-5 text-lg">or Provide Via</p>
+                  <textarea
+                    cols={30}
+                    rows={7}
+                    placeholder="Enter your venue details"
+                    onChange={(e) =>
+                      updateFormState({ cancellationPolicy: e.target.value })
+                    }
+                    className="mt-5 resize-none rounded-xl border-2 border-gray-300 p-3"
+                  ></textarea>
+                </div>
               </div>
             </div>
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
