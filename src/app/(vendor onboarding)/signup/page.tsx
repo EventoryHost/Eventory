@@ -15,19 +15,19 @@ const fields: {
   type: string;
   placeholder: string;
 }[] = [
-    {
-      id: "name",
-      label: "Full Name",
-      type: "text",
-      placeholder: "Enter your full name",
-    },
-    {
-      id: "mobile",
-      label: "Mobile No.",
-      type: "number",
-      placeholder: "Enter your mobile no.",
-    },
-  ];
+  {
+    id: "name",
+    label: "Full Name",
+    type: "text",
+    placeholder: "Enter your full name",
+  },
+  {
+    id: "mobile",
+    label: "Mobile No.",
+    type: "number",
+    placeholder: "Enter your mobile no.",
+  },
+];
 
 type basicDetails = {
   name: string;
@@ -92,10 +92,16 @@ const SignUp = (props: {}) => {
     setFormError(null); // Reset error message
 
     try {
-      const response = await auth.verifySignUpOtp(basicDetails.mobile.toString(), inputOtp);
+      const response = await auth.verifySignUpOtp(
+        basicDetails.mobile.toString(),
+        inputOtp,
+      );
       if (response && response.data) {
         // Generate JWT token with an expiration time
-        const token = jwt.sign(response.data, process.env.NEXT_PUBLIC_JWT_SECRET as string);
+        const token = jwt.sign(
+          response.data,
+          process.env.NEXT_PUBLIC_JWT_SECRET as string,
+        );
         // Store token in local storage
         localStorage.setItem("token", token);
         console.log("Generated Token:", token);

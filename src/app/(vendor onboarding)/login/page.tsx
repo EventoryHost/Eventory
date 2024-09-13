@@ -78,7 +78,10 @@ const Login = () => {
     );
     if (response && response.data.userData) {
       // Generate JWT token with an expiration time
-      const token = jwt.sign(response.data.userData, process.env.NEXT_PUBLIC_JWT_SECRET as string);
+      const token = jwt.sign(
+        response.data.userData,
+        process.env.NEXT_PUBLIC_JWT_SECRET as string,
+      );
       // Store token in local storage
       localStorage.setItem("token", token);
       console.log("Generated Token:", token);
@@ -118,13 +121,13 @@ const Login = () => {
     type: string;
     placeholder: string;
   }[] = [
-      {
-        id: "mobile",
-        label: "Mobile No.",
-        type: "number",
-        placeholder: "Enter your mobile no.",
-      },
-    ];
+    {
+      id: "mobile",
+      label: "Mobile No.",
+      type: "number",
+      placeholder: "Enter your mobile no.",
+    },
+  ];
 
   return (
     <div className="flex min-h-[88vh] w-full flex-col overflow-hidden lg:flex-row">
