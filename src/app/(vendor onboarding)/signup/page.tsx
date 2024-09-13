@@ -93,8 +93,6 @@ const SignUp = (props: {}) => {
       return;
     }
 
-
-  
     setFormError(null); // Reset error message
 
     try {
@@ -104,8 +102,6 @@ const SignUp = (props: {}) => {
         session,
         basicDetails.name,
       );
-      
-    
 
       if (response && response.data) {
         // Generate JWT token with an expiration time

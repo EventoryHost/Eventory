@@ -24,7 +24,6 @@ const categories = [
   { value: "decorators", label: "Decorator" },
   { value: "propRentals", label: "Prop Rentals" },
   { value: "makeupArtist", label: "Makeup Artist" },
-
 ];
 
 const yearsInOperation = [
