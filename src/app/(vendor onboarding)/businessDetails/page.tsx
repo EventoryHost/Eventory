@@ -18,11 +18,12 @@ const frameworks = [
 ];
 
 const categories = [
+  { value: "venue-provider", label: "Venue Provider" },
   { value: "pav", label: "PaV" },
   { value: "caterer", label: "Caterers" },
-  { value: "decorators", label: "Decorator" },
-  { value: "propRentals", label: "Prop Rentals" },
-  { value: "makeupArtisttest", label: "Makeup Artist" },
+  { value: "decorator", label: "Decorator" },
+  { value: "prop-rental", label: "Prop Rental" },
+  { value: "makeup-artist", label: "Makeup Artist" },
 ];
 
 const yearsInOperation = [
