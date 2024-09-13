@@ -7,7 +7,9 @@ import jwt from "jsonwebtoken";
 import auth from "@/services/auth";
 import OtpModal from "@/components/ui/otp-modal";
 import tajmahal from "/public/tajmahal.png";
-import Router from "next/router";
+import { useRouter } from "next/navigation";
+import verifyLoginOtp from "@/services/auth";
+import BusinessDetails from "../businessDetails/page";
 
 const fields: {
   id: keyof basicDetails;
@@ -40,6 +42,7 @@ const SignUp = (props: {}) => {
   const [basicDetails, setBasicDetails] = useState<basicDetails>(
     {} as basicDetails,
   );
+  const [session, setSession] = useState<string>("");
   const [formError, setFormError] = useState<string | null>(null);
   const refs = useRef(
     {} as Record<keyof basicDetails, HTMLInputElement | null>,
@@ -72,30 +75,40 @@ const SignUp = (props: {}) => {
     // console.log("Mobile:", newDetails.mobile);
     // console.log("mobile details: ", newDetails.mobile.toString());
     const res = await auth.signUp(newDetails.mobile.toString());
-    if (res!.newUser) {
+    if (res) {
+      console.log("Response: ", res.data.data.Session);
+      setSession(res.data.data.Session);
       toggleModal();
-    } else if (!res!.newUser) {
-      // TODO add toast message
     }
   };
 
-  const handleVerify = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const inputOtp = basicDetails.otp.toString(); // Current OTP value
+  const useHandleVerify = () => {
+    const router = useRouter();
 
-    // Check if OTP is 6 digits long
-    if (inputOtp.length !== 6) {
-      setFormError(`Please fill in the OTP correctly`);
-      return;
-    }
+    const handleVerify = async (e: React.FormEvent) => {
+      e.preventDefault();
+      const inputOtp = basicDetails.otp.toString(); // Current OTP value
 
-    setFormError(null); // Reset error message
+      // Check if OTP is 6 digits long
+      if (inputOtp.length !== 6) {
+        setFormError(`Please fill in the OTP correctly`);
+        return;
+      }
 
-    try {
-      const response = await auth.verifySignUpOtp(
-        basicDetails.mobile.toString(),
-        inputOtp,
-      );
+
+    
+      setFormError(null); // Reset error message
+
+      try {
+        const response = await auth.verifyLoginOtp(
+          basicDetails.mobile.toString(),
+          inputOtp,
+          session,
+          basicDetails.name,
+        );
+        
+      
+
       if (response && response.data) {
         // Generate JWT token with an expiration time
         const token = jwt.sign(
@@ -133,7 +146,11 @@ const SignUp = (props: {}) => {
       console.error("Failed to verify OTP", error);
       setFormError("Failed to verify OTP. Please try again.");
     }
+
   };
+
+  // Inside the SignUp component
+  const handleVerify = useHandleVerify();
 
   const renderError = (): [boolean, string] => {
     return formError ? [true, formError] : [false, ""];
