@@ -88,7 +88,7 @@ const Page5: React.FC<PageProps> = ({
           <h1 className="text-3xl font-semibold">Basic Details</h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
-              <div className="flex min-w-[40%] flex-col gap-4">
+              <div className="flex min-w-[45%] flex-col gap-4">
                 <label className="self-start text-lg font-semibold">
                   Minimum Order Requirements
                 </label>
@@ -102,11 +102,11 @@ const Page5: React.FC<PageProps> = ({
                   }
                 />
               </div>
-              <div className="flex h-full min-w-[40%] flex-col items-start justify-center gap-6">
+              <div className="flex min-w-[45%] flex-col gap-4">
                 <label className="self-start text-lg font-semibold">
                   Advance Booking Period
                 </label>
-                <div className="flex w-[80%] flex-row justify-between gap-4">
+                <div className="flex w-full flex-row justify-between gap-4">
                   <input
                     type="number"
                     className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
@@ -138,7 +138,7 @@ const Page5: React.FC<PageProps> = ({
                 key={index}
                 className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row"
               >
-                <div className="flex min-w-[40%] flex-col gap-4">
+                <div className="flex min-w-[45%] flex-col gap-4">
                   <label className="self-start text-lg font-semibold">
                     Name
                   </label>
@@ -159,7 +159,7 @@ const Page5: React.FC<PageProps> = ({
                   />
                 </div>
 
-                <div className="flex h-full min-w-[40%] flex-col justify-between">
+                <div className="flex h-full min-w-[45%] flex-col justify-between">
                   <label
                     htmlFor={`dailyPriceRange${index}`}
                     className="self-start text-lg font-semibold"
@@ -244,7 +244,7 @@ const Page5: React.FC<PageProps> = ({
                 key={index}
                 className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row"
               >
-                <div className="flex min-w-[40%] flex-col gap-4">
+                <div className="flex min-w-[45%] flex-col gap-4">
                   <label className="self-start text-lg font-semibold">
                     Name
                   </label>
@@ -265,7 +265,7 @@ const Page5: React.FC<PageProps> = ({
                   />
                 </div>
 
-                <div className="flex h-full min-w-[40%] flex-col justify-between">
+                <div className="flex h-full min-w-[45%] flex-col justify-between">
                   <label
                     htmlFor={`seasonalPriceRange${index}`}
                     className="self-start text-lg font-semibold"
