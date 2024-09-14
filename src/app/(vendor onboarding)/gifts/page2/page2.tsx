@@ -54,6 +54,8 @@ interface PageProps {
   setlistOfGifts: (value: any) => void;
   listOfGifts: any;
   updateFormState: (value: any) => void;
+  currentPage: number;
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const Page2: React.FC<PageProps> = ({
@@ -63,6 +65,8 @@ const Page2: React.FC<PageProps> = ({
   setlistOfGifts,
   listOfGifts,
   updateFormState,
+  currentPage,
+  setCurrentPage,
 }) => {
   const [isDeliveryChargesChecked, setIsDeliveryChargesChecked] =
     useState<boolean>(false);
@@ -256,6 +260,24 @@ const Page2: React.FC<PageProps> = ({
               placeholder="Select your category"
               className="w-1/2 rounded-xl border-2 px-3 py-2 focus:border-[#2E3192] focus:outline-none focus:ring-blue-500 md:w-1/3"
             />
+            {/* Button container */}
+            <div className="mr-[5%] flex w-full justify-end gap-[32px]">
+              {/* Previous Button */}
+              <button
+                onClick={() => setCurrentPage(currentPage - 1)}
+                className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+              >
+                Previous
+              </button>
+
+              {/* Next Button */}
+              <button
+                onClick={() => setCurrentPage(currentPage + 1)}
+                className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+              >
+                Next
+              </button>
+            </div>
           </div>
         </div>
       </div>
