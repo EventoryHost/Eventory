@@ -40,7 +40,7 @@ const Page5: React.FC<PageProps> = ({
   addPackage,
   handleContinue,
   advancePayment,
-  setAdvancePayment
+  setAdvancePayment,
 }) => {
   const handleMinPriceChange = (
     setPackages: React.Dispatch<React.SetStateAction<Package[]>>,
@@ -93,7 +93,9 @@ const Page5: React.FC<PageProps> = ({
                 className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row"
               >
                 <div className="flex min-w-[40%] flex-col gap-4">
-                  <label htmlFor={`hourlyPackageType${index}`} className="self-start font-semibold text-lg"
+                  <label
+                    htmlFor={`hourlyPackageType${index}`}
+                    className="self-start text-lg font-semibold"
                   >
                     Minimum Order Requirements
                   </label>
@@ -116,7 +118,7 @@ const Page5: React.FC<PageProps> = ({
                 <div className="flex h-full min-w-[40%] flex-col items-start justify-center gap-6">
                   <label
                     htmlFor={`hourlyPriceRange${index}`}
-                    className="self-start font-semibold text-lg"
+                    className="self-start text-lg font-semibold"
                   >
                     Advance Booking Period
                   </label>
@@ -140,13 +142,12 @@ const Page5: React.FC<PageProps> = ({
                 </div>
               </div>
             ))}
-
           </div>
         </div>
 
         <div className="flex w-[100%] flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
-            <label className="self-start font-semibold text-lg" >
+            <label className="self-start text-lg font-semibold">
               <Checkbox
                 sx={{
                   "&.Mui-checked": {
@@ -161,10 +162,8 @@ const Page5: React.FC<PageProps> = ({
                 key={index}
                 className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row"
               >
-
                 <div className="flex min-w-[40%] flex-col gap-4">
-                  <label className="self-start font-semibold text-lg" >
-
+                  <label className="self-start text-lg font-semibold">
                     Name
                   </label>
                   <input
@@ -185,7 +184,10 @@ const Page5: React.FC<PageProps> = ({
                 </div>
 
                 <div className="flex h-full min-w-[40%] flex-col justify-between">
-                  <label htmlFor={`dailyPriceRange${index}`} className="self-start font-semibold text-lg">
+                  <label
+                    htmlFor={`dailyPriceRange${index}`}
+                    className="self-start text-lg font-semibold"
+                  >
                     Select price range
                   </label>
                   <div className="flex w-[80%] flex-row justify-between gap-4">
@@ -251,7 +253,7 @@ const Page5: React.FC<PageProps> = ({
 
         <div className="flex w-[100%] flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
-            <label className="self-start font-semibold text-lg">
+            <label className="self-start text-lg font-semibold">
               <Checkbox
                 sx={{
                   "&.Mui-checked": {
@@ -267,7 +269,7 @@ const Page5: React.FC<PageProps> = ({
                 className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row"
               >
                 <div className="flex min-w-[40%] flex-col gap-4">
-                  <label className="self-start font-semibold text-lg">
+                  <label className="self-start text-lg font-semibold">
                     Name
                   </label>
                   <input
@@ -287,8 +289,11 @@ const Page5: React.FC<PageProps> = ({
                   />
                 </div>
 
-                <div className="flex h-full min-w-[40%] flex-col  justify-between">
-                  <label htmlFor={`seasonalPriceRange${index}`} className="self-start font-semibold text-lg">
+                <div className="flex h-full min-w-[40%] flex-col justify-between">
+                  <label
+                    htmlFor={`seasonalPriceRange${index}`}
+                    className="self-start text-lg font-semibold"
+                  >
                     Select price range
                   </label>
                   <div className="flex w-[80%] flex-row justify-between gap-4">
@@ -324,37 +329,33 @@ const Page5: React.FC<PageProps> = ({
                     />
                   </div>
                 </div>
-
-                
-
               </div>
-              
             ))}
 
-<div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
-                  <div className="flex min-w-[40%] flex-col gap-4">
-                    <label className="flex flex-row">
-                      <Checkbox
-                        sx={{
-                          "&.Mui-checked": {
-                            color: "#2E3192",
-                          },
-                        }}
-                      />
-                      <p className="flex items-center font-poppins text-lg font-semibold">
-                        Advance Payment
-                      </p>
-                    </label>
-                    <div className="flex flex-row gap-5">
-                      <p className="">set percentage(%)</p>
-                      {/* <div className="border-2 rounded-xl text-sm">{advancePayment}</div> */}
-                    </div>
-                    <Percentage
-                      initialValue={advancePayment}
-                      onChange={handlePercentageChange}
-                    />
-                  </div>
+            <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
+              <div className="flex min-w-[40%] flex-col gap-4">
+                <label className="flex flex-row">
+                  <Checkbox
+                    sx={{
+                      "&.Mui-checked": {
+                        color: "#2E3192",
+                      },
+                    }}
+                  />
+                  <p className="flex items-center font-poppins text-lg font-semibold">
+                    Advance Payment
+                  </p>
+                </label>
+                <div className="flex flex-row gap-5">
+                  <p className="">set percentage(%)</p>
+                  {/* <div className="border-2 rounded-xl text-sm">{advancePayment}</div> */}
                 </div>
+                <Percentage
+                  initialValue={advancePayment}
+                  onChange={handlePercentageChange}
+                />
+              </div>
+            </div>
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <div className="item-start flex flex-col justify-between gap-2">
                 <button

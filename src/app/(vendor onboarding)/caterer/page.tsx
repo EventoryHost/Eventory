@@ -23,7 +23,7 @@ interface Package {
 export interface FormState {
   // Page-specific states
   // Page 1
-  cateringName: string
+  cateringName: string;
   businessName: string;
 
   menu: string | File;
@@ -48,8 +48,8 @@ const Caterer = () => {
   const [formState, setFormState] = useState<FormState>({
     cateringName: "",
     businessName: "",
-    menu: '',
-    preSetMenu: '',
+    menu: "",
+    preSetMenu: "",
     customizableMenu: false,
     tastingSessions: false,
     businessLicenses: false,
@@ -59,7 +59,7 @@ const Caterer = () => {
     termsAndConditions: "",
     cancellationPolicy: "",
     testimonials: "",
-    portfolio: ""
+    portfolio: "",
   });
 
   function updateFormState(newState: Partial<FormState>) {
@@ -178,7 +178,7 @@ const Caterer = () => {
       CancellationPolicy: formState.cancellationPolicy,
       advancePayment,
       portfolio: formState.portfolio,
-      testimonials: formState.testimonials
+      testimonials: formState.testimonials,
     });
   };
 
@@ -400,89 +400,69 @@ const Caterer = () => {
             setSeasonalPackages={setSeasonalPackages}
             handlePackageChange={handlePackageChange}
             addPackage={addPackage}
-
             advancePayment={advancePayment}
-
             handleContinue={() => {
-              setCurrentPage(8)
+              setCurrentPage(8);
               handleSubmit();
             }}
           />
         );
-        default:
-          return(
-            <div>thankyou</div>
-          )
+      default:
+        return <div>thankyou</div>;
     }
   };
 
   return (
     <div className="m-0 flex w-full flex-col overflow-x-hidden lg:h-[calc(100vh-4.2rem)] lg:flex-row">
       <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
-        <div className="flex w-[100%] flex-col  justify-center">
-
+        <div className="flex w-[100%] flex-col justify-center">
           <div className="flex flex-col gap-1 px-3 lg:mt-[2rem]">
-            <span className="text-lg font-semibold">Step {currentPage} of 8</span>
+            <span className="text-lg font-semibold">
+              Step {currentPage} of 8
+            </span>
             <div className="flex gap-4">
               <button
-                className={`flex h-2 w-10 items-center justify-center rounded-full  ${currentPage >= 1 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 1 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
                 onClick={() => setCurrentPage(1)}
-              >
-
-              </button>
+              ></button>
 
               <button
-                className={`flex h-2 w-10 items-center justify-center rounded-full  ${currentPage >= 2 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 2 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
                 onClick={() => setCurrentPage(2)}
-              >
-
-              </button>
+              ></button>
 
               <button
-                className={`flex h-2 w-10 items-center justify-center rounded-full  ${currentPage >= 3 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 3 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
                 onClick={() => setCurrentPage(3)}
-              >
-
-              </button>
+              ></button>
 
               <button
-                className={`flex h-2 w-10 items-center justify-center rounded-full  ${currentPage >= 4 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 4 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
                 onClick={() => setCurrentPage(4)}
-              >
-
-              </button>
+              ></button>
 
               <button
-                className={`flex h-2 w-10 items-center justify-center rounded-full  ${currentPage >= 5 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 5 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
                 onClick={() => setCurrentPage(5)}
-              >
-
-              </button>
+              ></button>
 
               <button
-                className={`flex h-2 w-10 items-center justify-center rounded-full  ${currentPage >= 6 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 6 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
                 onClick={() => setCurrentPage(6)}
-              >
-
-              </button>
+              ></button>
               <button
-                className={`flex h-2 w-10 items-center justify-center rounded-full  ${currentPage >= 7 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 7 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
                 onClick={() => setCurrentPage(7)}
-              >
-
-              </button>
+              ></button>
               <button
-                className={`flex h-2 w-10 items-center justify-center rounded-full  ${currentPage >= 8 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 8 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
                 onClick={() => setCurrentPage(8)}
-              >
-
-              </button>
+              ></button>
             </div>
           </div>
         </div>
         <div className="flex h-[50%] flex-col items-start justify-center gap-9 px-3 md:px-3">
           <h1 className="text-[8vw] font-bold md:text-[3vw]">
-
             {currentPage === 1 && "Tell us about your business"}
             {currentPage === 2 && "Fill the menu details"}
             {currentPage === 3 && "Fill the Event details"}
@@ -490,17 +470,22 @@ const Caterer = () => {
             {currentPage === 5 && "Fill the Booking and pricing details"}
             {currentPage === 6 && "Fill the Additional details"}
             {currentPage === 7 && "Preview details"}
-
           </h1>
           <p className="text-black xs:text-sm md:w-[90%]">
-            {currentPage === 1 && "Fill out your Business details to get verified and proceed to the registration process."}
-            {currentPage === 2 && "Please provide the menu details of the catering service offered by your company."}
-            {currentPage === 3 && "Please provide the event details of the catering service offered by your company."}
-            {currentPage === 4 && "Please provide the staffing and equipment details of the catering service offered by your company."}
-            {currentPage === 5 && "Please provide the booking and pricing details of the catering service offered by your company."}
-            {currentPage === 6 && "Please provide the additional details of the catering service offered by your company."}
-            {currentPage === 7 && "Please recheck the information provided by you. "}
-
+            {currentPage === 1 &&
+              "Fill out your Business details to get verified and proceed to the registration process."}
+            {currentPage === 2 &&
+              "Please provide the menu details of the catering service offered by your company."}
+            {currentPage === 3 &&
+              "Please provide the event details of the catering service offered by your company."}
+            {currentPage === 4 &&
+              "Please provide the staffing and equipment details of the catering service offered by your company."}
+            {currentPage === 5 &&
+              "Please provide the booking and pricing details of the catering service offered by your company."}
+            {currentPage === 6 &&
+              "Please provide the additional details of the catering service offered by your company."}
+            {currentPage === 7 &&
+              "Please recheck the information provided by you. "}
           </p>
         </div>
         <div className="relative h-[10rem] lg:w-full">

@@ -47,10 +47,10 @@ type FormState = {
   // Page-specific states
   // Page 1
   businessName: string;
-  cateringName:string;
+  cateringName: string;
   menu: string | File;
-  preSetMenu:string;
-  customizableMenu:boolean;
+  preSetMenu: string;
+  customizableMenu: boolean;
   // Page 6
   portfolio: string | File;
   tastingSessions: boolean;
@@ -173,11 +173,15 @@ function Preview({
       <div className="w-full">
         <div className="m-6 mt-4 flex flex-col gap-1">
           <span className="text-xl font-semibold">Catering Service Name</span>
-          <span className="text-lg font-semibold">{formState.cateringName}</span>
+          <span className="text-lg font-semibold">
+            {formState.cateringName}
+          </span>
         </div>
         <div className="m-6 mt-4 flex flex-col gap-1">
           <span className="text-xl font-semibold">Manager Name (POC)</span>
-          <span className="text-lg font-semibold">{formState.businessName}</span>
+          <span className="text-lg font-semibold">
+            {formState.businessName}
+          </span>
         </div>
 
         <div className="m-6 mt-4 flex flex-col gap-1">
@@ -215,17 +219,17 @@ function Preview({
         </div>
       </div>
       <div className="w-full">
-      <div className="flex w-1/2 flex-col px-4 mb-2">
-            <span className="text-xl font-semibold">Uploaded Menu</span>
+        <div className="mb-2 flex w-1/2 flex-col px-4">
+          <span className="text-xl font-semibold">Uploaded Menu</span>
 
-            <span className="font-semibold">
-              {typeof formState.menu === "string" ? (
-                formState.menu
-              ) : (
-                <File file={formState.menu} />
-              )}
-            </span>
-          </div>
+          <span className="font-semibold">
+            {typeof formState.menu === "string" ? (
+              formState.menu
+            ) : (
+              <File file={formState.menu} />
+            )}
+          </span>
+        </div>
 
         <div className="m-6 mt-4 flex flex-col">
           <span className="text-xl font-semibold">Appetizers</span>
@@ -266,11 +270,15 @@ function Preview({
         </div>
         <div className="m-6 mt-4 flex flex-col gap-1">
           <span className="text-xl font-semibold">Pre-Set Menu</span>
-          <p className="text-lg font-semibold break-words whitespace-normal">{formState.preSetMenu}</p>
+          <p className="whitespace-normal break-words text-lg font-semibold">
+            {formState.preSetMenu}
+          </p>
         </div>
         <div className="m-6 mt-4 flex flex-col gap-1">
           <span className="text-xl font-semibold">Customizable</span>
-          <span className="text-lg font-semibold">{formState.customizableMenu ? "yes" : "no"}</span>
+          <span className="text-lg font-semibold">
+            {formState.customizableMenu ? "yes" : "no"}
+          </span>
         </div>
       </div>
       <div className="flex w-[100%] justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
@@ -423,7 +431,7 @@ function Preview({
           </button>
         </div>
       </div>
-      <div className="w-[100%] flex flex-col gap-8">
+      <div className="flex w-[100%] flex-col gap-8">
         <div className="flex gap-16 py-2">
           <div className="flex w-1/2 flex-col px-4">
             <span className="text-xl font-semibold">Tasting sessions</span>
@@ -447,7 +455,7 @@ function Preview({
         </div>
       </div>
 
-      <div className="w-[100%] flex flex-col gap-10">
+      <div className="flex w-[100%] flex-col gap-10">
         <div className="flex gap-16 py-2">
           <div className="flex w-1/2 flex-col px-4">
             <span className="text-xl font-semibold">Terms and Condition</span>
@@ -484,7 +492,7 @@ function Preview({
       </div>
       <button
         className="flex w-fit items-center justify-center self-end rounded-xl bg-[#2E3192] p-5 text-white xs:text-[4vw] md:text-[2vw] lg:w-[10vw] lg:text-[1vw]"
-      onClick={handleContinue}
+        onClick={handleContinue}
       >
         Continue
       </button>
