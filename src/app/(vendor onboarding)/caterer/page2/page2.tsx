@@ -4,11 +4,23 @@ import FileInput from "@/components/fileInput";
 import Appetizers from "../../(components)/Appetizers";
 import { FormState } from "../page";
 
-const _dietaryOptions = ["Others", "Vegetarian", "Vegan", "Gluten-Free", "Nut-Free"];
+const _dietaryOptions = [
+  "Others",
+  "Vegetarian",
+  "Vegan",
+  "Gluten-Free",
+  "Nut-Free",
+];
 const _mainCourses = ["Biryani", "Others", "Tandoori", "Pasta", "Pizza"];
 const _beverages = ["Tea", "Others", "Coffee", "Juice", "Soda"];
-const _appetizers = ["Samosa", "Others", "Spring Roll", "Chicken Wings", "Bruschetta"];
-const _veg = ['Both', 'Veg', 'Non Veg'];
+const _appetizers = [
+  "Samosa",
+  "Others",
+  "Spring Roll",
+  "Chicken Wings",
+  "Bruschetta",
+];
+const _veg = ["Both", "Veg", "Non Veg"];
 type Page2Props = {
   formState: FormState;
   updateFormState: (newState: Partial<FormState>) => void;
@@ -28,7 +40,8 @@ type Page2Props = {
 const Page2 = ({
   formState,
   updateFormState,
-  veg, setVeg,
+  veg,
+  setVeg,
   selectedAppetizers,
   setSelectedAppetizers,
   selectedBeverages,
@@ -42,18 +55,18 @@ const Page2 = ({
   const { customizableMenu } = formState;
 
   return (
-    <div className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll  xs:w-[95%] xs:min-w-[90%] ">
-      <div className="flex min-w-full flex-col items-start justify-around gap-10 ">
-
-        <div className=" flex min-w-full flex-col items-start rounded-xl   justify-around gap-10 bg-white md:p-6 p-3">
+    <div className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll xs:w-[95%] xs:min-w-[90%]">
+      <div className="flex min-w-full flex-col items-start justify-around gap-10">
+        <div className="flex min-w-full flex-col items-start justify-around gap-10 rounded-xl bg-white p-3 md:p-6">
           <h1 className="my-5 text-3xl font-semibold">Menu Details</h1>
 
-          <div className="flex  items-start  gap-10">
+          <div className="flex items-start gap-10">
             {_veg.map((option) => (
               <li
                 key={option}
-                className={`flex gap-1 items-center cursor-pointer select-none relative py-2 pl-3 pr-9 ${veg.includes(option) ? "text-black" : "text-gray-900"
-                  }`}
+                className={`relative flex cursor-pointer select-none items-center gap-1 py-2 pl-3 pr-9 ${
+                  veg.includes(option) ? "text-black" : "text-gray-900"
+                }`}
                 onClick={() => setVeg([option])}
               >
                 {veg.includes(option) ? (
@@ -75,17 +88,16 @@ const Page2 = ({
               acceptedFileTypes="image/png, .pdf, image/jpg"
             />
           </div>
-          <div className="font-semibold">Dont have a handy menu? no worries, you can add your items here</div>
-          <div
-            className="rounded-xl border-2 text-center border-[#2E3192] text-[#2E3192] xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-          >
+          <div className="font-semibold">
+            Dont have a handy menu? no worries, you can add your items here
+          </div>
+          <div className="rounded-xl border-2 border-[#2E3192] text-center text-[#2E3192] xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3">
             Add Manually
           </div>
         </div>
-        <div className=" flex min-w-full flex-col items-start rounded-xl   justify-around gap-10 bg-white md:p-6 p-3">
-
+        <div className="flex min-w-full flex-col items-start justify-around gap-10 rounded-xl bg-white p-3 md:p-6">
           <div className="flex w-full flex-col items-start justify-between gap-5">
-            <div className="flex  flex-col gap-4">
+            <div className="flex flex-col gap-4">
               <label htmlFor="appetizers">Appetizers</label>
               <Appetizers
                 field={"_appetizers"}
@@ -97,7 +109,7 @@ const Page2 = ({
           </div>
         </div>
 
-        <div className=" flex min-w-full flex-col items-start rounded-xl   justify-around gap-10 bg-white md:p-6 p-3">
+        <div className="flex min-w-full flex-col items-start justify-around gap-10 rounded-xl bg-white p-3 md:p-6">
           <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
             <div className="flex min-w-[40%] flex-col gap-4">
               <label htmlFor="beverages">Beverages</label>
@@ -110,8 +122,7 @@ const Page2 = ({
             </div>
           </div>
         </div>
-        <div className=" flex min-w-full flex-col items-start rounded-xl   justify-around gap-10 bg-white md:p-6 p-3">
-
+        <div className="flex min-w-full flex-col items-start justify-around gap-10 rounded-xl bg-white p-3 md:p-6">
           <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
             <div className="flex min-w-[40%] flex-col gap-4">
               <label htmlFor="mainCourses">Main Courses</label>
@@ -124,8 +135,7 @@ const Page2 = ({
             </div>
           </div>
         </div>
-        <div className=" flex min-w-full flex-col items-start rounded-xl   justify-around gap-10 bg-white md:p-6 p-3">
-
+        <div className="flex min-w-full flex-col items-start justify-around gap-10 rounded-xl bg-white p-3 md:p-6">
           <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
             <div className="flex min-w-[40%] flex-col gap-4">
               <label htmlFor="dietaryOptions">Dietary Options</label>
@@ -139,9 +149,8 @@ const Page2 = ({
           </div>
 
           <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
-            <div className="flex min-w-[40%] flex-col ">
-
-              <p className=" text-lg">Pre-Set Menu</p>
+            <div className="flex min-w-[40%] flex-col">
+              <p className="text-lg">Pre-Set Menu</p>
               <textarea
                 rows={7}
                 placeholder="Enter your Pre-set Menu Description"
@@ -150,12 +159,11 @@ const Page2 = ({
                 }
                 className="mt-4 rounded-xl border-2 border-gray-300 p-3"
               ></textarea>
-
             </div>
-            <div className="flex min-w-[40%] flex-col gap-4 ">
-              <p className=" text-lg">Customizable</p>
+            <div className="flex min-w-[40%] flex-col gap-4">
+              <p className="text-lg">Customizable</p>
               <div className="flex">
-                <div className="flex min-w-[40%] gap-4 items-center">
+                <div className="flex min-w-[40%] items-center gap-4">
                   <input
                     id="customizableMenuYes"
                     type="radio"
@@ -163,28 +171,28 @@ const Page2 = ({
                     value="true"
                     checked={customizableMenu}
                     onChange={() => updateFormState({ customizableMenu: true })}
-                    className="accent-[#2E3192] w-4 h-4"
+                    className="h-4 w-4 accent-[#2E3192]"
                   />
                   <label htmlFor="customizableMenuYes">Yes</label>
                 </div>
-                <div className="flex min-w-[40%] gap-4 items-center">
+                <div className="flex min-w-[40%] items-center gap-4">
                   <input
                     id="customizableMenuNo"
                     type="radio"
                     name="customizableMenu"
                     value="false"
                     checked={!customizableMenu}
-                    onChange={() => updateFormState({ customizableMenu: false })}
-                     className="accent-[#2E3192] w-4 h-4"
+                    onChange={() =>
+                      updateFormState({ customizableMenu: false })
+                    }
+                    className="h-4 w-4 accent-[#2E3192]"
                   />
                   <label htmlFor="customizableMenuNo">No</label>
                 </div>
               </div>
             </div>
           </div>
-          <div
-            className="items-strech mt-9 flex flex-row gap-7 self-end "
-          >
+          <div className="items-strech mt-9 flex flex-row gap-7 self-end">
             <button
               className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
               onClick={handleContinue}
@@ -199,7 +207,6 @@ const Page2 = ({
             </button>
           </div>
         </div>
-
       </div>
     </div>
   );

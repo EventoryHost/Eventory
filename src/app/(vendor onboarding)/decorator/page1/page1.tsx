@@ -151,7 +151,7 @@ const Page1: React.FC<Page1Props> = ({
             registration process.
           </p>
         </div>
-        <div className="relative  lg:w-full">
+        <div className="relative lg:w-full">
           <img
             src={"/tajmahal.png"}
             alt=""

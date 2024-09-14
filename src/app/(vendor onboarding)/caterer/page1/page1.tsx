@@ -7,17 +7,21 @@ import { Combobox } from "@/components/ui/combobox";
 import { ComboboxDemo } from "@/components/dropdown";
 import Dropdown from "../../(components)/Dropdown";
 
-const _regional = [
-  "Gujrati",
-  "Rajasthani",
-  "Bengali",
+const _regional = ["Gujrati", "Rajasthani", "Bengali", "Others"];
+const _service = [
+  "Buffet",
+  "Plated Meals",
+  "Family Style",
   "Others",
-
+  "Food Stations",
 ];
-const _service = ["Buffet", "Plated Meals", "Family Style", "Others", "Food Stations"];
-const _cuisine = ["North Indian", "South Indian", "Chinese", "Italian", "Others",];
-
-
+const _cuisine = [
+  "North Indian",
+  "South Indian",
+  "Chinese",
+  "Italian",
+  "Others",
+];
 
 type Page1Props = {
   formState: FormState;
@@ -46,12 +50,11 @@ const Page1 = ({
   setServiceStyles,
   handleContinue,
 }: Page1Props) => {
-
   const [isFormValid, setIsFormValid] = useState(true);
 
   const validateForm = () => {
     const isValid =
-      formState.businessName.trim() !== '' &&
+      formState.businessName.trim() !== "" &&
       cuisineSpecialties.length > 0 &&
       serviceStyles.length > 0 &&
       regionalSpecialties.length > 0;
@@ -64,28 +67,35 @@ const Page1 = ({
     // if (validateForm()) {
     //   handleContinue();
     // }
-    handleContinue()
+    handleContinue();
   };
-
 
   const getInputClassName = (value: string | string[]) => {
-    const baseClasses = "w-full rounded-xl border-2 bg-white p-5 py-3 outline-none";
-    return `${baseClasses} ${!isFormValid && (typeof value === 'string' ? value.trim() === '' : value.length === 0) ? 'border-red-500' : ''}`;
+    const baseClasses =
+      "w-full rounded-xl border-2 bg-white p-5 py-3 outline-none";
+    return `${baseClasses} ${!isFormValid && (typeof value === "string" ? value.trim() === "" : value.length === 0) ? "border-red-500" : ""}`;
   };
 
-  const capacities = ['Less than 50', '50-100 persons', '100-300 persons', 'More than 300 '];
+  const capacities = [
+    "Less than 50",
+    "50-100 persons",
+    "100-300 persons",
+    "More than 300 ",
+  ];
   const handleSelect = (option: string) => {
     // Handle the selected option, e.g., update form state
-    setServingCapacity([option])
+    setServingCapacity([option]);
   };
   return (
-    <div className="flex flex-col  items-start gap-7 overflow-y-scroll rounded-xl bg-white p-3 xs:w-[95%] xs:min-w-[90%] xs:justify-start md:p-6 scroll-touch">
+    <div className="scroll-touch flex flex-col items-start gap-7 overflow-y-scroll rounded-xl bg-white p-3 xs:w-[95%] xs:min-w-[90%] xs:justify-start md:p-6">
       <h1 className="text-3xl font-semibold">Basic Details</h1>
       <div className="flex w-[100%] items-start gap-9"></div>
       <div className="flex min-w-full flex-col items-center gap-9">
         <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
           <div className="flex min-w-[40%] flex-col gap-4">
-            <label htmlFor="businessName">Catering Service Name<span className="text-red-500">*</span></label>
+            <label htmlFor="businessName">
+              Catering Service Name<span className="text-red-500">*</span>
+            </label>
             <input
               id="cateringName"
               type="text"
@@ -97,11 +107,12 @@ const Page1 = ({
               }
               required
             />
-
           </div>
 
           <div className="flex min-w-[40%] flex-col gap-4">
-            <label htmlFor="businessName">Manager Name (POC)<span className="text-red-500">*</span></label>
+            <label htmlFor="businessName">
+              Manager Name (POC)<span className="text-red-500">*</span>
+            </label>
             <input
               id="businessName"
               type="text"
@@ -114,18 +125,25 @@ const Page1 = ({
               required
             />
           </div>
-
         </div>
 
         <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
           <div className="flex min-w-[40%] flex-col gap-4">
-            <label htmlFor="businessName">Serving Capacity<span className="text-red-500">*</span></label>
-            <Dropdown options={capacities} onSelect={handleSelect} placeholder='Enter max. no. of people you serve' />
+            <label htmlFor="businessName">
+              Serving Capacity<span className="text-red-500">*</span>
+            </label>
+            <Dropdown
+              options={capacities}
+              onSelect={handleSelect}
+              placeholder="Enter max. no. of people you serve"
+            />
           </div>
         </div>
 
         <div className="flex w-[100%] flex-col gap-5 rounded-xl bg-white">
-          <label htmlFor="years">Cuisine Specialties<span className="text-red-500">*</span></label>
+          <label htmlFor="years">
+            Cuisine Specialties<span className="text-red-500">*</span>
+          </label>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
@@ -138,7 +156,9 @@ const Page1 = ({
           </div>
         </div>
         <div className="flex min-w-[100%] flex-col gap-5 rounded-xl bg-white">
-          <label htmlFor="years">Service Styles Offered<span className="text-red-500">*</span></label>
+          <label htmlFor="years">
+            Service Styles Offered<span className="text-red-500">*</span>
+          </label>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
@@ -152,7 +172,9 @@ const Page1 = ({
         </div>
 
         <div className="flex min-w-[100%] flex-col gap-5 rounded-xl bg-white">
-          <label htmlFor="category">Regional Specialties<span className="text-red-500">*</span></label>
+          <label htmlFor="category">
+            Regional Specialties<span className="text-red-500">*</span>
+          </label>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
