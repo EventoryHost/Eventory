@@ -1,15 +1,17 @@
 "use client";
 
 import Checkbox from "@mui/material/Checkbox";
+import Percentage from "../../invitation/(components)/percentage";
+import { FormState } from "../page";
 
 interface Package {
-  type: string;
+  package_name: string;
   priceRange: [number, number];
 }
 
 interface PageProps {
-  hourlyPackages: Package[];
-  setHourlyPackages: React.Dispatch<React.SetStateAction<Package[]>>;
+  formState: FormState;
+  updateFormState: (newState: Partial<FormState>) => void;
   dailyPackages: Package[];
   setDailyPackages: React.Dispatch<React.SetStateAction<Package[]>>;
   seasonalPackages: Package[];
@@ -24,11 +26,13 @@ interface PageProps {
     setPackages: React.Dispatch<React.SetStateAction<Package[]>>,
   ) => void;
   handleContinue: () => void;
+  advancePayment: number;
+  setAdvancePayment: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const Page5: React.FC<PageProps> = ({
-  hourlyPackages,
-  setHourlyPackages,
+  formState,
+  updateFormState,
   dailyPackages,
   setDailyPackages,
   seasonalPackages,
@@ -36,6 +40,8 @@ const Page5: React.FC<PageProps> = ({
   handlePackageChange,
   addPackage,
   handleContinue,
+  advancePayment,
+  setAdvancePayment,
 }) => {
   const handleMinPriceChange = (
     setPackages: React.Dispatch<React.SetStateAction<Package[]>>,
@@ -67,119 +73,81 @@ const Page5: React.FC<PageProps> = ({
 
   const handleSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    console.log("Hourly Packages:", hourlyPackages);
     console.log("Daily Packages:", dailyPackages);
     console.log("Seasonal Packages:", seasonalPackages);
   };
 
+  const handlePercentageChange = (newValue: number) => {
+    setAdvancePayment(newValue);
+  };
+
   return (
-    <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-y-scroll py-5 lg:flex-row">
+    <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-y-scroll py-5 scrollbar-hide lg:flex-row">
       <div className="flex min-w-[100%] flex-col items-center gap-5 bg-[#F7F6F9] p-2 md:p-[1rem]">
         <div className="flex w-[100%] flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
           <h1 className="text-3xl font-semibold">Basic Details</h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
-            {hourlyPackages.map((pkg, index) => (
-              <div
-                key={index}
-                className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row"
-              >
-                <div className="flex min-w-[40%] flex-col gap-4">
-                  <label htmlFor={`hourlyPackageType${index}`}>
-                    Minimum Order Requirements
-                  </label>
+            <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
+              <div className="flex min-w-[45%] flex-col gap-4">
+                <label className="self-start text-lg font-semibold">
+                  Minimum Order Requirements
+                </label>
+                <input
+                  id={``}
+                  type="text"
+                  className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
+                  placeholder="Minimum guests required"
+                  onChange={(e) =>
+                    updateFormState({ minOrderReq: e.target.value })
+                  }
+                />
+              </div>
+              <div className="flex min-w-[45%] flex-col gap-4">
+                <label className="self-start text-lg font-semibold">
+                  Advance Booking Period
+                </label>
+                <div className="flex w-full flex-row justify-between gap-4">
                   <input
-                    id={`hourlyPackageType${index}`}
-                    type="text"
+                    type="number"
                     className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
-                    placeholder="Type of package , Eg: Day time"
-                    value={pkg.type}
+                    placeholder="Minimum booking notice (e.g. number of days) "
                     onChange={(e) =>
-                      handlePackageChange(
-                        setHourlyPackages,
-                        index,
-                        "type",
-                        e.target.value,
-                      )
+                      updateFormState({ AdvBooking: e.target.value })
                     }
                   />
                 </div>
-                <div className="flex h-full min-w-[40%] flex-col items-start justify-center gap-6">
-                  <label
-                    htmlFor={`hourlyPriceRange${index}`}
-                    className="self-start font-bold"
-                  >
-                    Advance Booking Period
-                  </label>
-                  <div className="flex w-[80%] flex-row justify-between gap-4">
-                    <input
-                      id={`hourlyMaxPrice${index}`}
-                      type="number"
-                      className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
-                      placeholder="Max price"
-                      value={pkg.priceRange[1] === 0 ? "" : pkg.priceRange[1]}
-                      onChange={(e) =>
-                        handleMaxPriceChange(
-                          setHourlyPackages,
-                          hourlyPackages,
-                          index,
-                          e.target.value,
-                        )
-                      }
-                    />
-                  </div>
-                </div>
-              </div>
-            ))}
-            <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-              <div className="item-start flex flex-col justify-between gap-2">
-                <button
-                  className="cursor-pointer rounded-lg bg-[#E6E6E6] p-2 hover:shadow-xl"
-                  onClick={() => addPackage(setHourlyPackages)}
-                >
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M12 5.5V17.5M6 11.5H18"
-                      stroke="#2E3192"
-                      strokeWidth="1.2"
-                      strokeLinecap="round"
-                    />
-                  </svg>
-                </button>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
+        <div className="flex w-[100%] flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
+            <label className="self-start text-lg font-semibold">
+              <Checkbox
+                sx={{
+                  "&.Mui-checked": {
+                    color: "#2E3192",
+                  },
+                }}
+              />
+              Per plate rates
+            </label>
             {dailyPackages.map((pkg, index) => (
               <div
                 key={index}
                 className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row"
               >
-                <div className="flex min-w-[40%] flex-col gap-4">
-                  <label htmlFor={`dailyPackageType${index}`}>
-                    <Checkbox
-                      sx={{
-                        "&.Mui-checked": {
-                          color: "#2E3192",
-                        },
-                      }}
-                    />
-                    Per plate rates
+                <div className="flex min-w-[45%] flex-col gap-4">
+                  <label className="self-start text-lg font-semibold">
+                    Name
                   </label>
                   <input
                     id={`dailyPackageType${index}`}
                     type="text"
                     className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                     placeholder="Type of package , Eg: Day time"
-                    value={pkg.type}
+                    value={pkg.package_name}
                     onChange={(e) =>
                       handlePackageChange(
                         setDailyPackages,
@@ -191,8 +159,11 @@ const Page5: React.FC<PageProps> = ({
                   />
                 </div>
 
-                <div className="flex h-full min-w-[40%] flex-col items-center justify-between">
-                  <label htmlFor={`dailyPriceRange${index}`}>
+                <div className="flex h-full min-w-[45%] flex-col justify-between">
+                  <label
+                    htmlFor={`dailyPriceRange${index}`}
+                    className="self-start text-lg font-semibold"
+                  >
                     Select price range
                   </label>
                   <div className="flex w-[80%] flex-row justify-between gap-4">
@@ -256,30 +227,33 @@ const Page5: React.FC<PageProps> = ({
           </div>
         </div>
 
-        <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
+        <div className="flex w-[100%] flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
+            <label className="self-start text-lg font-semibold">
+              <Checkbox
+                sx={{
+                  "&.Mui-checked": {
+                    color: "#2E3192",
+                  },
+                }}
+              />
+              Deal package rates
+            </label>
             {seasonalPackages.map((pkg, index) => (
               <div
                 key={index}
                 className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row"
               >
-                <div className="flex min-w-[40%] flex-col gap-4">
-                  <label htmlFor={`seasonalPackageType${index}`}>
-                    <Checkbox
-                      sx={{
-                        "&.Mui-checked": {
-                          color: "#2E3192",
-                        },
-                      }}
-                    />
-                    Deal package rates
+                <div className="flex min-w-[45%] flex-col gap-4">
+                  <label className="self-start text-lg font-semibold">
+                    Name
                   </label>
                   <input
                     id={`seasonalPackageType${index}`}
                     type="text"
                     className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                     placeholder="Type of package , Eg: Day time"
-                    value={pkg.type}
+                    value={pkg.package_name}
                     onChange={(e) =>
                       handlePackageChange(
                         setSeasonalPackages,
@@ -291,8 +265,11 @@ const Page5: React.FC<PageProps> = ({
                   />
                 </div>
 
-                <div className="flex h-full min-w-[40%] flex-col items-center justify-between">
-                  <label htmlFor={`seasonalPriceRange${index}`}>
+                <div className="flex h-full min-w-[45%] flex-col justify-between">
+                  <label
+                    htmlFor={`seasonalPriceRange${index}`}
+                    className="self-start text-lg font-semibold"
+                  >
                     Select price range
                   </label>
                   <div className="flex w-[80%] flex-row justify-between gap-4">
@@ -330,6 +307,31 @@ const Page5: React.FC<PageProps> = ({
                 </div>
               </div>
             ))}
+
+            <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
+              <div className="flex min-w-[40%] flex-col gap-4">
+                <label className="flex flex-row">
+                  <Checkbox
+                    sx={{
+                      "&.Mui-checked": {
+                        color: "#2E3192",
+                      },
+                    }}
+                  />
+                  <p className="flex items-center font-poppins text-lg font-semibold">
+                    Advance Payment
+                  </p>
+                </label>
+                <div className="flex flex-row gap-5">
+                  <p className="">set percentage(%)</p>
+                  {/* <div className="border-2 rounded-xl text-sm">{advancePayment}</div> */}
+                </div>
+                <Percentage
+                  initialValue={advancePayment}
+                  onChange={handlePercentageChange}
+                />
+              </div>
+            </div>
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <div className="item-start flex flex-col justify-between gap-2">
                 <button

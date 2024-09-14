@@ -3,7 +3,7 @@ import axios from "axios";
 async function addCaterer(data: any) {
   try {
     const response = await axios.post(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/products/add-caterer`,
+      `http://localhost:4000/api/products/add-caterer`,
       data,
       {
         headers: {

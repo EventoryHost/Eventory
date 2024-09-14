@@ -326,58 +326,40 @@ const VenueForm: React.FC = () => {
   return (
     <div className="m-0 flex w-full flex-col overflow-x-hidden lg:h-[calc(100vh-4.2rem)] lg:flex-row">
       <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
-        <div className="flex w-[100%] flex-col gap-5 lg:gap-3">
-          <div className="flex items-center justify-start gap-1 px-3 lg:mt-[2rem]">
-            <button
-              className={`flex h-10 w-10 items-center justify-center rounded-full p-5 ${currentPage >= 1 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-              onClick={() => setCurrentPage(1)}
-            >
-              1
-            </button>
-            <div
-              className={`h-[0.3rem] w-[4rem] rounded-xl ${currentPage > 1 ? "bg-[#2E3192]" : "bg-gray-300"}`}
-            />
-            <button
-              className={`flex h-10 w-10 items-center justify-center rounded-full p-5 ${currentPage >= 2 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-              onClick={() => setCurrentPage(2)}
-            >
-              2
-            </button>
-            <div
-              className={`h-[0.3rem] w-[4rem] rounded-xl ${currentPage > 2 ? "bg-[#2E3192]" : "bg-gray-300"}`}
-            />
-            <button
-              className={`flex h-10 w-10 items-center justify-center rounded-full p-5 ${currentPage >= 3 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-              onClick={() => setCurrentPage(3)}
-            >
-              3
-            </button>
-          </div>
-          <div className="flex items-center justify-start gap-1 px-3 lg:mt-[1rem]">
-            <button
-              className={`flex h-10 w-10 items-center justify-center rounded-full p-5 ${currentPage >= 4 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-              onClick={() => setCurrentPage(4)}
-            >
-              4
-            </button>
-            <div
-              className={`h-[0.3rem] w-[4rem] rounded-xl ${currentPage > 4 ? "bg-[#2E3192]" : "bg-gray-300"}`}
-            />
-            <button
-              className={`flex h-10 w-10 items-center justify-center rounded-full p-5 ${currentPage >= 5 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-              onClick={() => setCurrentPage(5)}
-            >
-              5
-            </button>
-            <div
-              className={`h-[0.3rem] w-[4rem] rounded-xl ${currentPage > 5 ? "bg-[#2E3192]" : "bg-gray-300"}`}
-            />
-            <button
-              className={`flex h-10 w-10 items-center justify-center rounded-full p-5 ${currentPage >= 6 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-              onClick={() => setCurrentPage(6)}
-            >
-              6
-            </button>
+        <div className="flex w-[100%] flex-col justify-center">
+          <div className="flex flex-col gap-1 px-3 lg:mt-[2rem]">
+            <span className="text-lg font-semibold">Step 1 of 6</span>
+            <div className="flex gap-4">
+              <button
+                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 1 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                onClick={() => setCurrentPage(1)}
+              ></button>
+
+              <button
+                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 2 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                onClick={() => setCurrentPage(2)}
+              ></button>
+
+              <button
+                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 3 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                onClick={() => setCurrentPage(3)}
+              ></button>
+
+              <button
+                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 4 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                onClick={() => setCurrentPage(4)}
+              ></button>
+
+              <button
+                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 5 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                onClick={() => setCurrentPage(5)}
+              ></button>
+
+              <button
+                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 6 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                onClick={() => setCurrentPage(6)}
+              ></button>
+            </div>
           </div>
         </div>
         <div className="flex h-[50%] flex-col items-start justify-center gap-9 px-3 md:px-3">

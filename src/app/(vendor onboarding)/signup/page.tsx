@@ -8,8 +8,6 @@ import auth from "@/services/auth";
 import OtpModal from "@/components/ui/otp-modal";
 import tajmahal from "/public/tajmahal.png";
 import { useRouter } from "next/navigation";
-import verifyLoginOtp from "@/services/auth";
-import BusinessDetails from "../businessDetails/page";
 
 const fields: {
   id: keyof basicDetails;
@@ -37,7 +35,7 @@ type basicDetails = {
   otp: number;
 };
 
-const SignUp = (props: {}) => {
+const SignUp = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [basicDetails, setBasicDetails] = useState<basicDetails>(
     {} as basicDetails,
@@ -51,41 +49,47 @@ const SignUp = (props: {}) => {
 
   const toggleModal = () => setIsModalOpen(!isModalOpen);
 
-  const handleSignUp = async (e: React.FormEvent) => {
+  async function handleSignUp(e: React.FormEvent) {
     e.preventDefault();
+    const mobileNumber = refs.current["mobile"]!.value;
+
+    const errorMessage: { [key: string]: string } = {
+      name: "name",
+      mobile: "mobile number",
+    };
 
     // Check if any required field is empty
     for (const key in refs.current) {
       if (refs.current[key as keyof basicDetails]?.value.trim() === "") {
-        setFormError(`Please fill in the ${key}`);
-        return; // Stop further processing
+        setFormError(`Please fill in your ${errorMessage[key]}`);
+        return;
       }
     }
+    // validate mobile number
+    if (mobileNumber.length !== 10 || mobileNumber[0] === "0") {
+      setFormError(`Enter a valid 10 digit mobile number`);
+      return;
+    }
 
-    // Reset form error if all fields are filled
     setFormError(null);
     // Store the form data
     const newDetails: basicDetails = {
       name: refs.current.name!.value,
-      mobile: Number(refs.current.mobile!.value),
+      mobile: Number(mobileNumber),
       otp: 0,
     };
     setBasicDetails(newDetails);
 
-    // console.log("Name:", newDetails.name);
-    // console.log("Mobile:", newDetails.mobile);
-    // console.log("mobile details: ", newDetails.mobile.toString());
     const res = await auth.signUp(newDetails.mobile.toString());
     if (res) {
-      console.log("Response: ", res.data.data.Session);
       setSession(res.data.data.Session);
       toggleModal();
     }
-  };
+  }
 
   const handleVerify = async (e: React.FormEvent) => {
     e.preventDefault();
-    const inputOtp = basicDetails.otp.toString(); // Current OTP value
+    const inputOtp = basicDetails.otp.toString();
 
     // Check if OTP is 6 digits long
     if (inputOtp.length !== 6) {
@@ -97,42 +101,22 @@ const SignUp = (props: {}) => {
 
     try {
       const response = await auth.verifyLoginOtp(
-        basicDetails.mobile.toString(),
+        basicDetails.mobile!.toString(),
         inputOtp,
         session,
-        basicDetails.name,
+        basicDetails!.name,
       );
 
-      if (response && response.data) {
+      if (response) {
         // Generate JWT token with an expiration time
         const token = jwt.sign(
-          response.data,
-          process.env.NEXT_PUBLIC_JWT_SECRET as string,
+          response.data.data.userData,
+          process.env.NEXT_PUBLIC_JWT_SECRET!,
         );
         // Store token in local storage
         localStorage.setItem("token", token);
-        console.log("Generated Token:", token);
-
-        // Decode the token for testing
-        const decoded = jwt.decode(token) as {
-          name: string;
-          email: string;
-          mobile: string;
-          id: string;
-        } | null;
-
-        if (decoded) {
-          const { id, email, mobile, name } = decoded;
-          console.log("User ID:", id);
-          console.log("Email:", email);
-          console.log("Mobile:", mobile);
-          console.log("Name:", name);
-        } else {
-          console.error("Failed to decode token");
-        }
-
-        console.log("OTP verified successfully");
-        router.push("/businessDetails"); // Navigate to the next page
+        console.log("OTP verification successful");
+        router.push("/businessDetails");
       } else {
         console.error("OTP verification failed or response is invalid");
       }
@@ -180,7 +164,9 @@ const SignUp = (props: {}) => {
           <h1 className="text-3xl font-semibold">Basic Details</h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <form onSubmit={handleSignUp}>
-              <div className="my-9 flex flex-col items-center justify-between xs:gap-7 md:flex-row">
+              <div
+                className={`${formError ? "mt-9" : "my-9"} flex flex-col items-center justify-between xs:gap-7 md:flex-row`}
+              >
                 {fields.map((field) => (
                   <div
                     key={field.id}
@@ -195,12 +181,13 @@ const SignUp = (props: {}) => {
                       ref={(el) => {
                         refs.current[field.id] = el;
                       }}
-                      required
                     />
                   </div>
                 ))}
-                {formError && <div className="text-red-500">{formError}</div>}
               </div>
+              {formError && !isModalOpen && (
+                <div className="mb-9 text-red-500">{formError}</div>
+              )}
               <div className="mt-9 flex w-full flex-col-reverse justify-between gap-3 self-start md:mt-0 md:flex-row md:items-center md:px-0">
                 <div className="flex gap-2 xs:text-sm md:gap-3">
                   <input type="checkbox" id="tc" placeholder="t&c" required />I
@@ -247,18 +234,6 @@ const SignUp = (props: {}) => {
                       fill="#1976D2"
                     />
                   </svg>
-                  {/* <svg
-                  width="32"
-                  height="32"
-                  viewBox="0 0 32 32"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  >
-                  <path
-                  d="M16.0013 2.7207C8.66797 2.7207 2.66797 8.70737 2.66797 16.0807C2.66797 22.7474 7.54797 28.2807 13.9213 29.2807V19.9474H10.5346V16.0807H13.9213V13.134C13.9213 9.78737 15.908 7.94737 18.9613 7.94737C20.4146 7.94737 21.9346 8.2007 21.9346 8.2007V11.494H20.2546C18.6013 11.494 18.0813 12.5207 18.0813 13.574V16.0807H21.788L21.188 19.9474H18.0813V29.2807C21.2232 28.7845 24.0842 27.1814 26.1479 24.7608C28.2115 22.3402 29.3418 19.2616 29.3346 16.0807C29.3346 8.70737 23.3346 2.7207 16.0013 2.7207Z"
-                    fill="#1877F2"
-                  />
-                </svg> */}
                 </div>
                 <div className="flex min-w-[56vw] flex-col justify-between gap-9 md:flex-row">
                   <div className="mt-5 flex gap-2 xs:text-sm">
@@ -287,10 +262,9 @@ const SignUp = (props: {}) => {
           mobileNo={basicDetails.mobile}
           notYouRedirect={toggleModal}
           verifyFunction={handleVerify}
-          onChangeFunction={(value) => {
-            setBasicDetails({ ...basicDetails, otp: Number(value) });
-            console.log("OTP:", basicDetails.otp);
-          }}
+          onChangeFunction={(value) =>
+            setBasicDetails({ ...basicDetails, otp: Number(value) })
+          }
           resendOtpRedirect="/signup"
           renderError={renderError}
         />

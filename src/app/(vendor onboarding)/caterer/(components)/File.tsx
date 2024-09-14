@@ -17,18 +17,24 @@ const FileDisplay: React.FC<FileDisplayProps> = ({ file }) => {
   };
 
   return (
-    <div className="flex items-center space-x-2 rounded-lg border p-2">
-      <FiFile className="text-blue-500" /> {/* File icon */}
-      <div className="flex flex-col">
-        {/* Check if file and file.name exist before rendering */}
-        <span className="font-semibold">
-          {file?.name || "No file selected"}
-        </span>
-        {/* Check if file.size exists before formatting and rendering */}
-        {file?.size !== undefined && (
-          <span className="text-sm text-gray-500">{formatSize(file.size)}</span>
-        )}
+    <div className="flex items-center justify-between space-x-2 rounded-3xl border p-2 px-6">
+      <div className="flex items-center gap-4">
+        <img src={"/selection/fileicon.svg"} className="h-8 w-8" />
+        {/* File icon */}
+        <div className="flex flex-col">
+          {/* Check if file and file.name exist before rendering */}
+          <span className="font-semibold">
+            {file?.name || "No file selected"}
+          </span>
+          {/* Check if file.size exists before formatting and rendering */}
+          {file?.size !== undefined && (
+            <span className="text-sm text-gray-500">
+              {formatSize(file.size)}
+            </span>
+          )}
+        </div>
       </div>
+      <img src={"/selection/vector.svg"} className="h-8 w-8" />
     </div>
   );
 };

@@ -39,7 +39,7 @@ type PricingEntry = {
   maxRate: string;
 };
 interface Package {
-  type: string;
+  package_name: string;
   priceRange: [number, number];
 }
 
@@ -47,14 +47,21 @@ type FormState = {
   // Page-specific states
   // Page 1
   businessName: string;
+  cateringName: string;
+  menu: string | File;
+  preSetMenu: string;
+  customizableMenu: boolean;
   // Page 6
+  portfolio: string | File;
   tastingSessions: boolean;
   businessLicenses: boolean;
-  foodSafety: boolean;
+  foodSafety: boolean | File;
   cateringServiceImages: string | File;
   videoEvent: string | File;
   termsAndConditions: string | File;
   cancellationPolicy: string | File;
+  minOrderReq: string;
+  AdvBooking: string;
 };
 
 type PagePreviewProps = {
@@ -66,6 +73,8 @@ type PagePreviewProps = {
   setRegionalSpecialties: React.Dispatch<React.SetStateAction<string[]>>;
   serviceStyles: string[];
   setServiceStyles: React.Dispatch<React.SetStateAction<string[]>>;
+  servingCapacity: string[];
+  setServingCapacity: React.Dispatch<React.SetStateAction<string[]>>;
 
   selectedAppetizers: string[];
   setSelectedAppetizers: React.Dispatch<React.SetStateAction<string[]>>;
@@ -86,8 +95,8 @@ type PagePreviewProps = {
   selectedEquipmentsProvided: string[];
   setSelectedEquipmentsProvided: React.Dispatch<React.SetStateAction<string[]>>;
 
-  hourlyPackages: Package[];
-  setHourlyPackages: React.Dispatch<React.SetStateAction<Package[]>>;
+  // hourlyPackages: Package[];
+  // setHourlyPackages: React.Dispatch<React.SetStateAction<Package[]>>;
   dailyPackages: Package[];
   setDailyPackages: React.Dispatch<React.SetStateAction<Package[]>>;
   seasonalPackages: Package[];
@@ -101,9 +110,17 @@ type PagePreviewProps = {
   addPackage: (
     setPackages: React.Dispatch<React.SetStateAction<Package[]>>,
   ) => void;
+
+  advancePayment: number;
+  handleContinue: () => void;
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 };
 
 function Preview({
+  handleContinue,
+  setCurrentPage,
+  advancePayment,
+
   formState,
   updateFormState,
   cuisineSpecialties,
@@ -112,6 +129,8 @@ function Preview({
   setRegionalSpecialties,
   serviceStyles,
   setServiceStyles,
+  servingCapacity,
+  setServingCapacity,
 
   selectedAppetizers,
   setSelectedAppetizers,
@@ -132,8 +151,6 @@ function Preview({
   selectedEquipmentsProvided,
   setSelectedEquipmentsProvided,
 
-  hourlyPackages,
-  setHourlyPackages,
   dailyPackages,
   setDailyPackages,
   seasonalPackages,
@@ -142,7 +159,7 @@ function Preview({
   addPackage,
 }: PagePreviewProps) {
   return (
-    <div className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll rounded-xl bg-white p-3 xs:w-[100%] xs:min-w-[90%] md:p-6">
+    <div className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll rounded-xl bg-white p-6 scrollbar-hide xs:w-[95%] xs:min-w-[90%] md:p-6">
       <span className="my-5 text-3xl font-semibold">
         {formState.businessName} / Caterers
       </span>
@@ -150,22 +167,35 @@ function Preview({
       <div className="flex w-[100%] justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
         Basic Details
         <div className="align-center flex justify-center p-1">
-          <button>
+          <button onClick={() => setCurrentPage(1)}>
             <EditIcon size={32} />
           </button>
         </div>
       </div>
       <div className="w-full">
-        <div className="m-6 mt-4 flex flex-col">
-          <span className="text-xl">Cuisine Speciliaty</span>
+        <div className="m-6 mt-4 flex flex-col gap-1">
+          <span className="text-xl font-semibold">Catering Service Name</span>
+          <span className="text-lg font-semibold">
+            {formState.cateringName}
+          </span>
+        </div>
+        <div className="m-6 mt-4 flex flex-col gap-1">
+          <span className="text-xl font-semibold">Manager Name (POC)</span>
+          <span className="text-lg font-semibold">
+            {formState.businessName}
+          </span>
+        </div>
+
+        <div className="m-6 mt-4 flex flex-col gap-1">
+          <span className="text-xl font-semibold">Cuisine Speciliaty</span>
           <Appetizers
             appetizers={cuisineSpecialties}
             selectedAppetizers={cuisineSpecialties}
             setSelectedAppetizers={setCuisineSpecialties}
           />
         </div>
-        <div className="m-6 mt-4 flex flex-col">
-          <span className="text-xl">Regional Specialties</span>
+        <div className="m-6 mt-4 flex flex-col gap-1">
+          <span className="text-xl font-semibold">Regional Specialties</span>
           <Appetizers
             appetizers={regionalSpecialties}
             selectedAppetizers={regionalSpecialties}
@@ -173,8 +203,8 @@ function Preview({
           />
         </div>
 
-        <div className="m-6 mt-4 flex flex-col">
-          <span className="text-xl">Service Styles Offered</span>
+        <div className="m-6 mt-4 flex flex-col gap-1">
+          <span className="text-xl font-semibold">Service Styles Offered</span>
           <Appetizers
             appetizers={serviceStyles}
             selectedAppetizers={serviceStyles}
@@ -185,14 +215,26 @@ function Preview({
       <div className="flex w-[100%] justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
         Menu Details
         <div className="align-center flex justify-center p-1">
-          <button>
+          <button onClick={() => setCurrentPage(2)}>
             <EditIcon size={32} />
           </button>
         </div>
       </div>
       <div className="w-full">
+        <div className="mb-2 flex w-1/2 flex-col px-4">
+          <span className="text-xl font-semibold">Uploaded Menu</span>
+
+          <span className="font-semibold">
+            {typeof formState.menu === "string" ? (
+              formState.menu
+            ) : (
+              <File file={formState.menu} />
+            )}
+          </span>
+        </div>
+
         <div className="m-6 mt-4 flex flex-col">
-          <span className="text-xl">Appetizers</span>
+          <span className="text-xl font-semibold">Appetizers</span>
           <Appetizers
             // field={'_appetizers'}
             appetizers={selectedAppetizers}
@@ -202,7 +244,7 @@ function Preview({
         </div>
 
         <div className="m-6 mt-4 flex flex-col">
-          <span className="text-xl">Beverages</span>
+          <span className="text-xl font-semibold">Beverages</span>
           <Appetizers
             // field={'_beverages'}
             appetizers={selectedBeverages}
@@ -211,7 +253,7 @@ function Preview({
           />
         </div>
         <div className="m-6 mt-4 flex flex-col">
-          <span className="text-xl">Main Courses</span>
+          <span className="text-xl font-semibold">Main Courses</span>
           <Appetizers
             //  field={'_mainCourses'}
             appetizers={selectedMainCourses}
@@ -220,7 +262,7 @@ function Preview({
           />
         </div>
         <div className="m-6 mt-4 flex flex-col">
-          <span className="text-xl">Dietary Options</span>
+          <span className="text-xl font-semibold">Dietary Options</span>
           <Appetizers
             // field={'_dietaryOptions'}
             appetizers={selectedDietaryOptions}
@@ -228,18 +270,30 @@ function Preview({
             setSelectedAppetizers={setSelectedDietaryOptions}
           />
         </div>
+        <div className="m-6 mt-4 flex flex-col gap-1">
+          <span className="text-xl font-semibold">Pre-Set Menu</span>
+          <p className="whitespace-normal break-words text-lg font-semibold">
+            {formState.preSetMenu}
+          </p>
+        </div>
+        <div className="m-6 mt-4 flex flex-col gap-1">
+          <span className="text-xl font-semibold">Customizable</span>
+          <span className="text-lg font-semibold">
+            {formState.customizableMenu ? "yes" : "no"}
+          </span>
+        </div>
       </div>
       <div className="flex w-[100%] justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
         Event Details
         <div className="align-center flex justify-center p-1">
-          <button>
+          <button onClick={() => setCurrentPage(3)}>
             <EditIcon size={32} />
           </button>
         </div>
       </div>
       <div className="w-full">
         <div className="m-6 mt-4 flex flex-col">
-          <span className="text-xl">Event Options</span>
+          <span className="text-xl font-semibold">Event Options</span>
           <Appetizers
             // field={'EventTypes'}
             appetizers={selectedEventTypes}
@@ -248,7 +302,7 @@ function Preview({
           />
         </div>
         <div className="m-6 mt-4 flex flex-col">
-          <span className="text-xl">Additional Services</span>
+          <span className="text-xl font-semibold">Additional Services</span>
           <Appetizers
             // field={'additionalServices'}
             appetizers={selectedAdditionalServices}
@@ -260,14 +314,14 @@ function Preview({
       <div className="flex w-[100%] justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
         Staff & Equipments
         <div className="align-center flex justify-center p-1">
-          <button>
+          <button onClick={() => setCurrentPage(4)}>
             <EditIcon size={32} />
           </button>
         </div>
       </div>
       <div className="w-full">
         <div className="m-6 mt-4 flex flex-col">
-          <span className="text-xl">Staff provides</span>
+          <span className="text-xl font-semibold">Staff provides</span>
           <Appetizers
             // field={'staffProvides'}
             appetizers={selectedStaffProvider}
@@ -277,7 +331,7 @@ function Preview({
         </div>
 
         <div className="m-6 mt-4 flex flex-col">
-          <span className="text-xl">Equipments provided</span>
+          <span className="text-xl font-semibold">Equipments provided</span>
           <Appetizers
             // field={'equipmentsProvided'}
             appetizers={selectedEquipmentsProvided}
@@ -289,40 +343,26 @@ function Preview({
       <div className="flex w-[100%] justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
         Booking & Pricing
         <div className="align-center flex justify-center p-1">
-          <button>
+          <button onClick={() => setCurrentPage(5)}>
             <EditIcon size={32} />
           </button>
         </div>
       </div>
 
-      {hourlyPackages.map((pkg, index) => (
-        <div
-          key={index}
-          className="flex min-w-full flex-col items-start justify-between gap-5 px-4 md:flex-row"
-        >
-          <div className="flex min-w-[40%] flex-col gap-4">
-            <label htmlFor={`hourlyPackageType${index}`}>
-              Minimum Order Requirements
-            </label>
-            <div key={index} className="mb-2 flex flex-col">
-              <span>{pkg.type}</span>
-            </div>
-          </div>
-          <div className="flex h-full min-w-[40%] flex-col items-start justify-center gap-2">
-            <label
-              htmlFor={`hourlyPriceRange${index}`}
-              className="self-start font-bold"
-            >
-              Advance Booking Period
-            </label>
-            <div className="flex w-[80%] flex-row justify-between gap-1">
-              <span className="font-semibold">
-                {pkg.priceRange[0]} - {pkg.priceRange[1]}
-              </span>
-            </div>
+      <div className="flex min-w-full flex-col items-start justify-between gap-5 px-4 md:flex-row">
+        <div className="flex min-w-[40%] flex-col gap-4">
+          <label className="font-bold">Minimum Order Requirements</label>
+          <div className="mb-2 flex flex-col">
+            <span>{formState.minOrderReq}</span>
           </div>
         </div>
-      ))}
+        <div className="flex h-full min-w-[40%] flex-col items-start justify-center gap-2">
+          <label className="self-start font-bold">Advance Booking Period</label>
+          <div className="flex w-[80%] flex-row justify-between gap-1">
+            <span className="font-semibold">{formState.AdvBooking}</span>
+          </div>
+        </div>
+      </div>
 
       <div className="flex min-w-full flex-col items-start justify-between gap-5 px-4 md:flex-row">
         <div className="flex h-full min-w-[40%] flex-col items-start justify-center gap-2">
@@ -334,9 +374,9 @@ function Preview({
             >
               <div className="flex min-w-[40%] flex-col gap-4">
                 <div key={index} className="mb-2 flex flex-col">
-                  <span>{pkg.type}</span>
+                  <span>{pkg?.package_name}</span>
                   <span className="font-semibold">
-                    ₹{pkg.priceRange[0]} - ₹{pkg.priceRange[1]}
+                    ₹{pkg?.priceRange[0]} - ₹{pkg?.priceRange[1]}
                   </span>
                 </div>
               </div>
@@ -353,7 +393,7 @@ function Preview({
             >
               <div className="flex min-w-[40%] flex-col gap-4">
                 <div key={index} className="mb-2 flex flex-col">
-                  <span>{pkg.type}</span>
+                  <span>{pkg?.package_name}</span>
                   <span className="font-semibold">
                     ₹{pkg.priceRange[0]} - ₹{pkg.priceRange[1]}
                   </span>
@@ -367,45 +407,46 @@ function Preview({
       <div className="flex min-w-full flex-col items-start justify-between gap-5 px-4 md:flex-row">
         <div className="flex h-full min-w-[40%] flex-col items-start justify-center gap-2">
           <label className="self-start font-bold">Advance Payment</label>
+          <span className="font-semibold">{advancePayment}%</span>
         </div>
       </div>
 
       <div className="flex w-[100%] justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
         Additional Features
         <div className="align-center flex justify-center p-1">
-          <button>
+          <button onClick={() => setCurrentPage(6)}>
             <EditIcon size={32} />
           </button>
         </div>
       </div>
-      <div className="w-[100%]">
+      <div className="flex w-[100%] flex-col gap-8">
         <div className="flex gap-16 py-2">
           <div className="flex w-1/2 flex-col px-4">
-            <span className="">Tasting sessions</span>
+            <span className="text-xl font-semibold">Tasting sessions</span>
 
             <span className="font-semibold">
               {formState.tastingSessions ? "yes" : "no"}
             </span>
           </div>
           <div className="flex w-1/2 flex-col">
-            <span className="">Buisness Licenses</span>
+            <span className="text-xl font-semibold">Buisness Licenses</span>
             <span className="font-semibold">
               {formState.businessLicenses ? "yes" : "no"}
             </span>
           </div>
         </div>
         <div className="flex w-1/2 flex-col px-4">
-          <span className="">Food Safety Certificate</span>
+          <span className="text-xl font-semibold">Food Safety Certificate</span>
           <span className="font-semibold">
             {formState.foodSafety ? "yes" : "no"}
           </span>
         </div>
       </div>
 
-      <div className="w-[100%]">
+      <div className="flex w-[100%] flex-col gap-10">
         <div className="flex gap-16 py-2">
           <div className="flex w-1/2 flex-col px-4">
-            <span className="">Terms and Condition</span>
+            <span className="text-xl font-semibold">Terms and Condition</span>
 
             <span className="font-semibold">
               {typeof formState.termsAndConditions === "string" ? (
@@ -416,7 +457,7 @@ function Preview({
             </span>
           </div>
           <div className="flex w-1/2 flex-col">
-            <span className="">Cancellation Policy</span>
+            <span className="text-xl font-semibold">Cancellation Policy</span>
             <span className="font-semibold">
               {typeof formState.cancellationPolicy === "string" ? (
                 formState.cancellationPolicy
@@ -427,16 +468,22 @@ function Preview({
           </div>
         </div>
         <div className="flex w-1/2 flex-col px-4">
-          <span className="">Portfolio</span>
+          <span className="text-xl font-semibold">Portfolio</span>
           <span className="font-semibold">
-            {typeof formState.cateringServiceImages === "string" ? (
-              formState.cateringServiceImages
+            {typeof formState.portfolio === "string" ? (
+              formState.portfolio
             ) : (
-              <File file={formState.cateringServiceImages} />
+              <File file={formState.portfolio} />
             )}
           </span>
         </div>
       </div>
+      <button
+        className="flex w-fit items-center justify-center self-end rounded-xl bg-[#2E3192] p-5 text-white xs:text-[4vw] md:text-[2vw] lg:w-[10vw] lg:text-[1vw]"
+        onClick={handleContinue}
+      >
+        Continue
+      </button>
     </div>
   );
 }
