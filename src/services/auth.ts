@@ -1,6 +1,7 @@
 import axios from "axios";
 
 import { businessDetails } from "@/app/(vendor onboarding)/businessDetails/page";
+import { log } from "console";
 
 const authWithGoogle = async () => {
   const cognitoDomain = process.env.NEXT_PUBLIC_COGNITO_DOMAIN;
@@ -25,15 +26,10 @@ const signUp = async (mobile: String) => {
       },
       data: data,
     };
-    console.log(config);
-    const res = await axios(config);
-    console.log(res);
-
-    return { newUser: true };
+    return await axios(config);
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      if (error.response!.status === 409) return { newUser: false };
-      else throw Error(error.message);
+      throw Error(error.message);
     }
   }
 };
@@ -58,13 +54,13 @@ const verifyLoginOtp = async (
   mobile: String,
   code: String,
   session: String,
+  name?: String,
 ) => {
   try {
     const res = await axios.post(
       `${process.env.NEXT_PUBLIC_BASE_URL}/auth/verify-otp-login`,
-      { mobile, code, session },
+      { mobile, code, session, name },
     );
-    console.log(res);
     return res;
   } catch (error) {
     if (axios.isAxiosError(error)) {
