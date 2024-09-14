@@ -3,11 +3,9 @@
 import { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import Router from "next/router";
 import auth from "@/services/auth";
 import OtpModal from "@/components/ui/otp-modal";
 import tajmahal from "/public/tajmahal.png";
-import { set } from "date-fns";
 import jwt from "jsonwebtoken";
 type loginDetails = {
   mobile: string;
