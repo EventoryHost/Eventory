@@ -85,6 +85,8 @@ const Page2: React.FC<Page2Props> = ({
                     onChange={() =>
                       updateFormState({ propthemesOffered: true })
                     }
+                    className="h-4 w-4 accent-[#2E3192]"
+
                   />
                   <p>No</p>
                   <input
@@ -93,6 +95,8 @@ const Page2: React.FC<Page2Props> = ({
                     onChange={() =>
                       updateFormState({ propthemesOffered: false })
                     }
+                    className="h-4 w-4 accent-[#2E3192]"
+
                   />
                 </div>
               </div>
@@ -106,10 +110,14 @@ const Page2: React.FC<Page2Props> = ({
                     type="radio"
                     checked={adobtThemes === true}
                     onChange={() => updateFormState({ adobtThemes: true })}
+                    className="h-4 w-4 accent-[#2E3192]"
+
                   />
                   <p>No</p>
                   <input
                     type="radio"
+                    className="h-4 w-4 accent-[#2E3192]"
+
                     checked={adobtThemes === false}
                     onChange={() => updateFormState({ adobtThemes: false })}
                   />
@@ -128,12 +136,16 @@ const Page2: React.FC<Page2Props> = ({
                       type="radio"
                       checked={adobtThemes === true}
                       onChange={() => updateFormState({ adobtThemes: true })}
+                      className="h-4 w-4 accent-[#2E3192]"
+
                     />
                     <p>No</p>
                     <input
                       type="radio"
                       checked={adobtThemes === false}
                       onChange={() => updateFormState({ adobtThemes: false })}
+                      className="h-4 w-4 accent-[#2E3192]"
+
                     />
                   </div>
                 </div>
@@ -149,6 +161,8 @@ const Page2: React.FC<Page2Props> = ({
                       onChange={() =>
                         updateFormState({ customizationsThemes: true })
                       }
+                      className="h-4 w-4 accent-[#2E3192]"
+
                     />
                     <p>No</p>
                     <input
@@ -157,6 +171,8 @@ const Page2: React.FC<Page2Props> = ({
                       onChange={() =>
                         updateFormState({ customizationsThemes: false })
                       }
+                      className="h-4 w-4 accent-[#2E3192]"
+
                     />
                   </div>
                 </div>

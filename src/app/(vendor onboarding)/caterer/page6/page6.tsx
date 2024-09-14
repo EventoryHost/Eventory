@@ -19,7 +19,7 @@ const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
           <h1 className="text-3xl font-semibold">Additional Details</h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
-              <div className="flex min-w-[40%] flex-col gap-7">
+              <div className="flex min-w-[45%] flex-col gap-7">
                 <p className="text-lg">Tasting Sessions</p>
                 <div className="flex gap-9">
                   <div className="flex min-w-[40%] gap-4">
@@ -32,6 +32,8 @@ const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
                       onChange={() =>
                         updateFormState({ tastingSessions: true })
                       }
+                      className="h-4 w-4 accent-[#2E3192]"
+
                     />
                     <label htmlFor="tastingSessionsYes">Yes</label>
                   </div>
@@ -45,12 +47,14 @@ const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
                       onChange={() =>
                         updateFormState({ tastingSessions: false })
                       }
+                      className="h-4 w-4 accent-[#2E3192]"
+
                     />
                     <label htmlFor="tastingSessionsNo">No</label>
                   </div>
                 </div>
               </div>
-              <div className="flex min-w-[40%] flex-col gap-7">
+              <div className="flex min-w-[45%] flex-col gap-7">
                 <p className="text-lg">Business Licenses</p>
                 <div className="flex gap-9">
                   <div className="flex min-w-[40%] gap-4">
@@ -63,6 +67,8 @@ const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
                       onChange={() =>
                         updateFormState({ businessLicenses: true })
                       }
+                      className="h-4 w-4 accent-[#2E3192]"
+
                     />
                     <label htmlFor="businessLicenseYes">Yes</label>
                   </div>
@@ -76,6 +82,8 @@ const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
                       onChange={() =>
                         updateFormState({ businessLicenses: false })
                       }
+                      className="h-4 w-4 accent-[#2E3192]"
+
                     />
                     <label htmlFor="businessLicenseNo">No</label>
                   </div>
@@ -84,10 +92,10 @@ const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
             </div>
 
             <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
-              <div className="flex flex-col">
+              <div className="flex w-[45%] flex-col">
                 <p className="text-lg">Food Safety Certificates</p>
                 <div className="flex">
-                  <div className="flex min-w-[40%] gap-4">
+                  <div className="flex min-w-[50%] gap-4">
                     <input
                       id="foodSafetyYes"
                       type="radio"
@@ -95,6 +103,8 @@ const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
                       value="true"
                       checked={!!foodSafety}
                       onChange={() => updateFormState({ foodSafety: true })}
+                      className="h-4 w-4 accent-[#2E3192]"
+
                     />
                     <label htmlFor="foodSafetyYes">Yes</label>
                   </div>
@@ -106,6 +116,8 @@ const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
                       value="false"
                       checked={!foodSafety}
                       onChange={() => updateFormState({ foodSafety: false })}
+                      className="h-4 w-4 accent-[#2E3192]"
+
                     />
                     <label htmlFor="foodSafetyNo">No</label>
                   </div>
@@ -117,7 +129,7 @@ const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
                   }}
                   acceptedFileTypes="image/png, .pdf, image/jpg"
                 />
-                <div className="mt-6 flex min-w-[40%] flex-col items-start justify-center">
+                <div className="mt-6 flex min-w-[50%] flex-col items-start justify-center">
                   <p className="text-lg">Terms & Conditions</p>
                   <FileInput
                     label="tnc"
@@ -128,16 +140,15 @@ const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
                   />
                   <p className="mt-5 text-lg">or Provide Via</p>
                   <textarea
-                    cols={30}
                     rows={7}
                     placeholder="Enter your venue details"
                     onChange={(e) =>
                       updateFormState({ termsAndConditions: e.target.value })
                     }
-                    className="mt-5 resize-none rounded-xl border-2 border-gray-300 p-3"
+                    className="mt-5 w-full rounded-xl border-2 border-gray-300 p-3"
                   ></textarea>
                 </div>
-                <div className="mt-6 flex min-w-[40%] flex-col items-start justify-center">
+                <div className="mt-6 flex min-w-[45%] flex-col items-start justify-center">
                   <p className="text-lg">Client Testimonials</p>
                   <FileInput
                     label="testimonials"
@@ -154,11 +165,11 @@ const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
                     onChange={(e) =>
                       updateFormState({ testimonials: e.target.value })
                     }
-                    className="mt-5 resize-none rounded-xl border-2 border-gray-300 p-3"
+                    className="mt-5 w-full rounded-xl border-2 border-gray-300"
                   ></textarea>
                 </div>
               </div>
-              <div className="flex min-w-[40%] flex-col gap-7">
+              <div className="flex min-w-[45%] flex-col gap-7">
                 <div className="flex flex-col items-start justify-center">
                   <p className="text-lg">Portfolio</p>
                   <FileInput
@@ -186,7 +197,7 @@ const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
                     onChange={(e) =>
                       updateFormState({ cancellationPolicy: e.target.value })
                     }
-                    className="mt-5 resize-none rounded-xl border-2 border-gray-300 p-3"
+                    className="mt-5 w-full rounded-xl border-2 border-gray-300 p-3"
                   ></textarea>
                 </div>
               </div>
