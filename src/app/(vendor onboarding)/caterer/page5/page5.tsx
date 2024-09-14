@@ -2,15 +2,16 @@
 
 import Checkbox from "@mui/material/Checkbox";
 import Percentage from "../../invitation/(components)/percentage";
+import { FormState } from "../page";
 
 interface Package {
-  type: string;
+  package_name: string;
   priceRange: [number, number];
 }
 
 interface PageProps {
-  hourlyPackages: Package[];
-  setHourlyPackages: React.Dispatch<React.SetStateAction<Package[]>>;
+  formState: FormState;
+  updateFormState: (newState: Partial<FormState>) => void;
   dailyPackages: Package[];
   setDailyPackages: React.Dispatch<React.SetStateAction<Package[]>>;
   seasonalPackages: Package[];
@@ -30,8 +31,8 @@ interface PageProps {
 }
 
 const Page5: React.FC<PageProps> = ({
-  hourlyPackages,
-  setHourlyPackages,
+  formState,
+  updateFormState,
   dailyPackages,
   setDailyPackages,
   seasonalPackages,
@@ -72,7 +73,6 @@ const Page5: React.FC<PageProps> = ({
 
   const handleSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    console.log("Hourly Packages:", hourlyPackages);
     console.log("Daily Packages:", dailyPackages);
     console.log("Seasonal Packages:", seasonalPackages);
   };
@@ -87,59 +87,44 @@ const Page5: React.FC<PageProps> = ({
         <div className="flex w-[100%] flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
           <h1 className="text-3xl font-semibold">Basic Details</h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
-            {hourlyPackages.map((pkg, index) => (
               <div
-                key={index}
+                
                 className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row"
               >
                 <div className="flex min-w-[40%] flex-col gap-4">
-                  <label htmlFor={`hourlyPackageType${index}`} className="self-start font-semibold text-lg"
+                  <label className="self-start font-semibold text-lg"
                   >
                     Minimum Order Requirements
                   </label>
                   <input
-                    id={`hourlyPackageType${index}`}
+                    id={``}
                     type="text"
                     className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
-                    placeholder="Type of package , Eg: Day time"
-                    value={pkg.type}
+                    placeholder="Minimum guests required"
                     onChange={(e) =>
-                      handlePackageChange(
-                        setHourlyPackages,
-                        index,
-                        "type",
-                        e.target.value,
-                      )
+                      updateFormState({  minOrderReq:e.target.value })
                     }
                   />
                 </div>
                 <div className="flex h-full min-w-[40%] flex-col items-start justify-center gap-6">
                   <label
-                    htmlFor={`hourlyPriceRange${index}`}
                     className="self-start font-semibold text-lg"
                   >
                     Advance Booking Period
                   </label>
                   <div className="flex w-[80%] flex-row justify-between gap-4">
                     <input
-                      id={`hourlyMaxPrice${index}`}
                       type="number"
                       className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
-                      placeholder="Max price"
-                      value={pkg.priceRange[1] === 0 ? "" : pkg.priceRange[1]}
+                      placeholder="Minimum booking notice (e.g. number of days) "
                       onChange={(e) =>
-                        handleMaxPriceChange(
-                          setHourlyPackages,
-                          hourlyPackages,
-                          index,
-                          e.target.value,
-                        )
+                        updateFormState({AdvBooking:e.target.value})
                       }
                     />
                   </div>
                 </div>
               </div>
-            ))}
+           
 
           </div>
         </div>
@@ -172,7 +157,7 @@ const Page5: React.FC<PageProps> = ({
                     type="text"
                     className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                     placeholder="Type of package , Eg: Day time"
-                    value={pkg.type}
+                    value={pkg.package_name}
                     onChange={(e) =>
                       handlePackageChange(
                         setDailyPackages,
@@ -275,7 +260,7 @@ const Page5: React.FC<PageProps> = ({
                     type="text"
                     className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                     placeholder="Type of package , Eg: Day time"
-                    value={pkg.type}
+                    value={pkg.package_name}
                     onChange={(e) =>
                       handlePackageChange(
                         setSeasonalPackages,

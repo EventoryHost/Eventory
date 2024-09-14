@@ -39,7 +39,7 @@ type PricingEntry = {
   maxRate: string;
 };
 interface Package {
-  type: string;
+  package_name: string;
   priceRange: [number, number];
 }
 
@@ -60,6 +60,8 @@ type FormState = {
   videoEvent: string | File;
   termsAndConditions: string | File;
   cancellationPolicy: string | File;
+  minOrderReq: string;
+  AdvBooking: string;
 };
 
 type PagePreviewProps = {
@@ -93,8 +95,8 @@ type PagePreviewProps = {
   selectedEquipmentsProvided: string[];
   setSelectedEquipmentsProvided: React.Dispatch<React.SetStateAction<string[]>>;
 
-  hourlyPackages: Package[];
-  setHourlyPackages: React.Dispatch<React.SetStateAction<Package[]>>;
+  // hourlyPackages: Package[];
+  // setHourlyPackages: React.Dispatch<React.SetStateAction<Package[]>>;
   dailyPackages: Package[];
   setDailyPackages: React.Dispatch<React.SetStateAction<Package[]>>;
   seasonalPackages: Package[];
@@ -147,8 +149,7 @@ function Preview({
   selectedEquipmentsProvided,
   setSelectedEquipmentsProvided,
 
-  hourlyPackages,
-  setHourlyPackages,
+  
   dailyPackages,
   setDailyPackages,
   seasonalPackages,
@@ -339,34 +340,30 @@ function Preview({
         </div>
       </div>
 
-      {hourlyPackages.map((pkg, index) => (
         <div
-          key={index}
           className="flex min-w-full flex-col items-start justify-between gap-5 px-4 md:flex-row"
         >
           <div className="flex min-w-[40%] flex-col gap-4">
-            <label htmlFor={`hourlyPackageType${index}`} className="font-bold">
+            <label  className="font-bold">
               Minimum Order Requirements
             </label>
-            <div key={index} className="mb-2 flex flex-col">
-              <span>{pkg.type}</span>
+            <div className="mb-2 flex flex-col">
+              <span>{formState.minOrderReq}</span>
             </div>
           </div>
           <div className="flex h-full min-w-[40%] flex-col items-start justify-center gap-2">
             <label
-              htmlFor={`hourlyPriceRange${index}`}
               className="self-start font-bold"
             >
               Advance Booking Period
             </label>
             <div className="flex w-[80%] flex-row justify-between gap-1">
               <span className="font-semibold">
-                {pkg.priceRange[0]} - {pkg.priceRange[1]}
+                {formState.AdvBooking}
               </span>
             </div>
           </div>
         </div>
-      ))}
 
       <div className="flex min-w-full flex-col items-start justify-between gap-5 px-4 md:flex-row">
         <div className="flex h-full min-w-[40%] flex-col items-start justify-center gap-2">
@@ -378,9 +375,9 @@ function Preview({
             >
               <div className="flex min-w-[40%] flex-col gap-4">
                 <div key={index} className="mb-2 flex flex-col">
-                  <span>{pkg.type}</span>
+                  <span>{pkg?.package_name}</span>
                   <span className="font-semibold">
-                    ₹{pkg.priceRange[0]} - ₹{pkg.priceRange[1]}
+                    ₹{pkg?.priceRange[0]} - ₹{pkg?.priceRange[1]}
                   </span>
                 </div>
               </div>
@@ -397,7 +394,7 @@ function Preview({
             >
               <div className="flex min-w-[40%] flex-col gap-4">
                 <div key={index} className="mb-2 flex flex-col">
-                  <span>{pkg.type}</span>
+                  <span>{pkg?.package_name}</span>
                   <span className="font-semibold">
                     ₹{pkg.priceRange[0]} - ₹{pkg.priceRange[1]}
                   </span>
