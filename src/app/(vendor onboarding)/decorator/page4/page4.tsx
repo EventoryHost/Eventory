@@ -58,7 +58,7 @@ const Page4: React.FC<Page4Props> = ({
                   />
                   <p>No</p>
                   <input
-                    type="radio" 
+                    type="radio"
                     className="h-4 w-4 accent-[#2E3192]"
                     checked={freeInitialConsultation === false}
                     onChange={() =>
