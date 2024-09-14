@@ -1,13 +1,7 @@
 import React from "react";
 
-type Props = {};
+function page() {
+  return <div>coming soon</div>;
+}
 
-const Coming = (props: Props) => {
-  return (
-    <div className="flex h-screen w-screen items-center justify-center text-3xl">
-      Coming Soon
-    </div>
-  );
-};
-
-export default Coming;
+export default page;
