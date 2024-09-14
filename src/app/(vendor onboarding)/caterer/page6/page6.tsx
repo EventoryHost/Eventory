@@ -33,7 +33,6 @@ const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
                         updateFormState({ tastingSessions: true })
                       }
                       className="h-4 w-4 accent-[#2E3192]"
-
                     />
                     <label htmlFor="tastingSessionsYes">Yes</label>
                   </div>
@@ -48,7 +47,6 @@ const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
                         updateFormState({ tastingSessions: false })
                       }
                       className="h-4 w-4 accent-[#2E3192]"
-
                     />
                     <label htmlFor="tastingSessionsNo">No</label>
                   </div>
@@ -68,7 +66,6 @@ const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
                         updateFormState({ businessLicenses: true })
                       }
                       className="h-4 w-4 accent-[#2E3192]"
-
                     />
                     <label htmlFor="businessLicenseYes">Yes</label>
                   </div>
@@ -83,7 +80,6 @@ const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
                         updateFormState({ businessLicenses: false })
                       }
                       className="h-4 w-4 accent-[#2E3192]"
-
                     />
                     <label htmlFor="businessLicenseNo">No</label>
                   </div>
@@ -104,7 +100,6 @@ const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
                       checked={!!foodSafety}
                       onChange={() => updateFormState({ foodSafety: true })}
                       className="h-4 w-4 accent-[#2E3192]"
-
                     />
                     <label htmlFor="foodSafetyYes">Yes</label>
                   </div>
@@ -117,7 +112,6 @@ const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
                       checked={!foodSafety}
                       onChange={() => updateFormState({ foodSafety: false })}
                       className="h-4 w-4 accent-[#2E3192]"
-
                     />
                     <label htmlFor="foodSafetyNo">No</label>
                   </div>

@@ -50,7 +50,6 @@ const Page4: React.FC<Page4Props> = ({
                   <p>Yes</p>
                   <input
                     className="h-4 w-4 accent-[#2E3192]"
-
                     checked={freeInitialConsultation === true}
                     onChange={() =>
                       updateFormState({ freeInitialConsultation: true })
@@ -60,7 +59,6 @@ const Page4: React.FC<Page4Props> = ({
                   <input
                     type="radio" 
                     className="h-4 w-4 accent-[#2E3192]"
-
                     checked={freeInitialConsultation === false}
                     onChange={() =>
                       updateFormState({ freeInitialConsultation: false })
@@ -75,15 +73,15 @@ const Page4: React.FC<Page4Props> = ({
                 <div className="flex flex-row items-center justify-start gap-2">
                   <p>Yes</p>
                   <input
-                    type="radio" className="h-4 w-4 accent-[#2E3192]"
-
+                    type="radio"
+                    className="h-4 w-4 accent-[#2E3192]"
                     checked={revisionPolicy === true}
                     onChange={() => updateFormState({ revisionPolicy: true })}
                   />
                   <p>No</p>
                   <input
-                    type="radio" className="h-4 w-4 accent-[#2E3192]"
-
+                    type="radio"
+                    className="h-4 w-4 accent-[#2E3192]"
                     checked={revisionPolicy === false}
                     onChange={() => updateFormState({ revisionPolicy: false })}
                   />
@@ -99,8 +97,8 @@ const Page4: React.FC<Page4Props> = ({
                   <div className="flex flex-row items-center justify-start gap-2">
                     <p>Yes</p>
                     <input
-                      type="radio" className="h-4 w-4 accent-[#2E3192]"
-
+                      type="radio"
+                      className="h-4 w-4 accent-[#2E3192]"
                       checked={writtenthemeProposal === true}
                       onChange={() =>
                         updateFormState({ writtenthemeProposal: true })
@@ -108,8 +106,8 @@ const Page4: React.FC<Page4Props> = ({
                     />
                     <p>No</p>
                     <input
-                      type="radio" className="h-4 w-4 accent-[#2E3192]"
-
+                      type="radio"
+                      className="h-4 w-4 accent-[#2E3192]"
                       checked={writtenthemeProposal === false}
                       onChange={() =>
                         updateFormState({ writtenthemeProposal: false })
@@ -124,8 +122,8 @@ const Page4: React.FC<Page4Props> = ({
                   <div className="flex flex-row items-center justify-start gap-2">
                     <p>Yes</p>
                     <input
-                      type="radio" className="h-4 w-4 accent-[#2E3192]"
-
+                      type="radio"
+                      className="h-4 w-4 accent-[#2E3192]"
                       checked={setup_installation === true}
                       onChange={() =>
                         updateFormState({ setup_installation: true })
@@ -133,8 +131,8 @@ const Page4: React.FC<Page4Props> = ({
                     />
                     <p>No</p>
                     <input
-                      type="radio" className="h-4 w-4 accent-[#2E3192]"
-
+                      type="radio"
+                      className="h-4 w-4 accent-[#2E3192]"
                       checked={setup_installation === false}
                       onChange={() =>
                         updateFormState({ setup_installation: false })
