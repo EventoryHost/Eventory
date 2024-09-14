@@ -117,7 +117,7 @@ const Page1: React.FC<Page1Props> = ({
   };
 
   return (
-    <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden lg:flex-row">
+    <div className="flex h-full w-full flex-col overflow-hidden lg:flex-row">
       <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
         <div className="flex items-center justify-start gap-1 xs:self-start xs:pl-5 md:px-11 lg:mt-[2rem]">
           <button className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2E3192] p-5 text-white">
@@ -151,7 +151,7 @@ const Page1: React.FC<Page1Props> = ({
             registration process.
           </p>
         </div>
-        <div className="relative h-[10rem] lg:w-full">
+        <div className="relative  lg:w-full">
           <img
             src={"/tajmahal.png"}
             alt=""
@@ -159,7 +159,7 @@ const Page1: React.FC<Page1Props> = ({
           />
         </div>
       </div>
-      <div className="scroll-touch flex max-h-[calc(100vh-5.2rem)] min-w-[70%] flex-col items-center gap-9 overflow-y-scroll bg-[#F7F6F9] p-2 md:p-[1rem]">
+      <div className="scroll-touch flex max-h-[calc(100vh-5rem)] min-w-[70%] flex-col items-center gap-9 overflow-y-scroll bg-[#F7F6F9] p-2 md:p-[1rem]">
         <div className="flex flex-col gap-9 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
           <div className="flex flex-col items-start justify-center gap-9 px-9 xs:pl-5 md:px-11 lg:p-8">
             <h1 className="text-3xl font-bold md:text-4xl lg:text-5xl">

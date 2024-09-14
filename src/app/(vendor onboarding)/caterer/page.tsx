@@ -27,15 +27,15 @@ export interface FormState {
   businessName: string;
 
   menu: string | File;
-  preSetMenu:string;
-  customizableMenu:boolean;
+  preSetMenu: string;
+  customizableMenu: boolean;
 
   // Page 6
   portfolio: string | File;
   testimonials: string | File;
   tastingSessions: boolean;
   businessLicenses: boolean;
-  foodSafety: boolean|File;
+  foodSafety: boolean | File;
   cateringServiceImages: string | File;
   videoEvent: string | File;
   termsAndConditions: string | File;
@@ -48,9 +48,9 @@ const Caterer = () => {
   const [formState, setFormState] = useState<FormState>({
     cateringName: "",
     businessName: "",
-    menu:'',
-    preSetMenu:'',
-    customizableMenu:false,
+    menu: '',
+    preSetMenu: '',
+    customizableMenu: false,
     tastingSessions: false,
     businessLicenses: false,
     foodSafety: false,
@@ -58,8 +58,8 @@ const Caterer = () => {
     videoEvent: "",
     termsAndConditions: "",
     cancellationPolicy: "",
-    testimonials:"",
-    portfolio:""
+    testimonials: "",
+    portfolio: ""
   });
 
   function updateFormState(newState: Partial<FormState>) {
@@ -152,8 +152,8 @@ const Caterer = () => {
       cateringName: formState.cateringName,
       BusinessName: formState.businessName,
       menu: formState.menu,
-      preSetMenu:formState.preSetMenu,
-      customizableMenu:formState.customizableMenu,
+      preSetMenu: formState.preSetMenu,
+      customizableMenu: formState.customizableMenu,
       servingCapacity,
       cuisineSpecialties,
       regionalSpecialties,
@@ -177,8 +177,8 @@ const Caterer = () => {
       TermsAndConditions: formState.termsAndConditions,
       CancellationPolicy: formState.cancellationPolicy,
       advancePayment,
-      portfolio:formState.portfolio,
-      testimonials:formState.testimonials
+      portfolio: formState.portfolio,
+      testimonials: formState.testimonials
     });
   };
 
@@ -194,7 +194,7 @@ const Caterer = () => {
     regionalSpecialties.forEach((item, index) => {
       formData.append(`regional_specialities[${index}]`, item);
     });
-    
+
     serviceStyles.forEach((item, index) => {
       formData.append(`service_style_offered[${index}]`, item);
     });
@@ -236,9 +236,9 @@ const Caterer = () => {
     seasonalPackages.forEach((item, index) => {
       formData.append(`rates[seasonal][${index}]`, JSON.stringify(item));
     });
-    
+
     formData.append("deposit_required", advancePayment.toString());
-    formData.append("portfolio",formState.portfolio);
+    formData.append("portfolio", formState.portfolio);
     formData.append("tastingSessions", formState.tastingSessions.toString());
     formData.append("businessLicenses", formState.businessLicenses.toString());
     formData.append("foodSafety", formState.foodSafety.toString());
@@ -287,7 +287,7 @@ const Caterer = () => {
       case 2:
         return (
           <Page2
-          formState={formState}
+            formState={formState}
             updateFormState={updateFormState}
             veg={veg}
             setVeg={setVeg}
@@ -334,7 +334,7 @@ const Caterer = () => {
       case 5:
         return (
           <Page5
-          advancePayment={advancePayment}
+            advancePayment={advancePayment}
             setAdvancePayment={setAdvancePayment}
             hourlyPackages={hourlyPackages}
             setHourlyPackages={setHourlyPackages}
@@ -363,7 +363,7 @@ const Caterer = () => {
           />
         );
 
-      default:
+      case 7:
         return (
           <Page7
             formState={formState}
@@ -404,78 +404,103 @@ const Caterer = () => {
             advancePayment={advancePayment}
 
             handleContinue={() => {
-              
+              setCurrentPage(8)
               handleSubmit();
             }}
           />
         );
+        default:
+          return(
+            <div>thankyou</div>
+          )
     }
   };
 
   return (
     <div className="m-0 flex w-full flex-col overflow-x-hidden lg:h-[calc(100vh-4.2rem)] lg:flex-row">
       <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
-        <div className="flex w-[100%] flex-col gap-5 lg:gap-3">
-          <div className="flex items-center justify-start gap-1 px-3 lg:mt-[2rem]">
-            <button
-              className={`flex h-10 w-10 items-center justify-center rounded-full p-5 ${currentPage >= 1 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-              onClick={() => setCurrentPage(1)}
-            >
-              1
-            </button>
-            <div
-              className={`h-[0.3rem] w-[4rem] rounded-xl ${currentPage > 1 ? "bg-[#2E3192]" : "bg-gray-300"}`}
-            />
-            <button
-              className={`flex h-10 w-10 items-center justify-center rounded-full p-5 ${currentPage >= 2 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-              onClick={() => setCurrentPage(2)}
-            >
-              2
-            </button>
-            <div
-              className={`h-[0.3rem] w-[4rem] rounded-xl ${currentPage > 2 ? "bg-[#2E3192]" : "bg-gray-300"}`}
-            />
-            <button
-              className={`flex h-10 w-10 items-center justify-center rounded-full p-5 ${currentPage >= 3 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-              onClick={() => setCurrentPage(3)}
-            >
-              3
-            </button>
-          </div>
-          <div className="flex items-center justify-start gap-1 px-3 lg:mt-[1rem]">
-            <button
-              className={`flex h-10 w-10 items-center justify-center rounded-full p-5 ${currentPage >= 4 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-              onClick={() => setCurrentPage(4)}
-            >
-              4
-            </button>
-            <div
-              className={`h-[0.3rem] w-[4rem] rounded-xl ${currentPage > 4 ? "bg-[#2E3192]" : "bg-gray-300"}`}
-            />
-            <button
-              className={`flex h-10 w-10 items-center justify-center rounded-full p-5 ${currentPage >= 5 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-              onClick={() => setCurrentPage(5)}
-            >
-              5
-            </button>
-            <div
-              className={`h-[0.3rem] w-[4rem] rounded-xl ${currentPage > 5 ? "bg-[#2E3192]" : "bg-gray-300"}`}
-            />
-            <button
-              className={`flex h-10 w-10 items-center justify-center rounded-full p-5 ${currentPage >= 6 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-              onClick={() => setCurrentPage(6)}
-            >
-              6
-            </button>
+        <div className="flex w-[100%] flex-col  justify-center">
+
+          <div className="flex flex-col gap-1 px-3 lg:mt-[2rem]">
+            <span className="text-lg font-semibold">Step {currentPage} of 8</span>
+            <div className="flex gap-4">
+              <button
+                className={`flex h-2 w-10 items-center justify-center rounded-full  ${currentPage >= 1 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                onClick={() => setCurrentPage(1)}
+              >
+
+              </button>
+
+              <button
+                className={`flex h-2 w-10 items-center justify-center rounded-full  ${currentPage >= 2 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                onClick={() => setCurrentPage(2)}
+              >
+
+              </button>
+
+              <button
+                className={`flex h-2 w-10 items-center justify-center rounded-full  ${currentPage >= 3 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                onClick={() => setCurrentPage(3)}
+              >
+
+              </button>
+
+              <button
+                className={`flex h-2 w-10 items-center justify-center rounded-full  ${currentPage >= 4 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                onClick={() => setCurrentPage(4)}
+              >
+
+              </button>
+
+              <button
+                className={`flex h-2 w-10 items-center justify-center rounded-full  ${currentPage >= 5 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                onClick={() => setCurrentPage(5)}
+              >
+
+              </button>
+
+              <button
+                className={`flex h-2 w-10 items-center justify-center rounded-full  ${currentPage >= 6 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                onClick={() => setCurrentPage(6)}
+              >
+
+              </button>
+              <button
+                className={`flex h-2 w-10 items-center justify-center rounded-full  ${currentPage >= 7 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                onClick={() => setCurrentPage(7)}
+              >
+
+              </button>
+              <button
+                className={`flex h-2 w-10 items-center justify-center rounded-full  ${currentPage >= 8 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                onClick={() => setCurrentPage(8)}
+              >
+
+              </button>
+            </div>
           </div>
         </div>
         <div className="flex h-[50%] flex-col items-start justify-center gap-9 px-3 md:px-3">
           <h1 className="text-[8vw] font-bold md:text-[3vw]">
-            Tell us about your business
+
+            {currentPage === 1 && "Tell us about your business"}
+            {currentPage === 2 && "Fill the menu details"}
+            {currentPage === 3 && "Fill the Event details"}
+            {currentPage === 4 && "Fill the Staffing and Equipment details"}
+            {currentPage === 5 && "Fill the Booking and pricing details"}
+            {currentPage === 6 && "Fill the Additional details"}
+            {currentPage === 7 && "Preview details"}
+
           </h1>
           <p className="text-black xs:text-sm md:w-[90%]">
-            Fill out your Business details to get verified and proceed to
-            registration process.
+            {currentPage === 1 && "Fill out your Business details to get verified and proceed to the registration process."}
+            {currentPage === 2 && "Please provide the menu details of the catering service offered by your company."}
+            {currentPage === 3 && "Please provide the event details of the catering service offered by your company."}
+            {currentPage === 4 && "Please provide the staffing and equipment details of the catering service offered by your company."}
+            {currentPage === 5 && "Please provide the booking and pricing details of the catering service offered by your company."}
+            {currentPage === 6 && "Please provide the additional details of the catering service offered by your company."}
+            {currentPage === 7 && "Please recheck the information provided by you. "}
+
           </p>
         </div>
         <div className="relative h-[10rem] lg:w-full">
