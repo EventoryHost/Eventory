@@ -55,7 +55,7 @@ const verifyLoginOtp = async (
   code: String,
   session: String,
   name?: String,
-) => {  
+) => {
   try {
     const res = await axios.post(
       `${process.env.NEXT_PUBLIC_BASE_URL}/auth/verify-otp-login`,

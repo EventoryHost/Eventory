@@ -35,7 +35,7 @@ type basicDetails = {
   otp: number;
 };
 
-const SignUp = ( ) => {
+const SignUp = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [basicDetails, setBasicDetails] = useState<basicDetails>(
     {} as basicDetails,
@@ -49,11 +49,14 @@ const SignUp = ( ) => {
 
   const toggleModal = () => setIsModalOpen(!isModalOpen);
 
-  async function handleSignUp (e: React.FormEvent) {
+  async function handleSignUp(e: React.FormEvent) {
     e.preventDefault();
     const mobileNumber = refs.current["mobile"]!.value;
 
-    const errorMessage: { [key: string]: string } = { 'name': 'name', 'mobile': 'mobile number' };
+    const errorMessage: { [key: string]: string } = {
+      name: "name",
+      mobile: "mobile number",
+    };
 
     // Check if any required field is empty
     for (const key in refs.current) {
@@ -82,7 +85,7 @@ const SignUp = ( ) => {
       setSession(res.data.data.Session);
       toggleModal();
     }
-  };
+  }
 
   const handleVerify = async (e: React.FormEvent) => {
     e.preventDefault();
