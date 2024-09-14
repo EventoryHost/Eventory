@@ -48,6 +48,9 @@ interface PreviewProps {
   navigateToPage: (pageIndex: number) => void;
   listOfGifts: string[];
   setlistOfGifts: React.Dispatch<React.SetStateAction<string[]>>;
+  handleSubmit: () => void;
+  currentPage: number;
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const Preview: React.FC<PreviewProps> = ({
@@ -57,10 +60,10 @@ const Preview: React.FC<PreviewProps> = ({
   navigateToPage,
   listOfGifts,
   setlistOfGifts,
+  currentPage,
+  setCurrentPage,
+  handleSubmit
 }) => {
-  function handleSubmit() {
-    // Submission logic goes here
-  }
 
   return (
     <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden lg:flex-row">
@@ -194,7 +197,7 @@ const Preview: React.FC<PreviewProps> = ({
               <div className="flex items-center justify-between rounded-xl bg-gray-200 p-2 text-xl font-medium">
                 <span>3. Pricing and Policies</span>
                 <button
-                  onClick={() => navigateToPage(2)}
+                  onClick={() => navigateToPage(1)}
                   className="flex items-center justify-center p-1"
                 >
                   <EditIcon size={28} />
@@ -221,6 +224,24 @@ const Preview: React.FC<PreviewProps> = ({
               <span className="font-semibold">
                 ₹{formState.priceRange.min} - ₹{formState.priceRange.max}
               </span>
+            </div>
+            {/* Button container */}
+            <div className="w-full flex justify-end gap-[32px] mr-[5%]">
+              {/* Previous Button */}
+              <button
+                onClick={() => setCurrentPage(currentPage - 1)}
+                className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+              >
+                Previous
+              </button>
+
+              {/* Next Button */}
+              <button
+                onClick={handleSubmit}
+                className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+              >
+                Submit
+              </button>
             </div>
           </div>
         </div>

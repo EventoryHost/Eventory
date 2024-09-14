@@ -27,12 +27,18 @@ interface PageProps {
     nestedKey: string,
     value: any,
   ) => void;
+  currentPage: number;
+  navigateToPage: (page: number) => void;
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const Page1: React.FC<PageProps> = ({
   formState,
   handleChange,
   handleNestedChange,
+  navigateToPage,
+  currentPage,
+  setCurrentPage,
 }) => {
   return (
     <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden lg:flex-row">
@@ -213,6 +219,15 @@ const Page1: React.FC<PageProps> = ({
                   </div>
                 </div>
               </div>
+            </div>
+            {/* Navigation Buttons */}
+            <div className="w-full  flex justify-end mr-[5%]">
+              <button
+                onClick={() => setCurrentPage(currentPage + 1)}
+                className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+              >
+                Next
+              </button>
             </div>
           </div>
         </div>
