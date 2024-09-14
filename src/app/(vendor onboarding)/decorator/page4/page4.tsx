@@ -49,6 +49,7 @@ const Page4: React.FC<Page4Props> = ({
                 <div className="flex flex-row items-center justify-start gap-2">
                   <p>Yes</p>
                   <input
+                  type="radio"
                     className="h-4 w-4 accent-[#2E3192]"
                     checked={freeInitialConsultation === true}
                     onChange={() =>
