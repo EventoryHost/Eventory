@@ -67,7 +67,6 @@ const Page2: React.FC<PageProps> = ({
   updateFormState,
   currentPage,
   setCurrentPage,
-
 }) => {
   const [isDeliveryChargesChecked, setIsDeliveryChargesChecked] =
     useState<boolean>(false);
@@ -262,7 +261,7 @@ const Page2: React.FC<PageProps> = ({
               className="w-1/2 rounded-xl border-2 px-3 py-2 focus:border-[#2E3192] focus:outline-none focus:ring-blue-500 md:w-1/3"
             />
             {/* Button container */}
-            <div className="w-full flex justify-end gap-[32px] mr-[5%]">
+            <div className="mr-[5%] flex w-full justify-end gap-[32px]">
               {/* Previous Button */}
               <button
                 onClick={() => setCurrentPage(currentPage - 1)}

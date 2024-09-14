@@ -1,4 +1,4 @@
-"use client"
+"use client";
 // RootPage.tsx
 import React, { useState, useEffect } from "react";
 import jwt from "jsonwebtoken";
@@ -48,13 +48,17 @@ const RootPage = () => {
     setFormState((prevState) => ({ ...prevState, [key]: value }));
   };
 
-  const handleNestedChange = (key: keyof FormState, nestedKey: string, value: any) => {
+  const handleNestedChange = (
+    key: keyof FormState,
+    nestedKey: string,
+    value: any,
+  ) => {
     setFormState((prevState) => ({
       ...prevState,
       [key]:
         typeof prevState[key] === "object" &&
-          prevState[key] !== null &&
-          !Array.isArray(prevState[key])
+        prevState[key] !== null &&
+        !Array.isArray(prevState[key])
           ? { ...(prevState[key] as Record<string, any>), [nestedKey]: value }
           : { [nestedKey]: value },
     }));
@@ -87,7 +91,10 @@ const RootPage = () => {
       return null;
     }
     try {
-      const decodedToken = jwt.decode(token) as { userId?: string; email?: string };
+      const decodedToken = jwt.decode(token) as {
+        userId?: string;
+        email?: string;
+      };
       return decodedToken?.userId || null;
     } catch (error) {
       console.error("Error decoding token:", error);
@@ -107,7 +114,9 @@ const RootPage = () => {
     formData.append("customizableGifts", formState.customizableGifts);
     formData.append("priceRange[min]", formState.priceRange.min);
     formData.append("priceRange[max]", formState.priceRange.max);
-    formState.appetizers.forEach((appetizer) => formData.append("appetizers[]", appetizer));
+    formState.appetizers.forEach((appetizer) =>
+      formData.append("appetizers[]", appetizer),
+    );
     formData.append("deliveryCharges[min]", formState.deliveryCharges.min);
     formData.append("deliveryCharges[max]", formState.deliveryCharges.max);
     if (formState.termsAndConditions instanceof File) {
@@ -116,7 +125,9 @@ const RootPage = () => {
       formData.append("termsAndConditions", formState.termsAndConditions);
     }
     formData.append("category", formState.category);
-    formState.listOfGifts.forEach((gift) => formData.append("listOfGifts[]", gift));
+    formState.listOfGifts.forEach((gift) =>
+      formData.append("listOfGifts[]", gift),
+    );
 
     const jsonData: { [key: string]: any } = {};
     formData.forEach((value, key) => {
