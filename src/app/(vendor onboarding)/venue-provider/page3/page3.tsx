@@ -26,52 +26,50 @@ const Page3: React.FC<Page3Props> = ({
   };
 
   return (
-    <div className="flex flex-col  items-start gap-7 overflow-y-scroll rounded-xl bg-white p-3 xs:w-[95%] xs:min-w-[90%] xs:justify-start md:p-6 scroll-touch">
+    <div className="scroll-touch flex flex-col items-start gap-7 overflow-y-scroll rounded-xl bg-white p-3 xs:w-[95%] xs:min-w-[90%] xs:justify-start md:p-6">
       <h1 className="text-3xl font-semibold">Pricing and Policies</h1>
       <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-          <div className="flex min-w-[40%] flex-col items-start justify-center mt-6">
-            <p className="text-lg">Terms & Conditions</p>
-            <FileInput
-              label="tnc"
-              onFileSelect={(file) => {
-                updateFormState({ termsAndConditions: file });
-              }}
-              acceptedFileTypes="image/png, .pdf, image/jpg"
-            />
-            <p className="mt-5 text-lg">or Provide Via</p>
-            <textarea
-              cols={30}
-              rows={7}
-              placeholder="Enter your venue details"
-              onChange={(e) =>
-                updateFormState({ termsAndConditions: e.target.value })
-              }
-              className="mt-5 w-[100%] rounded-xl border-2 border-gray-300 p-3"
-            ></textarea>
-          </div>
-        
+        <div className="mt-6 flex min-w-[40%] flex-col items-start justify-center">
+          <p className="text-lg">Terms & Conditions</p>
+          <FileInput
+            label="tnc"
+            onFileSelect={(file) => {
+              updateFormState({ termsAndConditions: file });
+            }}
+            acceptedFileTypes="image/png, .pdf, image/jpg"
+          />
+          <p className="mt-5 text-lg">or Provide Via</p>
+          <textarea
+            cols={30}
+            rows={7}
+            placeholder="Enter your venue details"
+            onChange={(e) =>
+              updateFormState({ termsAndConditions: e.target.value })
+            }
+            className="mt-5 w-[100%] rounded-xl border-2 border-gray-300 p-3"
+          ></textarea>
+        </div>
 
-          <div className="flex min-w-[40%] flex-col items-start justify-center">
-            <p className="text-lg">Cancellation Policies</p>
-            <FileInput
-              label="cancellation policy"
-              onFileSelect={(file) => {
-                updateFormState({ cancellationPolicy: file });
-              }}
-              acceptedFileTypes="image/png, .pdf, image/jpg"
-            />
-            <p className="mt-5 text-lg">or Provide Via</p>
-            <textarea
-              cols={30}
-              rows={7}
-              placeholder="Enter your venue details"
-              onChange={(e) =>
-                updateFormState({ cancellationPolicy: e.target.value })
-              }
-              className="mt-5 w-[100%] rounded-xl border-2 border-gray-300 p-3"
-            ></textarea>
-          </div>
-       
+        <div className="flex min-w-[40%] flex-col items-start justify-center">
+          <p className="text-lg">Cancellation Policies</p>
+          <FileInput
+            label="cancellation policy"
+            onFileSelect={(file) => {
+              updateFormState({ cancellationPolicy: file });
+            }}
+            acceptedFileTypes="image/png, .pdf, image/jpg"
+          />
+          <p className="mt-5 text-lg">or Provide Via</p>
+          <textarea
+            cols={30}
+            rows={7}
+            placeholder="Enter your venue details"
+            onChange={(e) =>
+              updateFormState({ cancellationPolicy: e.target.value })
+            }
+            className="mt-5 w-[100%] rounded-xl border-2 border-gray-300 p-3"
+          ></textarea>
+        </div>
       </div>
 
       <div className="items-strech mt-9 flex flex-row gap-7 self-end">

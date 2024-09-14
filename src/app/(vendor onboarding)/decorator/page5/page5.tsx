@@ -43,7 +43,7 @@ const Page5: React.FC<Page5Props> = ({
   addPackage,
   advancePayment,
   setAdvancePayment,
-  handleContinue
+  handleContinue,
 }) => {
   const handleMinPriceChange = (
     setPackages: React.Dispatch<React.SetStateAction<Package[]>>,
@@ -82,10 +82,9 @@ const Page5: React.FC<Page5Props> = ({
   };
 
   return (
-    <div className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide xs:w-[95%] xs:min-w-[96%] m-auto ">
-      
+    <div className="m-auto flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide xs:w-[95%] xs:min-w-[96%]">
       <div className="flex min-w-full flex-col items-start justify-around gap-10">
-        <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[96%] m-auto md:p-6">
+        <div className="m-auto flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[96%] md:p-6">
           <h1 className="text-3xl font-semibold">Pricing structure</h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             {hourlyPackages.map((pkg, index) => (
@@ -186,7 +185,7 @@ const Page5: React.FC<Page5Props> = ({
           </div>
         </div>
 
-        <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[96%] m-auto  md:p-6">
+        <div className="m-auto flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[96%] md:p-6">
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             {dailyPackages.map((pkg, index) => (
               <div
@@ -286,7 +285,7 @@ const Page5: React.FC<Page5Props> = ({
           </div>
         </div>
 
-        <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[96%] m-auto  md:p-6">
+        <div className="m-auto flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[96%] md:p-6">
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             {additionalCharges.map((pkg, index) => (
               <div
@@ -423,7 +422,6 @@ const Page5: React.FC<Page5Props> = ({
               </button>
             </div>
           </div>
-          
         </div>
       </div>
     </div>

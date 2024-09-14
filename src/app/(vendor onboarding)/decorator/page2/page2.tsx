@@ -27,7 +27,7 @@ interface FormState {
 }
 
 interface Page2Props {
-    handleContinue: () => void;
+  handleContinue: () => void;
 
   formState: FormState;
   updateFormState: (newState: Partial<FormState>) => void;
@@ -40,7 +40,7 @@ const Page2: React.FC<Page2Props> = ({
   updateFormState,
   themesOffered,
   setThemesOffered,
-  handleContinue
+  handleContinue,
 }) => {
   const {
     propthemesOffered,
@@ -55,8 +55,7 @@ const Page2: React.FC<Page2Props> = ({
   };
 
   return (
-    <div className="flex scrollbar-hide  h-full flex-col items-start justify-start gap-5 overflow-y-scroll xs:w-[95%] xs:min-w-[90%]">
-      
+    <div className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide xs:w-[95%] xs:min-w-[90%]">
       <div className="flex min-w-full flex-col items-start justify-around gap-10">
         <div className="flex flex-col gap-9 rounded-xl bg-white p-3 xs:min-w-[100%] md:p-6">
           <h1 className="text-3xl font-semibold">Theme Offered</h1>
@@ -191,7 +190,6 @@ const Page2: React.FC<Page2Props> = ({
               </button>
             </div>
           </div>
-          
         </div>
       </div>
     </div>

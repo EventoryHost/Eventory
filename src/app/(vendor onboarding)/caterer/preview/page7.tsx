@@ -114,7 +114,6 @@ type PagePreviewProps = {
   advancePayment: number;
   handleContinue: () => void;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
-
 };
 
 function Preview({
@@ -152,7 +151,6 @@ function Preview({
   selectedEquipmentsProvided,
   setSelectedEquipmentsProvided,
 
-  
   dailyPackages,
   setDailyPackages,
   seasonalPackages,
@@ -161,7 +159,7 @@ function Preview({
   addPackage,
 }: PagePreviewProps) {
   return (
-    <div className="flex scrollbar-hide  h-full flex-col items-start justify-start gap-5 overflow-y-scroll rounded-xl bg-white p-6 xs:w-[95%] xs:min-w-[90%] md:p-6">
+    <div className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll rounded-xl bg-white p-6 scrollbar-hide xs:w-[95%] xs:min-w-[90%] md:p-6">
       <span className="my-5 text-3xl font-semibold">
         {formState.businessName} / Caterers
       </span>
@@ -169,9 +167,9 @@ function Preview({
       <div className="flex w-[100%] justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
         Basic Details
         <div className="align-center flex justify-center p-1">
-          <button onClick={()=>setCurrentPage(1)}>
-                  <EditIcon size={32} />
-                </button>
+          <button onClick={() => setCurrentPage(1)}>
+            <EditIcon size={32} />
+          </button>
         </div>
       </div>
       <div className="w-full">
@@ -217,9 +215,9 @@ function Preview({
       <div className="flex w-[100%] justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
         Menu Details
         <div className="align-center flex justify-center p-1">
-          <button onClick={()=>setCurrentPage(2)}>
-                  <EditIcon size={32} />
-                </button>
+          <button onClick={() => setCurrentPage(2)}>
+            <EditIcon size={32} />
+          </button>
         </div>
       </div>
       <div className="w-full">
@@ -288,9 +286,9 @@ function Preview({
       <div className="flex w-[100%] justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
         Event Details
         <div className="align-center flex justify-center p-1">
-          <button onClick={()=>setCurrentPage(3)}>
-                  <EditIcon size={32} />
-                </button>
+          <button onClick={() => setCurrentPage(3)}>
+            <EditIcon size={32} />
+          </button>
         </div>
       </div>
       <div className="w-full">
@@ -316,9 +314,9 @@ function Preview({
       <div className="flex w-[100%] justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
         Staff & Equipments
         <div className="align-center flex justify-center p-1">
-          <button onClick={()=>setCurrentPage(4)}>
-                  <EditIcon size={32} />
-                </button>
+          <button onClick={() => setCurrentPage(4)}>
+            <EditIcon size={32} />
+          </button>
         </div>
       </div>
       <div className="w-full">
@@ -345,36 +343,26 @@ function Preview({
       <div className="flex w-[100%] justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
         Booking & Pricing
         <div className="align-center flex justify-center p-1">
-          <button onClick={()=>setCurrentPage(5)}>
-                  <EditIcon size={32} />
-                </button>
+          <button onClick={() => setCurrentPage(5)}>
+            <EditIcon size={32} />
+          </button>
         </div>
       </div>
 
-        <div
-          className="flex min-w-full flex-col items-start justify-between gap-5 px-4 md:flex-row"
-        >
-          <div className="flex min-w-[40%] flex-col gap-4">
-            <label  className="font-bold">
-              Minimum Order Requirements
-            </label>
-            <div className="mb-2 flex flex-col">
-              <span>{formState.minOrderReq}</span>
-            </div>
-          </div>
-          <div className="flex h-full min-w-[40%] flex-col items-start justify-center gap-2">
-            <label
-              className="self-start font-bold"
-            >
-              Advance Booking Period
-            </label>
-            <div className="flex w-[80%] flex-row justify-between gap-1">
-              <span className="font-semibold">
-                {formState.AdvBooking}
-              </span>
-            </div>
+      <div className="flex min-w-full flex-col items-start justify-between gap-5 px-4 md:flex-row">
+        <div className="flex min-w-[40%] flex-col gap-4">
+          <label className="font-bold">Minimum Order Requirements</label>
+          <div className="mb-2 flex flex-col">
+            <span>{formState.minOrderReq}</span>
           </div>
         </div>
+        <div className="flex h-full min-w-[40%] flex-col items-start justify-center gap-2">
+          <label className="self-start font-bold">Advance Booking Period</label>
+          <div className="flex w-[80%] flex-row justify-between gap-1">
+            <span className="font-semibold">{formState.AdvBooking}</span>
+          </div>
+        </div>
+      </div>
 
       <div className="flex min-w-full flex-col items-start justify-between gap-5 px-4 md:flex-row">
         <div className="flex h-full min-w-[40%] flex-col items-start justify-center gap-2">
@@ -426,9 +414,9 @@ function Preview({
       <div className="flex w-[100%] justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
         Additional Features
         <div className="align-center flex justify-center p-1">
-          <button onClick={()=>setCurrentPage(6)}>
-                  <EditIcon size={32} />
-                </button>
+          <button onClick={() => setCurrentPage(6)}>
+            <EditIcon size={32} />
+          </button>
         </div>
       </div>
       <div className="flex w-[100%] flex-col gap-8">

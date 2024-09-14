@@ -62,8 +62,8 @@ const Caterer = () => {
     cancellationPolicy: "",
     testimonials: "",
     portfolio: "",
-    minOrderReq:"",
-    AdvBooking:"",
+    minOrderReq: "",
+    AdvBooking: "",
   });
 
   function updateFormState(newState: Partial<FormState>) {
@@ -98,7 +98,7 @@ const Caterer = () => {
   const [advancePayment, setAdvancePayment] = useState(25);
 
   // State for packages
-  const [hourlyPackages,setHourlyPackages] = useState<Package[]>([
+  const [hourlyPackages, setHourlyPackages] = useState<Package[]>([
     { package_name: "", priceRange: [0, 0] },
   ]);
   const [dailyPackages, setDailyPackages] = useState<Package[]>([
@@ -237,14 +237,32 @@ const Caterer = () => {
     //   formData.append(`rates[hourly][${index}]`, JSON.stringify(item));
     // });
     dailyPackages.forEach((item, index) => {
-      formData.append(`rates[per_plate_rates][${index}][package_name]`, JSON.stringify(item));
-      formData.append(`rates[per_plate_rates][${index}][min]`, JSON.stringify(item.priceRange[0]));
-      formData.append(`rates[per_plate_rates][${index}][max]`, JSON.stringify(item.priceRange[1]));
+      formData.append(
+        `rates[per_plate_rates][${index}][package_name]`,
+        JSON.stringify(item),
+      );
+      formData.append(
+        `rates[per_plate_rates][${index}][min]`,
+        JSON.stringify(item.priceRange[0]),
+      );
+      formData.append(
+        `rates[per_plate_rates][${index}][max]`,
+        JSON.stringify(item.priceRange[1]),
+      );
     });
     seasonalPackages.forEach((item, index) => {
-      formData.append(`rates[deal_package_rates][${index}][package_name]`, JSON.stringify(item.package_name));
-      formData.append(`rates[deal_package_rates][${index}][min]`, JSON.stringify(item.priceRange[0]));
-      formData.append(`rates[deal_package_rates][${index}][max]`, JSON.stringify(item.priceRange[1]));
+      formData.append(
+        `rates[deal_package_rates][${index}][package_name]`,
+        JSON.stringify(item.package_name),
+      );
+      formData.append(
+        `rates[deal_package_rates][${index}][min]`,
+        JSON.stringify(item.priceRange[0]),
+      );
+      formData.append(
+        `rates[deal_package_rates][${index}][max]`,
+        JSON.stringify(item.priceRange[1]),
+      );
     });
 
     formData.append("deposit_required", advancePayment.toString());
@@ -346,8 +364,8 @@ const Caterer = () => {
       case 5:
         return (
           <Page5
-          formState={formState}
-          updateFormState={updateFormState}
+            formState={formState}
+            updateFormState={updateFormState}
             advancePayment={advancePayment}
             setAdvancePayment={setAdvancePayment}
             // hourlyPackages={hourlyPackages}
@@ -380,8 +398,7 @@ const Caterer = () => {
       case 7:
         return (
           <Page7
-          setCurrentPage={setCurrentPage}
-
+            setCurrentPage={setCurrentPage}
             formState={formState}
             servingCapacity={servingCapacity}
             setServingCapacity={setServingCapacity}
@@ -408,7 +425,6 @@ const Caterer = () => {
             setSelectedStaffProvider={setStaffProvides}
             selectedEquipmentsProvided={equipmentsProvided}
             setSelectedEquipmentsProvided={setEquipmentsProvided}
-            
             dailyPackages={dailyPackages}
             setDailyPackages={setDailyPackages}
             seasonalPackages={seasonalPackages}

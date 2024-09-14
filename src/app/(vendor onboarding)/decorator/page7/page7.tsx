@@ -16,7 +16,11 @@ interface Page7Props {
   updateFormState: (newState: Partial<FormState>) => void;
 }
 
-const Page7: React.FC<Page7Props> = ({ formState, updateFormState ,handleContinue}) => {
+const Page7: React.FC<Page7Props> = ({
+  formState,
+  updateFormState,
+  handleContinue,
+}) => {
   const {
     insurancePolicy,
     cancellationPolicy,
@@ -30,7 +34,6 @@ const Page7: React.FC<Page7Props> = ({ formState, updateFormState ,handleContinu
 
   return (
     <div className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide xs:w-[95%] xs:min-w-[90%]">
-      
       <div className="flex min-w-full flex-col items-start justify-around gap-10">
         <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[100%] md:p-6">
           <div className="flex gap-9">
@@ -156,7 +159,6 @@ const Page7: React.FC<Page7Props> = ({ formState, updateFormState ,handleContinu
               </button>
             </div>
           </div>
-          
         </div>
       </div>
     </div>

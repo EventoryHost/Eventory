@@ -183,7 +183,7 @@ const Decorators: React.FC = () => {
   }
 
   const handleContinue = () => {
-    console.log('continue');
+    console.log("continue");
   };
 
   // Submit form data
@@ -367,10 +367,14 @@ const Decorators: React.FC = () => {
 
       case 4:
         return (
-          <Page4 formState={formState} updateFormState={updateFormState} handleContinue={() => {
-            setCurrentPage(5);
-            handleContinue();
-          }}/>
+          <Page4
+            formState={formState}
+            updateFormState={updateFormState}
+            handleContinue={() => {
+              setCurrentPage(5);
+              handleContinue();
+            }}
+          />
         );
 
       case 5:
@@ -395,25 +399,32 @@ const Decorators: React.FC = () => {
 
       case 6:
         return (
-          <Page6 formState={formState} updateFormState={updateFormState} handleContinue={() => {
-            setCurrentPage(7);
-            handleContinue();
-          }} />
+          <Page6
+            formState={formState}
+            updateFormState={updateFormState}
+            handleContinue={() => {
+              setCurrentPage(7);
+              handleContinue();
+            }}
+          />
         );
 
       case 7:
         return (
-          <Page7 formState={formState} updateFormState={updateFormState} 
-          handleContinue={() => {
-            setCurrentPage(8);
-            handleContinue();
-          }}/>
+          <Page7
+            formState={formState}
+            updateFormState={updateFormState}
+            handleContinue={() => {
+              setCurrentPage(8);
+              handleContinue();
+            }}
+          />
         );
 
       case 8:
         return (
           <Page8
-          setCurrentPage={setCurrentPage}
+            setCurrentPage={setCurrentPage}
             typeOfevents={typesOfEvents}
             setTypesOfEvents={setTypesOfEvents}
             weddingEvents={weddingEvents}

@@ -55,7 +55,7 @@ const Page2 = ({
   const { customizableMenu } = formState;
 
   return (
-    <div className="flex scrollbar-hide  h-full flex-col items-start justify-start gap-5 overflow-y-scroll xs:w-[95%] xs:min-w-[90%]">
+    <div className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide xs:w-[95%] xs:min-w-[90%]">
       <div className="flex min-w-full flex-col items-start justify-around gap-10">
         <div className="flex min-w-full flex-col items-start justify-around gap-10 rounded-xl bg-white p-3 md:p-6">
           <h1 className="my-5 text-3xl font-semibold">Menu Details</h1>

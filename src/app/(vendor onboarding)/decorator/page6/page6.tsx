@@ -16,7 +16,11 @@ interface Page6Props {
   updateFormState: (newState: Partial<FormState>) => void;
 }
 
-const Page6: React.FC<Page6Props> = ({ formState, updateFormState,handleContinue }) => {
+const Page6: React.FC<Page6Props> = ({
+  formState,
+  updateFormState,
+  handleContinue,
+}) => {
   const {
     portfolio,
     ratings_reviews,
@@ -30,7 +34,6 @@ const Page6: React.FC<Page6Props> = ({ formState, updateFormState,handleContinue
 
   return (
     <div className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide xs:w-[95%] xs:min-w-[90%]">
-      
       <div className="flex min-w-full flex-col items-start justify-around gap-10">
         <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[100%] md:p-6">
           <div className="flex gap-9">

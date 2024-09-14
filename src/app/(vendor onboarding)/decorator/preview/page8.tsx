@@ -117,11 +117,10 @@ function Preview({
   advancePayment,
   setAdvancePayment,
   handleContinue,
-  setCurrentPage
+  setCurrentPage,
 }: PagePreviewProps) {
   return (
     <div className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide xs:w-[95%] xs:min-w-[90%]">
-      
       <div className="flex min-w-full flex-col items-start justify-around gap-10">
         <div className="flex w-[100%] flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-2">
           <span className="mx-2 my-5 text-3xl font-semibold">
@@ -132,7 +131,7 @@ function Preview({
             <div className="flex w-[100%] justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
               Basic Details
               <div className="align-center flex justify-center p-1">
-                <button onClick={()=>setCurrentPage(1)}>
+                <button onClick={() => setCurrentPage(1)}>
                   <EditIcon size={32} />
                 </button>
               </div>
@@ -186,7 +185,7 @@ function Preview({
             <div className="flex w-[100%] justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
               Themes Offered
               <div className="align-center flex justify-center p-1">
-                <button onClick={()=>setCurrentPage(2)}>
+                <button onClick={() => setCurrentPage(2)}>
                   <EditIcon size={32} />
                 </button>
               </div>
@@ -254,7 +253,7 @@ function Preview({
             <div className="flex w-[100%] justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
               Themes Element
               <div className="align-center flex justify-center p-1">
-                <button onClick={()=>setCurrentPage(3)}>
+                <button onClick={() => setCurrentPage(3)}>
                   <EditIcon size={32} />
                 </button>
               </div>
@@ -305,7 +304,7 @@ function Preview({
             <div className="flex w-[100%] justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
               Consultation Details
               <div className="align-center flex justify-center p-1">
-                <button onClick={()=>setCurrentPage(4)}>
+                <button onClick={() => setCurrentPage(4)}>
                   <EditIcon size={32} />
                 </button>
               </div>
@@ -357,7 +356,7 @@ function Preview({
             <div className="flex w-[100%] justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
               Pricing Structure
               <div className="align-center flex justify-center p-1">
-                <button onClick={()=>setCurrentPage(5)}>
+                <button onClick={() => setCurrentPage(5)}>
                   <EditIcon size={32} />
                 </button>
               </div>
@@ -436,7 +435,7 @@ function Preview({
             <div className="flex w-[100%] justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
               Rating & Reviews
               <div className="align-center flex justify-center p-1">
-                <button onClick={()=>setCurrentPage(6)}>
+                <button onClick={() => setCurrentPage(6)}>
                   <EditIcon size={32} />
                 </button>
               </div>
@@ -497,7 +496,7 @@ function Preview({
             <div className="flex w-[100%] justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
               Mandatory Details
               <div className="align-center flex justify-center p-1">
-                <button onClick={()=>setCurrentPage(7)}>
+                <button onClick={() => setCurrentPage(7)}>
                   <EditIcon size={32} />
                 </button>
               </div>
@@ -553,21 +552,20 @@ function Preview({
             </div>
           </div>
           <div className="items-strech mt-9 flex flex-row gap-7 self-end">
-              <button
-                className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={handleContinue}
-              >
-                Skip
-              </button>
-              <button
-                className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={handleContinue}
-              >
-                Continue
-              </button>
-            </div>
+            <button
+              className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+              onClick={handleContinue}
+            >
+              Skip
+            </button>
+            <button
+              className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+              onClick={handleContinue}
+            >
+              Continue
+            </button>
+          </div>
         </div>
-        
       </div>
     </div>
   );
