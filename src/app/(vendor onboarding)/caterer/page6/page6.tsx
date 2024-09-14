@@ -13,8 +13,8 @@ const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
   const { tastingSessions, businessLicenses, foodSafety } = formState;
 
   return (
-    <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden overflow-x-hidden lg:flex-row">
-      <div className="flex min-w-[100%] flex-col items-center overflow-y-scroll bg-[#F7F6F9] p-2 md:p-3">
+    <div className="flex scrollbar-hide  h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden overflow-x-hidden lg:flex-row">
+      <div className="flex scrollbar-hide min-w-[100%] flex-col items-center overflow-y-scroll bg-[#F7F6F9] p-2 md:p-3">
         <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[95%] md:p-6">
           <h1 className="text-3xl font-semibold">Additional Details</h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">

@@ -233,14 +233,18 @@ const Caterer = () => {
     equipmentsProvided.forEach((item, index) => {
       formData.append(`equipment_provided[${index}]`, item);
     });
-    hourlyPackages.forEach((item, index) => {
-      formData.append(`rates[hourly][${index}]`, JSON.stringify(item));
-    });
+    // hourlyPackages.forEach((item, index) => {
+    //   formData.append(`rates[hourly][${index}]`, JSON.stringify(item));
+    // });
     dailyPackages.forEach((item, index) => {
-      formData.append(`rates[daily][${index}]`, JSON.stringify(item));
+      formData.append(`rates[per_plate_rates][${index}][package_name]`, JSON.stringify(item));
+      formData.append(`rates[per_plate_rates][${index}][min]`, JSON.stringify(item.priceRange[0]));
+      formData.append(`rates[per_plate_rates][${index}][max]`, JSON.stringify(item.priceRange[1]));
     });
     seasonalPackages.forEach((item, index) => {
-      formData.append(`rates[seasonal][${index}]`, JSON.stringify(item));
+      formData.append(`rates[deal_package_rates][${index}][package_name]`, JSON.stringify(item.package_name));
+      formData.append(`rates[deal_package_rates][${index}][min]`, JSON.stringify(item.priceRange[0]));
+      formData.append(`rates[deal_package_rates][${index}][max]`, JSON.stringify(item.priceRange[1]));
     });
 
     formData.append("deposit_required", advancePayment.toString());
@@ -376,6 +380,8 @@ const Caterer = () => {
       case 7:
         return (
           <Page7
+          setCurrentPage={setCurrentPage}
+
             formState={formState}
             servingCapacity={servingCapacity}
             setServingCapacity={setServingCapacity}
@@ -411,7 +417,7 @@ const Caterer = () => {
             addPackage={addPackage}
             advancePayment={advancePayment}
             handleContinue={() => {
-              setCurrentPage(8);
+              // setCurrentPage(8);
               handleSubmit();
             }}
           />
