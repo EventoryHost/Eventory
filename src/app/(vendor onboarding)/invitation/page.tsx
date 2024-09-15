@@ -50,9 +50,6 @@ interface FormState {
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
-
-
-
 const Invitation: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   // global variables
@@ -92,8 +89,8 @@ const Invitation: React.FC = () => {
   });
 
   useEffect(() => {
-    console.log("Current Page: ", currentPage);  
-  }, [currentPage])
+    console.log("Current Page: ", currentPage);
+  }, [currentPage]);
 
   const updateFormState = (newState: Partial<FormState>) => {
     setFormState((prev) => ({ ...prev, ...newState }));
@@ -230,8 +227,6 @@ const Invitation: React.FC = () => {
     });
   };
 
-
-
   const renderPage = () => {
     switch (currentPage) {
       case 1:
@@ -285,7 +280,8 @@ const Invitation: React.FC = () => {
         );
       case 4:
         return (
-          <Page4 formState={formState}
+          <Page4
+            formState={formState}
             updateFormState={updateFormState}
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
@@ -351,12 +347,7 @@ const Invitation: React.FC = () => {
     }
   };
 
-  return (
-    <div>
-      {renderPage()}
-
-    </div>
-  );
+  return <div>{renderPage()}</div>;
 };
 
 export default Invitation;
