@@ -40,7 +40,7 @@ const Dropdown: React.FC<DropdownProps> = ({
             {options.map((option) => (
               <li
                 key={option}
-                className={`relative flex cursor-pointer select-none items-center gap-1 py-2 pl-3 pr-9 hover:bg-indigo-600 hover:text-white ${
+                className={`relative flex cursor-pointer select-none items-center gap-1 py-2 pl-3 pr-9 ${
                   selectedOption === option ? "text-black" : "text-gray-900"
                 }`}
                 onClick={() => handleSelect(option)}

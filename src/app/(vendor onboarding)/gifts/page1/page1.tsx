@@ -221,7 +221,7 @@ const Page1: React.FC<PageProps> = ({
               </div>
             </div>
             {/* Navigation Buttons */}
-            <div className="w-full  flex justify-end mr-[5%]">
+            <div className="mr-[5%] flex w-full justify-end">
               <button
                 onClick={() => setCurrentPage(currentPage + 1)}
                 className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"

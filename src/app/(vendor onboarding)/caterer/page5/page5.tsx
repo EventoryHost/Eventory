@@ -2,15 +2,16 @@
 
 import Checkbox from "@mui/material/Checkbox";
 import Percentage from "../../invitation/(components)/percentage";
+import { FormState } from "../page";
 
 interface Package {
-  type: string;
+  package_name: string;
   priceRange: [number, number];
 }
 
 interface PageProps {
-  hourlyPackages: Package[];
-  setHourlyPackages: React.Dispatch<React.SetStateAction<Package[]>>;
+  formState: FormState;
+  updateFormState: (newState: Partial<FormState>) => void;
   dailyPackages: Package[];
   setDailyPackages: React.Dispatch<React.SetStateAction<Package[]>>;
   seasonalPackages: Package[];
@@ -30,8 +31,8 @@ interface PageProps {
 }
 
 const Page5: React.FC<PageProps> = ({
-  hourlyPackages,
-  setHourlyPackages,
+  formState,
+  updateFormState,
   dailyPackages,
   setDailyPackages,
   seasonalPackages,
@@ -72,7 +73,6 @@ const Page5: React.FC<PageProps> = ({
 
   const handleSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    console.log("Hourly Packages:", hourlyPackages);
     console.log("Daily Packages:", dailyPackages);
     console.log("Seasonal Packages:", seasonalPackages);
   };
@@ -82,66 +82,42 @@ const Page5: React.FC<PageProps> = ({
   };
 
   return (
-    <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-y-scroll py-5 lg:flex-row">
+    <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-y-scroll py-5 scrollbar-hide lg:flex-row">
       <div className="flex min-w-[100%] flex-col items-center gap-5 bg-[#F7F6F9] p-2 md:p-[1rem]">
         <div className="flex w-[100%] flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
           <h1 className="text-3xl font-semibold">Basic Details</h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
-            {hourlyPackages.map((pkg, index) => (
-              <div
-                key={index}
-                className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row"
-              >
-                <div className="flex min-w-[40%] flex-col gap-4">
-                  <label
-                    htmlFor={`hourlyPackageType${index}`}
-                    className="self-start text-lg font-semibold"
-                  >
-                    Minimum Order Requirements
-                  </label>
+            <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
+              <div className="flex min-w-[45%] flex-col gap-4">
+                <label className="self-start text-lg font-semibold">
+                  Minimum Order Requirements
+                </label>
+                <input
+                  id={``}
+                  type="text"
+                  className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
+                  placeholder="Minimum guests required"
+                  onChange={(e) =>
+                    updateFormState({ minOrderReq: e.target.value })
+                  }
+                />
+              </div>
+              <div className="flex min-w-[45%] flex-col gap-4">
+                <label className="self-start text-lg font-semibold">
+                  Advance Booking Period
+                </label>
+                <div className="flex w-full flex-row justify-between gap-4">
                   <input
-                    id={`hourlyPackageType${index}`}
-                    type="text"
+                    type="number"
                     className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
-                    placeholder="Type of package , Eg: Day time"
-                    value={pkg.type}
+                    placeholder="Minimum booking notice (e.g. number of days) "
                     onChange={(e) =>
-                      handlePackageChange(
-                        setHourlyPackages,
-                        index,
-                        "type",
-                        e.target.value,
-                      )
+                      updateFormState({ AdvBooking: e.target.value })
                     }
                   />
                 </div>
-                <div className="flex h-full min-w-[40%] flex-col items-start justify-center gap-6">
-                  <label
-                    htmlFor={`hourlyPriceRange${index}`}
-                    className="self-start text-lg font-semibold"
-                  >
-                    Advance Booking Period
-                  </label>
-                  <div className="flex w-[80%] flex-row justify-between gap-4">
-                    <input
-                      id={`hourlyMaxPrice${index}`}
-                      type="number"
-                      className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
-                      placeholder="Max price"
-                      value={pkg.priceRange[1] === 0 ? "" : pkg.priceRange[1]}
-                      onChange={(e) =>
-                        handleMaxPriceChange(
-                          setHourlyPackages,
-                          hourlyPackages,
-                          index,
-                          e.target.value,
-                        )
-                      }
-                    />
-                  </div>
-                </div>
               </div>
-            ))}
+            </div>
           </div>
         </div>
 
@@ -162,7 +138,7 @@ const Page5: React.FC<PageProps> = ({
                 key={index}
                 className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row"
               >
-                <div className="flex min-w-[40%] flex-col gap-4">
+                <div className="flex min-w-[45%] flex-col gap-4">
                   <label className="self-start text-lg font-semibold">
                     Name
                   </label>
@@ -171,7 +147,7 @@ const Page5: React.FC<PageProps> = ({
                     type="text"
                     className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                     placeholder="Type of package , Eg: Day time"
-                    value={pkg.type}
+                    value={pkg.package_name}
                     onChange={(e) =>
                       handlePackageChange(
                         setDailyPackages,
@@ -183,7 +159,7 @@ const Page5: React.FC<PageProps> = ({
                   />
                 </div>
 
-                <div className="flex h-full min-w-[40%] flex-col justify-between">
+                <div className="flex h-full min-w-[45%] flex-col justify-between">
                   <label
                     htmlFor={`dailyPriceRange${index}`}
                     className="self-start text-lg font-semibold"
@@ -268,7 +244,7 @@ const Page5: React.FC<PageProps> = ({
                 key={index}
                 className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row"
               >
-                <div className="flex min-w-[40%] flex-col gap-4">
+                <div className="flex min-w-[45%] flex-col gap-4">
                   <label className="self-start text-lg font-semibold">
                     Name
                   </label>
@@ -277,7 +253,7 @@ const Page5: React.FC<PageProps> = ({
                     type="text"
                     className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                     placeholder="Type of package , Eg: Day time"
-                    value={pkg.type}
+                    value={pkg.package_name}
                     onChange={(e) =>
                       handlePackageChange(
                         setSeasonalPackages,
@@ -289,7 +265,7 @@ const Page5: React.FC<PageProps> = ({
                   />
                 </div>
 
-                <div className="flex h-full min-w-[40%] flex-col justify-between">
+                <div className="flex h-full min-w-[45%] flex-col justify-between">
                   <label
                     htmlFor={`seasonalPriceRange${index}`}
                     className="self-start text-lg font-semibold"

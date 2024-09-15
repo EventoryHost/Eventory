@@ -16,7 +16,7 @@ import Page7 from "./preview/page7";
 import { addCaterer } from "@/services/vendors/caterer";
 
 interface Package {
-  type: string;
+  package_name: string;
   priceRange: [number, number];
 }
 
@@ -40,6 +40,8 @@ export interface FormState {
   videoEvent: string | File;
   termsAndConditions: string | File;
   cancellationPolicy: string | File;
+  minOrderReq: string;
+  AdvBooking: string;
 }
 
 const Caterer = () => {
@@ -60,6 +62,8 @@ const Caterer = () => {
     cancellationPolicy: "",
     testimonials: "",
     portfolio: "",
+    minOrderReq: "",
+    AdvBooking: "",
   });
 
   function updateFormState(newState: Partial<FormState>) {
@@ -95,13 +99,13 @@ const Caterer = () => {
 
   // State for packages
   const [hourlyPackages, setHourlyPackages] = useState<Package[]>([
-    { type: "", priceRange: [0, 0] },
+    { package_name: "", priceRange: [0, 0] },
   ]);
   const [dailyPackages, setDailyPackages] = useState<Package[]>([
-    { type: "", priceRange: [0, 0] },
+    { package_name: "", priceRange: [0, 0] },
   ]);
   const [seasonalPackages, setSeasonalPackages] = useState<Package[]>([
-    { type: "", priceRange: [0, 0] },
+    { package_name: "", priceRange: [0, 0] },
   ]);
 
   // Function to handle package change
@@ -114,7 +118,7 @@ const Caterer = () => {
     setPackages((prevPackages) => {
       const newPackages = [...prevPackages];
       if (field === "type") {
-        newPackages[index].type = value as string;
+        newPackages[index].package_name = value as string;
       } else {
         newPackages[index].priceRange = value as [number, number];
       }
@@ -128,7 +132,7 @@ const Caterer = () => {
   ) => {
     setPackages((prevPackages) => [
       ...prevPackages,
-      { type: "", priceRange: [0, 100000] },
+      { package_name: "", priceRange: [0, 100000] },
     ]);
   };
 
@@ -166,7 +170,6 @@ const Caterer = () => {
       additionalServices,
       staffProvides,
       equipmentsProvided,
-      hourlyPackages,
       dailyPackages,
       seasonalPackages,
       TastingSessions: formState.tastingSessions,
@@ -221,20 +224,45 @@ const Caterer = () => {
     additionalServices.forEach((item, index) => {
       formData.append(`additional_services[${index}]`, item);
     });
-    staffProvides.forEach((item, index) => {
+    eventTypes.forEach((item, index) => {
       formData.append(`event_types_catered[${index}]`, item);
+    });
+    staffProvides.forEach((item, index) => {
+      formData.append(`staff_provided[${index}]`, item);
     });
     equipmentsProvided.forEach((item, index) => {
       formData.append(`equipment_provided[${index}]`, item);
     });
-    hourlyPackages.forEach((item, index) => {
-      formData.append(`rates[hourly][${index}]`, JSON.stringify(item));
-    });
+    // hourlyPackages.forEach((item, index) => {
+    //   formData.append(`rates[hourly][${index}]`, JSON.stringify(item));
+    // });
     dailyPackages.forEach((item, index) => {
-      formData.append(`rates[daily][${index}]`, JSON.stringify(item));
+      formData.append(
+        `rates[per_plate_rates][${index}][package_name]`,
+        JSON.stringify(item),
+      );
+      formData.append(
+        `rates[per_plate_rates][${index}][min]`,
+        JSON.stringify(item.priceRange[0]),
+      );
+      formData.append(
+        `rates[per_plate_rates][${index}][max]`,
+        JSON.stringify(item.priceRange[1]),
+      );
     });
     seasonalPackages.forEach((item, index) => {
-      formData.append(`rates[seasonal][${index}]`, JSON.stringify(item));
+      formData.append(
+        `rates[deal_package_rates][${index}][package_name]`,
+        JSON.stringify(item.package_name),
+      );
+      formData.append(
+        `rates[deal_package_rates][${index}][min]`,
+        JSON.stringify(item.priceRange[0]),
+      );
+      formData.append(
+        `rates[deal_package_rates][${index}][max]`,
+        JSON.stringify(item.priceRange[1]),
+      );
     });
 
     formData.append("deposit_required", advancePayment.toString());
@@ -243,13 +271,15 @@ const Caterer = () => {
     formData.append("businessLicenses", formState.businessLicenses.toString());
     formData.append("foodSafety", formState.foodSafety.toString());
     formData.append("cateringServiceImages", formState.cateringServiceImages);
-    // formData.append("videoEvent", formState.videoEvent);
     formData.append("terms_and_conditions", formState.termsAndConditions);
     formData.append("cancellation_policy", formState.cancellationPolicy);
     formData.append("pre_set_menu", formState.preSetMenu);
+
     formData.append("testimonials", formState.testimonials);
 
     formData.append("customizable", formState.customizableMenu.toString());
+    formData.append("minimum_order_requirements", formState.minOrderReq);
+    formData.append("advance_booking_period", formState.AdvBooking);
 
     try {
       formData.forEach((value, key) => {
@@ -334,10 +364,12 @@ const Caterer = () => {
       case 5:
         return (
           <Page5
+            formState={formState}
+            updateFormState={updateFormState}
             advancePayment={advancePayment}
             setAdvancePayment={setAdvancePayment}
-            hourlyPackages={hourlyPackages}
-            setHourlyPackages={setHourlyPackages}
+            // hourlyPackages={hourlyPackages}
+            // setHourlyPackages={setHourlyPackages}
             dailyPackages={dailyPackages}
             setDailyPackages={setDailyPackages}
             seasonalPackages={seasonalPackages}
@@ -366,6 +398,7 @@ const Caterer = () => {
       case 7:
         return (
           <Page7
+            setCurrentPage={setCurrentPage}
             formState={formState}
             servingCapacity={servingCapacity}
             setServingCapacity={setServingCapacity}
@@ -392,8 +425,6 @@ const Caterer = () => {
             setSelectedStaffProvider={setStaffProvides}
             selectedEquipmentsProvided={equipmentsProvided}
             setSelectedEquipmentsProvided={setEquipmentsProvided}
-            hourlyPackages={hourlyPackages}
-            setHourlyPackages={setHourlyPackages}
             dailyPackages={dailyPackages}
             setDailyPackages={setDailyPackages}
             seasonalPackages={seasonalPackages}
@@ -402,7 +433,7 @@ const Caterer = () => {
             addPackage={addPackage}
             advancePayment={advancePayment}
             handleContinue={() => {
-              setCurrentPage(8);
+              // setCurrentPage(8);
               handleSubmit();
             }}
           />

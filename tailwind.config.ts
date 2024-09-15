@@ -125,6 +125,7 @@ const config = {
     nextui(),
     require("tailwindcss-animate"),
     addVariablesForColors,
+    require("tailwind-scrollbar-hide"),
   ],
 } satisfies Config;
 

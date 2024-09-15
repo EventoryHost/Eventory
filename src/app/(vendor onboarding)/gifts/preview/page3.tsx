@@ -62,9 +62,8 @@ const Preview: React.FC<PreviewProps> = ({
   setlistOfGifts,
   currentPage,
   setCurrentPage,
-  handleSubmit
+  handleSubmit,
 }) => {
-
   return (
     <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden lg:flex-row">
       {/* Sidebar */}
@@ -226,7 +225,7 @@ const Preview: React.FC<PreviewProps> = ({
               </span>
             </div>
             {/* Button container */}
-            <div className="w-full flex justify-end gap-[32px] mr-[5%]">
+            <div className="mr-[5%] flex w-full justify-end gap-[32px]">
               {/* Previous Button */}
               <button
                 onClick={() => setCurrentPage(currentPage - 1)}
