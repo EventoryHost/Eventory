@@ -145,9 +145,9 @@ const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
                 <div className="mt-6 flex min-w-[45%] flex-col items-start justify-center">
                   <p className="text-lg">Client Testimonials</p>
                   <FileInput
-                    label="testimonials"
+                    label="clientTestimonials"
                     onFileSelect={(file) => {
-                      updateFormState({ testimonials: file });
+                      updateFormState({ clientTestimonials: file });
                     }}
                     acceptedFileTypes="image/png, .pdf, image/jpg"
                   />
@@ -157,7 +157,7 @@ const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
                     rows={7}
                     placeholder="Enter your venue details"
                     onChange={(e) =>
-                      updateFormState({ testimonials: e.target.value })
+                      updateFormState({ clientTestimonials: e.target.value })
                     }
                     className="mt-5 w-full rounded-xl border-2 border-gray-300"
                   ></textarea>

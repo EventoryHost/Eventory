@@ -32,7 +32,7 @@ export interface FormState {
 
   // Page 6
   portfolio: string | File;
-  testimonials: string | File;
+  clientTestimonials: string | File;
   tastingSessions: boolean;
   businessLicenses: boolean;
   foodSafety: boolean | File;
@@ -60,7 +60,7 @@ const Caterer = () => {
     videoEvent: "",
     termsAndConditions: "",
     cancellationPolicy: "",
-    testimonials: "",
+    clientTestimonials: "",
     portfolio: "",
     minOrderReq: "",
     AdvBooking: "",
@@ -181,7 +181,7 @@ const Caterer = () => {
       CancellationPolicy: formState.cancellationPolicy,
       advancePayment,
       portfolio: formState.portfolio,
-      testimonials: formState.testimonials,
+      clientTestimonials: formState.clientTestimonials,
     });
   };
 
@@ -275,7 +275,7 @@ const Caterer = () => {
     formData.append("cancellation_policy", formState.cancellationPolicy);
     formData.append("pre_set_menu", formState.preSetMenu);
 
-    formData.append("testimonials", formState.testimonials);
+    // formData.append("clientTestimonials", formState.clientTestimonials);
 
     formData.append("customizable", formState.customizableMenu.toString());
     formData.append("minimum_order_requirements", formState.minOrderReq);
