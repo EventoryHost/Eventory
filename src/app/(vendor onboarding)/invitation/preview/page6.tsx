@@ -123,6 +123,10 @@ type PagePreviewProps = {
   addPackage: (
     setPackages: React.Dispatch<React.SetStateAction<Package[]>>,
   ) => void;
+
+  currentPage: number;
+  setCurrentPage: React.Dispatch<SetStateAction<number>>;
+  handleSubmit: () => void;
 };
 
 function Preview({
@@ -163,30 +167,48 @@ function Preview({
   setAdvancePayment,
   handlePackageChange,
   addPackage,
+  currentPage,
+  setCurrentPage,
+  handleSubmit,
 }: PagePreviewProps) {
   return (
     <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden lg:flex-row">
       <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-5 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
         <div className="flex items-center justify-start gap-1 xs:self-start xs:pl-5 md:px-11 lg:mt-[2rem]">
-          <button className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2E3192] p-5 text-white">
+          <button
+            onClick={() => setCurrentPage(1)}
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2E3192] p-5 text-white"
+          >
             1
           </button>
           <div className="h-[0.3rem] w-[4rem] rounded-xl bg-[#2E3192]"></div>
-          <button className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2E3192] p-5 text-white">
+          <button
+            onClick={() => setCurrentPage(2)}
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2E3192] p-5 text-white"
+          >
             2
           </button>
           <div className="h-[0.3rem] w-[4rem] rounded-xl bg-[#2E3192]"></div>
-          <button className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2E3192] p-5 text-white">
+          <button
+            onClick={() => setCurrentPage(3)}
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2E3192] p-5 text-white"
+          >
             3
           </button>
           <div className="h-[0.3rem] w-[4rem] rounded-xl bg-[#2E3192]"></div>
         </div>
         <div className="flex items-center justify-start gap-1 xs:self-start xs:pl-5 md:px-11 lg:mt-[1rem]">
-          <button className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2E3192] p-5 text-white">
+          <button
+            onClick={() => setCurrentPage(4)}
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2E3192] p-5 text-white"
+          >
             4
           </button>
           <div className="h-[0.3rem] w-[4rem] rounded-xl bg-[#2E3192]"></div>
-          <button className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2E3192] p-5">
+          <button
+            onClick={() => setCurrentPage(5)}
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2E3192] p-5 text-white"
+          >
             5
           </button>
         </div>
@@ -464,6 +486,24 @@ function Preview({
                   )}
                 </span>
               </div>
+            </div>
+            {/* Button container */}
+            <div className="mr-[5%] flex w-full justify-end gap-[32px]">
+              {/* Previous Button */}
+              <button
+                onClick={() => setCurrentPage(currentPage - 1)}
+                className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+              >
+                Previous
+              </button>
+
+              {/* Next Button */}
+              <button
+                onClick={handleSubmit}
+                className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+              >
+                Submit
+              </button>
             </div>
           </div>
         </div>

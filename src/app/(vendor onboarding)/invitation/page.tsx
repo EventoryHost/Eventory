@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Page1 from "./page1/page1";
 import Page2 from "./page2/page2";
 import Page3 from "./page3/page3";
@@ -45,6 +45,9 @@ interface FormState {
   clienttestimonials: string;
   extracharges: boolean;
   deposit: boolean;
+
+  currentPage: number;
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const Invitation: React.FC = () => {
@@ -81,7 +84,13 @@ const Invitation: React.FC = () => {
     clienttestimonials: "",
     extracharges: false,
     deposit: false,
+    currentPage,
+    setCurrentPage,
   });
+
+  useEffect(() => {
+    console.log("Current Page: ", currentPage);
+  }, [currentPage]);
 
   const updateFormState = (newState: Partial<FormState>) => {
     setFormState((prev) => ({ ...prev, ...newState }));
@@ -254,6 +263,8 @@ const Invitation: React.FC = () => {
             updateFormState={updateFormState}
             paperType={paperType}
             setPaperType={setPaperType}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
           />
         );
       case 3:
@@ -263,11 +274,18 @@ const Invitation: React.FC = () => {
             updateFormState={updateFormState}
             envelopeTypes={envelopTypes}
             setEnvelopeTypes={setEnvelopTypes}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
           />
         );
       case 4:
         return (
-          <Page4 formState={formState} updateFormState={updateFormState} />
+          <Page4
+            formState={formState}
+            updateFormState={updateFormState}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          />
         );
       case 5:
         return (
@@ -280,6 +298,8 @@ const Invitation: React.FC = () => {
             setAdvancePayment={setAdvancePayment}
             handlePackageChange={handlePackageChange}
             addPackage={addPackage}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
           />
         );
       default:
@@ -319,42 +339,15 @@ const Invitation: React.FC = () => {
             setAdvancePayment={setAdvancePayment}
             handlePackageChange={handlePackageChange}
             addPackage={addPackage}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            handleSubmit={handleSubmit}
           />
         );
     }
   };
 
-  return (
-    <div>
-      {renderPage()}
-      <div className="my-9 mr-[5%] flex flex-row justify-end gap-7">
-        {currentPage > 1 && (
-          <button
-            className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-            onClick={() => setCurrentPage(currentPage - 1)}
-          >
-            Previous
-          </button>
-        )}
-        {currentPage < 6 && (
-          <button
-            onClick={() => setCurrentPage(currentPage + 1)}
-            className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-          >
-            Next
-          </button>
-        )}
-        {currentPage === 6 && (
-          <button
-            onClick={handleSubmit}
-            className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-          >
-            Submit
-          </button>
-        )}
-      </div>
-    </div>
-  );
+  return <div>{renderPage()}</div>;
 };
 
 export default Invitation;
