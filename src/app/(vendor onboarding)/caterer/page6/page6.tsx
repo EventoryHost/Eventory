@@ -10,7 +10,7 @@ interface Page6Props {
 }
 
 const Page6 = ({ formState, updateFormState, handleContinue }: Page6Props) => {
-  const { tastingSessions, businessLicenses, foodSafety } = formState;
+  const { tastingSessions, businessLicenses, foodSafety,termsAndConditions,clientTestimonials,cancellationPolicy,portfolio } = formState;
 
   return (
     <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden overflow-x-hidden scrollbar-hide lg:flex-row">

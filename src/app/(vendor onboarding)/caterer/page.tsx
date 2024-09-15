@@ -275,7 +275,7 @@ const Caterer = () => {
     formData.append("cancellation_policy", formState.cancellationPolicy);
     formData.append("pre_set_menu", formState.preSetMenu);
 
-    // formData.append("clientTestimonials", formState.clientTestimonials);
+    formData.append("client_testimonials", formState.clientTestimonials);
 
     formData.append("customizable", formState.customizableMenu.toString());
     formData.append("minimum_order_requirements", formState.minOrderReq);
