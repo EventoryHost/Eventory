@@ -109,7 +109,7 @@ const Page2: React.FC<PageProps> = ({
         </div>
       </div>
 
-      <div className="flex w-full flex-col items-center justify-center bg-[#F7F6F9]">
+      <div className="flex w-full flex-col items-center justify-center bg-[#F7F6F9] p-4">
         <div className="mx-auto flex max-w-7xl flex-col gap-7 rounded-xl bg-white p-6 md:w-[62em] md:p-12">
           <h2 className="text-2xl font-semibold md:text-3xl">
             Catalog Details
@@ -127,7 +127,7 @@ const Page2: React.FC<PageProps> = ({
           </div>
         </div>
 
-        <div className="flex w-full flex-col items-center justify-center bg-[#F7F6F9] p-2">
+        <div className="flex w-full flex-col items-center justify-center bg-[#F7F6F9] m-10">
           <div className="flex w-[95%] flex-col gap-7 rounded-xl bg-white p-12">
             <h2 className="text-3xl font-semibold">Pricing and Policies</h2>
             <div className="flex items-center">

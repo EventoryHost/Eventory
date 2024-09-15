@@ -66,7 +66,7 @@ const Page1: React.FC<PageProps> = ({
         <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
           <span className="text-2xl font-semibold">Basic Details</span>
 
-          <div className="flex flex-col md:flex-row md:gap-5">
+          <div className="flex flex-col md:flex-row md:gap-10">
             {/* <!-- Vendor Name Section --> */}
             <div className="flex w-full flex-col gap-5 md:w-1/2">
               <div className="flex flex-col gap-4">
@@ -105,7 +105,7 @@ const Page1: React.FC<PageProps> = ({
           </div>
 
           <div className="container">
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
               <div className="space-y-4">
                 <div>
                   <label
