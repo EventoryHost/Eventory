@@ -125,6 +125,8 @@ type page3Props = {
   handleAddTentPricingEntry: (entry: PricingEntry) => void;
   handleAddAudioPricingEntry: (entry: PricingEntry) => void;
   updateFormState: (value: any) => void;
+  currentPage: number;
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 };
 
 function Page3({
@@ -153,6 +155,8 @@ function Page3({
   handleAddTentPricingEntry,
   handleAddAudioPricingEntry,
   updateFormState,
+  currentPage,
+  setCurrentPage,
 }: page3Props & page4Props & page5Props) {
   const [formPage, setFormPage] = useState(1);
   const handleCategorySelection = (category: string) => {
@@ -207,11 +211,10 @@ function Page3({
                 setSelectedCategory("Furniture & Decor");
                 handleCategorySelection("Furniture & Decor");
               }}
-              className={`rounded-3xl px-4 py-2 text-[#2E3192] ${
-                selectedCategory === "Furniture & Decor"
+              className={`rounded-3xl px-4 py-2 text-[#2E3192] ${selectedCategory === "Furniture & Decor"
                   ? "bg-[#2E3192] text-white"
                   : ""
-              }`}
+                }`}
             >
               Furniture & Decor
             </button>
@@ -220,11 +223,10 @@ function Page3({
                 setSelectedCategory("Tent and Canopy");
                 handleCategorySelection("Tent and Canopy");
               }}
-              className={`rounded-3xl px-4 py-2 text-[#2E3192] ${
-                selectedCategory === "Tent and Canopy"
+              className={`rounded-3xl px-4 py-2 text-[#2E3192] ${selectedCategory === "Tent and Canopy"
                   ? "bg-[#2E3192] text-white"
                   : ""
-              }`}
+                }`}
             >
               Tent and Canopy
             </button>
@@ -233,11 +235,10 @@ function Page3({
                 setSelectedCategory("Audio-Visual");
                 handleCategorySelection("Audio-Visual");
               }}
-              className={`rounded-3xl px-4 py-2 text-[#2E3192] ${
-                selectedCategory === "Audio-Visual"
+              className={`rounded-3xl px-4 py-2 text-[#2E3192] ${selectedCategory === "Audio-Visual"
                   ? "bg-[#2E3192] text-white"
                   : ""
-              }`}
+                }`}
             >
               Audio-Visual
             </button>
@@ -571,6 +572,24 @@ function Page3({
                     <span>{formState.percentageValuePage3}%</span>
                   </div>
                 </div>
+                {/* Button container */}
+                <div className="mr-[5%] flex w-full justify-end gap-[32px]">
+                  {/* Previous Button */}
+                  <button
+                    onClick={() => setCurrentPage(currentPage - 1)}
+                    className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+                  >
+                    Previous
+                  </button>
+
+                  {/* Next Button */}
+                  <button
+                    onClick={() => setCurrentPage(currentPage + 1)}
+                    className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+                  >
+                    Next
+                  </button>
+                </div>
               </div>
             </div>
           </>
@@ -748,6 +767,8 @@ function Page3({
               handleAddTentHourlyPricingEntries
             }
             updateFormState={updateFormState}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
           />
         )}
 
@@ -766,8 +787,7 @@ function Page3({
               throw new Error("Function not implemented.");
             }}
             tentHourlyPricingEntries={undefined}
-            updateFormState={updateFormState}
-          />
+            updateFormState={updateFormState} currentPage={currentPage} setCurrentPage={setCurrentPage} />
         )}
       </div>
     </div>

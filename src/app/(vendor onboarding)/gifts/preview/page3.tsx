@@ -107,8 +107,8 @@ const Preview: React.FC<PreviewProps> = ({
                 </button>
               </div>
 
-              <div className="flex flex-col gap-4 md:flex-row">
-                <div className="flex flex-grow flex-col">
+              <div className="flex flex-col gap-6 md:flex-row">
+                <div className="flex flex-grow flex-col min-w-[45%]">
                   <label
                     className="mb-2 text-lg font-medium text-gray-700"
                     htmlFor="description"
@@ -125,7 +125,7 @@ const Preview: React.FC<PreviewProps> = ({
                   </textarea>
                 </div>
 
-                <div className="flex flex-grow flex-col">
+                <div className="flex flex-grow flex-col min-w-[45%]">
                   <h2 className="mb-2 text-lg font-medium text-gray-700">
                     Do You Provide Customizable Gifts?
                   </h2>

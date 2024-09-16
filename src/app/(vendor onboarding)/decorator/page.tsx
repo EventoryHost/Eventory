@@ -511,29 +511,33 @@ const Decorators: React.FC = () => {
         </div>
         <div className="flex h-[50%] flex-col items-start justify-center gap-9 px-3 md:px-3">
           <h1 className="text-[8vw] font-bold md:text-[3vw]">
-            {currentPage === 1 && "Tell us about your business"}
-            {currentPage === 2 && "Fill the menu details"}
-            {currentPage === 3 && "Fill the Event details"}
-            {currentPage === 4 && "Fill the Staffing and Equipment details"}
-            {currentPage === 5 && "Fill the Booking and pricing details"}
-            {currentPage === 6 && "Fill the Additional details"}
-            {currentPage === 7 && "Preview details"}
+            {currentPage === 1 && "Fill out event details"}
+            {currentPage === 2 && "Fill out themes related details "}
+            {currentPage === 3 && "Fill out theme elements details"}
+            {currentPage === 4 && "Fill out consultaion details"}
+            {currentPage === 5 && "Fill out the pricing details"}
+            {currentPage === 6 && "Fill out your ratings and reviews"}
+            {currentPage === 7 && "Fill out some mandatory details"}
+            {currentPage === 8 && "Preview details"}
+
           </h1>
           <p className="text-black xs:text-sm md:w-[90%]">
             {currentPage === 1 &&
-              "Fill out your Business details to get verified and proceed to the registration process."}
+              "Select the types of events you cover "}
             {currentPage === 2 &&
-              "Please provide the menu details of the catering service offered by your company."}
+              "Provide the details of the themes you offer and related details."}
             {currentPage === 3 &&
-              "Please provide the event details of the catering service offered by your company."}
+              "Provide the details of the themes elements you provide and describe it in detail."}
             {currentPage === 4 &&
-              "Please provide the staffing and equipment details of the catering service offered by your company."}
+              "Provide your consultaion process in detail"}
             {currentPage === 5 &&
-              "Please provide the booking and pricing details of the catering service offered by your company."}
+              "Provide the pricing detaials or uplaod pdf (if available)"}
             {currentPage === 6 &&
-              "Please provide the additional details of the catering service offered by your company."}
+              "Fill out the details or upload the links/pdf if available."}
             {currentPage === 7 &&
-              "Please recheck the information provided by you. "}
+              "Provide the deatils by providing url or uploading pdf. "}
+            {currentPage === 8 && "Please recheck the information provided by you. "}
+
           </p>
         </div>
         <div className="relative h-[10rem] lg:w-full">

@@ -385,6 +385,10 @@ const RootPage = () => {
   return (
     <div>
       <CurrentPageComponent
+
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        handleSubmit={handleSubmit}
         key={currentPage}
         formState={formState}
         handleChange={handleChange}
@@ -417,32 +421,7 @@ const RootPage = () => {
         handleAddAudioPricingEntry={handleAddAudioPricingEntry}
         updateFormState={updateFormState}
       />
-      <div className="my-9 mr-[5%] flex flex-row justify-end gap-7">
-        {currentPage > 0 && (
-          <button
-            className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-            onClick={() => setCurrentPage(currentPage - 1)}
-          >
-            Previous
-          </button>
-        )}
-        {currentPage < 3 && (
-          <button
-            onClick={() => setCurrentPage(currentPage + 1)}
-            className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-          >
-            Next
-          </button>
-        )}
-        {currentPage === 3 && (
-          <button
-            onClick={handleSubmit}
-            className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-          >
-            Submit
-          </button>
-        )}
-      </div>
+      
     </div>
   );
 };
