@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useRouter } from 'next/navigation'; // Adjusted import
 
-import Razorpay from "razorpay";
+// import Razorpay from "razorpay";
 
 const createOrder = async (amount: string, plan: string, id: string) => {
   try {
@@ -61,8 +61,6 @@ const handlePayment = async (
   plan: string, // vendor plans name 
   id: string, // vendor id 
   name: string, // vendor name from flow
-  navigateToSuccess : () => void,
-  navigateToFailure : () => void,
 ) => {
   try {
     const orderResponse = await createOrder(amount, plan, id);
@@ -87,11 +85,7 @@ const handlePayment = async (
           signature,
         );
         console.log(verifyResponse);
-        if (verifyResponse) {
-          navigateToSuccess();
-        } else {
-          navigateToFailure();
-        }
+
       },
       order_id: order_id,
       prefill: {

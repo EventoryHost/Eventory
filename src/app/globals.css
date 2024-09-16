@@ -139,7 +139,7 @@ body {
     @apply overflow-y-scroll; /* Ensure the element is scrollable */
     scrollbar-width: thin; /* Firefox: Make the scrollbar thin */
     scrollbar-color: #1e3a8a #f1f1f1; /* Firefox: Thumb color and track color */
-    direction: rtl;
+    direction:ltr;
     
   }
 
