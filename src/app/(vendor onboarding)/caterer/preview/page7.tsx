@@ -39,7 +39,7 @@ type PricingEntry = {
   maxRate: string;
 };
 interface Package {
-  package_name: string;
+  type: string;
   priceRange: [number, number];
 }
 
@@ -374,7 +374,7 @@ function Preview({
             >
               <div className="flex min-w-[40%] flex-col gap-4">
                 <div key={index} className="mb-2 flex flex-col">
-                  <span>{pkg?.package_name}</span>
+                  <span>{pkg?.type}</span>
                   <span className="font-semibold">
                     ₹{pkg?.priceRange[0]} - ₹{pkg?.priceRange[1]}
                   </span>
@@ -393,7 +393,7 @@ function Preview({
             >
               <div className="flex min-w-[40%] flex-col gap-4">
                 <div key={index} className="mb-2 flex flex-col">
-                  <span>{pkg?.package_name}</span>
+                  <span>{pkg?.type}</span>
                   <span className="font-semibold">
                     ₹{pkg.priceRange[0]} - ₹{pkg.priceRange[1]}
                   </span>

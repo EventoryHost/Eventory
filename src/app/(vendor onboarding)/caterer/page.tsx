@@ -16,7 +16,7 @@ import Page7 from "./preview/page7";
 import { addCaterer } from "@/services/vendors/caterer";
 
 interface Package {
-  package_name: string;
+  type: string;
   priceRange: [number, number];
 }
 
@@ -99,13 +99,13 @@ const Caterer = () => {
 
   // State for packages
   const [hourlyPackages, setHourlyPackages] = useState<Package[]>([
-    { package_name: "", priceRange: [0, 0] },
+    { type: "", priceRange: [0, 0] },
   ]);
   const [dailyPackages, setDailyPackages] = useState<Package[]>([
-    { package_name: "", priceRange: [0, 0] },
+    { type: "", priceRange: [0, 0] },
   ]);
   const [seasonalPackages, setSeasonalPackages] = useState<Package[]>([
-    { package_name: "", priceRange: [0, 0] },
+    { type: "", priceRange: [0, 0] },
   ]);
 
   // Function to handle package change
@@ -118,7 +118,7 @@ const Caterer = () => {
     setPackages((prevPackages) => {
       const newPackages = [...prevPackages];
       if (field === "type") {
-        newPackages[index].package_name = value as string;
+        newPackages[index].type = value as string;
       } else {
         newPackages[index].priceRange = value as [number, number];
       }
@@ -132,7 +132,7 @@ const Caterer = () => {
   ) => {
     setPackages((prevPackages) => [
       ...prevPackages,
-      { package_name: "", priceRange: [0, 100000] },
+      { type: "", priceRange: [0, 100000] },
     ]);
   };
 
@@ -238,7 +238,7 @@ const Caterer = () => {
     // });
     dailyPackages.forEach((item, index) => {
       formData.append(
-        `rates[per_plate_rates][${index}][package_name]`,
+        `rates[per_plate_rates][${index}][type]`,
         JSON.stringify(item),
       );
       formData.append(
@@ -252,8 +252,8 @@ const Caterer = () => {
     });
     seasonalPackages.forEach((item, index) => {
       formData.append(
-        `rates[deal_package_rates][${index}][package_name]`,
-        JSON.stringify(item.package_name),
+        `rates[deal_package_rates][${index}][type]`,
+        JSON.stringify(item.type),
       );
       formData.append(
         `rates[deal_package_rates][${index}][min]`,

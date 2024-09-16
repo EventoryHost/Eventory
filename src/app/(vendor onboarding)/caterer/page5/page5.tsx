@@ -5,7 +5,7 @@ import Percentage from "../../invitation/(components)/percentage";
 import { FormState } from "../page";
 
 interface Package {
-  package_name: string;
+  type: string;
   priceRange: [number, number];
 }
 
@@ -147,7 +147,7 @@ const Page5: React.FC<PageProps> = ({
                     type="text"
                     className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                     placeholder="Type of package , Eg: Day time"
-                    value={pkg.package_name}
+                    value={pkg.type}
                     onChange={(e) =>
                       handlePackageChange(
                         setDailyPackages,
@@ -253,7 +253,7 @@ const Page5: React.FC<PageProps> = ({
                     type="text"
                     className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                     placeholder="Type of package , Eg: Day time"
-                    value={pkg.package_name}
+                    value={pkg.type}
                     onChange={(e) =>
                       handlePackageChange(
                         setSeasonalPackages,
