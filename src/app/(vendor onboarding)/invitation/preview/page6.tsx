@@ -2,6 +2,7 @@ import { Check, EditIcon } from "lucide-react";
 import { SetStateAction } from "react";
 import Appetizers from "../..//(components)/Appetizers";
 import File from "../../caterer/(components)/File";
+import StepBar from "../(components)/StepBar";
 const _cuisine = ["North Indian", "South Indian", "Chinese", "Italian"];
 const regional = [
   "Gujrati",
@@ -127,6 +128,7 @@ type PagePreviewProps = {
   currentPage: number;
   setCurrentPage: React.Dispatch<SetStateAction<number>>;
   handleSubmit: () => void;
+  handleStepClick: (step: number) => void;
 };
 
 function Preview({
@@ -170,48 +172,12 @@ function Preview({
   currentPage,
   setCurrentPage,
   handleSubmit,
+  handleStepClick,
 }: PagePreviewProps) {
   return (
     <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden lg:flex-row">
       <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-5 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
-        <div className="flex items-center justify-start gap-1 xs:self-start xs:pl-5 md:px-11 lg:mt-[2rem]">
-          <button
-            onClick={() => setCurrentPage(1)}
-            className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2E3192] p-5 text-white"
-          >
-            1
-          </button>
-          <div className="h-[0.3rem] w-[4rem] rounded-xl bg-[#2E3192]"></div>
-          <button
-            onClick={() => setCurrentPage(2)}
-            className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2E3192] p-5 text-white"
-          >
-            2
-          </button>
-          <div className="h-[0.3rem] w-[4rem] rounded-xl bg-[#2E3192]"></div>
-          <button
-            onClick={() => setCurrentPage(3)}
-            className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2E3192] p-5 text-white"
-          >
-            3
-          </button>
-          <div className="h-[0.3rem] w-[4rem] rounded-xl bg-[#2E3192]"></div>
-        </div>
-        <div className="flex items-center justify-start gap-1 xs:self-start xs:pl-5 md:px-11 lg:mt-[1rem]">
-          <button
-            onClick={() => setCurrentPage(4)}
-            className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2E3192] p-5 text-white"
-          >
-            4
-          </button>
-          <div className="h-[0.3rem] w-[4rem] rounded-xl bg-[#2E3192]"></div>
-          <button
-            onClick={() => setCurrentPage(5)}
-            className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2E3192] p-5 text-white"
-          >
-            5
-          </button>
-        </div>
+        <StepBar currentStep={5} onStepClick={handleStepClick} />
         <div className="flex h-[50%] flex-col items-start justify-center gap-9 px-9 xs:pl-5 md:px-11 lg:p-8">
           <h1 className="text-3xl font-bold md:text-4xl lg:text-5xl">
             Tell us about your business
@@ -237,7 +203,9 @@ function Preview({
             <div className="flex w-[100%] justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
               Rating & Reviews
               <div className="align-center flex justify-center p-1">
-                <button>
+                <button
+                onClick={() => setCurrentPage(1)}
+                >
                   <EditIcon size={32} />
                 </button>
               </div>
@@ -347,7 +315,9 @@ function Preview({
             <div className="flex w-[100%] justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
               Rating & Reviews
               <div className="align-center flex justify-center p-1">
-                <button>
+                <button
+                onClick={() => setCurrentPage(2)}
+                >
                   <EditIcon size={32} />
                 </button>
               </div>
@@ -443,7 +413,9 @@ function Preview({
             <div className="flex w-[100%] justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
               Pricing & Policies
               <div className="align-center flex justify-center p-1">
-                <button>
+                <button
+                onClick={() => setCurrentPage(4)}
+                >
                   <EditIcon size={32} />
                 </button>
               </div>
