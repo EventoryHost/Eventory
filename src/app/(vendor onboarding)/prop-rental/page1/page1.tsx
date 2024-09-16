@@ -64,12 +64,18 @@ export interface page1Props {
   handleAddTentHourlyPricingEntries: (entry: PricingEntry) => void;
   handleAddTentPricingEntry: (entry: PricingEntry) => void;
   handleAddAudioPricingEntry: (entry: PricingEntry) => void;
+  currentPage: number;
+  setCurrentPage: (value: any) => void;
+  handleSubmit: () => void;
+
 }
 
 const Page1: React.FC<page1Props> = ({
   formState,
   handleChange,
   handleNestedChange,
+  currentPage,
+  setCurrentPage,
 }) => {
   return (
     <>
@@ -179,9 +185,19 @@ const Page1: React.FC<page1Props> = ({
                 />
               </div>
             </div>
+            {/* Next Button */}
+            <div className="flex w-full justify-end mt-4">
+              <button
+                onClick={() => setCurrentPage(currentPage + 1)}
+                className="rounded-xl bg-[#2E3192] text-white w-36 h-14"
+              >
+                Next
+              </button>
+            </div>
+
           </div>
         </div>
-      </div>
+      </div >
     </>
   );
 };

@@ -23,7 +23,6 @@ const Appetizers: React.FC<AppetizersProps> = ({
     if (storedAppetizers) {
       setCustomAppetizers(JSON.parse(storedAppetizers));
     }
-    console.log(selectedAppetizers);
   }, [field, selectedAppetizers]);
 
   const handleButtonClick = (
