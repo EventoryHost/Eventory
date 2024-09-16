@@ -1,13 +1,13 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import jwt from "jsonwebtoken";
 
 import { addBusinessDetails } from "@/services/auth";
 import tajmahal from "/public/tajmahal.png";
 import { Combobox } from "@/components/ui/combobox";
-import Router from "next/router";
 
 const frameworks = [
   { value: "next.js", label: "Next.js" },
@@ -19,11 +19,11 @@ const frameworks = [
 
 const categories = [
   { value: "venue-provider", label: "Venue Provider" },
-  { value: "pav", label: "Photography & Videography" },
+  { value: "pav", label: "PaV" },
   { value: "caterer", label: "Caterers" },
-  { value: "decorators", label: "Decorator" },
-  { value: "propRentals", label: "Prop Rentals" },
-  { value: "makeupArtist", label: "Makeup Artist" },
+  { value: "decorator", label: "Decorator" },
+  { value: "prop-rental", label: "Prop Rental" },
+  { value: "makeup-artist", label: "Makeup Artist" },
 ];
 
 const yearsInOperation = [
@@ -34,10 +34,10 @@ const yearsInOperation = [
 ];
 
 const operationalCities = [
-  { value: "del", label: "Delhi" },
-  { value: "kol", label: "Kolkata" },
-  { value: "mum", label: "Mumbai" },
-  { value: "ban", label: "bangalore" },
+  { value: "ny", label: "New York" },
+  { value: "sf", label: "San Francisco" },
+  { value: "la", label: "Los Angeles" },
+  { value: "chi", label: "Chicago" },
 ];
 
 export type businessDetails = {
@@ -52,6 +52,7 @@ export type businessDetails = {
 };
 
 const BusinessDetails = () => {
+  const router = useRouter();
   const [businessDetails, setBusinessDetails] = useState<businessDetails>(
     {} as businessDetails,
   );
@@ -115,7 +116,7 @@ const BusinessDetails = () => {
     addBusinessDetails(userId, newDetails);
 
     // Redirect to the selected category's page
-    Router.push(`/${businessDetails.category}`);
+    router.push(`/${businessDetails.category}`);
   };
 
   return (
@@ -248,16 +249,13 @@ const BusinessDetails = () => {
                 </div>
                 <div className="flex min-w-[40%] flex-col gap-4">
                   <label htmlFor="cities">Operational Cities</label>
-                  <label htmlFor="gstin">GSTIN</label>
-                  <input
-                    id="cities"
-                    type="text"
-                    className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
-                    placeholder="Enter your cities"
-                    ref={(el) => {
-                      refs.current.gstin = el;
+                  <Combobox
+                    options={operationalCities}
+                    placeholder="Select Operational Cities"
+                    setFunction={(val) => {
+                      setBusinessDetails({ ...businessDetails, cities: [val] });
                     }}
-                    required
+                    className="flex items-center justify-between rounded-xl border-2 py-6 hover:text-[#2E3192]"
                   />
                 </div>
               </div>

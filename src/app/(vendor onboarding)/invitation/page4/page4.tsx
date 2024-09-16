@@ -33,9 +33,12 @@ interface Page4Props {
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const Page: React.FC<Page4Props> = ({ formState, updateFormState, 
+const Page: React.FC<Page4Props> = ({
+  formState,
+  updateFormState,
   currentPage,
-  setCurrentPage, }) => {
+  setCurrentPage,
+}) => {
   const {
     termsandConditions,
     cancellationPolicy,
@@ -51,31 +54,44 @@ const Page: React.FC<Page4Props> = ({ formState, updateFormState,
   // const  [deposit, setDeposit] = useState(false);
   // const [clienttestimonials, setClientTestimonials] = useState("");
 
-  
-
   return (
     <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden lg:flex-row">
       <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
         <div className="flex items-center justify-start gap-1 xs:self-start xs:pl-5 md:px-11 lg:mt-[2rem]">
-          <button onClick={()=> setCurrentPage(1)} className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2E3192] p-5 text-white">
+          <button
+            onClick={() => setCurrentPage(1)}
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2E3192] p-5 text-white"
+          >
             1
           </button>
           <div className="h-[0.3rem] w-[4rem] rounded-xl bg-[#2E3192]"></div>
-          <button onClick={()=> setCurrentPage(2)} className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2E3192] p-5 text-white">
+          <button
+            onClick={() => setCurrentPage(2)}
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2E3192] p-5 text-white"
+          >
             2
           </button>
           <div className="h-[0.3rem] w-[4rem] rounded-xl bg-[#2E3192]"></div>
-          <button onClick={()=> setCurrentPage(3)} className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2E3192] p-5 text-white">
+          <button
+            onClick={() => setCurrentPage(3)}
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2E3192] p-5 text-white"
+          >
             3
           </button>
           <div className="h-[0.3rem] w-[4rem] rounded-xl bg-[#2E3192]"></div>
         </div>
         <div className="flex items-center justify-start gap-1 xs:self-start xs:pl-5 md:px-11 lg:mt-[1rem]">
-          <button onClick={()=> setCurrentPage(4)} className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2E3192] p-5 text-white">
+          <button
+            onClick={() => setCurrentPage(4)}
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2E3192] p-5 text-white"
+          >
             4
           </button>
           <div className="h-[0.3rem] w-[4rem] rounded-xl bg-gray-300"></div>
-          <button onClick={()=> setCurrentPage(5)} className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-300 p-5">
+          <button
+            onClick={() => setCurrentPage(5)}
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-300 p-5"
+          >
             5
           </button>
         </div>
@@ -223,7 +239,7 @@ const Page: React.FC<Page4Props> = ({ formState, updateFormState,
               </div>
             </div>
             {/* Button container */}
-          <div className="w-full flex justify-end gap-[32px] mr-[5%]">
+            <div className="mr-[5%] flex w-full justify-end gap-[32px]">
               {/* Previous Button */}
               <button
                 onClick={() => setCurrentPage(currentPage - 1)}
@@ -240,7 +256,7 @@ const Page: React.FC<Page4Props> = ({ formState, updateFormState,
                 Next
               </button>
             </div>
-          </div>          
+          </div>
         </div>
       </div>
     </div>
