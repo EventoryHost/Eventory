@@ -38,8 +38,10 @@ interface Page5Props {
   onsiteMakeup: boolean;
   organisationMembers: string;
   artistDescription: string;
+  currentPage: number;
   portfolioUrls: string | File;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
+  handleSubmit: () => void;
 }
 
 const Page: React.FC<Page5Props> = ({
@@ -50,9 +52,11 @@ const Page: React.FC<Page5Props> = ({
   hourlyPackage,
   dealPackage,
   ratesbyWorker,
+  currentPage,
   setCurrentPage,
   onsiteMakeup,
   handleContinue
+
 }) => {
   return (
 
@@ -266,12 +270,21 @@ const Page: React.FC<Page5Props> = ({
           </div>
         </div>
       </div>
-      <button
-        className="flex w-fit items-center justify-center self-end rounded-xl bg-[#2E3192] p-5 text-white xs:text-[4vw] md:text-[2vw] lg:w-[10vw] lg:text-[1vw]"
-        onClick={handleContinue}
-      >
-        Continue
-      </button>
+
+      <div className="items-strech mt-9 flex flex-row gap-7 self-end">
+        <button
+          className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+          onClick={() => setCurrentPage(currentPage - 1)}
+        >
+          Previous
+        </button>
+        <button
+          className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+          onClick={handleContinue}
+        >
+          Submit
+        </button>
+      </div>
     </div>
   );
 };

@@ -30,6 +30,8 @@ interface Page3Props {
   addPackage: (
     setPackages: React.Dispatch<React.SetStateAction<Package[]>>,
   ) => void;
+  currentPage: number;
+  setCurrentPage: (page: number) => void;
 }
 
 const Page: React.FC<Page3Props> = ({
@@ -43,7 +45,10 @@ const Page: React.FC<Page3Props> = ({
   setratesbyWorker,
   handlePackageChange,
   addPackage,
-  handleContinue
+  handleContinue,
+  currentPage,
+  setCurrentPage,
+
 }) => {
   const handlePercentageChange = (newValue: number) => {
     setAdvancePayment(newValue);
@@ -412,13 +417,13 @@ const Page: React.FC<Page3Props> = ({
             <div className="items-strech mt-9 flex flex-row gap-7 self-end">
               <button
                 className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={handleContinue}
+                onClick={() => setCurrentPage(currentPage - 1)}
               >
-                Skip
+                Previous
               </button>
               <button
                 className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={handleContinue}
+                onClick={()=>setCurrentPage(currentPage + 1)}
               >
                 Continue
               </button>

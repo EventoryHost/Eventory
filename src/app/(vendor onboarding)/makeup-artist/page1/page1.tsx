@@ -86,6 +86,8 @@ interface Page1Props {
   setMakeupArtist_group: React.Dispatch<React.SetStateAction<string[]>>;
   makeupArtists_organisation: string[];
   setMakeupArtist_organisation: React.Dispatch<React.SetStateAction<string[]>>;
+  currentPage: number;
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const Page: React.FC<Page1Props> = ({
@@ -100,7 +102,9 @@ const Page: React.FC<Page1Props> = ({
   setMakeupArtist_group,
   makeupArtists_organisation,
   setMakeupArtist_organisation,
-  handleContinue
+  handleContinue,
+  currentPage,
+  setCurrentPage
 }) => {
   const { artistDescription, portfolioUrls } = formState;
 
@@ -372,15 +376,10 @@ const Page: React.FC<Page1Props> = ({
               />
             </div>
             <div className="items-strech mt-9 flex flex-row gap-7 self-end">
-              <button
-                className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={handleContinue}
-              >
-                Skip
-              </button>
+              
               <button
                 className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={handleContinue}
+                onClick={()=>setCurrentPage(currentPage + 1)}
               >
                 Continue
               </button>
@@ -404,15 +403,10 @@ const Page: React.FC<Page1Props> = ({
               />
             </div>
             <div className="items-strech mt-9 flex flex-row gap-7 self-end">
-              <button
-                className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={handleContinue}
-              >
-                Skip
-              </button>
+              
               <button
                 className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={handleContinue}
+                onClick={()=>setCurrentPage(currentPage + 1)}
               >
                 Continue
               </button>
@@ -436,15 +430,10 @@ const Page: React.FC<Page1Props> = ({
               />
             </div>
             <div className="items-strech mt-9 flex flex-row gap-7 self-end">
-              <button
-                className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={handleContinue}
-              >
-                Skip
-              </button>
+              
               <button
                 className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={handleContinue}
+                onClick={()=>setCurrentPage(currentPage + 1)}
               >
                 Continue
               </button>

@@ -21,13 +21,15 @@ interface Page4Props {
   setMakeupTypes: React.Dispatch<React.SetStateAction<string[]>>;
   onsiteMakeup: boolean;
   setOnsiteMakeup: React.Dispatch<React.SetStateAction<boolean>>;
+  currentPage: number;
+  setCurrentPage: (page: number) => void;
 }
 
 const Page: React.FC<Page4Props> = ({
   makeupTypes,
   setMakeupTypes,
   onsiteMakeup,
-  setOnsiteMakeup,handleContinue
+  setOnsiteMakeup,handleContinue,currentPage,setCurrentPage
 }) => {
   const handleCategoryChange = (newCategory: "Yes" | "No") => {
     if (newCategory === "Yes") {
@@ -82,13 +84,13 @@ const Page: React.FC<Page4Props> = ({
             <div className="items-strech mt-9 flex flex-row gap-7 self-end">
               <button
                 className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={handleContinue}
+                onClick={() => setCurrentPage(currentPage - 1)}
               >
-                Skip
+                Previous
               </button>
               <button
                 className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={handleContinue}
+                onClick={()=>setCurrentPage(currentPage + 1)}
               >
                 Continue
               </button>
