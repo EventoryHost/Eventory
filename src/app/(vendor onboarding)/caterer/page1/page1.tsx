@@ -76,7 +76,7 @@ const Page1 = ({
 
   const getInputClassName = (value: string | string[]) => {
     const baseClasses =
-      "w-full rounded-xl border-2 bg-white p-5 py-3 outline-none";
+      "w-full rounded-xl border-2 bg-white p-3 py-5 outline-none text-sm";
     return `${baseClasses} ${!isFormValid && (typeof value === "string" ? value.trim() === "" : value.length === 0) ? "border-red-500" : ""}`;
   };
 
@@ -91,10 +91,10 @@ const Page1 = ({
     setServingCapacity([option]);
   };
   return (
-    <div className="scroll-touch flex flex-col items-start gap-5 overflow-y-scroll rounded-xl bg-white p-3 scrollbar-hide  xs:justify-start md:p-10">
+    <div className="scroll-touch flex flex-col items-start gap-5 overflow-y-scroll rounded-xl bg-white p-3 scrollbar-hide  xs:justify-start md:p-6">
       <h1 className="text-2xl font-semibold">Basic Details</h1>
       <div className="flex w-[100%] items-start gap-9"></div>
-      <div className="flex min-w-full flex-col items-center gap-9">
+      <div className="flex min-w-full flex-col items-center gap-9 p-2">
         <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
           <div className="flex min-w-[50%] flex-col gap-2">
             <label htmlFor="businessName" className="text-base font-medium">
@@ -139,12 +139,27 @@ const Page1 = ({
             <Dropdown
               options={capacities}
               onSelect={handleSelect}
+
               placeholder="Enter max. no. of people you serve"
             />
           </div>
         </div>
-
-        <div className="flex w-[100%] flex-col gap-5 rounded-xl bg-white">
+        <div className="flex min-w-[100%] flex-col gap-6 rounded-xl bg-white">
+          <label htmlFor="category" className="text-base font-medium">
+            Regional Specialties<span className="text-red-500">*</span>
+          </label>
+          <div className="flex min-h-full min-w-full flex-col items-center gap-5">
+            <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+              <Appetizers
+                appetizers={_regional}
+                selectedAppetizers={regionalSpecialties}
+                setSelectedAppetizers={setRegionalSpecialties}
+                field={"_regional"}
+              />
+            </div>
+          </div>
+        </div>
+        <div className="flex w-[100%] flex-col gap-6 rounded-xl bg-white">
           <label htmlFor="years" className="text-base font-medium">
             Cuisine Specialties<span className="text-red-500">*</span>
           </label>
@@ -159,7 +174,7 @@ const Page1 = ({
             </div>
           </div>
         </div>
-        <div className="flex min-w-[100%] flex-col gap-5 rounded-xl bg-white">
+        <div className="flex min-w-[100%] flex-col gap-6 rounded-xl bg-white">
           <label htmlFor="years" className="text-base font-medium">
             Service Styles Offered<span className="text-red-500">*</span>
           </label>
@@ -175,31 +190,17 @@ const Page1 = ({
           </div>
         </div>
 
-        <div className="flex min-w-[100%] flex-col gap-5 rounded-xl bg-white">
-          <label htmlFor="category" className="text-base font-medium">
-            Regional Specialties<span className="text-red-500">*</span>
-          </label>
-          <div className="flex min-h-full min-w-full flex-col items-center gap-5">
-            <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-              <Appetizers
-                appetizers={_regional}
-                selectedAppetizers={regionalSpecialties}
-                setSelectedAppetizers={setRegionalSpecialties}
-                field={"_regional"}
-              />
-            </div>
-          </div>
-        </div>
+
       </div>
       <div className="items-strech  flex flex-row gap-7 self-end">
-            
-            <button
-              className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-              onClick={handleContinue}
-            >
-              Continue
-            </button>
-          </div>
+
+        <button
+          className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+          onClick={handleContinue}
+        >
+          Continue
+        </button>
+      </div>
     </div>
   );
 };

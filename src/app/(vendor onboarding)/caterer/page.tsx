@@ -248,13 +248,13 @@ const Caterer = () => {
       );
     });
     seasonalPackages.forEach((packageData, index) => {
-      formData.append(`dailyPackages[${index}][type]`, packageData.type);
+      formData.append(`seasonalPackages[${index}][type]`, packageData.type);
       formData.append(
-        `dailyPackages[${index}][priceRange][0]`,
+        `seasonalPackages[${index}][priceRange][0]`,
         packageData.priceRange[0].toString(),
       );
       formData.append(
-        `dailyPackages[${index}][priceRange][1]`,
+        `seasonalPackages[${index}][priceRange][1]`,
         packageData.priceRange[1].toString(),
       );
     });
@@ -292,7 +292,7 @@ const Caterer = () => {
       case 1:
         return (
           <Page1
-            
+
             formState={formState}
             updateFormState={updateFormState}
             servingCapacity={servingCapacity}
@@ -312,7 +312,7 @@ const Caterer = () => {
       case 2:
         return (
           <Page2
-          setCurrentPage={setCurrentPage}
+            setCurrentPage={setCurrentPage}
             currentPage={currentPage}
             formState={formState}
             updateFormState={updateFormState}
@@ -335,6 +335,8 @@ const Caterer = () => {
       case 3:
         return (
           <Page3
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
             selectedEventTypes={eventTypes}
             setSelectedEventTypes={setEventTypes}
             selectedAdditionalServices={additionalServices}
@@ -348,6 +350,8 @@ const Caterer = () => {
       case 4:
         return (
           <Page4
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
             selectedStaffProvider={staffProvides}
             setSelectedStaffProvider={setStaffProvides}
             selectedEquipmentsProvided={equipmentsProvided}
@@ -361,6 +365,8 @@ const Caterer = () => {
       case 5:
         return (
           <Page5
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
             formState={formState}
             updateFormState={updateFormState}
             advancePayment={advancePayment}
@@ -382,6 +388,8 @@ const Caterer = () => {
       case 6:
         return (
           <Page6
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
             formState={formState}
             updateFormState={updateFormState}
             handleContinue={() => {
@@ -395,6 +403,8 @@ const Caterer = () => {
       case 7:
         return (
           <Page7
+            veg={veg}
+            setVeg={setVeg}
             setCurrentPage={setCurrentPage}
             formState={formState}
             servingCapacity={servingCapacity}
@@ -526,7 +536,7 @@ const Caterer = () => {
           />
         </div>
       </div>
-      <div className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] px-12 py-12">
+      <div className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] p-4 md:p-12">
         {renderPage()}
       </div>
     </div>

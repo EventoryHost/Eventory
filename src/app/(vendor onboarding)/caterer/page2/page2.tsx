@@ -94,6 +94,12 @@ const Page2 = ({
               label="menu"
               onFileSelect={(file) => {
                 updateFormState({ menu: file });
+                setSelectedAppetizers([]);
+                setSelectedBeverages([])
+                setSelectedDietaryOptions([])
+                setSelectedMainCourses([])
+                updateFormState({ preSetMenu: "" })
+                updateFormState({ customizableMenu: false })
               }}
               acceptedFileTypes="image/png, .pdf, image/jpg"
             />
@@ -101,7 +107,11 @@ const Page2 = ({
           <div className="font-semibold text-base">
             Dont have a handy menu? no worries, you can add your items here
           </div>
-          <div onClick={() => setAddManually(!addManually)} className="cursor-pointer rounded-xl border-2 border-[#2E3192] text-center text-[#2E3192] xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3">
+          <div onClick={() => 
+            {setAddManually(!addManually)
+              updateFormState({ menu: undefined });
+
+            }} className="cursor-pointer rounded-xl border-2 border-[#2E3192] text-center text-[#2E3192] xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3">
             Add Manually
           </div>
           {!addManually &&
@@ -120,7 +130,7 @@ const Page2 = ({
 
             <div className="flex min-w-full flex-col items-start justify-around gap-10 rounded-xl bg-white p-3 md:p-6">
               <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
-                <div className="flex w-full flex-col gap-4">
+                <div className="flex w-full flex-col gap-6">
                   <label htmlFor="appetizers" className="font-semibold text-xl">Appetizers<span className="text-red-500">*</span></label>
                   <Appetizers
                     field={"_appetizers"}
@@ -134,7 +144,7 @@ const Page2 = ({
 
             <div className="flex min-w-full flex-col items-start justify-around gap-10 rounded-xl bg-white p-3 md:p-6">
               <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
-                <div className="flex w-full flex-col gap-4">
+                <div className="flex w-full flex-col gap-6">
                   <label htmlFor="beverages" className="font-semibold text-xl">Beverages<span className="text-red-500">*</span></label>
                   <Appetizers
                     field={"_beverages"}
@@ -147,7 +157,7 @@ const Page2 = ({
             </div>
             <div className="flex min-w-full flex-col items-start justify-around gap-10 rounded-xl bg-white p-3 md:p-6">
               <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
-                <div className="flex w-full flex-col gap-4">
+                <div className="flex w-full flex-col gap-6">
                   <label htmlFor="mainCourses" className="font-semibold text-xl">Main Courses<span className="text-red-500">*</span></label>
                   <Appetizers
                     field={"_mainCourses"}
@@ -159,8 +169,8 @@ const Page2 = ({
               </div>
             </div>
             <div className="flex min-w-full flex-col items-start justify-around gap-10 rounded-xl bg-white p-3 md:p-6">
-              <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
-                <div className="flex w-full flex-col gap-4">
+              <div className="flex min-w-full flex-col items-start justify-between gap-6 md:flex-row">
+                <div className="flex w-full flex-col gap-6">
                   <span className="font-semibold text-xl">Other Details<span className="text-red-500">*</span></span>
                   <label htmlFor="dietaryOptions" className="text-base font-medium">Dietary Options</label>
                   <Appetizers
@@ -176,7 +186,7 @@ const Page2 = ({
                 <div className="flex min-w-[50%] flex-col">
                   <p className="text-base font-medium">Pre-Set Menu</p>
                   <textarea
-                    rows={7}
+                    rows={5}
                     placeholder="Enter your Pre-set Menu Description"
                     onChange={(e) =>
                       updateFormState({ preSetMenu: e.target.value })

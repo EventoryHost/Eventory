@@ -5,9 +5,10 @@ import Slider from "@mui/material/Slider";
 interface PercentageProps {
   initialValue: number;
   onChange: (value: number) => void;
+  disable: boolean;
 }
 
-const Percentage: React.FC<PercentageProps> = ({ initialValue, onChange }) => {
+const Percentage: React.FC<PercentageProps> = ({ initialValue, onChange,disable }) => {
   const [value, setValue] = React.useState(initialValue);
 
   const handleChange = (event: Event, newValue: number | number[]) => {
@@ -17,7 +18,7 @@ const Percentage: React.FC<PercentageProps> = ({ initialValue, onChange }) => {
   };
 
   return (
-    <Box sx={{ width: 330 }}>
+    <Box  sx={{ width: 330 }}>
       <Slider
         sx={{ color: "#2E3192" }}
         valueLabelDisplay="auto"
@@ -25,6 +26,7 @@ const Percentage: React.FC<PercentageProps> = ({ initialValue, onChange }) => {
         value={value}
         onChange={handleChange}
         aria-label="Percentage Slider"
+        disabled={disable}
       />
     </Box>
   );

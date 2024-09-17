@@ -25,7 +25,7 @@ const Dropdown: React.FC<DropdownProps> = ({
     <div className="relative w-full">
       <button
         type="button"
-        className="flex w-full items-center justify-between rounded-xl border-2 bg-white p-5 py-3 text-left shadow-sm hover:bg-gray-50 "
+        className="flex w-full text-sm items-center justify-between rounded-xl border-2 bg-white p-3 py-5 text-left shadow-sm hover:bg-gray-50 "
         onClick={() => setIsOpen(!isOpen)}
       >
         <span className={`${selectedOption ? "text-black" : "text-gray-400"}`}>
