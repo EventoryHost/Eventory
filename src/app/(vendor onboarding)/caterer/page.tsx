@@ -236,32 +236,26 @@ const Caterer = () => {
     // hourlyPackages.forEach((item, index) => {
     //   formData.append(`rates[hourly][${index}]`, JSON.stringify(item));
     // });
-    dailyPackages.forEach((item, index) => {
+    dailyPackages.forEach((packageData, index) => {
+      formData.append(`dailyPackages[${index}][type]`, packageData.type);
       formData.append(
-        `rates[per_plate_rates][${index}][type]`,
-        JSON.stringify(item),
+        `dailyPackages[${index}][priceRange][0]`,
+        packageData.priceRange[0].toString(),
       );
       formData.append(
-        `rates[per_plate_rates][${index}][min]`,
-        JSON.stringify(item.priceRange[0]),
-      );
-      formData.append(
-        `rates[per_plate_rates][${index}][max]`,
-        JSON.stringify(item.priceRange[1]),
+        `dailyPackages[${index}][priceRange][1]`,
+        packageData.priceRange[1].toString(),
       );
     });
-    seasonalPackages.forEach((item, index) => {
+    seasonalPackages.forEach((packageData, index) => {
+      formData.append(`dailyPackages[${index}][type]`, packageData.type);
       formData.append(
-        `rates[deal_package_rates][${index}][type]`,
-        JSON.stringify(item.type),
+        `dailyPackages[${index}][priceRange][0]`,
+        packageData.priceRange[0].toString(),
       );
       formData.append(
-        `rates[deal_package_rates][${index}][min]`,
-        JSON.stringify(item.priceRange[0]),
-      );
-      formData.append(
-        `rates[deal_package_rates][${index}][max]`,
-        JSON.stringify(item.priceRange[1]),
+        `dailyPackages[${index}][priceRange][1]`,
+        packageData.priceRange[1].toString(),
       );
     });
 
@@ -298,6 +292,7 @@ const Caterer = () => {
       case 1:
         return (
           <Page1
+            
             formState={formState}
             updateFormState={updateFormState}
             servingCapacity={servingCapacity}
@@ -317,6 +312,8 @@ const Caterer = () => {
       case 2:
         return (
           <Page2
+          setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
             formState={formState}
             updateFormState={updateFormState}
             veg={veg}
@@ -445,13 +442,13 @@ const Caterer = () => {
 
   return (
     <div className="m-0 flex w-full flex-col overflow-x-hidden lg:h-[calc(100vh-4.2rem)] lg:flex-row">
-      <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
-        <div className="flex w-[100%] flex-col justify-center">
+      <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 pt-4 md:min-w-[30%] lg:max-w-[30%]">
+        <div className="flex w-[90%] m-auto flex-col justify-center">
           <div className="flex flex-col gap-1 px-3 lg:mt-[2rem]">
             <span className="text-lg font-semibold">
               Step {currentPage} of 8
             </span>
-            <div className="flex gap-4">
+            <div className="flex gap-2">
               <button
                 className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 1 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
                 onClick={() => setCurrentPage(1)}
@@ -492,9 +489,9 @@ const Caterer = () => {
             </div>
           </div>
         </div>
-        <div className="flex h-[50%] flex-col items-start justify-center gap-9 px-3 md:px-3">
-          <h1 className="text-[8vw] font-bold md:text-[3vw]">
-            {currentPage === 1 && "Tell us about your business"}
+        <div className="flex h-[50%] flex-col items-start justify-center gap-9 px-3 md:px-6  w-[90%] m-auto">
+          <h1 className="md:text-5xl text-3xl font-bold  ">
+            {currentPage === 1 && "Tell us about you"}
             {currentPage === 2 && "Fill the menu details"}
             {currentPage === 3 && "Fill the Event details"}
             {currentPage === 4 && "Fill the Staffing and Equipment details"}
@@ -502,9 +499,9 @@ const Caterer = () => {
             {currentPage === 6 && "Fill the Additional details"}
             {currentPage === 7 && "Preview details"}
           </h1>
-          <p className="text-black xs:text-sm md:w-[90%]">
+          <p className="text-black text-xl ">
             {currentPage === 1 &&
-              "Fill out your Business details to get verified and proceed to the registration process."}
+              "Please provide the basic details of the catering service offered by your company."}
             {currentPage === 2 &&
               "Please provide the menu details of the catering service offered by your company."}
             {currentPage === 3 &&
@@ -529,7 +526,7 @@ const Caterer = () => {
           />
         </div>
       </div>
-      <div className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] p-6 md:p-[1rem]">
+      <div className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] px-12 py-12">
         {renderPage()}
       </div>
     </div>

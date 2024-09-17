@@ -24,7 +24,7 @@ const FileInput = ({
 
   return (
     <div
-      className={`mt-5 flex w-fit items-center justify-center rounded-xl border-2 border-dashed p-3 transition-all ${
+      className={` flex w-fit items-center justify-center rounded-xl border-2 border-dashed p-3 transition-all ${
         fileName
           ? "border-green-500 bg-green-100"
           : "border-gray-400 bg-gray-200 hover:bg-gray-300"

@@ -159,12 +159,12 @@ function Preview({
   addPackage,
 }: PagePreviewProps) {
   return (
-    <div className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll rounded-xl bg-white p-6 scrollbar-hide xs:w-[95%] xs:min-w-[90%] md:p-6">
+    <div className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll rounded-xl bg-white p-6 scrollbar-hide w-full md:p-6">
       <span className="my-5 text-3xl font-semibold">
         {formState.businessName} / Caterers
       </span>
 
-      <div className="flex w-[100%] justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
+      <div className="flex w-[100%] justify-between rounded-xl bg-[rgba(96,94,216,0.1)] p-2 pl-4 text-3xl font-semibold">
         Basic Details
         <div className="align-center flex justify-center p-1">
           <button onClick={() => setCurrentPage(1)}>
@@ -212,7 +212,7 @@ function Preview({
           />
         </div>
       </div>
-      <div className="flex w-[100%] justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
+      <div className="flex w-[100%] justify-between rounded-xl bg-[rgba(96,94,216,0.1)] p-2 pl-4 text-3xl font-semibold">
         Menu Details
         <div className="align-center flex justify-center p-1">
           <button onClick={() => setCurrentPage(2)}>
@@ -283,7 +283,7 @@ function Preview({
           </span>
         </div>
       </div>
-      <div className="flex w-[100%] justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
+      <div className="flex w-[100%] justify-between rounded-xl bg-[rgba(96,94,216,0.1)] p-2 pl-4 text-3xl font-semibold">
         Event Details
         <div className="align-center flex justify-center p-1">
           <button onClick={() => setCurrentPage(3)}>
@@ -311,7 +311,7 @@ function Preview({
           />
         </div>
       </div>
-      <div className="flex w-[100%] justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
+      <div className="flex w-[100%] justify-between rounded-xl bg-[rgba(96,94,216,0.1)] p-2 pl-4 text-3xl font-semibold">
         Staff & Equipments
         <div className="align-center flex justify-center p-1">
           <button onClick={() => setCurrentPage(4)}>
@@ -340,7 +340,7 @@ function Preview({
           />
         </div>
       </div>
-      <div className="flex w-[100%] justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
+      <div className="flex w-[100%] justify-between rounded-xl bg-[rgba(96,94,216,0.1)] p-2 pl-4 text-3xl font-semibold">
         Booking & Pricing
         <div className="align-center flex justify-center p-1">
           <button onClick={() => setCurrentPage(5)}>
@@ -411,7 +411,7 @@ function Preview({
         </div>
       </div>
 
-      <div className="flex w-[100%] justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
+      <div className="flex w-[100%] justify-between rounded-xl bg-[rgba(96,94,216,0.1)] p-2 pl-4 text-3xl font-semibold">
         Additional Features
         <div className="align-center flex justify-center p-1">
           <button onClick={() => setCurrentPage(6)}>
