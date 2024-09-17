@@ -109,7 +109,7 @@ const Page2 = ({
           </div>
           <div onClick={() => 
             {setAddManually(!addManually)
-              updateFormState({ menu: undefined });
+              updateFormState({ menu: "" });
 
             }} className="cursor-pointer rounded-xl border-2 border-[#2E3192] text-center text-[#2E3192] xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3">
             Add Manually
