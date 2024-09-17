@@ -82,7 +82,7 @@ const Appetizers: React.FC<AppetizersProps> = ({
             <button
               key={index}
               onClick={(e) => handleButtonClick(e, appetizer)}
-              className={`text col-span-1 row-span-1 flex  items-center justify-center rounded-2xl border px-4 py-3 text-[3.5vw] font-medium outline-none md:text-[2vw] lg:text-[1vw] ${selectedAppetizers.includes(appetizer) ? "border-2 border-[#2E3192] bg-white text-[#2E3192]" : "bg-[rgba(242,242,242,1)] text-gray-600"}`}
+              className={`text col-span-1 row-span-1 flex  items-center justify-center rounded-2xl border px-4 py-3  font-medium outline-none text-sm ${selectedAppetizers.includes(appetizer) ? "border-2 border-[#2E3192] bg-white text-[#2E3192]" : "bg-[rgba(242,242,242,1)] text-gray-600"}`}
             >
               {appetizer}
             </button>
@@ -93,7 +93,7 @@ const Appetizers: React.FC<AppetizersProps> = ({
         {customAppetizers.map((customApp, index) => (
           <div
             key={index}
-            className={`col-span-1 row-span-1 flex  items-center justify-between rounded-2xl border px-4 py-3 text-[3.5vw] font-medium outline-none md:text-[2vw] lg:text-[1vw] ${selectedAppetizers.includes(customApp) ? "border-2 border-[#2E3192] bg-white text-[#2E3192]" : "bg-[rgba(242,242,242,1)] text-gray-600"}`}
+            className={`col-span-1 row-span-1 flex  items-center justify-between rounded-2xl border px-4 py-3 text-sm font-medium outline-none   ${selectedAppetizers.includes(customApp) ? "border-2 border-[#2E3192] bg-white text-[#2E3192]" : "bg-[rgba(242,242,242,1)] text-gray-600"}`}
           >
             <button
               className="flex-1 text-center"
@@ -129,7 +129,7 @@ const Appetizers: React.FC<AppetizersProps> = ({
         {appetizers.includes("Others") && (
           <button
             onClick={toggleCustomInput}
-            className={`text col-span-1 row-span-1 flex  items-center justify-center rounded-2xl border px-4 py-3 text-[3.5vw] font-medium outline-none md:text-[2vw] lg:text-[1vw] ${showCustomInput ? "border-2 border-[#2E3192] bg-white text-[#2E3192]" : "bg-[rgba(242,242,242,1)] text-gray-600"}`}
+            className={`text col-span-1 row-span-1 flex  items-center justify-center rounded-2xl border px-4 py-3 font-medium outline-none text-sm ${showCustomInput ? "border-2 border-[#2E3192] bg-white text-[#2E3192]" : "bg-[rgba(242,242,242,1)] text-gray-600"}`}
           >
             Others
           </button>

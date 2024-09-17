@@ -236,27 +236,19 @@ const Caterer = () => {
     // hourlyPackages.forEach((item, index) => {
     //   formData.append(`rates[hourly][${index}]`, JSON.stringify(item));
     // });
-    dailyPackages.forEach((packageData, index) => {
-      formData.append(`dailyPackages[${index}][type]`, packageData.type);
-      formData.append(
-        `dailyPackages[${index}][priceRange][0]`,
-        packageData.priceRange[0].toString(),
-      );
-      formData.append(
-        `dailyPackages[${index}][priceRange][1]`,
-        packageData.priceRange[1].toString(),
-      );
+
+    // Add dailyPackages (per_plate_rates)
+    dailyPackages.forEach((pkg, index) => {
+      formData.append(`rates[per_plate_rates][${index}][package_name]`, pkg.type);
+      formData.append(`rates[per_plate_rates][${index}][min]`, pkg.priceRange[0].toString());
+      formData.append(`rates[per_plate_rates][${index}][max]`, pkg.priceRange[1].toString());
     });
-    seasonalPackages.forEach((packageData, index) => {
-      formData.append(`seasonalPackages[${index}][type]`, packageData.type);
-      formData.append(
-        `seasonalPackages[${index}][priceRange][0]`,
-        packageData.priceRange[0].toString(),
-      );
-      formData.append(
-        `seasonalPackages[${index}][priceRange][1]`,
-        packageData.priceRange[1].toString(),
-      );
+
+    // Add seasonalPackages (deal_package_rates)
+    seasonalPackages.forEach((pkg, index) => {
+      formData.append(`rates[deal_package_rates][${index}][package_name]`, pkg.type);
+      formData.append(`rates[deal_package_rates][${index}][min]`, pkg.priceRange[0].toString());
+      formData.append(`rates[deal_package_rates][${index}][max]`, pkg.priceRange[1].toString());
     });
 
     formData.append("deposit_required", advancePayment.toString());
