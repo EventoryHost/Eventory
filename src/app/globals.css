@@ -131,3 +131,49 @@ body {
     gap: none !important;
   }
 }
+
+
+/* Scroll bar With Blue Track pad */
+@layer components {
+  .scrollbar-rounded-xl {
+    @apply overflow-y-scroll; /* Ensure the element is scrollable */
+    scrollbar-width: thin; /* Firefox: Make the scrollbar thin */
+    scrollbar-color: #1e3a8a #f1f1f1; /* Firefox: Thumb color and track color */
+    direction:ltr;
+    
+  }
+
+  /* Chrome, Safari, and other WebKit-based browsers */
+  .scrollbar-rounded-xl::-webkit-scrollbar {
+    width: 16px; /* Adjust width of the scrollbar track and thumb */
+    border-radius: 25px; /* Rounding the scrollbar itself */
+  }
+
+  .scrollbar-rounded-xl::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Background color of the track */
+    border-radius: 9999px; /* Ensure the track is rounded */
+  }
+
+  .scrollbar-rounded-xl::-webkit-scrollbar-thumb {
+    background: #1e3a8a; /* Color of the scrollbar thumb (blue-900) */
+    border-radius: 9999px; /* Ensure the thumb is rounded */
+    border: 4px solid #f1f1f1; /* Border around the thumb */
+    box-sizing: border-box; /* Maintain size with border */
+  }
+
+  .scrollbar-rounded-xl::-webkit-scrollbar-thumb:hover {
+    background: #1e40af; /* Darker blue on hover */
+  }
+
+  /* Remove the arrow buttons in Chrome */
+  .scrollbar-rounded-xl::-webkit-scrollbar-button {
+    display: none; /* Hides the arrow buttons */
+  }
+}
+
+/* plans box shadow*/
+.custom-shadow {
+  @apply shadow-sm;
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
+
+}

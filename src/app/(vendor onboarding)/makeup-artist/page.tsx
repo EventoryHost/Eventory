@@ -211,6 +211,8 @@ const VenueForm: React.FC = () => {
             makeupArtists_organisation={makeupArtists_organisation}
             setMakeupArtist_organisation={setMakeupArtist_organisation}
             portfolioUrls={formState.portfolioUrls}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
             handleContinue={() => {
               setCurrentPage(2);
               handleContinue();
@@ -219,7 +221,10 @@ const VenueForm: React.FC = () => {
         );
       case 2:
         return (
-          <Page2 formState={formState} updateFormState={updateFormState} 
+          <Page2 formState={formState}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+           updateFormState={updateFormState} 
           handleContinue={() => {
             setCurrentPage(3);
             handleContinue();
@@ -243,6 +248,8 @@ const VenueForm: React.FC = () => {
               setCurrentPage(4);
               handleContinue();
             }}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
           />
         );
       case 4:
@@ -256,6 +263,8 @@ const VenueForm: React.FC = () => {
               setCurrentPage(5);
               handleContinue();
             }}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
           />
         );
       case 5:
@@ -279,6 +288,8 @@ const VenueForm: React.FC = () => {
             artistDescription={formState.artistDescription}
             portfolioUrls={formState.portfolioUrls}
             setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
+            handleSubmit={handleSubmit}
             handleContinue={() => {
               // setCurrentPage(6);
               handleSubmit();
