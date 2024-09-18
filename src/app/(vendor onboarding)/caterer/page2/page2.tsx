@@ -3,7 +3,7 @@
 import FileInput from "@/components/fileInput";
 import Appetizers from "../../(components)/Appetizers";
 import { FormState } from "../page";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ArrowLeft, ChevronLeft } from "lucide-react";
 
 const _dietaryOptions = [
@@ -38,7 +38,7 @@ type Page2Props = {
   setSelectedDietaryOptions: React.Dispatch<React.SetStateAction<string[]>>;
   handleContinue: () => void;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
-  currentPage:number
+  currentPage: number
 };
 
 const Page2 = ({
@@ -61,12 +61,14 @@ const Page2 = ({
   const { customizableMenu } = formState;
   const [addManually, setAddManually] = useState(false)
 
+  useEffect(() => console.log(formState.menu))
+
   return (
     <div className="flex h-full w-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide ">
       <div className="flex min-w-full flex-col items-start justify-around gap-10">
         <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
           <div className="flex gap-4 items-center">
-            <ArrowLeft className="mr-1 ml-2 h-6 w-6 text-[#2E3192] cursor-pointer" aria-hidden="true" onClick={()=>setCurrentPage(currentPage-1)}/>
+            <ArrowLeft className="mr-1 ml-2 h-6 w-6 text-[#2E3192] cursor-pointer" aria-hidden="true" onClick={() => setCurrentPage(currentPage - 1)} />
             <h1 className=" text-2xl font-semibold">Menu Details</h1>
           </div>
 
@@ -87,31 +89,32 @@ const Page2 = ({
               </li>
             ))}
           </div>
-          <div className="flex min-w-[40%] flex-col gap-2 items-start justify-center">
-            <label htmlFor="category" className="text-base font-medium">Upload Menu<span className="text-red-500">*</span></label>
-            <span className="text-small font-light">PNG,JPG,PDF</span>
-            <FileInput
-              label="menu"
-              onFileSelect={(file) => {
-                updateFormState({ menu: file });
-                setSelectedAppetizers([]);
-                setSelectedBeverages([])
-                setSelectedDietaryOptions([])
-                setSelectedMainCourses([])
-                updateFormState({ preSetMenu: "" })
-                updateFormState({ customizableMenu: false })
-              }}
-              acceptedFileTypes="image/png, .pdf, image/jpg"
-            />
-          </div>
+          {!addManually &&
+            <div className="flex min-w-[40%] flex-col gap-2 items-start justify-center">
+              <label htmlFor="category" className="text-base font-medium">Upload Menu<span className="text-red-500">*</span></label>
+              <span className="text-small font-light">PNG,JPG,PDF</span>
+              <FileInput
+                label="menu"
+                onFileSelect={(file) => {
+                  updateFormState({ menu: file });
+                  setSelectedAppetizers([]);
+                  setSelectedBeverages([])
+                  setSelectedDietaryOptions([])
+                  setSelectedMainCourses([])
+                  updateFormState({ preSetMenu: "" })
+                  updateFormState({ customizableMenu: false })
+                }}
+                acceptedFileTypes="image/png, .pdf, image/jpg"
+              />
+            </div>}
           <div className="font-semibold text-base">
             Dont have a handy menu? no worries, you can add your items here
           </div>
-          <div onClick={() => 
-            {setAddManually(!addManually)
-              updateFormState({ menu: "" });
+          <div onClick={() => {
+            setAddManually(!addManually)
+            updateFormState({ menu: "no" });
 
-            }} className="cursor-pointer rounded-xl border-2 border-[#2E3192] text-center text-[#2E3192] xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3">
+          }} className="cursor-pointer rounded-xl border-2 border-[#2E3192] text-center text-[#2E3192] xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3">
             Add Manually
           </div>
           {!addManually &&

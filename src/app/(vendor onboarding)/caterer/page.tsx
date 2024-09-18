@@ -50,7 +50,7 @@ const Caterer = () => {
   const [formState, setFormState] = useState<FormState>({
     cateringName: "",
     businessName: "",
-    menu: "",
+    menu: "no",
     preSetMenu: "",
     customizableMenu: false,
     tastingSessions: false,
@@ -201,7 +201,6 @@ const Caterer = () => {
     serviceStyles.forEach((item, index) => {
       formData.append(`service_style_offered[${index}]`, item);
     });
-    formData.append("menu", formState.menu);
 
     veg.forEach((item, index) => {
       formData.append(`menuType`, item);
@@ -252,6 +251,8 @@ const Caterer = () => {
     });
 
     formData.append("deposit_required", advancePayment.toString());
+    formData.append("menu", formState.menu);
+
     formData.append("portfolio", formState.portfolio);
     formData.append("tastingSessions", formState.tastingSessions.toString());
     formData.append("businessLicenses", formState.businessLicenses.toString());
