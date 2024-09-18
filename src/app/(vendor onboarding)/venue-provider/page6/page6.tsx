@@ -12,7 +12,7 @@ type Package = {
 interface Page6Props {
   formState: FormState;
   updateFormState: (newState: Partial<FormState>) => void;
-  handleSubmit: (e: React.FormEvent) => void;
+  handleContinue: () => void;
   audioVisualEquipment: string[];
   accessibilityFeatures: string[];
   facilities: string[];
@@ -25,7 +25,7 @@ interface Page6Props {
 
 const Page6: React.FC<Page6Props> = ({
   formState,
-  handleSubmit,
+  handleContinue,
   audioVisualEquipment,
   accessibilityFeatures,
   facilities,
@@ -312,7 +312,7 @@ const Page6: React.FC<Page6Props> = ({
           <div className="items-strech mt-9 flex flex-row gap-7 self-end">
             <button
               className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-              onClick={handleSubmit}
+              onClick={handleContinue}
             >
               Submit
             </button>

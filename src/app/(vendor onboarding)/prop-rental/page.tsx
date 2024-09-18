@@ -2,13 +2,16 @@
 import jwt from "jsonwebtoken";
 // RootPage.tsx
 import React, { useEffect, useState } from "react";
-import page1, { page1Props } from "./page1/page1";
-import page2, { page2Props } from "./page2/page2";
-import page3 from "./page3/page3";
-import preview from "./preview/preview";
+import Page1, { page1Props } from "./page1/page1";
+import Page2, { page2Props } from "./page2/page2";
+import Page3 from "./page3/page3";
+import Preview from "./preview/preview";
 import { addPropRental } from "@/services/vendors/propRental";
+import Agreement from "../Agreement/page";
+import Plans from "../Plans/page";
+import Registration_Completed from "../Registration-Completed/page";
 
-const Pages = [page1, page2, page3, preview];
+const Pages = [Page1, Page2, Page3, Preview];
 
 type FormState = {
   // Page1
@@ -74,14 +77,14 @@ type PricingEntry = {
 };
 
 const RootPage = () => {
-  const [currentPage, setCurrentPage] = useState<number>(0);
+  const [currentPage, setCurrentPage] = useState<number>(1);
   const [formState, setFormState] = useState<FormState>({
     contactName: "",
     phoneNumber: "",
     workDescription: "",
     yearsOfExperience: "",
     numberOfWorkers: "",
-    handleChange: (key: keyof FormState, value: any) => {},
+    handleChange: (key: keyof FormState, value: any) => { },
 
     // URL's for the files
     insurancePolicy: "",
@@ -382,48 +385,153 @@ const RootPage = () => {
     }
   }
 
-  return (
-    <div>
-      <CurrentPageComponent
+  const renderPage = () => {
+    switch (currentPage) {
+      case 1:
+        return (
+          <Page1
 
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-        handleSubmit={handleSubmit}
-        key={currentPage}
-        formState={formState}
-        handleChange={handleChange}
-        handleNestedChange={handleNestedChange}
-        navigateToPage={navigateToPage}
-        selectedCategory={selectedCategory}
-        setSelectedCategory={setSelectedCategory}
-        selectedAppetizers={selectedAppetizers}
-        setselectedAppetizers={setselectedAppetizers}
-        selectedDecor={selectedDecor}
-        setSelectedDecor={setSelectedDecor}
-        selectedTentOptions={selectedTentOptions}
-        setSelectedTentOptions={setSelectedTentOptions}
-        selectedAudioOptions={selectedAudioOptions}
-        setSelectedAudioOptions={setSelectedAudioOptions}
-        selectedvisualOptions={selectedvisualOptions}
-        setSelectedVisualOptions={setSelectedVisualOptions}
-        selectedLightOptions={selectedLightOptions}
-        setSelectedLightOptions={setSelectedLightOptions}
-        percentageValuePage3={percentageValuePage3}
-        percentageValuePage4={percentageValuePage4}
-        percentageValuePage5={percentageValuePage5}
-        furnitureHourlyPricingEntries={formState.furnitureHourlyPricingEntries}
-        tentHourlyPricingEntries={formState.tentHourlyPricingEntries}
-        furnitureDealPricingEntries={formState.furnitureDealPricingEntries}
-        furnitureWorkerPricingEntries={formState.furnitureWorkerPricingEntries}
-        handleAddPricingEntry={handleAddPricingEntry}
-        handleAddTentHourlyPricingEntries={handleAddTentHourlyPricingEntries}
-        handleAddTentPricingEntry={handleAddTentPricingEntry}
-        handleAddAudioPricingEntry={handleAddAudioPricingEntry}
-        updateFormState={updateFormState}
-      />
-      
-    </div>
-  );
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            handleSubmit={handleSubmit}
+            key={currentPage}
+            formState={formState}
+            handleChange={handleChange}
+            handleNestedChange={handleNestedChange}
+            navigateToPage={navigateToPage}
+            selectedCategory={selectedCategory}
+            setSelectedCategory={setSelectedCategory}
+            selectedAppetizers={selectedAppetizers}
+            setselectedAppetizers={setselectedAppetizers}
+            selectedDecor={selectedDecor}
+            setSelectedDecor={setSelectedDecor}
+            selectedTentOptions={selectedTentOptions}
+            setSelectedTentOptions={setSelectedTentOptions}
+            selectedAudioOptions={selectedAudioOptions}
+            setSelectedAudioOptions={setSelectedAudioOptions}
+            selectedvisualOptions={selectedvisualOptions}
+            setSelectedVisualOptions={setSelectedVisualOptions}
+            selectedLightOptions={selectedLightOptions}
+            setSelectedLightOptions={setSelectedLightOptions}
+            percentageValuePage3={percentageValuePage3}
+            furnitureHourlyPricingEntries={formState.furnitureHourlyPricingEntries}
+            tentHourlyPricingEntries={formState.tentHourlyPricingEntries}
+            furnitureDealPricingEntries={formState.furnitureDealPricingEntries}
+            furnitureWorkerPricingEntries={formState.furnitureWorkerPricingEntries}
+            handleAddPricingEntry={handleAddPricingEntry}
+            handleAddTentHourlyPricingEntries={handleAddTentHourlyPricingEntries}
+            handleAddTentPricingEntry={handleAddTentPricingEntry}
+            handleAddAudioPricingEntry={handleAddAudioPricingEntry}
+
+          />
+        );
+      case 2:
+        return (
+          <Page2
+
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+
+            key={currentPage}
+            formState={formState}
+            handleChange={handleChange}
+            handleNestedChange={handleNestedChange}
+            navigateToPage={navigateToPage}
+            selectedCategory={selectedCategory}
+            setSelectedCategory={setSelectedCategory}
+            selectedAppetizers={selectedAppetizers}
+            setselectedAppetizers={setselectedAppetizers}
+            selectedDecor={selectedDecor}
+            setSelectedDecor={setSelectedDecor}
+            selectedTentOptions={selectedTentOptions}
+            setSelectedTentOptions={setSelectedTentOptions}
+            selectedAudioOptions={selectedAudioOptions}
+            setSelectedAudioOptions={setSelectedAudioOptions}
+            selectedvisualOptions={selectedvisualOptions}
+            setSelectedVisualOptions={setSelectedVisualOptions}
+            selectedLightOptions={selectedLightOptions}
+            setSelectedLightOptions={setSelectedLightOptions}
+            percentageValuePage3={percentageValuePage3}
+            percentageValuePage4={percentageValuePage4}
+            percentageValuePage5={percentageValuePage5}
+            furnitureHourlyPricingEntries={formState.furnitureHourlyPricingEntries}
+            tentHourlyPricingEntries={formState.tentHourlyPricingEntries}
+            furnitureDealPricingEntries={formState.furnitureDealPricingEntries}
+            furnitureWorkerPricingEntries={formState.furnitureWorkerPricingEntries}
+            handleAddPricingEntry={handleAddPricingEntry}
+            handleAddTentHourlyPricingEntries={handleAddTentHourlyPricingEntries}
+            handleAddTentPricingEntry={handleAddTentPricingEntry}
+            handleAddAudioPricingEntry={handleAddAudioPricingEntry}
+            updateFormState={updateFormState}
+          />
+        );
+      case 3:
+        return (
+          <Page3
+            furnitureHourlyPricingEntries={formState.furnitureHourlyPricingEntries}
+            advancePaymentCheckbox={formState.advancedPaymentCheckboxPage3}  // Pass the correct form state value
+            percentageValuePage3={formState.percentageValuePage3}  // Correctly pass the percentage value
+            percentageValuePage4={formState.percentageValuePage4}
+            percentageValuePage5={formState.percentageValuePage5}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            formState={formState}
+            handleChange={handleChange}
+            selectedCategory={selectedCategory}
+            setSelectedCategory={setSelectedCategory}
+            selectedAppetizers={selectedAppetizers}
+            setselectedAppetizers={setselectedAppetizers}
+            selectedDecor={selectedDecor}
+            setSelectedDecor={setSelectedDecor}
+            selectedTentOptions={selectedTentOptions}
+            setSelectedTentOptions={setSelectedTentOptions}
+            selectedAudioOptions={selectedAudioOptions}
+            setSelectedAudioOptions={setSelectedAudioOptions}
+            selectedvisualOptions={selectedvisualOptions}
+            setSelectedVisualOptions={setSelectedVisualOptions}
+            selectedLightOptions={selectedLightOptions}
+            setSelectedLightOptions={setSelectedLightOptions}
+            tentHourlyPricingEntries={formState.tentHourlyPricingEntries}
+            furnitureDealPricingEntries={formState.furnitureDealPricingEntries}
+            furnitureWorkerPricingEntries={formState.furnitureWorkerPricingEntries}
+            handleAddPricingEntry={handleAddPricingEntry}
+            handleAddTentHourlyPricingEntries={handleAddTentHourlyPricingEntries}
+            handleAddTentPricingEntry={handleAddTentPricingEntry}
+            handleAddAudioPricingEntry={handleAddAudioPricingEntry}
+            updateFormState={updateFormState}
+
+
+          />
+        );
+      case 4:
+        return (
+          <>
+            <Agreement setCurrentPage={setCurrentPage} />
+          </>
+        )
+      case 5:
+        return (
+          <>
+            <Plans handleformSubmit={handleSubmit} setCurrentPage={setCurrentPage} />
+          </>
+        )
+      case 6:
+        return (
+          <>
+            <Registration_Completed />
+          </>
+        )
+      default:
+        return (
+          <>
+            <center><h2>Loading....</h2></center>
+          </>
+        )
+    }
+  };
+
+  return <div>{renderPage()}</div>;
+
 };
 
 export default RootPage;

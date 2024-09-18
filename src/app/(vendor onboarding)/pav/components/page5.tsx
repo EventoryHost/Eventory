@@ -23,7 +23,7 @@ interface PageProps {
   addPackage: (
     setPackages: React.Dispatch<React.SetStateAction<Package[]>>,
   ) => void;
-  handleContinue: (e: React.FormEvent) => Promise<void>;
+  handleContinue: () => void;
 }
 
 const Page5: React.FC<PageProps> = ({
@@ -278,7 +278,7 @@ const Page5: React.FC<PageProps> = ({
           className="h-[4rem] w-[100%] rounded-xl bg-[#2E3192] p-3 text-sm font-semibold text-white outline-none md:w-[40%]"
           onClick={(e) => {
             e.preventDefault();
-            handleContinue(e);
+            handleContinue();
           }}
         >
           Continue

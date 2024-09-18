@@ -13,6 +13,9 @@ import Page8 from "./preview/page8";
 
 import { addDecorator } from "@/services/vendors/decorator";
 import Image from "next/image";
+import Agreement from "../Agreement/page";
+import Plans from "../Plans/page";
+import Registration_Completed from "../Registration-Completed/page";
 
 interface Package {
   type: string;
@@ -308,7 +311,7 @@ const Decorators: React.FC = () => {
 
     try {
       await addDecorator(formData);
-      alert("Tried adding decorator");
+      alert("added decorator");
     } catch (error) {
       console.error("Error adding venue:", error);
     }
@@ -453,107 +456,136 @@ const Decorators: React.FC = () => {
             setAdvancePayment={setAdvancePayment}
             handleContinue={() => {
               setCurrentPage(9);
-              handleContinue();
+              //handleContinue();
             }}
           />
-        );
+        )
+      case 9:
+        return (
+          <>
+            <Agreement setCurrentPage={setCurrentPage} />
+          </>
+        )
+      case 10:
+        return (
+          <>
+            <Plans handleformSubmit={handleSubmit} setCurrentPage={setCurrentPage} />
+          </>
+        )
+      case 11:
+        return (
+          <>
+            <Registration_Completed />
+          </>
+        )
+      default:
+        return (
+          <>
+            <center><h2>Loading....</h2></center>
+          </>
+        )
     }
   };
 
   return (
-    <div className="m-0 flex w-full flex-col overflow-x-hidden lg:h-[calc(100vh-4.2rem)] lg:flex-row">
-      <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
-        <div className="flex w-[100%] flex-col justify-center">
-          <div className="flex flex-col gap-1 px-3 lg:mt-[2rem]">
-            <span className="text-lg font-semibold">
-              Step {currentPage} of 8
-            </span>
-            <div className="flex gap-4">
-              <button
-                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 1 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                onClick={() => setCurrentPage(1)}
-              ></button>
+    <div className={`m-0 flex w-full flex-col overflow-x-hidden ${currentPage <= 8 ? 'lg:h-[calc(100vh-4.2rem)]' : ''} lg:flex-row `}>
+      {
+        currentPage <= 8 &&
+        (
+          <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
+            <div className="flex w-[100%] flex-col justify-center">
+              <div className="flex flex-col gap-1 px-3 lg:mt-[2rem]">
+                <span className="text-lg font-semibold">
+                  Step {currentPage} of 8
+                </span>
+                <div className="flex gap-4">
+                  <button
+                    className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 1 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                    onClick={() => setCurrentPage(1)}
+                  ></button>
 
-              <button
-                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 2 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                onClick={() => setCurrentPage(2)}
-              ></button>
+                  <button
+                    className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 2 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                    onClick={() => setCurrentPage(2)}
+                  ></button>
 
-              <button
-                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 3 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                onClick={() => setCurrentPage(3)}
-              ></button>
+                  <button
+                    className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 3 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                    onClick={() => setCurrentPage(3)}
+                  ></button>
 
-              <button
-                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 4 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                onClick={() => setCurrentPage(4)}
-              ></button>
+                  <button
+                    className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 4 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                    onClick={() => setCurrentPage(4)}
+                  ></button>
 
-              <button
-                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 5 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                onClick={() => setCurrentPage(5)}
-              ></button>
+                  <button
+                    className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 5 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                    onClick={() => setCurrentPage(5)}
+                  ></button>
 
-              <button
-                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 6 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                onClick={() => setCurrentPage(6)}
-              ></button>
-              <button
-                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 7 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                onClick={() => setCurrentPage(7)}
-              ></button>
-              <button
-                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 8 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                onClick={() => setCurrentPage(8)}
-              ></button>
+                  <button
+                    className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 6 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                    onClick={() => setCurrentPage(6)}
+                  ></button>
+                  <button
+                    className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 7 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                    onClick={() => setCurrentPage(7)}
+                  ></button>
+                  <button
+                    className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 8 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                    onClick={() => setCurrentPage(8)}
+                  ></button>
+                </div>
+              </div>
+            </div>
+            <div className="flex h-[50%] flex-col items-start justify-center gap-9 px-3 md:px-3">
+              <h1 className="text-[8vw] font-bold md:text-[3vw]">
+                {currentPage === 1 && "Fill out event details"}
+                {currentPage === 2 && "Fill out themes related details "}
+                {currentPage === 3 && "Fill out theme elements details"}
+                {currentPage === 4 && "Fill out consultaion details"}
+                {currentPage === 5 && "Fill out the pricing details"}
+                {currentPage === 6 && "Fill out your ratings and reviews"}
+                {currentPage === 7 && "Fill out some mandatory details"}
+                {currentPage === 8 && "Preview details"}
+
+              </h1>
+              <p className="text-black xs:text-sm md:w-[90%]">
+                {currentPage === 1 &&
+                  "Select the types of events you cover "}
+                {currentPage === 2 &&
+                  "Provide the details of the themes you offer and related details."}
+                {currentPage === 3 &&
+                  "Provide the details of the themes elements you provide and describe it in detail."}
+                {currentPage === 4 &&
+                  "Provide your consultaion process in detail"}
+                {currentPage === 5 &&
+                  "Provide the pricing detaials or uplaod pdf (if available)"}
+                {currentPage === 6 &&
+                  "Fill out the details or upload the links/pdf if available."}
+                {currentPage === 7 &&
+                  "Provide the deatils by providing url or uploading pdf. "}
+                {currentPage === 8 && "Please recheck the information provided by you. "}
+
+              </p>
+            </div>
+            <div className="relative h-[10rem] lg:w-full">
+              <Image
+                src={"/tajmahal.png"}
+                alt=""
+                width={400}
+                height={200}
+                className="h-full w-full object-cover"
+              />
             </div>
           </div>
-        </div>
-        <div className="flex h-[50%] flex-col items-start justify-center gap-9 px-3 md:px-3">
-          <h1 className="text-[8vw] font-bold md:text-[3vw]">
-            {currentPage === 1 && "Fill out event details"}
-            {currentPage === 2 && "Fill out themes related details "}
-            {currentPage === 3 && "Fill out theme elements details"}
-            {currentPage === 4 && "Fill out consultaion details"}
-            {currentPage === 5 && "Fill out the pricing details"}
-            {currentPage === 6 && "Fill out your ratings and reviews"}
-            {currentPage === 7 && "Fill out some mandatory details"}
-            {currentPage === 8 && "Preview details"}
-
-          </h1>
-          <p className="text-black xs:text-sm md:w-[90%]">
-            {currentPage === 1 &&
-              "Select the types of events you cover "}
-            {currentPage === 2 &&
-              "Provide the details of the themes you offer and related details."}
-            {currentPage === 3 &&
-              "Provide the details of the themes elements you provide and describe it in detail."}
-            {currentPage === 4 &&
-              "Provide your consultaion process in detail"}
-            {currentPage === 5 &&
-              "Provide the pricing detaials or uplaod pdf (if available)"}
-            {currentPage === 6 &&
-              "Fill out the details or upload the links/pdf if available."}
-            {currentPage === 7 &&
-              "Provide the deatils by providing url or uploading pdf. "}
-            {currentPage === 8 && "Please recheck the information provided by you. "}
-
-          </p>
-        </div>
-        <div className="relative h-[10rem] lg:w-full">
-          <Image
-            src={"/tajmahal.png"}
-            alt=""
-            width={400}
-            height={200}
-            className="h-full w-full object-cover"
-          />
-        </div>
-      </div>
+        )
+      }
       <div className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] p-6 md:p-[1rem]">
         {renderPage()}
       </div>
-    </div>
+    </div >
   );
 };
 

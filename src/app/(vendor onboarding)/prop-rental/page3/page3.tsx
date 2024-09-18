@@ -102,7 +102,6 @@ type page3Props = {
   selectedDecor: string[];
   setSelectedDecor: (value: any) => void;
   formState: FormState;
-  setFormState: (formState: FormState) => void;
   selectedTentOptions: string[];
   setSelectedTentOptions: React.Dispatch<SetStateAction<string[]>>;
   selectedAudioOptions: string[];
@@ -146,7 +145,6 @@ function Page3({
   setSelectedVisualOptions,
   handleChange,
   formState,
-  setFormState,
   tentHourlyPricingEntries,
   furnitureDealPricingEntries,
   furnitureWorkerPricingEntries,
