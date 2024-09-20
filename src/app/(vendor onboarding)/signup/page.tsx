@@ -8,6 +8,8 @@ import auth from "@/services/auth";
 import OtpModal from "@/components/ui/otp-modal";
 import tajmahal from "/public/tajmahal.png";
 import { useRouter } from "next/navigation";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"; // Import Toastify CSS
 
 const fields: {
   id: keyof basicDetails;
@@ -94,6 +96,7 @@ const SignUp = () => {
     // Check if OTP is 6 digits long
     if (inputOtp.length !== 6) {
       setFormError(`Please fill in the OTP correctly`);
+      toast.error("OTP must be 6 digits");
       return;
     }
 
@@ -116,13 +119,16 @@ const SignUp = () => {
         // Store token in local storage
         localStorage.setItem("token", token);
         console.log("OTP verification successful");
+        toast.success("OTP verification successful");
         router.push("/businessDetails");
       } else {
         console.error("OTP verification failed or response is invalid");
+        toast.error("Incorrect OTP, please try again");
       }
     } catch (error) {
       console.error("Failed to verify OTP", error);
       setFormError("Failed to verify OTP. Please try again.");
+      toast.error("Failed to verify OTP. Please try again.");
     }
   };
 
@@ -131,27 +137,25 @@ const SignUp = () => {
   };
 
   return (
-    <div className="flex w-full flex-col overflow-hidden lg:flex-row">
-      <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-h-[100vh] md:min-w-[30%] lg:max-w-[30%]">
-        <div className="flex items-center justify-start gap-1 xs:self-start xs:pl-5 md:px-11 lg:mt-[5rem]">
-          <button className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2E3192] p-5 text-white shadow-xl">
-            1
-          </button>
-          <div className="h-[0.3rem] w-[4rem] rounded-xl bg-gray-300"></div>
-          <button className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-300 p-5">
-            2
-          </button>
+    <div className="flex max-h-[100vh] w-full flex-col overflow-hidden lg:flex-row">
+      <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:h-[91vh] md:min-w-[35%] lg:max-w-[30%]">
+        <div className="flex flex-col items-center justify-center max-h-fit lg:mt-[5rem] gap-3">
+          <p className="text-xl text-gray-900">Step 1 of 2</p>
+          <div className="flex items-center justify-start gap-1 xs:self-start xs:pl-5 md:px-11 ">
+            <button className="h-[0.4rem] w-[3rem] rounded-xl bg-[#2E3192]"></button>
+            <button className="h-[0.4rem] w-[3rem] rounded-xl bg-gray-300"></button>
+          </div>
         </div>
         <div className="flex h-[50%] flex-col items-start justify-center gap-9 px-9 xs:pl-5 md:px-11 lg:p-8">
-          <h1 className="text-3xl font-bold md:text-4xl lg:text-5xl">
-            Tell us about you
+          <h1 className="text-3xl font-semibold md:text-4xl lg:text-5xl">
+            Vendor Sign Up
           </h1>
-          <p className="text-black xs:text-sm md:w-[90%]">
-            Fill out your personal details to get verified and proceed to the
+          <p className="text-sm text-gray-700 md:text-lg">
+            Fill out your personal details to get verified and proceed to
             registration process.
           </p>
         </div>
-        <div className="relative h-[10rem] lg:w-full">
+        <div className="relative h-[14rem] lg:w-full">
           <Image
             src={tajmahal}
             alt="Image of Indian monuments"
@@ -159,7 +163,7 @@ const SignUp = () => {
           />
         </div>
       </div>
-      <div className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] p-2 md:max-h-[100vh] md:p-[2.2rem]">
+      <div className="flex flex-1 flex-col items-center justify-center bg-[#F7F6F9] p-2 md:max-h-[100vh] md:p-[2.2rem]">
         <div className="flex flex-col gap-7 rounded-xl bg-white p-5 xs:min-w-[90%] md:p-6">
           <h1 className="text-3xl font-semibold">Basic Details</h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
@@ -170,9 +174,9 @@ const SignUp = () => {
                 {fields.map((field) => (
                   <div
                     key={field.id}
-                    className="col-span-2 flex min-w-[40%] flex-col gap-4 md:col-span-1"
+                    className="col-span-2 flex min-w-[45%] flex-col gap-4 md:col-span-1"
                   >
-                    <label htmlFor={field.id}>{field.label}</label>
+                    <label htmlFor={field.id}>{field.label}<span className="text-red-500">*</span></label>
                     <input
                       id={field.id}
                       type={field.type}
@@ -190,20 +194,20 @@ const SignUp = () => {
               )}
               <div className="mt-9 flex w-full flex-col-reverse justify-between gap-3 self-start md:mt-0 md:flex-row md:items-center md:px-0">
                 <div className="flex gap-2 xs:text-sm md:gap-3">
-                  <input type="checkbox" id="tc" placeholder="t&c" required />I
+                  <input type="checkbox" id="tc" placeholder="t&c" required />You
                   agree with{" "}
                   <span className="text-[#2E3192] underline">
                     Terms & Conditions
                   </span>
                 </div>
               </div>
-              <div className="mt-9">
+              <div className="mt-3 mb-3">
                 <p className="self-start text-gray-500 xs:mt-5 xs:text-sm">
                   To verify it&apos;s you, we will send you an OTP to your
                   mobile number.
                 </p>
               </div>
-              <div className="h-[1px] w-[80%] self-start bg-gray-300" />
+              <div className="h-[1px] w-[100%] self-start bg-gray-300" />
               <div className="mt-5 flex flex-col items-start self-start">
                 or continue with
                 <div

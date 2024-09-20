@@ -64,7 +64,7 @@ const verifyLoginOtp = async (
     return res;
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      throw Error(error.message);
+      throw new Error(error.message);
     }
   }
 };
