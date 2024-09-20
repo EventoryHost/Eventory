@@ -35,9 +35,8 @@ export interface FormState {
  
 
   // Page 3
-  backDropoptions: string;
-  decorationoptions: string;
-  prop_accessory: string;
+themePhoto:string|File;
+themeVideo:string|File;
 
   // Page 4
   freeInitialConsultation: boolean;
@@ -79,9 +78,8 @@ const Decorators: React.FC = () => {
     customDesignProcess: "",
 
     //page 3
-    backDropoptions: "",
-    decorationoptions: "",
-    prop_accessory: "",
+    themePhoto:"",
+    themeVideo:"",
     // Page 4
     freeInitialConsultation: true,
     revisionPolicy: true,
@@ -247,9 +245,7 @@ const Decorators: React.FC = () => {
 
     
     //page 3
-    formData.append("backDropoptions", formState.backDropoptions);
-    formData.append("decorationoptions", formState.decorationoptions);
-    formData.append("prop_accessory", formState.prop_accessory);
+    
     //page 4
     formData.append(
       "freeInitialConsultation",

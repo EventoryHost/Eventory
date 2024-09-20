@@ -64,7 +64,7 @@ const Page2: React.FC<Page2Props> = ({
       <div className="flex flex-col gap-6 rounded-xl bg-white p-3  md:p-6">
         <div className="flex gap-4 items-center">
           <ArrowLeft className="mr-1 ml-2 h-6 w-6 text-[#2E3192] cursor-pointer" aria-hidden="true" onClick={() => setCurrentPage(currentPage - 1)} />
-          <h1 className="text-2xl font-semibold">Theme Offered</h1>
+          <h1 className="text-2xl font-semibold">Theme Offered<span className="text-red-500 ">*</span></h1>
         </div>
         <div className="flex min-h-full min-w-full flex-col items-center gap-5">
           <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">

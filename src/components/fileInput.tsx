@@ -31,7 +31,7 @@ const FileInput = ({
       }`}
     >
       <Upload
-        className={` ${fileName ? "text-green-500" : "text-gray-500"}`}
+        className={` ${fileName ? "text-green-500" : "text-[#2E3192]"}`}
       />
       <input
         type="file"
@@ -42,7 +42,7 @@ const FileInput = ({
       />
       <label
         htmlFor={label.replace(" ", "-").toLowerCase()}
-        className="cursor-pointer"
+        className="cursor-pointer  text-[#2E3192]"
       >
         {fileName ? fileName : `Upload `}
       </label>

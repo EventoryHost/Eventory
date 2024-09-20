@@ -178,7 +178,7 @@ const Page1: React.FC<Page1Props> = ({
           <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
             <div className="flex min-w-[50%] flex-col gap-2">
               <label htmlFor="businessName" className="text-base font-medium">
-                Decoration to setup<span className="text-red-500">*</span>
+                Decoration to setup
               </label>
               <Dropdown
                 options={duration}
@@ -209,7 +209,7 @@ const Page1: React.FC<Page1Props> = ({
             />
           </div> */}
 
-        <h1 className="text-2xl font-semibold">Types of Event</h1>
+        <h1 className="text-2xl font-semibold">Types of Event<span className="text-red-500">*</span></h1>
         <div className="flex min-h-full min-w-full flex-col items-center gap-5">
           <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
             <Appetizers

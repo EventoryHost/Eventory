@@ -88,7 +88,7 @@ const Page1 = ({
     setServingCapacity([option]);
   };
   return (
-    <div className="scroll-touch flex flex-col items-start gap-5 overflow-y-scroll rounded-xl bg-white p-3 scrollbar-hide  xs:justify-start md:p-6">
+    <div className="scroll-touch w-full flex flex-col items-start gap-5 overflow-y-scroll rounded-xl bg-white p-3 scrollbar-hide  xs:justify-start md:p-6">
       <h1 className="text-2xl font-semibold">Basic Details</h1>
       <div className="flex min-w-full flex-col items-center gap-9 p-2">
         <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">

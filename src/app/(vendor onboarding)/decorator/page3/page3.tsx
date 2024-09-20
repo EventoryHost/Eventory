@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Appetizers from "../../(components)/Appetizers";
 import { ArrowLeft } from "lucide-react";
 import { Checkbox } from "@mui/material";
+import FileInput from "@/components/fileInput";
 
 const _themesElement = [
   "Backdrop",
@@ -15,9 +16,8 @@ const _themesElement = [
 ];
 
 interface FormState {
-  backDropoptions: string;
-  decorationoptions: string;
-  prop_accessory: string;
+  themePhoto: string | File;
+  themeVideo: string|File
 }
 
 interface Page3Props {
@@ -39,22 +39,20 @@ const Page3: React.FC<Page3Props> = ({
   currentPage,
   setCurrentPage
 }) => {
-  const { backDropoptions, decorationoptions, prop_accessory } = formState;
+  const { themePhoto ,themeVideo} = formState;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
   };
 
-  const [propChecked, setPropChecked] = useState(false);
-  const [backdropChecked, setbackdropChecked] = useState(false);
-  const [decorChecked, setdecorChecked] = useState(false);
+
 
   return (
     <div className="scroll-touch items-strech flex  w-[100%] flex-col gap-9 overflow-y-scroll bg-[#F7F6F9]  scrollbar-hide">
       <div className="flex flex-col gap-6 rounded-xl bg-white p-3  md:p-6">
         <div className="flex gap-4 items-center">
           <ArrowLeft className="mr-1 ml-2 h-6 w-6 text-[#2E3192] cursor-pointer" aria-hidden="true" onClick={() => setCurrentPage(currentPage - 1)} />
-          <h1 className="text-2xl font-semibold">Theme Elements</h1>
+          <h1 className="text-2xl font-semibold">Theme Elements<span className="text-red-500 ">*</span></h1>
         </div>
         <div className="flex min-h-full min-w-full flex-col items-center gap-5">
           <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
@@ -71,106 +69,74 @@ const Page3: React.FC<Page3Props> = ({
         <div className="flex min-h-full min-w-full flex-col items-center gap-5">
           <div className="item-center flex min-w-full flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
             <div className="flex min-w-[45%] flex-col gap-2">
-              <label htmlFor="category" className="text-base font-medium">
-                Description of backdrop options
-              </label>
-              <textarea
-                cols={30}
-                rows={3}
-                className="  w-[95%] rounded-xl border-2 border-gray-300 p-3"
-                placeholder="Description of their custom design process"
-                value={backDropoptions}
-                disabled={backdropChecked}
-                onChange={(e) =>
-                  updateFormState({ backDropoptions: e.target.value })
-                }
+
+              <div className="text-base font-medium flex items-center gap-1">Theme Photos* <span className="text-red-500 ">*</span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="1.33398" y="1.3335" width="13.3333" height="13.3333" rx="6.66667" stroke="#2B3F6C" />
+                  <path d="M8.33398 11.3335L8.33398 7.3335" stroke="#2B3F6C" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M7.00065 7.3335L8.33398 7.3335" stroke="#2B3F6C" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M8.33398 5.33366L8.33398 4.66699" stroke="#2B3F6C" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+
+              </div>
+              <span className="text-small font-light">PNG,JPG,PDF</span>
+
+              <FileInput
+                label="themePhoto"
+                onFileSelect={(file) => {
+                  updateFormState({ themePhoto: file });
+                }}
+                acceptedFileTypes="image/png, .pdf, image/jpg"
               />
-              <label className=" text-lg font-semibold">
-                <Checkbox
-                  checked={backdropChecked}
-                  onChange={(e) => {
-                    setbackdropChecked(!backdropChecked)
-                    updateFormState({ backDropoptions: "customizable" })
+              <span className="text-base font-medium">or Continue via</span>
+              <input
+                type="text"
+                className="w-full rounded-xl border-2 bg-white p-3 py-5 outline-none text-sm"
+                placeholder="Enter your portfolio links"
+                value={typeof formState.themePhoto === 'string' ? formState.themePhoto : ''}
+                onChange={(e) =>
+                  updateFormState({ themePhoto: e.target.value })
+                }
+                required
+              />
 
-                  }}
-
-                  sx={{
-                    "&.Mui-checked": {
-                      color: "#2E3192",
-                    },
-                  }}
-                />
-                Customizable
-              </label>
             </div>
             <div className="flex min-w-[45%] flex-col gap-2">
-              <label htmlFor="category" className="text-base font-medium">
-                Description of stage decoration options
-              </label>
-              <textarea
-                cols={30}
-                rows={3}
-                className="  w-[95%] rounded-xl border-2 border-gray-300 p-3"
-                placeholder="Description of their custom design process"
-                value={decorationoptions}
-                onChange={(e) =>
-                  updateFormState({ decorationoptions: e.target.value })
-                }
+
+              <div className="text-base font-medium flex items-center gap-1">Theme Videos <span className="text-red-500 ">*</span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="1.33398" y="1.3335" width="13.3333" height="13.3333" rx="6.66667" stroke="#2B3F6C" />
+                  <path d="M8.33398 11.3335L8.33398 7.3335" stroke="#2B3F6C" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M7.00065 7.3335L8.33398 7.3335" stroke="#2B3F6C" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M8.33398 5.33366L8.33398 4.66699" stroke="#2B3F6C" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+
+              </div>
+              <span className="text-small font-light">MP4, MKV</span>
+
+              <FileInput
+                label="themeVideo"
+                onFileSelect={(file) => {
+                  updateFormState({ themeVideo: file });
+                }}
+                acceptedFileTypes="image/png, .pdf, image/jpg"
               />
-              <label className=" text-lg font-semibold">
-                <Checkbox
-                  checked={decorChecked}
-                  onChange={(e) => {
-                    setdecorChecked(!decorChecked)
-                    updateFormState({ decorationoptions: "customizable" })
-
-                  }}
-
-                  sx={{
-                    "&.Mui-checked": {
-                      color: "#2E3192",
-                    },
-                  }}
-                />
-                Customizable
-              </label>
-            </div>
-          </div>
-          <div className="flex min-w-full flex-row items-start justify-between gap-4">
-            <div className="flex min-w-[45%] flex-col gap-2">
-              <label htmlFor="category" className="text-base font-medium">
-                Description of prop & accessory selection
-              </label>
-              <textarea
-                cols={30}
-                rows={3}
-                disabled={propChecked}
-                className="  w-[95%] rounded-xl border-2 border-gray-300 p-3"
-                placeholder="Description of their custom design process"
-                value={prop_accessory}
+              <span className="text-base font-medium">or Continue via</span>
+              <input
+                type="text"
+                className="w-full rounded-xl border-2 bg-white p-3 py-5 outline-none text-sm"
+                placeholder="Enter your portfolio links"
+                value={typeof formState.themeVideo === 'string' ? formState.themeVideo : ''}
                 onChange={(e) =>
-                  updateFormState({ prop_accessory: e.target.value })
+                  updateFormState({ themeVideo: e.target.value })
                 }
+                required
               />
-              <label className=" text-lg font-semibold">
-                <Checkbox
-                  checked={propChecked}
-                  onChange={(e) => {
-                    setPropChecked(!propChecked)
-                    updateFormState({ prop_accessory: "customizable" })
 
-                  }}
-
-                  sx={{
-                    "&.Mui-checked": {
-                      color: "#2E3192",
-                    },
-                  }}
-                />
-                Customizable
-              </label>
             </div>
+
           </div>
+
           <div className="items-strech  flex flex-row gap-7 self-end">
 
             <button
