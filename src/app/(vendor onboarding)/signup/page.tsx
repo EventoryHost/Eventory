@@ -139,9 +139,9 @@ const SignUp = () => {
   return (
     <div className="flex max-h-[100vh] w-full flex-col overflow-hidden lg:flex-row">
       <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:h-[91vh] md:min-w-[35%] lg:max-w-[30%]">
-        <div className="flex flex-col items-center justify-center max-h-fit lg:mt-[5rem] gap-3">
+        <div className="flex max-h-fit flex-col items-center justify-center gap-3 lg:mt-[5rem]">
           <p className="text-xl text-gray-900">Step 1 of 2</p>
-          <div className="flex items-center justify-start gap-1 xs:self-start xs:pl-5 md:px-11 ">
+          <div className="flex items-center justify-start gap-1 xs:self-start xs:pl-5 md:px-11">
             <button className="h-[0.4rem] w-[3rem] rounded-xl bg-[#2E3192]"></button>
             <button className="h-[0.4rem] w-[3rem] rounded-xl bg-gray-300"></button>
           </div>
@@ -176,7 +176,10 @@ const SignUp = () => {
                     key={field.id}
                     className="col-span-2 flex min-w-[45%] flex-col gap-4 md:col-span-1"
                   >
-                    <label htmlFor={field.id}>{field.label}<span className="text-red-500">*</span></label>
+                    <label htmlFor={field.id}>
+                      {field.label}
+                      <span className="text-red-500">*</span>
+                    </label>
                     <input
                       id={field.id}
                       type={field.type}
@@ -194,14 +197,14 @@ const SignUp = () => {
               )}
               <div className="mt-9 flex w-full flex-col-reverse justify-between gap-3 self-start md:mt-0 md:flex-row md:items-center md:px-0">
                 <div className="flex gap-2 xs:text-sm md:gap-3">
-                  <input type="checkbox" id="tc" placeholder="t&c" required />You
-                  agree with{" "}
+                  <input type="checkbox" id="tc" placeholder="t&c" required />
+                  You agree with{" "}
                   <span className="text-[#2E3192] underline">
                     Terms & Conditions
                   </span>
                 </div>
               </div>
-              <div className="mt-3 mb-3">
+              <div className="mb-3 mt-3">
                 <p className="self-start text-gray-500 xs:mt-5 xs:text-sm">
                   To verify it&apos;s you, we will send you an OTP to your
                   mobile number.

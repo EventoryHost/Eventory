@@ -20,14 +20,14 @@ const Feed: React.FC = () => {
 
   return (
     <>
-      <div className="flex w-[100%] bg-gradient-to-b from-[#BFBFEF] to-[#ffffff] flex-col flex-wrap justify-center overflow-hidden md:flex-row md:py-0">
-        <div className="flex md:py-[3%] py-[8%] w-[100%] flex-col items-center justify-center">
+      <div className="flex w-[100%] flex-col flex-wrap justify-center overflow-hidden bg-gradient-to-b from-[#BFBFEF] to-[#ffffff] md:flex-row md:py-0">
+        <div className="flex w-[100%] flex-col items-center justify-center py-[8%] md:py-[3%]">
           <div className="flex flex-col items-center justify-center px-[4%]">
             <h1 className="text-center text-4xl font-bold md:text-6xl">
-              Find the Perfect{" "}
-              <FlipWords words={words} className="" /><br /> for Your Event
+              Find the Perfect <FlipWords words={words} className="" />
+              <br /> for Your Event
             </h1>
-            <p className="mt-7 md:w-[70%] md:text-xl text-center">
+            <p className="mt-7 text-center md:w-[70%] md:text-xl">
               Discover, compare, and book top-rated vendors for weddings,
               corporate events, parties, and more – all in one place.
             </p>
