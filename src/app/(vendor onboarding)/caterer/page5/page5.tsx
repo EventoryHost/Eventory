@@ -86,8 +86,7 @@ const Page5: React.FC<PageProps> = ({
 
   const handleSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    console.log("Daily Packages:", dailyPackages);
-    console.log("Seasonal Packages:", seasonalPackages);
+    
   };
 
   const handlePercentageChange = (newValue: number) => {
@@ -111,9 +110,6 @@ const Page5: React.FC<PageProps> = ({
   const [advChecked, setAdvChecked] = useState(false);
 
 
-  useEffect(() => {
-    console.log(seasonalPackages)
-  }, [seasonalPackages])
 
 
 
@@ -123,11 +119,11 @@ const Page5: React.FC<PageProps> = ({
         <div className="flex w-[100%] flex-col gap-10 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
           <div className="flex gap-4 items-center">
             <ArrowLeft className="mr-1 ml-2 h-6 w-6 text-[#2E3192] cursor-pointer" aria-hidden="true" onClick={() => setCurrentPage(currentPage - 1)} />
-            <h1 className=" text-2xl font-semibold">Staff and Equipment Provided</h1>
+            <h1 className=" text-2xl font-semibold">Additiona</h1>
           </div>
           <div className="flex min-w-full flex-col items-center gap-9 p-2">
             <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
-              <div className="flex min-w-[50%] flex-col gap-2">
+              <div className="flex min-w-[45%] flex-col gap-2">
                 <label htmlFor="businessName" className="text-base font-medium">
                   Minimum Order Requirements<span className="text-red-500 ">*</span>
                 </label>
@@ -142,7 +138,7 @@ const Page5: React.FC<PageProps> = ({
                 />
               </div>
 
-              <div className="flex min-w-[50%] flex-col gap-2">
+              <div className="flex min-w-[45%] flex-col gap-2">
                 <label htmlFor="businessName" className="text-base font-medium">
                   Advance Booking Period<span className="text-red-500">*</span>
                 </label>

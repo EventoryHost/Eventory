@@ -11,7 +11,7 @@ const _EventTypes = [
   "Weddings",
 ];
 
-const _additionalServices = ["Setup Services", "Cleanup Services", "Others"];
+const _additionalServices = ["Table Setting and Decoration", "Live Cooking Stations","Bartending","Food Packing for Guests","Cleanup Services" ,"Others"];
 
 interface page3Props {
   selectedEventTypes: string[];

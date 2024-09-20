@@ -34,7 +34,12 @@ const FileDisplay: React.FC<FileDisplayProps> = ({ file }) => {
           )}
         </div>
       </div>
-      <img src={"/selection/vector.svg"} className="h-8 w-8" />
+      <div className="m-2">
+      <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="2" y="2.5" width="20" height="20" rx="5" stroke="#2B3F6C" stroke-width="1.5" />
+        <path d="M9.5 12L11.5 14L15.5 10" stroke="#2B3F6C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+      </div>
     </div>
   );
 };

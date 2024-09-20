@@ -10,8 +10,9 @@ import Page3 from "./page3/page3";
 import Page4 from "./page4/page4";
 import Page5 from "./page5/page5";
 import Page6 from "./page6/page6";
+import Page7 from "./page7/page7"
 
-import Page7 from "./preview/page7";
+import Page8 from "./preview/preview";
 
 import { addCaterer } from "@/services/vendors/caterer";
 
@@ -42,6 +43,8 @@ export interface FormState {
   cancellationPolicy: string | File;
   minOrderReq: string;
   AdvBooking: string;
+  photos:string |File;
+  videos:string |File;
 }
 
 const Caterer = () => {
@@ -64,6 +67,8 @@ const Caterer = () => {
     portfolio: "",
     minOrderReq: "",
     AdvBooking: "",
+    photos:"",
+    videos:"",
   });
 
   function updateFormState(newState: Partial<FormState>) {
@@ -96,6 +101,8 @@ const Caterer = () => {
   const [equipmentsProvided, setEquipmentsProvided] = useState<string[]>([]);
 
   const [advancePayment, setAdvancePayment] = useState(25);
+
+
 
   // State for packages
   const [hourlyPackages, setHourlyPackages] = useState<Package[]>([
@@ -253,12 +260,14 @@ const Caterer = () => {
     formData.append("deposit_required", advancePayment.toString());
     formData.append("menu", formState.menu);
 
-    formData.append("portfolio", formState.portfolio);
+    formData.append("photos", formState.photos);
+    formData.append("videos", formState.videos);
+
     formData.append("tastingSessions", formState.tastingSessions.toString());
     formData.append("businessLicenses", formState.businessLicenses.toString());
     formData.append("foodSafety", formState.foodSafety.toString());
     formData.append("cateringServiceImages", formState.cateringServiceImages);
-    formData.append("terms_and_conditions", formState.termsAndConditions);
+    formData.append("termsAndConditions", formState.termsAndConditions);
     formData.append("cancellation_policy", formState.cancellationPolicy);
     formData.append("pre_set_menu", formState.preSetMenu);
 
@@ -355,32 +364,48 @@ const Caterer = () => {
             }}
           />
         );
+      // case 5:
+      //   return (
+      //     <Page5
+      //       setCurrentPage={setCurrentPage}
+      //       currentPage={currentPage}
+      //       formState={formState}
+      //       updateFormState={updateFormState}
+      //       advancePayment={advancePayment}
+      //       setAdvancePayment={setAdvancePayment}
+      //       // hourlyPackages={hourlyPackages}
+      //       // setHourlyPackages={setHourlyPackages}
+      //       dailyPackages={dailyPackages}
+      //       setDailyPackages={setDailyPackages}
+      //       seasonalPackages={seasonalPackages}
+      //       setSeasonalPackages={setSeasonalPackages}
+      //       handlePackageChange={handlePackageChange}
+      //       addPackage={addPackage}
+      //       handleContinue={() => {
+      //         setCurrentPage(6);
+      //         handleContinue();
+      //       }}
+      //     />
+      //   );
       case 5:
         return (
-          <Page5
+          <Page6
+          
             setCurrentPage={setCurrentPage}
             currentPage={currentPage}
             formState={formState}
             updateFormState={updateFormState}
-            advancePayment={advancePayment}
-            setAdvancePayment={setAdvancePayment}
-            // hourlyPackages={hourlyPackages}
-            // setHourlyPackages={setHourlyPackages}
-            dailyPackages={dailyPackages}
-            setDailyPackages={setDailyPackages}
-            seasonalPackages={seasonalPackages}
-            setSeasonalPackages={setSeasonalPackages}
-            handlePackageChange={handlePackageChange}
-            addPackage={addPackage}
             handleContinue={() => {
               setCurrentPage(6);
               handleContinue();
+              // handleSubmit();
             }}
           />
         );
+
       case 6:
         return (
-          <Page6
+          <Page7
             setCurrentPage={setCurrentPage}
             currentPage={currentPage}
             formState={formState}
@@ -395,7 +420,7 @@ const Caterer = () => {
 
       case 7:
         return (
-          <Page7
+          <Page8
             veg={veg}
             setVeg={setVeg}
             setCurrentPage={setCurrentPage}
@@ -449,7 +474,7 @@ const Caterer = () => {
         <div className="flex w-[90%] m-auto flex-col justify-center">
           <div className="flex flex-col gap-1 px-3 lg:mt-[2rem]">
             <span className="text-lg font-semibold">
-              Step {currentPage} of 8
+              Step {currentPage} of 7
             </span>
             <div className="flex gap-2">
               <button
@@ -485,10 +510,10 @@ const Caterer = () => {
                 className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 7 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
                 onClick={() => setCurrentPage(7)}
               ></button>
-              <button
+              {/* <button
                 className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 8 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
                 onClick={() => setCurrentPage(8)}
-              ></button>
+              ></button> */}
             </div>
           </div>
         </div>
@@ -498,8 +523,10 @@ const Caterer = () => {
             {currentPage === 2 && "Fill the menu details"}
             {currentPage === 3 && "Fill the Event details"}
             {currentPage === 4 && "Fill the Staffing and Equipment details"}
-            {currentPage === 5 && "Fill the Booking and pricing details"}
+            {/* {currentPage === 5 && "Fill the Booking and pricing details"} */}
+            {currentPage === 5 && "Fill the Additional details"}
             {currentPage === 6 && "Fill the Additional details"}
+
             {currentPage === 7 && "Preview details"}
           </h1>
           <p className="text-black text-xl ">
@@ -511,15 +538,17 @@ const Caterer = () => {
               "Please provide the event details of the catering service offered by your company."}
             {currentPage === 4 &&
               "Please provide the staffing and equipment details of the catering service offered by your company."}
+            {/* {currentPage === 5 &&
+              "Please provide the booking and pricing details of the catering service offered by your company."} */}
             {currentPage === 5 &&
-              "Please provide the booking and pricing details of the catering service offered by your company."}
-            {currentPage === 6 &&
               "Please provide the additional details of the catering service offered by your company."}
+            {currentPage === 6 && "Please provide the booking and pricing details of the catering service offered by your company."}
+
             {currentPage === 7 &&
               "Please recheck the information provided by you. "}
           </p>
         </div>
-        <div className="relative h-[10rem] lg:w-full">
+        <div className="relative h-[10rem] w-full">
           <Image
             src={"/tajmahal.png"}
             alt=""

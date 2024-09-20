@@ -53,6 +53,8 @@ type FormState = {
   customizableMenu: boolean;
   // Page 6
   portfolio: string | File;
+  photos: string | File;
+  videos: string | File;
   tastingSessions: boolean;
   businessLicenses: boolean;
   foodSafety: boolean | File;
@@ -181,28 +183,30 @@ function Preview({
         </div>
       </div>
       <div className="w-full">
-        <div className="m-6 mt-4 flex flex-col gap-1">
-          <span className="text-base font-medium">Catering Service Name</span>
-          <span className="text-sm font-bold">
-            {formState.cateringName}
-          </span>
-        </div>
-        <div className="m-6 mt-4 flex flex-col gap-1">
-          <span className="text-base font-medium">Manager Name (POC)</span>
-          <span className=" text-sm font-bold">
-            {formState.businessName}
-          </span>
+        <div className="flex  flex-col items-start justify-between gap-5 md:flex-row mx-6">
+          <div className="mt-4 min-w-[45%] flex flex-col gap-1 items-start">
+            <span className="text-base font-normal">Catering Service Name</span>
+            <span className="text-sm font-bold">
+              {formState.cateringName}
+            </span>
+          </div>
+          <div className="mt-4 min-w-[45%] flex flex-col gap-1 items-center">
+            <span className="text-base font-normal">Manager Name (POC)</span>
+            <span className=" text-sm font-bold">
+              {formState.businessName}
+            </span>
+          </div>
         </div>
 
         <div className="m-6 mt-4 flex flex-col gap-1">
-          <span className="text-base font-medium">Serving Capacity</span>
+          <span className="text-base font-normal">Serving Capacity</span>
           <span className=" text-sm font-bold">
             {servingCapacity}
           </span>
         </div>
 
         <div className="m-6 mt-4 flex flex-col gap-1">
-          <span className="text-base font-medium">Cuisine Speciliaty</span>
+          <span className="text-base font-normal">Cuisine Speciliaty</span>
           <Appetizers
             appetizers={cuisineSpecialties}
             selectedAppetizers={cuisineSpecialties}
@@ -210,7 +214,7 @@ function Preview({
           />
         </div>
         <div className="m-6 mt-4 flex flex-col gap-1">
-          <span className="text-base font-medium">Regional Specialties</span>
+          <span className="text-base font-normal">Regional Specialties</span>
           <Appetizers
             appetizers={regionalSpecialties}
             selectedAppetizers={regionalSpecialties}
@@ -219,7 +223,7 @@ function Preview({
         </div>
 
         <div className="m-6 mt-4 flex flex-col gap-1">
-          <span className="text-base font-medium">Service Styles Offered</span>
+          <span className="text-base font-normal">Service Styles Offered</span>
           <Appetizers
             appetizers={serviceStyles}
             selectedAppetizers={serviceStyles}
@@ -239,13 +243,13 @@ function Preview({
       </div>
       <div className="w-full">
         <div className="m-6 mt-4 flex flex-col gap-1">
-          <span className="text-base font-medium">Veg or NonVeg</span>
+          <span className="text-base font-normal">Veg or NonVeg</span>
           <span className="text-sm font-bold">
             {veg}
           </span>
         </div>
         <div className="m-6 mt-6 flex flex-col gap-1">
-          <span className="text-base font-medium">Uploaded Menu</span>
+          <span className="text-base font-normal">Uploaded Menu</span>
           <span className="font-semibold w-[50%]">
             {typeof formState.menu !== "string" ? (
               <File file={formState.menu} />
@@ -255,9 +259,9 @@ function Preview({
           </span>
         </div>
 
-        {formState.menu === undefined && <>
+        {formState.menu === "no" && <>
           <div className="m-6 mt-4 flex flex-col gap-2">
-            <span className="text-base font-medium">Appetizers</span>
+            <span className="text-base font-normal">Appetizers</span>
             <Appetizers
               // field={'_appetizers'}
               appetizers={selectedAppetizers}
@@ -267,7 +271,7 @@ function Preview({
           </div>
 
           <div className="m-6 mt-4 flex flex-col gap-2">
-            <span className="text-base font-medium">Beverages</span>
+            <span className="text-base font-normal">Beverages</span>
             <Appetizers
               // field={'_beverages'}
               appetizers={selectedBeverages}
@@ -276,7 +280,7 @@ function Preview({
             />
           </div>
           <div className="m-6 mt-4 flex flex-col gap-2">
-            <span className="text-base font-medium">Main Courses</span>
+            <span className="text-base font-normal">Main Courses</span>
             <Appetizers
               //  field={'_mainCourses'}
               appetizers={selectedMainCourses}
@@ -285,7 +289,7 @@ function Preview({
             />
           </div>
           <div className="m-6 mt-4 flex flex-col gap-2">
-            <span className="text-base font-medium">Dietary Options</span>
+            <span className="text-base font-normal">Dietary Options</span>
             <Appetizers
               // field={'_dietaryOptions'}
               appetizers={selectedDietaryOptions}
@@ -293,19 +297,20 @@ function Preview({
               setSelectedAppetizers={setSelectedDietaryOptions}
             />
           </div>
-          <div className="m-6 mt-4 flex flex-col gap-1">
-            <span className="text-base font-medium">Pre-Set Menu</span>
-            <p className="whitespace-normal break-words  text-sm font-bold">
-              {formState.preSetMenu}
-            </p>
-          </div>
-          <div className="m-6 mt-4 flex flex-col gap-1">
-            <span className="text-base font-medium">Customizable</span>
-            <span className=" text-sm font-bold">
-              {formState.customizableMenu ? "yes" : "no"}
-            </span>
-          </div>
+
         </>}
+        <div className="m-6 mt-4 flex flex-col gap-1">
+          <span className="text-base font-normal">Pre-Set Menu</span>
+          <p className="whitespace-normal break-words  text-sm font-bold">
+            {formState.preSetMenu}
+          </p>
+        </div>
+        <div className="m-6 mt-4 flex flex-col gap-1">
+          <span className="text-base font-normal">Customizable</span>
+          <span className=" text-sm font-bold">
+            {formState.customizableMenu ? "yes" : "no"}
+          </span>
+        </div>
 
       </div>
       <div className="flex w-[100%] justify-between rounded-xl bg-[rgba(96,94,216,0.1)] p-2 pl-4 text-xl font-semibold">
@@ -320,7 +325,7 @@ function Preview({
       </div>
       <div className="w-full">
         <div className="m-6 mt-4 flex flex-col gap-2">
-          <span className="text-base font-medium">Event Options</span>
+          <span className="text-base font-normal">Event Options</span>
           <Appetizers
             // field={'EventTypes'}
             appetizers={selectedEventTypes}
@@ -329,7 +334,7 @@ function Preview({
           />
         </div>
         <div className="m-6 mt-4 flex flex-col gap-2">
-          <span className="text-base font-medium">Additional Services</span>
+          <span className="text-base font-normal">Additional Services</span>
           <Appetizers
             // field={'additionalServices'}
             appetizers={selectedAdditionalServices}
@@ -350,7 +355,7 @@ function Preview({
       </div>
       <div className="w-full">
         <div className="m-6 mt-4 flex flex-col gap-2">
-          <span className="text-base font-medium">Staff provides</span>
+          <span className="text-base font-normal">Staff provides</span>
           <Appetizers
             // field={'staffProvides'}
             appetizers={selectedStaffProvider}
@@ -360,7 +365,7 @@ function Preview({
         </div>
 
         <div className="m-6 mt-4 flex flex-col gap-2">
-          <span className="text-base font-medium">Equipments provided</span>
+          <span className="text-base font-normal">Equipments provided</span>
           <Appetizers
             // field={'equipmentsProvided'}
             appetizers={selectedEquipmentsProvided}
@@ -370,7 +375,7 @@ function Preview({
         </div>
       </div>
       <div className="flex w-[100%] justify-between rounded-xl bg-[rgba(96,94,216,0.1)] p-2 pl-4 text-xl font-semibold">
-        Booking & Pricing
+        Additional Details
         <div className="align-center flex justify-center p-1">
           <button onClick={() => setCurrentPage(5)}>
             <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -381,70 +386,76 @@ function Preview({
       </div>
 
       <div className="flex min-w-full flex-col items-start justify-between gap-5 px-4 md:flex-row mb-4">
-        <div className="flex min-w-[40%] flex-col gap-2">
-          <label className="font-medium text-base">Minimum Order Requirements</label>
-          <div className="font-bold flex flex-col ">
-            <span>{formState.minOrderReq}</span>
-          </div>
+        <div className="flex min-w-[45%] flex-col gap-2">
+          <label className="font-normal text-base">Minimum Order Requirements</label>
+          <span className="text-sm font-bold">
+            {formState.minOrderReq}
+          </span>
         </div>
-        <div className="flex h-full min-w-[40%] flex-col items-start justify-center gap-2">
-          <label className="font-semibold text-base">Advance Booking Period</label>
-          <div className="flex w-[80%] flex-col justify-between gap-1">
-            <span className="text-sm font-medium"></span>
-            <span className="text-sm font-normal">{formState.AdvBooking}</span>
-          </div>
-        </div>
-      </div>
-
-      <div className="flex min-w-full flex-col items-start justify-between gap-5 px-4 md:flex-row">
-        <div className="flex h-full min-w-[40%] flex-col items-start justify-center gap-2">
-          <label className="font-medium text-base">Per plate rates</label>
-          {dailyPackages.map((pkg, index) => (
-            <div
-              key={index}
-              className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row"
-            >
-              <div className="flex min-w-[40%] flex-col gap-4">
-                <div key={index} className="mb-2 flex flex-col">
-                  <span>{pkg?.type}</span>
-                  <span className="font-bold">
-                    ₹{pkg?.priceRange[0]} - ₹{pkg?.priceRange[1]}
-                  </span>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div className="flex h-full min-w-[40%] flex-col items-start  gap-2">
-          <label className="font-medium text-base">Deal Package rates</label>
-          {seasonalPackages.map((pkg, index) => (
-            <div
-              key={index}
-              className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row"
-            >
-              <div className="flex min-w-[40%] flex-col gap-4">
-                <div key={index} className="mb-2 flex flex-col">
-                  <span>{pkg?.type}</span>
-                  <span className="font-bold">
-                    ₹{pkg.priceRange[0]} - ₹{pkg.priceRange[1]}
-                  </span>
-                </div>
-              </div>
-            </div>
-          ))}
+        <div className="flex h-full min-w-[45%] flex-col items-start justify-center gap-2">
+          <label className="font-normal text-base">Advance Booking Period</label>
+          <span className="text-sm font-bold">
+            {formState.AdvBooking}
+          </span>
         </div>
       </div>
 
-      <div className="flex min-w-full flex-col items-start justify-between gap-5 px-4 md:flex-row">
-        <div className="flex h-full min-w-[40%] flex-col items-start justify-center gap-2">
-          <label className="font-medium text-base">Advance Payment</label>
-          <span className="font-semibold">{advancePayment}%</span>
+      <div className="flex min-w-full flex-col items-start justify-between gap-5 px-4 md:flex-row mb-4">
+        <div className="flex min-w-[45%] flex-col gap-2">
+          <label className="font-normal text-base">Photos</label>
+          <span className="text-sm font-bold">
+            {typeof formState.photos === "string" ? (
+              formState.photos
+            ) : (
+              <File file={formState.photos} />
+            )}
+          </span>
         </div>
+        <div className="flex h-full min-w-[45%] flex-col items-start justify-center gap-2">
+          <label className="font-normal text-base">Videos</label>
+          <span className="text-sm font-bold">
+            {typeof formState.videos === "string" ? (
+              formState.videos
+            ) : (
+              <File file={formState.videos} />
+            )}
+          </span>
+        </div>
+      </div>
+      <div className="flex min-w-full flex-col items-start justify-between gap-5 px-4 md:flex-row mb-4">
+
+        <div className="flex h-full min-w-[45%] flex-col items-start justify-center gap-2">
+          <span className="text-base font-normal">Tasting sessions</span>
+
+          <span className="font-semibold">
+            {formState.tastingSessions ? "yes" : "no"}
+          </span>
+        </div>
+        <div className="flex min-w-[45%] flex-col gap-2">
+          <span className="text-base font-normal">Buisness Licenses</span>
+
+          <span className="font-semibold">
+            {formState.businessLicenses ? "yes" : "no"}
+          </span>
+        </div>
+      </div>
+
+      <div className="flex min-w-full flex-col items-start justify-between gap-2 px-4 mb-4">
+        <span className="text-base font-normal">Food Safety Certificate</span>
+        <span className="font-semibold">
+          {(formState.foodSafety && typeof formState.foodSafety === "object") ? (<span className="font-semibold ">
+            <File file={formState.foodSafety} />
+          </span>) : "no"}
+        </span>
+
+      </div>
+      <div className="flex  py-2">
+
+
       </div>
 
       <div className="flex w-[100%] justify-between rounded-xl bg-[rgba(96,94,216,0.1)] p-2 pl-4 text-xl font-semibold">
-        Additional Features
+        Policies
         <div className="align-center flex justify-center p-1">
           <button onClick={() => setCurrentPage(6)}>
             <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -453,58 +464,14 @@ function Preview({
           </button>
         </div>
       </div>
-      <div className="flex w-[100%] flex-col gap-8">
-        <div className="flex gap-16 py-2">
-          <div className="flex w-1/2 flex-col px-4">
-            <span className="text-base font-medium">Tasting sessions</span>
 
-            <span className="font-semibold">
-              {formState.tastingSessions ? "yes" : "no"}
-            </span>
-          </div>
-          <div className="flex w-1/2 flex-col">
-            <span className="text-base font-medium">Buisness Licenses</span>
-            <span className="font-semibold">
-              {formState.businessLicenses ? "yes" : "no"}
-            </span>
-          </div>
-        </div>
-        <div className="flex w-1/2 flex-col px-4">
-          <span className="text-base font-medium">Food Safety Certificate</span>
-          <span className="font-semibold">
-            {formState.foodSafety ? "yes" : "no"}
-          </span>
-        </div>
-      </div>
 
       <div className="flex w-[100%] flex-col gap-6">
-        <div className="flex  py-2">
-          {formState.foodSafety && typeof formState.foodSafety === "object" && (
 
-            <div className="flex w-1/2 flex-col px-4 gap-2">
-              <span className="text-base font-medium">Food Safety Certificate</span>
-
-              <span className="font-semibold ">
-                <File file={formState.foodSafety} />
-
-              </span>
-            </div>
-          )}
-          <div className="flex w-1/2 flex-col px-4 gap-2">
-            <span className="text-base font-medium">Portfolio</span>
-            <span className="font-semibold">
-              {typeof formState.portfolio === "string" ? (
-                formState.portfolio
-              ) : (
-                <File file={formState.portfolio} />
-              )}
-            </span>
-          </div>
-        </div>
 
         <div className="flex  py-2">
           <div className="flex w-1/2 flex-col px-4 gap-2">
-            <span className="text-base font-medium">Terms and Condition</span>
+            <span className="text-base font-normal">Terms and Condition</span>
 
             <span className="font-semibold ">
               {typeof formState.termsAndConditions === "string" ? (
@@ -515,7 +482,7 @@ function Preview({
             </span>
           </div>
           <div className="flex w-1/2 flex-col px-4 gap-2">
-            <span className="text-base font-medium">Cancellation Policy</span>
+            <span className="text-base font-normal">Cancellation Policy</span>
             <span className="font-semibold">
               {typeof formState.cancellationPolicy === "string" ? (
                 formState.cancellationPolicy
@@ -527,7 +494,7 @@ function Preview({
         </div>
 
         <div className="flex w-1/2 flex-col px-4">
-          <span className="text-base font-medium">Client Testimonials</span>
+          <span className="text-base font-normal">Client Testimonials</span>
           <span className="font-semibold">
             {typeof formState.clientTestimonials === "string" ? (
               formState.clientTestimonials

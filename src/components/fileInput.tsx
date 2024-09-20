@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Upload, CheckCircle } from "lucide-react";
+import { Upload, CheckCircle, PlusCircle } from "lucide-react";
 
 type FileInputProps = {
   label: string;
@@ -46,7 +46,7 @@ const FileInput = ({
       >
         {fileName ? fileName : `Upload `}
       </label>
-      {fileName && <CheckCircle className="ml-2 text-green-500" />}
+      {fileName && <PlusCircle className="ml-2 text-green-500" />}
     </div>
   );
 };

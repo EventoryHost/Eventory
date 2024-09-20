@@ -4,7 +4,7 @@ import { ArrowLeft } from "lucide-react";
 import Appetizers from "../../(components)/Appetizers";
 const _staffProvides = ["Chefs", "Bartenders", "Servers", "Cleaners", "Others"];
 
-const _equipmentsProvided = ["Setup Services", "Cleanup Services", "Others"];
+const _equipmentsProvided = ["Utensils ", "Chafing Dishes", "Others","Serving Ware","Tableware"];
 
 const Page4 = ({
   selectedStaffProvider,
@@ -13,10 +13,12 @@ const Page4 = ({
   setSelectedEquipmentsProvided,
   handleContinue,
   setCurrentPage,
-  currentPage
+  currentPage,
+
 }: {
   selectedStaffProvider: string[];
   setSelectedStaffProvider: React.Dispatch<React.SetStateAction<string[]>>;
+  
   selectedEquipmentsProvided: string[];
   setSelectedEquipmentsProvided: React.Dispatch<React.SetStateAction<string[]>>;
   handleContinue: () => void;
@@ -37,7 +39,7 @@ const Page4 = ({
             <h1 className=" text-2xl font-semibold">Staff and Equipment Provided</h1>
           </div>
           <div className="flex min-h-full min-w-full flex-col  gap-5">
-            <label htmlFor="category" className="text-xl font-medium">Staff Provides:</label>
+            <label htmlFor="category" className="text-xl font-medium">Staff Provides:<span className="text-red-500">*</span></label>
 
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers
