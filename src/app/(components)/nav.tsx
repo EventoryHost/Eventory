@@ -23,7 +23,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-rgba(0,0,0,0.12) navbar flex flex-col shadow-md">
+    <nav className="bg-[#BFBFEF] navbar flex flex-col shadow-md">
       <div className="container flex items-center justify-between">
         {/* logo eventory part */}
         <div className="logo flex flex-col items-center justify-center">
