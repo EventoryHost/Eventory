@@ -1,28 +1,17 @@
 "use client";
 
 import { Combobox } from "@/components/ui/combobox";
-
-const venueTypes = [
-  { value: "indoor", label: "Indoor" },
-  { value: "outdoor", label: "Outdoor" },
-  { value: "both", label: "Both" },
-];
+import { OperatingHoursDropdown } from "../(components)/comboBoxNew";
+import { useEffect } from "react";
 
 const seatingOptions = [
-  { value: "", label: "Seated" },
-  { value: "less than 100", label: "<100 persons" },
-  { value: "300", label: "100-300 persons" },
-  { value: "400", label: "300-400 persons" },
-  { value: "500", label: "> 500 persons" },
+  { value: "less than 50", label: "less than 50 persons" },
+  { value: "50-100", label: "50-100 persons" },
+  { value: "100-300", label: "100-300 persons" },
+  { value: "300-400", label: "300-400 persons" },
+  { value: "500+", label: "500+ persons" },
 ];
 
-const standingOptions = [
-  { value: "", label: "Seated" },
-  { value: "less than 100", label: "<100 persons" },
-  { value: "300", label: "100-300 persons" },
-  { value: "400", label: "300-400 persons" },
-  { value: "500", label: "> 500 persons" },
-];
 
 const timeOptions = [
   { value: "00:00", label: "00:01 AM" },
@@ -53,13 +42,11 @@ const timeOptions = [
 ];
 
 interface FormState {
-  venueName: string;
-  VenueAddress: string;
-  venueType: string;
-  seatingCapacity: string;
-  standingCapacity: string;
-  startOperatingHours: string;
-  endOperatingHours: string;
+  name: string;
+  managerName: string;
+  capacity: string;
+  address: string;
+  operatingHours: { openingTime?: string; closingTime?: string };
   venueDescription: string;
 }
 
@@ -67,6 +54,8 @@ interface Page1Props {
   formState: FormState;
   updateFormState: (newState: Partial<FormState>) => void;
   handleContinue: () => void;
+  address : string;
+  operatingHours : { openingTime?: string; closingTime?: string };
 }
 
 const Page1: React.FC<Page1Props> = ({
@@ -75,47 +64,45 @@ const Page1: React.FC<Page1Props> = ({
   handleContinue,
 }) => {
   const {
-    venueName,
-    VenueAddress,
-    venueType,
-    seatingCapacity,
-    standingCapacity,
-    startOperatingHours,
-    endOperatingHours,
+    name,
+    address,
     venueDescription,
+    managerName,
+    capacity,
+    operatingHours,
   } = formState;
 
+
   return (
-    <div className="scroll-touch flex flex-col items-start gap-7 overflow-y-scroll rounded-xl bg-white p-3 xs:w-[95%] xs:min-w-[90%] xs:justify-start md:p-6">
+    <div className="flex flex-col items-start gap-7 h-auto overflow-y-scroll rounded-xl bg-white p-3 xs:w-[100%] xs:min-w-[90%] xs:justify-start md:p-6">
       <h1 className="text-3xl font-semibold">Basic Details</h1>
       <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
         <div className="flex min-w-[40%] flex-col gap-4">
-          <label htmlFor="businessName">Venue Name</label>
+          <label htmlFor="businessName">Venue Name <span className="text-red-600">*</span></label>
           <input
             id="businessName"
             type="text"
             className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
             placeholder="Enter your Venue Name"
-            value={venueName}
-            onChange={(e) => updateFormState({ venueName: e.target.value })}
+            value={name}
+            onChange={(e) => updateFormState({ name: e.target.value })}
           />
         </div>
         <div className="flex min-w-[40%] flex-col gap-4">
-          <label htmlFor="businessName">Venue Address</label>
-          <input
-            id="businessName"
-            type="text"
-            className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
-            placeholder="Enter your Venue address"
-            value={VenueAddress}
-            onChange={(e) => updateFormState({ VenueAddress: e.target.value })}
+          <label htmlFor="category">Capacity<span className="text-red-600">*</span></label>
+          <Combobox
+            options={seatingOptions}
+            placeholder="Select your category"
+            setFunction={(value) =>
+              updateFormState({ capacity: value })
+            }
+            className="flex items-center justify-between rounded-xl border-2 py-6 text-gray-400 hover:text-[#2E3192]"
           />
         </div>
+
       </div>
 
-      <div className="flex min-h-full min-w-full flex-col items-center gap-5">
-        <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-          <div className="flex min-w-[40%] flex-col gap-4">
+      {/* <div className="flex min-w-[40%] flex-col gap-4">
             <label htmlFor="category">Venue Type</label>
             <Combobox
               options={venueTypes}
@@ -123,52 +110,48 @@ const Page1: React.FC<Page1Props> = ({
               setFunction={(value) => updateFormState({ venueType: value })}
               className="flex items-center justify-between rounded-xl border-2 py-6 hover:text-[#2E3192]"
             />
-          </div>
+          </div> */}
+
+      <div className="flex  min-w-full flex-col items-center gap-5">
+        <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
           <div className="flex min-w-[40%] flex-col gap-4">
-            <label htmlFor="category">Seating Capacity</label>
-            <Combobox
-              options={seatingOptions}
-              placeholder="Select your category"
-              setFunction={(value) =>
-                updateFormState({ seatingCapacity: value })
-              }
-              className="flex items-center justify-between rounded-xl border-2 py-6 hover:text-[#2E3192]"
+            <label htmlFor="category">Manager Name (POC)<span className="text-red-600">*</span></label>
+            <input
+              id="businessName"
+              type="text"
+              className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
+              placeholder="Enter your business name"
+              value={managerName}
+              onChange={(e) => updateFormState({ managerName: e.target.value })}
             />
           </div>
-        </div>
-        <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
           <div className="flex min-w-[40%] flex-col gap-4">
             <label htmlFor="category">Operating hours</label>
-            <Combobox
-              options={timeOptions}
-              placeholder="start timings..."
-              setFunction={(value) =>
-                updateFormState({ startOperatingHours: value })
-              }
-              className="flex items-center justify-between rounded-xl border-2 py-6 hover:text-[#2E3192]"
-            />
-            <Combobox
-              options={timeOptions}
-              placeholder="ending timings..."
-              setFunction={(value) =>
-                updateFormState({ endOperatingHours: value })
-              }
-              className="flex items-center justify-between rounded-xl border-2 py-6 hover:text-[#2E3192]"
+            <OperatingHoursDropdown
+              timeOptions={timeOptions}
+              updateFormState={updateFormState}
+              formState={formState}
             />
           </div>
-          <div className="flex min-w-[40%] flex-col gap-4">
-            <label htmlFor="category">Standing Capacity</label>
-            <Combobox
-              options={standingOptions}
-              placeholder="Select your category"
-              setFunction={(value) =>
-                updateFormState({ standingCapacity: value })
-              }
-              className="flex items-center justify-between rounded-xl border-2 py-6 hover:text-[#2E3192]"
-            />
-          </div>
+
+
+
         </div>
         <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+          {/* Venue Address */}
+          <div className="flex min-w-[40%] flex-col gap-4">
+            <label htmlFor="businessName">Venue Address<span className="text-red-600">*</span></label>
+            <input
+              id="businessName"
+              type="text"
+              className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
+              placeholder="Enter your Venue address"
+              value={address}
+              onChange={(e) => updateFormState({ address: e.target.value })}
+            />
+          </div>
+
+          {/* Venue Description */}
           <div className="flex min-w-[40%] flex-col gap-4">
             <label htmlFor="businessName">Venue Description</label>
             <input
@@ -184,13 +167,19 @@ const Page1: React.FC<Page1Props> = ({
           </div>
         </div>
 
+        {/* <div className="flex min-w-[40%] flex-col gap-4">
+            <label htmlFor="category">Standing Capacity</label>
+            <Combobox
+              options={standingOptions}
+              placeholder="Select your category"
+              setFunction={(value) =>
+                updateFormState({ standingCapacity: value })
+              }
+              className="flex items-center justify-between rounded-xl border-2 py-6 hover:text-[#2E3192]"
+            />
+          </div> */}
+
         <div className="items-strech mt-9 flex flex-row gap-7 self-end">
-          <button
-            className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-            onClick={handleContinue}
-          >
-            Skip
-          </button>
           <button
             className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
             onClick={handleContinue}
