@@ -7,7 +7,11 @@ type FileInputProps = {
   acceptedFileTypes: string;
 };
 
-const FileInput = ({ label, onFileSelect, acceptedFileTypes }: FileInputProps) => {
+const FileInput = ({
+  label,
+  onFileSelect,
+  acceptedFileTypes,
+}: FileInputProps) => {
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -24,13 +28,11 @@ const FileInput = ({ label, onFileSelect, acceptedFileTypes }: FileInputProps) =
   };
 
   return (
-    <div className="mt-5 flex flex-col w-fit items-center justify-start">
+    <div className="mt-5 flex w-fit flex-col items-center justify-start">
       <div
-        className={`flex w-fit items-center self-start justify-end rounded-xl border-2 border-dashed p-3 transition-all border-gray-400 bg-gray-200 hover:bg-gray-300`}
+        className={`flex w-fit items-center justify-end self-start rounded-xl border-2 border-dashed border-gray-400 bg-gray-200 p-3 transition-all hover:bg-gray-300`}
       >
-        <Upload
-          className="mr-2 text-indigo-500"
-        />
+        <Upload className="mr-2 text-indigo-500" />
         <input
           type="file"
           accept={acceptedFileTypes}
@@ -39,18 +41,25 @@ const FileInput = ({ label, onFileSelect, acceptedFileTypes }: FileInputProps) =
           className="hidden"
           id={label.replace(" ", "-").toLowerCase()}
         />
-        <label htmlFor={label.replace(" ", "-").toLowerCase()} className="cursor-pointer">
+        <label
+          htmlFor={label.replace(" ", "-").toLowerCase()}
+          className="cursor-pointer"
+        >
           Upload
         </label>
       </div>
 
-      <div className="mt-2 flex flex-wrap gap-2 max-w-full overflow-hidden">
+      <div className="mt-2 flex max-w-full flex-wrap gap-2 overflow-hidden">
         {selectedFiles.map((file, index) => (
           <div
             key={index}
-            className="flex items-center bg-gray-300 px-2 py-1 rounded-lg truncate max-w-[200px]"
+            className="flex max-w-[200px] items-center truncate rounded-lg bg-gray-300 px-2 py-1"
           >
-            <span className="truncate">{file.name.length > 15 ? file.name.slice(0, 15) + "..." : file.name}</span>
+            <span className="truncate">
+              {file.name.length > 15
+                ? file.name.slice(0, 15) + "..."
+                : file.name}
+            </span>
             <X
               className="ml-2 cursor-pointer text-red-500"
               onClick={() => removeFile(index)}

@@ -50,7 +50,7 @@ export function ComboboxDemo({
           role="combobox"
           aria-expanded={open}
           className={cn(
-            "w-[300px] md:text-[1.5vw] lg:text-[1.1vw] justify-between font-normal overflow-hidden md:h-[65px] md:w-[500px] lpt:w-[200px]",
+            "w-[300px] justify-between overflow-hidden font-normal md:h-[65px] md:w-[500px] md:text-[1.5vw] lg:text-[1.1vw] lpt:w-[200px]",
             className,
           )}
         >

@@ -14,13 +14,13 @@ type Props = {
   renderError: () => [boolean, string];
 };
 
-const OtpModal : React.FC<Props> = ({
+const OtpModal: React.FC<Props> = ({
   mobileNo,
   notYouRedirect,
   verifyFunction,
   onChangeFunction,
   resendOtpRedirect,
-  renderError
+  renderError,
 }) => {
   const resendOtp = () => {
     auth.signUp(mobileNo.toString());
@@ -43,7 +43,7 @@ const OtpModal : React.FC<Props> = ({
               <InputOTPSlot
                 key={index}
                 index={index}
-                className={`rounded-md ${isError ? 'border-red-500 border-2' : 'border-gray-400 border-1'}`}
+                className={`rounded-md ${isError ? "border-2 border-red-500" : "border-1 border-gray-400"}`}
               />
             ))}
           </InputOTPGroup>
@@ -55,9 +55,7 @@ const OtpModal : React.FC<Props> = ({
         >
           Resend OTP
         </a>
-        {renderError()[0] && (
-          <p className="text-red-500">{renderError()[1]}</p>
-        )}
+        {renderError()[0] && <p className="text-red-500">{renderError()[1]}</p>}
         <button
           type="button"
           className="w-[60%] rounded-xl bg-[#2E3192] px-4 py-3 text-white"

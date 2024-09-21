@@ -26,9 +26,11 @@ const Navbar = () => {
   const pathname = usePathname();
 
   return (
-    <nav className={`navbar flex flex-col shadow-md ${
-      pathname === "/" ? "bg-[#BFBFEF]" : "bg-white"
-    }`}>
+    <nav
+      className={`navbar flex flex-col shadow-md ${
+        pathname === "/" ? "bg-[#BFBFEF]" : "bg-white"
+      }`}
+    >
       <div className="container flex items-center justify-between">
         {/* logo eventory part */}
         <div className="logo flex flex-col items-center justify-center">
