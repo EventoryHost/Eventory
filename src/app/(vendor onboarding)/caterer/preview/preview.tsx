@@ -2,6 +2,7 @@ import { Check, EditIcon } from "lucide-react";
 import { SetStateAction } from "react";
 import Appetizers from "../../(components)/Appetizers";
 import File from "../(components)/File";
+import FileDisplay from "../(components)/File";
 const _cuisine = ["North Indian", "South Indian", "Chinese", "Italian"];
 const regional = [
   "Gujrati",
@@ -48,13 +49,13 @@ type FormState = {
   // Page 1
   businessName: string;
   cateringName: string;
-  menu: string | File;
+  // menu: string | File;
   preSetMenu: string;
   customizableMenu: boolean;
   // Page 6
   portfolio: string | File;
-  photos: string | File;
-  videos: string | File;
+  photos: string | File[];
+  videos: string | File[];
   tastingSessions: boolean;
   businessLicenses: boolean;
   foodSafety: boolean | File;
@@ -119,9 +120,12 @@ type PagePreviewProps = {
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
   veg: string[];
   setVeg: React.Dispatch<React.SetStateAction<string[]>>;
+  setMenu: React.Dispatch<React.SetStateAction<File[]>>;
+  menu: File[]
 };
 
 function Preview({
+  menu, setMenu,
   veg,
   setVeg,
   handleContinue,
@@ -250,16 +254,16 @@ function Preview({
         </div>
         <div className="m-6 mt-6 flex flex-col gap-1">
           <span className="text-base font-normal">Uploaded Menu</span>
-          <span className="font-semibold w-[50%]">
-            {typeof formState.menu !== "string" ? (
-              <File file={formState.menu} />
+          <div className="font-semibold w-[60%] ">
+            {Array.isArray(menu) ? (
+              <FileDisplay files={menu} />
             ) : (
               <div>Not specified</div>
             )}
-          </span>
+          </div>
         </div>
 
-        {formState.menu === "no" && <>
+        {!menu.length && <>
           <div className="m-6 mt-4 flex flex-col gap-2">
             <span className="text-base font-normal">Appetizers</span>
             <Appetizers
@@ -400,24 +404,26 @@ function Preview({
         </div>
       </div>
 
-      <div className="flex min-w-full flex-col items-start justify-between gap-5 px-4 md:flex-row mb-4">
+      <div className="flex min-w-full flex-col items-start justify-between gap-5 pl-4 md:flex-row mb-4">
         <div className="flex min-w-[45%] flex-col gap-2">
           <label className="font-normal text-base">Photos</label>
           <span className="text-sm font-bold">
             {typeof formState.photos === "string" ? (
               formState.photos
             ) : (
-              <File file={formState.photos} />
+              // <div>hi</div>
+              <File files={formState.photos} />
             )}
           </span>
         </div>
-        <div className="flex h-full min-w-[45%] flex-col items-start justify-center gap-2">
+        <div className="flex min-w-[45%] flex-col gap-2">
           <label className="font-normal text-base">Videos</label>
           <span className="text-sm font-bold">
             {typeof formState.videos === "string" ? (
               formState.videos
             ) : (
-              <File file={formState.videos} />
+              // <div>hi</div>
+              <File files={formState.videos} />
             )}
           </span>
         </div>

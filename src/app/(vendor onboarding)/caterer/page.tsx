@@ -8,7 +8,6 @@ import Page1 from "./page1/page1";
 import Page2 from "./page2/page2";
 import Page3 from "./page3/page3";
 import Page4 from "./page4/page4";
-import Page5 from "./page5/page5";
 import Page6 from "./page6/page6";
 import Page7 from "./page7/page7"
 
@@ -27,7 +26,6 @@ export interface FormState {
   cateringName: string;
   businessName: string;
 
-  menu: string | File;
   preSetMenu: string;
   customizableMenu: boolean;
 
@@ -43,8 +41,8 @@ export interface FormState {
   cancellationPolicy: string | File;
   minOrderReq: string;
   AdvBooking: string;
-  photos:string |File;
-  videos:string |File;
+  photos: File[] | string;
+  videos: File[] | string;
 }
 
 const Caterer = () => {
@@ -53,7 +51,6 @@ const Caterer = () => {
   const [formState, setFormState] = useState<FormState>({
     cateringName: "",
     businessName: "",
-    menu: "no",
     preSetMenu: "",
     customizableMenu: false,
     tastingSessions: false,
@@ -67,8 +64,8 @@ const Caterer = () => {
     portfolio: "",
     minOrderReq: "",
     AdvBooking: "",
-    photos:"",
-    videos:"",
+    photos: [],
+    videos: [],
   });
 
   function updateFormState(newState: Partial<FormState>) {
@@ -83,7 +80,7 @@ const Caterer = () => {
   const [serviceStyles, setServiceStyles] = useState<string[]>([]);
 
   //states for page2
-  const [veg, setVeg] = useState<string[]>([]);
+  const [veg, setVeg] = useState<string[]>(['Veg']);
 
   const [selectedAppetizers, setSelectedAppetizers] = useState<string[]>([]);
   const [selectedBeverages, setSelectedBeverages] = useState<string[]>([]);
@@ -101,6 +98,7 @@ const Caterer = () => {
   const [equipmentsProvided, setEquipmentsProvided] = useState<string[]>([]);
 
   const [advancePayment, setAdvancePayment] = useState(25);
+  const [menu, setMenu] = useState<File[]>([]);
 
 
 
@@ -162,7 +160,6 @@ const Caterer = () => {
       veg,
       cateringName: formState.cateringName,
       BusinessName: formState.businessName,
-      menu: formState.menu,
       preSetMenu: formState.preSetMenu,
       customizableMenu: formState.customizableMenu,
       servingCapacity,
@@ -198,6 +195,9 @@ const Caterer = () => {
     formData.append("venId", getVendorId()!);
     formData.append("name", formState.cateringName);
     formData.append("managerName", formState.businessName);
+    servingCapacity.forEach((item, index) => {
+      formData.append("capacity", item);
+    });
     cuisineSpecialties.forEach((item, index) => {
       formData.append(`cuisine_specialities[${index}]`, item);
     });
@@ -207,10 +207,6 @@ const Caterer = () => {
 
     serviceStyles.forEach((item, index) => {
       formData.append(`service_style_offered[${index}]`, item);
-    });
-
-    veg.forEach((item, index) => {
-      formData.append(`menuType`, item);
     });
     selectedAppetizers.forEach((item, index) => {
       formData.append(`appetizers[${index}]`, item);
@@ -224,6 +220,13 @@ const Caterer = () => {
     selectedDietaryOptions.forEach((item, index) => {
       formData.append(`special_dietary_options[${index}]`, item);
     });
+
+    formData.append('vegOrNonVeg', veg[0]);
+
+    // veg.forEach((item, index) => {
+    //   formData.append(`vegOrNonVeg[${index}]`, item);
+    // });
+
     eventTypes.forEach((item, index) => {
       formData.append(`pre_set_menus[${index}]`, item);
     });
@@ -233,47 +236,50 @@ const Caterer = () => {
     eventTypes.forEach((item, index) => {
       formData.append(`event_types_catered[${index}]`, item);
     });
-    staffProvides.forEach((item, index) => {
-      formData.append(`staff_provided[${index}]`, item);
-    });
     equipmentsProvided.forEach((item, index) => {
       formData.append(`equipment_provided[${index}]`, item);
     });
-    // hourlyPackages.forEach((item, index) => {
-    //   formData.append(`rates[hourly][${index}]`, JSON.stringify(item));
-    // });
-
-    // Add dailyPackages (per_plate_rates)
-    dailyPackages.forEach((pkg, index) => {
-      formData.append(`rates[per_plate_rates][${index}][package_name]`, pkg.type);
-      formData.append(`rates[per_plate_rates][${index}][min]`, pkg.priceRange[0].toString());
-      formData.append(`rates[per_plate_rates][${index}][max]`, pkg.priceRange[1].toString());
+    staffProvides.forEach((item, index) => {
+      formData.append(`staff_provided[${index}]`, item);
     });
-
-    // Add seasonalPackages (deal_package_rates)
-    seasonalPackages.forEach((pkg, index) => {
-      formData.append(`rates[deal_package_rates][${index}][package_name]`, pkg.type);
-      formData.append(`rates[deal_package_rates][${index}][min]`, pkg.priceRange[0].toString());
-      formData.append(`rates[deal_package_rates][${index}][max]`, pkg.priceRange[1].toString());
+    menu.forEach((item, index) => {
+      formData.append(`menu`, item);
     });
 
     formData.append("deposit_required", advancePayment.toString());
-    formData.append("menu", formState.menu);
+    formData.append("customizable", formState.customizableMenu.toString());
 
-    formData.append("photos", formState.photos);
-    formData.append("videos", formState.videos);
+    // Handle photos field
+    if (Array.isArray(formState.photos)) {
+      formState.photos.forEach((file) => {
+        if (file instanceof File) {
+          formData.append('photos', file); // Append as 'photos' without the array index
+        }
+      });
+    } else if (typeof formState.photos === 'string') {
+      formData.append('photos', formState.photos); // Append the string (URL)
+    }
 
-    formData.append("tastingSessions", formState.tastingSessions.toString());
-    formData.append("businessLicenses", formState.businessLicenses.toString());
-    formData.append("foodSafety", formState.foodSafety.toString());
-    formData.append("cateringServiceImages", formState.cateringServiceImages);
-    formData.append("termsAndConditions", formState.termsAndConditions);
+    // Handle videos field
+    if (Array.isArray(formState.videos)) {
+      formState.videos.forEach((file) => {
+        if (file instanceof File) {
+          formData.append('videos', file); // Append as 'videos' without the array index
+        }
+      });
+    } else if (typeof formState.videos === 'string') {
+      formData.append('videos', formState.videos); // Append the string (URL)
+    }
+
+    formData.append("tasting_sessions", formState.tastingSessions.toString());
+    formData.append("business_licenses", formState.businessLicenses.toString());
+    formData.append("food_safety_certificates", formState.foodSafety.toString());
+    formData.append("terms_and_conditions", formState.termsAndConditions);
     formData.append("cancellation_policy", formState.cancellationPolicy);
     formData.append("pre_set_menu", formState.preSetMenu);
 
     formData.append("client_testimonials", formState.clientTestimonials);
 
-    formData.append("customizable", formState.customizableMenu.toString());
     formData.append("minimum_order_requirements", formState.minOrderReq);
     formData.append("advance_booking_period", formState.AdvBooking);
 
@@ -314,6 +320,8 @@ const Caterer = () => {
       case 2:
         return (
           <Page2
+            setMenu={setMenu}
+            menu={menu}
             setCurrentPage={setCurrentPage}
             currentPage={currentPage}
             formState={formState}
@@ -390,7 +398,7 @@ const Caterer = () => {
       case 5:
         return (
           <Page6
-          
+
             setCurrentPage={setCurrentPage}
             currentPage={currentPage}
             formState={formState}
@@ -421,6 +429,8 @@ const Caterer = () => {
       case 7:
         return (
           <Page8
+            setMenu={setMenu}
+            menu={menu}
             veg={veg}
             setVeg={setVeg}
             setCurrentPage={setCurrentPage}

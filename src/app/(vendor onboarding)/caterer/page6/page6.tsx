@@ -12,18 +12,18 @@ interface Page6Props {
   handleContinue: () => void;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
   currentPage: number
-
 }
 
 const Page6 = ({ formState, updateFormState, handleContinue, currentPage, setCurrentPage, }: Page6Props) => {
-  const { tastingSessions, businessLicenses, foodSafety, portfolio, photos, videos } = formState;
+  const { tastingSessions, businessLicenses, foodSafety, portfolio, photos ,videos} = formState;
 
 
   const _minorder = [
-    "< 100 persons",
+    "Less than 50 persons",
+    "50-100 persons",
     "100-300 persons",
     "300-400 persons",
-    "> 500 ",
+    "More than 500 ",
   ];
 
   const _advbooking = [
@@ -31,6 +31,48 @@ const Page6 = ({ formState, updateFormState, handleContinue, currentPage, setCur
     "1-2 weeks",
     "More than 2 weeks"
   ]
+
+
+
+  const handlePhotoChange = (files:File| File[]) => {
+    const filesArray = Array.isArray(files) ? files : [files];
+    if ((typeof formState.photos === 'string')){
+      updateFormState({ photos: "" });
+
+    }
+    updateFormState({
+      photos: Array.isArray(formState.photos)
+        ? [...formState.photos, ...filesArray]
+        : filesArray
+    });
+  };
+
+  const handleVideoChange = (files: File | File[]) => {
+    const filesArray = Array.isArray(files) ? files : [files]; // Ensure we always work with an array
+    
+    if (typeof formState.videos === 'string') {
+      updateFormState({ videos: [] });
+    }
+  
+    updateFormState({
+      videos: Array.isArray(formState.videos)
+        ? [...formState.videos, ...filesArray]
+        : filesArray,
+    });
+  };
+  
+  
+
+  // const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   updateFormState({ photos: e.target.value });
+  // };
+
+  const handleInputClick = (photos: File[]|string) => {
+    if (typeof formState.photos === 'string') {
+      updateFormState({ photos: [] });
+    } 
+  };
+
 
 
   return (
@@ -91,12 +133,24 @@ const Page6 = ({ formState, updateFormState, handleContinue, currentPage, setCur
 
                   <FileInput
                     label="photos"
-                    onFileSelect={(file) => {
-                      updateFormState({ photos: file });
-                    }}
+                    onFileSelect={(files)=>handlePhotoChange(files)}
                     acceptedFileTypes="image/png, .pdf, image/jpg"
+                    multiple
                   />
                   <span className="text-base font-medium">or Continue via</span>
+                  <input
+                    type="text"
+                    name="photos"
+                    className="w-full rounded-xl border-2 bg-white p-3 py-5 outline-none text-sm"
+                    placeholder="Enter your portfolio links"
+                    onChange={(e)=>{updateFormState({ photos: e.target.value })}}
+                    onClick={()=>{
+                      if (typeof formState.photos === 'string') {
+                        updateFormState({ photos: [] });
+                      } 
+                    }}
+                  />
+                  {/* 
                   <input
                     type="text"
                     className="w-full rounded-xl border-2 bg-white p-3 py-5 outline-none text-sm"
@@ -106,7 +160,7 @@ const Page6 = ({ formState, updateFormState, handleContinue, currentPage, setCur
                       updateFormState({ photos: e.target.value })
                     }
                     required
-                  />
+                  /> */}
 
                 </div>
 
@@ -179,14 +233,15 @@ const Page6 = ({ formState, updateFormState, handleContinue, currentPage, setCur
                     <FileInput
                       label="foodSafety"
                       onFileSelect={(file) => {
-                        updateFormState({ foodSafety: file });
+                        if(!Array.isArray(file)){
+                        updateFormState({ foodSafety: file });}
                       }}
                       acceptedFileTypes="image/png, .pdf, image/jpg"
                     />
                   </>
                   }
                 </div>
-                
+
 
               </div>
               <div className="flex min-w-[48%]  flex-col gap-8">
@@ -202,15 +257,33 @@ const Page6 = ({ formState, updateFormState, handleContinue, currentPage, setCur
 
                   </div>
                   <span className="text-small font-light">MP4, MKV</span>
-
                   <FileInput
+                    label="videos"
+                    onFileSelect={(files)=>handleVideoChange(files)}
+                    acceptedFileTypes="image/png, .pdf, image/jpg"
+                    multiple
+                  />
+                  <span className="text-base font-medium">or Continue via</span>
+                  <input
+                    type="text"
+                    className="w-full rounded-xl border-2 bg-white p-3 py-5 outline-none text-sm"
+                    placeholder="Enter your portfolio links"
+                    onChange={(e)=>{updateFormState({ videos: e.target.value })}}
+                    onClick={()=>{
+                      if (typeof formState.videos === 'string') {
+                        updateFormState({ videos: [] });
+                      } 
+                    }}
+                  />
+
+                  {/* <FileInput
                     label="videos"
                     onFileSelect={(file) => {
                       updateFormState({ videos: file });
                     }}
                     acceptedFileTypes="image/png, .pdf, image/jpg"
-                  />
-                  <span className="text-base font-medium">or Continue via</span>
+                  /> */}
+                  {/* <span className="text-base font-medium">or Continue via</span>
                   <input
                     type="text"
                     className="w-full rounded-xl border-2 bg-white p-3 py-5 outline-none text-sm"
@@ -219,7 +292,7 @@ const Page6 = ({ formState, updateFormState, handleContinue, currentPage, setCur
                       updateFormState({ videos: e.target.value })
                     }
                     required
-                  />
+                  /> */}
 
                 </div>
 

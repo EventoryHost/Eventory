@@ -55,7 +55,7 @@ const Page6 = ({ formState, updateFormState, handleContinue, currentPage, setCur
                   <span className="text-small font-light">PNG,JPG,PDF</span>
 
                   <FileInput
-                    label="tnc"
+                    label="terms_and_conditions"
                     onFileSelect={(file) => {
                       updateFormState({ termsAndConditions: file });
                     }}
@@ -83,7 +83,7 @@ const Page6 = ({ formState, updateFormState, handleContinue, currentPage, setCur
                   <span className="text-small font-light">PNG,JPG,PDF</span>
 
                   <FileInput
-                    label="clientTestimonials"
+                    label="client_testimonials"
                     onFileSelect={(file) => {
                       updateFormState({ clientTestimonials: file });
                     }}
@@ -115,7 +115,7 @@ const Page6 = ({ formState, updateFormState, handleContinue, currentPage, setCur
                   <span className="text-small font-light">PNG,JPG,PDF</span>
 
                   <FileInput
-                    label="cancellation policy"
+                    label="cancellation_policy"
                     onFileSelect={(file) => {
                       updateFormState({ cancellationPolicy: file });
                     }}
