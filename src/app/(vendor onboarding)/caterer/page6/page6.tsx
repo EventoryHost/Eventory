@@ -5,7 +5,6 @@ import { FormState } from "../page";
 import FileInput from "@/components/fileInput";
 import { useEffect } from "react";
 import Dropdown from "../../(components)/Dropdown";
-import MultipleFileInput from "@/components/multipleFileUpload";
 
 interface Page6Props {
   formState: FormState;
@@ -35,29 +34,34 @@ const Page6 = ({ formState, updateFormState, handleContinue, currentPage, setCur
 
 
 
-  const handlePhotoChange = (files: File[]) => {
+  const handlePhotoChange = (files:File| File[]) => {
+    const filesArray = Array.isArray(files) ? files : [files];
     if ((typeof formState.photos === 'string')){
       updateFormState({ photos: "" });
 
     }
     updateFormState({
       photos: Array.isArray(formState.photos)
-        ? [...formState.photos, ...files]
-        : files
+        ? [...formState.photos, ...filesArray]
+        : filesArray
     });
   };
 
-  const handleVideoChange = (files: File[]) => {
-    if ((typeof formState.videos === 'string')){
-      updateFormState({ videos: "" });
-
+  const handleVideoChange = (files: File | File[]) => {
+    const filesArray = Array.isArray(files) ? files : [files]; // Ensure we always work with an array
+    
+    if (typeof formState.videos === 'string') {
+      updateFormState({ videos: [] });
     }
+  
     updateFormState({
       videos: Array.isArray(formState.videos)
-        ? [...formState.videos, ...files]
-        : files
+        ? [...formState.videos, ...filesArray]
+        : filesArray,
     });
   };
+  
+  
 
   // const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
   //   updateFormState({ photos: e.target.value });
@@ -69,7 +73,11 @@ const Page6 = ({ formState, updateFormState, handleContinue, currentPage, setCur
     } 
   };
 
-
+useEffect(()=>{
+  console.log(foodSafety)
+  console.log(videos)
+  console.log(photos)
+},[foodSafety,videos,photos])
 
   return (
     <div className="flex h-full w-full flex-col overflow-hidden scrollbar-hide lg:flex-row">
@@ -127,10 +135,11 @@ const Page6 = ({ formState, updateFormState, handleContinue, currentPage, setCur
                   </div>
                   <span className="text-small font-light">PNG,JPG</span>
 
-                  <MultipleFileInput
+                  <FileInput
                     label="photos"
-                    onFileSelect={handlePhotoChange}
+                    onFileSelect={(files)=>handlePhotoChange(files)}
                     acceptedFileTypes="image/png, .pdf, image/jpg"
+                    multiple
                   />
                   <span className="text-base font-medium">or Continue via</span>
                   <input
@@ -228,7 +237,8 @@ const Page6 = ({ formState, updateFormState, handleContinue, currentPage, setCur
                     <FileInput
                       label="foodSafety"
                       onFileSelect={(file) => {
-                        updateFormState({ foodSafety: file });
+                        if(!Array.isArray(file)){
+                        updateFormState({ foodSafety: file });}
                       }}
                       acceptedFileTypes="image/png, .pdf, image/jpg"
                     />
@@ -251,10 +261,11 @@ const Page6 = ({ formState, updateFormState, handleContinue, currentPage, setCur
 
                   </div>
                   <span className="text-small font-light">MP4, MKV</span>
-                  <MultipleFileInput
+                  <FileInput
                     label="videos"
-                    onFileSelect={handleVideoChange}
+                    onFileSelect={(files)=>handleVideoChange(files)}
                     acceptedFileTypes="image/png, .pdf, image/jpg"
+                    multiple
                   />
                   <span className="text-base font-medium">or Continue via</span>
                   <input
