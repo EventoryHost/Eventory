@@ -20,10 +20,11 @@ const Page6 = ({ formState, updateFormState, handleContinue, currentPage, setCur
 
 
   const _minorder = [
-    "< 100 persons",
+    "Less than 50 persons",
+    "50-100 persons",
     "100-300 persons",
     "300-400 persons",
-    "> 500 ",
+    "More than 500 ",
   ];
 
   const _advbooking = [
@@ -32,10 +33,7 @@ const Page6 = ({ formState, updateFormState, handleContinue, currentPage, setCur
     "More than 2 weeks"
   ]
 
-useEffect(()=>{
-  console.log("photos",photos)
-  console.log("videos",videos)
-},[photos,videos])
+
 
   const handlePhotoChange = (files: File[]) => {
     if ((typeof formState.photos === 'string')){

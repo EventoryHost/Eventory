@@ -89,8 +89,8 @@ const login = async (mobile: String) => {
 export const addBusinessDetails = async (
   id: string,
   details: businessDetails,
-  id: string,
-  details: businessDetails,
+  // id: string,
+  // details: businessDetails,
 ) => {
   try {
     const res = await axios.post(

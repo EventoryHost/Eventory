@@ -80,7 +80,7 @@ const Caterer = () => {
   const [serviceStyles, setServiceStyles] = useState<string[]>([]);
 
   //states for page2
-  const [veg, setVeg] = useState<string[]>([]);
+  const [veg, setVeg] = useState<string[]>(['Veg']);
 
   const [selectedAppetizers, setSelectedAppetizers] = useState<string[]>([]);
   const [selectedBeverages, setSelectedBeverages] = useState<string[]>([]);
@@ -223,6 +223,9 @@ const Caterer = () => {
 
     formData.append('vegOrNonVeg', veg[0]);
 
+    // veg.forEach((item, index) => {
+    //   formData.append(`vegOrNonVeg[${index}]`, item);
+    // });
 
     eventTypes.forEach((item, index) => {
       formData.append(`pre_set_menus[${index}]`, item);
