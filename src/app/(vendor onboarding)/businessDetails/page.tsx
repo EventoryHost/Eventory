@@ -33,6 +33,14 @@ const yearsInOperation = [
   { value: "10+", label: "10+ years" },
 ];
 
+const teamSize = [
+  { value: "Individual", label: "Individual" },
+  { value: "6-15", label: "6-15 years" },
+  { value: "16-30", label: "16-30 years" },
+  { value: "31-50", label: "31-50 years" },
+  { value: "50+", label: "More than 50" },
+];
+
 const operationalCities = [
   { value: "ny", label: "New York" },
   { value: "sf", label: "San Francisco" },
@@ -120,22 +128,20 @@ const BusinessDetails = () => {
   };
 
   return (
-    <div className="flex h-full min-h-screen w-full flex-col overflow-hidden lg:flex-row">
-      <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
-        <div className="flex items-center justify-start gap-1 xs:self-start xs:pl-5 md:px-11 lg:mt-[5rem]">
-          <button className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-300 p-5">
-            1
-          </button>
-          <div className="h-[0.3rem] w-[4rem] rounded-xl bg-[#2E3192]"></div>
-          <button className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2E3192] p-5 text-white">
-            2
-          </button>
+    <div className="flex min-h-[91vh] w-full flex-col overflow-y-scroll lg:flex-row">
+      <div className="flex h-[91vh] flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[35%] lg:max-w-[30%]">
+        <div className="flex max-h-fit flex-col items-center justify-center gap-3 lg:mt-[5rem]">
+          <p className="text-xl text-gray-900">Step 2 of 2</p>
+          <div className="flex items-center justify-start gap-1 xs:self-start xs:pl-5 md:px-11">
+            <button className="h-[0.4rem] w-[3rem] rounded-xl bg-[#2E3192]"></button>
+            <button className="h-[0.4rem] w-[3rem] rounded-xl bg-gray-300"></button>
+          </div>
         </div>
         <div className="flex h-[50%] flex-col items-start justify-center gap-9 px-9 xs:pl-5 md:px-11 lg:p-8">
-          <h1 className="text-3xl font-bold md:text-4xl lg:text-5xl">
+          <h1 className="text-3xl font-semibold md:text-4xl lg:text-5xl">
             Tell us about your business
           </h1>
-          <p className="text-black xs:text-sm md:w-[90%]">
+          <p className="text-sm text-gray-700 md:text-lg">
             Fill out your Business details to get verified and proceed to
             registration process.
           </p>
@@ -148,14 +154,16 @@ const BusinessDetails = () => {
           />
         </div>
       </div>
-      <div className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] p-2 md:p-[1rem]">
+      <div className="flex h-[91vh] min-w-[65%] flex-col items-center justify-start overflow-y-scroll bg-[#F7F6F9] p-2 md:p-[1rem]">
         <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
           <h1 className="text-3xl font-semibold">Business Details</h1>
           <form onSubmit={handleBizSubmit}>
             <div className="flex min-h-full min-w-full flex-col items-center gap-5">
               <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
                 <div className="flex min-w-[40%] flex-col gap-4">
-                  <label htmlFor="businessName">Business Name</label>
+                  <label htmlFor="businessName">
+                    Business Name <span className="text-red-500">*</span>
+                  </label>
                   <input
                     id="businessName"
                     type="text"
@@ -168,10 +176,12 @@ const BusinessDetails = () => {
                   />
                 </div>
                 <div className="flex min-w-[40%] flex-col gap-4">
-                  <label htmlFor="category">Category</label>
+                  <label htmlFor="category">
+                    Type of Service <span className="text-red-500">*</span>
+                  </label>
                   <Combobox
                     options={categories}
-                    placeholder="Select Category"
+                    placeholder="Select your Service"
                     setFunction={(val) => {
                       setBusinessDetails({ ...businessDetails, category: val });
                     }}
@@ -181,7 +191,9 @@ const BusinessDetails = () => {
               </div>
               <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
                 <div className="flex min-w-[40%] flex-col gap-4">
-                  <label htmlFor="gstin">GSTIN</label>
+                  <label htmlFor="gstin">
+                    GSTIN <span className="text-red-500">*</span>
+                  </label>
                   <input
                     id="gstin"
                     type="text"
@@ -194,7 +206,9 @@ const BusinessDetails = () => {
                   />
                 </div>
                 <div className="flex flex-col gap-4 xs:min-w-[40%]">
-                  <label htmlFor="years">Years in Operation</label>
+                  <label htmlFor="years">
+                    Years in Operation <span className="text-red-500">*</span>
+                  </label>
                   <Combobox
                     options={yearsInOperation}
                     placeholder="Select Years"
@@ -207,7 +221,9 @@ const BusinessDetails = () => {
               </div>
               <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
                 <div className="flex min-w-[40%] flex-col gap-4">
-                  <label htmlFor="businessAddress">Business Address</label>
+                  <label htmlFor="businessAddress">
+                    Business Address <span className="text-red-500">*</span>
+                  </label>
                   <input
                     id="businessAddress"
                     type="text"
@@ -220,12 +236,14 @@ const BusinessDetails = () => {
                   />
                 </div>
                 <div className="flex min-w-[40%] flex-col gap-4">
-                  <label htmlFor="landmark">Landmark</label>
+                  <label htmlFor="revenue">
+                    Annual Revenue <span className="text-red-500">*</span>
+                  </label>
                   <input
-                    id="landmark"
+                    id="revenue"
                     type="text"
                     className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
-                    placeholder="Enter landmark"
+                    placeholder="Enter Annual Revenue"
                     ref={(el) => {
                       refs.current.landmark = el;
                     }}
@@ -235,7 +253,9 @@ const BusinessDetails = () => {
               </div>
               <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
                 <div className="flex min-w-[40%] flex-col gap-4">
-                  <label htmlFor="pinCode">Pin Code</label>
+                  <label htmlFor="pinCode">
+                    Pin Code <span className="text-red-500">*</span>
+                  </label>
                   <input
                     id="pinCode"
                     type="number"
@@ -248,7 +268,9 @@ const BusinessDetails = () => {
                   />
                 </div>
                 <div className="flex min-w-[40%] flex-col gap-4">
-                  <label htmlFor="cities">Operational Cities</label>
+                  <label htmlFor="cities">
+                    Operational Cities <span className="text-red-500">*</span>
+                  </label>
                   <Combobox
                     options={operationalCities}
                     placeholder="Select Operational Cities"
@@ -259,10 +281,31 @@ const BusinessDetails = () => {
                   />
                 </div>
               </div>
-              <div className="flex flex-col items-start self-start">
+              <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+                <div className="flex min-w-[40%] flex-col gap-4">
+                  <label htmlFor="cities">
+                    Team Size <span className="text-red-500">*</span>
+                  </label>
+                  <Combobox
+                    options={teamSize}
+                    placeholder="Select Team Size"
+                    setFunction={(val) => {
+                      setBusinessDetails({ ...businessDetails, cities: [val] });
+                    }}
+                    className="flex items-center justify-between rounded-xl border-2 py-6 hover:text-[#2E3192]"
+                  />
+                </div>
+              </div>
+              <div className="flex items-start gap-9 self-end">
                 <button
                   type="submit"
-                  className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+                  className="rounded-2xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+                >
+                  Register
+                </button>
+                <button
+                  type="submit"
+                  className="rounded-2xl bg-[#2E3192] text-white xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
                 >
                   Continue
                 </button>
