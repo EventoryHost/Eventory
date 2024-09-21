@@ -5,6 +5,7 @@ import { FormState } from "../page";
 import FileInput from "@/components/fileInput";
 import { useEffect } from "react";
 import Dropdown from "../../(components)/Dropdown";
+import MultipleFileInput from "@/components/multipleFileUpload";
 
 interface Page6Props {
   formState: FormState;
@@ -12,11 +13,10 @@ interface Page6Props {
   handleContinue: () => void;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
   currentPage: number
-
 }
 
 const Page6 = ({ formState, updateFormState, handleContinue, currentPage, setCurrentPage, }: Page6Props) => {
-  const { tastingSessions, businessLicenses, foodSafety, portfolio, photos, videos } = formState;
+  const { tastingSessions, businessLicenses, foodSafety, portfolio, photos ,videos} = formState;
 
 
   const _minorder = [
@@ -31,6 +31,46 @@ const Page6 = ({ formState, updateFormState, handleContinue, currentPage, setCur
     "1-2 weeks",
     "More than 2 weeks"
   ]
+
+useEffect(()=>{
+  console.log("photos",photos)
+  console.log("videos",videos)
+},[photos,videos])
+
+  const handlePhotoChange = (files: File[]) => {
+    if ((typeof formState.photos === 'string')){
+      updateFormState({ photos: "" });
+
+    }
+    updateFormState({
+      photos: Array.isArray(formState.photos)
+        ? [...formState.photos, ...files]
+        : files
+    });
+  };
+
+  const handleVideoChange = (files: File[]) => {
+    if ((typeof formState.videos === 'string')){
+      updateFormState({ videos: "" });
+
+    }
+    updateFormState({
+      videos: Array.isArray(formState.videos)
+        ? [...formState.videos, ...files]
+        : files
+    });
+  };
+
+  // const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   updateFormState({ photos: e.target.value });
+  // };
+
+  const handleInputClick = (photos: File[]|string) => {
+    if (typeof formState.photos === 'string') {
+      updateFormState({ photos: [] });
+    } 
+  };
+
 
 
   return (
@@ -89,14 +129,25 @@ const Page6 = ({ formState, updateFormState, handleContinue, currentPage, setCur
                   </div>
                   <span className="text-small font-light">PNG,JPG</span>
 
-                  <FileInput
+                  <MultipleFileInput
                     label="photos"
-                    onFileSelect={(file) => {
-                      updateFormState({ photos: file });
-                    }}
+                    onFileSelect={handlePhotoChange}
                     acceptedFileTypes="image/png, .pdf, image/jpg"
                   />
                   <span className="text-base font-medium">or Continue via</span>
+                  <input
+                    type="text"
+                    name="photos"
+                    className="w-full rounded-xl border-2 bg-white p-3 py-5 outline-none text-sm"
+                    placeholder="Enter your portfolio links"
+                    onChange={(e)=>{updateFormState({ photos: e.target.value })}}
+                    onClick={()=>{
+                      if (typeof formState.photos === 'string') {
+                        updateFormState({ photos: [] });
+                      } 
+                    }}
+                  />
+                  {/* 
                   <input
                     type="text"
                     className="w-full rounded-xl border-2 bg-white p-3 py-5 outline-none text-sm"
@@ -106,7 +157,7 @@ const Page6 = ({ formState, updateFormState, handleContinue, currentPage, setCur
                       updateFormState({ photos: e.target.value })
                     }
                     required
-                  />
+                  /> */}
 
                 </div>
 
@@ -186,7 +237,7 @@ const Page6 = ({ formState, updateFormState, handleContinue, currentPage, setCur
                   </>
                   }
                 </div>
-                
+
 
               </div>
               <div className="flex min-w-[48%]  flex-col gap-8">
@@ -202,15 +253,32 @@ const Page6 = ({ formState, updateFormState, handleContinue, currentPage, setCur
 
                   </div>
                   <span className="text-small font-light">MP4, MKV</span>
+                  <MultipleFileInput
+                    label="videos"
+                    onFileSelect={handleVideoChange}
+                    acceptedFileTypes="image/png, .pdf, image/jpg"
+                  />
+                  <span className="text-base font-medium">or Continue via</span>
+                  <input
+                    type="text"
+                    className="w-full rounded-xl border-2 bg-white p-3 py-5 outline-none text-sm"
+                    placeholder="Enter your portfolio links"
+                    onChange={(e)=>{updateFormState({ videos: e.target.value })}}
+                    onClick={()=>{
+                      if (typeof formState.videos === 'string') {
+                        updateFormState({ videos: [] });
+                      } 
+                    }}
+                  />
 
-                  <FileInput
+                  {/* <FileInput
                     label="videos"
                     onFileSelect={(file) => {
                       updateFormState({ videos: file });
                     }}
                     acceptedFileTypes="image/png, .pdf, image/jpg"
-                  />
-                  <span className="text-base font-medium">or Continue via</span>
+                  /> */}
+                  {/* <span className="text-base font-medium">or Continue via</span>
                   <input
                     type="text"
                     className="w-full rounded-xl border-2 bg-white p-3 py-5 outline-none text-sm"
@@ -219,7 +287,7 @@ const Page6 = ({ formState, updateFormState, handleContinue, currentPage, setCur
                       updateFormState({ videos: e.target.value })
                     }
                     required
-                  />
+                  /> */}
 
                 </div>
 

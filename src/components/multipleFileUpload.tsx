@@ -3,22 +3,20 @@ import { Upload, CheckCircle, PlusCircle } from "lucide-react";
 
 type FileInputProps = {
   label: string;
-  onFileSelect: (file: File) => void;
+  onFileSelect: (file: File[]) => void;
   acceptedFileTypes: string;
 };
 
-const FileInput = ({
+const MultipleFileInput = ({
   label,
   onFileSelect,
   acceptedFileTypes,
 }: FileInputProps) => {
   const [fileName, setFileName] = useState<string>("");
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      setFileName(file.name);
-      onFileSelect(file);
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files) {
+      onFileSelect(Array.from(event.target.files));
     }
   };
 
@@ -40,6 +38,7 @@ const FileInput = ({
         onChange={handleFileChange}
         className="hidden"
         id={label.replace(" ", "-").toLowerCase()}
+        multiple
       />
       <label
         htmlFor={label.replace(" ", "-").toLowerCase()}
@@ -52,4 +51,4 @@ const FileInput = ({
   );
 };
 
-export default FileInput;
+export default MultipleFileInput;

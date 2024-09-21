@@ -13,8 +13,8 @@ const _dietaryOptions = [
   "Gluten-Free",
   "Nut-Free",
 ];
-const _mainCourses = ["Biryani", "Others", "Tandoori", "Pasta", "Pizza","Palak Paneer","Pakora"];
-const _beverages = ["Tea", "Others", "Coffee", "Juice", "Milk","Coconut","Rooh Afza Sharbat","Filter Coffee"];
+const _mainCourses = ["Biryani", "Others", "Tandoori", "Pasta", "Pizza", "Palak Paneer", "Pakora"];
+const _beverages = ["Tea", "Others", "Coffee", "Juice", "Milk", "Coconut", "Rooh Afza Sharbat", "Filter Coffee"];
 const _appetizers = [
   "Samosa",
   "Others",
@@ -45,10 +45,13 @@ type Page2Props = {
   setSelectedDietaryOptions: React.Dispatch<React.SetStateAction<string[]>>;
   handleContinue: () => void;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
-  currentPage: number
+  currentPage: number;
+  setMenu: React.Dispatch<React.SetStateAction<File[]>>;
+  menu: File[]
 };
 
 const Page2 = ({
+  setMenu, menu,
   currentPage,
   setCurrentPage,
   formState,
@@ -68,7 +71,7 @@ const Page2 = ({
   const { customizableMenu } = formState;
   const [addManually, setAddManually] = useState(false)
 
-
+ 
   return (
     <div className="flex h-full w-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide ">
       <div className="flex min-w-full flex-col items-start justify-around gap-10">
@@ -109,7 +112,7 @@ const Page2 = ({
               <FileInput
                 label="menu"
                 onFileSelect={(file) => {
-                  updateFormState({ menu: file });
+                  setMenu((prevMenu) => [...prevMenu, file]);
                   setSelectedAppetizers([]);
                   setSelectedBeverages([])
                   setSelectedDietaryOptions([])
@@ -123,10 +126,10 @@ const Page2 = ({
           </div>
           <div onClick={() => {
             setAddManually(!addManually)
-            updateFormState({ menu: "no" });
+            setMenu([]);
 
           }} className="cursor-pointer rounded-xl border-2 bg-[#2E3192] text-center text-white xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3">
-            Add Manually
+            {!addManually?"Add Manually":"Upload"}
           </div>
 
         </div>
