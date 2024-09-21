@@ -73,11 +73,7 @@ const Page6 = ({ formState, updateFormState, handleContinue, currentPage, setCur
     } 
   };
 
-useEffect(()=>{
-  console.log(foodSafety)
-  console.log(videos)
-  console.log(photos)
-},[foodSafety,videos,photos])
+
 
   return (
     <div className="flex h-full w-full flex-col overflow-hidden scrollbar-hide lg:flex-row">
