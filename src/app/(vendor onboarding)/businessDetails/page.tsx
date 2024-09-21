@@ -40,6 +40,22 @@ const operationalCities = [
   { value: "chi", label: "Chicago" },
 ];
 
+const teamSizes = [
+  { value: "1-5", label: "1-5 employees" },
+  { value: "6-15", label: "6-15 employees" },
+  { value: "16-30", label: "16-30 employees" },
+  { value: "31-50", label: "31-50 employees" },
+  { value: "51+", label: "51+ employees" },
+];
+
+const revenues = [
+  { value: "0-3", label: "0-3 Lakh" },
+  { value: "3-7", label: "3-7 Lakh" },
+  { value: "7-12", label: "7-12 Lakh" },
+  { value: "12-18", label: "12-18 Lakh" },
+  { value: "18+", label: "18+ Lakh" },
+];
+
 export type businessDetails = {
   businessName: string;
   category: string;
@@ -49,6 +65,8 @@ export type businessDetails = {
   landmark: string;
   pinCode: number;
   cities: string[];
+  teamSize: string;
+  revenue: string;
 };
 
 const BusinessDetails = () => {
@@ -81,7 +99,6 @@ const BusinessDetails = () => {
   const handleBizSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Check if any required field is empty
     for (const key in refs.current) {
       const refElement = refs.current[key as keyof businessDetails];
       if (!refElement || !refElement.value.trim()) {
@@ -89,7 +106,7 @@ const BusinessDetails = () => {
       }
     }
 
-    if (!businessDetails.category) {
+    if (!businessDetails.category || !businessDetails.teamSize || !businessDetails.revenue) {
       return;
     }
 
@@ -102,10 +119,17 @@ const BusinessDetails = () => {
       landmark: refs.current.landmark!.value,
       pinCode: Number(refs.current.pinCode!.value),
       cities: businessDetails.cities,
+      teamSize: businessDetails.teamSize,
+      revenue: businessDetails.revenue,
     };
 
     setBusinessDetails(newDetails);
     console.log("Business Details:", newDetails);
+
+    // Save business details directly to localStorage temp for testing we have to add these in the details backend
+    localStorage.setItem("businessDetails", JSON.stringify(newDetails));
+  
+    console.log("Business details saved to localStorage");
 
     const token = localStorage.getItem("token")!;
     const { userId, email } = jwt.decode(token) as {
@@ -115,7 +139,6 @@ const BusinessDetails = () => {
 
     addBusinessDetails(userId, newDetails);
 
-    // Redirect to the selected category's page
     router.push(`/${businessDetails.category}`);
   };
 
@@ -200,6 +223,34 @@ const BusinessDetails = () => {
                     placeholder="Select Years"
                     setFunction={(val) => {
                       setBusinessDetails({ ...businessDetails, years: val });
+                    }}
+                    className="flex items-center justify-between rounded-xl border-2 py-6 hover:text-[#2E3192]"
+                  />
+                </div>
+              </div>
+
+              <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+                {/* Team Size Dropdown */}
+                <div className="flex min-w-[40%] flex-col gap-4">
+                  <label htmlFor="teamSize">Team Size</label>
+                  <Combobox
+                    options={teamSizes}
+                    placeholder="Select Team Size"
+                    setFunction={(val) => {
+                      setBusinessDetails({ ...businessDetails, teamSize: val });
+                    }}
+                    className="flex items-center justify-between rounded-xl border-2 py-6 hover:text-[#2E3192]"
+                  />
+                </div>
+
+                {/* Revenue Dropdown */}
+                <div className="flex min-w-[40%] flex-col gap-4">
+                  <label htmlFor="revenue">Annual Revenue</label>
+                  <Combobox
+                    options={revenues}
+                    placeholder="Select Annual Revenue"
+                    setFunction={(val) => {
+                      setBusinessDetails({ ...businessDetails, revenue: val });
                     }}
                     className="flex items-center justify-between rounded-xl border-2 py-6 hover:text-[#2E3192]"
                   />

@@ -57,7 +57,7 @@ const equipments = [
 ];
 
 type Page1Props = {
-
+ 
   Selectedstyles: string[];
   setStyles: React.Dispatch<React.SetStateAction<string[]>>;
   Selectedequipments: string[];
@@ -71,7 +71,7 @@ type Page1Props = {
 };
 
 const Page1 = ({
-
+ 
   Selectedstyles,
   setStyles,
   setCurrentPage,
@@ -99,15 +99,15 @@ const Page1 = ({
           <h1 className="text-3xl font-semibold">Fill Out Following Details</h1>
 
         </div>
-        <div className="flex mt-6 w-max h-[60px] rounded-full border-[1px] border-[hsl(0,0%,25%)] p-2 space-x-2">
+        <div className="flex mt-6 w-[303px] h-[60px] rounded-full border-[1px] border-[hsl(0,0%,25%)] p-2 space-x-2">
           <div
-            className={`cursor-pointer font-helvetica font-normal  px-8 py-2 rounded-full duration-300 transition-all bg-white`}
+            className={`cursor-pointer font-helvetica font-normal  px-4 py-2 rounded-full duration-300 transition-all bg-[#2E3192] text-white`}
             onClick={() => setCurrentPage(2)}
           >
             Photography
           </div>
           <div
-            className={`cursor-pointer px-8 py-2  font-helvetica font-normal  rounded-full duration-300 transition-all  bg-[#2E3192] text-white`}
+            className={`cursor-pointer px-4 py-2  font-helvetica font-normal  rounded-full duration-300 transition-all bg-white`}
             onClick={() => setCurrentPage(3)}
           >
             Videography
@@ -155,7 +155,7 @@ const Page1 = ({
               />
             </div>
           </div>
-          <div className="flex min-w-full flex-col items-start justify-between gap-5 rounded-xl bg-white p-5 ">
+          <div className="flex min-w-full flex-col items-start justify-between gap-5 rounded-xl bg-white p-5 md:flex-row">
             <div className="flex min-w-[100%] flex-col gap-7">
               <label className="text-xl font-semibold" htmlFor="appetizers">
                 Final Delivery Methods<span className="text-red-500">*</span>
@@ -167,24 +167,23 @@ const Page1 = ({
                 setSelectedAppetizers={setFinaldeliverymethods}
               />
             </div>
-            <div className="mt-9 flex flex-row items-stretch gap-7 self-end">
-              <button
-                className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={() => setCurrentPage((prevPage) => prevPage - 1)}
-              >
-                Back
-              </button>
-              <button
-                className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={handleContinue}
-              >
-                Continue
-              </button>
-            </div>
           </div>
         </div>
       </div>
-
+      <div className="mt-9 flex flex-row items-stretch gap-7 self-end">
+        <button
+          className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+          onClick={handleContinue}
+        >
+          Skip
+        </button>
+        <button
+          className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+          onClick={handleContinue}
+        >
+          Continue
+        </button>
+      </div>
     </div>
   );
 };

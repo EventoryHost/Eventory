@@ -442,6 +442,7 @@ function Preview({
             </div>
           </div>
 
+          {/*
           <div className="w-[100%]">
             <div className="flex gap-16 py-2">
               <div className="flex w-1/2 flex-col px-4">
@@ -551,6 +552,7 @@ function Preview({
               </div>
             </div>
           </div>
+          */}
           <div className="items-strech mt-9 flex flex-row gap-7 self-end">
             <button
               className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
