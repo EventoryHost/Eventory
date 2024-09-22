@@ -27,7 +27,7 @@ interface Page6Props {
   instagramURL: string;
   websiteURL: string;
   advanceBookingPeriod: string;
-  termsAndConditions: string | File | File[];
+  termsConditions: string | File | File[];
   cancellationPolicy: string | File | File[];
   insurancePolicy: string | File | File[];
 }
@@ -54,7 +54,7 @@ const Page6: React.FC<Page6Props> = ({
   instagramURL,
   websiteURL,
   advanceBookingPeriod,
-  termsAndConditions,
+  termsConditions,
   cancellationPolicy,
   insurancePolicy,
 
@@ -327,8 +327,8 @@ const Page6: React.FC<Page6Props> = ({
             <div className="flex w-1/2 flex-col">
               <span className="text-xl">Terms and Conditions</span>
               <div className="mt-4 font-semibold">
-                {Array.isArray(formState.termsAndConditions) ? (
-                  formState.termsAndConditions.map((file, index) =>
+                {Array.isArray(formState.termsConditions) ? (
+                  formState.termsConditions.map((file, index) =>
                     file instanceof File ? (
                       <span key={index} className="block">
                         {file.name}
@@ -337,10 +337,10 @@ const Page6: React.FC<Page6Props> = ({
                       <span key={index}>{file}</span>
                     )
                   )
-                ) : formState.termsAndConditions instanceof File ? (
-                  <span>{formState.termsAndConditions.name}</span>
+                ) : formState.termsConditions instanceof File ? (
+                  <span>{formState.termsConditions.name}</span>
                 ) : (
-                  <span>{formState.termsAndConditions}</span>
+                  <span>{formState.termsConditions}</span>
                 )}
               </div>
             </div>

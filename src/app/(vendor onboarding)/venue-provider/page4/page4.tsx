@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import FileInput from "@/components/fileInput";
 
 interface FormState {
-  termsAndConditions: string | File | File[];
+  termsConditions: string | File | File[];
   cancellationPolicy: string | File | File[];
   insurancePolicy: string | File | File[];
 }
@@ -14,7 +14,7 @@ interface PageProps {
   handleContinue: () => void;
   formState: FormState;
   updateFormState: (newState: Partial<FormState>) => void;
-  termsAndConditions: string | File | File[];
+  termsConditions: string | File | File[];
   cancellationPolicy: string | File | File[];
   currentPage: number;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
@@ -42,7 +42,7 @@ const Page4: React.FC<PageProps> = ({
             <FileInput
               label="tnc"
               onFileSelect={(file) => {
-                updateFormState({ termsAndConditions: file });
+                updateFormState({ termsConditions: file });
               }}
               multiple={true}
               acceptedFileTypes="image/png, .pdf, image/jpg"
@@ -53,14 +53,14 @@ const Page4: React.FC<PageProps> = ({
               rows={4}
               placeholder="Enter your venue details"
               value={
-                typeof formState.termsAndConditions === 'string'
-                  ? formState.termsAndConditions
-                  : Array.isArray(formState.termsAndConditions)
-                    ? formState.termsAndConditions.map((file: File) => file.name).join(', ')  
-                    : (formState.termsAndConditions as File)?.name
+                typeof formState.termsConditions === 'string'
+                  ? formState.termsConditions
+                  : Array.isArray(formState.termsConditions)
+                    ? formState.termsConditions.map((file: File) => file.name).join(', ')  
+                    : (formState.termsConditions as File)?.name
               }
               onChange={(e) => {
-                updateFormState({ termsAndConditions: e.target.value })
+                updateFormState({ termsConditions: e.target.value })
               }}
               className="mt-2 w-[100%] rounded-xl border-2 border-gray-300 p-3"
             ></textarea>

@@ -4,7 +4,7 @@ import FileInput from "@/components/fileInput";
 import { Combobox } from "../(components)/comboBoxNew";
 
 interface FormState {
-  termsAndConditions: string | File | File[];
+  termsConditions: string | File | File[];
   cancellationPolicy: string | File | File[];
   photos: string | File | File[];
   videos: string | File | File[];

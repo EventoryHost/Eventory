@@ -28,7 +28,7 @@ export interface FormState {
   venueDescription: string;
   catererServices: boolean;
   decorServices: boolean;
-  termsAndConditions: string | File | File[];
+  termsConditions: string | File | File[];
   cancellationPolicy: string | File | File[];
   insurancePolicy: string | File | File[];
   photos: string | File | File[];
@@ -38,25 +38,6 @@ export interface FormState {
   awards: string;
   clientTestimonials: string;
   advanceBookingPeriod: string;
-  // venueName: string;
-  // VenueAddress: string;
-  // venueType: string;
-  // seatingCapacity: string;
-  // standingCapacity: string;
-  // startOperatingHours: string;
-  // endOperatingHours: string;
-  // decorType: string;
-  // termsAndConditions: string | File;
-  // cancellationPolicy: string | File;
-  // instaURL: string;
-  // websiteURL: string;
-  // accessibilityFeatures: string[];
-  // facilities: string[];
-  // hourlyPackages: Package[];
-  // dailyPackages: Package[];
-  // seasonalPackages: Package[];
-  // _venue_restrictions: string[];
-  // _venue_special_features: string[];
 }
 
 const VenueForm: React.FC = () => {
@@ -83,7 +64,7 @@ const VenueForm: React.FC = () => {
     },
     venueDescription: "",
 
-    termsAndConditions: "",
+    termsConditions: "",
     cancellationPolicy: "",
 
     instagramURL: "",
@@ -175,54 +156,51 @@ const VenueForm: React.FC = () => {
       formData.append(`facilities[${index}]`, item);
     });
   
-    // Terms and Conditions, Cancellation, and Insurance Policy
-    if (Array.isArray(formState.termsAndConditions)) {
-      formState.termsAndConditions.forEach((file, index) => {
-        formData.append(`termsConditions[${index}]`, file);
+    if (Array.isArray(formState.termsConditions)) {
+      formState.termsConditions.forEach((file) => {
+        formData.append("termsConditions", file); // No index here
       });
     } else {
-      formData.append("termsConditions", formState.termsAndConditions);
+      formData.append("termsConditions", formState.termsConditions);
     }
-    if (typeof formState.cancellationPolicy === "string") {
-      formData.append("cancellationPolicy", formState.cancellationPolicy);
-    } else if (formState.cancellationPolicy instanceof File) {
-      formData.append("cancellationPolicy", formState.cancellationPolicy, formState.cancellationPolicy.name);
-    } else if (Array.isArray(formState.cancellationPolicy)) {
+    
+    if (Array.isArray(formState.cancellationPolicy)) {
       formState.cancellationPolicy.forEach((file) => {
-        formData.append("cancellationPolicy", file, file.name);
+        formData.append("cancellationPolicy", file); 
       });
+    } else {
+      formData.append("cancellationPolicy", formState.cancellationPolicy);
     }
-    if (typeof formState.insurancePolicy === "string") {
-      formData.append("insurancePolicy", formState.insurancePolicy);
-    } else if (formState.insurancePolicy instanceof File) {
-      formData.append("insurancePolicy", formState.insurancePolicy, formState.insurancePolicy.name);
-    } else if (Array.isArray(formState.insurancePolicy)) {
+    
+    if (Array.isArray(formState.insurancePolicy)) {
       formState.insurancePolicy.forEach((file) => {
-        formData.append("insurancePolicy", file, file.name);
+        formData.append("insurancePolicy", file); // No index here
       });
+    } else {
+      formData.append("insurancePolicy", formState.insurancePolicy);
     }
+    
   
-    // Photos 
-
-    if (typeof formState.photos === "string") {
-      formData.append("photos", formState.photos);
-    } else if (formState.photos instanceof File) {
-      formData.append("photos", formState.photos, formState.photos.name);
-    } else if (Array.isArray(formState.photos)) {
+    // Handle photos field
+    if (Array.isArray(formState.photos)) {
       formState.photos.forEach((file) => {
-        formData.append("photos", file, file.name);
+        if (file instanceof File) {
+          formData.append('photos', file); // Append as 'photos' without the array index
+        }
       });
+    } else if (typeof formState.photos === 'string') {
+      formData.append('photos', formState.photos); // Append the string (URL)
     }
   
-    // Videos 
-    if (typeof formState.videos === "string") {
-      formData.append("videos", formState.videos);
-    } else if (formState.videos instanceof File) {
-      formData.append("videos", formState.videos, formState.videos.name);
-    } else if (Array.isArray(formState.videos)) {
+    // Handle videos field
+    if (Array.isArray(formState.videos)) {
       formState.videos.forEach((file) => {
-        formData.append("videos", file, file.name);
+        if (file instanceof File) {
+          formData.append('videos', file); // Append as 'videos' without the array index
+        }
       });
+    } else if (typeof formState.videos === 'string') {
+      formData.append('videos', formState.videos); // Append the string (URL)
     }
   
     // Social Links
@@ -317,7 +295,7 @@ const VenueForm: React.FC = () => {
             handleContinue={() => {
               setCurrentPage(5);
             }}
-            termsAndConditions={formState.termsAndConditions}
+            termsConditions={formState.termsConditions}
             cancellationPolicy={formState.cancellationPolicy}
             insurancePolicy={formState.insurancePolicy}
             currentPage={currentPage}
@@ -350,7 +328,7 @@ const VenueForm: React.FC = () => {
             instagramURL={formState.instagramURL}
             websiteURL={formState.websiteURL}
             advanceBookingPeriod={formState.advanceBookingPeriod}
-            termsAndConditions={formState.termsAndConditions}
+            termsConditions={formState.termsConditions}
             cancellationPolicy={formState.cancellationPolicy}
             insurancePolicy={formState.insurancePolicy}
 
