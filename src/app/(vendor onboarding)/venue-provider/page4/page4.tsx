@@ -44,7 +44,7 @@ const Page4: React.FC<PageProps> = ({
               onFileSelect={(file) => {
                 updateFormState({ termsConditions: file });
               }}
-              multiple={true}
+              multiple={false}
               acceptedFileTypes="image/png, .pdf, image/jpg"
             />
             <p className="mt-2 text-lg">or Provide Via</p>
@@ -70,7 +70,7 @@ const Page4: React.FC<PageProps> = ({
             <p className="text-lg mb-2 font-semibold">Cancellation Policies</p>
             <FileInput
               label="cancellation policy"
-              multiple={true}
+              multiple={false}
               onFileSelect={(file) => {
                 updateFormState({ cancellationPolicy: file });
               }}
@@ -104,7 +104,7 @@ const Page4: React.FC<PageProps> = ({
               updateFormState({ insurancePolicy: file });
             }}
             acceptedFileTypes="image/png, .pdf, image/jpg"
-            multiple={true}
+            multiple={false}
           />
           <p className="mt-2 text-lg">or Provide Via</p>
           <textarea
