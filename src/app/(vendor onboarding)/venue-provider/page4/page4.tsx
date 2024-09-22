@@ -4,9 +4,9 @@ import React, { useEffect } from "react";
 import FileInput from "@/components/fileInput";
 
 interface FormState {
-  termsAndConditions: string | File;
-  cancellationPolicy: string | File;
-  insurancePolicy: string | File;
+  termsAndConditions: string | File | File[];
+  cancellationPolicy: string | File | File[];
+  insurancePolicy: string | File | File[];
 }
 
 interface PageProps {
@@ -14,11 +14,11 @@ interface PageProps {
   handleContinue: () => void;
   formState: FormState;
   updateFormState: (newState: Partial<FormState>) => void;
-  termsAndConditions: string | File;
-  cancellationPolicy: string | File;
+  termsAndConditions: string | File | File[];
+  cancellationPolicy: string | File | File[];
   currentPage: number;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
-  insurancePolicy: string | File;
+  insurancePolicy: string | File | File[];
 }
 
 const Page4: React.FC<PageProps> = ({
@@ -28,10 +28,6 @@ const Page4: React.FC<PageProps> = ({
   currentPage,
   setCurrentPage,
 }) => {
-
-  useEffect(() => {
-    console.log(formState);
-  }, [formState]);
 
   return (
     <div className="scroll-touch flex flex-col items-start gap-7 overflow-y-scroll rounded-xl bg-white p-3 xs:w-[95%] xs:min-w-[90%] xs:justify-start">
@@ -48,6 +44,7 @@ const Page4: React.FC<PageProps> = ({
               onFileSelect={(file) => {
                 updateFormState({ termsAndConditions: file });
               }}
+              multiple={true}
               acceptedFileTypes="image/png, .pdf, image/jpg"
             />
             <p className="mt-2 text-lg">or Provide Via</p>
@@ -55,7 +52,13 @@ const Page4: React.FC<PageProps> = ({
               cols={30}
               rows={4}
               placeholder="Enter your venue details"
-              value={typeof formState.termsAndConditions === "string" ? formState.termsAndConditions : formState.termsAndConditions.name}
+              value={
+                typeof formState.termsAndConditions === 'string'
+                  ? formState.termsAndConditions
+                  : Array.isArray(formState.termsAndConditions)
+                    ? formState.termsAndConditions.map((file: File) => file.name).join(', ')  
+                    : (formState.termsAndConditions as File)?.name
+              }
               onChange={(e) => {
                 updateFormState({ termsAndConditions: e.target.value })
               }}
@@ -67,6 +70,7 @@ const Page4: React.FC<PageProps> = ({
             <p className="text-lg mb-2 font-semibold">Cancellation Policies</p>
             <FileInput
               label="cancellation policy"
+              multiple={true}
               onFileSelect={(file) => {
                 updateFormState({ cancellationPolicy: file });
               }}
@@ -77,7 +81,13 @@ const Page4: React.FC<PageProps> = ({
               cols={30}
               rows={4}
               placeholder="Enter your venue details"
-              value={typeof formState.cancellationPolicy === "string" ? formState.cancellationPolicy : formState.cancellationPolicy.name}
+              value={
+                typeof formState.cancellationPolicy === 'string'
+                  ? formState.cancellationPolicy
+                  : Array.isArray(formState.cancellationPolicy)
+                    ? formState.cancellationPolicy.map((file: File) => file.name).join(', ')  
+                    : (formState.cancellationPolicy as File)?.name
+              }
               onChange={(e) => {
                 updateFormState({ cancellationPolicy: e.target.value })
               }}
@@ -94,13 +104,20 @@ const Page4: React.FC<PageProps> = ({
               updateFormState({ insurancePolicy: file });
             }}
             acceptedFileTypes="image/png, .pdf, image/jpg"
+            multiple={true}
           />
           <p className="mt-2 text-lg">or Provide Via</p>
           <textarea
             cols={30}
             rows={4}
             placeholder="Enter your venue details"
-            value={typeof formState.insurancePolicy === "string" ? formState.insurancePolicy : formState.insurancePolicy.name}
+            value={
+              typeof formState.insurancePolicy === 'string'
+                ? formState.insurancePolicy
+                : Array.isArray(formState.insurancePolicy)
+                  ? formState.insurancePolicy.map((file: File) => file.name).join(', ')  
+                  : (formState.insurancePolicy as File)?.name
+            }
             onChange={(e) => {
               updateFormState({ insurancePolicy: e.target.value })
             }}

@@ -28,17 +28,11 @@ export interface FormState {
   venueDescription: string;
   catererServices: boolean;
   decorServices: boolean;
-  venueTypes: string[];
-  audioVisualEquipment: string[];
-  accessibilityFeatures: string[];
-  restrictionsPolicies: string[];
-  specialFeatures: string[];
-  facilities: string[];
-  termsAndConditions: string | File;
-  cancellationPolicy: string | File;
-  insurancePolicy: string | File;
-  photos: string | File;
-  videos: string | File;
+  termsAndConditions: string | File | File[];
+  cancellationPolicy: string | File | File[];
+  insurancePolicy: string | File | File[];
+  photos: string | File | File[];
+  videos: string | File | File[];
   instagramURL: string;
   websiteURL: string;
   awards: string;
@@ -75,7 +69,6 @@ const VenueForm: React.FC = () => {
     capacity: "",
     catererServices: false,
     decorServices: false,
-    venueTypes: [],
     insurancePolicy: "",
     photos: "",
     videos: "",
@@ -95,11 +88,6 @@ const VenueForm: React.FC = () => {
 
     instagramURL: "",
     websiteURL: "",
-    audioVisualEquipment: [],
-    accessibilityFeatures: [],
-    facilities: [],
-    restrictionsPolicies: [],
-    specialFeatures: [],
   });
 
   const updateFormState = (newState: Partial<FormState>) => {
@@ -158,8 +146,8 @@ const VenueForm: React.FC = () => {
     formData.append("decorServices", String(formState.decorServices));
   
     // Venue Types (Array)
-    venueTypes.forEach((item) => {
-      formData.append(`venueTypes[]`, item);
+    venueTypes.forEach((item,index) => {
+      formData.append(`venueTypes[${index}]`, item);
     });
 
     // Audio Visual Equipment (Array)
@@ -188,16 +176,54 @@ const VenueForm: React.FC = () => {
     });
   
     // Terms and Conditions, Cancellation, and Insurance Policy
-    formData.append("termsConditions", formState.termsAndConditions);
-    formData.append("cancellationPolicy", formState.cancellationPolicy);
-    formData.append("insurancePolicy", formState.insurancePolicy);
+    if (Array.isArray(formState.termsAndConditions)) {
+      formState.termsAndConditions.forEach((file, index) => {
+        formData.append(`termsConditions[${index}]`, file);
+      });
+    } else {
+      formData.append("termsConditions", formState.termsAndConditions);
+    }
+    if (typeof formState.cancellationPolicy === "string") {
+      formData.append("cancellationPolicy", formState.cancellationPolicy);
+    } else if (formState.cancellationPolicy instanceof File) {
+      formData.append("cancellationPolicy", formState.cancellationPolicy, formState.cancellationPolicy.name);
+    } else if (Array.isArray(formState.cancellationPolicy)) {
+      formState.cancellationPolicy.forEach((file) => {
+        formData.append("cancellationPolicy", file, file.name);
+      });
+    }
+    if (typeof formState.insurancePolicy === "string") {
+      formData.append("insurancePolicy", formState.insurancePolicy);
+    } else if (formState.insurancePolicy instanceof File) {
+      formData.append("insurancePolicy", formState.insurancePolicy, formState.insurancePolicy.name);
+    } else if (Array.isArray(formState.insurancePolicy)) {
+      formState.insurancePolicy.forEach((file) => {
+        formData.append("insurancePolicy", file, file.name);
+      });
+    }
   
     // Photos 
 
-    formData.append("photos", formState.photos);
+    if (typeof formState.photos === "string") {
+      formData.append("photos", formState.photos);
+    } else if (formState.photos instanceof File) {
+      formData.append("photos", formState.photos, formState.photos.name);
+    } else if (Array.isArray(formState.photos)) {
+      formState.photos.forEach((file) => {
+        formData.append("photos", file, file.name);
+      });
+    }
   
     // Videos 
-    formData.append("videos", formState.videos);
+    if (typeof formState.videos === "string") {
+      formData.append("videos", formState.videos);
+    } else if (formState.videos instanceof File) {
+      formData.append("videos", formState.videos, formState.videos.name);
+    } else if (Array.isArray(formState.videos)) {
+      formState.videos.forEach((file) => {
+        formData.append("videos", file, file.name);
+      });
+    }
   
     // Social Links
     formData.append("socialLinks[instagramURL]", formState.instagramURL);

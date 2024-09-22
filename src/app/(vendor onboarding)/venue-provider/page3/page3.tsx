@@ -2,14 +2,12 @@
 
 import FileInput from "@/components/fileInput";
 import { Combobox } from "../(components)/comboBoxNew";
-import { useEffect } from "react";
-import { Award } from "lucide-react";
 
 interface FormState {
-  termsAndConditions: string | File;
-  cancellationPolicy: string | File;
-  photos: string | File ;
-  videos: string | File;
+  termsAndConditions: string | File | File[];
+  cancellationPolicy: string | File | File[];
+  photos: string | File | File[];
+  videos: string | File | File[];
   instagramURL: string;
   websiteURL: string;
   awards: string;
@@ -28,8 +26,8 @@ interface Page3Props {
   instagramURL: string;
   websiteURL: string;
   advanceBookingPeriod: string;
-  photos: string | File;
-  videos: string | File;
+  photos: string | File | File[];
+  videos: string | File | File[];
 
 }
 
@@ -52,105 +50,120 @@ const Page3: React.FC<Page3Props> = ({
       <h1 className="text-3xl font-semibold">Additional Details </h1>
 
       <div className="container mx-auto p-4">
-      <div className="grid grid-cols-2 gap-4">
-        <div>
-          <h2 className="text-xl font-semibold mb-2">Photos<span className="text-red-600">*</span></h2>
-          <p className="text-gray-600 text-sm mb-4">PNG, JPG</p>
-          <FileInput
-            label="Photos"
-            onFileSelect={(file) => {
-              updateFormState({ photos : file });
-            }}
-            acceptedFileTypes="image/png, .pdf, image/jpg"
-          />
-          <p className="mt-4">or continue via</p>
-          <input
-            type="text"
-            className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300"
-            placeholder="Enter your portfolio link"
-            value={typeof formState.photos === 'string' ? formState.photos : formState.photos?.name}
-            onChange={(e) => updateFormState({ photos: e.target.value })}
-          />
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <h2 className="text-xl font-semibold mb-2">Photos<span className="text-red-600">*</span></h2>
+            <p className="text-gray-600 text-sm mb-4">PNG, JPG</p>
+            <FileInput
+              label="Photos"
+              multiple={true}
+              onFileSelect={(file) => {
+                updateFormState({ photos: file });
+              }}
+              acceptedFileTypes="image/png, .pdf, image/jpg"
+            />
+            <p className="mt-4">or continue via</p>
+            <input
+              type="text"
+              className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300"
+              placeholder="Enter your portfolio link"
+              value={
+                typeof formState.photos === 'string'
+                  ? formState.photos
+                  : Array.isArray(formState.photos)
+                    ? formState.photos.map((file: File) => file.name).join(', ')  
+                    : (formState.photos as File)?.name
+              }
+              onChange={(e) => updateFormState({ photos: e.target.value })}
+            />
+
+          </div>
+          <div>
+            <h2 className="text-xl font-semibold mb-2">Videos<span className="text-red-600">*</span></h2>
+            <p className="text-gray-600 text-sm mb-4">MP4, MKV</p>
+            <FileInput
+              label="tnc"
+              multiple={true}
+              onFileSelect={(file) => {
+                updateFormState({ videos: file });
+              }}
+              acceptedFileTypes="image/png, .pdf, image/jpg"
+            />
+            <p className="mt-4">or continue via</p>
+            <input
+              type="text"
+              className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300"
+              placeholder="Enter your portfolio link"
+              value={
+                typeof formState.videos === 'string'
+                  ? formState.videos
+                  : Array.isArray(formState.videos)
+                    ? formState.videos.map((file: File) => file.name).join(', ')  
+                    : (formState.videos as File)?.name
+              }
+              onChange={(e) => updateFormState({ videos: e.target.value })}
+            />
+          </div>
         </div>
-        <div>
-          <h2 className="text-xl font-semibold mb-2">Videos<span className="text-red-600">*</span></h2>
-          <p className="text-gray-600 text-sm mb-4">MP4, MKV</p>
-          <FileInput
-            label="tnc"
-            onFileSelect={(file) => {
-              updateFormState({ videos: file });
-            }}
-            acceptedFileTypes="image/png, .pdf, image/jpg"
-          />
-          <p className="mt-4">or continue via</p>
-          <input
-            type="text"
-            className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300"
-            placeholder="Enter your portfolio link"
-            value={typeof formState.videos === 'string' ? formState.videos : formState.videos?.name}
-            onChange={(e) => updateFormState({ videos: e.target.value })}
-          />
+
+        <div className="grid grid-cols-2 gap-4 mt-8">
+          <div>
+            <h2 className="text-xl font-semibold mb-2">Awards/Recognition</h2>
+            <input
+              type="text"
+              className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300"
+              placeholder="Provide your URL"
+              value={formState.awards}
+              onChange={(e) => updateFormState({ awards: e.target.value })}
+            />
+          </div>
+          <div>
+            <h2 className="text-xl font-semibold mb-2">Client Testimonials</h2>
+            <input
+              type="text"
+              className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300"
+              placeholder="Provide your URL"
+              value={formState.clientTestimonials}
+              onChange={(e) => updateFormState({ clientTestimonials: e.target.value })}
+            />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-2 gap-4 mt-8">
+          <div>
+            <h2 className="text-xl font-semibold mb-2">Instagram URL</h2>
+            <input
+              type="text"
+              className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300"
+              placeholder="Provide your Instagram URL for the Venue"
+              value={formState.instagramURL}
+              onChange={(e) => updateFormState({ instagramURL: e.target.value })}
+            />
+          </div>
+          <div>
+            <h2 className="text-xl font-semibold mb-2">Website URL</h2>
+            <input
+              type="text"
+              className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300"
+              placeholder="Provide your website URL for the venue"
+              value={formState.websiteURL}
+              onChange={(e) => updateFormState({ websiteURL: e.target.value })}
+            />
+          </div>
+        </div>
+
+        <div className="mt-8 grid grid-cols-2 gap-4">
+          <div>
+            <h2 className="text-xl font-semibold mb-2">Advance Booking Period<span className="text-red-600">*</span></h2>
+            <Combobox
+              options={advanceBookingPeriodOptions}
+              placeholder="Select Advance Booking Period"
+              setFunction={(value) => updateFormState({ advanceBookingPeriod: value })}
+            />
+          </div>
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-4 mt-8">
-        <div>
-          <h2 className="text-xl font-semibold mb-2">Awards/Recognition</h2>
-          <input
-            type="text"
-            className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300"
-            placeholder="Provide your URL"
-            value={formState.awards}
-            onChange={(e) => updateFormState({ awards: e.target.value })}
-          />
-        </div>
-        <div>
-          <h2 className="text-xl font-semibold mb-2">Client Testimonials</h2>
-          <input
-            type="text"
-            className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300"
-            placeholder="Provide your URL"
-            value={formState.clientTestimonials}
-            onChange={(e) => updateFormState({ clientTestimonials: e.target.value })}
-          />
-        </div>
-      </div>
-
-      <div className="grid grid-cols-2 gap-4 mt-8">
-        <div>
-          <h2 className="text-xl font-semibold mb-2">Instagram URL</h2>
-          <input
-            type="text"
-            className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300"
-            placeholder="Provide your Instagram URL for the Venue"
-            value={formState.instagramURL}
-            onChange={(e) => updateFormState({ instagramURL: e.target.value })}
-          />
-        </div>
-        <div>
-          <h2 className="text-xl font-semibold mb-2">Website URL</h2>
-          <input
-            type="text"
-            className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300"
-            placeholder="Provide your website URL for the venue"
-            value={formState.websiteURL}
-            onChange={(e) => updateFormState({ websiteURL: e.target.value })}
-          />
-        </div>
-      </div>
-
-      <div className="mt-8 grid grid-cols-2 gap-4">
-        <div>
-        <h2 className="text-xl font-semibold mb-2">Advance Booking Period<span className="text-red-600">*</span></h2>
-        <Combobox
-          options={advanceBookingPeriodOptions}
-          placeholder="Select Advance Booking Period"
-          setFunction={(value) => updateFormState({ advanceBookingPeriod: value })}
-        /> 
-        </div>
-      </div>
-    </div>
-      
 
       <div className="items-strech mt-9 flex flex-row gap-7 self-end">
         <button
