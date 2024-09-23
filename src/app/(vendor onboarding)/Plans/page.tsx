@@ -18,7 +18,11 @@ type Pagechangetype = {
     setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
     handleformSubmit: () => void;
 };
-
+interface BusinessDetails {
+    annualrevenue: "0-3" | "3-7" | "7-12" | "12-18" | "18+";
+    teamsize: "1-5" | "6-15" | "16-30" | "31-50" | "51+";
+    years: "1-2" | "3-5" | "6-10" | "10+";
+}
 
 const Plans = ({ setCurrentPage, handleformSubmit }: Pagechangetype) => {
     const plan: PlanDetails = {
@@ -42,6 +46,55 @@ const Plans = ({ setCurrentPage, handleformSubmit }: Pagechangetype) => {
         setError(false)
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
+    // Utility functions to convert string values to numbers
+    const convertTeamSizeToNumber = (teamSize: string): number => {
+        switch (teamSize) {
+            case "1-5":
+                return 5;
+            case "6-15":
+                return 15;
+            case "16-30":
+                return 30;
+            case "31-50":
+                return 50;
+            case "51+":
+                return 51;
+            default:
+                return 0; // Default value in case of an unknown input
+        }
+    };
+
+    const convertAnnualRevenueToNumber = (annualRevenue: string): number => {
+        switch (annualRevenue) {
+            case "0-3":
+                return 3;
+            case "3-7":
+                return 7;
+            case "7-12":
+                return 12;
+            case "12-18":
+                return 18;
+            case "18+":
+                return 18;
+            default:
+                return 0;
+        }
+    };
+
+    const convertYearsToNumber = (years: string): number => {
+        switch (years) {
+            case "1-2":
+                return 2;
+            case "3-5":
+                return 5;
+            case "6-10":
+                return 10;
+            case "10+":
+                return 10; // Similar to above, maximum cap
+            default:
+                return 0;
+        }
+    };
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -49,8 +102,8 @@ const Plans = ({ setCurrentPage, handleformSubmit }: Pagechangetype) => {
         // Exclude 'gstinNumber' field from validation of form
         const { gstinNumber, ...fieldsToCheck } = formData;
         const isFormValid = Object.values(fieldsToCheck).every(value => value.trim() !== "");
-
-        if (isFormValid) {
+        const isgstvaild = gstinNumber.length === 15;
+        if (isFormValid && isgstvaild) {
             // Proceed with handling payment if the form is valid
             handlePayment(price.toString(), plan.title, vendorId, formData.fullName, setCurrentPage, handleformSubmit);
         } else {
@@ -70,50 +123,7 @@ const Plans = ({ setCurrentPage, handleformSubmit }: Pagechangetype) => {
     useEffect(() => {
         const fetchData = async () => {
             const token = localStorage.getItem("token");
-            // for temp testing 
-            // Define the businessDetails structure
-            interface BusinessDetails {
-                revenue: "0-3" | "3-7" | "7-12" | "12-18" | "18+";
-                teamSize: "1-5" | "6-15" | "16-30" | "31-50" | "51+";
-                years: "1-2" | "3-5" | "6-10" | "10+";
-            }
 
-            // Safely retrieve and parse the localStorage value
-            const businessDetails: BusinessDetails | null = JSON.parse(localStorage.getItem("businessDetails")!);
-
-            if (businessDetails) {
-                const revenueMapping: Record<BusinessDetails['revenue'], number> = {
-                    "0-3": 1.5,
-                    "3-7": 5,
-                    "7-12": 9.5,
-                    "12-18": 15,
-                    "18+": 20,
-                };
-
-                const teamSizeMapping: Record<BusinessDetails['teamSize'], number> = {
-                    "1-5": 3,
-                    "6-15": 10,
-                    "16-30": 23,
-                    "31-50": 40,
-                    "51+": 55,
-                };
-
-                const yearsMapping: Record<BusinessDetails['years'], number> = {
-                    "1-2": 1.5,
-                    "3-5": 4,
-                    "6-10": 8,
-                    "10+": 12,
-                };
-
-                // Safely map the string ranges to numeric values
-                const revenueValue = revenueMapping[businessDetails.revenue];
-                const teamSizeValue = teamSizeMapping[businessDetails.teamSize];
-                const yearsValue = yearsMapping[businessDetails.years];
-
-                // Call the function with the numeric values
-                const price = vendorpricecalculations(revenueValue, teamSizeValue, yearsValue);
-                setPrice(price);
-            }
 
 
             if (token) {
@@ -125,7 +135,7 @@ const Plans = ({ setCurrentPage, handleformSubmit }: Pagechangetype) => {
 
                     if (userId && email) {
                         const user = await fetchVendor(userId, email, "");
-                        console.log(user);
+                        // console.log(user);
                         setVendorId(user.id);
                         setFormData((prevFormData) => ({
                             ...prevFormData,
@@ -134,7 +144,14 @@ const Plans = ({ setCurrentPage, handleformSubmit }: Pagechangetype) => {
                             gstinNumber: user?.businessDetails.gstin,
                             address: user?.businessDetails.businessAddress,
                         }));
-                        //console.log(user?.name);
+                        const revenueValue = convertAnnualRevenueToNumber(user.businessDetails.annualrevenue);
+                        const teamSizeValue = convertTeamSizeToNumber(user.businessDetails.teamsize);
+                        const yearsValue = convertYearsToNumber(user.businessDetails.years);
+
+                        // Call the function with the numeric values
+                        const price = vendorpricecalculations(revenueValue, teamSizeValue, yearsValue);
+                        setPrice(price);
+
                     } else {
                         console.error("Token does not contain expected data.");
                     }
@@ -157,7 +174,7 @@ const Plans = ({ setCurrentPage, handleformSubmit }: Pagechangetype) => {
                 id="razorpay-checkout-js"
                 src="https://checkout.razorpay.com/v1/checkout.js"
             />
-            <div className="bg-[#F7F6F9] py-[3.5rem] h-max w-screen">
+            <div className="bg-[#F7F6F9] py-[3.5rem]  w-screen">
                 <div className="flex flex-col h-max justify-center pl-[72px] gap-6 w-[264px]">
 
                     <div onClick={() => setCurrentPage((prevPage) => prevPage - 1)} className="flex gap-3 justify-start">
@@ -227,12 +244,15 @@ const Plans = ({ setCurrentPage, handleformSubmit }: Pagechangetype) => {
                                 </div>
                                 <div className="flex flex-col w-[50%] gap-[6px]">
                                     <label htmlFor="gstinNumber" className="font-poppins font-medium text-md">
-                                        GSTIN Number
+                                        GSTIN Number<span className="text-red-600">*</span>
                                     </label>
                                     <input
                                         type="text"
                                         name="gstinNumber"
                                         placeholder="GSTIN Number"
+                                        minLength={15}
+                                        required
+                                        maxLength={15}
                                         className="w-full border-1 border-[#DBDBDB] rounded-lg p-4"
                                         value={formData.gstinNumber}
                                         onChange={handleChange}
@@ -258,11 +278,11 @@ const Plans = ({ setCurrentPage, handleformSubmit }: Pagechangetype) => {
                         </form>
                     </div>
                     <div className="w-[418px] flex flex-col gap-4 h-[513px] ">
-                        <div className="custom-shadow w-[418px] gap-4 rounded-2xl p-4 bg-[#ffffff] ">
+                        <div className="custom-shadow w-[418px] gap-7 rounded-2xl p-4 bg-[#ffffff] ">
                             <div className="flex gap-[14px] mb-3 justify-start items-center h-10">
                                 <h4 className="font-poppins  text-2xl font-semibold">Review Details</h4>
                             </div>
-                            <div className="h-[227px] w-[386px] mt-2 flex flex-col justify-start items-left rounded-xl p-4 bg-[#F7F7FC]">
+                            <div className="h-[80px] w-[386px] mt-2 flex flex-col justify-start items-left rounded-xl p-4 bg-[#F7F7FC]">
                                 <div className="flex h-[51px] mb-4 w-[352px] justify-between items-center">
                                     <div>
                                         <p className="font-poppins font-medium text-lg ">Registration Fee</p>
@@ -273,6 +293,30 @@ const Plans = ({ setCurrentPage, handleformSubmit }: Pagechangetype) => {
                                         <p className="font-poppins font-medium text-[10px] text-[#6F6C90] ">includes taxes & fees</p>
                                     </div>
                                 </div>
+
+                            </div>
+
+                            <div className="my-3 px-2 flex justify-between items-center h-[36px]">
+                                <div className="flex flex-col">
+                                    <p className="font-poppins font-medium text-xl ">Grand Total</p>
+                                    <p className="font-poppins font-medium text-xs text-[#6F6C90] "> inclusive of GST</p>
+                                </div>
+                                <p className="font-poppins font-medium text-2xl text-right text-[#2E3192] ">₹{price}</p>
+                            </div>
+                        </div>
+                        <button
+                            onClick={handleSubmit}
+                            className=" text-white bg-[rgba(46,49,146,1)] rounded-2xl p-4 font-poppins flex justify-center items-center h-[48px] w-[100%]">
+                            Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </>
+    );
+};
+
+export default Plans;
+/*
                                 <div className="gap-4 flex flex-col justify-between h-[128px]">
                                     {
                                         plan.details.map((data, i) => (
@@ -293,33 +337,14 @@ const Plans = ({ setCurrentPage, handleformSubmit }: Pagechangetype) => {
                                         ))
                                     }
                                 </div>
-                            </div>
                             <div className="h-[58px] mt-4  px-2">
                                 <div className="h-[51px] gap-4 flex flex-col justify-between ">
                                     <div className="flex  justify-between">
                                         <p className="font-poppins font-medium text-xs text-[#6F6C90] ">Booking Fee</p>
                                         <p className="font-poppins font-medium text-xs text-[#6F6C90] ">₹ {Math.ceil(price * 0.95).toFixed(2)}</p>
                                     </div>
-                                    <div className="flex justify-between">
-                                        <p className="font-poppins font-medium text-xs text-[#6F6C90] ">GST</p>
-                                        <p className="font-poppins font-medium text-xs text-[#6F6C90] ">₹{Math.floor(price * 0.05).toFixed(2)}</p>
-                                    </div>
+
                                 </div>
                             </div>
-                            <div className="my-3 px-2 flex justify-between items-center h-[36px]">
-                                <p className="font-poppins font-medium text-xl ">Grand Total</p>
-                                <p className="font-poppins font-medium text-2xl text-right text-[#2E3192] ">₹{price}</p>
-                            </div>
-                        </div>
-                        <button
-                            onClick={handleSubmit}
-                            className=" text-white bg-[rgba(46,49,146,1)] rounded-2xl p-4 font-poppins flex justify-center items-center h-[48px] w-[100%]">
-                            Buy Now</button>
-                    </div>
-                </div>
-            </div>
-        </>
-    );
-};
 
-export default Plans;
+*/

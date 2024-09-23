@@ -68,9 +68,9 @@ function vendorpricecalculations(annualRevenue: number, teamsize: number, yearsO
     } else if (Category === 1) {
         price = 499;
     }
-    console.log("Total Score:", score);
-    console.log("Category :", Category);
-    console.log("Price :", price);
+    // console.log("Total Score:", score);
+    // console.log("Category :", Category);
+    // console.log("Price :", price);
     return price;
 }
 

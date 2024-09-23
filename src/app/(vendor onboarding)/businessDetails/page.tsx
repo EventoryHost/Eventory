@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { addBusinessDetails } from "@/services/auth";
 import tajmahal from "/public/tajmahal.png";
 import { Combobox } from "@/components/ui/combobox";
+import { useToast } from "@/components/hooks/use-toast"
 
 const categories = [
   { value: "venue-provider", label: "Venue Provider" },
@@ -63,6 +64,8 @@ export type businessDetails = {
 };
 
 const BusinessDetails = () => {
+  const [loading, setloading] = useState(false);
+  const { toast } = useToast()
   const [businessDetails, setBusinessDetails] = useState<businessDetails>({
     businessName: '',
     category: '',
@@ -104,9 +107,10 @@ const BusinessDetails = () => {
     setError(false);
   }, [businessDetails]);
 
-  const handleBizSubmit = (e: React.FormEvent) => {
+  const handleBizSubmit = async (e: React.FormEvent) => {
 
     e.preventDefault();
+
 
     const newDetails: businessDetails = {
       businessName: refs.current.businessName!.value,
@@ -123,7 +127,7 @@ const BusinessDetails = () => {
     if (
       !newDetails.businessName ||
       !newDetails.category ||
-      !newDetails.gstin ||
+      newDetails.gstin.length !== 15 ||
       !newDetails.years ||
       !newDetails.businessAddress ||
       !newDetails.pinCode ||
@@ -134,18 +138,34 @@ const BusinessDetails = () => {
       setError(true);
       return;
     }
-    // Update business details state
-    setBusinessDetails(newDetails);
-    console.log("Business Details:", newDetails);
 
-    // Retrieve user information from token
-    const token = localStorage.getItem("token")!;
-    const { userId, email } = jwt.decode(token) as { userId: string; email: string };
+    try {
+      setloading(true)
+      toast({
+        title: "Redirecting",
+        description: `Redirecting ${newDetails.businessName} To ${newDetails.category}`,
+      })
+      // Update business details state
+      setBusinessDetails(newDetails);
+      // console.log("Business Details:", newDetails);
+      // Retrieve user information from token
+      const token = localStorage.getItem("token")!;
+      const { userId, email } = jwt.decode(token) as { userId: string; email: string };
 
-    // Submit business details to the backend
-    addBusinessDetails(userId, newDetails);
+      // Submit business details to the backend
+      await addBusinessDetails(userId, newDetails);
+      // Redirect to the category page after successful submission
+      router.push(`/${businessDetails.category}`);
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Something went wrong.",
+        description: "There was a problem with your request. Check internet",
+      })
+    } finally {
+      setloading(false)
+    }
 
-    // Redirect to the category page after successful submission
 
   };
 
@@ -205,6 +225,8 @@ const BusinessDetails = () => {
                   <input
                     id="gstin"
                     type="text"
+                    minLength={15}
+                    maxLength={15}
                     className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
                     placeholder="Enter your GSTIN"
                     ref={(el) => {
@@ -237,7 +259,7 @@ const BusinessDetails = () => {
                   />
                 </div>
                 <div className="flex min-w-[45%] flex-col gap-4">
-                  <label htmlFor="pinCode">Pin Code</label>
+                  <label htmlFor="pinCode">Pin Code<span className="text-red-600">*</span></label>
                   <input
                     id="pinCode"
                     type="number"
@@ -282,10 +304,11 @@ const BusinessDetails = () => {
               {error && <p className="font-poppins text-red-600 flex flex-col items-start self-start font-medium text-md">Fill All The Req* Field's</p>}
               <div className="flex flex-col items-start self-end">
                 <button
+                  disabled={loading}
                   type="submit"
                   className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
                 >
-                  Continue
+                  {loading ? "Loading" : "Continue"}
                 </button>
               </div>
             </div>
