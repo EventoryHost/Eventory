@@ -71,7 +71,7 @@ const Page2 = ({
   const { customizableMenu } = formState;
   const [addManually, setAddManually] = useState(false)
 
- 
+
   return (
     <div className="flex h-full w-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide ">
       <div className="flex min-w-full flex-col items-start justify-around gap-10">
@@ -112,7 +112,12 @@ const Page2 = ({
               <FileInput
                 label="menu"
                 onFileSelect={(file) => {
-                  setMenu((prevMenu) => [...prevMenu, file]);
+                  setMenu((prevMenu) => {
+                    // If file is an array (multiple files selected), spread it
+                    // If it's a single file, create a new array with that file
+                    const newFiles = Array.isArray(file) ? file : [file];
+                    return [...prevMenu, ...newFiles];
+                  });
                   setSelectedAppetizers([]);
                   setSelectedBeverages([])
                   setSelectedDietaryOptions([])
@@ -129,7 +134,7 @@ const Page2 = ({
             setMenu([]);
 
           }} className="cursor-pointer rounded-xl border-2 bg-[#2E3192] text-center text-white xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3">
-            {!addManually?"Add Manually":"Upload"}
+            {!addManually ? "Add Manually" : "Upload"}
           </div>
 
         </div>

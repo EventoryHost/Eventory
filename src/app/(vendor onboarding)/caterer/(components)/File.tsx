@@ -1,8 +1,8 @@
 import React from "react";
 
 interface FileDisplayProps {
-  file?: { name?: string; size?: number }; // Single file or optional
-  files?: { name?: string; size?: number }[]; // Array of files
+  file?: File; // Single File object
+  files?: File[]; // Array of File objects
 }
 
 const FileDisplay: React.FC<FileDisplayProps> = ({ file, files }) => {
@@ -20,16 +20,16 @@ const FileDisplay: React.FC<FileDisplayProps> = ({ file, files }) => {
         <div className="flex items-center gap-4">
           <img src={"/selection/fileicon.svg"} className="h-8 w-8" alt="file" />
           <div className="flex flex-col">
-            <span className="font-semibold">{file?.name || "No file selected"}</span>
-            {file?.size !== undefined && (
+            <span className="font-semibold">{file.name || "No file selected"}</span>
+            {file.size !== undefined && (
               <span className="text-sm text-gray-500">{formatSize(file.size)}</span>
             )}
           </div>
         </div>
         <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="2" y="2.5" width="20" height="20" rx="5" stroke="#2B3F6C" stroke-width="1.5" />
-                <path d="M9.5 12L11.5 14L15.5 10" stroke="#2B3F6C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
+          <rect x="2" y="2.5" width="20" height="20" rx="5" stroke="#2B3F6C" strokeWidth="1.5" />
+          <path d="M9.5 12L11.5 14L15.5 10" stroke="#2B3F6C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
       </div>
     );
   }
@@ -46,17 +46,16 @@ const FileDisplay: React.FC<FileDisplayProps> = ({ file, files }) => {
             <div className="flex items-center gap-4">
               <img src={"/selection/fileicon.svg"} className="h-8 w-8" alt="file" />
               <div className="flex flex-col">
-                <span className="font-semibold">{f?.name || "No file selected"}</span>
-                {f?.size !== undefined && (
+                <span className="font-semibold">{f.name || "No file selected"}</span>
+                {f.size !== undefined && (
                   <span className="text-sm text-gray-500">{formatSize(f.size)}</span>
                 )}
               </div>
-              
             </div>
             <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="2" y="2.5" width="20" height="20" rx="5" stroke="#2B3F6C" stroke-width="1.5" />
-                <path d="M9.5 12L11.5 14L15.5 10" stroke="#2B3F6C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
+              <rect x="2" y="2.5" width="20" height="20" rx="5" stroke="#2B3F6C" strokeWidth="1.5" />
+              <path d="M9.5 12L11.5 14L15.5 10" stroke="#2B3F6C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
           </div>
         ))}
       </div>

@@ -15,7 +15,7 @@ interface Page6Props {
 }
 
 const Page6 = ({ formState, updateFormState, handleContinue, currentPage, setCurrentPage, }: Page6Props) => {
-  const { tastingSessions, businessLicenses, foodSafety, portfolio, photos ,videos} = formState;
+  const { tastingSessions, businessLicenses, foodSafety, portfolio, photos, videos } = formState;
 
 
   const _minorder = [
@@ -34,9 +34,9 @@ const Page6 = ({ formState, updateFormState, handleContinue, currentPage, setCur
 
 
 
-  const handlePhotoChange = (files:File| File[]) => {
+  const handlePhotoChange = (files: File | File[]) => {
     const filesArray = Array.isArray(files) ? files : [files];
-    if ((typeof formState.photos === 'string')){
+    if ((typeof formState.photos === 'string')) {
       updateFormState({ photos: "" });
 
     }
@@ -49,28 +49,28 @@ const Page6 = ({ formState, updateFormState, handleContinue, currentPage, setCur
 
   const handleVideoChange = (files: File | File[]) => {
     const filesArray = Array.isArray(files) ? files : [files]; // Ensure we always work with an array
-    
+
     if (typeof formState.videos === 'string') {
       updateFormState({ videos: [] });
     }
-  
+
     updateFormState({
       videos: Array.isArray(formState.videos)
         ? [...formState.videos, ...filesArray]
         : filesArray,
     });
   };
-  
-  
+
+
 
   // const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
   //   updateFormState({ photos: e.target.value });
   // };
 
-  const handleInputClick = (photos: File[]|string) => {
+  const handleInputClick = (photos: File[] | string) => {
     if (typeof formState.photos === 'string') {
       updateFormState({ photos: [] });
-    } 
+    }
   };
 
 
@@ -132,10 +132,12 @@ const Page6 = ({ formState, updateFormState, handleContinue, currentPage, setCur
                   <span className="text-small font-light">PNG,JPG</span>
 
                   <FileInput
-                    label="photos"
-                    onFileSelect={(files)=>handlePhotoChange(files)}
+                    label="Photos"
+                    multiple={true}
+                    onFileSelect={(file) => {
+                      updateFormState({ photos: file });
+                    }}
                     acceptedFileTypes="image/png, .pdf, image/jpg"
-                    multiple
                   />
                   <span className="text-base font-medium">or Continue via</span>
                   <input
@@ -143,12 +145,14 @@ const Page6 = ({ formState, updateFormState, handleContinue, currentPage, setCur
                     name="photos"
                     className="w-full rounded-xl border-2 bg-white p-3 py-5 outline-none text-sm"
                     placeholder="Enter your portfolio links"
-                    onChange={(e)=>{updateFormState({ photos: e.target.value })}}
-                    onClick={()=>{
-                      if (typeof formState.photos === 'string') {
-                        updateFormState({ photos: [] });
-                      } 
-                    }}
+                    onChange={(e) => { updateFormState({ photos: e.target.value }) }}
+                    value={
+                      typeof formState.photos === 'string'
+                        ? formState.photos
+                        : Array.isArray(formState.photos)
+                          ? formState.photos.map((file: File) => file.name).join(', ')  
+                          : (formState.photos as File)?.name
+                    }
                   />
                   {/* 
                   <input
@@ -233,8 +237,9 @@ const Page6 = ({ formState, updateFormState, handleContinue, currentPage, setCur
                     <FileInput
                       label="foodSafety"
                       onFileSelect={(file) => {
-                        if(!Array.isArray(file)){
-                        updateFormState({ foodSafety: file });}
+                        if (!Array.isArray(file)) {
+                          updateFormState({ foodSafety: file });
+                        }
                       }}
                       acceptedFileTypes="image/png, .pdf, image/jpg"
                     />
@@ -259,7 +264,9 @@ const Page6 = ({ formState, updateFormState, handleContinue, currentPage, setCur
                   <span className="text-small font-light">MP4, MKV</span>
                   <FileInput
                     label="videos"
-                    onFileSelect={(files)=>handleVideoChange(files)}
+                    onFileSelect={(file) => {
+                      updateFormState({ videos: file });
+                    }}
                     acceptedFileTypes="image/png, .pdf, image/jpg"
                     multiple
                   />
@@ -268,12 +275,14 @@ const Page6 = ({ formState, updateFormState, handleContinue, currentPage, setCur
                     type="text"
                     className="w-full rounded-xl border-2 bg-white p-3 py-5 outline-none text-sm"
                     placeholder="Enter your portfolio links"
-                    onChange={(e)=>{updateFormState({ videos: e.target.value })}}
-                    onClick={()=>{
-                      if (typeof formState.videos === 'string') {
-                        updateFormState({ videos: [] });
-                      } 
-                    }}
+                    onChange={(e) => { updateFormState({ videos: e.target.value }) }}
+                    value={
+                      typeof formState.videos === 'string'
+                        ? formState.videos
+                        : Array.isArray(formState.videos)
+                          ? formState.videos.map((file: File) => file.name).join(', ')  
+                          : (formState.videos as File)?.name
+                    }
                   />
 
                   {/* <FileInput

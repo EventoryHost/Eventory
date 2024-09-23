@@ -31,18 +31,18 @@ export interface FormState {
 
   // Page 6
   portfolio: string | File;
-  clientTestimonials: string | File;
+  clientTestimonials: string | File| File[];
   tastingSessions: boolean;
   businessLicenses: boolean;
   foodSafety: boolean | File;
   cateringServiceImages: string | File;
   videoEvent: string | File;
-  termsAndConditions: string | File;
-  cancellationPolicy: string | File;
+  termsAndConditions: string | File | File[];
+  cancellationPolicy: string | File| File[];
   minOrderReq: string;
   AdvBooking: string;
-  photos: File[] | string;
-  videos: File[] | string;
+  photos: string | File | File[];
+  videos: string | File | File[];
 }
 
 const Caterer = () => {
@@ -274,11 +274,32 @@ const Caterer = () => {
     formData.append("tasting_sessions", formState.tastingSessions.toString());
     formData.append("business_licenses", formState.businessLicenses.toString());
     formData.append("food_safety_certificates", formState.foodSafety.toString());
-    formData.append("terms_and_conditions", formState.termsAndConditions);
-    formData.append("cancellation_policy", formState.cancellationPolicy);
+
     formData.append("pre_set_menu", formState.preSetMenu);
 
-    formData.append("client_testimonials", formState.clientTestimonials);
+    if (Array.isArray(formState.termsAndConditions)) {
+      formState.termsAndConditions.forEach((file) => {
+        formData.append("terms_and_conditions", file); // No index here
+      });
+    } else {
+      formData.append("terms_and_conditions", formState.termsAndConditions);
+    }
+    if (Array.isArray(formState.cancellationPolicy)) {
+      formState.cancellationPolicy.forEach((file) => {
+        formData.append("cancellation_policy", file); // No index here
+      });
+    } else {
+      formData.append("cancellation_policy", formState.cancellationPolicy);
+    }
+
+    if (Array.isArray(formState.clientTestimonials)) {
+      formState.clientTestimonials.forEach((file) => {
+        formData.append("client_testimonials", file); // No index here
+      });
+    } else {
+      formData.append("client_testimonials", formState.clientTestimonials);
+    }
+
 
     formData.append("minimum_order_requirements", formState.minOrderReq);
     formData.append("advance_booking_period", formState.AdvBooking);

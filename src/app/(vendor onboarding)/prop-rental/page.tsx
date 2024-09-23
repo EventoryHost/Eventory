@@ -2,20 +2,22 @@
 import jwt from "jsonwebtoken";
 // RootPage.tsx
 import React, { useEffect, useState } from "react";
-import page1, { page1Props } from "./page1/page1";
+import Page1 from "./page1/page1";
 import page2, { page2Props } from "./page2/page2";
 import page3 from "./page3/page3";
 import preview from "./preview/preview";
 import { addPropRental } from "@/services/vendors/propRental";
+import Page4 from "./page4/page4";
+import Page5 from "./page5/page5";
+import Image from "next/image";
 
-const Pages = [page1, page2, page3, preview];
 
 type FormState = {
   // Page1
-  contactName: string;
+  managerName: string;
   phoneNumber: string;
   workDescription: string;
-  yearsOfExperience: string;
+  eventSize: string;
   numberOfWorkers: string;
   handleChange: (key: keyof FormState, value: any) => void;
   [key: string]: any;
@@ -74,12 +76,12 @@ type PricingEntry = {
 };
 
 const RootPage = () => {
-  const [currentPage, setCurrentPage] = useState<number>(0);
+  const [currentPage, setCurrentPage] = useState<number>(1);
   const [formState, setFormState] = useState<FormState>({
-    contactName: "",
+    managerName: "",
     phoneNumber: "",
     workDescription: "",
-    yearsOfExperience: "",
+    eventSize: "",
     numberOfWorkers: "",
     handleChange: (key: keyof FormState, value: any) => {},
 
@@ -222,9 +224,6 @@ const RootPage = () => {
     setCurrentPage(pageIndex);
   };
 
-  const CurrentPageComponent: React.FC<page1Props | page2Props | {}> = Pages[
-    currentPage
-  ] as React.FC<page1Props | page2Props | {}>;
 
   const [selectedCategory, setSelectedCategory] = useState("Furniture & Decor");
   const [selectedAppetizers, setselectedAppetizers] = useState<string[]>([]);
@@ -273,10 +272,10 @@ const RootPage = () => {
 
     const formData = new FormData();
     formData.append("venId", venId);
-    formData.append("contactPersonName", formState.contactName || "");
+    formData.append("contactPersonName", formState.managerName || "");
     formData.append("contactPhoneNumber", formState.phoneNumber || "");
     formData.append("descriptionOfWork", formState.workDescription || "");
-    formData.append("yearsOfExperience", formState.yearsOfExperience || "");
+    formData.append("eventSize", formState.eventSize || "");
     formData.append("numberOfWorkers", formState.numberOfWorkers || "");
 
     // Appending arrays without stringifying
@@ -382,46 +381,89 @@ const RootPage = () => {
     }
   }
 
-  return (
-    <div>
-      <CurrentPageComponent
+  const renderPage = () => {
+    switch (currentPage) {
+      case 1:
+        return (
+          <Page1
+          formState={formState}
+          handleChange={handleChange}
+          handleNestedChange={handleNestedChange}
+          navigateToPage={navigateToPage}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          handleSubmit={handleSubmit}
+          />
+        )
+        
 
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-        handleSubmit={handleSubmit}
-        key={currentPage}
-        formState={formState}
-        handleChange={handleChange}
-        handleNestedChange={handleNestedChange}
-        navigateToPage={navigateToPage}
-        selectedCategory={selectedCategory}
-        setSelectedCategory={setSelectedCategory}
-        selectedAppetizers={selectedAppetizers}
-        setselectedAppetizers={setselectedAppetizers}
-        selectedDecor={selectedDecor}
-        setSelectedDecor={setSelectedDecor}
-        selectedTentOptions={selectedTentOptions}
-        setSelectedTentOptions={setSelectedTentOptions}
-        selectedAudioOptions={selectedAudioOptions}
-        setSelectedAudioOptions={setSelectedAudioOptions}
-        selectedvisualOptions={selectedvisualOptions}
-        setSelectedVisualOptions={setSelectedVisualOptions}
-        selectedLightOptions={selectedLightOptions}
-        setSelectedLightOptions={setSelectedLightOptions}
-        percentageValuePage3={percentageValuePage3}
-        percentageValuePage4={percentageValuePage4}
-        percentageValuePage5={percentageValuePage5}
-        furnitureHourlyPricingEntries={formState.furnitureHourlyPricingEntries}
-        tentHourlyPricingEntries={formState.tentHourlyPricingEntries}
-        furnitureDealPricingEntries={formState.furnitureDealPricingEntries}
-        furnitureWorkerPricingEntries={formState.furnitureWorkerPricingEntries}
-        handleAddPricingEntry={handleAddPricingEntry}
-        handleAddTentHourlyPricingEntries={handleAddTentHourlyPricingEntries}
-        handleAddTentPricingEntry={handleAddTentPricingEntry}
-        handleAddAudioPricingEntry={handleAddAudioPricingEntry}
-        updateFormState={updateFormState}
-      />
-      
+  }};
+
+
+  return (
+    <div className="m-0 flex w-full flex-col overflow-x-hidden lg:h-[calc(100vh-4.2rem)] lg:flex-row">
+      <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 pt-4 md:min-w-[30%] lg:max-w-[30%]">
+        <div className="flex w-[90%] m-auto flex-col justify-center">
+          <div className="flex flex-col gap-1 px-6 lg:mt-[2rem]">
+            <span className="text-lg font-semibold">
+              Step {currentPage} of 4
+            </span>
+            <div className="flex gap-2">
+              <button
+                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 1 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                onClick={() => setCurrentPage(1)}
+              ></button>
+
+              <button
+                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 2 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                onClick={() => setCurrentPage(2)}
+              ></button>
+
+              <button
+                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 3 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                onClick={() => setCurrentPage(3)}
+              ></button>
+
+              <button
+                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 4 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                onClick={() => setCurrentPage(4)}
+              ></button>
+
+             
+            </div>
+          </div>
+        </div>
+        <div className="flex h-[50%] flex-col items-start justify-center gap-9 px-3 md:px-6  w-[90%] m-auto">
+          <h1 className="md:text-5xl text-3xl font-bold  ">
+            {currentPage === 2 && "Fill out your Service details "}
+            {currentPage === 1 && "Fill the basic information"}
+            {currentPage === 3 && "Fill the Event details"}
+            {currentPage === 4 && "Fill the Staffing and Equipment details"}
+           
+          </h1>
+          <p className="text-black text-xl ">
+            {currentPage === 2 && "Please provide the details of the venue offered by your company."}
+            {currentPage === 1 &&"Please provide the basic information of the rental service offered by your company."}
+            {currentPage === 3 &&
+              "Please provide the event details of the catering service offered by your company."}
+            {currentPage === 4 &&
+              "Please provide the staffing and equipment details of the catering service offered by your company."}
+           
+          </p>
+        </div>
+        <div className="relative h-[10rem] w-full">
+          <Image
+            src={"/tajmahal.png"}
+            alt=""
+            width={400}
+            height={200}
+            className="h-full w-full object-cover"
+          />
+        </div>
+      </div>
+      <div className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] p-4 md:p-12">
+        {renderPage()}
+      </div>
     </div>
   );
 };

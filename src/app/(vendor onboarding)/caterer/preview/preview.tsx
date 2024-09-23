@@ -54,18 +54,18 @@ type FormState = {
   customizableMenu: boolean;
   // Page 6
   portfolio: string | File;
-  photos: string | File[];
-  videos: string | File[];
+  photos: string | File[] | File;
+  videos: string | File[] | File;
   tastingSessions: boolean;
   businessLicenses: boolean;
   foodSafety: boolean | File;
   cateringServiceImages: string | File;
   videoEvent: string | File;
-  termsAndConditions: string | File;
-  cancellationPolicy: string | File;
+  termsAndConditions: string | File | File[];
+  cancellationPolicy: string | File | File[];
   minOrderReq: string;
   AdvBooking: string;
-  clientTestimonials: string | File;
+  clientTestimonials: string | File | File[];
 };
 
 type PagePreviewProps = {
@@ -408,22 +408,28 @@ function Preview({
         <div className="flex min-w-[45%] flex-col gap-2">
           <label className="font-normal text-base">Photos</label>
           <span className="text-sm font-bold">
-            {typeof formState.photos === "string" ? (
-              formState.photos
+            {Array.isArray(formState.photos) && formState.photos.length > 0 ? (
+              formState.photos.map((photo, index) => (
+                <span key={index} className="block">
+                  {photo.name}
+                </span>
+              ))
             ) : (
-              // <div>hi</div>
-              <File files={formState.photos} />
+              <span>No photos uploaded</span>
             )}
           </span>
         </div>
         <div className="flex min-w-[45%] flex-col gap-2">
           <label className="font-normal text-base">Videos</label>
           <span className="text-sm font-bold">
-            {typeof formState.videos === "string" ? (
-              formState.videos
+            {Array.isArray(formState.videos) && formState.videos.length > 0 ? (
+              formState.videos.map((video, index) => (
+                <span key={index} className="block">
+                  {video.name}
+                </span>
+              ))
             ) : (
-              // <div>hi</div>
-              <File files={formState.videos} />
+              <span>No videos uploaded</span>
             )}
           </span>
         </div>
@@ -481,9 +487,11 @@ function Preview({
 
             <span className="font-semibold ">
               {typeof formState.termsAndConditions === "string" ? (
-                formState.termsAndConditions
+                <div>{formState.termsAndConditions}</div> // Handle string case
+              ) : Array.isArray(formState.termsAndConditions) ? (
+                <FileDisplay files={formState.termsAndConditions} /> // Handle File[] case
               ) : (
-                <File file={formState.termsAndConditions} />
+                <FileDisplay file={formState.termsAndConditions} /> // Handle single File case
               )}
             </span>
           </div>
@@ -491,9 +499,11 @@ function Preview({
             <span className="text-base font-normal">Cancellation Policy</span>
             <span className="font-semibold">
               {typeof formState.cancellationPolicy === "string" ? (
-                formState.cancellationPolicy
+                <div>{formState.cancellationPolicy}</div> // Handle string case
+              ) : Array.isArray(formState.cancellationPolicy) ? (
+                <FileDisplay files={formState.cancellationPolicy} /> // Handle File[] case
               ) : (
-                <File file={formState.cancellationPolicy} />
+                <FileDisplay file={formState.cancellationPolicy} /> // Handle single File case
               )}
             </span>
           </div>
@@ -502,11 +512,13 @@ function Preview({
         <div className="flex w-1/2 flex-col px-4">
           <span className="text-base font-normal">Client Testimonials</span>
           <span className="font-semibold">
-            {typeof formState.clientTestimonials === "string" ? (
-              formState.clientTestimonials
-            ) : (
-              <File file={formState.clientTestimonials} />
-            )}
+          {typeof formState.clientTestimonials === "string" ? (
+                <div>{formState.clientTestimonials}</div> // Handle string case
+              ) : Array.isArray(formState.clientTestimonials) ? (
+                <FileDisplay files={formState.clientTestimonials} /> // Handle File[] case
+              ) : (
+                <FileDisplay file={formState.clientTestimonials} /> // Handle single File case
+              )}
           </span>
         </div>
       </div>
