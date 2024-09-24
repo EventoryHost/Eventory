@@ -14,6 +14,9 @@ import Page7 from "./page7/page7"
 import Page8 from "./preview/preview";
 
 import { addCaterer } from "@/services/vendors/caterer";
+import Agreement from "../Agreement/page";
+import Plans from "../Plans/page";
+import Registration_Completed from "../Registration-Completed/page";
 
 interface Package {
   type: string;
@@ -31,14 +34,14 @@ export interface FormState {
 
   // Page 6
   portfolio: string | File;
-  clientTestimonials: string | File| File[];
+  clientTestimonials: string | File | File[];
   tastingSessions: boolean;
   businessLicenses: boolean;
   foodSafety: boolean | File;
   cateringServiceImages: string | File;
   videoEvent: string | File;
   termsAndConditions: string | File | File[];
-  cancellationPolicy: string | File| File[];
+  cancellationPolicy: string | File | File[];
   minOrderReq: string;
   AdvBooking: string;
   photos: string | File | File[];
@@ -147,12 +150,22 @@ const Caterer = () => {
       console.error("Token not found");
       return null;
     }
+    try {
+      const decodedToken = jwt.decode(token) as {
+        userId?: string;
+        email?: string;
+      };
+      if (!decodedToken || !decodedToken.userId) {
+        console.error("Invalid token or token does not contain userId.");
+        return null;
+      }
+      return decodedToken.userId;
+    }
+    catch (error) {
+      console.error("Error decoding token:", error);
+      return null;
+    }
 
-    const { userId, email } = jwt.decode(token) as {
-      userId: string;
-      email: string;
-    };
-    return userId;
   }
 
   const handleContinue = () => {
@@ -190,9 +203,22 @@ const Caterer = () => {
   };
 
   async function handleSubmit() {
+    const venId = getVendorId();
+
+    if (!venId) {
+      console.error("No vendorId found!");
+      return;
+    }
+
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      console.error("No token found!");
+      return;
+    }
     // collect all responses in formdata and send to backend
     const formData = new FormData();
-    formData.append("venId", getVendorId()!);
+    formData.append("venId", venId);
     formData.append("name", formState.cateringName);
     formData.append("managerName", formState.businessName);
     servingCapacity.forEach((item, index) => {
@@ -393,29 +419,7 @@ const Caterer = () => {
             }}
           />
         );
-      // case 5:
-      //   return (
-      //     <Page5
-      //       setCurrentPage={setCurrentPage}
-      //       currentPage={currentPage}
-      //       formState={formState}
-      //       updateFormState={updateFormState}
-      //       advancePayment={advancePayment}
-      //       setAdvancePayment={setAdvancePayment}
-      //       // hourlyPackages={hourlyPackages}
-      //       // setHourlyPackages={setHourlyPackages}
-      //       dailyPackages={dailyPackages}
-      //       setDailyPackages={setDailyPackages}
-      //       seasonalPackages={seasonalPackages}
-      //       setSeasonalPackages={setSeasonalPackages}
-      //       handlePackageChange={handlePackageChange}
-      //       addPackage={addPackage}
-      //       handleContinue={() => {
-      //         setCurrentPage(6);
-      //         handleContinue();
-      //       }}
-      //     />
-      //   );
+
       case 5:
         return (
           <Page6
@@ -494,13 +498,33 @@ const Caterer = () => {
             }}
           />
         );
+      case 8:
+        return (
+          <>
+
+            <Agreement setCurrentPage={setCurrentPage} />
+          </>
+        )
+      case 9:
+        return (
+          <>
+            <Plans handleformSubmit={handleSubmit} setCurrentPage={setCurrentPage} />
+          </>
+        )
+      case 10:
+        return (
+          <>
+            <Registration_Completed />
+          </>
+        )
       default:
         return <div>thankyou</div>;
     }
   };
 
   return (
-    <div className="m-0 flex w-full flex-col overflow-x-hidden lg:h-[calc(100vh-4.2rem)] lg:flex-row">
+    <div className={`m-0 flex w-full flex-col overflow-x-hidden ${currentPage <= 6 ? 'lg:h-[calc(100vh-4.2rem)]' : ''} lg:flex-row `}>
+      {currentPage <= 7 &&(
       <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 pt-4 md:min-w-[30%] lg:max-w-[30%]">
         <div className="flex w-[90%] m-auto flex-col justify-center">
           <div className="flex flex-col gap-1 px-3 lg:mt-[2rem]">
@@ -589,6 +613,7 @@ const Caterer = () => {
           />
         </div>
       </div>
+      )}
       <div className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] p-4 md:p-12">
         {renderPage()}
       </div>
