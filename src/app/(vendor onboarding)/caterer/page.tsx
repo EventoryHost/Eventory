@@ -493,7 +493,7 @@ const Caterer = () => {
             addPackage={addPackage}
             advancePayment={advancePayment}
             handleContinue={() => {
-              // setCurrentPage(8);
+              setCurrentPage(8);
               handleSubmit();
             }}
           />
@@ -525,7 +525,7 @@ const Caterer = () => {
   };
 
   return (
-    <div className={`m-0 flex w-full flex-col overflow-x-hidden ${currentPage <= 6 ? 'lg:h-[calc(100vh-4.2rem)]' : ''} lg:flex-row `}>
+    <div className={`m-0 flex w-full flex-col overflow-x-hidden ${currentPage <= 7 ? 'lg:h-[calc(100vh-4.2rem)]' : ''} lg:flex-row `}>
       {currentPage <= 7 &&(
       <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 pt-4 md:min-w-[30%] lg:max-w-[30%]">
         <div className="flex w-[90%] m-auto flex-col justify-center">
