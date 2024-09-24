@@ -77,8 +77,11 @@ interface FormState {
 }
 
 const teamsizelist = [
-  "Need to be updated",
-  "231",
+  "1-5",
+  "6-15",
+  "16-30",
+  "31-50",
+  "51+"
 ];
 
 const durationlist = [
@@ -188,8 +191,8 @@ const Page1: React.FC<Page1Props> = ({
             <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
               <div className="flex min-w-[40%] flex-col gap-4">
                 <label htmlFor="businessName">
-                 Decoration setup duration
-                </label>duration
+                  Decoration setup duration
+                </label>
                 <Dropdown
                   options={durationlist}
                   onSelect={(value: string) => handledropdownduration(value)}

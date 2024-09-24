@@ -114,15 +114,13 @@ const Page2: React.FC<Page2Props> = ({
                     className="h-4 w-4 accent-[#2E3192]"
                   />
                   <p>Yes</p>
-
                   <input
                     type="radio"
-                    className="h-4 w-4 accent-[#2E3192]"
                     checked={adobtThemes === false}
                     onChange={() => updateFormState({ adobtThemes: false })}
+                    className="h-4 w-4 accent-[#2E3192]"
                   />
                   <p>No</p>
-
 
                 </div>
               </div>
@@ -131,26 +129,26 @@ const Page2: React.FC<Page2Props> = ({
               <div className="flex flex-col gap-4 lg:max-w-[60%]">
                 <div className="flex min-w-[40%] flex-col gap-6">
                   <label htmlFor="businessName">
-                    Do you adapt themes to different venue sizes ?
+                    Do you assist with creating color schemes ?
                   </label>
                   <div className="flex flex-row items-center justify-start gap-4">
                     <input
                       type="radio"
-                      checked={adobtThemes === true}
-                      onChange={() => updateFormState({ adobtThemes: true })}
+                      checked={colorschmes === true}
+                      onChange={() => updateFormState({ colorschmes: true })}
                       className="h-4 w-4 accent-[#2E3192]"
                     />
                     <p>Yes</p>
 
                     <input
                       type="radio"
-                      checked={adobtThemes === false}
-                      onChange={() => updateFormState({ adobtThemes: false })}
                       className="h-4 w-4 accent-[#2E3192]"
+                      checked={colorschmes === false}
+                      onChange={() => updateFormState({ colorschmes: false })}
                     />
                     <p>No</p>
-
                   </div>
+
                 </div>
                 <div className="flex min-w-[40%] flex-col gap-6">
                   <label htmlFor="businessName">
@@ -183,10 +181,10 @@ const Page2: React.FC<Page2Props> = ({
               </div>
               <div className="flex min-w-[50%] flex-col gap-5">
                 <label htmlFor="category">Custom Design Process</label>
-                <input
+                <textarea
                   id="businessName"
-                  type="text"
-                  className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
+                  rows={5}
+                  className="w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                   placeholder="Description of their custom design process"
                   value={customDesignProcess}
                   onChange={(e) =>

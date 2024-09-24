@@ -14,9 +14,6 @@ const _themesElement = [
 ];
 
 interface FormState {
-  backDropoptions: string;
-  decorationoptions: string;
-  prop_accessory: string;
   themephotos: string | File;
   themevideos: string | File;
 }

@@ -35,20 +35,9 @@ export interface FormState {
   customDesignProcess: string;
 
   // Page 3
-
   themephotos: string | File;
   themevideos: string | File;
-  backDropoptions: string;
-  decorationoptions: string;
-  prop_accessory: string;
-
   // Page 4
-  freeInitialConsultation: boolean;
-  revisionPolicy: boolean;
-  writtenthemeProposal: boolean;
-  setup_installation: boolean;
-  consulationProcess: string;
-
   photos: string | File;
   videos: string | File;
   websiteurl: string;
@@ -59,19 +48,13 @@ export interface FormState {
   writtenthemeproposalafterconsultaion: boolean;
   revisionforinitialthemeproposal: boolean;
 
-  //6
   // Page 3
   cancellationPolicy: string | File;
   termsAndConditions: string | File;
 
+  //page 5
 
-  //page 7
-  insurancePolicy: string | File;
 
-  privacyPolicy: string | File;
-
-  references: boolean;
-  experience: string;
 }
 
 const Decorators: React.FC = () => {
@@ -93,17 +76,8 @@ const Decorators: React.FC = () => {
     //page 3
     themephotos: "",
     themevideos: "",
-    backDropoptions: "",
-    decorationoptions: "",
-    prop_accessory: "",
-    // Page 4
-    freeInitialConsultation: true,
-    revisionPolicy: true,
-    writtenthemeProposal: true,
-    setup_installation: true,
-    consulationProcess: "",
 
-    //page5
+    //page4
     photos: "",
     videos: "",
     websiteurl: "",
@@ -113,18 +87,11 @@ const Decorators: React.FC = () => {
     advbookingperiod: "",
     writtenthemeproposalafterconsultaion: false,
     revisionforinitialthemeproposal: false,
-
-    //page6
+    //page5
     cancellationPolicy: "",
     termsAndConditions: "",
 
 
-    //page7
-    insurancePolicy: "",
-    privacyPolicy: "",
-
-    references: false,
-    experience: "",
   });
 
   const updateFormState = (newState: Partial<FormState>) => {
@@ -138,54 +105,12 @@ const Decorators: React.FC = () => {
   const [corporateEvents, setCorporateEvents] = useState<string[]>([]);
   const [seasonalEvents, setSeasonalEvents] = useState<string[]>([]);
   const [culturalEvents, setCulturalEvents] = useState<string[]>([]);
-
   //page 2
   const [themesOffered, setThemesOffered] = useState<string[]>([]);
-
   //page 3
   const [themesElements, setThemesElements] = useState<string[]>([]);
 
-  //page 4
 
-  //page 5
-  const [hourlyPackages, setHourlyPackages] = useState<Package[]>([
-    { type: "", priceRange: [0, 0] },
-  ]);
-
-  const [dailyPackages, setDailyPackages] = useState<Package[]>([
-    { type: "", priceRange: [0, 0] },
-  ]);
-
-  const [additionalCharges, setAdditionalCharges] = useState<Package[]>([
-    { type: "", priceRange: [0, 0] },
-  ]);
-  const [advancePayment, setAdvancePayment] = useState(25);
-
-  const handlePackageChange = (
-    setPackages: React.Dispatch<React.SetStateAction<Package[]>>,
-    index: number,
-    field: "type" | "priceRange",
-    value: string | [number, number],
-  ) => {
-    setPackages((prevPackages) => {
-      const newPackages = [...prevPackages];
-      if (field === "type") {
-        newPackages[index].type = value as string;
-      } else {
-        newPackages[index].priceRange = value as [number, number];
-      }
-      return newPackages;
-    });
-  };
-
-  const addPackage = (
-    setPackages: React.Dispatch<React.SetStateAction<Package[]>>,
-  ) => {
-    setPackages((prevPackages) => [
-      ...prevPackages,
-      { type: "", priceRange: [0, 100000] },
-    ]);
-  };
 
   function getVendorId(): string | null {
     const token = localStorage.getItem("token");
@@ -234,9 +159,13 @@ const Decorators: React.FC = () => {
     const formData = new FormData();
 
     formData.append("venId", venId);
-    formData.append("name", formState.businessName);
-
+    
+    
     //page 1
+    formData.append("name", formState.businessName);
+    formData.append("duration", formState.duration);
+    formData.append("eventsize", formState.eventsize);
+
     typesOfEvents.forEach((type) => {
       formData.append("typesOfEvents", type);
     });
@@ -253,6 +182,9 @@ const Decorators: React.FC = () => {
       formData.append("culturalEvents", event);
     });
     //page 2
+    themesOffered.forEach((event) => {
+      formData.append("themesOffered", event);
+    });
     formData.append(
       "propthemesOffered",
       formState.propthemesOffered.toString(),
@@ -263,62 +195,16 @@ const Decorators: React.FC = () => {
       "customizationsThemes",
       formState.customizationsThemes.toString(),
     );
+    
     formData.append("customDesignProcess", formState.customDesignProcess);
-    //page 3
-    formData.append("backDropoptions", formState.backDropoptions);
-    formData.append("decorationoptions", formState.decorationoptions);
-    formData.append("prop_accessory", formState.prop_accessory);
-    //page 4
-    formData.append(
-      "freeInitialConsultation",
-      formState.freeInitialConsultation.toString(),
-    );
-    formData.append("revisionPolicy", formState.revisionPolicy.toString());
-    formData.append(
-      "writtenthemeProposal",
-      formState.writtenthemeProposal.toString(),
-    );
-    formData.append(
-      "setup_installation",
-      formState.setup_installation.toString(),
-    );
-    formData.append("consulationProcess", formState.consulationProcess);
-    //page 5
-    hourlyPackages.forEach((packageData, index) => {
-      formData.append(`hourlyPackages[${index}][type]`, packageData.type);
-      formData.append(
-        `hourlyPackages[${index}][priceRange][0]`,
-        packageData.priceRange[0].toString(),
-      );
-      formData.append(
-        `hourlyPackages[${index}][priceRange][1]`,
-        packageData.priceRange[1].toString(),
-      );
+    
+    // 3 
+    themesElements.forEach((event) => {
+      formData.append("themesElements", event);
     });
-    dailyPackages.forEach((packageData, index) => {
-      formData.append(`dailyPackages[${index}][type]`, packageData.type);
-      formData.append(
-        `dailyPackages[${index}][priceRange][0]`,
-        packageData.priceRange[0].toString(),
-      );
-      formData.append(
-        `dailyPackages[${index}][priceRange][1]`,
-        packageData.priceRange[1].toString(),
-      );
-    });
-    additionalCharges.forEach((packageData, index) => {
-      formData.append(`additionalCharges[${index}][type]`, packageData.type);
-      formData.append(
-        `additionalCharges[${index}][priceRange][0]`,
-        packageData.priceRange[0].toString(),
-      );
-      formData.append(
-        `additionalCharges[${index}][priceRange][1]`,
-        packageData.priceRange[1].toString(),
-      );
-    });
-    formData.append("advancePayment", advancePayment.toString());
-    //page 6
+    formData.append("themephotos", formState.themephotos);
+    formData.append("themevideos", formState.themevideos);
+    //4 
     formData.append("photos", formState.photos);
     formData.append("videos", formState.videos);
     formData.append("websiteurl", formState.websiteurl);
@@ -328,18 +214,12 @@ const Decorators: React.FC = () => {
     formData.append("advbookingperiod", formState.advbookingperiod);
     formData.append("writtenthemeproposalafterconsultaion", formState.writtenthemeproposalafterconsultaion.toString());
     formData.append("revisionforinitialthemeproposal", formState.revisionforinitialthemeproposal.toString());
+    // 5
+    formData.append("cancellationPolicy", formState.cancellationPolicy);
+    formData.append("termsAndConditions", formState.termsAndConditions);
 
-    // Append form data for debugging
-    formData.forEach((value, key) => {
-      console.log(`${key}: ${value}`);
-    });
+    console.log(formData);
 
-    try {
-      await addDecorator(formData);
-      alert("added decorator");
-    } catch (error) {
-      console.error("Error adding venue:", error);
-    }
   };
 
   const renderPage = () => {
@@ -427,16 +307,6 @@ const Decorators: React.FC = () => {
             setThemesOffered={setThemesOffered}
             themesElements={themesElements}
             setThemesElements={setThemesElements}
-            hourlyPackages={hourlyPackages}
-            setHourlyPackages={setHourlyPackages}
-            dailyPackages={dailyPackages}
-            setDailyPackages={setDailyPackages}
-            additionalCharges={additionalCharges}
-            setAdditionalCharges={setAdditionalCharges}
-            handlePackageChange={handlePackageChange}
-            addPackage={addPackage}
-            advancePayment={advancePayment}
-            setAdvancePayment={setAdvancePayment}
             handleContinue={handleContinue}
           />
         );
