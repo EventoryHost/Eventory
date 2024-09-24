@@ -35,8 +35,8 @@ export interface FormState {
  
 
   // Page 3
-themePhoto:string|File;
-themeVideo:string|File;
+themePhoto:string | File | File[]
+themeVideo:string | File | File[]
 
   // Page 4
   freeInitialConsultation: boolean;

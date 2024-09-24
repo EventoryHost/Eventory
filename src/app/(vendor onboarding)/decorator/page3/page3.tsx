@@ -16,8 +16,8 @@ const _themesElement = [
 ];
 
 interface FormState {
-  themePhoto: string | File;
-  themeVideo: string|File
+  themePhoto: string | File | File[]
+  themeVideo: string | File | File[]
 }
 
 interface Page3Props {
@@ -39,7 +39,7 @@ const Page3: React.FC<Page3Props> = ({
   currentPage,
   setCurrentPage
 }) => {
-  const { themePhoto ,themeVideo} = formState;
+  const { themePhoto, themeVideo } = formState;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -83,6 +83,9 @@ const Page3: React.FC<Page3Props> = ({
 
               <FileInput
                 label="themePhoto"
+                multiple={true}
+
+
                 onFileSelect={(file) => {
                   updateFormState({ themePhoto: file });
                 }}
@@ -116,6 +119,7 @@ const Page3: React.FC<Page3Props> = ({
 
               <FileInput
                 label="themeVideo"
+                multiple={true}
                 onFileSelect={(file) => {
                   updateFormState({ themeVideo: file });
                 }}

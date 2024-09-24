@@ -23,9 +23,7 @@ interface formState {
   workDescription: string;
   eventSize: string;
   handleChange: (key: string, value: any) => void;
-  percentageValuePage3: number;
-  percentageValuePage4: number;
-  percentageValuePage5: number;
+  
 }
 
 type PricingEntry = {
@@ -34,7 +32,7 @@ type PricingEntry = {
   max: number;
 };
 
-export interface page1Props {
+type page1Props ={
   formState: formState;
   handleChange: (key: string, value: any) => void;
   handleNestedChange: (key: string, nestedKey: string, value: any) => void;
@@ -111,7 +109,10 @@ const Page1: React.FC<page1Props> = ({
         {/* Next Button */}
         <div className="items-strech  flex flex-row gap-7 self-end">
           <button
-            onClick={() => setCurrentPage(currentPage + 1)}
+            onClick={() => {
+              console.log(formState.managerName,formState.eventSize,formState.workDescription)
+              setCurrentPage(currentPage + 1)
+            }}
             className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
           >
             Next

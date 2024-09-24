@@ -54,8 +54,8 @@ const VenueForm: React.FC = () => {
     catererServices: false,
     decorServices: false,
     insurancePolicy: "",
-    photos: "",
-    videos: "",
+    photos: [],
+    videos: [],
     awards: "",
     clientTestimonials: "",
     advanceBookingPeriod: "",
@@ -77,7 +77,7 @@ const VenueForm: React.FC = () => {
   const updateFormState = (newState: Partial<FormState>) => {
     setFormState((prev) => ({ ...prev, ...newState }));
   };
-
+  
   const [audioVisualEquipment, setAudioVisualEquipment] = useState<string[]>(
     [],
   );

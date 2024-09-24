@@ -3,6 +3,7 @@
 import FileInput from "@/components/fileInput";
 import { ArrowLeft, XCircle } from "lucide-react";
 
+
 interface FormState {
   portfolio: string | File;
   ratings_reviews: string | File;
@@ -62,7 +63,8 @@ const Page6: React.FC<Page6Props> = ({
               <FileInput
                 label="ratings reviews"
                 onFileSelect={(file) => {
-                  updateFormState({ ratings_reviews: file });
+                  if(!Array.isArray(file)){
+                  updateFormState({ ratings_reviews: file });}
                 }}
                 acceptedFileTypes="image/png, .pdf, image/jpg"
               />
@@ -79,21 +81,20 @@ const Page6: React.FC<Page6Props> = ({
             <div className="flex min-w-[50%] flex-col gap-2">
               <label htmlFor="category" className="text-base font-medium">Portfolio </label>
               <span className="text-small font-light">PNG,JPG,PDF</span>
-              <FileInput
+              {/* <FileInput
                     label="portfolio"
                     onFileSelect={handleFileSelect
                     }
                     acceptedFileTypes="image/png, .pdf, image/jpg"
-                  />
+                  /> */}
                   {/* Styled portfolio list */}
-                  {portLinks.length > 0 && (
+                  {/* {portLinks.length > 0 && (
                     <ul className="mt-4">
                       {portLinks.map((file, index) => (
                         <li
                           key={index}
                           className="flex items-center justify-between p-2 bg-gray-100 rounded-lg mb-2 shadow-md"
                         >
-                          {/* Display file name with link */}
                           <a
                             href={URL.createObjectURL(file)}
                             target="_blank"
@@ -103,7 +104,6 @@ const Page6: React.FC<Page6Props> = ({
                             {file.name}
                           </a>
 
-                          {/* Cross button to remove file */}
                           <button
                             onClick={() => handleFileRemove(index)}
                             className="ml-4 p-1 rounded-full text-red-500 hover:bg-red-200"
@@ -113,7 +113,7 @@ const Page6: React.FC<Page6Props> = ({
                         </li>
                       ))}
                     </ul>
-                  )}
+                  )} */}
 
               <input
                 id="businessName"
@@ -132,7 +132,8 @@ const Page6: React.FC<Page6Props> = ({
                 <FileInput
                   label="client testimonials"
                   onFileSelect={(file) => {
-                    updateFormState({ clientTestimonials: file });
+                    if(!Array.isArray(file)){
+                    updateFormState({ clientTestimonials: file });}
                   }}
                   acceptedFileTypes="image/png, .pdf, image/jpg"
                 />
@@ -153,7 +154,8 @@ const Page6: React.FC<Page6Props> = ({
                 <FileInput
                   label="certificates awards"
                   onFileSelect={(file) => {
-                    updateFormState({ certificates_awards: file });
+                    if(!Array.isArray(file)){
+                    updateFormState({ certificates_awards: file });}
                   }}
                   acceptedFileTypes="image/png, .pdf, image/jpg"
                 />
