@@ -10,6 +10,9 @@ import Page3 from "./page3/page3";
 import Page4 from "./page4/page4";
 import Page6 from "./page6/page6";
 import { addVenue } from "../../../services/vendors/venue";
+import Agreement from "../Agreement/page";
+import Registration_Completed from "../Registration-Completed/page";
+import Plans from "../Plans/page";
 
 interface Package {
   type: string;
@@ -24,7 +27,7 @@ export interface FormState {
     openingTime?: string;
     closingTime?: string;
   }
-  address : string;
+  address: string;
   venueDescription: string;
   catererServices: boolean;
   decorServices: boolean;
@@ -105,14 +108,14 @@ const VenueForm: React.FC = () => {
     if (!formState.managerName) {
       console.error("Manager Name is required");
       return;
-  }
+    }
     const formData = new FormData();
-  
-    formData.append("venId", getVendorId()!); 
+
+    formData.append("venId", getVendorId()!);
     formData.append("name", formState.name);
     formData.append("managerName", formState.managerName);
     formData.append("capacity", formState.capacity);
-  
+
     formData.append(
       "operatingHours[openingTime]",
       formState.operatingHours.openingTime ?? "",
@@ -125,9 +128,9 @@ const VenueForm: React.FC = () => {
     formData.append("venueDescription", formState.venueDescription);
     formData.append("catererServices", String(formState.catererServices));
     formData.append("decorServices", String(formState.decorServices));
-  
+
     // Venue Types (Array)
-    venueTypes.forEach((item,index) => {
+    venueTypes.forEach((item, index) => {
       formData.append(`venueTypes[${index}]`, item);
     });
 
@@ -135,27 +138,27 @@ const VenueForm: React.FC = () => {
     audioVisualEquipment.forEach((item, index) => {
       formData.append(`audioVisualEquipment[${index}]`, item);
     });
-  
+
     // Accessibility Features (Array)
     accessibilityFeatures.forEach((item, index) => {
       formData.append(`accessibilityFeatures[${index}]`, item);
     });
-  
+
     // Restrictions Policies (Array)
     restrictionsPolicies.forEach((item, index) => {
       formData.append(`restrictionsPolicies[${index}]`, item);
     });
-  
+
     // Special Features (Array)
     specialFeatures.forEach((item, index) => {
       formData.append(`specialFeatures[${index}]`, item);
     });
-  
+
     // Facilities (Array)
     facilities.forEach((item, index) => {
       formData.append(`facilities[${index}]`, item);
     });
-  
+
     if (Array.isArray(formState.termsConditions)) {
       formState.termsConditions.forEach((file) => {
         formData.append("termsConditions", file); // No index here
@@ -163,15 +166,15 @@ const VenueForm: React.FC = () => {
     } else {
       formData.append("termsConditions", formState.termsConditions);
     }
-    
+
     if (Array.isArray(formState.cancellationPolicy)) {
       formState.cancellationPolicy.forEach((file) => {
-        formData.append("cancellationPolicy", file); 
+        formData.append("cancellationPolicy", file);
       });
     } else {
       formData.append("cancellationPolicy", formState.cancellationPolicy);
     }
-    
+
     if (Array.isArray(formState.insurancePolicy)) {
       formState.insurancePolicy.forEach((file) => {
         formData.append("insurancePolicy", file); // No index here
@@ -179,8 +182,8 @@ const VenueForm: React.FC = () => {
     } else {
       formData.append("insurancePolicy", formState.insurancePolicy);
     }
-    
-  
+
+
     // Handle photos field
     if (Array.isArray(formState.photos)) {
       formState.photos.forEach((file) => {
@@ -191,7 +194,7 @@ const VenueForm: React.FC = () => {
     } else if (typeof formState.photos === 'string') {
       formData.append('photos', formState.photos); // Append the string (URL)
     }
-  
+
     // Handle videos field
     if (Array.isArray(formState.videos)) {
       formState.videos.forEach((file) => {
@@ -202,23 +205,23 @@ const VenueForm: React.FC = () => {
     } else if (typeof formState.videos === 'string') {
       formData.append('videos', formState.videos); // Append the string (URL)
     }
-  
+
     // Social Links
     formData.append("socialLinks[instagramURL]", formState.instagramURL);
     formData.append("socialLinks[websiteURL]", formState.websiteURL);
-  
+
     // Awards and Client Testimonials
     formData.append("awards", formState.awards);
     formData.append("clientTestimonials", formState.clientTestimonials);
-  
+
     // Advanced Booking Period
     formData.append("advanceBookingPeriod", formState.advanceBookingPeriod);
-  
+
     // For debugging
     formData.forEach((value, key) => {
       console.log(`${key}: ${value}`);
     });
-  
+
     try {
       await addVenue(formData);
       console.log("Venue added successfully");
@@ -226,7 +229,7 @@ const VenueForm: React.FC = () => {
       console.error("Error adding venue:", error);
     }
   };
-  
+
 
   const renderPage = () => {
     switch (currentPage) {
@@ -302,7 +305,7 @@ const VenueForm: React.FC = () => {
             setCurrentPage={setCurrentPage}
           />
         );
-      
+
       case 5:
         return (
           <Page6
@@ -334,6 +337,30 @@ const VenueForm: React.FC = () => {
 
           />
         );
+      case 6:
+        return (
+          < >
+            <Agreement
+              // currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+            />
+          </>
+        );
+      case 7:
+        return (
+          <>
+            <Plans
+              setCurrentPage={setCurrentPage}
+              handleformSubmit={handleSubmit}
+            />
+          </>
+        );
+      case 8:
+        return (
+          <>
+            <Registration_Completed />
+          </>
+        )
       default:
         return (
           <Page1
@@ -351,60 +378,69 @@ const VenueForm: React.FC = () => {
 
   return (
     <div className="m-0 flex w-full flex-col overflow-x-hidden lg:h-[calc(100vh-4.2rem)] lg:flex-row">
-      <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
-        <div className="flex w-[100%] flex-col justify-center">
-          <div className="flex flex-col gap-1 mx-6 px-3 lg:mt-[2rem]">
-            <span className="text-lg font-semibold">Step 1 of 6</span>
-            <div className="flex gap-4">
-              <button
-                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 1 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                onClick={() => setCurrentPage(1)}
-              ></button>
+      {currentPage <= 5 && (
+        <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
+          <div className="flex w-[100%] flex-col justify-center">
+            <div className="flex flex-col gap-1 mx-6 px-3 lg:mt-[2rem]">
+              <span className="text-lg font-semibold">Step 1 of 6</span>
+              <div className="flex gap-4">
+                <button
+                  className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 1 ? "bg-[#2E3192] text-white" : "bg-gray-300"
+                    }`}
+                  onClick={() => setCurrentPage(1)}
+                ></button>
 
-              <button
-                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 2 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                onClick={() => setCurrentPage(2)}
-              ></button>
+                <button
+                  className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 2 ? "bg-[#2E3192] text-white" : "bg-gray-300"
+                    }`}
+                  onClick={() => setCurrentPage(2)}
+                ></button>
 
-              <button
-                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 3 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                onClick={() => setCurrentPage(3)}
-              ></button>
+                <button
+                  className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 3 ? "bg-[#2E3192] text-white" : "bg-gray-300"
+                    }`}
+                  onClick={() => setCurrentPage(3)}
+                ></button>
 
-              <button
-                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 4 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                onClick={() => setCurrentPage(4)}
-              ></button>
+                <button
+                  className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 4 ? "bg-[#2E3192] text-white" : "bg-gray-300"
+                    }`}
+                  onClick={() => setCurrentPage(4)}
+                ></button>
 
-              <button
-                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 5 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                onClick={() => setCurrentPage(5)}
-              ></button>
+                <button
+                  className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 5 ? "bg-[#2E3192] text-white" : "bg-gray-300"
+                    }`}
+                  onClick={() => setCurrentPage(5)}
+                ></button>
+              </div>
             </div>
           </div>
+          <div className="flex h-[50%] flex-col mx-6 items-start justify-center gap-9 px-3 md:px-3">
+            <h1 className="text-[40px] font-semibold md:text-[3vw]">
+              Fill out your Venue details
+            </h1>
+            <p className="text-[#797878]  xs:text-md md:w-[90%]">
+              Please Provide details of the venue provided by your company.
+            </p>
+          </div>
+          <div className="relative h-[10rem] lg:w-full">
+            <Image
+              src={"/tajmahal.png"}
+              alt=""
+              width={400}
+              height={200}
+              className="h-full w-full object-cover"
+            />
+          </div>
         </div>
-        <div className="flex h-[50%] flex-col mx-6 items-start justify-center gap-9 px-3 md:px-3">
-          <h1 className="text-[40px] font-semibold md:text-[3vw]">
-            Fill out your Venue details
-          </h1>
-          <p className="text-[#797878]  xs:text-md md:w-[90%]">
-            Please Provide details of the venue provided by your company.
-          </p>
-        </div>
-        <div className="relative h-[10rem] lg:w-full">
-          <Image
-            src={"/tajmahal.png"}
-            alt=""
-            width={400}
-            height={200}
-            className="h-full w-full object-cover"
-          />
-        </div>
-      </div>
+      )}
+
       <div className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] p-2 md:p-[1rem]">
         {renderPage()}
       </div>
     </div>
+
   );
 };
 
