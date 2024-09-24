@@ -67,8 +67,13 @@ interface formState {
 };
 
 type page3Props = {
-  selectedEvents: string[];
-  setselectedEvents: (value: SetStateAction<string[]>) => void;
+  selectedFurnitureEvents: string[];
+  setselectedFurnitureEvents: (value: SetStateAction<string[]>) => void;
+  selectedTentEvents: string[];
+  setselectedTentEvents: (value: SetStateAction<string[]>) => void;
+  selectedAudioEvents: string[];
+  setselectedAudioEvents: (value: SetStateAction<string[]>) => void;
+
   selectedCategory: string;
   setSelectedCategory: (value: any) => void;
   selectedFurniture: string[];
@@ -94,9 +99,14 @@ type page3Props = {
 
 function Page3({
   selectedCategory,
-  selectedEvents,
+  selectedFurnitureEvents,
+  selectedTentEvents,
+  selectedAudioEvents,
+  setselectedFurnitureEvents,
+  setselectedAudioEvents,
+  setselectedTentEvents,
   setSelectedCategory,
-  setselectedEvents,
+  
   selectedFurniture,
   setSelectedFurniture,
   selectedDecor,
@@ -199,10 +209,10 @@ function Page3({
             <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
               <h1 className="text-xl font-semibold">Types of Event</h1>
               <Appetizers
-                field={"types_of_events"}
+                field={"furniture_types_of_events"}
                 appetizers={_typesOfEvents}
-                selectedAppetizers={selectedEvents}
-                setSelectedAppetizers={setselectedEvents}
+                selectedAppetizers={selectedFurnitureEvents}
+                setSelectedAppetizers={setselectedFurnitureEvents}
               />
             </div>
             <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
@@ -254,10 +264,10 @@ function Page3({
             <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
               <h1 className="text-xl font-semibold">Types of Event</h1>
               <Appetizers
-                field={"types_of_events"}
+                field={"tent_types_of_events"}
                 appetizers={_typesOfEvents}
-                selectedAppetizers={selectedEvents}
-                setSelectedAppetizers={setselectedEvents}
+                selectedAppetizers={selectedTentEvents}
+                setSelectedAppetizers={setselectedTentEvents}
               />
             </div>
             <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
@@ -299,10 +309,10 @@ function Page3({
             <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
               <h1 className="text-xl font-semibold">Types of Event</h1>
               <Appetizers
-                field={"types_of_events"}
+                field={"audio_types_of_events"}
                 appetizers={_typesOfEvents}
-                selectedAppetizers={selectedEvents}
-                setSelectedAppetizers={setselectedEvents}
+                selectedAppetizers={selectedAudioEvents}
+                setSelectedAppetizers={setselectedAudioEvents}
               />
             </div>
             <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
@@ -435,8 +445,19 @@ function Page3({
                 <span className="text-small font-light">MP4, MKV</span>
                 <FileInput
                   label="videos"
-                  onFileSelect={(file) => {
-                    updateFormState({ videos: file });
+                  onFileSelect={(files) => {
+                    const existingVideos = Array.isArray(formState.videos)
+                      ? formState.videos
+                      : formState.videos instanceof File
+                      ? [formState.videos]
+                      : [];
+          
+                    const newVideos = [
+                      ...existingVideos,
+                      ...(Array.isArray(files) ? files : [files]),
+                    ];
+          
+                    updateFormState({ videos: newVideos });
                   }}
                   acceptedFileTypes="image/png, .pdf, image/jpg"
                   multiple
@@ -571,7 +592,7 @@ function Page3({
                 <button
                   className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
                   onClick={() => {
-                    console.log(formState.furnitureAndDecorListUrl,formState.cancellationPolicy,formState.clientTestimonial,formState.photos)
+                    console.log(formState.furnitureAndDecorListUrl,formState.termsAndConditions,formState.clientTestimonial,formState.photos,formState.videos)
                     setCurrentPage(currentPage + 1)
                   }}
                 >

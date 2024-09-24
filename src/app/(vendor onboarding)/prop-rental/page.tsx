@@ -7,10 +7,10 @@ import Page2 from "./page2/page2";
 import Page3 from "./page3/page3"
 import preview from "./preview/preview";
 import { addPropRental } from "@/services/vendors/propRental";
-import Page4 from "./page4/page4";
-import Page5 from "./page5/page5";
+
 import Image from "next/image";
 import { Import } from "lucide-react";
+import Preview from "./preview/preview";
 
 
 export interface FormState {
@@ -47,39 +47,39 @@ export interface FormState {
   cancellationPolicy: string | File |File[];
 
 
-  furnitureHourlyPricingEntries: PricingEntry[];
-  tentHourlyPricingEntries: PricingEntry[];
-  furnitureDealPricingEntries: PricingEntry[];
-  furnitureWorkerPricingEntries: PricingEntry[];
-  hourlyCheckbox: boolean;
-  packageTypePage3: string;
-  packageMinRate: string;
-  packageMaxRate: string;
-  dealCheckbox: boolean;
-  dealType: string;
-  dealMinRate: string;
-  dealMaxRate: string;
-  workerCheckbox: boolean;
-  workerType: string;
-  workerMinRate: string;
-  workerMaxRate: string;
+  // furnitureHourlyPricingEntries: PricingEntry[];
+  // tentHourlyPricingEntries: PricingEntry[];
+  // furnitureDealPricingEntries: PricingEntry[];
+  // furnitureWorkerPricingEntries: PricingEntry[];
+  // hourlyCheckbox: boolean;
+  // packageTypePage3: string;
+  // packageMinRate: string;
+  // packageMaxRate: string;
+  // dealCheckbox: boolean;
+  // dealType: string;
+  // dealMinRate: string;
+  // dealMaxRate: string;
+  // workerCheckbox: boolean;
+  // workerType: string;
+  // workerMinRate: string;
+  // workerMaxRate: string;
 
-  advancedPaymentCheckboxPage3: false;
-  percentageValuePage3: number;
-  percentageValuePage4: number;
-  percentageValuePage5: number;
+  // advancedPaymentCheckboxPage3: false;
+  // percentageValuePage3: number;
+  // percentageValuePage4: number;
+  // percentageValuePage5: number;
 
-  // Page4
-  hourlyCheckboxPage4: boolean;
-  dealCheckboxPage4: boolean;
-  workerCheckboxPage4: boolean;
-  advancedPaymentCheckboxPage4: false;
+  // // Page4
+  // hourlyCheckboxPage4: boolean;
+  // dealCheckboxPage4: boolean;
+  // workerCheckboxPage4: boolean;
+  // advancedPaymentCheckboxPage4: false;
 
-  // Page5
-  hourlyCheckboxPage5: boolean;
-  dealCheckboxPage5: boolean;
-  workerCheckboxPage5: boolean;
-  advancedPaymentCheckboxPage5: false;
+  // // Page5
+  // hourlyCheckboxPage5: boolean;
+  // dealCheckboxPage5: boolean;
+  // workerCheckboxPage5: boolean;
+  // advancedPaymentCheckboxPage5: false;
 };
 
 type PricingEntry = {
@@ -248,7 +248,11 @@ const RootPage = () => {
 
 
   const [selectedCategory, setSelectedCategory] = useState("Furniture & Decor");
-  const [selectedEvents, setselectedEvents] = useState<string[]>([]);
+  const [selectedFurnitureEvents, setselectedFurnitureEvents] = useState<string[]>([]);
+  const [selectedTentEvents, setselectedTentEvents] = useState<string[]>([]);
+
+  const [selectedAudioEvents, setselectedAudioEvents] = useState<string[]>([]);
+
   const [serviceProvided, setServiceProvided] = useState<string[]>([]);
   const [selectedFurniture, setSelectedFurniture] = useState<string[]>([]);
 
@@ -445,8 +449,13 @@ const RootPage = () => {
             updateFormState={updateFormState}
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
-            selectedEvents={selectedEvents}
-            setselectedEvents={setselectedEvents}
+            selectedFurnitureEvents={selectedFurnitureEvents}
+            setselectedFurnitureEvents={setselectedFurnitureEvents}
+            selectedTentEvents={selectedTentEvents}
+            setselectedTentEvents={setselectedTentEvents}
+            selectedAudioEvents={selectedAudioEvents}
+            setselectedAudioEvents={setselectedAudioEvents}
+
             selectedFurniture={selectedFurniture}
             setSelectedFurniture={setSelectedFurniture}
             selectedDecor={selectedDecor}
@@ -463,6 +472,43 @@ const RootPage = () => {
 
           />
         )
+
+        case 4:
+          return(
+            
+            <Preview
+            formState={formState}
+            handleChange={handleChange}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            handleSubmit={handleSubmit}
+            serviceProvided={serviceProvided}
+            setServiceProvided={setServiceProvided}
+            setSelectedCategory={setSelectedCategory}
+            selectedCategory={selectedCategory}
+            
+            selectedFurnitureEvents={selectedFurnitureEvents}
+            setselectedFurnitureEvents={setselectedFurnitureEvents}
+            selectedTentEvents={selectedTentEvents}
+            setselectedTentEvents={setselectedTentEvents}
+            selectedAudioEvents={selectedAudioEvents}
+            setselectedAudioEvents={setselectedAudioEvents}
+            selectedFurniture={selectedFurniture}
+            setSelectedFurniture={setSelectedFurniture}
+            selectedDecor={selectedDecor}
+            setSelectedDecor={setSelectedDecor}
+            selectedTentOptions={selectedTentOptions}
+            setSelectedTentOptions={setSelectedTentOptions}
+            selectedvisualOptions={selectedvisualOptions}
+            setSelectedVisualOptions={setSelectedVisualOptions}
+            selectedAudioOptions={selectedAudioOptions}
+            setSelectedAudioOptions={setSelectedAudioOptions}
+            selectedLightOptions={selectedLightOptions}
+            setSelectedLightOptions={setSelectedLightOptions}
+   
+            />
+            
+          )
 
 
     }
