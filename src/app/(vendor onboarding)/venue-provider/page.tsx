@@ -8,7 +8,6 @@ import Page1 from "./page1/page1";
 import Page2 from "./page2/page2";
 import Page3 from "./page3/page3";
 import Page4 from "./page4/page4";
-import Page5 from "./page5/page5";
 import Page6 from "./page6/page6";
 import { addVenue } from "../../../services/vendors/venue";
 import Agreement from "../Agreement/page";
@@ -21,27 +20,27 @@ interface Package {
 }
 
 export interface FormState {
-  venueName: string;
-  VenueAddress: string;
-  venueType: string;
-  seatingCapacity: string;
-  standingCapacity: string;
-  startOperatingHours: string;
-  endOperatingHours: string;
+  name: string;
+  managerName: string;
+  capacity: string;
+  operatingHours: {
+    openingTime?: string;
+    closingTime?: string;
+  }
+  address : string;
   venueDescription: string;
-  decorType: string;
-  termsAndConditions: string | File;
-  cancellationPolicy: string | File;
-  instaURL: string;
+  catererServices: boolean;
+  decorServices: boolean;
+  termsConditions: string | File | File[];
+  cancellationPolicy: string | File | File[];
+  insurancePolicy: string | File | File[];
+  photos: string | File | File[];
+  videos: string | File | File[];
+  instagramURL: string;
   websiteURL: string;
-  audioVisualEquipment: string[];
-  accessibilityFeatures: string[];
-  facilities: string[];
-  hourlyPackages: Package[];
-  dailyPackages: Package[];
-  seasonalPackages: Package[];
-  _venue_restrictions: string[];
-  _venue_special_features: string[];
+  awards: string;
+  clientTestimonials: string;
+  advanceBookingPeriod: string;
 }
 
 const VenueForm: React.FC = () => {
@@ -49,47 +48,36 @@ const VenueForm: React.FC = () => {
 
   // global varibales
   const [formState, setFormState] = useState<FormState>({
-    venueName: "",
-    VenueAddress: "",
-    venueType: "",
-    seatingCapacity: "",
-    standingCapacity: "",
-    startOperatingHours: "",
-    endOperatingHours: "",
-    venueDescription: "",
-    decorType: "",
+    name: "",
+    managerName: "",
+    capacity: "",
+    catererServices: false,
+    decorServices: false,
+    insurancePolicy: "",
+    photos: [],
+    videos: [],
+    awards: "",
+    clientTestimonials: "",
+    advanceBookingPeriod: "",
 
-    termsAndConditions: "",
+    address: "",
+    operatingHours: {
+      openingTime: "",
+      closingTime: "",
+    },
+    venueDescription: "",
+
+    termsConditions: "",
     cancellationPolicy: "",
 
-    instaURL: "",
+    instagramURL: "",
     websiteURL: "",
-    audioVisualEquipment: [],
-    accessibilityFeatures: [],
-    facilities: [],
-    hourlyPackages: [{ type: "", priceRange: [0, 0] }],
-    dailyPackages: [{ type: "", priceRange: [0, 0] }],
-    seasonalPackages: [{ type: "", priceRange: [0, 0] }],
-    _venue_restrictions: [],
-    _venue_special_features: [],
   });
 
   const updateFormState = (newState: Partial<FormState>) => {
     setFormState((prev) => ({ ...prev, ...newState }));
   };
-
-  const [hourlyPackages, setHourlyPackages] = useState<Package[]>([
-    { type: "", priceRange: [0, 0] },
-  ]);
-
-  const [dailyPackages, setDailyPackages] = useState<Package[]>([
-    { type: "", priceRange: [0, 0] },
-  ]);
-
-  const [seasonalPackages, setSeasonalPackages] = useState<Package[]>([
-    { type: "", priceRange: [0, 0] },
-  ]);
-
+  
   const [audioVisualEquipment, setAudioVisualEquipment] = useState<string[]>(
     [],
   );
@@ -97,38 +85,10 @@ const VenueForm: React.FC = () => {
     [],
   );
   const [facilities, setFacilities] = useState<string[]>([]);
+  const [restrictionsPolicies, setRestrictionsPolicies] = useState<string[]>([]);
+  const [specialFeatures, setSpecialFeatures] = useState<string[]>([]);
 
-  const [venue_restrictions, setVenue_restrictions] = useState<string[]>([]);
-  const [venue_special_features, setVenue_special_features] = useState<
-    string[]
-  >([]);
-
-  //global functions
-  const handlePackageChange = (
-    setPackages: React.Dispatch<React.SetStateAction<Package[]>>,
-    index: number,
-    field: "type" | "priceRange",
-    value: string | [number, number],
-  ) => {
-    setPackages((prevPackages) => {
-      const newPackages = [...prevPackages];
-      if (field === "type") {
-        newPackages[index].type = value as string;
-      } else {
-        newPackages[index].priceRange = value as [number, number];
-      }
-      return newPackages;
-    });
-  };
-
-  const addPackage = (
-    setPackages: React.Dispatch<React.SetStateAction<Package[]>>,
-  ) => {
-    setPackages((prevPackages) => [
-      ...prevPackages,
-      { type: "", priceRange: [0, 100000] },
-    ]);
-  };
+  const [venueTypes, setVenueTypes] = useState<string[]>([]);
 
   function getVendorId(): string | null {
     const token = localStorage.getItem("token");
@@ -144,76 +104,124 @@ const VenueForm: React.FC = () => {
     return userId;
   }
 
-  const handleContinue = () => {
-    console.log({
-      venueName: formState.venueName,
-      venueType: formState.venueType,
-      startOperatingHours: formState.startOperatingHours,
-      endOperatingHours: formState.endOperatingHours,
-      venueDescription: formState.venueDescription,
-      seatingCapacity: formState.seatingCapacity,
-      standingCapacity: formState.standingCapacity,
-      decorType: formState.decorType,
-    });
-  };
-
   const handleSubmit = async () => {
+    if (!formState.managerName) {
+      console.error("Manager Name is required");
+      return;
+  }
     const formData = new FormData();
-
-    formData.append("id", getVendorId()!); // Ensure this ID is unique and valid
-    formData.append("name", formState.venueName);
-    formData.append("venueType", formState.venueType);
+  
+    formData.append("venId", getVendorId()!); 
+    formData.append("name", formState.name);
+    formData.append("managerName", formState.managerName);
+    formData.append("capacity", formState.capacity);
+  
     formData.append(
       "operatingHours[openingTime]",
-      formState.startOperatingHours,
+      formState.operatingHours.openingTime ?? "",
     );
-    formData.append("operatingHours[closingTime]", formState.endOperatingHours);
+    formData.append(
+      "operatingHours[closingTime]",
+      formState.operatingHours.closingTime ?? "",
+    );
+    formData.append("address", formState.address);
     formData.append("venueDescription", formState.venueDescription);
-    formData.append("seatedCapacity", formState.seatingCapacity); // Ensure this is a string
-    formData.append("standingCapacity", formState.standingCapacity); // Ensure this is a string
-    formData.append("decorServices", formState.decorType);
-    formData.append("termsConditions", formState.termsAndConditions);
-    formData.append("cancellationPolicy", formState.cancellationPolicy);
-    formData.append("socialLinks[instagramURL]", formState.instaURL);
-    formData.append("socialLinks[websiteURL]", formState.websiteURL);
+    formData.append("catererServices", String(formState.catererServices));
+    formData.append("decorServices", String(formState.decorServices));
+  
+    // Venue Types (Array)
+    venueTypes.forEach((item,index) => {
+      formData.append(`venueTypes[${index}]`, item);
+    });
 
+    // Audio Visual Equipment (Array)
     audioVisualEquipment.forEach((item, index) => {
       formData.append(`audioVisualEquipment[${index}]`, item);
     });
-
+  
+    // Accessibility Features (Array)
     accessibilityFeatures.forEach((item, index) => {
       formData.append(`accessibilityFeatures[${index}]`, item);
     });
-
+  
+    // Restrictions Policies (Array)
+    restrictionsPolicies.forEach((item, index) => {
+      formData.append(`restrictionsPolicies[${index}]`, item);
+    });
+  
+    // Special Features (Array)
+    specialFeatures.forEach((item, index) => {
+      formData.append(`specialFeatures[${index}]`, item);
+    });
+  
+    // Facilities (Array)
     facilities.forEach((item, index) => {
       formData.append(`facilities[${index}]`, item);
     });
-
-    venue_restrictions.forEach((item, index) => {
-      formData.append(`restrictionsPolicies[${index}]`, item);
-    });
-
-    venue_special_features.forEach((item, index) => {
-      formData.append(`specialFeatures[${index}]`, item);
-    });
-
-    hourlyPackages.forEach((pkg, index) => {
-      formData.append(`rates[hourly][${index}]`, JSON.stringify(pkg));
-    });
-
-    dailyPackages.forEach((pkg, index) => {
-      formData.append(`rates[daily][${index}]`, JSON.stringify(pkg));
-    });
-
-    seasonalPackages.forEach((pkg, index) => {
-      formData.append(`rates[seasonal][${index}]`, JSON.stringify(pkg));
-    });
-
-    //for debugging
+  
+    if (Array.isArray(formState.termsConditions)) {
+      formState.termsConditions.forEach((file) => {
+        formData.append("termsConditions", file); // No index here
+      });
+    } else {
+      formData.append("termsConditions", formState.termsConditions);
+    }
+    
+    if (Array.isArray(formState.cancellationPolicy)) {
+      formState.cancellationPolicy.forEach((file) => {
+        formData.append("cancellationPolicy", file); 
+      });
+    } else {
+      formData.append("cancellationPolicy", formState.cancellationPolicy);
+    }
+    
+    if (Array.isArray(formState.insurancePolicy)) {
+      formState.insurancePolicy.forEach((file) => {
+        formData.append("insurancePolicy", file); // No index here
+      });
+    } else {
+      formData.append("insurancePolicy", formState.insurancePolicy);
+    }
+    
+  
+    // Handle photos field
+    if (Array.isArray(formState.photos)) {
+      formState.photos.forEach((file) => {
+        if (file instanceof File) {
+          formData.append('photos', file); // Append as 'photos' without the array index
+        }
+      });
+    } else if (typeof formState.photos === 'string') {
+      formData.append('photos', formState.photos); // Append the string (URL)
+    }
+  
+    // Handle videos field
+    if (Array.isArray(formState.videos)) {
+      formState.videos.forEach((file) => {
+        if (file instanceof File) {
+          formData.append('videos', file); // Append as 'videos' without the array index
+        }
+      });
+    } else if (typeof formState.videos === 'string') {
+      formData.append('videos', formState.videos); // Append the string (URL)
+    }
+  
+    // Social Links
+    formData.append("socialLinks[instagramURL]", formState.instagramURL);
+    formData.append("socialLinks[websiteURL]", formState.websiteURL);
+  
+    // Awards and Client Testimonials
+    formData.append("awards", formState.awards);
+    formData.append("clientTestimonials", formState.clientTestimonials);
+  
+    // Advanced Booking Period
+    formData.append("advanceBookingPeriod", formState.advanceBookingPeriod);
+  
+    // For debugging
     formData.forEach((value, key) => {
       console.log(`${key}: ${value}`);
     });
-
+  
     try {
       await addVenue(formData);
       console.log("Venue added successfully");
@@ -221,6 +229,7 @@ const VenueForm: React.FC = () => {
       console.error("Error adding venue:", error);
     }
   };
+  
 
   const renderPage = () => {
     switch (currentPage) {
@@ -231,8 +240,9 @@ const VenueForm: React.FC = () => {
             updateFormState={updateFormState}
             handleContinue={() => {
               setCurrentPage(2);
-              handleContinue();
             }}
+            address={formState.address}
+            operatingHours={formState.operatingHours}
           />
         );
       case 2:
@@ -240,28 +250,44 @@ const VenueForm: React.FC = () => {
           <Page2
             formState={formState}
             updateFormState={updateFormState}
+            catererServices={formState.catererServices}
+            decorServices={formState.decorServices}
+            venueTypes={venueTypes}
+            setVenueTypes={setVenueTypes}
             audioVisualEquipment={audioVisualEquipment}
             setAudioVisualEquipment={setAudioVisualEquipment}
             accessibilityFeatures={accessibilityFeatures}
             setAccessibilityFeatures={setAccessibilityFeatures}
+            restrictionsPolicies={restrictionsPolicies}
+            setRestrictionsPolicies={setRestrictionsPolicies}
             facilities={facilities}
             setFacilities={setFacilities}
+            specialFeatures={specialFeatures}
+            setSpecialFeatures={setSpecialFeatures}
             handleContinue={() => {
               setCurrentPage(3);
-              handleContinue();
             }}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
           />
         );
       case 3:
-        console.log("Upload termsAndConditions:", formState.termsAndConditions);
         return (
           <Page3
             formState={formState}
             updateFormState={updateFormState}
             handleContinue={() => {
               setCurrentPage(4);
-              handleContinue();
             }}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            photos={formState.photos}
+            videos={formState.videos}
+            awards={formState.awards}
+            clientTestimonials={formState.clientTestimonials}
+            instagramURL={formState.instagramURL}
+            websiteURL={formState.websiteURL}
+            advanceBookingPeriod={formState.advanceBookingPeriod}
           />
         );
       case 4:
@@ -286,10 +312,6 @@ const VenueForm: React.FC = () => {
           <Page5
             formState={formState}
             updateFormState={updateFormState}
-            venue_restrictions={venue_restrictions}
-            setVenue_restrictions={setVenue_restrictions}
-            venue_special_features={venue_special_features}
-            setVenue_special_features={setVenue_special_features}
             handleContinue={() => {
               setCurrentPage(6);
               handleContinue();
@@ -301,12 +323,21 @@ const VenueForm: React.FC = () => {
           <Page6
             formState={formState}
             updateFormState={updateFormState}
+            handleSubmit={handleSubmit}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            address={formState.address}
+            operatingHours={formState.operatingHours}
+            catererServices={formState.catererServices}
+            decorServices={formState.decorServices}
+            venueTypes={venueTypes}
             handleContinue={() => {
               setCurrentPage(7);
               handleContinue();
             }}
             audioVisualEquipment={audioVisualEquipment}
             accessibilityFeatures={accessibilityFeatures}
+            restrictionsPolicies={restrictionsPolicies}
             facilities={facilities}
             hourlyPackages={hourlyPackages}
             dailyPackages={dailyPackages}
@@ -339,6 +370,16 @@ const VenueForm: React.FC = () => {
             <center><h2>Loading....</h2></center>
           </>
         )
+          <Page1
+            formState={formState}
+            updateFormState={updateFormState}
+            handleContinue={() => {
+              setCurrentPage(2);
+            }}
+            address={formState.address}
+            operatingHours={formState.operatingHours}
+          />
+        );
     }
   };
 
@@ -357,6 +398,16 @@ const VenueForm: React.FC = () => {
                     className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 1 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
                     onClick={() => setCurrentPage(1)}
                   ></button>
+    <div className="m-0 flex w-full flex-col overflow-x-hidden lg:h-[calc(100vh-4.2rem)] lg:flex-row">
+      <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
+        <div className="flex w-[100%] flex-col justify-center">
+          <div className="flex flex-col gap-1 mx-6 px-3 lg:mt-[2rem]">
+            <span className="text-lg font-semibold">Step 1 of 6</span>
+            <div className="flex gap-4">
+              <button
+                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 1 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                onClick={() => setCurrentPage(1)}
+              ></button>
 
                   <button
                     className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 2 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
@@ -406,6 +457,31 @@ const VenueForm: React.FC = () => {
           </div>
         )
       }
+              <button
+                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 5 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                onClick={() => setCurrentPage(5)}
+              ></button>
+            </div>
+          </div>
+        </div>
+        <div className="flex h-[50%] flex-col mx-6 items-start justify-center gap-9 px-3 md:px-3">
+          <h1 className="text-[40px] font-semibold md:text-[3vw]">
+            Fill out your Venue details
+          </h1>
+          <p className="text-[#797878]  xs:text-md md:w-[90%]">
+            Please Provide details of the venue provided by your company.
+          </p>
+        </div>
+        <div className="relative h-[10rem] lg:w-full">
+          <Image
+            src={"/tajmahal.png"}
+            alt=""
+            width={400}
+            height={200}
+            className="h-full w-full object-cover"
+          />
+        </div>
+      </div>
       <div className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] p-2 md:p-[1rem]">
         {renderPage()}
       </div>

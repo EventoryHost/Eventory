@@ -33,6 +33,7 @@ export interface FormState {
   colorschmes: boolean;
   customizationsThemes: boolean;
   customDesignProcess: string;
+ 
 
   // Page 3
   themephotos: string | File;

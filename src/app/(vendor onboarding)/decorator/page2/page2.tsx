@@ -2,6 +2,8 @@
 
 import React, { useState } from "react";
 import Appetizers from "../../(components)/Appetizers";
+import { ArrowLeft } from "lucide-react";
+import Dropdown from "../../(components)/Dropdown";
 
 const _themesOffered = [
   "Art Deco",
@@ -42,6 +44,8 @@ const Page2: React.FC<Page2Props> = ({
   setCurrentPage,
   setThemesOffered,
   handleContinue,
+  setCurrentPage,
+  currentPage
 }) => {
   const {
     propthemesOffered,
@@ -158,7 +162,8 @@ const Page2: React.FC<Page2Props> = ({
 
                     <input
                       type="radio"
-                      checked={customizationsThemes === true}
+                      value="true"
+                      checked={customizationsThemes}
                       onChange={() =>
                         updateFormState({ customizationsThemes: true })
                       }
@@ -168,7 +173,8 @@ const Page2: React.FC<Page2Props> = ({
 
                     <input
                       type="radio"
-                      checked={customizationsThemes === false}
+                      value="false"
+                      checked={!customizationsThemes}
                       onChange={() =>
                         updateFormState({ customizationsThemes: false })
                       }

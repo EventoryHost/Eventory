@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Appetizers from "../../(components)/Appetizers";
 import FileInput from "@/components/fileInput";
 
@@ -34,6 +34,8 @@ const Page3: React.FC<Page3Props> = ({
   themesElements,
   setThemesElements,
   handleContinue,
+  currentPage,
+  setCurrentPage
 }) => {
   const { themephotos, themevideos } = formState;
 
