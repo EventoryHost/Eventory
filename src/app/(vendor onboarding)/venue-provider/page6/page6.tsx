@@ -2,6 +2,7 @@
 
 import { EditIcon } from "lucide-react";
 import { FormState } from "../page";
+import { set } from "date-fns";
 
 
 interface Page6Props {
@@ -406,7 +407,11 @@ const Page6: React.FC<Page6Props> = ({
             </button>
             <button
               className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-              onClick={handleSubmit}
+              onClick={() => {
+                setCurrentPage(currentPage + 1);
+                handleSubmit
+              }
+              }
             >
               Submit
             </button>

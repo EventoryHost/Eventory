@@ -61,6 +61,8 @@ const handlePayment = async (
   plan: string, // vendor plans name 
   id: string, // vendor id 
   name: string, // vendor name from flow
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>,
+  handleSubmit: () => void,
 ) => {
   try {
     const orderResponse = await createOrder(amount, plan, id);
@@ -84,6 +86,8 @@ const handlePayment = async (
           payment_id,
           signature,
         );
+        handleSubmit();
+        setCurrentPage((prevPage) => prevPage + 1)
         console.log(verifyResponse);
 
       },
@@ -94,7 +98,7 @@ const handlePayment = async (
       theme: {
         color: "#2E3192",
       },
-      
+
     };
 
     let rzp = new (window as any).Razorpay(options);
