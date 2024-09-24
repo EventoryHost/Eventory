@@ -514,7 +514,9 @@ const Caterer = () => {
       case 10:
         return (
           <>
-            <Registration_Completed />
+            <Registration_Completed
+            
+            />
           </>
         )
       default:
