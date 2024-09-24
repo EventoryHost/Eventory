@@ -33,14 +33,14 @@ export interface FormState {
   colorschmes: boolean;
   customizationsThemes: boolean;
   customDesignProcess: string;
- 
+
 
   // Page 3
-  themephotos: string | File;
-  themevideos: string | File;
+  themephotos: string | File | File[];
+  themevideos: string | File | File[];
   // Page 4
-  photos: string | File;
-  videos: string | File;
+  photos: string | File | File[];
+  videos: string | File | File[];
   websiteurl: string;
   intstagramurl: string;
   clientTestimonials: string;
@@ -50,8 +50,8 @@ export interface FormState {
   revisionforinitialthemeproposal: boolean;
 
   // Page 3
-  cancellationPolicy: string | File;
-  termsAndConditions: string | File;
+  cancellationPolicy: string | File | File[];
+  termsAndConditions: string | File | File[];
 
   //page 5
 
@@ -160,8 +160,8 @@ const Decorators: React.FC = () => {
     const formData = new FormData();
 
     formData.append("venId", venId);
-    
-    
+
+
     //page 1
     formData.append("name", formState.businessName);
     formData.append("duration", formState.duration);
@@ -196,18 +196,56 @@ const Decorators: React.FC = () => {
       "customizationsThemes",
       formState.customizationsThemes.toString(),
     );
-    
+
     formData.append("customDesignProcess", formState.customDesignProcess);
-    
+
     // 3 
     themesElements.forEach((event) => {
       formData.append("themesElements", event);
     });
-    formData.append("themephotos", formState.themephotos);
-    formData.append("themevideos", formState.themevideos);
+
+    if (Array.isArray(formState.themevideos)) {
+      formState.themevideos.forEach((file) => {
+        if (file instanceof File) {
+          formData.append('themevideos', file); // Append as 'photos' without the array index
+        }
+      });
+    } else if (typeof formState.themevideos === 'string') {
+      formData.append('themevideos', formState.themevideos); // Append the string (URL)
+    }
+
+    if (Array.isArray(formState.themephotos)) {
+      formState.themephotos.forEach((file) => {
+        if (file instanceof File) {
+          formData.append('themephotos', file); // Append as 'photos' without the array index
+        }
+      });
+    } else if (typeof formState.themephotos === 'string') {
+      formData.append('photos', formState.themephotos); // Append the string (URL)
+    }
+
     //4 
-    formData.append("photos", formState.photos);
-    formData.append("videos", formState.videos);
+
+
+    if (Array.isArray(formState.photos)) {
+      formState.photos.forEach((file) => {
+        if (file instanceof File) {
+          formData.append('photos', file); // Append as 'photos' without the array index
+        }
+      });
+    } else if (typeof formState.photos === 'string') {
+      formData.append('photos', formState.photos); // Append the string (URL)
+    }
+
+    if (Array.isArray(formState.videos)) {
+      formState.videos.forEach((file) => {
+        if (file instanceof File) {
+          formData.append('photos', file); // Append as 'photos' without the array index
+        }
+      });
+    } else if (typeof formState.videos === 'string') {
+      formData.append('photos', formState.videos); // Append the string (URL)
+    }
     formData.append("websiteurl", formState.websiteurl);
     formData.append("intstagramurl", formState.intstagramurl);
     formData.append("clientTestimonials", formState.clientTestimonials);
@@ -216,8 +254,25 @@ const Decorators: React.FC = () => {
     formData.append("writtenthemeproposalafterconsultaion", formState.writtenthemeproposalafterconsultaion.toString());
     formData.append("revisionforinitialthemeproposal", formState.revisionforinitialthemeproposal.toString());
     // 5
-    formData.append("cancellationPolicy", formState.cancellationPolicy);
-    formData.append("termsAndConditions", formState.termsAndConditions);
+    if (Array.isArray(formState.cancellationPolicy)) {
+      formState.cancellationPolicy.forEach((file) => {
+        if (file instanceof File) {
+          formData.append('cancellationPolicy', file); // Append as 'photos' without the array index
+        }
+      });
+    } else if (typeof formState.cancellationPolicy === 'string') {
+      formData.append('photos', formState.cancellationPolicy); // Append the string (URL)
+    }
+    
+    if (Array.isArray(formState.termsAndConditions)) {
+      formState.termsAndConditions.forEach((file) => {
+        if (file instanceof File) {
+          formData.append('termsAndConditions', file); // Append as 'photos' without the array index
+        }
+      });
+    } else if (typeof formState.termsAndConditions === 'string') {
+      formData.append('photos', formState.termsAndConditions); // Append the string (URL)
+    }
 
     console.log(formData);
 

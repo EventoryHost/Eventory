@@ -44,8 +44,6 @@ const Page2: React.FC<Page2Props> = ({
   setCurrentPage,
   setThemesOffered,
   handleContinue,
-  setCurrentPage,
-  currentPage
 }) => {
   const {
     propthemesOffered,

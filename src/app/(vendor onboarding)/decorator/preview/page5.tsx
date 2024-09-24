@@ -1,5 +1,5 @@
 import Appetizers from "../../(components)/Appetizers";
-import File from "../../caterer/(components)/File";
+import FileDisplay from "../../caterer/(components)/File";
 import { FormState } from "../page";
 
 type PagePreviewProps = {
@@ -222,60 +222,24 @@ function Preview({
             </div>
 
             <div className="flex mt-6 gap-6">
-              <div className="w-[50%] gap-5">
-                <span className="text-xl ">Theme Photos</span>
-                <div className="flex mt-2 min-w-[100%] px-6 py-3 gap-6 border rounded-2xl justify-start items-center">
-                  <div>
-                    <svg width="18" height="23" viewBox="0 0 18 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M1 5.5C1 3.29086 2.79086 1.5 5 1.5H9H11.0633C11.6568 1.5 12.2197 1.76365 12.5997 2.21963L16.5364 6.94373C16.836 7.30316 17 7.75623 17 8.2241V11.5V17.5C17 19.7091 15.2091 21.5 13 21.5H5C2.79086 21.5 1 19.7091 1 17.5V5.5Z" stroke="#2B3F6C" stroke-width="1.5" />
-                      <path d="M12 2V5.5C12 6.60457 12.8954 7.5 14 7.5H16.5" stroke="#2B3F6C" stroke-width="1.5" stroke-linecap="round" />
-                      <path d="M5 11.5H13" stroke="#2B3F6C" stroke-width="1.5" stroke-linecap="round" />
-                      <path d="M5 16.5H9" stroke="#2B3F6C" stroke-width="1.5" stroke-linecap="round" />
-                    </svg>
-                  </div>
-                  <div className="flex w-[85%] text-left">
-                    <span className="text-left ">
-                      {typeof formState.themephotos === "string" ? (
-                        "No File selected"
-                      ) : (
-                        <File file={formState.themephotos} />
-                      )}
-                    </span>
-                  </div>
-                  <div className="flex">
-                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <rect x="1" y="1" width="20" height="20" rx="5" stroke="#2B3F6C" stroke-width="1.5" />
-                      <path d="M8.5 10.5L10.5 12.5L14.5 8.5" stroke="#2B3F6C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                  </div>
+              <div className="m-6 mt-6 flex flex-col gap-1">
+                <span className="text-base font-normal">Theme Photos</span>
+                <div className="font-semibold w-[60%] ">
+                  {Array.isArray(formState.themephotos) ? (
+                    <FileDisplay files={formState.themephotos} />
+                  ) : (
+                    <div>Not specified</div>
+                  )}
                 </div>
               </div>
-              <div className="w-[50%] gap-2">
-                <span className="text-xl">Theme Video</span>
-                <div className="flex mt-2 min-w-1/2 px-6 py-3 gap-6 border rounded-2xl justify-start items-center">
-                  <div>
-                    <svg width="18" height="23" viewBox="0 0 18 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M1 5.5C1 3.29086 2.79086 1.5 5 1.5H9H11.0633C11.6568 1.5 12.2197 1.76365 12.5997 2.21963L16.5364 6.94373C16.836 7.30316 17 7.75623 17 8.2241V11.5V17.5C17 19.7091 15.2091 21.5 13 21.5H5C2.79086 21.5 1 19.7091 1 17.5V5.5Z" stroke="#2B3F6C" stroke-width="1.5" />
-                      <path d="M12 2V5.5C12 6.60457 12.8954 7.5 14 7.5H16.5" stroke="#2B3F6C" stroke-width="1.5" stroke-linecap="round" />
-                      <path d="M5 11.5H13" stroke="#2B3F6C" stroke-width="1.5" stroke-linecap="round" />
-                      <path d="M5 16.5H9" stroke="#2B3F6C" stroke-width="1.5" stroke-linecap="round" />
-                    </svg>
-                  </div>
-                  <div className="flex w-[85%] text-left">
-                    <span className="text-left">
-                      {typeof formState.themevideos === "string" ? (
-                        "no file selected"
-                      ) : (
-                        <File file={formState.themevideos} />
-                      )}
-                    </span>
-                  </div>
-                  <div className="flex">
-                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <rect x="1" y="1" width="20" height="20" rx="5" stroke="#2B3F6C" stroke-width="1.5" />
-                      <path d="M8.5 10.5L10.5 12.5L14.5 8.5" stroke="#2B3F6C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                  </div>
+              <div className="m-6 mt-6 flex flex-col gap-1">
+                <span className="text-base font-normal">Theme videos</span>
+                <div className="font-semibold w-[60%] ">
+                  {Array.isArray(formState.themevideos) ? (
+                    <FileDisplay files={formState.themevideos} />
+                  ) : (
+                    <div>Not specified</div>
+                  )}
                 </div>
               </div>
 
@@ -295,60 +259,24 @@ function Preview({
             </div>
           </div>
           <div className="flex gap-6 ">
-            <div className="w-[50%] gap-5">
-              <span className="text-xl ">Photos</span>
-              <div className="flex mt-2 min-w-[100%] px-6 py-3 gap-6 border rounded-2xl justify-start items-center">
-                <div>
-                  <svg width="18" height="23" viewBox="0 0 18 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1 5.5C1 3.29086 2.79086 1.5 5 1.5H9H11.0633C11.6568 1.5 12.2197 1.76365 12.5997 2.21963L16.5364 6.94373C16.836 7.30316 17 7.75623 17 8.2241V11.5V17.5C17 19.7091 15.2091 21.5 13 21.5H5C2.79086 21.5 1 19.7091 1 17.5V5.5Z" stroke="#2B3F6C" stroke-width="1.5" />
-                    <path d="M12 2V5.5C12 6.60457 12.8954 7.5 14 7.5H16.5" stroke="#2B3F6C" stroke-width="1.5" stroke-linecap="round" />
-                    <path d="M5 11.5H13" stroke="#2B3F6C" stroke-width="1.5" stroke-linecap="round" />
-                    <path d="M5 16.5H9" stroke="#2B3F6C" stroke-width="1.5" stroke-linecap="round" />
-                  </svg>
-                </div>
-                <div className="flex w-[85%] text-left">
-                  <span className="text-left ">
-                    {typeof formState.photos === "string" ? (
-                      "No File selected"
-                    ) : (
-                      <File file={formState.photos} />
-                    )}
-                  </span>
-                </div>
-                <div className="flex">
-                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="1" y="1" width="20" height="20" rx="5" stroke="#2B3F6C" stroke-width="1.5" />
-                    <path d="M8.5 10.5L10.5 12.5L14.5 8.5" stroke="#2B3F6C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                </div>
+            <div className="m-6 mt-6 flex flex-col gap-1">
+              <span className="text-base font-normal">Theme Photos</span>
+              <div className="font-semibold w-[60%] ">
+                {Array.isArray(formState.photos) ? (
+                  <FileDisplay files={formState.photos} />
+                ) : (
+                  <div>Not specified</div>
+                )}
               </div>
             </div>
-            <div className="w-[50%] gap-2">
-              <span className="text-xl">Video</span>
-              <div className="flex mt-2 min-w-1/2 px-6 py-3 gap-6 border rounded-2xl justify-start items-center">
-                <div>
-                  <svg width="18" height="23" viewBox="0 0 18 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1 5.5C1 3.29086 2.79086 1.5 5 1.5H9H11.0633C11.6568 1.5 12.2197 1.76365 12.5997 2.21963L16.5364 6.94373C16.836 7.30316 17 7.75623 17 8.2241V11.5V17.5C17 19.7091 15.2091 21.5 13 21.5H5C2.79086 21.5 1 19.7091 1 17.5V5.5Z" stroke="#2B3F6C" stroke-width="1.5" />
-                    <path d="M12 2V5.5C12 6.60457 12.8954 7.5 14 7.5H16.5" stroke="#2B3F6C" stroke-width="1.5" stroke-linecap="round" />
-                    <path d="M5 11.5H13" stroke="#2B3F6C" stroke-width="1.5" stroke-linecap="round" />
-                    <path d="M5 16.5H9" stroke="#2B3F6C" stroke-width="1.5" stroke-linecap="round" />
-                  </svg>
-                </div>
-                <div className="flex w-[85%] text-left">
-                  <span className="text-left ">
-                    {typeof formState.videos === "string" ? (
-                      "no file selected"
-                    ) : (
-                      <File file={formState.videos} />
-                    )}
-                  </span>
-                </div>
-                <div className="flex">
-                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="1" y="1" width="20" height="20" rx="5" stroke="#2B3F6C" stroke-width="1.5" />
-                    <path d="M8.5 10.5L10.5 12.5L14.5 8.5" stroke="#2B3F6C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                </div>
+            <div className="m-6 mt-6 flex flex-col gap-1">
+              <span className="text-base font-normal">Theme Videos</span>
+              <div className="font-semibold w-[60%] ">
+                {Array.isArray(formState.videos) ? (
+                  <FileDisplay files={formState.videos} />
+                ) : (
+                  <div>Not specified</div>
+                )}
               </div>
             </div>
           </div>
@@ -417,60 +345,24 @@ function Preview({
           </div>
           <div className="w-full">
             <div className="flex gap-6  ">
-              <div className="w-[50%] gap-5">
-                <span className="text-xl ">Terms And Conditions</span>
-                <div className="flex mt-2 min-w-[100%] px-6 py-3 gap-6 border rounded-2xl justify-start items-center">
-                  <div>
-                    <svg width="18" height="23" viewBox="0 0 18 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M1 5.5C1 3.29086 2.79086 1.5 5 1.5H9H11.0633C11.6568 1.5 12.2197 1.76365 12.5997 2.21963L16.5364 6.94373C16.836 7.30316 17 7.75623 17 8.2241V11.5V17.5C17 19.7091 15.2091 21.5 13 21.5H5C2.79086 21.5 1 19.7091 1 17.5V5.5Z" stroke="#2B3F6C" stroke-width="1.5" />
-                      <path d="M12 2V5.5C12 6.60457 12.8954 7.5 14 7.5H16.5" stroke="#2B3F6C" stroke-width="1.5" stroke-linecap="round" />
-                      <path d="M5 11.5H13" stroke="#2B3F6C" stroke-width="1.5" stroke-linecap="round" />
-                      <path d="M5 16.5H9" stroke="#2B3F6C" stroke-width="1.5" stroke-linecap="round" />
-                    </svg>
-                  </div>
-                  <div className="flex w-[85%] text-left">
-                    <span className="text-left ">
-                      {typeof formState.termsAndConditions === "string" ? (
-                        "No File selected"
-                      ) : (
-                        <File file={formState.termsAndConditions} />
-                      )}
-                    </span>
-                  </div>
-                  <div className="flex">
-                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <rect x="1" y="1" width="20" height="20" rx="5" stroke="#2B3F6C" stroke-width="1.5" />
-                      <path d="M8.5 10.5L10.5 12.5L14.5 8.5" stroke="#2B3F6C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                  </div>
+              <div className="m-6 mt-6 flex flex-col gap-1">
+                <span className="text-base font-normal">Terms And Conditions</span>
+                <div className="font-semibold w-[60%] ">
+                  {Array.isArray(formState.termsAndConditions) ? (
+                    <FileDisplay files={formState.termsAndConditions} />
+                  ) : (
+                    <div>Not specified</div>
+                  )}
                 </div>
               </div>
-              <div className="w-[50%] gap-2">
-                <span className="text-xl">Cancellation Policy</span>
-                <div className="flex mt-2 min-w-1/2 px-6 py-3 gap-6 border rounded-2xl justify-start items-center">
-                  <div>
-                    <svg width="18" height="23" viewBox="0 0 18 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M1 5.5C1 3.29086 2.79086 1.5 5 1.5H9H11.0633C11.6568 1.5 12.2197 1.76365 12.5997 2.21963L16.5364 6.94373C16.836 7.30316 17 7.75623 17 8.2241V11.5V17.5C17 19.7091 15.2091 21.5 13 21.5H5C2.79086 21.5 1 19.7091 1 17.5V5.5Z" stroke="#2B3F6C" stroke-width="1.5" />
-                      <path d="M12 2V5.5C12 6.60457 12.8954 7.5 14 7.5H16.5" stroke="#2B3F6C" stroke-width="1.5" stroke-linecap="round" />
-                      <path d="M5 11.5H13" stroke="#2B3F6C" stroke-width="1.5" stroke-linecap="round" />
-                      <path d="M5 16.5H9" stroke="#2B3F6C" stroke-width="1.5" stroke-linecap="round" />
-                    </svg>
-                  </div>
-                  <div className="flex w-[85%] text-left">
-                    <span className="text-left ">
-                      {typeof formState.cancellationPolicy === "string" ? (
-                        "no file selected"
-                      ) : (
-                        <File file={formState.cancellationPolicy} />
-                      )}
-                    </span>
-                  </div>
-                  <div className="flex">
-                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <rect x="1" y="1" width="20" height="20" rx="5" stroke="#2B3F6C" stroke-width="1.5" />
-                      <path d="M8.5 10.5L10.5 12.5L14.5 8.5" stroke="#2B3F6C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                  </div>
+              <div className="m-6 mt-6 flex flex-col gap-1">
+                <span className="text-base font-normal">Cancellation Policy</span>
+                <div className="font-semibold w-[60%] ">
+                  {Array.isArray(formState.termsAndConditions) ? (
+                    <FileDisplay files={formState.termsAndConditions} />
+                  ) : (
+                    <div>Not specified</div>
+                  )}
                 </div>
               </div>
             </div>

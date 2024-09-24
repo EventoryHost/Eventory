@@ -15,8 +15,8 @@ const _themesElement = [
 
 interface FormState {
 
-    cancellationPolicy: string | File;
-    termsAndConditions: string | File;
+    cancellationPolicy: string | File | File[];
+    termsAndConditions: string | File | File[];
 }
 
 interface Page3Props {
@@ -48,28 +48,32 @@ const Page5: React.FC<Page3Props> = ({
                         <div className="flex min-w-full flex-row items-start justify-between gap-2">
                             <div className="flex min-w-[40%] flex-col gap-2">
                                 <label className="flex justify-start gap-2 items-center" htmlFor="category"><p>Terms and Conditions</p>
-                                    
+
                                 </label>
                                 <p className="text-gray-500">PNG, PDF, JPG</p>
                                 <FileInput
-                                    label=""
-                                    onFileSelect={(file: File) => {
-                                        updateFormState({ termsAndConditions: file });
+                                    label="termsAndConditions"
+
+                                    onFileSelect={(file: File | File[]) => {
+                                        const newFiles = Array.isArray(file) ? file : [file]; // Handle single or multiple files
+                                        updateFormState({ termsAndConditions: newFiles });
                                     }}
                                     acceptedFileTypes="image/png, .pdf, image/jpg"
                                 />
                             </div>
                             <div className="flex min-w-[40%] flex-col gap-2">
                                 <label className="flex gap-2 justify-start items-center" htmlFor="category"><p>Cancellation Policy</p>
-                                    
+
                                 </label>
                                 <p className="text-gray-500">PNG, PDF, JPG</p>
                                 <FileInput
-                                    label=""
-                                    onFileSelect={(file: File) => {
-                                        updateFormState({ cancellationPolicy: file });
+                                    label="cancellationPolicy"
+
+                                    onFileSelect={(file: File | File[]) => {
+                                        const newFiles = Array.isArray(file) ? file : [file]; // Handle single or multiple files
+                                        updateFormState({ cancellationPolicy: newFiles });
                                     }}
-                                    acceptedFileTypes="video/mp4, video/x-msvideo, .mp4, .avi"
+                                   acceptedFileTypes="image/png, .pdf, image/jpg"
                                 />
                             </div>
                         </div>

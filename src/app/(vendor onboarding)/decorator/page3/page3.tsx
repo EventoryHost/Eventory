@@ -14,8 +14,8 @@ const _themesElement = [
 ];
 
 interface FormState {
-  themephotos: string | File;
-  themevideos: string | File;
+  themephotos: string | File | File[];
+  themevideos: string | File | File[];
 }
 
 interface Page3Props {
@@ -34,8 +34,6 @@ const Page3: React.FC<Page3Props> = ({
   themesElements,
   setThemesElements,
   handleContinue,
-  currentPage,
-  setCurrentPage
 }) => {
   const { themephotos, themevideos } = formState;
 
@@ -70,9 +68,10 @@ const Page3: React.FC<Page3Props> = ({
                 </label>
                 <p className="text-gray-500">PNG, PDF, JPG</p>
                 <FileInput
-                  label=""
-                  onFileSelect={(file: File) => {
-                    updateFormState({ themephotos: file });
+                  label="themephotos"
+                  onFileSelect={(file: File | File[]) => {
+                    const newFiles = Array.isArray(file) ? file : [file]; // Handle single or multiple files
+                    updateFormState({ themephotos: newFiles });
                   }}
                   acceptedFileTypes="image/png, .pdf, image/jpg"
                 />
@@ -88,9 +87,10 @@ const Page3: React.FC<Page3Props> = ({
                 </label>
                 <p className="text-gray-500">MP4 MKV</p>
                 <FileInput
-                  label=""
-                  onFileSelect={(file: File) => {
-                    updateFormState({ themevideos: file });
+                  label="themevideos"
+                  onFileSelect={(file: File | File[]) => {
+                    const newFiles = Array.isArray(file) ? file : [file]; // Handle single or multiple files
+                    updateFormState({ themevideos: newFiles });
                   }}
                   acceptedFileTypes="video/mp4, video/x-msvideo, .mp4, .avi"
                 />
