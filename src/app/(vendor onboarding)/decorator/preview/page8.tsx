@@ -276,26 +276,26 @@ function Preview({
               <span className="mb-2">Description of backdrop options</span>
 
               <p className="w-3/4 break-words font-semibold">
-                {formState.backDropoptions}
+                {formState.customDesignProcess}
               </p>
             </div>
-            <div className="flex w-1/2 flex-col">
+            {/* <div className="flex w-1/2 flex-col">
               <span className="mb-2">
                 Description of stage decoration options
               </span>
               <span className="w-3/4 break-words font-semibold">
                 {formState.decorationoptions}
               </span>
-            </div>
+            </div> */}
           </div>
           <div className="mt-4 flex w-1/2 flex-col px-4">
             <span className="mb-2">
               {" "}
               Description of prop & accessory selection
             </span>
-            <span className="w-3/4 break-words font-semibold">
+            {/* <span className="w-3/4 break-words font-semibold">
               {formState.backDropoptions}
-            </span>
+            </span> */}
           </div>
         </div>
       </div>

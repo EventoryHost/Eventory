@@ -74,7 +74,6 @@ const Page6 = ({ formState, updateFormState, handleContinue, currentPage, setCur
   };
 
 
-
   return (
     <div className="flex h-full w-full flex-col overflow-hidden scrollbar-hide lg:flex-row">
       <div className="scroll-touch items-strech flex  w-[100%] flex-col gap-9 overflow-y-scroll bg-[#F7F6F9]  scrollbar-hide">
@@ -134,25 +133,38 @@ const Page6 = ({ formState, updateFormState, handleContinue, currentPage, setCur
                   <FileInput
                     label="Photos"
                     multiple={true}
-                    onFileSelect={(file) => {
-                      updateFormState({ photos: file });
+                    onFileSelect={(files) => {
+                      // Determine existing photos from the previous state
+                      const existingPhotos = Array.isArray(formState.photos)
+                        ? formState.photos
+                        : formState.photos instanceof File
+                        ? [formState.photos]
+                        : [];
+                  
+                      // Create the new photos array by combining existing and newly selected files
+                      const newPhotos = [
+                        ...existingPhotos,
+                        ...(Array.isArray(files) ? files : [files]),
+                      ];
+                  
+                      // Update the form state with the new photos array
+                      updateFormState({ photos: newPhotos });
                     }}
                     acceptedFileTypes="image/png, .pdf, image/jpg"
                   />
-                  <span className="text-base font-medium">or Continue via</span>
+                  <p className="mt-4">or continue via</p>
                   <input
                     type="text"
-                    name="photos"
-                    className="w-full rounded-xl border-2 bg-white p-3 py-5 outline-none text-sm"
-                    placeholder="Enter your portfolio links"
-                    onChange={(e) => { updateFormState({ photos: e.target.value }) }}
+                    className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300"
+                    placeholder="Enter your portfolio link"
                     value={
                       typeof formState.photos === 'string'
                         ? formState.photos
                         : Array.isArray(formState.photos)
-                          ? formState.photos.map((file: File) => file.name).join(', ')  
+                          ? formState.photos.map((file: File) => file.name).join(', ')
                           : (formState.photos as File)?.name
                     }
+                    onChange={(e) => updateFormState({ photos: e.target.value })}
                   />
                   {/* 
                   <input
@@ -264,8 +276,19 @@ const Page6 = ({ formState, updateFormState, handleContinue, currentPage, setCur
                   <span className="text-small font-light">MP4, MKV</span>
                   <FileInput
                     label="videos"
-                    onFileSelect={(file) => {
-                      updateFormState({ videos: file });
+                    onFileSelect={(files) => {
+                      const existingVideos = Array.isArray(formState.videos)
+                        ? formState.videos
+                        : formState.videos instanceof File
+                        ? [formState.videos]
+                        : [];
+            
+                      const newVideos = [
+                        ...existingVideos,
+                        ...(Array.isArray(files) ? files : [files]),
+                      ];
+            
+                      updateFormState({ videos: newVideos });
                     }}
                     acceptedFileTypes="image/png, .pdf, image/jpg"
                     multiple
@@ -280,7 +303,7 @@ const Page6 = ({ formState, updateFormState, handleContinue, currentPage, setCur
                       typeof formState.videos === 'string'
                         ? formState.videos
                         : Array.isArray(formState.videos)
-                          ? formState.videos.map((file: File) => file.name).join(', ')  
+                          ? formState.videos.map((file: File) => file.name).join(', ')
                           : (formState.videos as File)?.name
                     }
                   />

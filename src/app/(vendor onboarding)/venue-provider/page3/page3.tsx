@@ -2,6 +2,7 @@
 
 import FileInput from "@/components/fileInput";
 import { Combobox } from "../(components)/comboBoxNew";
+import { useEffect } from "react";
 
 interface FormState {
   termsConditions: string | File | File[];
@@ -45,6 +46,7 @@ const Page3: React.FC<Page3Props> = ({
   setCurrentPage,
 
 }) => {
+
   return (
     <div className="scroll-touch flex flex-col items-start gap-7 overflow-y-scroll rounded-xl bg-white p-3 xs:w-[95%] xs:min-w-[90%] xs:justify-start md:p-6">
       <h1 className="text-3xl font-semibold">Additional Details </h1>
@@ -57,8 +59,22 @@ const Page3: React.FC<Page3Props> = ({
             <FileInput
               label="Photos"
               multiple={true}
-              onFileSelect={(file) => {
-                updateFormState({ photos: file });
+              onFileSelect={(files) => {
+                // Determine existing photos from the previous state
+                const existingPhotos = Array.isArray(formState.photos)
+                  ? formState.photos
+                  : formState.photos instanceof File
+                  ? [formState.photos]
+                  : [];
+            
+                // Create the new photos array by combining existing and newly selected files
+                const newPhotos = [
+                  ...existingPhotos,
+                  ...(Array.isArray(files) ? files : [files]),
+                ];
+            
+                // Update the form state with the new photos array
+                updateFormState({ photos: newPhotos });
               }}
               acceptedFileTypes="image/png, .pdf, image/jpg"
             />
@@ -71,11 +87,12 @@ const Page3: React.FC<Page3Props> = ({
                 typeof formState.photos === 'string'
                   ? formState.photos
                   : Array.isArray(formState.photos)
-                    ? formState.photos.map((file: File) => file.name).join(', ')  
+                    ? formState.photos.map((file: File) => file.name).join(', ')
                     : (formState.photos as File)?.name
               }
               onChange={(e) => updateFormState({ photos: e.target.value })}
             />
+
 
           </div>
           <div>
@@ -84,8 +101,19 @@ const Page3: React.FC<Page3Props> = ({
             <FileInput
               label="tnc"
               multiple={true}
-              onFileSelect={(file) => {
-                updateFormState({ videos: file });
+              onFileSelect={(files) => {
+                const existingVideos = Array.isArray(formState.videos)
+                  ? formState.videos
+                  : formState.videos instanceof File
+                  ? [formState.videos]
+                  : [];
+      
+                const newVideos = [
+                  ...existingVideos,
+                  ...(Array.isArray(files) ? files : [files]),
+                ];
+      
+                updateFormState({ videos: newVideos });
               }}
               acceptedFileTypes="image/png, .pdf, image/jpg"
             />
@@ -98,7 +126,7 @@ const Page3: React.FC<Page3Props> = ({
                 typeof formState.videos === 'string'
                   ? formState.videos
                   : Array.isArray(formState.videos)
-                    ? formState.videos.map((file: File) => file.name).join(', ')  
+                    ? formState.videos.map((file: File) => file.name).join(', ')
                     : (formState.videos as File)?.name
               }
               onChange={(e) => updateFormState({ videos: e.target.value })}
