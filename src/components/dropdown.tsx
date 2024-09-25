@@ -1,8 +1,6 @@
 "use client";
-
 import * as React from "react";
 import { Check, ChevronsUpDown } from "lucide-react";
-
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
@@ -19,13 +17,11 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
-// Define the type for the options
 type FrameworkOption = {
   value: string;
   label: string;
 };
 
-// Define the props for the component
 interface ComboboxDemoProps {
   options: FrameworkOption[];
   className?: string;
@@ -60,7 +56,14 @@ export function ComboboxDemo({
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[200px] p-0">
+      <PopoverContent 
+        className="w-[200px] p-0" 
+        side="bottom" 
+        align="start"
+        sideOffset={5}
+        alignOffset={0}
+        avoidCollisions={false}
+      >
         <Command>
           <CommandInput placeholder="Search framework..." />
           <CommandList>

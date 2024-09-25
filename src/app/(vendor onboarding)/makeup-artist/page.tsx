@@ -9,6 +9,7 @@ import Page5 from "./page5/page5";
 import { add } from "date-fns";
 import { addMakeUpArtist } from "@/services/vendors/makeupArtist";
 import jwt from "jsonwebtoken";
+import Image from "next/image";
 
 interface Package {
   type: string;
@@ -189,6 +190,10 @@ const VenueForm: React.FC = () => {
     }
   };
 
+  const handleContinue = () =>{
+    console.log('continue')
+  }
+
   const renderPage = () => {
     switch (currentPage) {
       case 1:
@@ -206,11 +211,25 @@ const VenueForm: React.FC = () => {
             makeupArtists_organisation={makeupArtists_organisation}
             setMakeupArtist_organisation={setMakeupArtist_organisation}
             portfolioUrls={formState.portfolioUrls}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            handleContinue={() => {
+              setCurrentPage(2);
+              handleContinue();
+            }}
           />
         );
       case 2:
         return (
-          <Page2 formState={formState} updateFormState={updateFormState} />
+          <Page2 formState={formState}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+           updateFormState={updateFormState} 
+          handleContinue={() => {
+            setCurrentPage(3);
+            handleContinue();
+          }}
+          />
         );
       case 3:
         return (
@@ -225,6 +244,12 @@ const VenueForm: React.FC = () => {
             setratesbyWorker={setratesbyWorker}
             handlePackageChange={handlePackageChange}
             addPackage={addPackage}
+            handleContinue={() => {
+              setCurrentPage(4);
+              handleContinue();
+            }}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
           />
         );
       case 4:
@@ -234,11 +259,18 @@ const VenueForm: React.FC = () => {
             setMakeupTypes={setMakeupTypes}
             onsiteMakeup={onsiteMakeup}
             setOnsiteMakeup={setOnsiteMakeup}
+            handleContinue={() => {
+              setCurrentPage(5);
+              handleContinue();
+            }}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
           />
         );
       case 5:
         return (
           <Page5
+          
             formState={formState}
             updateFormState={updateFormState}
             category={category}
@@ -256,56 +288,87 @@ const VenueForm: React.FC = () => {
             artistDescription={formState.artistDescription}
             portfolioUrls={formState.portfolioUrls}
             setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
+            handleSubmit={handleSubmit}
+            handleContinue={() => {
+              // setCurrentPage(6);
+              handleSubmit();
+            }}
           />
         );
       default:
         return (
-          <Page1
-            formState={formState}
-            updateFormState={updateFormState}
-            artistName={formState.artistName}
-            category={category}
-            handleCategoryChange={handleCategoryChange}
-            makeupArtists_individual={makeupArtists_individual}
-            setMakeupArtist_individual={setMakeupArtist_individual}
-            makeupArtists_groups={makeupArtists_groups}
-            setMakeupArtist_group={setMakeupArtist_group}
-            makeupArtists_organisation={makeupArtists_organisation}
-            setMakeupArtist_organisation={setMakeupArtist_organisation}
-            portfolioUrls={formState.portfolioUrls}
-          />
+          <>thankyou</>
         );
     }
   };
 
   return (
-    <div>
-      {renderPage()}
-      <div className="my-9 mr-[5%] flex flex-row justify-end gap-7">
-        {currentPage > 1 && (
-          <button
-            className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-            onClick={() => setCurrentPage(currentPage - 1)}
-          >
-            Previous
-          </button>
-        )}
-        {currentPage < 5 && (
-          <button
-            onClick={() => setCurrentPage(currentPage + 1)}
-            className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-          >
-            Next
-          </button>
-        )}
-        {currentPage === 5 && (
-          <button
-            onClick={handleSubmit}
-            className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-          >
-            Submit
-          </button>
-        )}
+    <div className="m-0 flex w-full flex-col overflow-x-hidden lg:h-[calc(100vh-4.2rem)] lg:flex-row">
+      <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[30%] lg:max-w-[30%] p-4">
+        <div className="flex w-[100%] flex-col justify-center">
+          <div className="flex flex-col gap-1 px-3 lg:mt-[2rem]">
+            <span className="text-lg font-semibold">
+              Step {currentPage} of 5
+            </span>
+            <div className="flex gap-4">
+              <button
+                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 1 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                onClick={() => setCurrentPage(1)}
+              ></button>
+
+              <button
+                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 2 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                onClick={() => setCurrentPage(2)}
+              ></button>
+
+              <button
+                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 3 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                onClick={() => setCurrentPage(3)}
+              ></button>
+
+              <button
+                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 4 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                onClick={() => setCurrentPage(4)}
+              ></button>
+
+              <button
+                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 5 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                onClick={() => setCurrentPage(5)}
+              ></button>
+
+            </div>
+          </div>
+        </div>
+        <div className="flex h-[50%] flex-col items-start justify-center gap-9 px-3 md:px-3">
+          <h1 className="text-[8vw] font-bold md:text-[3vw]">
+            {currentPage === 1 && "Fill out your Basic details "}
+            {currentPage === 2 && "Fill out your Service details "}
+            {currentPage === 3 && "Fill out your pricing and policy"}
+            {currentPage === 4 && "Fill out your policy"}
+            {currentPage === 5 && "Fill out extra detail of your company"}
+
+          </h1>
+          <p className="text-black xs:text-sm md:w-[90%]">
+            {currentPage === 1 &&'Please provide the details of the venue offered by your company.'}
+            {currentPage === 2 &&'Please provide the details of the venue offered by your company.'}
+            {currentPage === 3 &&'Please provide the details of the venue offered by your company.'}
+            {currentPage === 4 &&'Please provide the details of the venue offered by your company.'}
+            {currentPage === 5 &&'Please provide the details of the venue offered by your company.'}
+          </p>
+        </div>
+        <div className="relative h-[10rem] lg:w-full">
+          <Image
+            src={"/tajmahal.png"}
+            alt=""
+            width={400}
+            height={200}
+            className="h-full w-full object-cover"
+          />
+        </div>
+      </div>
+      <div className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] p-6 md:p-[1rem]">
+        {renderPage()}
       </div>
     </div>
   );

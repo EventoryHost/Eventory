@@ -8,15 +8,18 @@ import Page1 from "./page1/page1";
 import Page2 from "./page2/page2";
 import Page3 from "./page3/page3";
 import Page4 from "./page4/page4";
-import Page5 from "./page5/page5";
 import Page6 from "./page6/page6";
+import Page7 from "./page7/page7"
 
-import Page7 from "./preview/page7";
+import Page8 from "./preview/preview";
 
 import { addCaterer } from "@/services/vendors/caterer";
+import Agreement from "../Agreement/page";
+import Plans from "../Plans/page";
+import Registration_Completed from "../Registration-Completed/page";
 
 interface Package {
-  package_name: string;
+  type: string;
   priceRange: [number, number];
 }
 
@@ -26,22 +29,23 @@ export interface FormState {
   cateringName: string;
   businessName: string;
 
-  menu: string | File;
   preSetMenu: string;
   customizableMenu: boolean;
 
   // Page 6
   portfolio: string | File;
-  testimonials: string | File;
+  clientTestimonials: string | File | File[];
   tastingSessions: boolean;
   businessLicenses: boolean;
   foodSafety: boolean | File;
   cateringServiceImages: string | File;
   videoEvent: string | File;
-  termsAndConditions: string | File;
-  cancellationPolicy: string | File;
+  termsAndConditions: string | File | File[];
+  cancellationPolicy: string | File | File[];
   minOrderReq: string;
   AdvBooking: string;
+  photos: string | File | File[];
+  videos: string | File | File[];
 }
 
 const Caterer = () => {
@@ -50,7 +54,6 @@ const Caterer = () => {
   const [formState, setFormState] = useState<FormState>({
     cateringName: "",
     businessName: "",
-    menu: "",
     preSetMenu: "",
     customizableMenu: false,
     tastingSessions: false,
@@ -60,10 +63,12 @@ const Caterer = () => {
     videoEvent: "",
     termsAndConditions: "",
     cancellationPolicy: "",
-    testimonials: "",
+    clientTestimonials: "",
     portfolio: "",
     minOrderReq: "",
     AdvBooking: "",
+    photos: [],
+    videos: [],
   });
 
   function updateFormState(newState: Partial<FormState>) {
@@ -78,7 +83,7 @@ const Caterer = () => {
   const [serviceStyles, setServiceStyles] = useState<string[]>([]);
 
   //states for page2
-  const [veg, setVeg] = useState<string[]>([]);
+  const [veg, setVeg] = useState<string[]>(['Veg']);
 
   const [selectedAppetizers, setSelectedAppetizers] = useState<string[]>([]);
   const [selectedBeverages, setSelectedBeverages] = useState<string[]>([]);
@@ -96,16 +101,19 @@ const Caterer = () => {
   const [equipmentsProvided, setEquipmentsProvided] = useState<string[]>([]);
 
   const [advancePayment, setAdvancePayment] = useState(25);
+  const [menu, setMenu] = useState<File[]>([]);
+
+
 
   // State for packages
   const [hourlyPackages, setHourlyPackages] = useState<Package[]>([
-    { package_name: "", priceRange: [0, 0] },
+    { type: "", priceRange: [0, 0] },
   ]);
   const [dailyPackages, setDailyPackages] = useState<Package[]>([
-    { package_name: "", priceRange: [0, 0] },
+    { type: "", priceRange: [0, 0] },
   ]);
   const [seasonalPackages, setSeasonalPackages] = useState<Package[]>([
-    { package_name: "", priceRange: [0, 0] },
+    { type: "", priceRange: [0, 0] },
   ]);
 
   // Function to handle package change
@@ -118,7 +126,7 @@ const Caterer = () => {
     setPackages((prevPackages) => {
       const newPackages = [...prevPackages];
       if (field === "type") {
-        newPackages[index].package_name = value as string;
+        newPackages[index].type = value as string;
       } else {
         newPackages[index].priceRange = value as [number, number];
       }
@@ -132,7 +140,7 @@ const Caterer = () => {
   ) => {
     setPackages((prevPackages) => [
       ...prevPackages,
-      { package_name: "", priceRange: [0, 100000] },
+      { type: "", priceRange: [0, 100000] },
     ]);
   };
 
@@ -142,12 +150,22 @@ const Caterer = () => {
       console.error("Token not found");
       return null;
     }
+    try {
+      const decodedToken = jwt.decode(token) as {
+        userId?: string;
+        email?: string;
+      };
+      if (!decodedToken || !decodedToken.userId) {
+        console.error("Invalid token or token does not contain userId.");
+        return null;
+      }
+      return decodedToken.userId;
+    }
+    catch (error) {
+      console.error("Error decoding token:", error);
+      return null;
+    }
 
-    const { userId, email } = jwt.decode(token) as {
-      userId: string;
-      email: string;
-    };
-    return userId;
   }
 
   const handleContinue = () => {
@@ -155,7 +173,6 @@ const Caterer = () => {
       veg,
       cateringName: formState.cateringName,
       BusinessName: formState.businessName,
-      menu: formState.menu,
       preSetMenu: formState.preSetMenu,
       customizableMenu: formState.customizableMenu,
       servingCapacity,
@@ -181,16 +198,32 @@ const Caterer = () => {
       CancellationPolicy: formState.cancellationPolicy,
       advancePayment,
       portfolio: formState.portfolio,
-      testimonials: formState.testimonials,
+      clientTestimonials: formState.clientTestimonials,
     });
   };
 
   async function handleSubmit() {
+    const venId = getVendorId();
+
+    if (!venId) {
+      console.error("No vendorId found!");
+      return;
+    }
+
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      console.error("No token found!");
+      return;
+    }
     // collect all responses in formdata and send to backend
     const formData = new FormData();
-    formData.append("venId", getVendorId()!);
+    formData.append("venId", venId);
     formData.append("name", formState.cateringName);
     formData.append("managerName", formState.businessName);
+    servingCapacity.forEach((item, index) => {
+      formData.append("capacity", item);
+    });
     cuisineSpecialties.forEach((item, index) => {
       formData.append(`cuisine_specialities[${index}]`, item);
     });
@@ -200,11 +233,6 @@ const Caterer = () => {
 
     serviceStyles.forEach((item, index) => {
       formData.append(`service_style_offered[${index}]`, item);
-    });
-    formData.append("menu", formState.menu);
-
-    veg.forEach((item, index) => {
-      formData.append(`menuType`, item);
     });
     selectedAppetizers.forEach((item, index) => {
       formData.append(`appetizers[${index}]`, item);
@@ -218,6 +246,13 @@ const Caterer = () => {
     selectedDietaryOptions.forEach((item, index) => {
       formData.append(`special_dietary_options[${index}]`, item);
     });
+
+    formData.append('vegOrNonVeg', veg[0]);
+
+    // veg.forEach((item, index) => {
+    //   formData.append(`vegOrNonVeg[${index}]`, item);
+    // });
+
     eventTypes.forEach((item, index) => {
       formData.append(`pre_set_menus[${index}]`, item);
     });
@@ -227,57 +262,71 @@ const Caterer = () => {
     eventTypes.forEach((item, index) => {
       formData.append(`event_types_catered[${index}]`, item);
     });
-    staffProvides.forEach((item, index) => {
-      formData.append(`staff_provided[${index}]`, item);
-    });
     equipmentsProvided.forEach((item, index) => {
       formData.append(`equipment_provided[${index}]`, item);
     });
-    // hourlyPackages.forEach((item, index) => {
-    //   formData.append(`rates[hourly][${index}]`, JSON.stringify(item));
-    // });
-    dailyPackages.forEach((item, index) => {
-      formData.append(
-        `rates[per_plate_rates][${index}][package_name]`,
-        JSON.stringify(item),
-      );
-      formData.append(
-        `rates[per_plate_rates][${index}][min]`,
-        JSON.stringify(item.priceRange[0]),
-      );
-      formData.append(
-        `rates[per_plate_rates][${index}][max]`,
-        JSON.stringify(item.priceRange[1]),
-      );
+    staffProvides.forEach((item, index) => {
+      formData.append(`staff_provided[${index}]`, item);
     });
-    seasonalPackages.forEach((item, index) => {
-      formData.append(
-        `rates[deal_package_rates][${index}][package_name]`,
-        JSON.stringify(item.package_name),
-      );
-      formData.append(
-        `rates[deal_package_rates][${index}][min]`,
-        JSON.stringify(item.priceRange[0]),
-      );
-      formData.append(
-        `rates[deal_package_rates][${index}][max]`,
-        JSON.stringify(item.priceRange[1]),
-      );
+    menu.forEach((item, index) => {
+      formData.append(`menu`, item);
     });
 
     formData.append("deposit_required", advancePayment.toString());
-    formData.append("portfolio", formState.portfolio);
-    formData.append("tastingSessions", formState.tastingSessions.toString());
-    formData.append("businessLicenses", formState.businessLicenses.toString());
-    formData.append("foodSafety", formState.foodSafety.toString());
-    formData.append("cateringServiceImages", formState.cateringServiceImages);
-    formData.append("terms_and_conditions", formState.termsAndConditions);
-    formData.append("cancellation_policy", formState.cancellationPolicy);
+    formData.append("customizable", formState.customizableMenu.toString());
+
+    // Handle photos field
+    if (Array.isArray(formState.photos)) {
+      formState.photos.forEach((file) => {
+        if (file instanceof File) {
+          formData.append('photos', file); // Append as 'photos' without the array index
+        }
+      });
+    } else if (typeof formState.photos === 'string') {
+      formData.append('photos', formState.photos); // Append the string (URL)
+    }
+
+    // Handle videos field
+    if (Array.isArray(formState.videos)) {
+      formState.videos.forEach((file) => {
+        if (file instanceof File) {
+          formData.append('videos', file); // Append as 'videos' without the array index
+        }
+      });
+    } else if (typeof formState.videos === 'string') {
+      formData.append('videos', formState.videos); // Append the string (URL)
+    }
+
+    formData.append("tasting_sessions", formState.tastingSessions.toString());
+    formData.append("business_licenses", formState.businessLicenses.toString());
+    formData.append("food_safety_certificates", formState.foodSafety.toString());
+
     formData.append("pre_set_menu", formState.preSetMenu);
 
-    formData.append("testimonials", formState.testimonials);
+    if (Array.isArray(formState.termsAndConditions)) {
+      formState.termsAndConditions.forEach((file) => {
+        formData.append("terms_and_conditions", file); // No index here
+      });
+    } else {
+      formData.append("terms_and_conditions", formState.termsAndConditions);
+    }
+    if (Array.isArray(formState.cancellationPolicy)) {
+      formState.cancellationPolicy.forEach((file) => {
+        formData.append("cancellation_policy", file); // No index here
+      });
+    } else {
+      formData.append("cancellation_policy", formState.cancellationPolicy);
+    }
 
-    formData.append("customizable", formState.customizableMenu.toString());
+    if (Array.isArray(formState.clientTestimonials)) {
+      formState.clientTestimonials.forEach((file) => {
+        formData.append("client_testimonials", file); // No index here
+      });
+    } else {
+      formData.append("client_testimonials", formState.clientTestimonials);
+    }
+
+
     formData.append("minimum_order_requirements", formState.minOrderReq);
     formData.append("advance_booking_period", formState.AdvBooking);
 
@@ -298,6 +347,7 @@ const Caterer = () => {
       case 1:
         return (
           <Page1
+
             formState={formState}
             updateFormState={updateFormState}
             servingCapacity={servingCapacity}
@@ -317,6 +367,10 @@ const Caterer = () => {
       case 2:
         return (
           <Page2
+            setMenu={setMenu}
+            menu={menu}
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
             formState={formState}
             updateFormState={updateFormState}
             veg={veg}
@@ -338,6 +392,8 @@ const Caterer = () => {
       case 3:
         return (
           <Page3
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
             selectedEventTypes={eventTypes}
             setSelectedEventTypes={setEventTypes}
             selectedAdditionalServices={additionalServices}
@@ -351,6 +407,8 @@ const Caterer = () => {
       case 4:
         return (
           <Page4
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
             selectedStaffProvider={staffProvides}
             setSelectedStaffProvider={setStaffProvides}
             selectedEquipmentsProvided={equipmentsProvided}
@@ -361,30 +419,28 @@ const Caterer = () => {
             }}
           />
         );
+
       case 5:
         return (
-          <Page5
+          <Page6
+
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
             formState={formState}
             updateFormState={updateFormState}
-            advancePayment={advancePayment}
-            setAdvancePayment={setAdvancePayment}
-            // hourlyPackages={hourlyPackages}
-            // setHourlyPackages={setHourlyPackages}
-            dailyPackages={dailyPackages}
-            setDailyPackages={setDailyPackages}
-            seasonalPackages={seasonalPackages}
-            setSeasonalPackages={setSeasonalPackages}
-            handlePackageChange={handlePackageChange}
-            addPackage={addPackage}
             handleContinue={() => {
               setCurrentPage(6);
               handleContinue();
+              // handleSubmit();
             }}
           />
         );
+
       case 6:
         return (
-          <Page6
+          <Page7
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
             formState={formState}
             updateFormState={updateFormState}
             handleContinue={() => {
@@ -397,7 +453,11 @@ const Caterer = () => {
 
       case 7:
         return (
-          <Page7
+          <Page8
+            setMenu={setMenu}
+            menu={menu}
+            veg={veg}
+            setVeg={setVeg}
             setCurrentPage={setCurrentPage}
             formState={formState}
             servingCapacity={servingCapacity}
@@ -433,25 +493,47 @@ const Caterer = () => {
             addPackage={addPackage}
             advancePayment={advancePayment}
             handleContinue={() => {
-              // setCurrentPage(8);
+              setCurrentPage(8);
               handleSubmit();
             }}
           />
         );
+      case 8:
+        return (
+          <>
+
+            <Agreement setCurrentPage={setCurrentPage} />
+          </>
+        )
+      case 9:
+        return (
+          <>
+            <Plans handleformSubmit={handleSubmit} setCurrentPage={setCurrentPage} />
+          </>
+        )
+      case 10:
+        return (
+          <>
+            <Registration_Completed
+            
+            />
+          </>
+        )
       default:
         return <div>thankyou</div>;
     }
   };
 
   return (
-    <div className="m-0 flex w-full flex-col overflow-x-hidden lg:h-[calc(100vh-4.2rem)] lg:flex-row">
-      <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
-        <div className="flex w-[100%] flex-col justify-center">
+    <div className={`m-0 flex w-full flex-col overflow-x-hidden ${currentPage <= 7 ? 'lg:h-[calc(100vh-4.2rem)]' : ''} lg:flex-row `}>
+      {currentPage <= 7 &&(
+      <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 pt-4 md:min-w-[30%] lg:max-w-[30%]">
+        <div className="flex w-[90%] m-auto flex-col justify-center">
           <div className="flex flex-col gap-1 px-3 lg:mt-[2rem]">
             <span className="text-lg font-semibold">
-              Step {currentPage} of 8
+              Step {currentPage} of 7
             </span>
-            <div className="flex gap-4">
+            <div className="flex gap-2">
               <button
                 className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 1 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
                 onClick={() => setCurrentPage(1)}
@@ -485,41 +567,45 @@ const Caterer = () => {
                 className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 7 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
                 onClick={() => setCurrentPage(7)}
               ></button>
-              <button
+              {/* <button
                 className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 8 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
                 onClick={() => setCurrentPage(8)}
-              ></button>
+              ></button> */}
             </div>
           </div>
         </div>
-        <div className="flex h-[50%] flex-col items-start justify-center gap-9 px-3 md:px-3">
-          <h1 className="text-[8vw] font-bold md:text-[3vw]">
-            {currentPage === 1 && "Tell us about your business"}
+        <div className="flex h-[50%] flex-col items-start justify-center gap-9 px-3 md:px-6  w-[90%] m-auto">
+          <h1 className="md:text-5xl text-3xl font-bold  ">
+            {currentPage === 1 && "Tell us about you"}
             {currentPage === 2 && "Fill the menu details"}
             {currentPage === 3 && "Fill the Event details"}
             {currentPage === 4 && "Fill the Staffing and Equipment details"}
-            {currentPage === 5 && "Fill the Booking and pricing details"}
+            {/* {currentPage === 5 && "Fill the Booking and pricing details"} */}
+            {currentPage === 5 && "Fill the Additional details"}
             {currentPage === 6 && "Fill the Additional details"}
+
             {currentPage === 7 && "Preview details"}
           </h1>
-          <p className="text-black xs:text-sm md:w-[90%]">
+          <p className="text-black text-xl ">
             {currentPage === 1 &&
-              "Fill out your Business details to get verified and proceed to the registration process."}
+              "Please provide the basic details of the catering service offered by your company."}
             {currentPage === 2 &&
               "Please provide the menu details of the catering service offered by your company."}
             {currentPage === 3 &&
               "Please provide the event details of the catering service offered by your company."}
             {currentPage === 4 &&
               "Please provide the staffing and equipment details of the catering service offered by your company."}
+            {/* {currentPage === 5 &&
+              "Please provide the booking and pricing details of the catering service offered by your company."} */}
             {currentPage === 5 &&
-              "Please provide the booking and pricing details of the catering service offered by your company."}
-            {currentPage === 6 &&
               "Please provide the additional details of the catering service offered by your company."}
+            {currentPage === 6 && "Please provide the booking and pricing details of the catering service offered by your company."}
+
             {currentPage === 7 &&
               "Please recheck the information provided by you. "}
           </p>
         </div>
-        <div className="relative h-[10rem] lg:w-full">
+        <div className="relative h-[10rem] w-full">
           <Image
             src={"/tajmahal.png"}
             alt=""
@@ -529,7 +615,8 @@ const Caterer = () => {
           />
         </div>
       </div>
-      <div className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] p-6 md:p-[1rem]">
+      )}
+      <div className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] p-4 md:p-12">
         {renderPage()}
       </div>
     </div>

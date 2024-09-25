@@ -3,6 +3,8 @@ import { SetStateAction } from "react";
 import ThreeStepBar from "@/app/(components)/threeStepBar";
 import StepBar from "@/app/(components)/stepBar";
 import Appetizers from "../../(components)/Appetizers";
+import File from "../../caterer/(components)/File";
+import FileDisplay from "../../caterer/(components)/File";
 
 const furnitureOptions = [
   "Chair",
@@ -109,67 +111,54 @@ type PricingEntry = {
 
 type FormState = {
   // Page1
-  contactName: string;
+  managerName: string;
   phoneNumber: string;
   workDescription: string;
-  yearsOfExperience: string;
+  eventSize: string;
   numberOfWorkers: string;
   handleChange: (key: keyof FormState, value: any) => void;
   [key: string]: any;
 
   // Page2
+  itemCatalogue: boolean | File;
+  customization: boolean;
+  maintenance: string;
+  services: string;
+
   insurancePolicy: string | File;
-  cancellationPolicy: string | File;
-  termsAndConditions: string | File;
   privacyPolicy: string | File;
 
+
   // Page3
-  selectedAppetizers: string[];
-  selectedDecor: string[];
-  furnitureHourlyPricingEntries: PricingEntry[];
-  tentHourlyPricingEntries: PricingEntry[];
-  furnitureDealPricingEntries: PricingEntry[];
-  furnitureWorkerPricingEntries: PricingEntry[];
-  hourlyCheckbox: boolean;
-  packageTypePage3: string;
-  packageMinRate: string;
-  packageMaxRate: string;
-  dealCheckbox: boolean;
-  dealType: string;
-  dealMinRate: string;
-  dealMaxRate: string;
-  workerCheckbox: boolean;
-  workerType: string;
-  workerMinRate: string;
-  workerMaxRate: string;
-
-  advancedPaymentCheckboxPage3: boolean;
-  percentageValuePage3: number;
-  percentageValuePage4: number;
-  percentageValuePage5: number;
-
-  // Page4
-  hourlyCheckboxPage4: boolean;
-  dealCheckboxPage4: boolean;
-  workerCheckboxPage4: boolean;
-  advancedPaymentCheckboxPage4: boolean;
-
-  // Page5
-  hourlyCheckboxPage5: boolean;
-  dealCheckboxPage5: boolean;
-  workerCheckboxPage5: boolean;
-  advancedPaymentCheckboxPage5: boolean;
+  furnitureAndDecorListUrl: string | File;
+  tentAndCanopyListUrl: string | File;
+  audioVisualListUrl: string | File;
+  photos: string | File | File[];
+  videos: string | File | File[];
+  awardsAndRecognize: string;
+  clientTestimonial: string;
+  instaUrl: string;
+  websiteUrl: string;
+  termsAndConditions: string | File | File[];
+  cancellationPolicy: string | File | File[];
 };
 
 type PagePreviewProps = {
-  selectedAppetizers: string[];
-  setselectedAppetizers: (value: SetStateAction<string[]>) => void;
+  selectedFurnitureEvents: string[];
+  setselectedFurnitureEvents: (value: SetStateAction<string[]>) => void;
+  selectedTentEvents: string[];
+  setselectedTentEvents: (value: SetStateAction<string[]>) => void;
+  selectedAudioEvents: string[];
+  setselectedAudioEvents: (value: SetStateAction<string[]>) => void;
+
   selectedCategory: string;
   setSelectedCategory: (value: any) => void;
+  selectedFurniture: string[];
+  setSelectedFurniture: (value: SetStateAction<string[]>) => void;
   selectedDecor: string[];
   setSelectedDecor: (value: any) => void;
   formState: FormState;
-  setFormState: (formState: FormState) => void;
+  // setFormState: (formState: FormState) => void;
   selectedTentOptions: string[];
   setSelectedTentOptions: React.Dispatch<SetStateAction<string[]>>;
   selectedAudioOptions: string[];
@@ -179,23 +168,35 @@ type PagePreviewProps = {
   selectedLightOptions: string[];
   setSelectedLightOptions: (value: any) => void;
   handleChange: (key: string, value: any) => void;
-  advancePaymentCheckbox: boolean;
-  percentageValuePage3: number;
-  percentageValuePage4: number;
-  percentageValuePage5: number;
-  furnitureHourlyPricingEntries: PricingEntry[];
-  tentHourlyPricingEntries: PricingEntry[];
-  handleAddPricingEntry: (entry: PricingEntry) => void;
-  furnitureDealPricingEntries: PricingEntry[];
-  furnitureWorkerPricingEntries: PricingEntry[];
-  handleAddTentPricingEntry: (entry: PricingEntry) => void;
-  handleAddAudioPricingEntry: (entry: PricingEntry) => void;
+  serviceProvided: string[];
+  setServiceProvided: (value: SetStateAction<string[]>) => void;
+  // advancePaymentCheckbox: boolean;
+  // percentageValuePage3: number;
+  // percentageValuePage4: number;
+  // percentageValuePage5: number;
+  // furnitureHourlyPricingEntries: PricingEntry[];
+  // tentHourlyPricingEntries: PricingEntry[];
+  // handleAddPricingEntry: (entry: PricingEntry) => void;
+  // furnitureDealPricingEntries: PricingEntry[];
+  // furnitureWorkerPricingEntries: PricingEntry[];
+  // handleAddTentPricingEntry: (entry: PricingEntry) => void;
+  // handleAddAudioPricingEntry: (entry: PricingEntry) => void;
+  currentPage: number;
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
+  handleSubmit: () => void;
 };
 
 function Preview({
   formState,
-  selectedAppetizers,
-  setselectedAppetizers,
+  selectedFurnitureEvents,
+  selectedTentEvents,
+  selectedAudioEvents,
+  setselectedFurnitureEvents,
+  setselectedAudioEvents,
+  setselectedTentEvents,
+  selectedFurniture, setSelectedFurniture,
+  setServiceProvided,
+  serviceProvided,
   selectedDecor,
   setSelectedDecor,
   selectedTentOptions,
@@ -206,388 +207,389 @@ function Preview({
   setSelectedVisualOptions,
   selectedLightOptions,
   setSelectedLightOptions,
+  currentPage,
+  setCurrentPage,
+  handleSubmit,
 }: PagePreviewProps) {
   return (
-    <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden lg:flex-row">
-      {/* Sidebar */}
-      <div className="hidden lg:fixed lg:left-0 lg:top-[5.2rem] lg:flex lg:h-[calc(100vh-5.2rem)] lg:w-[30%] lg:flex-col lg:items-start lg:gap-9 lg:overflow-hidden lg:bg-[#FFFFFF] lg:px-8">
-        <div className="mt-4 flex items-center justify-start gap-1">
-          <StepBar currentStep={5} />
-        </div>
-        <div className="flex flex-grow flex-col items-start justify-center gap-9 px-6 py-4">
-          <h1 className="text-2xl font-semibold md:text-3xl lg:text-4xl">
-            Fill out your Basic details
-          </h1>
-          <p className="text-sm text-gray-600 md:text-base lg:text-lg">
-            Please check the details provided by you.
-          </p>
-        </div>
-        <div className="relative h-48">
-          <img
-            src={"/tajmahal.png"}
-            alt="Taj Mahal"
-            className="h-full w-full object-cover"
-          />
+    <div className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll rounded-xl bg-white p-6 scrollbar-hide w-full md:p-10">
+      <span className=" text-xl font-semibold">
+        {formState.managerName} / Prop-Rentals
+      </span>
+
+      <div className="flex w-[100%] justify-between rounded-xl bg-[rgba(96,94,216,0.1)] p-2 pl-4 text-xl font-semibold">
+        1. Basic Information
+        <div className="align-center flex justify-center m-1">
+          <button onClick={() => setCurrentPage(1)}>
+            <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M14.4844 3.80552C15.5576 2.73077 17.2981 2.73011 18.372 3.80405L20.8639 6.2959C21.9287 7.36068 21.9397 9.08444 20.8887 10.1628L11.6556 19.6361C10.95 20.3599 9.98237 20.7681 8.97194 20.7681L6.21979 20.768C4.94055 20.7679 3.91893 19.7015 3.97273 18.4224L4.09089 15.6134C4.13039 14.6744 4.52067 13.7844 5.1845 13.1195L14.4844 3.80552ZM17.3122 4.86551C16.824 4.37736 16.0329 4.37766 15.5451 4.86618L13.8904 6.52336L18.1727 10.8003L19.8153 9.11505C20.2931 8.62488 20.288 7.84136 19.804 7.35737L17.3122 4.86551ZM6.24516 14.1802L12.8302 7.58522L17.1253 11.875L10.5822 18.5883C10.1589 19.0226 9.57827 19.2675 8.97201 19.2675L6.21986 19.2674C5.79344 19.2674 5.45291 18.9119 5.47084 18.4856L5.58899 15.6765C5.61269 15.1131 5.84686 14.5791 6.24516 14.1802ZM21.5121 20.6958C21.9262 20.6958 22.2619 20.3598 22.2619 19.9455C22.2619 19.5311 21.9262 19.1952 21.5121 19.1952H15.3828C14.9687 19.1952 14.6331 19.5311 14.6331 19.9455C14.6331 20.3598 14.9687 20.6958 15.3828 20.6958H21.5121Z" fill="#2B3F6C" />
+            </svg>
+
+          </button>
         </div>
       </div>
-      {/* Main content */}
-      <div className="flex w-full flex-col gap-2 p-2 lg:ml-[30%]">
-        <span className="align-center flex justify-start p-4 text-3xl font-semibold">
-          {formState.contactName} / Prop-Rentals
-        </span>
 
-        <div className="ml-8 mr-4 flex justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
-          1. General Information
-          <div className="align-center flex justify-center p-1">
-            <button>
-              <EditIcon size={32} />
-            </button>
-          </div>
-        </div>
-
-        <div className="mx-8 mt-6 flex gap-16">
-          <div className="flex w-1/2 flex-col">
-            <span className="text-xl">Contact Person Name</span>
-            <span className="mt-4 font-semibold">{formState.contactName}</span>
-          </div>
-          <div className="flex w-1/2 flex-col">
-            <span className="text-xl">Contact Phone number</span>
-            <span className="font-semibold">{formState.phoneNumber}</span>
-          </div>
-        </div>
-
-        <div className="mx-8 mt-6 flex gap-16">
-          <div className="flex w-1/2 flex-col">
-            <span className="text-xl">What work do you do</span>
-            <span className="mt-4 font-semibold">
-              {formState.workDescription}
+      <div className="w-full">
+        <div className="flex  flex-col items-start justify-between gap-5 md:flex-row  ">
+          <div className="mt-4 w-full md:w-1/2 flex flex-col gap-1 items-start">
+            <span className="text-base font-normal">manager name (POC)</span>
+            <span className="text-sm font-bold">
+              {formState.managerName}
             </span>
           </div>
-          <div className="flex w-1/2 flex-col">
-            <span className="text-xl">Years of experience</span>
-            <span className="mt-4 font-semibold">
-              {formState.yearsOfExperience}
+          <div className="mt-4 w-full md:w-1/2 flex flex-col gap-1 items-start">
+            <span className="text-base font-normal">Event Size</span>
+            <span className=" text-sm font-bold">
+              {formState.eventSize}
             </span>
           </div>
         </div>
 
-        <div className="mx-8 mt-6 flex w-1/2 flex-col">
-          <span className="text-xl">Number of workers</span>
-          <span className="mt-4 font-semibold">
-            {formState.numberOfWorkers}
+        <div className=" mt-4 flex flex-col gap-1 w-1/2">
+          <span className="text-base font-normal">Description about you</span>
+          <span className=" text-sm font-bold break-words">
+            {formState.workDescription}
           </span>
         </div>
 
-        <div className="ml-8 mr-4 mt-6 flex justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
-          2.Mandatory Details
-          <div className="align-center flex justify-center p-1">
-            <button>
-              <EditIcon size={32} />
-            </button>
-          </div>
-        </div>
+      </div>
 
-        <div className="mx-8 mt-6 flex gap-16">
-          <div className="flex w-1/2 flex-col">
-            <span className="text-xl">Insurance coverage policy</span>
-            <span className="mt-4 font-semibold">
-              {typeof formState.insurancePolicy === "string"
-                ? formState.insurancePolicy
-                : formState.insurancePolicy?.name || "Not uploaded"}
+
+
+      <div className="flex w-[100%] justify-between rounded-xl bg-[rgba(96,94,216,0.1)] p-2 pl-4 text-xl font-semibold">
+        2. Services Details
+        <div className="align-center flex justify-center ">
+          <button onClick={() => setCurrentPage(2)}>
+            <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M14.4844 3.80552C15.5576 2.73077 17.2981 2.73011 18.372 3.80405L20.8639 6.2959C21.9287 7.36068 21.9397 9.08444 20.8887 10.1628L11.6556 19.6361C10.95 20.3599 9.98237 20.7681 8.97194 20.7681L6.21979 20.768C4.94055 20.7679 3.91893 19.7015 3.97273 18.4224L4.09089 15.6134C4.13039 14.6744 4.52067 13.7844 5.1845 13.1195L14.4844 3.80552ZM17.3122 4.86551C16.824 4.37736 16.0329 4.37766 15.5451 4.86618L13.8904 6.52336L18.1727 10.8003L19.8153 9.11505C20.2931 8.62488 20.288 7.84136 19.804 7.35737L17.3122 4.86551ZM6.24516 14.1802L12.8302 7.58522L17.1253 11.875L10.5822 18.5883C10.1589 19.0226 9.57827 19.2675 8.97201 19.2675L6.21986 19.2674C5.79344 19.2674 5.45291 18.9119 5.47084 18.4856L5.58899 15.6765C5.61269 15.1131 5.84686 14.5791 6.24516 14.1802ZM21.5121 20.6958C21.9262 20.6958 22.2619 20.3598 22.2619 19.9455C22.2619 19.5311 21.9262 19.1952 21.5121 19.1952H15.3828C14.9687 19.1952 14.6331 19.5311 14.6331 19.9455C14.6331 20.3598 14.9687 20.6958 15.3828 20.6958H21.5121Z" fill="#2B3F6C" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div className="w-full">
+        <div className="flex  flex-col items-start justify-between gap-5 md:flex-row  ">
+          <div className="mt-4 w-full md:w-1/2 flex flex-col gap-1 items-start">
+            <span className="text-base font-normal">catalogue</span>
+            <span className="font-semibold">
+              {(formState.itemCatalogue && typeof formState.itemCatalogue === "object") ? (
+                <span className="font-semibold ">
+                  <FileDisplay file={formState.itemCatalogue} />
+                </span>) : "no"}
             </span>
           </div>
-          <div className="flex w-1/2 flex-col">
-            <span className="text-xl">Cancellation policy</span>
-            <span className="mt-4 font-semibold">
-              {typeof formState.cancellationPolicy === "string"
-                ? formState.cancellationPolicy
-                : formState.cancellationPolicy?.name || "Not uploaded"}
+          <div className="mt-4 w-full md:w-1/2 flex flex-col gap-1 items-start">
+            <span className="text-base font-normal">Do you offer customization(branding, color, theme of Items) ?</span>
+            <span className=" text-sm font-bold">
+              {formState.customization ? "yes" : "no"}
             </span>
-          </div>
-        </div>
-
-        <div className="mx-8 mt-6 flex gap-16">
-          <div className="flex w-1/2 flex-col">
-            <span className="text-xl">Terms and Conditions</span>
-            <span className="mt-4 font-semibold">
-              {typeof formState.termsAndConditions === "string"
-                ? formState.termsAndConditions
-                : formState.termsAndConditions?.name || "Not uploaded"}
-            </span>
-          </div>
-          <div className="flex w-1/2 flex-col">
-            <span className="text-xl">Privacy Policy</span>
-            <span className="mt-4 font-semibold">
-              {typeof formState.privacyPolicy === "string"
-                ? formState.privacyPolicy
-                : formState.privacyPolicy?.name || "Not uploaded"}
-            </span>
-          </div>
-        </div>
-
-        <div className="ml-8 mr-4 flex justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
-          3. Furniture and Decor Rentals
-          <div className="align-center flex justify-center p-1">
-            <button>
-              <EditIcon size={32} />
-            </button>
-          </div>
-        </div>
-
-        <div className="mx-8 mt-6 flex gap-16">
-          <div className="flex w-1/2 flex-col">
-            <span className="text-xl">Uploaded List</span>
-            <span className="ml-8 mt-2 flex items-center font-semibold">
-              <span>
-                {formState.furnitureAndDecorListUrl.name || "No File Uploaded"}
-              </span>
-            </span>
-          </div>
-        </div>
-
-        <div className="m-6 mt-4 flex flex-col">
-          <span className="text-xl">Selected Decor</span>
-          <Appetizers
-            appetizers={selectedAppetizers}
-            selectedAppetizers={selectedAppetizers}
-            setSelectedAppetizers={setselectedAppetizers}
-          />
-        </div>
-        <div className="m-6 mt-6 flex flex-col">
-          <span className="text-xl">Selected Appetizers</span>
-          <Appetizers
-            appetizers={selectedDecor}
-            selectedAppetizers={selectedDecor}
-            setSelectedAppetizers={setSelectedDecor}
-          />
-        </div>
-
-        <div>
-          <span className="mb-4 ml-6 text-2xl font-semibold">
-            Pricing Structure
-          </span>
-
-          <div className="ml-8 flex flex-col">
-            <div className="text-xl font-semibold">Hourly package rates</div>
-            <div className="mt-4 flex flex-col">
-              {formState.furnitureHourlyPricingEntries.length > 0 ? (
-                formState.furnitureHourlyPricingEntries.map((entry, index) => (
-                  <div key={index} className="mb-2 flex flex-col">
-                    <span>{entry.name}</span>
-                    <span className="font-semibold">
-                      ₹ {entry.min} - ₹{entry.max}
-                    </span>
-                  </div>
-                ))
-              ) : (
-                <div>No hourly package rates available</div>
-              )}
-            </div>
-          </div>
-
-          <div className="ml-8 mt-4 flex flex-col">
-            <div className="text-xl font-semibold">Daily package rates</div>
-            <div className="mt-4 flex flex-col">
-              {formState.furnitureDealPricingEntries.length > 0 ? (
-                formState.furnitureDealPricingEntries.map((entry, index) => (
-                  <div key={index} className="mb-2 flex flex-col">
-                    <span>{entry.name}</span>
-                    <span className="font-semibold">
-                      ₹ {entry.min} - ₹{entry.max}
-                    </span>
-                  </div>
-                ))
-              ) : (
-                <div>No daily package rates available</div>
-              )}
-            </div>
-          </div>
-
-          <div className="ml-8 mt-4 flex flex-col">
-            <div className="text-xl font-semibold">Daily package rates</div>
-            <div className="mt-4 flex flex-col">
-              {formState.furnitureWorkerPricingEntries.length > 0 ? (
-                formState.furnitureWorkerPricingEntries.map((entry, index) => (
-                  <div key={index} className="mb-2 flex flex-col">
-                    <span>{entry.name}</span>
-                    <span className="font-semibold">
-                      ₹ {entry.min} - ₹{entry.max}
-                    </span>
-                  </div>
-                ))
-              ) : (
-                <div>No daily package rates available</div>
-              )}
-            </div>
-          </div>
-        </div>
-
-        <div className="ml-8 mr-4 flex justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
-          4. Tent and Canopy Rentals
-          <div className="align-center flex justify-center p-1">
-            <button>
-              <EditIcon size={32} />
-            </button>
-          </div>
-        </div>
-
-        <div className="mx-8 mt-6 flex gap-16">
-          <div className="flex w-1/2 flex-col">
-            <span className="text-xl">Uploaded List</span>
-            <span className="ml-8 mt-2 flex items-center font-semibold">
-              <span>
-                {formState.tentAndCanopyListUrl.name || "No File Uploaded"}
-              </span>
-            </span>
-          </div>
-        </div>
-
-        <div className="m-6 mt-4 flex flex-col">
-          <span className="text-xl">Tent and Canopy</span>
-          <Appetizers
-            appetizers={selectedTentOptions}
-            selectedAppetizers={selectedTentOptions}
-            setSelectedAppetizers={setSelectedTentOptions}
-          />
-        </div>
-
-        {/* Pricing Structure section */}
-        <div>
-          <span className="mb-4 ml-6 text-2xl font-semibold">
-            Pricing Structure
-          </span>
-
-          <div className="ml-8 flex flex-col">
-            <div className="text-xl font-semibold">Hourly package rates</div>
-            <div className="mt-4 flex flex-col">
-              {formState.tentHourlyPricingEntries.length > 0 ? (
-                formState.tentHourlyPricingEntries.map((entry, index) => (
-                  <div key={index} className="mb-2 flex flex-col">
-                    <span>{entry.name}</span>
-                    <span className="font-semibold">
-                      ₹ {entry.min} - ₹{entry.max}
-                    </span>
-                  </div>
-                ))
-              ) : (
-                <div>No hourly package rates available</div>
-              )}
-            </div>
-          </div>
-
-          <div className="ml-8 mt-4 flex flex-col">
-            <div className="text-xl font-semibold">Daily package rates</div>
-            <div className="mt-4 flex flex-row">
-              <div className="flex w-1/2 flex-col">
-                <span>{formState.serviceType}</span>
-                <span className="font-semibold">
-                  ₹ {formState.dealMinRate} - ₹{formState.dealMaxRate}
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <div className="ml-8 mt-4 flex flex-col">
-            <div className="text-xl font-semibold">Type of workers</div>
-            <div className="mt-4 flex">
-              <div className="flex w-1/2 flex-col">
-                <span>{formState.cargoType}</span>
-                <span className="font-semibold">
-                  ₹ {formState.workerMinRate} - ₹{formState.workerMaxRate}
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="ml-8 mr-4 flex justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
-          5. Audio-Visual Equipment Rentals
-          <div className="align-center flex justify-center p-1">
-            <button>
-              <EditIcon size={32} />
-            </button>
-          </div>
-        </div>
-
-        <div className="mx-8 mt-6 flex gap-16">
-          <div className="flex w-1/2 flex-col">
-            <span className="text-xl">Uploaded List</span>
-            <span className="ml-8 mt-2 flex items-center font-semibold">
-              <span>{formState.audioVisualListUrl.name}</span>
-            </span>
-          </div>
-        </div>
-
-        <div className="m-6 mt-4 flex flex-col">
-          <span className="text-xl">Audio Equipment</span>
-          <Appetizers
-            appetizers={selectedAudioOptions}
-            selectedAppetizers={selectedAudioOptions}
-            setSelectedAppetizers={setSelectedAudioOptions}
-          />
-        </div>
-
-        <div className="m-6 mt-6 flex flex-col">
-          <span className="text-xl">Visual Equipment</span>
-          <Appetizers
-            appetizers={selectedvisualOptions}
-            selectedAppetizers={selectedvisualOptions}
-            setSelectedAppetizers={setSelectedVisualOptions}
-          />
-        </div>
-
-        <div className="m-6 mt-6 flex flex-col">
-          <span className="text-xl">Light Equipment</span>
-          <Appetizers
-            appetizers={selectedLightOptions}
-            selectedAppetizers={selectedLightOptions}
-            setSelectedAppetizers={setSelectedLightOptions}
-          />
-        </div>
-
-        <div>
-          <span className="mb-4 ml-6 text-2xl font-semibold">
-            Pricing Structure
-          </span>
-
-          <div className="ml-8 flex flex-col">
-            <div className="text-xl font-semibold">Hourly package rates</div>
-            <div className="mt-4 flex">
-              <div className="flex w-1/2 flex-col">
-                <span> {formState.packageTypePage3}</span>
-                <span className="font-semibold">
-                  ₹ {formState.packageMinRate} - ₹{formState.packageMaxRate}
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <div className="ml-8 mt-4 flex flex-col">
-            <div className="text-xl font-semibold">Daily package rates</div>
-            <div className="mt-4 flex flex-row">
-              <div className="flex w-1/2 flex-col">
-                <span>{formState.serviceType}</span>
-                <span className="font-semibold">
-                  ₹ {formState.dealMinRate} - ₹{formState.dealMaxRate}
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <div className="ml-8 mt-4 flex flex-col">
-            <div className="text-xl font-semibold">Type of workers</div>
-            <div className="mt-4 flex">
-              <div className="flex w-1/2 flex-col">
-                <span>{formState.cargoType}</span>
-                <span className="font-semibold">
-                  ₹ {formState.workerMinRate} - ₹{formState.workerMaxRate}
-                </span>
-              </div>
-            </div>
           </div>
         </div>
       </div>
+
+      <div className="w-full">
+        <div className="flex flex-col items-start justify-between gap-5 md:flex-row  ">
+          <div className="mt-4 w-full md:w-1/2 flex flex-col gap-1 items-start">
+            <span className="text-base font-normal">How do you handle maintenance and repairs?</span>
+            <span className="text-sm font-bold w-full break-words">{formState.maintenance}</span>
+          </div>
+          <div className="mt-4 w-full md:w-1/2 flex flex-col gap-1 items-start">
+            <span className="text-base font-normal">What areas do you provide service for?</span>
+            <span className="text-sm font-bold w-full break-words">{formState.services}</span>
+          </div>
+        </div>
+      </div>
+      <div className="flex flex-col items-start justify-between gap-2   ">
+        <span className="text-base font-normal">Selected Decor</span>
+        <Appetizers
+          appetizers={serviceProvided}
+          selectedAppetizers={serviceProvided}
+          setSelectedAppetizers={setServiceProvided}
+        />
+      </div>
+
+
+      <div className="flex w-[100%] justify-between rounded-xl bg-[rgba(96,94,216,0.1)] p-2 pl-4 text-xl font-semibold">
+        3. Furniture and Decor Rentals
+        <div className="align-center flex justify-center p-1">
+          <button onClick={() => setCurrentPage(3)}>
+            <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M14.4844 3.80552C15.5576 2.73077 17.2981 2.73011 18.372 3.80405L20.8639 6.2959C21.9287 7.36068 21.9397 9.08444 20.8887 10.1628L11.6556 19.6361C10.95 20.3599 9.98237 20.7681 8.97194 20.7681L6.21979 20.768C4.94055 20.7679 3.91893 19.7015 3.97273 18.4224L4.09089 15.6134C4.13039 14.6744 4.52067 13.7844 5.1845 13.1195L14.4844 3.80552ZM17.3122 4.86551C16.824 4.37736 16.0329 4.37766 15.5451 4.86618L13.8904 6.52336L18.1727 10.8003L19.8153 9.11505C20.2931 8.62488 20.288 7.84136 19.804 7.35737L17.3122 4.86551ZM6.24516 14.1802L12.8302 7.58522L17.1253 11.875L10.5822 18.5883C10.1589 19.0226 9.57827 19.2675 8.97201 19.2675L6.21986 19.2674C5.79344 19.2674 5.45291 18.9119 5.47084 18.4856L5.58899 15.6765C5.61269 15.1131 5.84686 14.5791 6.24516 14.1802ZM21.5121 20.6958C21.9262 20.6958 22.2619 20.3598 22.2619 19.9455C22.2619 19.5311 21.9262 19.1952 21.5121 19.1952H15.3828C14.9687 19.1952 14.6331 19.5311 14.6331 19.9455C14.6331 20.3598 14.9687 20.6958 15.3828 20.6958H21.5121Z" fill="#2B3F6C" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div className="w-full">
+        <div className="flex  flex-col items-start justify-between gap-5   ">
+          <div className="mt-4  md:w-1/2 flex flex-col gap-1 items-start">
+            <span className="text-base font-normal">Uploaded List</span>
+            <span className="font-semibold">
+              {(formState.furnitureAndDecorListUrl && typeof formState.furnitureAndDecorListUrl === "object") ? (
+                <span className="font-semibold ">
+                  <FileDisplay file={formState.furnitureAndDecorListUrl} />
+                </span>) : "no"}
+            </span>
+          </div>
+
+        </div>
+
+      </div>
+      <div className="flex flex-col items-start justify-between gap-2   ">
+        <span className="text-base font-normal">Types of event </span>
+        <Appetizers
+          appetizers={selectedFurnitureEvents}
+          selectedAppetizers={selectedFurnitureEvents}
+          setSelectedAppetizers={setselectedFurnitureEvents}
+        />
+      </div>
+      <div className="flex flex-col items-start justify-between gap-2   ">
+        <span className="text-base font-normal">Furniture</span>
+        <Appetizers
+          appetizers={selectedFurniture}
+          selectedAppetizers={selectedFurniture}
+          setSelectedAppetizers={setSelectedFurniture}
+        />
+      </div>
+      <div className="flex flex-col items-start justify-between gap-2   ">
+        <span className="text-base font-normal">Decor</span>
+        <Appetizers
+          appetizers={selectedDecor}
+          selectedAppetizers={selectedDecor}
+          setSelectedAppetizers={setSelectedDecor}
+        />
+      </div>
+
+      <div className="flex w-[100%] justify-between rounded-xl bg-[rgba(96,94,216,0.1)] p-2 pl-4 text-xl font-semibold">
+        4. Tent and Canopy Rentals
+        <div className="align-center flex justify-center p-1">
+          <button onClick={() => setCurrentPage(3)}>
+            <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M14.4844 3.80552C15.5576 2.73077 17.2981 2.73011 18.372 3.80405L20.8639 6.2959C21.9287 7.36068 21.9397 9.08444 20.8887 10.1628L11.6556 19.6361C10.95 20.3599 9.98237 20.7681 8.97194 20.7681L6.21979 20.768C4.94055 20.7679 3.91893 19.7015 3.97273 18.4224L4.09089 15.6134C4.13039 14.6744 4.52067 13.7844 5.1845 13.1195L14.4844 3.80552ZM17.3122 4.86551C16.824 4.37736 16.0329 4.37766 15.5451 4.86618L13.8904 6.52336L18.1727 10.8003L19.8153 9.11505C20.2931 8.62488 20.288 7.84136 19.804 7.35737L17.3122 4.86551ZM6.24516 14.1802L12.8302 7.58522L17.1253 11.875L10.5822 18.5883C10.1589 19.0226 9.57827 19.2675 8.97201 19.2675L6.21986 19.2674C5.79344 19.2674 5.45291 18.9119 5.47084 18.4856L5.58899 15.6765C5.61269 15.1131 5.84686 14.5791 6.24516 14.1802ZM21.5121 20.6958C21.9262 20.6958 22.2619 20.3598 22.2619 19.9455C22.2619 19.5311 21.9262 19.1952 21.5121 19.1952H15.3828C14.9687 19.1952 14.6331 19.5311 14.6331 19.9455C14.6331 20.3598 14.9687 20.6958 15.3828 20.6958H21.5121Z" fill="#2B3F6C" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div className="w-full">
+        <div className="flex  flex-col items-start justify-between gap-5   ">
+          <div className="mt-4  md:w-1/2 flex flex-col gap-1 items-start">
+            <span className="text-base font-normal">Uploaded List</span>
+            <span className="font-semibold">
+              {(formState.tentAndCanopyListUrl && typeof formState.tentAndCanopyListUrl === "object") ? (
+                <span className="font-semibold min-w-full">
+                  <FileDisplay file={formState.tentAndCanopyListUrl} />
+                </span>) : "no"}
+            </span>
+          </div>
+
+        </div>
+
+      </div>
+      <div className="flex flex-col items-start justify-between gap-2   ">
+        <span className="text-base font-normal">Types of event </span>
+        <Appetizers
+          appetizers={selectedTentEvents}
+          selectedAppetizers={selectedTentEvents}
+          setSelectedAppetizers={setselectedTentEvents}
+        />
+      </div>
+      <div className="flex flex-col items-start justify-between gap-2   ">
+        <span className="text-base font-normal">Tent and Canopy</span>
+        <Appetizers
+          appetizers={selectedTentOptions}
+          selectedAppetizers={selectedTentOptions}
+          setSelectedAppetizers={setSelectedTentOptions}
+        />
+      </div>
+
+      <div className="flex w-[100%] justify-between rounded-xl bg-[rgba(96,94,216,0.1)] p-2 pl-4 text-xl font-semibold">
+        5. Audio-Visual Rentals
+        <div className="align-center flex justify-center p-1">
+          <button onClick={() => setCurrentPage(3)}>
+            <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M14.4844 3.80552C15.5576 2.73077 17.2981 2.73011 18.372 3.80405L20.8639 6.2959C21.9287 7.36068 21.9397 9.08444 20.8887 10.1628L11.6556 19.6361C10.95 20.3599 9.98237 20.7681 8.97194 20.7681L6.21979 20.768C4.94055 20.7679 3.91893 19.7015 3.97273 18.4224L4.09089 15.6134C4.13039 14.6744 4.52067 13.7844 5.1845 13.1195L14.4844 3.80552ZM17.3122 4.86551C16.824 4.37736 16.0329 4.37766 15.5451 4.86618L13.8904 6.52336L18.1727 10.8003L19.8153 9.11505C20.2931 8.62488 20.288 7.84136 19.804 7.35737L17.3122 4.86551ZM6.24516 14.1802L12.8302 7.58522L17.1253 11.875L10.5822 18.5883C10.1589 19.0226 9.57827 19.2675 8.97201 19.2675L6.21986 19.2674C5.79344 19.2674 5.45291 18.9119 5.47084 18.4856L5.58899 15.6765C5.61269 15.1131 5.84686 14.5791 6.24516 14.1802ZM21.5121 20.6958C21.9262 20.6958 22.2619 20.3598 22.2619 19.9455C22.2619 19.5311 21.9262 19.1952 21.5121 19.1952H15.3828C14.9687 19.1952 14.6331 19.5311 14.6331 19.9455C14.6331 20.3598 14.9687 20.6958 15.3828 20.6958H21.5121Z" fill="#2B3F6C" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div className="w-full">
+        <div className="flex  flex-col items-start justify-between gap-5   ">
+          <div className="mt-4  md:w-1/2 flex flex-col gap-1 items-start">
+            <span className="text-base font-normal">Upload List</span>
+            <span className="font-semibold">
+              {(formState.audioVisualListUrl && typeof formState.audioVisualListUrl === "object") ? (
+                <span className="font-semibold min-w-full">
+                  <FileDisplay file={formState.audioVisualListUrl} />
+                </span>) : "no"}
+            </span>
+          </div>
+        </div>
+      </div>
+      <div className="flex flex-col items-start justify-between gap-2   ">
+        <span className="text-base font-normal">Types of event </span>
+        <Appetizers
+          appetizers={selectedAudioEvents}
+          selectedAppetizers={selectedAudioEvents}
+          setSelectedAppetizers={setselectedAudioEvents}
+        />
+      </div>
+      <div className="flex flex-col items-start justify-between gap-2   ">
+        <span className="text-base font-normal">Audio Equipment </span>
+        <Appetizers
+          appetizers={selectedAudioOptions}
+          selectedAppetizers={selectedAudioOptions}
+          setSelectedAppetizers={setSelectedAudioOptions}
+        />
+      </div>
+      <div className="flex flex-col items-start justify-between gap-2   ">
+        <span className="text-base font-normal">Visual Equipment </span>
+        <Appetizers
+          appetizers={selectedvisualOptions}
+          selectedAppetizers={selectedvisualOptions}
+          setSelectedAppetizers={setSelectedVisualOptions}
+        />
+      </div>
+      <div className="flex flex-col items-start justify-between gap-2   ">
+        <span className="text-base font-normal">Light Equipment </span>
+        <Appetizers
+          appetizers={selectedLightOptions}
+          selectedAppetizers={selectedLightOptions}
+          setSelectedAppetizers={setSelectedLightOptions}
+        />
+      </div>
+
+      <div className="flex w-[100%] justify-between rounded-xl bg-[rgba(96,94,216,0.1)] p-2 pl-4 text-xl font-semibold">
+        6. Additional Details
+        <div className="align-center flex justify-center p-1">
+          <button onClick={() => setCurrentPage(4)}>
+            <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M14.4844 3.80552C15.5576 2.73077 17.2981 2.73011 18.372 3.80405L20.8639 6.2959C21.9287 7.36068 21.9397 9.08444 20.8887 10.1628L11.6556 19.6361C10.95 20.3599 9.98237 20.7681 8.97194 20.7681L6.21979 20.768C4.94055 20.7679 3.91893 19.7015 3.97273 18.4224L4.09089 15.6134C4.13039 14.6744 4.52067 13.7844 5.1845 13.1195L14.4844 3.80552ZM17.3122 4.86551C16.824 4.37736 16.0329 4.37766 15.5451 4.86618L13.8904 6.52336L18.1727 10.8003L19.8153 9.11505C20.2931 8.62488 20.288 7.84136 19.804 7.35737L17.3122 4.86551ZM6.24516 14.1802L12.8302 7.58522L17.1253 11.875L10.5822 18.5883C10.1589 19.0226 9.57827 19.2675 8.97201 19.2675L6.21986 19.2674C5.79344 19.2674 5.45291 18.9119 5.47084 18.4856L5.58899 15.6765C5.61269 15.1131 5.84686 14.5791 6.24516 14.1802ZM21.5121 20.6958C21.9262 20.6958 22.2619 20.3598 22.2619 19.9455C22.2619 19.5311 21.9262 19.1952 21.5121 19.1952H15.3828C14.9687 19.1952 14.6331 19.5311 14.6331 19.9455C14.6331 20.3598 14.9687 20.6958 15.3828 20.6958H21.5121Z" fill="#2B3F6C" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div className="w-full">
+        <div className="flex  flex-col items-start justify-between gap-5 md:flex-row  ">
+          <div className="mt-4  md:w-1/2 flex flex-col gap-1 items-start">
+            <span className="text-base font-normal">photos</span>
+            <span className="text-sm font-bold">
+              {Array.isArray(formState.photos) && formState.photos.length > 0 ? (
+                formState.photos.map((photo, index) => (
+                  <span key={index} className="block">
+                    {photo.name}
+                  </span>
+                ))
+              ) : (
+                <span>No photos uploaded</span>
+              )}
+            </span>
+          </div>
+          <div className="mt-4  md:w-1/2 flex flex-col gap-1 items-start">
+            <span className="text-base font-normal">Videos</span>
+            <span className="text-sm font-bold">
+              {Array.isArray(formState.videos) && formState.videos.length > 0 ? (
+                formState.videos.map((video, index) => (
+                  <span key={index} className="block">
+                    {video.name}
+                  </span>
+                ))
+              ) : (
+                <span>No videos uploaded</span>
+              )}
+            </span>
+          </div>
+        </div>
+        <div className="flex  flex-col items-start justify-between gap-5 md:flex-row  ">
+          <div className="mt-4  md:w-1/2 flex flex-col gap-1 items-start">
+            <span className="text-base font-normal">Awards/Recognition</span>
+            <span className="text-sm font-bold">
+              {formState.awardsAndRecognize}
+            </span>
+          </div>
+          <div className="mt-4  md:w-1/2 flex flex-col gap-1 items-start">
+            <span className="text-base font-normal">Clients Testimonals</span>
+            <span className="text-sm font-bold">
+              {formState.clientTestimonial}
+            </span>
+          </div>
+        </div>
+        <div className="flex  flex-col items-start justify-between gap-5 md:flex-row  ">
+          <div className="mt-4  md:w-1/2 flex flex-col gap-1 items-start">
+            <span className="text-base font-normal">Instagram uRL</span>
+            <span className="text-sm font-bold">
+              {formState.instaUrl}
+            </span>
+          </div>
+          <div className="mt-4  md:w-1/2 flex flex-col gap-1 items-start">
+            <span className="text-base font-normal">Website URL</span>
+            <span className="text-sm font-bold">
+              {formState.websiteUrl}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div className="flex w-[100%] justify-between rounded-xl bg-[rgba(96,94,216,0.1)] p-2 pl-4 text-xl font-semibold">
+        Policies
+        <div className="align-center flex justify-center p-1">
+          <button onClick={() => setCurrentPage(5)}>
+            <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M14.4844 3.80552C15.5576 2.73077 17.2981 2.73011 18.372 3.80405L20.8639 6.2959C21.9287 7.36068 21.9397 9.08444 20.8887 10.1628L11.6556 19.6361C10.95 20.3599 9.98237 20.7681 8.97194 20.7681L6.21979 20.768C4.94055 20.7679 3.91893 19.7015 3.97273 18.4224L4.09089 15.6134C4.13039 14.6744 4.52067 13.7844 5.1845 13.1195L14.4844 3.80552ZM17.3122 4.86551C16.824 4.37736 16.0329 4.37766 15.5451 4.86618L13.8904 6.52336L18.1727 10.8003L19.8153 9.11505C20.2931 8.62488 20.288 7.84136 19.804 7.35737L17.3122 4.86551ZM6.24516 14.1802L12.8302 7.58522L17.1253 11.875L10.5822 18.5883C10.1589 19.0226 9.57827 19.2675 8.97201 19.2675L6.21986 19.2674C5.79344 19.2674 5.45291 18.9119 5.47084 18.4856L5.58899 15.6765C5.61269 15.1131 5.84686 14.5791 6.24516 14.1802ZM21.5121 20.6958C21.9262 20.6958 22.2619 20.3598 22.2619 19.9455C22.2619 19.5311 21.9262 19.1952 21.5121 19.1952H15.3828C14.9687 19.1952 14.6331 19.5311 14.6331 19.9455C14.6331 20.3598 14.9687 20.6958 15.3828 20.6958H21.5121Z" fill="#2B3F6C" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div className="w-full">
+      <div className="flex  flex-col items-start justify-between gap-5 md:flex-row  ">
+          <div className="mt-4  md:w-1/2 flex flex-col gap-1 items-start">
+            <span className="text-base font-normal">Terms and Condition</span>
+            
+            <span className="font-semibold ">
+              {typeof formState.termsAndConditions === "string" ? (
+                <div>{formState.termsAndConditions}</div> // Handle string case
+              ) : Array.isArray(formState.termsAndConditions) ? (
+                <FileDisplay files={formState.termsAndConditions} /> // Handle File[] case
+              ) : (
+                <FileDisplay file={formState.termsAndConditions} /> // Handle single File case
+              )}
+            </span>
+          </div>
+          <div className="mt-4  md:w-1/2 flex flex-col gap-1 items-start">
+            <span className="text-base font-normal">cancellation policy</span>
+            <span className="text-sm font-bold">
+            {typeof formState.cancellationPolicy === "string" ? (
+                <div>{formState.cancellationPolicy}</div> // Handle string case
+              ) : Array.isArray(formState.cancellationPolicy) ? (
+                <FileDisplay files={formState.cancellationPolicy} /> // Handle File[] case
+              ) : (
+                <FileDisplay file={formState.cancellationPolicy} /> // Handle single File case
+              )}
+            </span>
+          </div>
+        </div>
+      </div>
+
+
+      <div className="mr-[5%] flex w-full justify-end gap-[32px]">
+        {/* Previous Button */}
+        <button
+          onClick={() => setCurrentPage(currentPage - 1)}
+          className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+        >
+          Previous
+        </button>
+
+        {/* Next Button */}
+        <button
+          onClick={handleSubmit}
+          className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+        >
+          Submit
+        </button>
+      </div>
+
     </div>
+
   );
 }
 

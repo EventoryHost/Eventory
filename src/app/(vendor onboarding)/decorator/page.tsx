@@ -23,6 +23,8 @@ export interface FormState {
   // Page-specific states
   // Page 1
   businessName: string;
+  eventSize:string;
+ durationToSet: string;
 
   // Page 2
   propthemesOffered: boolean;
@@ -30,11 +32,11 @@ export interface FormState {
   colorschmes: boolean;
   customizationsThemes: boolean;
   customDesignProcess: string;
+ 
 
   // Page 3
-  backDropoptions: string;
-  decorationoptions: string;
-  prop_accessory: string;
+themePhoto:string | File | File[]
+themeVideo:string | File | File[]
 
   // Page 4
   freeInitialConsultation: boolean;
@@ -65,6 +67,8 @@ const Decorators: React.FC = () => {
   const [formState, setFormState] = useState<FormState>({
     //page1
     businessName: "",
+    eventSize:"",
+        durationToSet: "",
 
     // Page 2
     propthemesOffered: false,
@@ -74,9 +78,8 @@ const Decorators: React.FC = () => {
     customDesignProcess: "",
 
     //page 3
-    backDropoptions: "",
-    decorationoptions: "",
-    prop_accessory: "",
+    themePhoto:"",
+    themeVideo:"",
     // Page 4
     freeInitialConsultation: true,
     revisionPolicy: true,
@@ -132,6 +135,8 @@ const Decorators: React.FC = () => {
     { type: "", priceRange: [0, 0] },
   ]);
   const [advancePayment, setAdvancePayment] = useState(25);
+  const [portLinks, setPortLinks] = useState<File[]>([]);
+
 
   const handlePackageChange = (
     setPackages: React.Dispatch<React.SetStateAction<Package[]>>,
@@ -236,10 +241,11 @@ const Decorators: React.FC = () => {
       formState.customizationsThemes.toString(),
     );
     formData.append("customDesignProcess", formState.customDesignProcess);
+    formData.append("durationToSet", formState.durationToSet);
+
+    
     //page 3
-    formData.append("backDropoptions", formState.backDropoptions);
-    formData.append("decorationoptions", formState.decorationoptions);
-    formData.append("prop_accessory", formState.prop_accessory);
+    
     //page 4
     formData.append(
       "freeInitialConsultation",
@@ -291,7 +297,10 @@ const Decorators: React.FC = () => {
     });
     formData.append("advancePayment", advancePayment.toString());
     //page 6
-    formData.append("portfolio", formState.portfolio);
+    // formData.append("portfolio", formState.portfolio);
+    portLinks.forEach((item, index) => {
+      formData.append(`portfolio[${index}]`, item);
+    });
     formData.append("ratings_reviews", formState.ratings_reviews);
     formData.append("clientTestimonials", formState.clientTestimonials);
     formData.append("certificates_awards", formState.certificates_awards);
@@ -348,12 +357,16 @@ const Decorators: React.FC = () => {
               setCurrentPage(3);
               handleContinue();
             }}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
           />
         );
 
       case 3:
         return (
           <Page3
+          currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
             formState={formState}
             updateFormState={updateFormState}
             themesElements={themesElements}
@@ -368,6 +381,8 @@ const Decorators: React.FC = () => {
       case 4:
         return (
           <Page4
+          currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
             formState={formState}
             updateFormState={updateFormState}
             handleContinue={() => {
@@ -377,19 +392,35 @@ const Decorators: React.FC = () => {
           />
         );
 
+      // case 5:
+      //   return (
+      //     <Page5
+      //       hourlyPackages={hourlyPackages}
+      //       setHourlyPackages={setHourlyPackages}
+      //       dailyPackages={dailyPackages}
+      //       setDailyPackages={setDailyPackages}
+      //       additionalCharges={additionalCharges}
+      //       setAdditionalCharges={setAdditionalCharges}
+      //       handlePackageChange={handlePackageChange}
+      //       addPackage={addPackage}
+      //       advancePayment={advancePayment}
+      //       setAdvancePayment={setAdvancePayment}
+      //       handleContinue={() => {
+      //         setCurrentPage(6);
+      //         handleContinue();
+      //       }}
+      //     />
+      //   );
+
       case 5:
         return (
-          <Page5
-            hourlyPackages={hourlyPackages}
-            setHourlyPackages={setHourlyPackages}
-            dailyPackages={dailyPackages}
-            setDailyPackages={setDailyPackages}
-            additionalCharges={additionalCharges}
-            setAdditionalCharges={setAdditionalCharges}
-            handlePackageChange={handlePackageChange}
-            addPackage={addPackage}
-            advancePayment={advancePayment}
-            setAdvancePayment={setAdvancePayment}
+          <Page6
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          portLinks={portLinks}
+          setPortLinks={setPortLinks}
+            formState={formState}
+            updateFormState={updateFormState}
             handleContinue={() => {
               setCurrentPage(6);
               handleContinue();
@@ -399,7 +430,9 @@ const Decorators: React.FC = () => {
 
       case 6:
         return (
-          <Page6
+          <Page7
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
             formState={formState}
             updateFormState={updateFormState}
             handleContinue={() => {
@@ -410,18 +443,6 @@ const Decorators: React.FC = () => {
         );
 
       case 7:
-        return (
-          <Page7
-            formState={formState}
-            updateFormState={updateFormState}
-            handleContinue={() => {
-              setCurrentPage(8);
-              handleContinue();
-            }}
-          />
-        );
-
-      case 8:
         return (
           <Page8
             setCurrentPage={setCurrentPage}
@@ -452,7 +473,7 @@ const Decorators: React.FC = () => {
             advancePayment={advancePayment}
             setAdvancePayment={setAdvancePayment}
             handleContinue={() => {
-              setCurrentPage(9);
+              setCurrentPage(8);
               handleContinue();
             }}
           />
@@ -462,13 +483,13 @@ const Decorators: React.FC = () => {
 
   return (
     <div className="m-0 flex w-full flex-col overflow-x-hidden lg:h-[calc(100vh-4.2rem)] lg:flex-row">
-      <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
-        <div className="flex w-[100%] flex-col justify-center">
+      <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 pt-4 md:min-w-[30%] lg:max-w-[30%]">
+        <div className="flex w-[90%] m-auto flex-col justify-center">
           <div className="flex flex-col gap-1 px-3 lg:mt-[2rem]">
             <span className="text-lg font-semibold">
-              Step {currentPage} of 8
+              Step {currentPage} of 7
             </span>
-            <div className="flex gap-4">
+            <div className="flex gap-2">
               <button
                 className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 1 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
                 onClick={() => setCurrentPage(1)}
@@ -489,11 +510,15 @@ const Decorators: React.FC = () => {
                 onClick={() => setCurrentPage(4)}
               ></button>
 
+              {/* <button
+                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 5 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                onClick={() => setCurrentPage(5)}
+              ></button> */}
+
               <button
                 className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 5 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
                 onClick={() => setCurrentPage(5)}
               ></button>
-
               <button
                 className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 6 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
                 onClick={() => setCurrentPage(6)}
@@ -502,41 +527,41 @@ const Decorators: React.FC = () => {
                 className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 7 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
                 onClick={() => setCurrentPage(7)}
               ></button>
-              <button
-                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 8 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                onClick={() => setCurrentPage(8)}
-              ></button>
             </div>
           </div>
         </div>
-        <div className="flex h-[50%] flex-col items-start justify-center gap-9 px-3 md:px-3">
-          <h1 className="text-[8vw] font-bold md:text-[3vw]">
-            {currentPage === 1 && "Tell us about your business"}
-            {currentPage === 2 && "Fill the menu details"}
-            {currentPage === 3 && "Fill the Event details"}
-            {currentPage === 4 && "Fill the Staffing and Equipment details"}
-            {currentPage === 5 && "Fill the Booking and pricing details"}
-            {currentPage === 6 && "Fill the Additional details"}
+        <div className="flex h-[50%] flex-col items-start justify-center gap-9 px-3 md:px-6  w-[90%] m-auto">
+          <h1 className="md:text-5xl text-3xl font-bold  ">
+            {currentPage === 1 && "Fill out event details"}
+            {currentPage === 2 && "Fill out themes related details "}
+            {currentPage === 3 && "Fill out theme elements details"}
+            {currentPage === 4 && "Fill out consultaion details"}
+            {/* {currentPage === 5 && "Fill out the pricing details"} */}
+            {currentPage === 5 && "Fill out your ratings and reviews"}
+            {currentPage === 6 && "Fill out some mandatory details"}
             {currentPage === 7 && "Preview details"}
+
           </h1>
-          <p className="text-black xs:text-sm md:w-[90%]">
+          <p className="text-black text-xl ">
             {currentPage === 1 &&
-              "Fill out your Business details to get verified and proceed to the registration process."}
+              "Select the types of events you cover "}
             {currentPage === 2 &&
-              "Please provide the menu details of the catering service offered by your company."}
+              "Provide the details of the themes you offer and related details."}
             {currentPage === 3 &&
-              "Please provide the event details of the catering service offered by your company."}
+              "Provide the details of the themes elements you provide and describe it in detail."}
             {currentPage === 4 &&
-              "Please provide the staffing and equipment details of the catering service offered by your company."}
+              "Provide your consultaion process in detail"}
+            {/* {currentPage === 5 &&
+              "Provide the pricing detaials or uplaod pdf (if available)"} */}
             {currentPage === 5 &&
-              "Please provide the booking and pricing details of the catering service offered by your company."}
+              "Fill out the details or upload the links/pdf if available."}
             {currentPage === 6 &&
-              "Please provide the additional details of the catering service offered by your company."}
-            {currentPage === 7 &&
-              "Please recheck the information provided by you. "}
+              "Provide the deatils by providing url or uploading pdf. "}
+            {currentPage === 7 && "Please recheck the information provided by you. "}
+
           </p>
         </div>
-        <div className="relative h-[10rem] lg:w-full">
+        <div className="relative h-[10rem] w-full">
           <Image
             src={"/tajmahal.png"}
             alt=""
@@ -546,7 +571,7 @@ const Decorators: React.FC = () => {
           />
         </div>
       </div>
-      <div className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] p-6 md:p-[1rem]">
+      <div className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] p-4 md:p-12">
         {renderPage()}
       </div>
     </div>

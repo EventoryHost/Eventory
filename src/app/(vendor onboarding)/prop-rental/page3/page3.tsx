@@ -3,14 +3,14 @@
 import StepBar from "@/app/(components)/stepBar";
 import Appetizers from "../../(components)/Appetizers";
 import { SetStateAction, useState } from "react";
-import Page4, {
-  page4Props,
-} from "@/app/(vendor onboarding)/prop-rental/page4/page4";
-import Page5, {
-  page5Props,
-} from "@/app/(vendor onboarding)/prop-rental/page5/page5";
 import FileInput from "@/components/fileInput";
+import { ArrowLeft } from "lucide-react";
+import { FormState } from "../page";
 
+const _typesOfEvents = [
+  "Anniversary Celebration ", "Birthday Party ", "Corporate Event ", "Cultural Events",
+  "Wedding Events", "Seasonal Parties", "Others"
+]
 const furnitureOptions = [
   "Chair",
   "Sofa and Couches",
@@ -33,6 +33,17 @@ const DecorOptions = [
   "Carpet and Rugs",
   "Others",
 ];
+const _tentAndCanopy = [
+  "Tent and Canopy",
+  "Marquee Tents", "Pagoda Tents", "Pole Tents",
+  "Frame Tents", "Event Specific Tent", "Pop-Up Canopies",
+  "Garden Canopies", "Event Canopies", "Gazebos", "Shade Structures",
+  "Temporary Structures", "Others"
+]
+const _audioEquipments = ["Speakers", "Microphones", "Mixing Consoles", "Amplifiers", "Signal Processors", "Cables and Accessories", "Playback Equipment", "DJ Equipment", "Audio Interfaces", "In-Ear Monitoring Systems", "Portable PA Systems", "Recording Equipment", "Conference and Meeting Equipment", "Lighting and Effects", "Other"]
+const _visualEquipments = ["Projectors", "Screens", "LED Displays", "TV Screens", "Video Wall", "Video Cameras", "Playback and Recording Equipment", "Camera Accessories", "Video Switchers and Mixers", "Visual Effects", "Signal Distribution", "Interactive Displays", "Presentation Aids", "Virtual Reality (VR) Equipment", "Augmented Reality (AR) Equipment", "Other"]
+const _lightEquipments = ["Traditional Indian Tents", "Marquee Tents", "Pagoda Tents", "Pole Tents", "Frame Tents", "Event Specific Tent", "Pop-Up Canopies", "Garden Canopies", "Event Canopies", "Gazebos", "Shade Structures", "Temporary Structures", "Other"]
+
 
 type PricingEntry = {
   name: string;
@@ -40,69 +51,37 @@ type PricingEntry = {
   max: number;
 };
 
-type FormState = {
-  // Page1
-  contactName: string;
-  phoneNumber: string;
-  workDescription: string;
-  yearsOfExperience: string;
-  numberOfWorkers: string;
-  handleChange: (key: keyof FormState, value: any) => void;
-  [key: string]: any;
-
-  // Page2
-  insurancePolicy: string | File;
-  cancellationPolicy: string | File;
-  termsAndConditions: string | File;
-  privacyPolicy: string | File;
+interface formState {
   furnitureAndDecorListUrl: string | File;
-
-  // Page3
-  selectedAppetizers: string[];
-  selectedDecor: string[];
-  furnitureHourlyPricingEntries: PricingEntry[];
-  furnitureDealPricingEntries: PricingEntry[];
-  furnitureWorkerPricingEntries: PricingEntry[];
-  hourlyCheckbox: boolean;
-  packageTypePage3: string;
-  packageMinRate: string;
-  packageMaxRate: string;
-  dealCheckbox: boolean;
-  dealType: string;
-  dealMinRate: string;
-  dealMaxRate: string;
-  workerCheckbox: boolean;
-  workerType: string;
-  workerMinRate: string;
-  workerMaxRate: string;
-
-  advancedPaymentCheckboxPage3: false;
-  percentageValuePage3: number;
-  percentageValuePage4: number;
-  percentageValuePage5: number;
-
-  // Page4
-  hourlyCheckboxPage4: boolean;
-  dealCheckboxPage4: boolean;
-  workerCheckboxPage4: boolean;
-  advancedPaymentCheckboxPage4: false;
-
-  // Page5
-  hourlyCheckboxPage5: boolean;
-  dealCheckboxPage5: boolean;
-  workerCheckboxPage5: boolean;
-  advancedPaymentCheckboxPage5: false;
+  tentAndCanopyListUrl: string | File;
+  audioVisualListUrl: string | File;
+  photos: string | File | File[];
+  videos: string | File | File[];
+  awardsAndRecognize: string;
+  instaUrl: string;
+  websiteUrl: string;
+  clientTestimonial: string;
+  termsAndConditions: string | File | File[];
+  cancellationPolicy: string | File | File[];
+  handleChange: (key: string, value: any) => void;
 };
 
 type page3Props = {
-  selectedAppetizers: string[];
-  setselectedAppetizers: (value: SetStateAction<string[]>) => void;
+  selectedFurnitureEvents: string[];
+  setselectedFurnitureEvents: (value: SetStateAction<string[]>) => void;
+  selectedTentEvents: string[];
+  setselectedTentEvents: (value: SetStateAction<string[]>) => void;
+  selectedAudioEvents: string[];
+  setselectedAudioEvents: (value: SetStateAction<string[]>) => void;
+
   selectedCategory: string;
   setSelectedCategory: (value: any) => void;
+  selectedFurniture: string[];
+  setSelectedFurniture: (value: SetStateAction<string[]>) => void;
   selectedDecor: string[];
   setSelectedDecor: (value: any) => void;
-  formState: FormState;
-  setFormState: (formState: FormState) => void;
+  formState: formState;
+  // setFormState: (formState: FormState) => void;
   selectedTentOptions: string[];
   setSelectedTentOptions: React.Dispatch<SetStateAction<string[]>>;
   selectedAudioOptions: string[];
@@ -112,26 +91,24 @@ type page3Props = {
   selectedLightOptions: string[];
   setSelectedLightOptions: (value: any) => void;
   handleChange: (key: string, value: any) => void;
-  advancePaymentCheckbox: boolean;
-  percentageValuePage3: number;
-  percentageValuePage4: number;
-  percentageValuePage5: number;
-  furnitureHourlyPricingEntries: PricingEntry[];
-  tentHourlyPricingEntries: PricingEntry[];
-  furnitureDealPricingEntries: PricingEntry[];
-  furnitureWorkerPricingEntries: PricingEntry[];
-  handleAddPricingEntry: (entry: PricingEntry) => void;
-  handleAddTentHourlyPricingEntries: (entry: PricingEntry) => void;
-  handleAddTentPricingEntry: (entry: PricingEntry) => void;
-  handleAddAudioPricingEntry: (entry: PricingEntry) => void;
-  updateFormState: (value: any) => void;
+
+  updateFormState: (newState: Partial<FormState>) => void;
+  currentPage: number;
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 };
 
 function Page3({
   selectedCategory,
-  selectedAppetizers,
+  selectedFurnitureEvents,
+  selectedTentEvents,
+  selectedAudioEvents,
+  setselectedFurnitureEvents,
+  setselectedAudioEvents,
+  setselectedTentEvents,
   setSelectedCategory,
-  setselectedAppetizers,
+  
+  selectedFurniture,
+  setSelectedFurniture,
   selectedDecor,
   setSelectedDecor,
   selectedTentOptions,
@@ -144,74 +121,36 @@ function Page3({
   setSelectedVisualOptions,
   handleChange,
   formState,
-  setFormState,
-  tentHourlyPricingEntries,
-  furnitureDealPricingEntries,
-  furnitureWorkerPricingEntries,
-  handleAddPricingEntry,
-  handleAddTentHourlyPricingEntries,
-  handleAddTentPricingEntry,
-  handleAddAudioPricingEntry,
+ 
   updateFormState,
-}: page3Props & page4Props & page5Props) {
+  currentPage,
+  setCurrentPage,
+}: page3Props) {
   const [formPage, setFormPage] = useState(1);
   const handleCategorySelection = (category: string) => {
     setSelectedCategory(category);
 
-    if (category === "Furniture & Decor") {
-      setFormPage(3);
-    } else if (category === "Tent and Canopy") {
-      setFormPage(4);
-    } else if (category === "Audio-Visual") {
-      setFormPage(5);
-    }
+
   };
 
   return (
-    <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden lg:flex-row">
-      <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
-        <div className="flex items-center justify-start gap-1 xs:self-start xs:pl-5 lg:mt-[2rem]">
-          {selectedCategory === "Furniture & Decor" && (
-            <StepBar currentStep={3} />
-          )}
-          {selectedCategory === "Tent and Canopy" && (
-            <StepBar currentStep={4} />
-          )}
-          {selectedCategory === "Audio-Visual" && <StepBar currentStep={5} />}
-        </div>
-        <div className="ml-8 flex h-[50%] flex-col items-start justify-center gap-9 px-9 xs:pl-5 md:px-11 lg:p-8">
-          <h1 className="text-2xl font-semibold md:text-4xl lg:text-5xl">
-            Fill out your Basic details
-          </h1>
-          <p className="text-gray-600 xs:text-sm md:w-[90%] lg:text-lg">
-            Please provide the details of the business offered by your company.
-          </p>
-        </div>
-        <div className="relative h-[10rem] lg:w-full">
-          <img
-            src={"/tajmahal.png"}
-            alt="Taj Mahal"
-            className="h-full w-full object-cover"
-          />
-        </div>
-      </div>
-
-      <div className="scroll-touch flex max-h-[calc(100vh-5.2rem)] min-w-[70%] flex-col items-center gap-9 overflow-y-scroll bg-[#F7F6F9] p-2 md:p-[1rem]">
-        <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
-          <h1 className="mb-4 text-3xl font-semibold">
-            Fill out following details
-          </h1>
-          <div className="flex max-w-max space-x-4 overflow-hidden rounded-3xl border border-[#2E3192] p-4">
+    <div className="flex h-full w-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide ">
+      <div className="flex min-w-full flex-col items-start justify-around gap-10">
+        <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
+          <div className="flex gap-4 items-center">
+            <ArrowLeft className="mr-1 ml-2 h-6 w-6 text-[#2E3192] cursor-pointer" aria-hidden="true" onClick={() => setCurrentPage(currentPage - 1)} />
+            <h1 className=" text-2xl font-semibold">Menu Details</h1>
+          </div>
+          <div className="flex  space-x-4 overflow-hidden rounded-full border border-[#2E3192] p-4">
             <button
               onClick={() => {
                 setSelectedCategory("Furniture & Decor");
                 handleCategorySelection("Furniture & Decor");
               }}
-              className={`rounded-3xl px-4 py-2 text-[#2E3192] ${
-                selectedCategory === "Furniture & Decor"
-                  ? "bg-[#2E3192] text-white"
-                  : ""
-              }`}
+              className={`rounded-full px-4 py-2 text-[#2E3192] ${selectedCategory === "Furniture & Decor"
+                ? "bg-[#2E3192] text-white"
+                : ""
+                }`}
             >
               Furniture & Decor
             </button>
@@ -220,11 +159,10 @@ function Page3({
                 setSelectedCategory("Tent and Canopy");
                 handleCategorySelection("Tent and Canopy");
               }}
-              className={`rounded-3xl px-4 py-2 text-[#2E3192] ${
-                selectedCategory === "Tent and Canopy"
-                  ? "bg-[#2E3192] text-white"
-                  : ""
-              }`}
+              className={`rounded-full px-4 py-2 text-[#2E3192] ${selectedCategory === "Tent and Canopy"
+                ? "bg-[#2E3192] text-white"
+                : ""
+                }`}
             >
               Tent and Canopy
             </button>
@@ -233,11 +171,10 @@ function Page3({
                 setSelectedCategory("Audio-Visual");
                 handleCategorySelection("Audio-Visual");
               }}
-              className={`rounded-3xl px-4 py-2 text-[#2E3192] ${
-                selectedCategory === "Audio-Visual"
-                  ? "bg-[#2E3192] text-white"
-                  : ""
-              }`}
+              className={`rounded-full px-4 py-2 text-[#2E3192] ${selectedCategory === "Audio-Visual"
+                ? "bg-[#2E3192] text-white"
+                : ""
+                }`}
             >
               Audio-Visual
             </button>
@@ -245,21 +182,23 @@ function Page3({
         </div>
 
         {selectedCategory === "Furniture & Decor" && (
-          <>
-            <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
+          <div className="flex min-w-full flex-col items-start justify-around gap-10">
+            <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
               <div className="flex min-h-full min-w-full flex-col gap-5">
-                <h1 className="text-3xl font-semibold">
+                <h1 className="text-2xl font-semibold">
                   Furniture & Decor Rentals
                 </h1>
                 <div className="flex min-w-[40%] flex-col">
-                  <label className="text-xl font-semibold" htmlFor="category">
+                  <label className="text-base font-medium" htmlFor="category">
                     Upload list
                   </label>
-                  <p className="text-gray-500">PNG, PDF, JPG</p>
+                  <p className="text-gray-500 text-xs font-light">PNG, PDF, JPG</p>
                   <FileInput
                     label="furniture and decor list"
                     onFileSelect={(file) => {
-                      updateFormState({ furnitureAndDecorListUrl: file });
+                      if (!Array.isArray(file)) {
+                        updateFormState({ furnitureAndDecorListUrl: file });
+                      }
                     }}
                     acceptedFileTypes="image/png, .pdf, image/jpg"
                   />
@@ -267,508 +206,403 @@ function Page3({
               </div>
             </div>
 
-            <div className="mx-12 flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
-              <div className="flex min-h-full min-w-full flex-col gap-5">
-                <h1 className="text-3xl font-semibold">Furniture</h1>
-                <Appetizers
-                  field={"furnitureOptions"}
-                  appetizers={furnitureOptions}
-                  selectedAppetizers={selectedAppetizers}
-                  setSelectedAppetizers={setselectedAppetizers}
-                />
-              </div>
+            <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
+              <h1 className="text-xl font-semibold">Types of Event</h1>
+              <Appetizers
+                field={"furniture_types_of_events"}
+                appetizers={_typesOfEvents}
+                selectedAppetizers={selectedFurnitureEvents}
+                setSelectedAppetizers={setselectedFurnitureEvents}
+              />
+            </div>
+            <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
+              <h1 className="text-xl font-semibold">Furniture</h1>
+              <Appetizers
+                field={"furniture_options"}
+                appetizers={furnitureOptions}
+                selectedAppetizers={selectedFurniture}
+                setSelectedAppetizers={setSelectedFurniture}
+              />
+            </div>
+            <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
+              <h1 className="text-xl font-semibold">Decor</h1>
+              <Appetizers
+                field={"decor_options"}
+                appetizers={DecorOptions}
+                selectedAppetizers={selectedDecor}
+                setSelectedAppetizers={setSelectedDecor}
+              />
             </div>
 
-            <div className="mx-12 flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
-              <div className="flex min-h-full min-w-full flex-col gap-5">
-                <h1 className="text-3xl font-semibold">Decor</h1>
-                <Appetizers
-                  field={"DecorOptions"}
-                  appetizers={DecorOptions}
-                  selectedAppetizers={selectedDecor}
-                  setSelectedAppetizers={setSelectedDecor}
-                />
-              </div>
-            </div>
 
-            <div className="mx-2 flex w-full max-w-screen-xs flex-col gap-7 rounded-xl bg-white p-4 xs:min-w-[90%] md:mx-12 md:p-6">
-              <div className="flex flex-col gap-2">
-                <h1 className="text-2xl font-semibold md:text-3xl">
-                  Pricing Structure
+          </div>
+        )}
+        {selectedCategory === "Tent and Canopy" && (
+          <>
+            <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
+              <div className="flex min-h-full min-w-full flex-col gap-5">
+                <h1 className="text-2xl font-semibold">
+                  Tent and Canopy Rentals
                 </h1>
-
-                {/* Hourly Package Rates */}
-                <div className="flex flex-col gap-5">
-                  <h2 className="text-xl font-semibold md:text-2xl">
-                    Hourly Package Rates
-                  </h2>
-                  <form
-                    onSubmit={(e) => {
-                      e.preventDefault();
-                      const form = e.currentTarget as HTMLFormElement;
-                      const name = (
-                        form.elements.namedItem("name") as HTMLInputElement
-                      ).value;
-                      const minRate = parseInt(
-                        (form.elements.namedItem("minRate") as HTMLInputElement)
-                          .value,
-                      );
-                      const maxRate = parseInt(
-                        (form.elements.namedItem("maxRate") as HTMLInputElement)
-                          .value,
-                      );
-                      handleAddPricingEntry({
-                        name,
-                        min: minRate,
-                        max: maxRate,
-                      });
-                    }}
-                  >
-                    <div className="flex flex-col gap-4 md:flex-row md:gap-4">
-                      <input
-                        type="text"
-                        name="name"
-                        placeholder="Service Name"
-                        className="w-full rounded border p-2 md:w-auto"
-                      />
-                      <input
-                        type="number"
-                        name="minRate"
-                        placeholder="Min Rate"
-                        className="w-full rounded border p-2 md:w-auto"
-                      />
-                      <input
-                        type="number"
-                        name="maxRate"
-                        placeholder="Max Rate"
-                        className="w-full rounded border p-2 md:w-auto"
-                      />
-                      <button
-                        type="submit"
-                        className="cursor-pointer rounded-lg bg-[#E6E6E6] p-2 hover:shadow-xl"
-                      >
-                        <svg
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M12 5.5V17.5M6 11.5H18"
-                            stroke="#2E3192"
-                            strokeWidth="1.2"
-                            strokeLinecap="round"
-                          />
-                        </svg>
-                      </button>
-                    </div>
-                  </form>
-                  <ul>
-                    {formState.furnitureHourlyPricingEntries.map(
-                      (entry, index) => (
-                        <li
-                          key={index}
-                        >{`${entry.name}: ${entry.min} - ${entry.max}`}</li>
-                      ),
-                    )}
-                  </ul>
-                </div>
-
-                {/* Deal Package Rates */}
-                <div className="mt-8 flex flex-col gap-5">
-                  <h2 className="text-xl font-semibold md:text-2xl">
-                    Deal Package Rates
-                  </h2>
-                  <form
-                    onSubmit={(e) => {
-                      e.preventDefault();
-                      const form = e.currentTarget as HTMLFormElement;
-                      const name = (
-                        form.elements.namedItem("name") as HTMLInputElement
-                      ).value;
-                      const minRate = parseInt(
-                        (form.elements.namedItem("minRate") as HTMLInputElement)
-                          .value,
-                      );
-                      const maxRate = parseInt(
-                        (form.elements.namedItem("maxRate") as HTMLInputElement)
-                          .value,
-                      );
-                      handleAddTentPricingEntry({
-                        name,
-                        min: minRate,
-                        max: maxRate,
-                      });
-                    }}
-                  >
-                    <div className="flex flex-col gap-4 md:flex-row md:gap-4">
-                      <input
-                        type="text"
-                        name="name"
-                        placeholder="Service Name"
-                        className="w-full rounded border p-2 md:w-auto"
-                      />
-                      <input
-                        type="number"
-                        name="minRate"
-                        placeholder="Min Rate"
-                        className="w-full rounded border p-2 md:w-auto"
-                      />
-                      <input
-                        type="number"
-                        name="maxRate"
-                        placeholder="Max Rate"
-                        className="w-full rounded border p-2 md:w-auto"
-                      />
-                      <button
-                        type="submit"
-                        className="cursor-pointer rounded-lg bg-[#E6E6E6] p-2 hover:shadow-xl"
-                      >
-                        <svg
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M12 5.5V17.5M6 11.5H18"
-                            stroke="#2E3192"
-                            strokeWidth="1.2"
-                            strokeLinecap="round"
-                          />
-                        </svg>
-                      </button>
-                    </div>
-                  </form>
-                  <ul>
-                    {formState.furnitureDealPricingEntries.map(
-                      (entry, index) => (
-                        <li
-                          key={index}
-                        >{`${entry.name}: ${entry.min} - ${entry.max}`}</li>
-                      ),
-                    )}
-                  </ul>
-                </div>
-
-                {/* Rates by Workers */}
-                <div className="mt-8 flex flex-col gap-5">
-                  <h2 className="text-xl font-semibold md:text-2xl">
-                    Rates by Workers
-                  </h2>
-                  <form
-                    onSubmit={(e) => {
-                      e.preventDefault();
-                      const form = e.currentTarget as HTMLFormElement;
-                      const name = (
-                        form.elements.namedItem("name") as HTMLInputElement
-                      ).value;
-                      const minRate = parseInt(
-                        (form.elements.namedItem("minRate") as HTMLInputElement)
-                          .value,
-                      );
-                      const maxRate = parseInt(
-                        (form.elements.namedItem("maxRate") as HTMLInputElement)
-                          .value,
-                      );
-                      handleAddAudioPricingEntry({
-                        name,
-                        min: minRate,
-                        max: maxRate,
-                      });
-                    }}
-                  >
-                    <div className="flex flex-col gap-4 md:flex-row md:gap-4">
-                      <input
-                        type="text"
-                        name="name"
-                        placeholder="Service Name"
-                        className="w-full rounded border p-2 md:w-auto"
-                      />
-                      <input
-                        type="number"
-                        name="minRate"
-                        placeholder="Min Rate"
-                        className="w-full rounded border p-2 md:w-auto"
-                      />
-                      <input
-                        type="number"
-                        name="maxRate"
-                        placeholder="Max Rate"
-                        className="w-full rounded border p-2 md:w-auto"
-                      />
-                      <button
-                        type="submit"
-                        className="cursor-pointer rounded-lg bg-[#E6E6E6] p-2 hover:shadow-xl"
-                      >
-                        <svg
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M12 5.5V17.5M6 11.5H18"
-                            stroke="#2E3192"
-                            strokeWidth="1.2"
-                            strokeLinecap="round"
-                          />
-                        </svg>
-                      </button>
-                    </div>
-                  </form>
-                  <ul>
-                    {formState.furnitureWorkerPricingEntries.map(
-                      (entry, index) => (
-                        <li
-                          key={index}
-                        >{`${entry.name}: ${entry.min} - ${entry.max}`}</li>
-                      ),
-                    )}
-                  </ul>
-
-                  {/* Advanced Payment Section */}
-                  <div className="flex items-center gap-2">
-                    <input
-                      type="checkbox"
-                      className="h-6 w-6 rounded-lg border-2 border-[#2E3192] bg-white checked:bg-[#2E3192] focus:outline-none"
-                      checked={formState.advancedPaymentCheckbox || false}
-                      onChange={(e) =>
-                        handleChange(
-                          "advancedPaymentCheckbox",
-                          e.target.checked,
-                        )
+                <div className="flex min-w-[40%] flex-col">
+                  <label className="text-base font-medium" htmlFor="category">
+                    Upload list
+                  </label>
+                  <p className="text-gray-500 text-xs font-light">PNG, PDF, JPG</p>
+                  <FileInput
+                    label="furniture and decor list"
+                    onFileSelect={(file) => {
+                      if (!Array.isArray(file)) {
+                        updateFormState({ tentAndCanopyListUrl: file });
                       }
-                    />
-                    <span className="font-semibold">Advanced Payment</span>
-                  </div>
-
-                  {/* Percentage Value Section */}
-                  <div className="flex max-w-48 flex-col gap-4">
-                    <label className="mb-2">Set Percentage Value</label>
-                    <input
-                      value={formState.percentageValuePage3 || 0}
-                      onInput={(e) =>
-                        handleChange(
-                          "percentageValuePage3",
-                          (e.target as HTMLInputElement).value,
-                        )
-                      }
-                      type="range"
-                      min="0"
-                      max="100"
-                      step="1"
-                      className="w-full rounded-xl border-2 outline-none"
-                      style={{
-                        padding: 0,
-                        backgroundColor: "white",
-                        borderColor: "#2E3192",
-                      }}
-                    />
-                    <span>{formState.percentageValuePage3}%</span>
-                  </div>
+                    }}
+                    acceptedFileTypes="image/png, .pdf, image/jpg"
+                  />
                 </div>
               </div>
+            </div>
+            <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
+              <h1 className="text-xl font-semibold">Types of Event</h1>
+              <Appetizers
+                field={"tent_types_of_events"}
+                appetizers={_typesOfEvents}
+                selectedAppetizers={selectedTentEvents}
+                setSelectedAppetizers={setselectedTentEvents}
+              />
+            </div>
+            <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
+              <h1 className="text-xl font-semibold">Tent and Canopy</h1>
+              <Appetizers
+                field={"tent_and_canopy"}
+                appetizers={_tentAndCanopy}
+                selectedAppetizers={selectedTentOptions}
+                setSelectedAppetizers={setSelectedTentOptions}
+              />
             </div>
           </>
         )}
-        {selectedCategory === "Tent and Canopy" && (
-          <Page4
-            selectedTentOptions={selectedTentOptions}
-            setSelectedTentOptions={setSelectedTentOptions}
-            selectedAudioOptions={selectedAudioOptions}
-            setSelectedAudioOptions={setSelectedAudioOptions}
-            selectedvisualOptions={selectedvisualOptions}
-            setSelectedVisualOptions={setSelectedVisualOptions}
-            selectedLightOptions={[]}
-            setSelectedLightOptions={setSelectedLightOptions}
-            percentageValuePage4={0}
-            percentageValuePage5={0}
-            formState={{
-              contactName: "",
-              furnitureAndDecorListUrl: "",
-              tentAndCanopyListUrl: "",
-              phoneNumber: "",
-              workDescription: "",
-              yearsOfExperience: "",
-              numberOfWorkers: "",
-              updateFormState: { updateFormState },
-              handleChange: function (
-                key: keyof {
-                  [key: string]: any;
-                  contactName: string;
-                  phoneNumber: string;
-                  tentAndCanopyListUrl: string;
-                  furnitureAndDecorListUrl: string;
-                  updateFormState: (value: any) => void;
-                  workDescription: string;
-                  yearsOfExperience: string;
-                  numberOfWorkers: string;
-                  handleChange: (key: keyof FormState, value: any) => void;
-                  insurancePolicy: string;
-                  cancellationPolicy: string;
-                  termsAndConditions: string;
-                  privacyPolicy: string;
-                  selectedAppetizers: string[];
-                  selectedDecor: string[];
-                  furnitureHourlyPricingEntries: {
-                    name: string;
-                    min: number;
-                    max: number;
-                  }[];
-                  tentHourlyPricingEntries: {
-                    name: string;
-                    min: number;
-                    max: number;
-                  }[];
-                  hourlyCheckbox: boolean;
-                  packageTypePage3: string;
-                  packageMinRate: string;
-                  packageMaxRate: string;
-                  dealCheckbox: boolean;
-                  dealType: string;
-                  dealMinRate: string;
-                  dealMaxRate: string;
-                  workerCheckbox: boolean;
-                  workerType: string;
-                  workerMinRate: string;
-                  workerMaxRate: string;
-                  advancedPaymentCheckboxPage3: false;
-                  percentageValuePage3: number;
-                  percentageValuePage4: number;
-                  percentageValuePage5: number;
-                  hourlyCheckboxPage4: boolean;
-                  dealCheckboxPage4: boolean;
-                  workerCheckboxPage4: boolean;
-                  advancedPaymentCheckboxPage4: false;
-                  hourlyCheckboxPage5: boolean;
-                  dealCheckboxPage5: boolean;
-                  workerCheckboxPage5: boolean;
-                  advancedPaymentCheckboxPage5: false;
-                },
-                value: any,
-              ): void {
-                throw new Error("Function not implemented.");
-              },
-              insurancePolicy: "",
-              cancellationPolicy: "",
-              termsAndConditions: "",
-              privacyPolicy: "",
-              selectedAppetizers: [],
-              selectedDecor: [],
-              furnitureHourlyPricingEntries: [],
-              tentHourlyPricingEntries: [],
-              hourlyCheckbox: false,
-              packageTypePage3: "",
-              packageMinRate: "",
-              packageMaxRate: "",
-              dealCheckbox: false,
-              dealType: "",
-              dealMinRate: "",
-              dealMaxRate: "",
-              workerCheckbox: false,
-              workerType: "",
-              workerMinRate: "",
-              workerMaxRate: "",
-              advancedPaymentCheckboxPage3: false,
-              percentageValuePage3: 0,
-              percentageValuePage4: 0,
-              percentageValuePage5: 0,
-              hourlyCheckboxPage4: false,
-              dealCheckboxPage4: false,
-              workerCheckboxPage4: false,
-              advancedPaymentCheckboxPage4: false,
-              hourlyCheckboxPage5: false,
-              dealCheckboxPage5: false,
-              workerCheckboxPage5: false,
-              advancedPaymentCheckboxPage5: false,
-            }}
-            handleChange={function (
-              key: keyof {
-                [key: string]: any;
-                contactName: string;
-                phoneNumber: string;
-                workDescription: string;
-                yearsOfExperience: string;
-                numberOfWorkers: string;
-                handleChange: (key: keyof FormState, value: any) => void;
-                insurancePolicy: string;
-                cancellationPolicy: string;
-                termsAndConditions: string;
-                privacyPolicy: string;
-                selectedAppetizers: string[];
-                selectedDecor: string[];
-                furnitureHourlyPricingEntries: {
-                  name: string;
-                  min: number;
-                  max: number;
-                }[];
-                tentHourlyPricingEntries: {
-                  name: string;
-                  min: number;
-                  max: number;
-                }[];
-                hourlyCheckbox: boolean;
-                packageTypePage3: string;
-                packageMinRate: string;
-                packageMaxRate: string;
-                dealCheckbox: boolean;
-                dealType: string;
-                dealMinRate: string;
-                dealMaxRate: string;
-                workerCheckbox: boolean;
-                workerType: string;
-                workerMinRate: string;
-                workerMaxRate: string;
-                advancedPaymentCheckboxPage3: false;
-                percentageValuePage3: number;
-                percentageValuePage4: number;
-                percentageValuePage5: number;
-                hourlyCheckboxPage4: boolean;
-                dealCheckboxPage4: boolean;
-                workerCheckboxPage4: boolean;
-                advancedPaymentCheckboxPage4: false;
-                hourlyCheckboxPage5: boolean;
-                dealCheckboxPage5: boolean;
-                workerCheckboxPage5: boolean;
-                advancedPaymentCheckboxPage5: false;
-              },
-              value: any,
-            ): void {
-              throw new Error("Function not implemented.");
-            }}
-            handleAddPricingEntry={function (): void {
-              throw new Error("Function not implemented.");
-            }}
-            tentHourlyPricingEntries={tentHourlyPricingEntries}
-            handleAddTentHourlyPricingEntries={
-              handleAddTentHourlyPricingEntries
-            }
-            updateFormState={updateFormState}
-          />
-        )}
 
         {selectedCategory === "Audio-Visual" && (
-          <Page5
-            selectedAudioOptions={selectedAudioOptions}
-            setSelectedAudioOptions={setSelectedAudioOptions}
-            selectedvisualOptions={selectedvisualOptions}
-            setSelectedVisualOptions={setSelectedVisualOptions}
-            selectedLightOptions={selectedLightOptions}
-            setSelectedLightOptions={setSelectedLightOptions}
-            percentageValuePage4={0}
-            percentageValuePage5={0}
-            furnitureHourlyPricingEntries={undefined}
-            handleAddPricingEntry={function (): void {
-              throw new Error("Function not implemented.");
-            }}
-            tentHourlyPricingEntries={undefined}
-            updateFormState={updateFormState}
-          />
+          <>
+            <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
+              <div className="flex min-h-full min-w-full flex-col gap-5">
+                <h1 className="text-2xl font-semibold">
+                  Audio-Visual Rentals
+                </h1>
+                <div className="flex min-w-[40%] flex-col">
+                  <label className="text-base font-medium" htmlFor="category">
+                    Upload list
+                  </label>
+                  <p className="text-gray-500 text-xs font-light">PNG, PDF, JPG</p>
+                  <FileInput
+                    label="furniture and decor list"
+                    onFileSelect={(file) => {
+                      if (!Array.isArray(file)) {
+                        updateFormState({ audioVisualListUrl: file });
+                      }
+                    }}
+                    acceptedFileTypes="image/png, .pdf, image/jpg"
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
+              <h1 className="text-xl font-semibold">Types of Event</h1>
+              <Appetizers
+                field={"audio_types_of_events"}
+                appetizers={_typesOfEvents}
+                selectedAppetizers={selectedAudioEvents}
+                setSelectedAppetizers={setselectedAudioEvents}
+              />
+            </div>
+            <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
+              <h1 className="text-xl font-semibold">Audio Equipment</h1>
+              <Appetizers
+                field={"audio_equipments"}
+                appetizers={_audioEquipments}
+                selectedAppetizers={selectedAudioOptions}
+                setSelectedAppetizers={setSelectedAudioOptions}
+              />
+            </div>
+            <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
+              <h1 className="text-xl font-semibold">Visual Equipment</h1>
+              <Appetizers
+                field={"visual_equipment"}
+                appetizers={_visualEquipments}
+                selectedAppetizers={selectedvisualOptions}
+                setSelectedAppetizers={setSelectedVisualOptions}
+              />
+            </div>
+            <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
+              <h1 className="text-xl font-semibold">Light Equipment</h1>
+              <Appetizers
+                field={"light_equipments"}
+                appetizers={_lightEquipments}
+                selectedAppetizers={selectedLightOptions}
+                setSelectedAppetizers={setSelectedLightOptions}
+              />
+            </div>
+          </>
         )}
+        <div className="flex  min-w-full flex-col  gap-8 rounded-xl bg-white p-3 md:p-6">
+          <h1 className=" text-2xl font-semibold">Additional Details</h1>
+
+          <div className="flex min-w-full flex-col items-start justify-between  md:flex-row gap-6 ">
+            <div className="flex min-w-[48%]  flex-col gap-8">
+              <div className="flex flex-col  gap-2">
+
+                <div className="text-base font-medium flex items-center gap-1">Photo <span className="text-red-500 ">*</span>
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="1.33398" y="1.3335" width="13.3333" height="13.3333" rx="6.66667" stroke="#2B3F6C" />
+                    <path d="M8.33398 11.3335L8.33398 7.3335" stroke="#2B3F6C" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M7.00065 7.3335L8.33398 7.3335" stroke="#2B3F6C" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M8.33398 5.33366L8.33398 4.66699" stroke="#2B3F6C" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+
+                </div>
+                <span className="text-small font-light">PNG,JPG</span>
+
+                <FileInput
+                  label="Photos"
+                  multiple={true}
+                  onFileSelect={(files) => {
+                    // Determine existing photos from the previous state
+                    const existingPhotos = Array.isArray(formState.photos)
+                      ? formState.photos
+                      : formState.photos instanceof File
+                      ? [formState.photos]
+                      : [];
+                
+                    // Create the new photos array by combining existing and newly selected files
+                    const newPhotos = [
+                      ...existingPhotos,
+                      ...(Array.isArray(files) ? files : [files]),
+                    ];
+                
+                    // Update the form state with the new photos array
+                    updateFormState({ photos: newPhotos });
+                  }}
+                  acceptedFileTypes="image/png, .pdf, image/jpg"
+                />
+                <span className="text-base font-medium">or Continue via</span>
+                <input
+                  type="text"
+                  name="photos"
+                  className="w-full rounded-xl border-2 bg-white p-3 py-5 outline-none text-sm"
+                  placeholder="Enter your portfolio links"
+                  onChange={(e) => { updateFormState({ photos: e.target.value }) }}
+                  value={
+                    typeof formState.photos === 'string'
+                      ? formState.photos
+                      : Array.isArray(formState.photos)
+                        ? formState.photos.map((file: File) => file.name).join(', ')
+                        : (formState.photos as File)?.name
+                  }
+                />
+
+
+              </div>
+              <div className="flex flex-col  gap-2">
+                <label className="font-medium text-base" htmlFor="vendorName">
+                  Award and Recognization
+                </label>
+                <input
+                  id="vendorName"
+                  type="text"
+                  value={formState.awardsAndRecognize || ""}
+                  onChange={(e) => handleChange("awardsAndRecognize", e.target.value)}
+                  className="w-full rounded-xl border-2 bg-white p-4 outline-none"
+                  placeholder="Provide your URL"
+                />
+              </div>
+              <div className="flex flex-col  gap-2">
+                <label className="font-medium text-base" htmlFor="vendorName">
+                  Instagram
+                </label>
+                <input
+                  id="vendorName"
+                  type="text"
+                  value={formState.instaUrl || ""}
+                  onChange={(e) => handleChange("instaUrl", e.target.value)}
+                  className="w-full rounded-xl border-2 bg-white p-4 outline-none"
+                  placeholder="Provide your Instagram URL for the Venue"
+                />
+              </div>
+
+            </div>
+            <div className="flex min-w-[48%]  flex-col gap-8">
+              <div className="flex flex-col  gap-2">
+
+                <div className="text-base font-medium flex items-center gap-1">Videos <span className="text-red-500 ">*</span>
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="1.33398" y="1.3335" width="13.3333" height="13.3333" rx="6.66667" stroke="#2B3F6C" />
+                    <path d="M8.33398 11.3335L8.33398 7.3335" stroke="#2B3F6C" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M7.00065 7.3335L8.33398 7.3335" stroke="#2B3F6C" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M8.33398 5.33366L8.33398 4.66699" stroke="#2B3F6C" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+
+                </div>
+                <span className="text-small font-light">MP4, MKV</span>
+                <FileInput
+                  label="videos"
+                  onFileSelect={(files) => {
+                    const existingVideos = Array.isArray(formState.videos)
+                      ? formState.videos
+                      : formState.videos instanceof File
+                      ? [formState.videos]
+                      : [];
+          
+                    const newVideos = [
+                      ...existingVideos,
+                      ...(Array.isArray(files) ? files : [files]),
+                    ];
+          
+                    updateFormState({ videos: newVideos });
+                  }}
+                  acceptedFileTypes="image/png, .pdf, image/jpg"
+                  multiple
+                />
+                <span className="text-base font-medium">or Continue via</span>
+                <input
+                  type="text"
+                  className="w-full rounded-xl border-2 bg-white p-3 py-5 outline-none text-sm"
+                  placeholder="Enter your portfolio links"
+                  onChange={(e) => { updateFormState({ videos: e.target.value }) }}
+                  value={
+                    typeof formState.videos === 'string'
+                      ? formState.videos
+                      : Array.isArray(formState.videos)
+                        ? formState.videos.map((file: File) => file.name).join(', ')
+                        : (formState.videos as File)?.name
+                  }
+                />
+
+              </div>
+              <div className="flex flex-col  gap-2">
+                <label className="font-medium text-base" htmlFor="vendorName">
+                  Client Testimonials
+                </label>
+                <input
+                  id="vendorName"
+                  type="text"
+                  value={formState.clientTestimonial || ""}
+                  onChange={(e) => handleChange("clientTestimonial", e.target.value)}
+                  className="w-full rounded-xl border-2 bg-white p-4 outline-none"
+                  placeholder="Provide your URL"
+                />
+              </div>
+              <div className="flex flex-col  gap-2">
+                <label className="font-medium text-base" htmlFor="vendorName">
+                  Website URL
+                </label>
+                <input
+                  id="vendorName"
+                  type="text"
+                  value={formState.websiteUrl || ""}
+                  onChange={(e) => handleChange("websiteUrl", e.target.value)}
+                  className="w-full rounded-xl border-2 bg-white p-4 outline-none"
+                  placeholder="Provide your Website URL for the Venue"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="flex  min-w-full flex-col  gap-8 rounded-xl bg-white p-3 md:p-6">
+          <h1 className=" text-2xl font-semibold">Policies</h1>
+
+          <div className="flex min-w-full flex-col items-start justify-between  md:flex-row gap-6 ">
+
+            <div className="flex min-w-[48%]  flex-col gap-8">
+              <div className="flex flex-col  gap-2">
+                <div className="text-base font-medium flex gap-1 items-center">Terms & Conditions <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="1.33398" y="1.3335" width="13.3333" height="13.3333" rx="6.66667" stroke="#2B3F6C" />
+                  <path d="M8.33398 11.3335L8.33398 7.3335" stroke="#2B3F6C" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M7.00065 7.3335L8.33398 7.3335" stroke="#2B3F6C" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M8.33398 5.33366L8.33398 4.66699" stroke="#2B3F6C" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                </div>
+                <span className="text-small font-light">PNG,JPG,PDF</span>
+
+                <FileInput
+                  label="tnc"
+                  onFileSelect={(file) => {
+                    updateFormState({ termsAndConditions: file });
+                  }}
+                  multiple={false}
+                  acceptedFileTypes="image/png, .pdf, image/jpg"
+                />
+                <p className=" font-medium text-base">or Provide Via</p>
+                <textarea
+                  cols={10}
+                  rows={5}
+                  placeholder="Enter your venue details"
+                  onChange={(e) =>
+                    updateFormState({ termsAndConditions: e.target.value })
+                  }
+                  value={
+                    typeof formState.termsAndConditions === 'string'
+                      ? formState.termsAndConditions
+                      : Array.isArray(formState.termsAndConditions)
+                        ? formState.termsAndConditions.map((file: File) => file.name).join(', ')
+                        : (formState.termsAndConditions as File)?.name
+                  }
+                  className="  w-[95%] rounded-xl border-2 border-gray-300 p-3"
+                ></textarea>
+              </div>
+            </div>
+            <div className="flex min-w-[48%]  flex-col gap-8">
+              <div className="flex gap-2 flex-col">
+                <div className="text-base font-medium flex gap-1 items-center">Cancellation Policies <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="1.33398" y="1.3335" width="13.3333" height="13.3333" rx="6.66667" stroke="#2B3F6C" />
+                  <path d="M8.33398 11.3335L8.33398 7.3335" stroke="#2B3F6C" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M7.00065 7.3335L8.33398 7.3335" stroke="#2B3F6C" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M8.33398 5.33366L8.33398 4.66699" stroke="#2B3F6C" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                </div>
+                <span className="text-small font-light">PNG,JPG,PDF</span>
+
+                <FileInput
+                  label="cancellation_policy"
+                  onFileSelect={(file) => {
+                    updateFormState({ cancellationPolicy: file });
+                  }}
+                  acceptedFileTypes="image/png, .pdf, image/jpg"
+                />
+                <p className="font-medium text-base">or Provide Via</p>
+                <textarea
+                  cols={30}
+                  rows={5}
+
+                  placeholder="Enter your venue details"
+                  onChange={(e) =>
+                    updateFormState({ cancellationPolicy: e.target.value })
+                  }
+
+                  className="  w-[95%] rounded-xl border-2 border-gray-300 p-3"
+                  value={
+                    typeof formState.cancellationPolicy === 'string'
+                      ? formState.cancellationPolicy
+                      : Array.isArray(formState.cancellationPolicy)
+                        ? formState.cancellationPolicy.map((file: File) => file.name).join(', ')
+                        : (formState.cancellationPolicy as File)?.name
+                  }
+                ></textarea>
+              </div>
+              <div className="items-strech  flex flex-row gap-7 self-end">
+                <button
+                  className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+                  onClick={() => {
+                    console.log(formState.furnitureAndDecorListUrl,formState.termsAndConditions,formState.clientTestimonial,formState.photos,formState.videos)
+                    setCurrentPage(currentPage + 1)
+                  }}
+                >
+                  Continue
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
       </div>
     </div>
   );

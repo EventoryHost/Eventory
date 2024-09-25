@@ -89,6 +89,8 @@ const login = async (mobile: String) => {
 export const addBusinessDetails = async (
   id: string,
   details: businessDetails,
+  // id: string,
+  // details: businessDetails,
 ) => {
   try {
     const res = await axios.post(
@@ -105,6 +107,28 @@ export const addBusinessDetails = async (
     }
   }
 };
+export const getvendor = async (
+  vendorId: string,
+  email: string,
+  phone: string,
+) => {
+  try {
+    const res = await axios.post(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/auth/get-vendor`,
+      {
+        vendorId ,
+        email,
+        phone,
+      },
+    );
+    //console.log(res.data);
+    return res.data; // expect user in reponse 
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      throw Error(error.message);
+    }
+  }
+}
 const auth = {
   authWithGoogle,
   signUp,
@@ -112,5 +136,6 @@ const auth = {
   verifyLoginOtp,
   login,
   addBusinessDetails,
+  getvendor,
 };
 export default auth;

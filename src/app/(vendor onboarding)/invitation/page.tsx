@@ -154,6 +154,10 @@ const Invitation: React.FC = () => {
     ]);
   };
 
+  const handleStepClick = (step: number) => {
+    setCurrentPage(step);
+  };
+
   // Submit form data
 
   const handleSubmit = async () => {
@@ -254,6 +258,7 @@ const Invitation: React.FC = () => {
             setRelegiousInvitation={setRelegiousInvitation}
             otherInvitation={otherInvitation}
             setOtherInvitation={setOtherInvitation}
+            handleStepClick={handleStepClick}
           />
         );
       case 2:
@@ -265,6 +270,7 @@ const Invitation: React.FC = () => {
             setPaperType={setPaperType}
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
+            handleStepClick={handleStepClick}
           />
         );
       case 3:
@@ -276,6 +282,7 @@ const Invitation: React.FC = () => {
             setEnvelopeTypes={setEnvelopTypes}
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
+            handleStepClick={handleStepClick}
           />
         );
       case 4:
@@ -285,6 +292,7 @@ const Invitation: React.FC = () => {
             updateFormState={updateFormState}
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
+            handleStepClick={handleStepClick}
           />
         );
       case 5:
@@ -300,6 +308,7 @@ const Invitation: React.FC = () => {
             addPackage={addPackage}
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
+            handleStepClick={handleStepClick}
           />
         );
       default:
@@ -342,6 +351,7 @@ const Invitation: React.FC = () => {
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
             handleSubmit={handleSubmit}
+            handleStepClick={handleStepClick}
           />
         );
     }

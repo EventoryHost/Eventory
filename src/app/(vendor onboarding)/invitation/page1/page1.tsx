@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Appetizers from "../../(components)/Appetizers";
 import { Upload } from "lucide-react";
 import { Combobox } from "@/components/ui/combobox";
+import StepBar from "../(components)/StepBar";
 
 const _typesOfInvitationsYouDesign = [
   "Formal Invitation",
@@ -155,6 +156,7 @@ interface Page1Props {
   setRelegiousInvitation: React.Dispatch<React.SetStateAction<string[]>>;
   otherInvitation: string[];
   setOtherInvitation: React.Dispatch<React.SetStateAction<string[]>>;
+  handleStepClick: (step: number) => void;
 }
 
 const Page = ({
@@ -180,6 +182,7 @@ const Page = ({
   setRelegiousInvitation,
   otherInvitation,
   setOtherInvitation,
+  handleStepClick,
 }: Page1Props) => {
   const { references, portfolio, experience, currentPage, setCurrentPage } =
     formState;
@@ -191,44 +194,7 @@ const Page = ({
   return (
     <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden lg:flex-row">
       <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
-        <div className="flex items-center justify-start gap-1 xs:self-start xs:pl-5 md:px-11 lg:mt-[2rem]">
-          <button
-            onClick={() => setCurrentPage(1)}
-            className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2E3192] p-5 text-white"
-          >
-            1
-          </button>
-          <div className="h-[0.3rem] w-[4rem] rounded-xl bg-gray-300"></div>
-          <button
-            onClick={() => setCurrentPage(2)}
-            className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-300 p-5"
-          >
-            2
-          </button>
-          <div className="h-[0.3rem] w-[4rem] rounded-xl bg-gray-300"></div>
-          <button
-            onClick={() => setCurrentPage(3)}
-            className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-300 p-5"
-          >
-            3
-          </button>
-          <div className="h-[0.3rem] w-[4rem] rounded-xl bg-gray-300"></div>
-        </div>
-        <div className="flex items-center justify-start gap-1 xs:self-start xs:pl-5 md:px-11 lg:mt-[1rem]">
-          <button
-            onClick={() => setCurrentPage(4)}
-            className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-300 p-5"
-          >
-            4
-          </button>
-          <div className="h-[0.3rem] w-[4rem] rounded-xl bg-gray-300"></div>
-          <button
-            onClick={() => setCurrentPage(5)}
-            className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-300 p-5"
-          >
-            5
-          </button>
-        </div>
+        <StepBar currentStep={1} onStepClick={handleStepClick} />
         <div className="flex h-[50%] flex-col items-start justify-center gap-9 px-9 xs:pl-5 md:px-11 lg:p-8">
           <h1 className="text-3xl font-bold md:text-4xl lg:text-5xl">
             Tell us about your business

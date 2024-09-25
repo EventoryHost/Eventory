@@ -88,19 +88,19 @@ const Page2: React.FC<PageProps> = ({
 
   return (
     <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden lg:flex-row">
-      <div className="flex flex-col items-start justify-between overflow-hidden bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
-        <div className="flex items-center justify-start gap-1 xs:self-start xs:pl-5 lg:mt-[2rem]">
-          <ThreeStepBar currentStep={2} />
+ <div className="hidden lg:fixed lg:left-0 lg:top-[5.2rem] lg:flex lg:h-[calc(100vh-5.2rem)] lg:w-[30%] lg:flex-col lg:items-start lg:gap-9 lg:overflow-hidden lg:bg-[#FFFFFF] lg:px-8">
+        <div className="mt-4 flex items-center justify-start gap-1">
+          <ThreeStepBar currentStep={3} />
         </div>
-        <div className="ml-8 flex h-[50%] flex-col items-start justify-center gap-9 px-9 xs:pl-5 md:px-11 lg:p-8">
-          <h1 className="text-2xl font-semibold md:text-4xl lg:text-5xl">
+        <div className="flex flex-grow flex-col items-start justify-center gap-9 px-6 py-4">
+          <h1 className="text-2xl font-semibold md:text-3xl lg:text-4xl">
             Fill out your Basic details
           </h1>
-          <p className="text-gray-600 xs:text-sm md:w-[90%] lg:text-lg">
+          <p className="text-sm text-gray-600 md:text-base lg:text-lg">
             Please provide the details of the business offered by your company.
           </p>
         </div>
-        <div className="relative h-[10rem] lg:w-full">
+        <div className="relative h-48">
           <img
             src={"/tajmahal.png"}
             alt="Taj Mahal"
@@ -109,7 +109,7 @@ const Page2: React.FC<PageProps> = ({
         </div>
       </div>
 
-      <div className="flex w-full flex-col items-center justify-center bg-[#F7F6F9]">
+      <div className="flex w-full flex-col gap-6 bg-[#F7F6F9] p-4 md:p-6 lg:ml-[30%]">
         <div className="mx-auto flex max-w-7xl flex-col gap-7 rounded-xl bg-white p-6 md:w-[62em] md:p-12">
           <h2 className="text-2xl font-semibold md:text-3xl">
             Catalog Details
@@ -127,8 +127,8 @@ const Page2: React.FC<PageProps> = ({
           </div>
         </div>
 
-        <div className="flex w-full flex-col items-center justify-center bg-[#F7F6F9] p-2">
-          <div className="flex w-[95%] flex-col gap-7 rounded-xl bg-white p-12">
+        <div className="flex w-full flex-col items-center justify-center bg-[#F7F6F9] ">
+        <div className="mx-auto flex max-w-7xl flex-col gap-7 rounded-xl bg-white p-6 md:w-[62em] md:p-12">
             <h2 className="text-3xl font-semibold">Pricing and Policies</h2>
             <div className="flex items-center">
               <input
