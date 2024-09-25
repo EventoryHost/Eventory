@@ -112,10 +112,8 @@ type PricingEntry = {
 type FormState = {
   // Page1
   managerName: string;
-  phoneNumber: string;
   workDescription: string;
   eventSize: string;
-  numberOfWorkers: string;
   handleChange: (key: keyof FormState, value: any) => void;
   [key: string]: any;
 
@@ -125,8 +123,6 @@ type FormState = {
   maintenance: string;
   services: string;
 
-  insurancePolicy: string | File;
-  privacyPolicy: string | File;
 
 
   // Page3
