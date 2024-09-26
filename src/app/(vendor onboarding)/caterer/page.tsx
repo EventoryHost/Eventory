@@ -494,7 +494,7 @@ const Caterer = () => {
             advancePayment={advancePayment}
             handleContinue={() => {
               setCurrentPage(8);
-              handleSubmit();
+              // handleSubmit();
             }}
           />
         );

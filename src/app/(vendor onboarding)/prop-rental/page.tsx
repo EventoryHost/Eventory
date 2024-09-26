@@ -11,6 +11,9 @@ import { addPropRental } from "@/services/vendors/propRental";
 import Image from "next/image";
 import { Import } from "lucide-react";
 import Preview from "./preview/preview";
+import Plans from "../Plans/page";
+import Agreement from "../Agreement/page";
+import Registration_Completed from "../Registration-Completed/page";
 
 
 export interface FormState {
@@ -328,7 +331,7 @@ const RootPage = () => {
     } else if (typeof formState.videos === 'string') {
       formData.append('videos', formState.videos); // Append the string (URL)
     }
- 
+
     // Appending arrays without stringifying
     formData.append(
       "furnitureAndDecorListUrl",
@@ -512,14 +515,37 @@ const RootPage = () => {
           />
 
         )
+      case 5:
+        return (
+          <>
 
+            <Agreement setCurrentPage={setCurrentPage} />
+          </>
+        )
+      case 6:
+        return (
+          <>
+            <Plans handleformSubmit={handleSubmit} setCurrentPage={setCurrentPage} />
+          </>
+        )
+      case 7:
+        return (
+          <>
+            <Registration_Completed
 
+            />
+          </>
+        )
+
+      default:
+        return <div>thankyou</div>;
     }
   };
 
 
   return (
-    <div className="m-0 flex w-full flex-col overflow-x-hidden lg:h-[calc(100vh-4.2rem)] lg:flex-row">
+    <div className={`m-0 flex w-full flex-col overflow-x-hidden ${currentPage <=4  ? 'lg:h-[calc(100vh-4.2rem)]' : ''} lg:flex-row `}>
+     {currentPage<=4 &&(
       <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 pt-4 md:min-w-[30%] lg:max-w-[30%]">
         <div className="flex w-[90%] m-auto flex-col justify-center">
           <div className="flex flex-col gap-1 px-6 lg:mt-[2rem]">
@@ -583,7 +609,7 @@ const RootPage = () => {
             className="h-full w-full object-cover"
           />
         </div>
-      </div>
+      </div>)}
       <div className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] p-4 md:p-12">
         {renderPage()}
       </div>

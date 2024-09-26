@@ -8,13 +8,13 @@ const Agreement = ({ setCurrentPage }: Pagechangetype) => {
     return (
 
         <div className="bg-[#F7F6F9] w-screen flex justify-center">
-            <div className=" bg-[#ffffff] rounded-2xl h-[66rem]  w-[68.75rem]  mt-12 pt-8 pr-8  pl-4">
+            <div className=" bg-[#ffffff] rounded-2xl h-[66rem]  w-[90%] md:w-[68%] mt-12 pt-8 pr-8  pl-4">
                 <div>
                     <h2 className="font-poppins mt-2 mb-4 text-2xl text-[rgba(46,49,146,1)] font-bold">Terms And Conditions</h2>
                     <h4 className=" font-poppins mb-4 font-bold text-[rgba(19, 47, 65, 1)]">Your Agreement</h4>
                 </div>
-                <div className="w-[66.06rem] h-[828px]">
-                    <div className="scrollbar-rounded-xl  pr-6 text-left absolute w-[66.06rem] text-gray-500 overflow-y-scroll h-[828px]">
+                <div className="w-full h-[828px] relative ">
+                    <div className="scrollbar-rounded-xl  p-5  absolute  text-gray-500 overflow-y-scroll h-[828px] text-justify">
                         <p>Last Revised: August 14, 2024</p>
 
                         <p>Welcome to www.lorem-ipsum.info. This site is provided as a service to our visitors and may be used for informational purposes only. Because the Terms and Conditions contain legal obligations, please read them carefully.</p>
@@ -72,7 +72,7 @@ const Agreement = ({ setCurrentPage }: Pagechangetype) => {
 
                     </div>
                 </div>
-                <div className="flex w-[66.06rem] gap-3 p-4 items-end  bottom-0 relative justify-end">
+                <div className="flex  gap-3 p-4 items-end  bottom-0 relative justify-end">
                     <button onClick={() =>  setCurrentPage((prevPage) => prevPage - 1)} className="border-[rgba(46,49,146,1)]  text-[rgba(46,49,146,1)]  border-1 rounded-2xl p-4 font-poppins flex justify-center items-center h-[48px] w-[164px]"><h2>Cancel</h2></button>
                     <button onClick={() =>  setCurrentPage((prevPage) => prevPage + 1)} className=" text-white bg-[rgba(46,49,146,1)] rounded-2xl p-4 font-poppins flex justify-center items-center h-[48px] w-[164px]">Agree & Pay</button>
                 </div>
