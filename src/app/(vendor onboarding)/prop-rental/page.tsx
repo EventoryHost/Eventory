@@ -293,8 +293,7 @@ const RootPage = () => {
 
     const formData = new FormData();
     formData.append("venId", venId);
-    formData.append("contactPersonName", formState.managerName || "");
-    formData.append("contactPhoneNumber", formState.phoneNumber || "");
+    formData.append("managerName", formState.managerName || "");
     formData.append("descriptionOfWork", formState.workDescription || "");
     formData.append("eventSize", formState.eventSize || "");
     formData.append("numberOfWorkers", formState.numberOfWorkers || "");
@@ -329,9 +328,10 @@ const RootPage = () => {
     } else if (typeof formState.videos === 'string') {
       formData.append('videos', formState.videos); // Append the string (URL)
     }
+ 
     // Appending arrays without stringifying
     formData.append(
-      "furnitureAndDecor[listUrl]",
+      "furnitureAndDecorListUrl",
       formState.furnitureAndDecorListUrl || ""
     );
     selectedFurnitureEvents?.forEach((item: string | Blob, index: number) => {
@@ -350,7 +350,7 @@ const RootPage = () => {
 
 
     formData.append(
-      "tentAndCanopy[listUrl]",
+      "tentAndCanopyListUrl",
       formState.tentAndCanopyListUrl || "",
     );
     selectedTentEvents?.forEach((item: string | Blob, index: number) => {
@@ -363,10 +363,13 @@ const RootPage = () => {
     );
 
     formData.append(
-      "audioVisual[listUrl]",
+      "audioVisualListUrl",
       formState.audioVisualListUrl || "",
     );
     selectedAudioEvents?.forEach((item: string | Blob, index: number) => {
+      formData.append(`audioVisual[typeOfEvents][${index}]`, item);
+    });
+    selectedAudioOptions?.forEach((item: string | Blob, index: number) => {
       formData.append(`audioVisual[audioEquipment][${index}]`, item);
     });
     selectedvisualOptions?.forEach((item: string | Blob, index: number) => {

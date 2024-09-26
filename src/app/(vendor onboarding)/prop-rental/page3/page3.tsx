@@ -40,9 +40,9 @@ const _tentAndCanopy = [
   "Garden Canopies", "Event Canopies", "Gazebos", "Shade Structures",
   "Temporary Structures", "Others"
 ]
-const _audioEquipments = ["Speakers", "Microphones", "Mixing Consoles", "Amplifiers", "Signal Processors", "Cables and Accessories", "Playback Equipment", "DJ Equipment", "Audio Interfaces", "In-Ear Monitoring Systems", "Portable PA Systems", "Recording Equipment", "Conference and Meeting Equipment", "Lighting and Effects", "Other"]
-const _visualEquipments = ["Projectors", "Screens", "LED Displays", "TV Screens", "Video Wall", "Video Cameras", "Playback and Recording Equipment", "Camera Accessories", "Video Switchers and Mixers", "Visual Effects", "Signal Distribution", "Interactive Displays", "Presentation Aids", "Virtual Reality (VR) Equipment", "Augmented Reality (AR) Equipment", "Other"]
-const _lightEquipments = ["Traditional Indian Tents", "Marquee Tents", "Pagoda Tents", "Pole Tents", "Frame Tents", "Event Specific Tent", "Pop-Up Canopies", "Garden Canopies", "Event Canopies", "Gazebos", "Shade Structures", "Temporary Structures", "Other"]
+const _audioEquipments = ["Speakers", "Microphones", "Mixing Consoles", "Amplifiers", "Signal Processors", "Cables and Accessories", "Playback Equipment", "DJ Equipment", "Audio Interfaces", "In-Ear Monitoring Systems", "Portable PA Systems", "Recording Equipment", "Conference and Meeting Equipment", "Lighting and Effects", "Others"]
+const _visualEquipments = ["Projectors", "Screens", "LED Displays", "TV Screens", "Video Wall", "Video Cameras", "Playback and Recording Equipment", "Camera Accessories", "Video Switchers and Mixers", "Visual Effects", "Signal Distribution", "Interactive Displays", "Presentation Aids", "Virtual Reality (VR) Equipment", "Augmented Reality (AR) Equipment", "Others"]
+const _lightEquipments = ["Traditional Indian Tents", "Marquee Tents", "Pagoda Tents", "Pole Tents", "Frame Tents", "Event Specific Tent", "Pop-Up Canopies", "Garden Canopies", "Event Canopies", "Gazebos", "Shade Structures", "Temporary Structures", "Others"]
 
 
 type PricingEntry = {
@@ -106,7 +106,7 @@ function Page3({
   setselectedAudioEvents,
   setselectedTentEvents,
   setSelectedCategory,
-  
+
   selectedFurniture,
   setSelectedFurniture,
   selectedDecor,
@@ -121,7 +121,7 @@ function Page3({
   setSelectedVisualOptions,
   handleChange,
   formState,
- 
+
   updateFormState,
   currentPage,
   setCurrentPage,
@@ -206,17 +206,21 @@ function Page3({
               </div>
             </div>
 
-            <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
+            <div className="flex flex-col gap-6 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
               <h1 className="text-xl font-semibold">Types of Event</h1>
-              <Appetizers
-                field={"furniture_types_of_events"}
-                appetizers={_typesOfEvents}
-                selectedAppetizers={selectedFurnitureEvents}
-                setSelectedAppetizers={setselectedFurnitureEvents}
-              />
+              <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+                <Appetizers
+                  field={"furniture_types_of_events"}
+                  appetizers={_typesOfEvents}
+                  selectedAppetizers={selectedFurnitureEvents}
+                  setSelectedAppetizers={setselectedFurnitureEvents}
+                />
+              </div>
             </div>
-            <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
+            <div className="flex flex-col gap-6 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
               <h1 className="text-xl font-semibold">Furniture</h1>
+              <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+
               <Appetizers
                 field={"furniture_options"}
                 appetizers={furnitureOptions}
@@ -224,14 +228,18 @@ function Page3({
                 setSelectedAppetizers={setSelectedFurniture}
               />
             </div>
-            <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
+            </div>
+            <div className="flex flex-col gap-6 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
               <h1 className="text-xl font-semibold">Decor</h1>
+              <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+
               <Appetizers
                 field={"decor_options"}
                 appetizers={DecorOptions}
                 selectedAppetizers={selectedDecor}
                 setSelectedAppetizers={setSelectedDecor}
               />
+              </div>
             </div>
 
 
@@ -261,23 +269,29 @@ function Page3({
                 </div>
               </div>
             </div>
-            <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
+            <div className="flex flex-col gap-6 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
               <h1 className="text-xl font-semibold">Types of Event</h1>
+              <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+
               <Appetizers
                 field={"tent_types_of_events"}
                 appetizers={_typesOfEvents}
                 selectedAppetizers={selectedTentEvents}
                 setSelectedAppetizers={setselectedTentEvents}
               />
+              </div>
             </div>
-            <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
+            <div className="flex flex-col gap-6 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
               <h1 className="text-xl font-semibold">Tent and Canopy</h1>
+              <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+
               <Appetizers
                 field={"tent_and_canopy"}
                 appetizers={_tentAndCanopy}
                 selectedAppetizers={selectedTentOptions}
                 setSelectedAppetizers={setSelectedTentOptions}
               />
+              </div>
             </div>
           </>
         )}
@@ -306,41 +320,52 @@ function Page3({
                 </div>
               </div>
             </div>
-            <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
+            <div className="flex flex-col gap-6 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
               <h1 className="text-xl font-semibold">Types of Event</h1>
+              <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+
               <Appetizers
                 field={"audio_types_of_events"}
                 appetizers={_typesOfEvents}
                 selectedAppetizers={selectedAudioEvents}
                 setSelectedAppetizers={setselectedAudioEvents}
               />
+              </div>
             </div>
-            <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
+            <div className="flex flex-col gap-6 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
               <h1 className="text-xl font-semibold">Audio Equipment</h1>
+              <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+
               <Appetizers
                 field={"audio_equipments"}
                 appetizers={_audioEquipments}
                 selectedAppetizers={selectedAudioOptions}
                 setSelectedAppetizers={setSelectedAudioOptions}
-              />
+              /></div>
             </div>
-            <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
+            <div className="flex flex-col gap-6 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
               <h1 className="text-xl font-semibold">Visual Equipment</h1>
+              <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+
               <Appetizers
                 field={"visual_equipment"}
                 appetizers={_visualEquipments}
                 selectedAppetizers={selectedvisualOptions}
                 setSelectedAppetizers={setSelectedVisualOptions}
               />
+              </div>
             </div>
-            <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
+            <div className="flex flex-col gap-6 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
               <h1 className="text-xl font-semibold">Light Equipment</h1>
+              <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+
               <Appetizers
                 field={"light_equipments"}
                 appetizers={_lightEquipments}
                 selectedAppetizers={selectedLightOptions}
                 setSelectedAppetizers={setSelectedLightOptions}
               />
+              </div>
             </div>
           </>
         )}
@@ -370,15 +395,15 @@ function Page3({
                     const existingPhotos = Array.isArray(formState.photos)
                       ? formState.photos
                       : formState.photos instanceof File
-                      ? [formState.photos]
-                      : [];
-                
+                        ? [formState.photos]
+                        : [];
+
                     // Create the new photos array by combining existing and newly selected files
                     const newPhotos = [
                       ...existingPhotos,
                       ...(Array.isArray(files) ? files : [files]),
                     ];
-                
+
                     // Update the form state with the new photos array
                     updateFormState({ photos: newPhotos });
                   }}
@@ -449,14 +474,14 @@ function Page3({
                     const existingVideos = Array.isArray(formState.videos)
                       ? formState.videos
                       : formState.videos instanceof File
-                      ? [formState.videos]
-                      : [];
-          
+                        ? [formState.videos]
+                        : [];
+
                     const newVideos = [
                       ...existingVideos,
                       ...(Array.isArray(files) ? files : [files]),
                     ];
-          
+
                     updateFormState({ videos: newVideos });
                   }}
                   acceptedFileTypes="image/png, .pdf, image/jpg"
@@ -592,7 +617,7 @@ function Page3({
                 <button
                   className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
                   onClick={() => {
-                    console.log(formState.furnitureAndDecorListUrl,formState.termsAndConditions,formState.clientTestimonial,formState.photos,formState.videos)
+                    console.log(formState.furnitureAndDecorListUrl, formState.termsAndConditions, formState.clientTestimonial, formState.photos, formState.videos)
                     setCurrentPage(currentPage + 1)
                   }}
                 >
