@@ -1,9 +1,6 @@
 "use client";
-
-import { Upload } from "lucide-react";
 import React, { useState } from "react";
 import Appetizers from "../../(components)/Appetizers";
-import { BasicDetails } from "@/types/types";
 
 const styles = [
   "Aerial",
@@ -58,33 +55,52 @@ const equipments = [
 
 type Page1Props = {
 
-  Selectedstyles: string[];
-  setStyles: React.Dispatch<React.SetStateAction<string[]>>;
-  Selectedequipments: string[];
-  setSelectedEquipments: React.Dispatch<React.SetStateAction<string[]>>;
-  Addons: string[];
-  setAddons: React.Dispatch<React.SetStateAction<string[]>>;
-  finaldeliverymethods: string[];
-  setFinaldeliverymethods: React.Dispatch<React.SetStateAction<string[]>>;
+  photoSelectedstyles: string[];
+  setphotoSelectedstyles: React.Dispatch<React.SetStateAction<string[]>>;
+  photoequipments: string[];
+  setphotoEquipments: React.Dispatch<React.SetStateAction<string[]>>;
+  photoAddons: string[];
+  setphotoAddons: React.Dispatch<React.SetStateAction<string[]>>;
+  photofinaldeliverymethods: string[];
+  setphotoFinaldeliverymethods: React.Dispatch<React.SetStateAction<string[]>>;
+  videoSelectedstyles: string[];
+  setvideoStyles: React.Dispatch<React.SetStateAction<string[]>>;
+  Selectedvideoequipments: string[];
+  setvideoSelectedEquipments: React.Dispatch<React.SetStateAction<string[]>>;
+  videoAddons: string[];
+  setvideoAddons: React.Dispatch<React.SetStateAction<string[]>>;
+  videofinaldeliverymethods: string[];
+  setvideoFinaldeliverymethods: React.Dispatch<React.SetStateAction<string[]>>;
   handleContinue: () => void;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
+  togglesection: boolean;
+  settogglesection: (togglesection: boolean) => void;
 };
 
 const Page1 = ({
 
-  Selectedstyles,
-  setStyles,
+  photoSelectedstyles,
+  setphotoSelectedstyles,
+  photoequipments,
+  setphotoEquipments,
+  photoAddons,
+  setphotoAddons,
+  photofinaldeliverymethods,
+  setphotoFinaldeliverymethods,
+  videoSelectedstyles,
+  setvideoStyles,
+  Selectedvideoequipments,
+  setvideoSelectedEquipments,
+  videoAddons,
+  setvideoAddons,
+  videofinaldeliverymethods,
+  setvideoFinaldeliverymethods,
+  togglesection,
+  settogglesection,
   setCurrentPage,
-  Selectedequipments,
-  setSelectedEquipments,
-  Addons,
-  setAddons,
-  finaldeliverymethods,
-  setFinaldeliverymethods,
   handleContinue,
 }: Page1Props) => {
-
-
+ 
 
   return (
     <div
@@ -101,21 +117,90 @@ const Page1 = ({
         </div>
         <div className="flex mt-6 w-max h-[60px] rounded-full border-[1px] border-[hsl(0,0%,25%)] p-2 space-x-2">
           <div
-            className={`cursor-pointer font-helvetica font-normal  px-8 py-2 rounded-full duration-300 transition-all bg-[#2E3192] text-white`}
-            onClick={() => setCurrentPage(2)}
+            className={`cursor-pointer font-helvetica font-normal  px-8 py-2 rounded-full duration-300 transition-all ${togglesection ? "bg-[#2E3192] text-white": "bg-white text-[#2E3192]"} `}
+            onClick={() => settogglesection(true)}
           >
             Photography
           </div>
           <div
-            className={`cursor-pointer px-8 py-2  font-helvetica font-normal  rounded-full duration-300 transition-all bg-white`}
-            onClick={() => setCurrentPage(3)}
+            className={`cursor-pointer px-8 py-2  font-helvetica font-normal  rounded-full duration-300 ${!togglesection ? "bg-[#2E3192] text-white ": "bg-white "} transition-all`}
+            onClick={() => settogglesection(false)}
           >
             Videography
           </div>
         </div>
       </div>
       <div className="flex min-w-[100%] flex-col items-center justify-between gap-9">
-        <div className="flex min-h-full min-w-full flex-col items-start justify-around gap-5">
+        {togglesection ? (
+          <div className="flex min-h-full min-w-full flex-col items-start justify-around gap-5">
+            <div className="flex min-w-full flex-col items-start justify-between gap-5 rounded-xl bg-white p-5 md:flex-row">
+              <div className="flex min-w-[100%] flex-col gap-7">
+                <label className="text-xl font-semibold" htmlFor="appetizers">
+                  Types Of Styles<span className="text-red-500">*</span>
+                </label>
+                <Appetizers
+                  field={"_styles"}
+                  appetizers={styles}
+                  selectedAppetizers={photoSelectedstyles}
+                  setSelectedAppetizers={setphotoSelectedstyles}
+                />
+              </div>
+            </div>
+            <div className="flex min-w-full flex-col items-start justify-between gap-5 rounded-xl bg-white p-5 md:flex-row">
+              <div className="flex min-w-[100%] flex-col gap-7">
+                <label className="text-xl font-semibold" htmlFor="beverages">
+                  Equipments Available<span className="text-red-500">*</span>
+                </label>
+                <Appetizers
+                  field={"_equipments"}
+                  appetizers={equipments}
+                  selectedAppetizers={photoequipments}
+                  setSelectedAppetizers={setphotoEquipments}
+                />
+              </div>
+            </div>
+            <div className="flex min-w-full flex-col items-start justify-between gap-5 rounded-xl bg-white p-5 md:flex-row">
+              <div className="flex min-w-[100%] flex-col gap-7">
+                <label className="text-xl font-semibold" htmlFor="appetizers">
+                  Add-ons or upgrades available<span className="text-red-500">*</span>
+                </label>
+                <Appetizers
+                  field={"_addons"}
+                  appetizers={Addonslist}
+                  selectedAppetizers={photoAddons}
+                  setSelectedAppetizers={setphotoAddons}
+                />
+              </div>
+            </div>
+            <div className="flex flex-col min-w-full items-start justify-between gap-5 rounded-xl bg-white p-5">
+              <div className="flex min-w-[100%] flex-col gap-7">
+                <label className="text-xl font-semibold" htmlFor="appetizers">
+                  Final Delivery Methods<span className="text-red-500">*</span>
+                </label>
+                <Appetizers
+                  field={"FinalDeliveryMethodslist"}
+                  appetizers={FinalDeliveryMethodslist}
+                  selectedAppetizers={photofinaldeliverymethods}
+                  setSelectedAppetizers={setphotoFinaldeliverymethods}
+                />
+              </div>
+              <div className="mt-9 flex bg-white flex-row items-stretch gap-7 self-end">
+                <button
+                  className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+                  onClick={() => setCurrentPage((prevPage) => prevPage - 1)}
+                >
+                  Back
+                </button>
+                <button
+                  className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+                  onClick={handleContinue}
+                >
+                  Continue
+                </button>
+              </div>
+            </div>
+          </div>
+        ) : (<div className="flex min-h-full min-w-full flex-col items-start justify-around gap-5">
           <div className="flex min-w-full flex-col items-start justify-between gap-5 rounded-xl bg-white p-5 md:flex-row">
             <div className="flex min-w-[100%] flex-col gap-7">
               <label className="text-xl font-semibold" htmlFor="appetizers">
@@ -124,8 +209,8 @@ const Page1 = ({
               <Appetizers
                 field={"_styles"}
                 appetizers={styles}
-                selectedAppetizers={Selectedstyles}
-                setSelectedAppetizers={setStyles}
+                selectedAppetizers={videoSelectedstyles}
+                setSelectedAppetizers={setvideoStyles}
               />
             </div>
           </div>
@@ -137,8 +222,8 @@ const Page1 = ({
               <Appetizers
                 field={"_equipments"}
                 appetizers={equipments}
-                selectedAppetizers={Selectedequipments}
-                setSelectedAppetizers={setSelectedEquipments}
+                selectedAppetizers={Selectedvideoequipments}
+                setSelectedAppetizers={setvideoSelectedEquipments}
               />
             </div>
           </div>
@@ -150,8 +235,8 @@ const Page1 = ({
               <Appetizers
                 field={"_addons"}
                 appetizers={Addonslist}
-                selectedAppetizers={Addons}
-                setSelectedAppetizers={setAddons}
+                selectedAppetizers={videoAddons}
+                setSelectedAppetizers={setvideoAddons}
               />
             </div>
           </div>
@@ -163,8 +248,8 @@ const Page1 = ({
               <Appetizers
                 field={"FinalDeliveryMethodslist"}
                 appetizers={FinalDeliveryMethodslist}
-                selectedAppetizers={finaldeliverymethods}
-                setSelectedAppetizers={setFinaldeliverymethods}
+                selectedAppetizers={videofinaldeliverymethods}
+                setSelectedAppetizers={setvideoFinaldeliverymethods}
               />
             </div>
             <div className="mt-9 flex bg-white flex-row items-stretch gap-7 self-end">
@@ -182,7 +267,7 @@ const Page1 = ({
               </button>
             </div>
           </div>
-        </div>
+        </div>)}
       </div>
     </div>
   );

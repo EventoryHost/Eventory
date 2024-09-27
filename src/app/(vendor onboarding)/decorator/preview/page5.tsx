@@ -260,7 +260,7 @@ function Preview({
           </div>
           <div className="flex gap-6 ">
             <div className="m-6 mt-6 flex flex-col gap-1">
-              <span className="text-base font-normal">Theme Photos</span>
+              <span className="text-base font-normal">Photos</span>
               <div className="font-semibold w-[60%] ">
                 {Array.isArray(formState.photos) ? (
                   <FileDisplay files={formState.photos} />
@@ -270,7 +270,7 @@ function Preview({
               </div>
             </div>
             <div className="m-6 mt-6 flex flex-col gap-1">
-              <span className="text-base font-normal">Theme Videos</span>
+              <span className="text-base font-normal">Videos</span>
               <div className="font-semibold w-[60%] ">
                 {Array.isArray(formState.videos) ? (
                   <FileDisplay files={formState.videos} />
@@ -358,8 +358,8 @@ function Preview({
               <div className="m-6 mt-6 flex flex-col gap-1">
                 <span className="text-base font-normal">Cancellation Policy</span>
                 <div className="font-semibold w-[60%] ">
-                  {Array.isArray(formState.termsAndConditions) ? (
-                    <FileDisplay files={formState.termsAndConditions} />
+                  {Array.isArray(formState.cancellationPolicy) ? (
+                    <FileDisplay files={formState.cancellationPolicy} />
                   ) : (
                     <div>Not specified</div>
                   )}
