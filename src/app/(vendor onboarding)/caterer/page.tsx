@@ -1,9 +1,7 @@
 "use client";
-
 import React, { useState } from "react";
 import jwt from "jsonwebtoken";
 import Image from "next/image";
-
 import Page1 from "./page1/page1";
 import Page2 from "./page2/page2";
 import Page3 from "./page3/page3";
@@ -50,7 +48,8 @@ export interface FormState {
 
 const Caterer = () => {
   // State for current page
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  // state are 7 for the form then 8 for the t&c then payment
   const [formState, setFormState] = useState<FormState>({
     cateringName: "",
     businessName: "",
@@ -335,7 +334,7 @@ const Caterer = () => {
         console.log(`${key}: ${value}`);
       });
       await addCaterer(formData);
-      localStorage.clear();
+      // localStorage.clear();
       console.log("Caterer added successfully");
     } catch (error) {
       console.error("Error adding caterer:", error);
@@ -520,7 +519,11 @@ const Caterer = () => {
           </>
         )
       default:
-        return <div>thankyou</div>;
+        return (
+          <>
+            <center><h2>Loading....</h2></center>
+          </>
+        )
     }
   };
 

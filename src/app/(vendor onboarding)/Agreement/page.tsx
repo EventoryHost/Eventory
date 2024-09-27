@@ -1,20 +1,27 @@
 "use client";
+import { useState } from "react";
+import Link from "next/link";
 type Pagechangetype = {
     setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 };
 
-const Agreement = ({ setCurrentPage }: Pagechangetype) => {
+type PageProps = {
+    
+    setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
+};
 
+const Agreement = ({ setCurrentPage }: PageProps) => {
+    const [checked, setIschecked] = useState(false);
     return (
 
         <div className="bg-[#F7F6F9] w-screen flex justify-center">
-            <div className=" bg-[#ffffff] rounded-2xl h-[66rem]  w-[90%] md:w-[68%] mt-12 pt-8 pr-8  pl-4">
+            <div className=" bg-[#ffffff] rounded-2xl min-h-[66rem]  w-[68.75rem]  mt-12 pt-8 pr-8  pl-4">
                 <div>
                     <h2 className="font-poppins mt-2 mb-4 text-2xl text-[rgba(46,49,146,1)] font-bold">Terms And Conditions</h2>
                     <h4 className=" font-poppins mb-4 font-bold text-[rgba(19, 47, 65, 1)]">Your Agreement</h4>
                 </div>
-                <div className="w-full h-[828px] relative ">
-                    <div className="scrollbar-rounded-xl  p-5  absolute  text-gray-500 overflow-y-scroll h-[828px] text-justify">
+                <div className="w-[66.06rem] h-[828px]">
+                    <div className="scrollbar-rounded-xl pl-12 pr-6 text-left absolute w-[66.06rem] text-gray-500 overflow-y-scroll h-[828px]">
                         <p>Last Revised: August 14, 2024</p>
 
                         <p>Welcome to www.lorem-ipsum.info. This site is provided as a service to our visitors and may be used for informational purposes only. Because the Terms and Conditions contain legal obligations, please read them carefully.</p>
@@ -72,9 +79,33 @@ const Agreement = ({ setCurrentPage }: Pagechangetype) => {
 
                     </div>
                 </div>
-                <div className="flex  gap-3 p-4 items-end  bottom-0 relative justify-end">
-                    <button onClick={() =>  setCurrentPage((prevPage) => prevPage - 1)} className="border-[rgba(46,49,146,1)]  text-[rgba(46,49,146,1)]  border-1 rounded-2xl p-4 font-poppins flex justify-center items-center h-[48px] w-[164px]"><h2>Cancel</h2></button>
-                    <button onClick={() =>  setCurrentPage((prevPage) => prevPage + 1)} className=" text-white bg-[rgba(46,49,146,1)] rounded-2xl p-4 font-poppins flex justify-center items-center h-[48px] w-[164px]">Agree & Pay</button>
+                <div className="px-12 py-4 flex  justify-start items-center  text-left">
+                    <div>
+                        <input
+                            id={"checker"}
+                            type="checkbox"
+                            onChange={() => setIschecked((pravcheck) => (!pravcheck))}
+                            checked={checked}
+                            className="peer hidden"
+                        />
+                        <label
+                            htmlFor="checker"
+                            className="relative mr-3 flex h-5 w-5 cursor-pointer items-center justify-center overflow-hidden rounded border bg-[#2E3192] p-1 before:absolute before:block before:h-full before:w-full before:bg-white peer-checked:before:hidden"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="w-full fill-white"
+                                viewBox="0 0 520 520"
+                            >
+                                <path d="M79.423 240.755a47.529 47.529 0 0 0-36.737 77.522l120.73 147.894a43.136 43.136 0 0 0 36.066 16.009c14.654-.787 27.884-8.626 36.319-21.515L486.588 56.773a6.13 6.13 0 0 1 .128-.2c2.353-3.613 1.59-10.773-3.267-15.271a13.321 13.321 0 0 0-19.362 1.343q-.135.166-.278.327L210.887 328.736a10.961 10.961 0 0 1-15.585.843l-83.94-76.386a47.319 47.319 0 0 0-31.939-12.438z" />
+                            </svg>
+                        </label>
+                    </div>
+                    <h2>i agree <Link className="font-poppins text-[rgba(46,49,146,1)] underline" href="/">Terms & Condition</Link><span className="text-red-600">*</span></h2>
+                </div>
+                <div className="flex w-[66.06rem] gap-3 p-4 items-end  bottom-0 relative justify-end">
+                    <button onClick={() => setCurrentPage((prevPage) => prevPage - 1)} className="border-[rgba(46,49,146,1)]  text-[rgba(46,49,146,1)]  border-1 rounded-2xl p-4 font-poppins flex justify-center items-center h-[48px] w-[164px]"><h2>Cancel</h2></button>
+                    <button onClick={() => checked ? setCurrentPage((prevPage) => prevPage + 1) : alert("Pls Mark the Checkbox")} className=" text-white bg-[rgba(46,49,146,1)] rounded-2xl p-4 font-poppins flex justify-center items-center h-[48px] w-[164px]">Agree & Pay</button>
                 </div>
             </div>
         </div>

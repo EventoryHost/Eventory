@@ -4,16 +4,7 @@ function Registration_Completed() {
     return (
         <>
             <div className="bg-[#F7F6F9] px-[72px] py-[3.5rem] w-screen">
-                <div className="flex flex-col  justify-center  gap-6 w-[264px]">
-                    <Link href="/plans">
-                        <div className="flex gap-3 justify-start">
-                            <svg width="25" height="26" viewBox="0 0 25 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M11.35 9.55L8.71317 12.1868C8.26407 12.6359 8.26407 13.3641 8.71317 13.8132L11.35 16.45M9.05 13H17.1M12.5 1.5C6.14873 1.5 1 6.64873 1 13C1 19.3513 6.14873 24.5 12.5 24.5C18.8513 24.5 24 19.3513 24 13C24 6.64873 18.8513 1.5 12.5 1.5Z" stroke="#2B3F6C" stroke-width="1.5" stroke-linecap="round" />
-                            </svg>
-                            <h2 className="font-poppins font-normal text-[rgba(55, 65, 81, 1)] text-xl">Back To Plans</h2>
-                        </div>
-                    </Link>
-                </div>
+                
                 <div className="flex flex-col mt-[3rem]  justify-center items-center rounded-2xl  h-[450px]">
                     <svg width="399" height="342" viewBox="0 0 399 342" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0_4527_21158)">

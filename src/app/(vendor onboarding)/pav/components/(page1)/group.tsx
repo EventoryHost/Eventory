@@ -56,9 +56,9 @@ const Group = ({
   return (
     <>
       <div className="flex min-w-[100%] items-center justify-between gap-9">
-        <div className="flex h-[100%] w-[50%] flex-col items-start justify-between gap-9">
+        <div className="flex h-[100%] flex-col items-start justify-between gap-9">
           <div className="flex w-[100%] flex-col gap-4">
-            <label htmlFor="fullName">Full Name</label>
+            <label htmlFor="fullName">Full</label>
             <input
               id="fullName"
               type="text"

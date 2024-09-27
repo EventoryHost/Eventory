@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Footer from "./(components)/footer";
 import "./globals.css";
 import Nav from "./(components)/nav";
-
+import { Toaster } from "@/components/ui/toaster";
 export const metadata: Metadata = {
   title: "Eventory",
   description: "Inventory for Events",
@@ -31,7 +31,9 @@ export default function RootLayout({
           <Nav />
         </header>
         {children}
+        
         <footer></footer>
+        <Toaster />
       </body>
     </html>
   );

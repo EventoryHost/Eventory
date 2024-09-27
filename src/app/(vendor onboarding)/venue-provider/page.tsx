@@ -311,7 +311,9 @@ const VenueForm: React.FC = () => {
           <Page6
             formState={formState}
             updateFormState={updateFormState}
-            handleSubmit={handleSubmit}
+            handleContinue={() => {
+              setCurrentPage(6);
+            }}
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
             address={formState.address}
