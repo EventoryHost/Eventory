@@ -15,7 +15,7 @@ interface FormState {
 interface Page4Props {
   handleContinue: () => void;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
-  currentPage: number
+  currentPage: number;
   formState: FormState;
   updateFormState: (newState: Partial<FormState>) => void;
 }
@@ -25,7 +25,7 @@ const Page4: React.FC<Page4Props> = ({
   updateFormState,
   handleContinue,
   currentPage,
-  setCurrentPage
+  setCurrentPage,
 }) => {
   const {
     freeInitialConsultation,
@@ -40,19 +40,25 @@ const Page4: React.FC<Page4Props> = ({
   };
 
   return (
-    <div className="scroll-touch items-strech flex  w-[100%] flex-col gap-9 overflow-y-scroll bg-[#F7F6F9]  scrollbar-hide">
-      <div className="flex flex-col gap-6 rounded-xl bg-white p-3  md:p-6">
-        <div className="flex gap-4 items-center">
-          <ArrowLeft className="mr-1 ml-2 h-6 w-6 text-[#2E3192] cursor-pointer" aria-hidden="true" onClick={() => setCurrentPage(currentPage - 1)} />
+    <div className="scroll-touch items-strech flex w-[100%] flex-col gap-9 overflow-y-scroll bg-[#F7F6F9] scrollbar-hide">
+      <div className="flex flex-col gap-6 rounded-xl bg-white p-3 md:p-6">
+        <div className="flex items-center gap-4">
+          <ArrowLeft
+            className="ml-2 mr-1 h-6 w-6 cursor-pointer text-[#2E3192]"
+            aria-hidden="true"
+            onClick={() => setCurrentPage(currentPage - 1)}
+          />
           <h1 className="text-2xl font-semibold">Consultation Details</h1>
         </div>
         <div className="flex min-h-full min-w-full flex-col items-center gap-8">
           <div className="flex min-w-full flex-row items-start justify-between gap-2">
             <div className="flex min-w-[50%] flex-col gap-4 lg:max-w-[60%]">
-              <div className="flex flex-col  gap-2">
-                <p className="text-base font-medium">Do you offer free initial consultations? </p>
+              <div className="flex flex-col gap-2">
+                <p className="text-base font-medium">
+                  Do you offer free initial consultations?{" "}
+                </p>
                 <div className="flex gap-6">
-                  <div className="flex  gap-4 items-center">
+                  <div className="flex items-center gap-4">
                     <input
                       type="radio"
                       value="true"
@@ -62,9 +68,11 @@ const Page4: React.FC<Page4Props> = ({
                       }
                       className="h-4 w-4 accent-[#2E3192]"
                     />
-                    <label htmlFor="tastingSessionsYes" className="text-sm">Yes</label>
+                    <label htmlFor="tastingSessionsYes" className="text-sm">
+                      Yes
+                    </label>
                   </div>
-                  <div className="flex  gap-4 items-center">
+                  <div className="flex items-center gap-4">
                     <input
                       type="radio"
                       value="false"
@@ -74,7 +82,9 @@ const Page4: React.FC<Page4Props> = ({
                       }
                       className="h-4 w-4 accent-[#2E3192]"
                     />
-                    <label htmlFor="tastingSessionsNo" className="text-sm">No</label>
+                    <label htmlFor="tastingSessionsNo" className="text-sm">
+                      No
+                    </label>
                   </div>
                 </div>
               </div>
@@ -104,10 +114,13 @@ const Page4: React.FC<Page4Props> = ({
           <div className="flex min-w-full flex-row items-start justify-between gap-2">
             <div className="flex flex-col gap-8 lg:max-w-[60%]">
               <div className="flex min-w-[40%] flex-col gap-4">
-                <div className="flex flex-col  gap-2">
-                  <p className="text-base font-medium"> Do you provide a written theme proposal after consultation?</p>
+                <div className="flex flex-col gap-2">
+                  <p className="text-base font-medium">
+                    {" "}
+                    Do you provide a written theme proposal after consultation?
+                  </p>
                   <div className="flex gap-6">
-                    <div className="flex  gap-4 items-center">
+                    <div className="flex items-center gap-4">
                       <input
                         type="radio"
                         value="true"
@@ -117,9 +130,11 @@ const Page4: React.FC<Page4Props> = ({
                         }
                         className="h-4 w-4 accent-[#2E3192]"
                       />
-                      <label htmlFor="tastingSessionsYes" className="text-sm">Yes</label>
+                      <label htmlFor="tastingSessionsYes" className="text-sm">
+                        Yes
+                      </label>
                     </div>
-                    <div className="flex  gap-4 items-center">
+                    <div className="flex items-center gap-4">
                       <input
                         type="radio"
                         value="false"
@@ -129,16 +144,20 @@ const Page4: React.FC<Page4Props> = ({
                         }
                         className="h-4 w-4 accent-[#2E3192]"
                       />
-                      <label htmlFor="tastingSessionsNo" className="text-sm">No</label>
+                      <label htmlFor="tastingSessionsNo" className="text-sm">
+                        No
+                      </label>
                     </div>
                   </div>
                 </div>
               </div>
               <div className="flex min-w-[40%] flex-col gap-4">
-                <div className="flex flex-col  gap-2">
-                  <p className="text-base font-medium">Do you handle setup and installation of the decor?</p>
+                <div className="flex flex-col gap-2">
+                  <p className="text-base font-medium">
+                    Do you handle setup and installation of the decor?
+                  </p>
                   <div className="flex gap-6">
-                    <div className="flex  gap-4 items-center">
+                    <div className="flex items-center gap-4">
                       <input
                         type="radio"
                         value="true"
@@ -148,9 +167,11 @@ const Page4: React.FC<Page4Props> = ({
                         }
                         className="h-4 w-4 accent-[#2E3192]"
                       />
-                      <label htmlFor="tastingSessionsYes" className="text-sm">Yes</label>
+                      <label htmlFor="tastingSessionsYes" className="text-sm">
+                        Yes
+                      </label>
                     </div>
-                    <div className="flex  gap-4 items-center">
+                    <div className="flex items-center gap-4">
                       <input
                         type="radio"
                         value="false"
@@ -160,7 +181,9 @@ const Page4: React.FC<Page4Props> = ({
                         }
                         className="h-4 w-4 accent-[#2E3192]"
                       />
-                      <label htmlFor="tastingSessionsNo" className="text-sm">No</label>
+                      <label htmlFor="tastingSessionsNo" className="text-sm">
+                        No
+                      </label>
                     </div>
                   </div>
                 </div>
@@ -181,8 +204,7 @@ const Page4: React.FC<Page4Props> = ({
             </div> */}
           </div>
 
-          <div className="items-strech  flex flex-row gap-7 self-end">
-
+          <div className="items-strech flex flex-row gap-7 self-end">
             <button
               className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
               onClick={handleContinue}
@@ -192,7 +214,6 @@ const Page4: React.FC<Page4Props> = ({
           </div>
         </div>
       </div>
-
     </div>
   );
 };

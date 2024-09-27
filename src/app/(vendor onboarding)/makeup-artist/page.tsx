@@ -190,9 +190,9 @@ const VenueForm: React.FC = () => {
     }
   };
 
-  const handleContinue = () =>{
-    console.log('continue')
-  }
+  const handleContinue = () => {
+    console.log("continue");
+  };
 
   const renderPage = () => {
     switch (currentPage) {
@@ -221,14 +221,15 @@ const VenueForm: React.FC = () => {
         );
       case 2:
         return (
-          <Page2 formState={formState}
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-           updateFormState={updateFormState} 
-          handleContinue={() => {
-            setCurrentPage(3);
-            handleContinue();
-          }}
+          <Page2
+            formState={formState}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            updateFormState={updateFormState}
+            handleContinue={() => {
+              setCurrentPage(3);
+              handleContinue();
+            }}
           />
         );
       case 3:
@@ -270,7 +271,6 @@ const VenueForm: React.FC = () => {
       case 5:
         return (
           <Page5
-          
             formState={formState}
             updateFormState={updateFormState}
             category={category}
@@ -297,15 +297,13 @@ const VenueForm: React.FC = () => {
           />
         );
       default:
-        return (
-          <>thankyou</>
-        );
+        return <>thankyou</>;
     }
   };
 
   return (
     <div className="m-0 flex w-full flex-col overflow-x-hidden lg:h-[calc(100vh-4.2rem)] lg:flex-row">
-      <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[30%] lg:max-w-[30%] p-4">
+      <div className="flex flex-col items-start justify-between bg-[#FFFFFF] p-4 xs:gap-7 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
         <div className="flex w-[100%] flex-col justify-center">
           <div className="flex flex-col gap-1 px-3 lg:mt-[2rem]">
             <span className="text-lg font-semibold">
@@ -336,7 +334,6 @@ const VenueForm: React.FC = () => {
                 className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 5 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
                 onClick={() => setCurrentPage(5)}
               ></button>
-
             </div>
           </div>
         </div>
@@ -347,14 +344,18 @@ const VenueForm: React.FC = () => {
             {currentPage === 3 && "Fill out your pricing and policy"}
             {currentPage === 4 && "Fill out your policy"}
             {currentPage === 5 && "Fill out extra detail of your company"}
-
           </h1>
           <p className="text-black xs:text-sm md:w-[90%]">
-            {currentPage === 1 &&'Please provide the details of the venue offered by your company.'}
-            {currentPage === 2 &&'Please provide the details of the venue offered by your company.'}
-            {currentPage === 3 &&'Please provide the details of the venue offered by your company.'}
-            {currentPage === 4 &&'Please provide the details of the venue offered by your company.'}
-            {currentPage === 5 &&'Please provide the details of the venue offered by your company.'}
+            {currentPage === 1 &&
+              "Please provide the details of the venue offered by your company."}
+            {currentPage === 2 &&
+              "Please provide the details of the venue offered by your company."}
+            {currentPage === 3 &&
+              "Please provide the details of the venue offered by your company."}
+            {currentPage === 4 &&
+              "Please provide the details of the venue offered by your company."}
+            {currentPage === 5 &&
+              "Please provide the details of the venue offered by your company."}
           </p>
         </div>
         <div className="relative h-[10rem] lg:w-full">

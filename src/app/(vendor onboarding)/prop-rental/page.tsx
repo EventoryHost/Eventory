@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 import React, { useEffect, useState } from "react";
 import Page1 from "./page1/page1";
 import Page2 from "./page2/page2";
-import Page3 from "./page3/page3"
+import Page3 from "./page3/page3";
 import preview from "./preview/preview";
 import { addPropRental } from "@/services/vendors/propRental";
 
@@ -14,7 +14,6 @@ import Preview from "./preview/preview";
 import Plans from "../Plans/page";
 import Agreement from "../Agreement/page";
 import Registration_Completed from "../Registration-Completed/page";
-
 
 export interface FormState {
   // Page1
@@ -30,8 +29,6 @@ export interface FormState {
   maintenance: string;
   services: string;
 
-
-
   // Page3
   furnitureAndDecorListUrl: string | File;
   tentAndCanopyListUrl: string | File;
@@ -44,7 +41,6 @@ export interface FormState {
   websiteUrl: string;
   termsAndConditions: string | File | File[];
   cancellationPolicy: string | File | File[];
-
 
   // furnitureHourlyPricingEntries: PricingEntry[];
   // tentHourlyPricingEntries: PricingEntry[];
@@ -79,7 +75,7 @@ export interface FormState {
   // dealCheckboxPage5: boolean;
   // workerCheckboxPage5: boolean;
   // advancedPaymentCheckboxPage5: false;
-};
+}
 
 type PricingEntry = {
   name: string;
@@ -93,7 +89,7 @@ const RootPage = () => {
     managerName: "",
     workDescription: "",
     eventSize: "",
-    handleChange: (key: keyof FormState, value: any) => { },
+    handleChange: (key: keyof FormState, value: any) => {},
 
     // URL's for the files
     itemCatalogue: true,
@@ -241,9 +237,10 @@ const RootPage = () => {
     setCurrentPage(pageIndex);
   };
 
-
   const [selectedCategory, setSelectedCategory] = useState("Furniture & Decor");
-  const [selectedFurnitureEvents, setselectedFurnitureEvents] = useState<string[]>([]);
+  const [selectedFurnitureEvents, setselectedFurnitureEvents] = useState<
+    string[]
+  >([]);
   const [selectedTentEvents, setselectedTentEvents] = useState<string[]>([]);
 
   const [selectedAudioEvents, setselectedAudioEvents] = useState<string[]>([]);
@@ -302,10 +299,13 @@ const RootPage = () => {
     formData.append("numberOfWorkers", formState.numberOfWorkers || "");
 
     if (formState.itemCatalogue instanceof File) {
-      formData.append('itemCatalogue', formState.itemCatalogue);
+      formData.append("itemCatalogue", formState.itemCatalogue);
     } else {
       // If you need to handle the boolean case, you could append a string instead
-      formData.append('itemCatalogue', formState.itemCatalogue ? 'true' : 'false');
+      formData.append(
+        "itemCatalogue",
+        formState.itemCatalogue ? "true" : "false",
+      );
     }
     formData.append("customization", formState.customization.toString());
     formData.append("maintenance", formState.maintenance);
@@ -314,28 +314,28 @@ const RootPage = () => {
     if (Array.isArray(formState.photos)) {
       formState.photos.forEach((file) => {
         if (file instanceof File) {
-          formData.append('photos', file); // Append as 'photos' without the array index
+          formData.append("photos", file); // Append as 'photos' without the array index
         }
       });
-    } else if (typeof formState.photos === 'string') {
-      formData.append('photos', formState.photos); // Append the string (URL)
+    } else if (typeof formState.photos === "string") {
+      formData.append("photos", formState.photos); // Append the string (URL)
     }
 
     // Handle videos field
     if (Array.isArray(formState.videos)) {
       formState.videos.forEach((file) => {
         if (file instanceof File) {
-          formData.append('videos', file); // Append as 'videos' without the array index
+          formData.append("videos", file); // Append as 'videos' without the array index
         }
       });
-    } else if (typeof formState.videos === 'string') {
-      formData.append('videos', formState.videos); // Append the string (URL)
+    } else if (typeof formState.videos === "string") {
+      formData.append("videos", formState.videos); // Append the string (URL)
     }
 
     // Appending arrays without stringifying
     formData.append(
       "furnitureAndDecorListUrl",
-      formState.furnitureAndDecorListUrl || ""
+      formState.furnitureAndDecorListUrl || "",
     );
     selectedFurnitureEvents?.forEach((item: string | Blob, index: number) => {
       formData.append(`furnitureAndDecor[typeOfEvents][${index}]`, item);
@@ -350,8 +350,6 @@ const RootPage = () => {
       formData.append(`furnitureAndDecor[decor][${index}]`, item);
     });
 
-
-
     formData.append(
       "tentAndCanopyListUrl",
       formState.tentAndCanopyListUrl || "",
@@ -359,16 +357,11 @@ const RootPage = () => {
     selectedTentEvents?.forEach((item: string | Blob, index: number) => {
       formData.append(`tentAndCanopy[typeOfEvents][${index}]`, item);
     });
-    selectedTentOptions.forEach(
-      (item: string | Blob, index: any) => {
-        formData.append(`tentAndCanopy[items][${index}]`, item);
-      },
-    );
+    selectedTentOptions.forEach((item: string | Blob, index: any) => {
+      formData.append(`tentAndCanopy[items][${index}]`, item);
+    });
 
-    formData.append(
-      "audioVisualListUrl",
-      formState.audioVisualListUrl || "",
-    );
+    formData.append("audioVisualListUrl", formState.audioVisualListUrl || "");
     selectedAudioEvents?.forEach((item: string | Blob, index: number) => {
       formData.append(`audioVisual[typeOfEvents][${index}]`, item);
     });
@@ -428,10 +421,9 @@ const RootPage = () => {
             setCurrentPage={setCurrentPage}
             handleSubmit={handleSubmit}
           />
-        )
+        );
       case 2:
         return (
-
           <Page2
             formState={formState}
             updateFormState={updateFormState}
@@ -443,9 +435,8 @@ const RootPage = () => {
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
             handleSubmit={handleSubmit}
-
           />
-        )
+        );
       case 3:
         return (
           <Page3
@@ -461,7 +452,6 @@ const RootPage = () => {
             setselectedTentEvents={setselectedTentEvents}
             selectedAudioEvents={selectedAudioEvents}
             setselectedAudioEvents={setselectedAudioEvents}
-
             selectedFurniture={selectedFurniture}
             setSelectedFurniture={setSelectedFurniture}
             selectedDecor={selectedDecor}
@@ -475,13 +465,11 @@ const RootPage = () => {
             selectedLightOptions={selectedLightOptions}
             setSelectedLightOptions={setSelectedLightOptions}
             handleChange={handleChange}
-
           />
-        )
+        );
 
       case 4:
         return (
-
           <Preview
             formState={formState}
             handleChange={handleChange}
@@ -492,7 +480,6 @@ const RootPage = () => {
             setServiceProvided={setServiceProvided}
             setSelectedCategory={setSelectedCategory}
             selectedCategory={selectedCategory}
-
             selectedFurnitureEvents={selectedFurnitureEvents}
             setselectedFurnitureEvents={setselectedFurnitureEvents}
             selectedTentEvents={selectedTentEvents}
@@ -511,105 +498,115 @@ const RootPage = () => {
             setSelectedAudioOptions={setSelectedAudioOptions}
             selectedLightOptions={selectedLightOptions}
             setSelectedLightOptions={setSelectedLightOptions}
-
           />
-
-        )
+        );
       case 5:
         return (
           <>
-
             <Agreement setCurrentPage={setCurrentPage} />
           </>
-        )
+        );
       case 6:
         return (
           <>
-            <Plans handleformSubmit={handleSubmit} setCurrentPage={setCurrentPage} />
+            <Plans
+              handleformSubmit={handleSubmit}
+              setCurrentPage={setCurrentPage}
+            />
           </>
-        )
+        );
       case 7:
         return (
           <>
-            <Registration_Completed
-
-            />
+            <Registration_Completed />
           </>
-        )
+        );
 
       default:
         return <div>thankyou</div>;
     }
   };
 
-
   return (
-    <div className={`m-0 flex w-full flex-col overflow-x-hidden ${currentPage <=4  ? 'lg:h-[calc(100vh-4.2rem)]' : ''} lg:flex-row `}>
-     {currentPage<=4 &&(
-      <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 pt-4 md:min-w-[30%] lg:max-w-[30%]">
-        <div className="flex w-[90%] m-auto flex-col justify-center">
-          <div className="flex flex-col gap-1 px-6 lg:mt-[2rem]">
-            <span className="text-lg font-semibold">
-              Step {currentPage} of 4
-            </span>
-            <div className="flex gap-2">
-              <button
-                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 1 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                onClick={() => setCurrentPage(1)}
-              ></button>
+    <div
+      className={`m-0 flex w-full flex-col overflow-x-hidden ${currentPage <= 4 ? "lg:h-[calc(100vh-4.2rem)]" : ""} lg:flex-row`}
+    >
+      {currentPage <= 4 && (
+        <div className="flex flex-col items-start justify-between bg-[#FFFFFF] pt-4 xs:gap-7 md:min-w-[30%] lg:max-w-[30%]">
+          <div className="m-auto flex w-[90%] flex-col justify-center">
+            <div className="flex flex-col gap-1 px-6 lg:mt-[2rem]">
+              <span className="text-lg font-semibold">
+                Step {currentPage} of 4
+              </span>
+              <div className="flex gap-2">
+                <button
+                  className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 1 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                  onClick={() => setCurrentPage(1)}
+                ></button>
 
-              <button
-                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 2 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                onClick={() => setCurrentPage(2)}
-              ></button>
+                <button
+                  className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 2 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                  onClick={() => setCurrentPage(2)}
+                ></button>
 
-              <button
-                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 3 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                onClick={() => setCurrentPage(3)}
-              ></button>
+                <button
+                  className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 3 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                  onClick={() => setCurrentPage(3)}
+                ></button>
 
-              <button
-                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 4 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                onClick={() => setCurrentPage(4)}
-              ></button>
-
-
+                <button
+                  className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 4 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                  onClick={() => setCurrentPage(4)}
+                ></button>
+              </div>
             </div>
           </div>
+          <div className="m-auto flex h-[50%] w-[90%] flex-col items-start justify-center gap-9 px-3 md:px-6">
+            <h1 className="text-2xl font-bold md:text-4xl">
+              {currentPage === 2 && "Fill out your Service details  "}
+              {currentPage === 1 && "Fill the basic information"}
+              {currentPage === 3 &&
+                selectedCategory === "Furniture & Decor" &&
+                "Fill the Furniture and Decor Rentals details"}
+              {currentPage === 3 &&
+                selectedCategory === "Tent and Canopy" &&
+                "Fill the Tent and Canopy rentals details"}
+              {currentPage === 3 &&
+                selectedCategory === "Audio-Visual" &&
+                "Fill the Audio-Visual rentals details"}
+
+              {currentPage === 4 && "Fill the Staffing and Equipment details"}
+            </h1>
+            <p className="text-xl text-black">
+              {currentPage === 2 &&
+                "Please provide the details of the venue offered by your company."}
+              {currentPage === 1 &&
+                "Please provide the basic information of the rental service offered by your company."}
+              {currentPage === 3 &&
+                selectedCategory === "Furniture & Decor" &&
+                "Please provide the event details of the catering service offered by your company."}
+              {currentPage === 3 &&
+                selectedCategory === "Tent and Canopy" &&
+                "Please provide the event details of the catering service offered by your company."}
+              {currentPage === 3 &&
+                selectedCategory === "Audio-Visual" &&
+                "Please provide the Audio-Visual rentals service offered by your company."}
+
+              {currentPage === 4 &&
+                "Please provide the staffing and equipment details of the catering service offered by your company."}
+            </p>
+          </div>
+          <div className="relative h-[10rem] w-full">
+            <Image
+              src={"/tajmahal.png"}
+              alt=""
+              width={400}
+              height={200}
+              className="h-full w-full object-cover"
+            />
+          </div>
         </div>
-        <div className="flex h-[50%] flex-col items-start justify-center gap-9 px-3 md:px-6  w-[90%] m-auto">
-          <h1 className="md:text-4xl text-2xl font-bold  ">
-            {currentPage === 2 && "Fill out your Service details  "}
-            {currentPage === 1 && "Fill the basic information"}
-            {currentPage === 3 && selectedCategory === 'Furniture & Decor' && "Fill the Furniture and Decor Rentals details"}
-            {currentPage === 3 && selectedCategory === 'Tent and Canopy' && "Fill the Tent and Canopy rentals details"}
-            {currentPage === 3 && selectedCategory === 'Audio-Visual' && "Fill the Audio-Visual rentals details"}
-
-            {currentPage === 4 && "Fill the Staffing and Equipment details"}
-
-          </h1>
-          <p className="text-black text-xl ">
-            {currentPage === 2 && "Please provide the details of the venue offered by your company."}
-            {currentPage === 1 && "Please provide the basic information of the rental service offered by your company."}
-            {currentPage === 3 && selectedCategory === 'Furniture & Decor' && "Please provide the event details of the catering service offered by your company."}
-            {currentPage === 3 && selectedCategory === 'Tent and Canopy' && "Please provide the event details of the catering service offered by your company."}
-            {currentPage === 3 && selectedCategory === 'Audio-Visual' && "Please provide the Audio-Visual rentals service offered by your company."}
-
-            {currentPage === 4 &&
-              "Please provide the staffing and equipment details of the catering service offered by your company."}
-
-          </p>
-        </div>
-        <div className="relative h-[10rem] w-full">
-          <Image
-            src={"/tajmahal.png"}
-            alt=""
-            width={400}
-            height={200}
-            className="h-full w-full object-cover"
-          />
-        </div>
-      </div>)}
+      )}
       <div className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] p-4 md:p-12">
         {renderPage()}
       </div>

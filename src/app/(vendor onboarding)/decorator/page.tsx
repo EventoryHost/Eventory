@@ -23,8 +23,8 @@ export interface FormState {
   // Page-specific states
   // Page 1
   businessName: string;
-  eventSize:string;
- durationToSet: string;
+  eventSize: string;
+  durationToSet: string;
 
   // Page 2
   propthemesOffered: boolean;
@@ -32,11 +32,10 @@ export interface FormState {
   colorschmes: boolean;
   customizationsThemes: boolean;
   customDesignProcess: string;
- 
 
   // Page 3
-themePhoto:string | File | File[]
-themeVideo:string | File | File[]
+  themePhoto: string | File | File[];
+  themeVideo: string | File | File[];
 
   // Page 4
   freeInitialConsultation: boolean;
@@ -67,8 +66,8 @@ const Decorators: React.FC = () => {
   const [formState, setFormState] = useState<FormState>({
     //page1
     businessName: "",
-    eventSize:"",
-        durationToSet: "",
+    eventSize: "",
+    durationToSet: "",
 
     // Page 2
     propthemesOffered: false,
@@ -78,8 +77,8 @@ const Decorators: React.FC = () => {
     customDesignProcess: "",
 
     //page 3
-    themePhoto:"",
-    themeVideo:"",
+    themePhoto: "",
+    themeVideo: "",
     // Page 4
     freeInitialConsultation: true,
     revisionPolicy: true,
@@ -136,7 +135,6 @@ const Decorators: React.FC = () => {
   ]);
   const [advancePayment, setAdvancePayment] = useState(25);
   const [portLinks, setPortLinks] = useState<File[]>([]);
-
 
   const handlePackageChange = (
     setPackages: React.Dispatch<React.SetStateAction<Package[]>>,
@@ -243,9 +241,8 @@ const Decorators: React.FC = () => {
     formData.append("customDesignProcess", formState.customDesignProcess);
     formData.append("durationToSet", formState.durationToSet);
 
-    
     //page 3
-    
+
     //page 4
     formData.append(
       "freeInitialConsultation",
@@ -365,7 +362,7 @@ const Decorators: React.FC = () => {
       case 3:
         return (
           <Page3
-          currentPage={currentPage}
+            currentPage={currentPage}
             setCurrentPage={setCurrentPage}
             formState={formState}
             updateFormState={updateFormState}
@@ -381,7 +378,7 @@ const Decorators: React.FC = () => {
       case 4:
         return (
           <Page4
-          currentPage={currentPage}
+            currentPage={currentPage}
             setCurrentPage={setCurrentPage}
             formState={formState}
             updateFormState={updateFormState}
@@ -415,10 +412,10 @@ const Decorators: React.FC = () => {
       case 5:
         return (
           <Page6
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-          portLinks={portLinks}
-          setPortLinks={setPortLinks}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            portLinks={portLinks}
+            setPortLinks={setPortLinks}
             formState={formState}
             updateFormState={updateFormState}
             handleContinue={() => {
@@ -431,8 +428,8 @@ const Decorators: React.FC = () => {
       case 6:
         return (
           <Page7
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
             formState={formState}
             updateFormState={updateFormState}
             handleContinue={() => {
@@ -483,8 +480,8 @@ const Decorators: React.FC = () => {
 
   return (
     <div className="m-0 flex w-full flex-col overflow-x-hidden lg:h-[calc(100vh-4.2rem)] lg:flex-row">
-      <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 pt-4 md:min-w-[30%] lg:max-w-[30%]">
-        <div className="flex w-[90%] m-auto flex-col justify-center">
+      <div className="flex flex-col items-start justify-between bg-[#FFFFFF] pt-4 xs:gap-7 md:min-w-[30%] lg:max-w-[30%]">
+        <div className="m-auto flex w-[90%] flex-col justify-center">
           <div className="flex flex-col gap-1 px-3 lg:mt-[2rem]">
             <span className="text-lg font-semibold">
               Step {currentPage} of 7
@@ -530,8 +527,8 @@ const Decorators: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="flex h-[50%] flex-col items-start justify-center gap-9 px-3 md:px-6  w-[90%] m-auto">
-          <h1 className="md:text-5xl text-3xl font-bold  ">
+        <div className="m-auto flex h-[50%] w-[90%] flex-col items-start justify-center gap-9 px-3 md:px-6">
+          <h1 className="text-3xl font-bold md:text-5xl">
             {currentPage === 1 && "Fill out event details"}
             {currentPage === 2 && "Fill out themes related details "}
             {currentPage === 3 && "Fill out theme elements details"}
@@ -540,25 +537,22 @@ const Decorators: React.FC = () => {
             {currentPage === 5 && "Fill out your ratings and reviews"}
             {currentPage === 6 && "Fill out some mandatory details"}
             {currentPage === 7 && "Preview details"}
-
           </h1>
-          <p className="text-black text-xl ">
-            {currentPage === 1 &&
-              "Select the types of events you cover "}
+          <p className="text-xl text-black">
+            {currentPage === 1 && "Select the types of events you cover "}
             {currentPage === 2 &&
               "Provide the details of the themes you offer and related details."}
             {currentPage === 3 &&
               "Provide the details of the themes elements you provide and describe it in detail."}
-            {currentPage === 4 &&
-              "Provide your consultaion process in detail"}
+            {currentPage === 4 && "Provide your consultaion process in detail"}
             {/* {currentPage === 5 &&
               "Provide the pricing detaials or uplaod pdf (if available)"} */}
             {currentPage === 5 &&
               "Fill out the details or upload the links/pdf if available."}
             {currentPage === 6 &&
               "Provide the deatils by providing url or uploading pdf. "}
-            {currentPage === 7 && "Please recheck the information provided by you. "}
-
+            {currentPage === 7 &&
+              "Please recheck the information provided by you. "}
           </p>
         </div>
         <div className="relative h-[10rem] w-full">

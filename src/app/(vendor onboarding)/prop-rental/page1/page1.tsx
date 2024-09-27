@@ -23,7 +23,6 @@ interface formState {
   workDescription: string;
   eventSize: string;
   handleChange: (key: string, value: any) => void;
-  
 }
 
 type PricingEntry = {
@@ -32,18 +31,16 @@ type PricingEntry = {
   max: number;
 };
 
-type page1Props ={
+type page1Props = {
   formState: formState;
   handleChange: (key: string, value: any) => void;
   handleNestedChange: (key: string, nestedKey: string, value: any) => void;
   navigateToPage: (page: number) => void;
 
-
   currentPage: number;
   setCurrentPage: (value: any) => void;
   handleSubmit: () => void;
-
-}
+};
 
 const Page1: React.FC<page1Props> = ({
   formState,
@@ -54,15 +51,14 @@ const Page1: React.FC<page1Props> = ({
 }) => {
   return (
     <>
-      <div className="scroll-touch w-full flex flex-col items-start gap-5 overflow-y-scroll rounded-xl bg-white p-3 scrollbar-hide  xs:justify-start md:p-6">
-
+      <div className="scroll-touch flex w-full flex-col items-start gap-5 overflow-y-scroll rounded-xl bg-white p-3 scrollbar-hide xs:justify-start md:p-6">
         <h1 className="text-2xl font-semibold">Basic Details</h1>
 
         <div className="flex min-w-full flex-col items-center gap-9 p-2">
           <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
             <div className="flex min-w-[50%] flex-col gap-2">
-              <label className="font-medium text-base" htmlFor="vendorName">
-                Manager Name (POC)<span className="text-red-500 ">*</span>
+              <label className="text-base font-medium" htmlFor="vendorName">
+                Manager Name (POC)<span className="text-red-500">*</span>
               </label>
               <input
                 id="vendorName"
@@ -77,51 +73,47 @@ const Page1: React.FC<page1Props> = ({
               <label htmlFor="eventSize">Event Size</label>
               <Dropdown
                 options={eventOptions}
-                onSelect={(option: string) => { handleChange('eventSize', option) }}
-
+                onSelect={(option: string) => {
+                  handleChange("eventSize", option);
+                }}
                 placeholder="Select event size you cover"
               />
             </div>
           </div>
-
         </div>
-        <div className="flex min-w-[50%] flex-col  gap-9 p-2">
+        <div className="flex min-w-[50%] flex-col gap-9 p-2">
           <div className="flex min-w-[50%] flex-col gap-2">
-            <label className="font-medium text-base" htmlFor="workDescription">
+            <label className="text-base font-medium" htmlFor="workDescription">
               Description about you
             </label>
             <textarea
               cols={30}
               rows={5}
               value={formState.workDescription || ""}
-              onChange={(e) =>
-                handleChange("workDescription", e.target.value)
-              }
+              onChange={(e) => handleChange("workDescription", e.target.value)}
               className="h-full w-full rounded-xl border-2 bg-white p-4 outline-none"
               placeholder="Enter your Description"
             />
           </div>
         </div>
 
-
-
-
         {/* Next Button */}
-        <div className="items-strech  flex flex-row gap-7 self-end">
+        <div className="items-strech flex flex-row gap-7 self-end">
           <button
             onClick={() => {
-              console.log(formState.managerName,formState.eventSize,formState.workDescription)
-              setCurrentPage(currentPage + 1)
+              console.log(
+                formState.managerName,
+                formState.eventSize,
+                formState.workDescription,
+              );
+              setCurrentPage(currentPage + 1);
             }}
             className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
           >
             Next
           </button>
         </div>
-
-
-
-      </div >
+      </div>
     </>
   );
 };

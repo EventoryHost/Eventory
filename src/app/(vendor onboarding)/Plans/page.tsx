@@ -9,310 +9,393 @@ import { useRouter } from "next/navigation"; // Import from 'next/navigation'
 import Link from "next/link";
 import vendorpricecalculations from "@/services/vendorpricecalculation";
 interface PlanDetails {
-    title: string;
-    price: number;
-    details: string[];
+  title: string;
+  price: number;
+  details: string[];
 }
 
 type Pagechangetype = {
-    setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
-    handleformSubmit: () => void;
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
+  handleformSubmit: () => void;
 };
 interface BusinessDetails {
-    annualrevenue: "0-3" | "3-7" | "7-12" | "12-18" | "18+";
-    teamsize: "1-5" | "6-15" | "16-30" | "31-50" | "51+";
-    years: "1-2" | "3-5" | "6-10" | "10+";
+  annualrevenue: "0-3" | "3-7" | "7-12" | "12-18" | "18+";
+  teamsize: "1-5" | "6-15" | "16-30" | "31-50" | "51+";
+  years: "1-2" | "3-5" | "6-10" | "10+";
 }
 
 const Plans = ({ setCurrentPage, handleformSubmit }: Pagechangetype) => {
-    const plan: PlanDetails = {
-        title: "Basic",
-        price: 99,
-        details: ["All analytics features", "Up to 250,000 tracked visits", "Normal support", "Up to 3 team members"],
-    };
-    const [price, setPrice] = useState<number>(0);
-    const [error, setError] = useState(false);
-    const router = useRouter();
-    const [vendorId, setVendorId] = useState("");
-    const [formData, setFormData] = useState({
-        fullName: "",
-        email: "",
-        phoneNumber: "",
-        gstinNumber: "",
-        address: "",
-    });
+  const plan: PlanDetails = {
+    title: "Basic",
+    price: 99,
+    details: [
+      "All analytics features",
+      "Up to 250,000 tracked visits",
+      "Normal support",
+      "Up to 3 team members",
+    ],
+  };
+  const [price, setPrice] = useState<number>(0);
+  const [error, setError] = useState(false);
+  const router = useRouter();
+  const [vendorId, setVendorId] = useState("");
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    phoneNumber: "",
+    gstinNumber: "",
+    address: "",
+  });
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setError(false)
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
-    // Utility functions to convert string values to numbers
-    const convertTeamSizeToNumber = (teamSize: string): number => {
-        switch (teamSize) {
-            case "1-5":
-                return 5;
-            case "6-15":
-                return 15;
-            case "16-30":
-                return 30;
-            case "31-50":
-                return 50;
-            case "51+":
-                return 51;
-            default:
-                return 0; // Default value in case of an unknown input
-        }
-    };
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    setError(false);
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+  // Utility functions to convert string values to numbers
+  const convertTeamSizeToNumber = (teamSize: string): number => {
+    switch (teamSize) {
+      case "1-5":
+        return 5;
+      case "6-15":
+        return 15;
+      case "16-30":
+        return 30;
+      case "31-50":
+        return 50;
+      case "51+":
+        return 51;
+      default:
+        return 0; // Default value in case of an unknown input
+    }
+  };
 
-    const convertAnnualRevenueToNumber = (annualRevenue: string): number => {
-        switch (annualRevenue) {
-            case "0-3":
-                return 3;
-            case "3-7":
-                return 7;
-            case "7-12":
-                return 12;
-            case "12-18":
-                return 18;
-            case "18+":
-                return 18;
-            default:
-                return 0;
-        }
-    };
+  const convertAnnualRevenueToNumber = (annualRevenue: string): number => {
+    switch (annualRevenue) {
+      case "0-3":
+        return 3;
+      case "3-7":
+        return 7;
+      case "7-12":
+        return 12;
+      case "12-18":
+        return 18;
+      case "18+":
+        return 18;
+      default:
+        return 0;
+    }
+  };
 
-    const convertYearsToNumber = (years: string): number => {
-        switch (years) {
-            case "1-2":
-                return 2;
-            case "3-5":
-                return 5;
-            case "6-10":
-                return 10;
-            case "10+":
-                return 10; // Similar to above, maximum cap
-            default:
-                return 0;
-        }
-    };
+  const convertYearsToNumber = (years: string): number => {
+    switch (years) {
+      case "1-2":
+        return 2;
+      case "3-5":
+        return 5;
+      case "6-10":
+        return 10;
+      case "10+":
+        return 10; // Similar to above, maximum cap
+      default:
+        return 0;
+    }
+  };
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
 
-        // Exclude 'gstinNumber' field from validation of form
-        const { gstinNumber, ...fieldsToCheck } = formData;
-        const isFormValid = Object.values(fieldsToCheck).every(value => value.trim() !== "");
-        const isgstvaild = gstinNumber.length === 15;
-        if (isFormValid && isgstvaild) {
-            // Proceed with handling payment if the form is valid
-            handlePayment(price.toString(), plan.title, vendorId, formData.fullName, setCurrentPage, handleformSubmit);
-        } else {
-            // Optionally, handle invalid form (e.g., show an error message)
-            setError(true)
-        }
-    };
-    const fetchVendor = async (
-        userId: string,
-        email: string,
-        mobile: string
-    ) => {
-        const res = await getvendor(userId, email, mobile);
-        return res;
-    };
-
-    useEffect(() => {
-        const fetchData = async () => {
-            const token = localStorage.getItem("token");
-
-
-
-            if (token) {
-                try {
-                    const { userId, email } = jwt.decode(token) as {
-                        userId: string;
-                        email: string;
-                    };
-
-                    if (userId && email) {
-                        const user = await fetchVendor(userId, email, "");
-                        // console.log(user);
-                        setVendorId(user.id);
-                        setFormData((prevFormData) => ({
-                            ...prevFormData,
-                            email: user?.email,
-                            fullName: user?.name,
-                            gstinNumber: user?.businessDetails.gstin,
-                            address: user?.businessDetails.businessAddress,
-                        }));
-                        const revenueValue = convertAnnualRevenueToNumber(user.businessDetails.annualrevenue);
-                        const teamSizeValue = convertTeamSizeToNumber(user.businessDetails.teamsize);
-                        const yearsValue = convertYearsToNumber(user.businessDetails.years);
-
-                        // Call the function with the numeric values
-                        const price = vendorpricecalculations(revenueValue, teamSizeValue, yearsValue);
-                        setPrice(price);
-
-                    } else {
-                        console.error("Token does not contain expected data.");
-                    }
-                } catch (error) {
-                    console.error("Failed to decode token:", error);
-                }
-            } else {
-                console.log("No token found in localStorage.");
-            }
-        };
-
-        fetchData();
-
-    }, []);
-
-
-    return (
-        <>
-            <Script
-                id="razorpay-checkout-js"
-                src="https://checkout.razorpay.com/v1/checkout.js"
-            />
-            <div className="bg-[#F7F6F9] py-[3.5rem]  w-screen">
-                <div className="flex flex-col h-max justify-center pl-[72px] gap-6 w-[264px]">
-
-                    <div onClick={() => setCurrentPage((prevPage) => prevPage - 1)} className="flex gap-3 justify-start">
-                        <svg width="25" height="26" viewBox="0 0 25 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M11.35 9.55L8.71317 12.1868C8.26407 12.6359 8.26407 13.3641 8.71317 13.8132L11.35 16.45M9.05 13H17.1M12.5 1.5C6.14873 1.5 1 6.64873 1 13C1 19.3513 6.14873 24.5 12.5 24.5C18.8513 24.5 24 19.3513 24 13C24 6.64873 18.8513 1.5 12.5 1.5Z" stroke="#2B3F6C" stroke-width="1.5" stroke-linecap="round" />
-                        </svg>
-                        <h2 className="font-poppins font-normal text-[rgba(55, 65, 81, 1)] text-xl">Back To T&Cs</h2>
-                    </div>
-
-                    <div className=" w-screen  h-max">
-                        <h4 className="font-poppins mb-4 text-[32px]  font-medium text-[rgba(19, 47, 65, 1)]">Payment Details</h4>
-                    </div>
-                </div>
-                <div className="flex justify-start gap-4 px-[72px]">
-                    <div className="custom-shadow w-[792px] h-max rounded-2xl pt-3 pb-5 px-5 bg-[#ffffff] ">
-                        <div onClick={() => setCurrentPage(1)} className="flex relative z-15 m-0 right-0 p-0 justify-end">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M13.5137 3.80454C14.5869 2.72979 16.3274 2.72913 17.4013 3.80307L19.8932 6.29493C20.958 7.35971 20.969 9.08347 19.918 10.1618L10.6849 19.6351C9.97933 20.359 9.01167 20.7672 8.00124 20.7671L5.24909 20.767C3.96984 20.7669 2.94823 19.7006 3.00203 18.4215L3.12019 15.6124C3.15968 14.6734 3.54996 13.7834 4.2138 13.1186L13.5137 3.80454ZM16.3415 4.86454C15.8533 4.37638 15.0622 4.37668 14.5744 4.8652L12.9118 6.53032L17.1916 10.8101L18.8446 9.11408C19.3224 8.62391 19.3173 7.84038 18.8333 7.35639L16.3415 4.86454ZM5.27446 14.1792L11.8519 7.59178L16.1445 11.8844L9.61148 18.5873C9.18816 19.0217 8.60756 19.2666 8.0013 19.2665L5.24916 19.2664C4.82274 19.2664 4.4822 18.9109 4.50014 18.4846L4.61829 15.6756C4.64199 15.1121 4.87616 14.5781 5.27446 14.1792ZM20.5158 20.6948C20.9298 20.6948 21.2655 20.3589 21.2655 19.9445C21.2655 19.5301 20.9298 19.1942 20.5158 19.1942H14.3941C13.98 19.1942 13.6444 19.5301 13.6444 19.9445C13.6444 20.3589 13.98 20.6948 14.3941 20.6948H20.5158Z" fill="#2B3F6C" />
-                            </svg>
-                        </div>
-                        <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-                            <div className="flex justify-between items-center gap-6">
-                                <div className="flex flex-col w-[50%] gap-[6px]">
-                                    <label htmlFor="fullName" className="font-poppins font-medium text-md">
-                                        Full Name<span className="text-red-600">*</span>
-                                    </label>
-                                    <input
-                                        type="text"
-                                        name="fullName"
-                                        required
-                                        placeholder="Enter Your Full Name"
-                                        className="w-full border-1 border-[#DBDBDB] rounded-lg p-4"
-                                        value={formData.fullName}
-                                        onChange={handleChange}
-                                    />
-                                </div>
-                                <div className="flex flex-col w-[50%] gap-[6px]">
-                                    <label htmlFor="email" className="font-poppins font-medium text-md">
-                                        Email<span className="text-red-600">*</span>
-                                    </label>
-                                    <input
-                                        type="email"
-                                        name="email"
-                                        required
-                                        placeholder="Enter your E-mail"
-                                        className="w-full border-1 border-[#DBDBDB] rounded-lg p-4"
-                                        value={formData.email}
-                                        onChange={handleChange}
-                                    />
-                                </div>
-                            </div>
-
-                            <div className="flex justify-between items-center gap-6">
-                                <div className="flex flex-col w-[50%] gap-[6px]">
-                                    <label htmlFor="phoneNumber" className="font-poppins font-medium text-md">
-                                        Phone Number<span className="text-red-600">*</span>
-                                    </label>
-                                    <input
-                                        type="tel"
-                                        name="phoneNumber"
-                                        required
-                                        placeholder="Enter Your Mobile Number"
-                                        className="w-full border-1 border-[#DBDBDB] rounded-lg p-4"
-                                        value={formData.phoneNumber}
-                                        onChange={handleChange}
-                                    />
-                                </div>
-                                <div className="flex flex-col w-[50%] gap-[6px]">
-                                    <label htmlFor="gstinNumber" className="font-poppins font-medium text-md">
-                                        GSTIN Number<span className="text-red-600">*</span>
-                                    </label>
-                                    <input
-                                        type="text"
-                                        name="gstinNumber"
-                                        placeholder="GSTIN Number"
-                                        minLength={15}
-                                        required
-                                        maxLength={15}
-                                        className="w-full border-1 border-[#DBDBDB] rounded-lg p-4"
-                                        value={formData.gstinNumber}
-                                        onChange={handleChange}
-                                    />
-                                </div>
-                            </div>
-
-                            <div className="flex flex-col gap-[6px]">
-                                <label htmlFor="address" className="font-poppins font-medium text-md">
-                                    Address<span className="text-red-600">*</span>
-                                </label>
-                                <textarea
-                                    rows={4}
-                                    name="address"
-                                    required
-                                    placeholder="Enter Your Address"
-                                    className="w-2/4 border-1 border-[#DBDBDB] rounded-lg p-4"
-                                    value={formData.address}
-                                    onChange={handleChange}
-                                />
-                            </div>
-                            {error && <p className="font-poppins text-red-600 font-medium text-md">Fill All The Req* Field's</p>}
-                        </form>
-                    </div>
-                    <div className="w-[418px] flex flex-col gap-4 h-[513px] ">
-                        <div className="custom-shadow w-[418px] gap-7 rounded-2xl p-4 bg-[#ffffff] ">
-                            <div className="flex gap-[14px] mb-3 justify-start items-center h-10">
-                                <h4 className="font-poppins  text-2xl font-semibold">Review Details</h4>
-                            </div>
-                            <div className="h-[80px] w-[386px] mt-2 flex flex-col justify-start items-left rounded-xl p-4 bg-[#F7F7FC]">
-                                <div className="flex h-[51px] mb-4 w-[352px] justify-between items-center">
-                                    <div>
-                                        <p className="font-poppins font-medium text-lg ">Registration Fee</p>
-                                        <p className="font-poppins font-medium text-xs text-[#6F6C90] ">one time for 3 months</p>
-                                    </div>
-                                    <div>
-                                        <p className="font-poppins font-medium text-center text-2xl text-[#553cf7] ">₹{price}</p>
-                                        <p className="font-poppins font-medium text-[10px] text-[#6F6C90] ">includes taxes & fees</p>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div className="my-3 px-2 flex justify-between items-center h-[36px]">
-                                <div className="flex flex-col">
-                                    <p className="font-poppins font-medium text-xl ">Grand Total</p>
-                                    <p className="font-poppins font-medium text-xs text-[#6F6C90] "> inclusive of GST</p>
-                                </div>
-                                <p className="font-poppins font-medium text-2xl text-right text-[#2E3192] ">₹{price}</p>
-                            </div>
-                        </div>
-                        <button
-                            onClick={handleSubmit}
-                            className=" text-white bg-[rgba(46,49,146,1)] rounded-2xl p-4 font-poppins flex justify-center items-center h-[48px] w-[100%]">
-                            Buy Now</button>
-                    </div>
-                </div>
-            </div>
-        </>
+    // Exclude 'gstinNumber' field from validation of form
+    const { gstinNumber, ...fieldsToCheck } = formData;
+    const isFormValid = Object.values(fieldsToCheck).every(
+      (value) => value.trim() !== "",
     );
+    const isgstvaild = gstinNumber.length === 15;
+    if (isFormValid && isgstvaild) {
+      // Proceed with handling payment if the form is valid
+      handlePayment(
+        price.toString(),
+        plan.title,
+        vendorId,
+        formData.fullName,
+        setCurrentPage,
+        handleformSubmit,
+      );
+    } else {
+      // Optionally, handle invalid form (e.g., show an error message)
+      setError(true);
+    }
+  };
+  const fetchVendor = async (userId: string, email: string, mobile: string) => {
+    const res = await getvendor(userId, email, mobile);
+    return res;
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const token = localStorage.getItem("token");
+
+      if (token) {
+        try {
+          const { userId, email } = jwt.decode(token) as {
+            userId: string;
+            email: string;
+          };
+
+          if (userId && email) {
+            const user = await fetchVendor(userId, email, "");
+            // console.log(user);
+            setVendorId(user.id);
+            setFormData((prevFormData) => ({
+              ...prevFormData,
+              email: user?.email,
+              fullName: user?.name,
+              gstinNumber: user?.businessDetails.gstin,
+              address: user?.businessDetails.businessAddress,
+            }));
+            const revenueValue = convertAnnualRevenueToNumber(
+              user.businessDetails.annualrevenue,
+            );
+            const teamSizeValue = convertTeamSizeToNumber(
+              user.businessDetails.teamsize,
+            );
+            const yearsValue = convertYearsToNumber(user.businessDetails.years);
+
+            // Call the function with the numeric values
+            const price = vendorpricecalculations(
+              revenueValue,
+              teamSizeValue,
+              yearsValue,
+            );
+            setPrice(price);
+          } else {
+            console.error("Token does not contain expected data.");
+          }
+        } catch (error) {
+          console.error("Failed to decode token:", error);
+        }
+      } else {
+        console.log("No token found in localStorage.");
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  return (
+    <>
+      <Script
+        id="razorpay-checkout-js"
+        src="https://checkout.razorpay.com/v1/checkout.js"
+      />
+      <div className="w-screen bg-[#F7F6F9] py-[3.5rem]">
+        <div className="flex h-max w-[264px] flex-col justify-center gap-6 pl-[72px]">
+          <div
+            onClick={() => setCurrentPage((prevPage) => prevPage - 1)}
+            className="flex justify-start gap-3"
+          >
+            <svg
+              width="25"
+              height="26"
+              viewBox="0 0 25 26"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M11.35 9.55L8.71317 12.1868C8.26407 12.6359 8.26407 13.3641 8.71317 13.8132L11.35 16.45M9.05 13H17.1M12.5 1.5C6.14873 1.5 1 6.64873 1 13C1 19.3513 6.14873 24.5 12.5 24.5C18.8513 24.5 24 19.3513 24 13C24 6.64873 18.8513 1.5 12.5 1.5Z"
+                stroke="#2B3F6C"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+            </svg>
+            <h2 className="text-[rgba(55, 65, 81, 1)] font-poppins text-xl font-normal">
+              Back To T&Cs
+            </h2>
+          </div>
+
+          <div className="h-max w-screen">
+            <h4 className="text-[rgba(19, 47, 65, 1)] mb-4 font-poppins text-[32px] font-medium">
+              Payment Details
+            </h4>
+          </div>
+        </div>
+        <div className="flex justify-start gap-4 px-[72px]">
+          <div className="custom-shadow h-max w-[792px] rounded-2xl bg-[#ffffff] px-5 pb-5 pt-3">
+            <div
+              onClick={() => setCurrentPage(1)}
+              className="z-15 relative right-0 m-0 flex justify-end p-0"
+            >
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M13.5137 3.80454C14.5869 2.72979 16.3274 2.72913 17.4013 3.80307L19.8932 6.29493C20.958 7.35971 20.969 9.08347 19.918 10.1618L10.6849 19.6351C9.97933 20.359 9.01167 20.7672 8.00124 20.7671L5.24909 20.767C3.96984 20.7669 2.94823 19.7006 3.00203 18.4215L3.12019 15.6124C3.15968 14.6734 3.54996 13.7834 4.2138 13.1186L13.5137 3.80454ZM16.3415 4.86454C15.8533 4.37638 15.0622 4.37668 14.5744 4.8652L12.9118 6.53032L17.1916 10.8101L18.8446 9.11408C19.3224 8.62391 19.3173 7.84038 18.8333 7.35639L16.3415 4.86454ZM5.27446 14.1792L11.8519 7.59178L16.1445 11.8844L9.61148 18.5873C9.18816 19.0217 8.60756 19.2666 8.0013 19.2665L5.24916 19.2664C4.82274 19.2664 4.4822 18.9109 4.50014 18.4846L4.61829 15.6756C4.64199 15.1121 4.87616 14.5781 5.27446 14.1792ZM20.5158 20.6948C20.9298 20.6948 21.2655 20.3589 21.2655 19.9445C21.2655 19.5301 20.9298 19.1942 20.5158 19.1942H14.3941C13.98 19.1942 13.6444 19.5301 13.6444 19.9445C13.6444 20.3589 13.98 20.6948 14.3941 20.6948H20.5158Z"
+                  fill="#2B3F6C"
+                />
+              </svg>
+            </div>
+            <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+              <div className="flex items-center justify-between gap-6">
+                <div className="flex w-[50%] flex-col gap-[6px]">
+                  <label
+                    htmlFor="fullName"
+                    className="text-md font-poppins font-medium"
+                  >
+                    Full Name<span className="text-red-600">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="fullName"
+                    required
+                    placeholder="Enter Your Full Name"
+                    className="w-full rounded-lg border-1 border-[#DBDBDB] p-4"
+                    value={formData.fullName}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="flex w-[50%] flex-col gap-[6px]">
+                  <label
+                    htmlFor="email"
+                    className="text-md font-poppins font-medium"
+                  >
+                    Email<span className="text-red-600">*</span>
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    required
+                    placeholder="Enter your E-mail"
+                    className="w-full rounded-lg border-1 border-[#DBDBDB] p-4"
+                    value={formData.email}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between gap-6">
+                <div className="flex w-[50%] flex-col gap-[6px]">
+                  <label
+                    htmlFor="phoneNumber"
+                    className="text-md font-poppins font-medium"
+                  >
+                    Phone Number<span className="text-red-600">*</span>
+                  </label>
+                  <input
+                    type="tel"
+                    name="phoneNumber"
+                    required
+                    placeholder="Enter Your Mobile Number"
+                    className="w-full rounded-lg border-1 border-[#DBDBDB] p-4"
+                    value={formData.phoneNumber}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="flex w-[50%] flex-col gap-[6px]">
+                  <label
+                    htmlFor="gstinNumber"
+                    className="text-md font-poppins font-medium"
+                  >
+                    GSTIN Number<span className="text-red-600">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="gstinNumber"
+                    placeholder="GSTIN Number"
+                    minLength={15}
+                    required
+                    maxLength={15}
+                    className="w-full rounded-lg border-1 border-[#DBDBDB] p-4"
+                    value={formData.gstinNumber}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-[6px]">
+                <label
+                  htmlFor="address"
+                  className="text-md font-poppins font-medium"
+                >
+                  Address<span className="text-red-600">*</span>
+                </label>
+                <textarea
+                  rows={4}
+                  name="address"
+                  required
+                  placeholder="Enter Your Address"
+                  className="w-2/4 rounded-lg border-1 border-[#DBDBDB] p-4"
+                  value={formData.address}
+                  onChange={handleChange}
+                />
+              </div>
+              {error && (
+                <p className="text-md font-poppins font-medium text-red-600">
+                  Fill All The Req* Field's
+                </p>
+              )}
+            </form>
+          </div>
+          <div className="flex h-[513px] w-[418px] flex-col gap-4">
+            <div className="custom-shadow w-[418px] gap-7 rounded-2xl bg-[#ffffff] p-4">
+              <div className="mb-3 flex h-10 items-center justify-start gap-[14px]">
+                <h4 className="font-poppins text-2xl font-semibold">
+                  Review Details
+                </h4>
+              </div>
+              <div className="items-left mt-2 flex h-[80px] w-[386px] flex-col justify-start rounded-xl bg-[#F7F7FC] p-4">
+                <div className="mb-4 flex h-[51px] w-[352px] items-center justify-between">
+                  <div>
+                    <p className="font-poppins text-lg font-medium">
+                      Registration Fee
+                    </p>
+                    <p className="font-poppins text-xs font-medium text-[#6F6C90]">
+                      one time for 3 months
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-center font-poppins text-2xl font-medium text-[#553cf7]">
+                      ₹{price}
+                    </p>
+                    <p className="font-poppins text-[10px] font-medium text-[#6F6C90]">
+                      includes taxes & fees
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="my-3 flex h-[36px] items-center justify-between px-2">
+                <div className="flex flex-col">
+                  <p className="font-poppins text-xl font-medium">
+                    Grand Total
+                  </p>
+                  <p className="font-poppins text-xs font-medium text-[#6F6C90]">
+                    {" "}
+                    inclusive of GST
+                  </p>
+                </div>
+                <p className="text-right font-poppins text-2xl font-medium text-[#2E3192]">
+                  ₹{price}
+                </p>
+              </div>
+            </div>
+            <button
+              onClick={handleSubmit}
+              className="flex h-[48px] w-[100%] items-center justify-center rounded-2xl bg-[rgba(46,49,146,1)] p-4 font-poppins text-white"
+            >
+              Buy Now
+            </button>
+          </div>
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default Plans;

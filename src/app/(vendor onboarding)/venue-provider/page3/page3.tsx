@@ -29,14 +29,13 @@ interface Page3Props {
   advanceBookingPeriod: string;
   photos: string | File | File[];
   videos: string | File | File[];
-
 }
 
 const advanceBookingPeriodOptions = [
   { value: "Less than a week", label: "Less than a week" },
   { value: "1-2 weeks", label: "1-2 weeks" },
   { value: "More than 2 weeks", label: "More than 2 weeks" },
-]
+];
 
 const Page3: React.FC<Page3Props> = ({
   formState,
@@ -44,9 +43,7 @@ const Page3: React.FC<Page3Props> = ({
   handleContinue,
   currentPage,
   setCurrentPage,
-
 }) => {
-
   return (
     <div className="scroll-touch flex flex-col items-start gap-7 overflow-y-scroll rounded-xl bg-white p-3 xs:w-[95%] xs:min-w-[90%] xs:justify-start md:p-6">
       <h1 className="text-3xl font-semibold">Additional Details </h1>
@@ -54,8 +51,10 @@ const Page3: React.FC<Page3Props> = ({
       <div className="container mx-auto p-4">
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <h2 className="text-xl font-semibold mb-2">Photos<span className="text-red-600">*</span></h2>
-            <p className="text-gray-600 text-sm mb-4">PNG, JPG</p>
+            <h2 className="mb-2 text-xl font-semibold">
+              Photos<span className="text-red-600">*</span>
+            </h2>
+            <p className="mb-4 text-sm text-gray-600">PNG, JPG</p>
             <FileInput
               label="Photos"
               multiple={true}
@@ -64,15 +63,15 @@ const Page3: React.FC<Page3Props> = ({
                 const existingPhotos = Array.isArray(formState.photos)
                   ? formState.photos
                   : formState.photos instanceof File
-                  ? [formState.photos]
-                  : [];
-            
+                    ? [formState.photos]
+                    : [];
+
                 // Create the new photos array by combining existing and newly selected files
                 const newPhotos = [
                   ...existingPhotos,
                   ...(Array.isArray(files) ? files : [files]),
                 ];
-            
+
                 // Update the form state with the new photos array
                 updateFormState({ photos: newPhotos });
               }}
@@ -81,23 +80,23 @@ const Page3: React.FC<Page3Props> = ({
             <p className="mt-4">or continue via</p>
             <input
               type="text"
-              className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300"
+              className="w-full rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-300"
               placeholder="Enter your portfolio link"
               value={
-                typeof formState.photos === 'string'
+                typeof formState.photos === "string"
                   ? formState.photos
                   : Array.isArray(formState.photos)
-                    ? formState.photos.map((file: File) => file.name).join(', ')
+                    ? formState.photos.map((file: File) => file.name).join(", ")
                     : (formState.photos as File)?.name
               }
               onChange={(e) => updateFormState({ photos: e.target.value })}
             />
-
-
           </div>
           <div>
-            <h2 className="text-xl font-semibold mb-2">Videos<span className="text-red-600">*</span></h2>
-            <p className="text-gray-600 text-sm mb-4">MP4, MKV</p>
+            <h2 className="mb-2 text-xl font-semibold">
+              Videos<span className="text-red-600">*</span>
+            </h2>
+            <p className="mb-4 text-sm text-gray-600">MP4, MKV</p>
             <FileInput
               label="tnc"
               multiple={true}
@@ -105,14 +104,14 @@ const Page3: React.FC<Page3Props> = ({
                 const existingVideos = Array.isArray(formState.videos)
                   ? formState.videos
                   : formState.videos instanceof File
-                  ? [formState.videos]
-                  : [];
-      
+                    ? [formState.videos]
+                    : [];
+
                 const newVideos = [
                   ...existingVideos,
                   ...(Array.isArray(files) ? files : [files]),
                 ];
-      
+
                 updateFormState({ videos: newVideos });
               }}
               acceptedFileTypes="image/png, .pdf, image/jpg"
@@ -120,13 +119,13 @@ const Page3: React.FC<Page3Props> = ({
             <p className="mt-4">or continue via</p>
             <input
               type="text"
-              className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300"
+              className="w-full rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-300"
               placeholder="Enter your portfolio link"
               value={
-                typeof formState.videos === 'string'
+                typeof formState.videos === "string"
                   ? formState.videos
                   : Array.isArray(formState.videos)
-                    ? formState.videos.map((file: File) => file.name).join(', ')
+                    ? formState.videos.map((file: File) => file.name).join(", ")
                     : (formState.videos as File)?.name
               }
               onChange={(e) => updateFormState({ videos: e.target.value })}
@@ -134,45 +133,49 @@ const Page3: React.FC<Page3Props> = ({
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-4 mt-8">
+        <div className="mt-8 grid grid-cols-2 gap-4">
           <div>
-            <h2 className="text-xl font-semibold mb-2">Awards/Recognition</h2>
+            <h2 className="mb-2 text-xl font-semibold">Awards/Recognition</h2>
             <input
               type="text"
-              className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300"
+              className="w-full rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-300"
               placeholder="Provide your URL"
               value={formState.awards}
               onChange={(e) => updateFormState({ awards: e.target.value })}
             />
           </div>
           <div>
-            <h2 className="text-xl font-semibold mb-2">Client Testimonials</h2>
+            <h2 className="mb-2 text-xl font-semibold">Client Testimonials</h2>
             <input
               type="text"
-              className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300"
+              className="w-full rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-300"
               placeholder="Provide your URL"
               value={formState.clientTestimonials}
-              onChange={(e) => updateFormState({ clientTestimonials: e.target.value })}
+              onChange={(e) =>
+                updateFormState({ clientTestimonials: e.target.value })
+              }
             />
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-4 mt-8">
+        <div className="mt-8 grid grid-cols-2 gap-4">
           <div>
-            <h2 className="text-xl font-semibold mb-2">Instagram URL</h2>
+            <h2 className="mb-2 text-xl font-semibold">Instagram URL</h2>
             <input
               type="text"
-              className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300"
+              className="w-full rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-300"
               placeholder="Provide your Instagram URL for the Venue"
               value={formState.instagramURL}
-              onChange={(e) => updateFormState({ instagramURL: e.target.value })}
+              onChange={(e) =>
+                updateFormState({ instagramURL: e.target.value })
+              }
             />
           </div>
           <div>
-            <h2 className="text-xl font-semibold mb-2">Website URL</h2>
+            <h2 className="mb-2 text-xl font-semibold">Website URL</h2>
             <input
               type="text"
-              className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300"
+              className="w-full rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-300"
               placeholder="Provide your website URL for the venue"
               value={formState.websiteURL}
               onChange={(e) => updateFormState({ websiteURL: e.target.value })}
@@ -182,16 +185,19 @@ const Page3: React.FC<Page3Props> = ({
 
         <div className="mt-8 grid grid-cols-2 gap-4">
           <div>
-            <h2 className="text-xl font-semibold mb-2">Advance Booking Period<span className="text-red-600">*</span></h2>
+            <h2 className="mb-2 text-xl font-semibold">
+              Advance Booking Period<span className="text-red-600">*</span>
+            </h2>
             <Combobox
               options={advanceBookingPeriodOptions}
               placeholder="Select Advance Booking Period"
-              setFunction={(value) => updateFormState({ advanceBookingPeriod: value })}
+              setFunction={(value) =>
+                updateFormState({ advanceBookingPeriod: value })
+              }
             />
           </div>
         </div>
       </div>
-
 
       <div className="items-strech mt-9 flex flex-row gap-7 self-end">
         <button
