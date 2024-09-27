@@ -1,6 +1,7 @@
 "use client";
 
 import FileInput from "@/components/fileInput";
+import { ArrowLeft } from "lucide-react";
 
 interface FormState {
   insurancePolicy: string | File;
@@ -11,7 +12,8 @@ interface FormState {
 
 interface Page7Props {
   handleContinue: () => void;
-
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
+  currentPage: number;
   formState: FormState;
   updateFormState: (newState: Partial<FormState>) => void;
 }
@@ -20,6 +22,8 @@ const Page7: React.FC<Page7Props> = ({
   formState,
   updateFormState,
   handleContinue,
+  currentPage,
+  setCurrentPage,
 }) => {
   const {
     insurancePolicy,
@@ -33,17 +37,24 @@ const Page7: React.FC<Page7Props> = ({
   };
 
   return (
-    <div className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide xs:w-[95%] xs:min-w-[90%]">
-      <div className="flex min-w-full flex-col items-start justify-around gap-10">
-        <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[100%] md:p-6">
-          <div className="flex gap-9">
-            <h1 className="text-3xl font-semibold">Mandatory Details</h1>
+    <div className="flex h-full w-full flex-col overflow-hidden scrollbar-hide lg:flex-row">
+      <div className="scroll-touch items-strech flex w-[100%] flex-col gap-9 overflow-y-scroll bg-[#F7F6F9] scrollbar-hide">
+        <div className="flex flex-col gap-7 rounded-xl bg-white p-3 md:p-6">
+          <div className="flex items-center gap-4">
+            <ArrowLeft
+              className="ml-2 mr-1 h-6 w-6 cursor-pointer text-[#2E3192]"
+              aria-hidden="true"
+              onClick={() => setCurrentPage(currentPage - 1)}
+            />
+            <h1 className="text-2xl font-semibold">Mandatory Details</h1>
           </div>
-          <div className="flex min-h-full min-w-full flex-col items-center gap-5">
+          <div className="flex min-h-full min-w-full flex-col items-center gap-10">
             <div className="flex min-w-full flex-row items-start justify-between gap-2">
-              <div className="flex min-w-[40%] flex-col gap-4">
-                <label htmlFor="category">Insurance coverage policy</label>
-                <p className="text-gray-500">PNG, PDF, JPG</p>
+              <div className="flex min-w-[50%] flex-col gap-2">
+                <label htmlFor="category" className="text-base font-medium">
+                  Insurance coverage policy
+                </label>
+                <span className="text-small font-light">PNG,JPG,PDF</span>
                 <FileInput
                   label="insurance policy"
                   onFileSelect={(file) =>
@@ -51,10 +62,22 @@ const Page7: React.FC<Page7Props> = ({
                   }
                   acceptedFileTypes=".png,.pdf,.jpg"
                 />
+                <p className="text-lg">or Provide Via</p>
+                <textarea
+                  cols={30}
+                  rows={5}
+                  className="w-[95%] rounded-xl border-2 border-gray-300 p-3"
+                  placeholder="Enter url here"
+                  onChange={(e) =>
+                    updateFormState({ insurancePolicy: e.target.value })
+                  }
+                />
               </div>
-              <div className="flex min-w-[40%] flex-col gap-4">
-                <label htmlFor="category">Cancellation Policy</label>
-                <p className="text-gray-500">PNG, PDF, JPG</p>
+              <div className="flex min-w-[50%] flex-col gap-2">
+                <label htmlFor="category" className="text-base font-medium">
+                  Cancellation Policy
+                </label>
+                <span className="text-small font-light">PNG,JPG,PDF</span>
                 <FileInput
                   label="cancellation policy"
                   onFileSelect={(file) =>
@@ -62,27 +85,11 @@ const Page7: React.FC<Page7Props> = ({
                   }
                   acceptedFileTypes=".png,.pdf,.jpg"
                 />
-              </div>
-            </div>
-            <div className="flex min-w-full flex-row items-start justify-between gap-2">
-              <div className="flex min-w-[40%] flex-col gap-4">
                 <label htmlFor="category">Or provide Via</label>
-                <input
-                  id="businessName"
-                  type="text"
-                  className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
-                  placeholder="Enter url here"
-                  onChange={(e) =>
-                    updateFormState({ insurancePolicy: e.target.value })
-                  }
-                />
-              </div>
-              <div className="flex min-w-[40%] flex-col gap-4">
-                <label htmlFor="category">Or provide Via</label>
-                <input
-                  id="businessName"
-                  type="text"
-                  className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
+                <textarea
+                  cols={30}
+                  rows={5}
+                  className="w-[95%] rounded-xl border-2 border-gray-300 p-3"
                   placeholder="Enter url here"
                   onChange={(e) =>
                     updateFormState({ cancellationPolicy: e.target.value })
@@ -90,14 +97,12 @@ const Page7: React.FC<Page7Props> = ({
                 />
               </div>
             </div>
-          </div>
-        </div>
-        <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[100%] md:p-6">
-          <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-row items-start justify-between gap-2">
-              <div className="flex min-w-[40%] flex-col gap-4">
-                <label htmlFor="category">Terms & Condition</label>
-                <p className="text-gray-500">PNG, PDF, JPG</p>
+              <div className="flex min-w-[50%] flex-col gap-2">
+                <label htmlFor="category" className="text-base font-medium">
+                  Terms & Condition
+                </label>
+                <span className="text-small font-light">PNG,JPG,PDF</span>
                 <FileInput
                   label="terms and conditions"
                   onFileSelect={(file) =>
@@ -105,10 +110,22 @@ const Page7: React.FC<Page7Props> = ({
                   }
                   acceptedFileTypes=".png,.pdf,.jpg"
                 />
+                <label htmlFor="category">Or provide Via</label>
+                <textarea
+                  cols={30}
+                  rows={5}
+                  className="w-[95%] rounded-xl border-2 border-gray-300 p-3"
+                  placeholder="Enter url here"
+                  onChange={(e) =>
+                    updateFormState({ termsAndConditions: e.target.value })
+                  }
+                />
               </div>
-              <div className="flex min-w-[40%] flex-col gap-4">
-                <label htmlFor="category">Privacy Policy</label>
-                <p className="text-gray-500">PNG, PDF, JPG</p>
+              <div className="flex min-w-[50%] flex-col gap-2">
+                <label htmlFor="category" className="text-base font-medium">
+                  Privacy Policy
+                </label>
+                <span className="text-small font-light">PNG,JPG,PDF</span>
                 <FileInput
                   label="privacy policy"
                   onFileSelect={(file) =>
@@ -116,27 +133,11 @@ const Page7: React.FC<Page7Props> = ({
                   }
                   acceptedFileTypes=".png,.pdf,.jpg"
                 />
-              </div>
-            </div>
-            <div className="flex min-w-full flex-row items-start justify-between gap-2">
-              <div className="flex min-w-[40%] flex-col gap-4">
                 <label htmlFor="category">Or provide Via</label>
-                <input
-                  id="businessName"
-                  type="text"
-                  className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
-                  placeholder="Enter url here"
-                  onChange={(e) =>
-                    updateFormState({ termsAndConditions: e.target.value })
-                  }
-                />
-              </div>
-              <div className="flex min-w-[40%] flex-col gap-4">
-                <label htmlFor="category">Or provide Via</label>
-                <input
-                  id="businessName"
-                  type="text"
-                  className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
+                <textarea
+                  cols={30}
+                  rows={5}
+                  className="w-[95%] rounded-xl border-2 border-gray-300 p-3"
                   placeholder="Enter url here"
                   onChange={(e) =>
                     updateFormState({ privacyPolicy: e.target.value })
@@ -144,13 +145,8 @@ const Page7: React.FC<Page7Props> = ({
                 />
               </div>
             </div>
-            <div className="items-strech mt-9 flex flex-row gap-7 self-end">
-              <button
-                className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={handleContinue}
-              >
-                Skip
-              </button>
+
+            <div className="items-strech flex flex-row gap-7 self-end">
               <button
                 className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
                 onClick={handleContinue}

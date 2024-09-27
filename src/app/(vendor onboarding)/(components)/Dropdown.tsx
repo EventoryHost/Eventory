@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, ChevronUp } from "lucide-react";
 
 interface DropdownProps {
   options: string[];
@@ -25,17 +25,25 @@ const Dropdown: React.FC<DropdownProps> = ({
     <div className="relative w-full">
       <button
         type="button"
-        className="flex w-full items-center justify-between rounded-xl border-2 bg-white p-5 py-3 text-left shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+        className="flex w-full items-center justify-between rounded-xl border-2 bg-white p-3 py-5 text-left text-sm shadow-sm hover:bg-gray-50"
         onClick={() => setIsOpen(!isOpen)}
       >
         <span className={`${selectedOption ? "text-black" : "text-gray-400"}`}>
           {selectedOption || placeholder}
         </span>
-        <ChevronDown className="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
+
+        {isOpen ? (
+          <ChevronUp className="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
+        ) : (
+          <ChevronDown
+            className="-mr-1 ml-2 h-5 w-5 text-gray-300"
+            aria-hidden="true"
+          />
+        )}
       </button>
 
       {isOpen && (
-        <div className="absolute z-10 mt-1 w-full rounded-md bg-white shadow-lg">
+        <div className="absolute z-10 mt-1 w-full rounded-xl bg-white shadow-xl">
           <ul className="max-h-60 overflow-auto rounded-md py-1 text-base focus:outline-none sm:text-sm">
             {options.map((option) => (
               <li

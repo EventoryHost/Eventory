@@ -190,6 +190,9 @@ type PagePreviewProps = {
   furnitureWorkerPricingEntries: PricingEntry[];
   handleAddTentPricingEntry: (entry: PricingEntry) => void;
   handleAddAudioPricingEntry: (entry: PricingEntry) => void;
+  currentPage: number;
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
+  handleSubmit: () => void;
 };
 
 function Preview({
@@ -206,6 +209,9 @@ function Preview({
   setSelectedVisualOptions,
   selectedLightOptions,
   setSelectedLightOptions,
+  currentPage,
+  setCurrentPage,
+  handleSubmit,
 }: PagePreviewProps) {
   return (
     <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden lg:flex-row">
@@ -584,6 +590,23 @@ function Preview({
                 </span>
               </div>
             </div>
+          </div>
+          <div className="mr-[5%] flex w-full justify-end gap-[32px]">
+            {/* Previous Button */}
+            <button
+              onClick={() => setCurrentPage(currentPage - 1)}
+              className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+            >
+              Previous
+            </button>
+
+            {/* Next Button */}
+            <button
+              onClick={handleSubmit}
+              className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+            >
+              Submit
+            </button>
           </div>
         </div>
       </div>
