@@ -9,7 +9,7 @@ import Page2 from "./page2/page2";
 import Page3 from "./page3/page3";
 import Page4 from "./page4/page4";
 import Page6 from "./page6/page6";
-import Page7 from "./page7/page7"
+import Page7 from "./page7/page7";
 
 import Page8 from "./preview/preview";
 
@@ -31,14 +31,14 @@ export interface FormState {
 
   // Page 6
   portfolio: string | File;
-  clientTestimonials: string | File| File[];
+  clientTestimonials: string | File | File[];
   tastingSessions: boolean;
   businessLicenses: boolean;
   foodSafety: boolean | File;
   cateringServiceImages: string | File;
   videoEvent: string | File;
   termsAndConditions: string | File | File[];
-  cancellationPolicy: string | File| File[];
+  cancellationPolicy: string | File | File[];
   minOrderReq: string;
   AdvBooking: string;
   photos: string | File | File[];
@@ -80,7 +80,7 @@ const Caterer = () => {
   const [serviceStyles, setServiceStyles] = useState<string[]>([]);
 
   //states for page2
-  const [veg, setVeg] = useState<string[]>(['Veg']);
+  const [veg, setVeg] = useState<string[]>(["Veg"]);
 
   const [selectedAppetizers, setSelectedAppetizers] = useState<string[]>([]);
   const [selectedBeverages, setSelectedBeverages] = useState<string[]>([]);
@@ -99,8 +99,6 @@ const Caterer = () => {
 
   const [advancePayment, setAdvancePayment] = useState(25);
   const [menu, setMenu] = useState<File[]>([]);
-
-
 
   // State for packages
   const [hourlyPackages, setHourlyPackages] = useState<Package[]>([
@@ -221,7 +219,7 @@ const Caterer = () => {
       formData.append(`special_dietary_options[${index}]`, item);
     });
 
-    formData.append('vegOrNonVeg', veg[0]);
+    formData.append("vegOrNonVeg", veg[0]);
 
     // veg.forEach((item, index) => {
     //   formData.append(`vegOrNonVeg[${index}]`, item);
@@ -253,27 +251,30 @@ const Caterer = () => {
     if (Array.isArray(formState.photos)) {
       formState.photos.forEach((file) => {
         if (file instanceof File) {
-          formData.append('photos', file); // Append as 'photos' without the array index
+          formData.append("photos", file); // Append as 'photos' without the array index
         }
       });
-    } else if (typeof formState.photos === 'string') {
-      formData.append('photos', formState.photos); // Append the string (URL)
+    } else if (typeof formState.photos === "string") {
+      formData.append("photos", formState.photos); // Append the string (URL)
     }
 
     // Handle videos field
     if (Array.isArray(formState.videos)) {
       formState.videos.forEach((file) => {
         if (file instanceof File) {
-          formData.append('videos', file); // Append as 'videos' without the array index
+          formData.append("videos", file); // Append as 'videos' without the array index
         }
       });
-    } else if (typeof formState.videos === 'string') {
-      formData.append('videos', formState.videos); // Append the string (URL)
+    } else if (typeof formState.videos === "string") {
+      formData.append("videos", formState.videos); // Append the string (URL)
     }
 
     formData.append("tasting_sessions", formState.tastingSessions.toString());
     formData.append("business_licenses", formState.businessLicenses.toString());
-    formData.append("food_safety_certificates", formState.foodSafety.toString());
+    formData.append(
+      "food_safety_certificates",
+      formState.foodSafety.toString(),
+    );
 
     formData.append("pre_set_menu", formState.preSetMenu);
 
@@ -300,7 +301,6 @@ const Caterer = () => {
       formData.append("client_testimonials", formState.clientTestimonials);
     }
 
-
     formData.append("minimum_order_requirements", formState.minOrderReq);
     formData.append("advance_booking_period", formState.AdvBooking);
 
@@ -321,7 +321,6 @@ const Caterer = () => {
       case 1:
         return (
           <Page1
-
             formState={formState}
             updateFormState={updateFormState}
             servingCapacity={servingCapacity}
@@ -419,7 +418,6 @@ const Caterer = () => {
       case 5:
         return (
           <Page6
-
             setCurrentPage={setCurrentPage}
             currentPage={currentPage}
             formState={formState}
@@ -501,8 +499,8 @@ const Caterer = () => {
 
   return (
     <div className="m-0 flex w-full flex-col overflow-x-hidden lg:h-[calc(100vh-4.2rem)] lg:flex-row">
-      <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 pt-4 md:min-w-[30%] lg:max-w-[30%]">
-        <div className="flex w-[90%] m-auto flex-col justify-center">
+      <div className="flex flex-col items-start justify-between bg-[#FFFFFF] pt-4 xs:gap-7 md:min-w-[30%] lg:max-w-[30%]">
+        <div className="m-auto flex w-[90%] flex-col justify-center">
           <div className="flex flex-col gap-1 px-3 lg:mt-[2rem]">
             <span className="text-lg font-semibold">
               Step {currentPage} of 7
@@ -548,8 +546,8 @@ const Caterer = () => {
             </div>
           </div>
         </div>
-        <div className="flex h-[50%] flex-col items-start justify-center gap-9 px-3 md:px-6  w-[90%] m-auto">
-          <h1 className="md:text-5xl text-3xl font-bold  ">
+        <div className="m-auto flex h-[50%] w-[90%] flex-col items-start justify-center gap-9 px-3 md:px-6">
+          <h1 className="text-3xl font-bold md:text-5xl">
             {currentPage === 1 && "Tell us about you"}
             {currentPage === 2 && "Fill the menu details"}
             {currentPage === 3 && "Fill the Event details"}
@@ -560,7 +558,7 @@ const Caterer = () => {
 
             {currentPage === 7 && "Preview details"}
           </h1>
-          <p className="text-black text-xl ">
+          <p className="text-xl text-black">
             {currentPage === 1 &&
               "Please provide the basic details of the catering service offered by your company."}
             {currentPage === 2 &&
@@ -573,7 +571,8 @@ const Caterer = () => {
               "Please provide the booking and pricing details of the catering service offered by your company."} */}
             {currentPage === 5 &&
               "Please provide the additional details of the catering service offered by your company."}
-            {currentPage === 6 && "Please provide the booking and pricing details of the catering service offered by your company."}
+            {currentPage === 6 &&
+              "Please provide the booking and pricing details of the catering service offered by your company."}
 
             {currentPage === 7 &&
               "Please recheck the information provided by you. "}

@@ -20,7 +20,7 @@ const FileInput = ({
     const files = event.target.files;
     if (files) {
       const fileList = Array.from(files);
-      const names = fileList.map(file => file.name);
+      const names = fileList.map((file) => file.name);
       setFileNames(names);
 
       // Call the onFileSelect callback with the correct file list
@@ -35,7 +35,7 @@ const FileInput = ({
 
   return (
     <div
-      className={`flex w-fit items-center justify-center rounded-xl border-2 border-dashed p-3 px-6 gap-2 transition-all ${
+      className={`flex w-fit items-center justify-center gap-2 rounded-xl border-2 border-dashed p-3 px-6 transition-all ${
         fileNames.length > 0
           ? "border-green-500 bg-green-100"
           : "border-gray-400 bg-gray-200 hover:bg-gray-300"

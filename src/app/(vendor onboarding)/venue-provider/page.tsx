@@ -23,8 +23,8 @@ export interface FormState {
   operatingHours: {
     openingTime?: string;
     closingTime?: string;
-  }
-  address : string;
+  };
+  address: string;
   venueDescription: string;
   catererServices: boolean;
   decorServices: boolean;
@@ -74,7 +74,7 @@ const VenueForm: React.FC = () => {
   const updateFormState = (newState: Partial<FormState>) => {
     setFormState((prev) => ({ ...prev, ...newState }));
   };
-  
+
   const [audioVisualEquipment, setAudioVisualEquipment] = useState<string[]>(
     [],
   );
@@ -82,7 +82,9 @@ const VenueForm: React.FC = () => {
     [],
   );
   const [facilities, setFacilities] = useState<string[]>([]);
-  const [restrictionsPolicies, setRestrictionsPolicies] = useState<string[]>([]);
+  const [restrictionsPolicies, setRestrictionsPolicies] = useState<string[]>(
+    [],
+  );
   const [specialFeatures, setSpecialFeatures] = useState<string[]>([]);
 
   const [venueTypes, setVenueTypes] = useState<string[]>([]);
@@ -105,14 +107,14 @@ const VenueForm: React.FC = () => {
     if (!formState.managerName) {
       console.error("Manager Name is required");
       return;
-  }
+    }
     const formData = new FormData();
-  
-    formData.append("venId", getVendorId()!); 
+
+    formData.append("venId", getVendorId()!);
     formData.append("name", formState.name);
     formData.append("managerName", formState.managerName);
     formData.append("capacity", formState.capacity);
-  
+
     formData.append(
       "operatingHours[openingTime]",
       formState.operatingHours.openingTime ?? "",
@@ -125,9 +127,9 @@ const VenueForm: React.FC = () => {
     formData.append("venueDescription", formState.venueDescription);
     formData.append("catererServices", String(formState.catererServices));
     formData.append("decorServices", String(formState.decorServices));
-  
+
     // Venue Types (Array)
-    venueTypes.forEach((item,index) => {
+    venueTypes.forEach((item, index) => {
       formData.append(`venueTypes[${index}]`, item);
     });
 
@@ -135,27 +137,27 @@ const VenueForm: React.FC = () => {
     audioVisualEquipment.forEach((item, index) => {
       formData.append(`audioVisualEquipment[${index}]`, item);
     });
-  
+
     // Accessibility Features (Array)
     accessibilityFeatures.forEach((item, index) => {
       formData.append(`accessibilityFeatures[${index}]`, item);
     });
-  
+
     // Restrictions Policies (Array)
     restrictionsPolicies.forEach((item, index) => {
       formData.append(`restrictionsPolicies[${index}]`, item);
     });
-  
+
     // Special Features (Array)
     specialFeatures.forEach((item, index) => {
       formData.append(`specialFeatures[${index}]`, item);
     });
-  
+
     // Facilities (Array)
     facilities.forEach((item, index) => {
       formData.append(`facilities[${index}]`, item);
     });
-  
+
     if (Array.isArray(formState.termsConditions)) {
       formState.termsConditions.forEach((file) => {
         formData.append("termsConditions", file); // No index here
@@ -163,15 +165,15 @@ const VenueForm: React.FC = () => {
     } else {
       formData.append("termsConditions", formState.termsConditions);
     }
-    
+
     if (Array.isArray(formState.cancellationPolicy)) {
       formState.cancellationPolicy.forEach((file) => {
-        formData.append("cancellationPolicy", file); 
+        formData.append("cancellationPolicy", file);
       });
     } else {
       formData.append("cancellationPolicy", formState.cancellationPolicy);
     }
-    
+
     if (Array.isArray(formState.insurancePolicy)) {
       formState.insurancePolicy.forEach((file) => {
         formData.append("insurancePolicy", file); // No index here
@@ -179,46 +181,45 @@ const VenueForm: React.FC = () => {
     } else {
       formData.append("insurancePolicy", formState.insurancePolicy);
     }
-    
-  
+
     // Handle photos field
     if (Array.isArray(formState.photos)) {
       formState.photos.forEach((file) => {
         if (file instanceof File) {
-          formData.append('photos', file); // Append as 'photos' without the array index
+          formData.append("photos", file); // Append as 'photos' without the array index
         }
       });
-    } else if (typeof formState.photos === 'string') {
-      formData.append('photos', formState.photos); // Append the string (URL)
+    } else if (typeof formState.photos === "string") {
+      formData.append("photos", formState.photos); // Append the string (URL)
     }
-  
+
     // Handle videos field
     if (Array.isArray(formState.videos)) {
       formState.videos.forEach((file) => {
         if (file instanceof File) {
-          formData.append('videos', file); // Append as 'videos' without the array index
+          formData.append("videos", file); // Append as 'videos' without the array index
         }
       });
-    } else if (typeof formState.videos === 'string') {
-      formData.append('videos', formState.videos); // Append the string (URL)
+    } else if (typeof formState.videos === "string") {
+      formData.append("videos", formState.videos); // Append the string (URL)
     }
-  
+
     // Social Links
     formData.append("socialLinks[instagramURL]", formState.instagramURL);
     formData.append("socialLinks[websiteURL]", formState.websiteURL);
-  
+
     // Awards and Client Testimonials
     formData.append("awards", formState.awards);
     formData.append("clientTestimonials", formState.clientTestimonials);
-  
+
     // Advanced Booking Period
     formData.append("advanceBookingPeriod", formState.advanceBookingPeriod);
-  
+
     // For debugging
     formData.forEach((value, key) => {
       console.log(`${key}: ${value}`);
     });
-  
+
     try {
       await addVenue(formData);
       console.log("Venue added successfully");
@@ -226,7 +227,6 @@ const VenueForm: React.FC = () => {
       console.error("Error adding venue:", error);
     }
   };
-  
 
   const renderPage = () => {
     switch (currentPage) {
@@ -302,7 +302,7 @@ const VenueForm: React.FC = () => {
             setCurrentPage={setCurrentPage}
           />
         );
-      
+
       case 5:
         return (
           <Page6
@@ -331,7 +331,6 @@ const VenueForm: React.FC = () => {
             termsConditions={formState.termsConditions}
             cancellationPolicy={formState.cancellationPolicy}
             insurancePolicy={formState.insurancePolicy}
-
           />
         );
       default:
@@ -353,7 +352,7 @@ const VenueForm: React.FC = () => {
     <div className="m-0 flex w-full flex-col overflow-x-hidden lg:h-[calc(100vh-4.2rem)] lg:flex-row">
       <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
         <div className="flex w-[100%] flex-col justify-center">
-          <div className="flex flex-col gap-1 mx-6 px-3 lg:mt-[2rem]">
+          <div className="mx-6 flex flex-col gap-1 px-3 lg:mt-[2rem]">
             <span className="text-lg font-semibold">Step 1 of 6</span>
             <div className="flex gap-4">
               <button
@@ -383,11 +382,11 @@ const VenueForm: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="flex h-[50%] flex-col mx-6 items-start justify-center gap-9 px-3 md:px-3">
+        <div className="mx-6 flex h-[50%] flex-col items-start justify-center gap-9 px-3 md:px-3">
           <h1 className="text-[40px] font-semibold md:text-[3vw]">
             Fill out your Venue details
           </h1>
-          <p className="text-[#797878]  xs:text-md md:w-[90%]">
+          <p className="xs:text-md text-[#797878] md:w-[90%]">
             Please Provide details of the venue provided by your company.
           </p>
         </div>

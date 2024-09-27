@@ -20,7 +20,7 @@ const _cuisine = [
   "South Indian",
   "Chinese",
   "Italian",
- 
+
   "Others",
 ];
 
@@ -88,13 +88,13 @@ const Page1 = ({
     setServingCapacity([option]);
   };
   return (
-    <div className="scroll-touch w-full flex flex-col items-start gap-5 overflow-y-scroll rounded-xl bg-white p-3 scrollbar-hide  xs:justify-start md:p-6">
+    <div className="scroll-touch flex w-full flex-col items-start gap-5 overflow-y-scroll rounded-xl bg-white p-3 scrollbar-hide xs:justify-start md:p-6">
       <h1 className="text-2xl font-semibold">Basic Details</h1>
       <div className="flex min-w-full flex-col items-center gap-9 p-2">
         <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
           <div className="flex min-w-[50%] flex-col gap-2">
             <label htmlFor="businessName" className="text-base font-medium">
-              Catering Service Name<span className="text-red-500 ">*</span>
+              Catering Service Name<span className="text-red-500">*</span>
             </label>
             <input
               id="cateringName"
@@ -135,7 +135,6 @@ const Page1 = ({
             <Dropdown
               options={capacities}
               onSelect={handleSelect}
-
               placeholder="Enter max. no. of people you serve"
             />
           </div>
@@ -185,11 +184,8 @@ const Page1 = ({
             </div>
           </div>
         </div>
-
-
       </div>
-      <div className="items-strech  flex flex-row gap-7 self-end">
-
+      <div className="items-strech flex flex-row gap-7 self-end">
         <button
           className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
           onClick={handleContinue}

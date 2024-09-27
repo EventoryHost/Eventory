@@ -16,7 +16,7 @@ const _makeupTypes = [
 ];
 
 interface Page4Props {
-  handleContinue:()=>void;
+  handleContinue: () => void;
   makeupTypes: string[];
   setMakeupTypes: React.Dispatch<React.SetStateAction<string[]>>;
   onsiteMakeup: boolean;
@@ -29,7 +29,10 @@ const Page: React.FC<Page4Props> = ({
   makeupTypes,
   setMakeupTypes,
   onsiteMakeup,
-  setOnsiteMakeup,handleContinue,currentPage,setCurrentPage
+  setOnsiteMakeup,
+  handleContinue,
+  currentPage,
+  setCurrentPage,
 }) => {
   const handleCategoryChange = (newCategory: "Yes" | "No") => {
     if (newCategory === "Yes") {
@@ -40,11 +43,10 @@ const Page: React.FC<Page4Props> = ({
   };
 
   return (
-
     <div className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide xs:w-[95%] xs:min-w-[90%]">
       <div className="flex min-w-full flex-col items-start justify-around gap-10">
         <div className="flex min-w-full flex-col items-start justify-around gap-10 rounded-xl bg-white p-3 md:p-6">
-            <div className="flex gap-9">
+          <div className="flex gap-9">
             <h1 className="text-3xl font-semibold">Services Details</h1>
           </div>
           <div className="flex gap-9">
@@ -90,13 +92,12 @@ const Page: React.FC<Page4Props> = ({
               </button>
               <button
                 className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={()=>setCurrentPage(currentPage + 1)}
+                onClick={() => setCurrentPage(currentPage + 1)}
               >
                 Continue
               </button>
             </div>
           </div>
-          
         </div>
       </div>
     </div>

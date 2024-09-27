@@ -75,8 +75,8 @@ interface FormState {
   references: boolean;
   portfolio: string;
   experience: string;
-  durationToSet:string;
-  eventSize:string;
+  durationToSet: string;
+  eventSize: string;
 }
 
 interface Page1Props {
@@ -85,9 +85,8 @@ interface Page1Props {
     references: boolean;
     portfolio: string | File;
     experience: string;
-    durationToSet:string;
-    eventSize:string;
-
+    durationToSet: string;
+    eventSize: string;
   };
   updateFormState: (newState: Partial<FormState>) => void;
   typeOfevents: string[];
@@ -128,28 +127,22 @@ const Page1: React.FC<Page1Props> = ({
     // }
     handleContinue();
   };
-  const duration = [
-    "Less than 2 hours",
-    "2-5 hours",
-    "More than 5 hours",
-    
-  ];
-
+  const duration = ["Less than 2 hours", "2-5 hours", "More than 5 hours"];
 
   return (
-    <div className="scroll-touch items-strech flex  w-[100%] flex-col gap-9 overflow-y-scroll bg-[#F7F6F9]  scrollbar-hide">
-      <div className="flex flex-col gap-6 rounded-xl bg-white p-3  md:p-6">
+    <div className="scroll-touch items-strech flex w-[100%] flex-col gap-9 overflow-y-scroll bg-[#F7F6F9] scrollbar-hide">
+      <div className="flex flex-col gap-6 rounded-xl bg-white p-3 md:p-6">
         <h1 className="text-2xl font-semibold">Basic Details</h1>
         <div className="flex min-w-full flex-col items-center gap-9 p-2">
           <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
             <div className="flex min-w-[50%] flex-col gap-2">
               <label htmlFor="businessName" className="text-base font-medium">
-                Full Name (poc)<span className="text-red-500 ">*</span>
+                Full Name (poc)<span className="text-red-500">*</span>
               </label>
               <input
                 id="cateringName"
                 type="text"
-                className="w-full rounded-xl border-2 bg-white p-3 py-5 outline-none text-sm"
+                className="w-full rounded-xl border-2 bg-white p-3 py-5 text-sm outline-none"
                 placeholder="Enter your Full name"
                 value={formState.businessName}
                 onChange={(e) =>
@@ -166,10 +159,8 @@ const Page1: React.FC<Page1Props> = ({
               <Dropdown
                 options={duration}
                 onSelect={(option: string) => {
-                  updateFormState({ eventSize: option })
-                }
-                }
-
+                  updateFormState({ eventSize: option });
+                }}
                 placeholder="Select event size you cover"
               />
             </div>
@@ -183,17 +174,15 @@ const Page1: React.FC<Page1Props> = ({
               <Dropdown
                 options={duration}
                 onSelect={(option: string) => {
-                  updateFormState({ durationToSet: option })
-                }
-                }
-
+                  updateFormState({ durationToSet: option });
+                }}
                 placeholder="Select your Time duration"
               />
             </div>
           </div>
         </div>
       </div>
-      <div className="flex flex-col gap-6 rounded-xl bg-white p-3  md:p-6">
+      <div className="flex flex-col gap-6 rounded-xl bg-white p-3 md:p-6">
         {/* <div className="flex flex-col items-start justify-center gap-9 px-9 xs:pl-5 md:px-11 lg:p-8">
             <h1 className="text-3xl font-bold md:text-4xl lg:text-5xl">
               Your business Name
@@ -209,7 +198,9 @@ const Page1: React.FC<Page1Props> = ({
             />
           </div> */}
 
-        <h1 className="text-2xl font-semibold">Types of Event<span className="text-red-500">*</span></h1>
+        <h1 className="text-2xl font-semibold">
+          Types of Event<span className="text-red-500">*</span>
+        </h1>
         <div className="flex min-h-full min-w-full flex-col items-center gap-5">
           <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
             <Appetizers
@@ -221,7 +212,7 @@ const Page1: React.FC<Page1Props> = ({
           </div>
         </div>
       </div>
-      <div className="flex flex-col gap-6 rounded-xl bg-white p-3  md:p-6">
+      <div className="flex flex-col gap-6 rounded-xl bg-white p-3 md:p-6">
         <h1 className="text-2xl font-semibold">Wedding Events</h1>
         <div className="flex min-h-full min-w-full flex-col items-center gap-5">
           <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
@@ -234,7 +225,7 @@ const Page1: React.FC<Page1Props> = ({
           </div>
         </div>
       </div>
-      <div className="flex flex-col gap-6 rounded-xl bg-white p-3  md:p-6">
+      <div className="flex flex-col gap-6 rounded-xl bg-white p-3 md:p-6">
         <h1 className="text-2xl font-semibold">Corporate Events</h1>
         <div className="flex min-h-full min-w-full flex-col items-center gap-5">
           <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
@@ -247,7 +238,7 @@ const Page1: React.FC<Page1Props> = ({
           </div>
         </div>
       </div>
-      <div className="flex flex-col gap-6 rounded-xl bg-white p-3  md:p-6">
+      <div className="flex flex-col gap-6 rounded-xl bg-white p-3 md:p-6">
         <h1 className="text-2xl font-semibold">Seasonal Events</h1>
         <div className="flex min-h-full min-w-full flex-col items-center gap-5">
           <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
@@ -260,7 +251,7 @@ const Page1: React.FC<Page1Props> = ({
           </div>
         </div>
       </div>
-      <div className="flex flex-col gap-6 rounded-xl bg-white p-3  md:p-6">
+      <div className="flex flex-col gap-6 rounded-xl bg-white p-3 md:p-6">
         <h1 className="text-2xl font-semibold">Cultural Events</h1>
         <div className="flex min-h-full min-w-full flex-col items-center gap-5">
           <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
@@ -271,8 +262,7 @@ const Page1: React.FC<Page1Props> = ({
               setSelectedAppetizers={setCulturalEvents}
             />
           </div>
-          <div className="items-strech  flex flex-row gap-7 self-end">
-
+          <div className="items-strech flex flex-row gap-7 self-end">
             <button
               className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
               onClick={handleContinue}
