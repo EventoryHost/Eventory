@@ -150,7 +150,7 @@ const Page = () => {
 
     try {
       const res = await addPhotographer(formData);
-      console.log("Form data Submitted");
+      console.log("Form data Submitted Succesfully");
     } catch (error) {
       console.error("Error adding photographer:", error);
     }
