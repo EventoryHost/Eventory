@@ -6,12 +6,12 @@ import jwt from "jsonwebtoken";
 import { useRouter } from "next/navigation";
 import { addBusinessDetails } from "@/services/auth";
 import tajmahal from "/public/tajmahal.png";
-import { Combobox } from "@/components/ui/combobox";
 import { useToast } from "@/components/hooks/use-toast"
 import MultipleDropdown from "@/components/MultiDropdown";
 
 const categories = [
   { value: "venue-provider", label: "Venue Provider" },
+  { value: "pav", label: "Photo & Videography" },
   { value: "pav", label: "Photo & Videography" },
   { value: "caterer", label: "Caterers" },
   { value: "decorator", label: "Decorator" },
@@ -317,6 +317,7 @@ const BusinessDetails = () => {
                   type="submit"
                   className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
                 >
+                  {loading ? "Loading" : "Continue"}
                   {loading ? "Loading" : "Continue"}
                 </button>
               </div>

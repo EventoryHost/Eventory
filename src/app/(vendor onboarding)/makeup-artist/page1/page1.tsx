@@ -108,6 +108,10 @@ const Page: React.FC<Page1Props> = ({
 }) => {
   const { artistDescription, portfolioUrls } = formState;
 
+  function handlePortfolioSelect(file: File | File[]): void {
+    updateFormState({ portfolioUrls: file });
+  }
+
   return (
     <div className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide xs:w-[95%] xs:min-w-[90%]">
       <div className="flex min-w-full flex-col items-start justify-around gap-10">

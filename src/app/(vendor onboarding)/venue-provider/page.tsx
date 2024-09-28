@@ -11,8 +11,8 @@ import Page4 from "./page4/page4";
 import Page6 from "./page6/page6";
 import { addVenue } from "../../../services/vendors/venue";
 import Agreement from "../(Agreement)/Agreement";
-import Registration_Completed from "../(Registration-Completed)/pagege";
 import Plans from "../(Plans)/Plans";
+import Registration_Completed from "../(Registration-Completed)/page";
 
 interface Package {
   type: string;
@@ -309,9 +309,11 @@ const VenueForm: React.FC = () => {
       case 5:
         return (
           <Page6
+            handleContinue={() => {
+              setCurrentPage(6);
+            }}
             formState={formState}
             updateFormState={updateFormState}
-            handleSubmit={handleSubmit}
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
             address={formState.address}
@@ -376,7 +378,9 @@ const VenueForm: React.FC = () => {
   };
 
   return (
-    <div className="m-0 flex w-full flex-col overflow-x-hidden lg:h-[calc(100vh-4.2rem)] lg:flex-row">
+    <div
+      className={`m-0 flex w-full flex-col overflow-x-hidden ${currentPage <= 5 ? "lg:h-[calc(100vh-4.2rem)]" : ""} lg:flex-row`}
+    >
       {currentPage <= 5 && (
         <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
           <div className="flex w-[100%] flex-col justify-center">

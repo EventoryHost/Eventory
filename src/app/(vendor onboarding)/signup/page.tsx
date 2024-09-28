@@ -1,5 +1,5 @@
 "use client";
-
+import Loadingeanimation from "@/components/Loader";
 import { useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -8,7 +8,6 @@ import auth from "@/services/auth";
 import OtpModal from "@/components/ui/otp-modal";
 import tajmahal from "/public/tajmahal.png";
 import { useRouter } from "next/navigation";
-
 const fields: {
   id: keyof basicDetails;
   label: string;
@@ -36,6 +35,7 @@ type basicDetails = {
 };
 
 const SignUp = () => {
+  const [loading, setloading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [basicDetails, setBasicDetails] = useState<basicDetails>(
     {} as basicDetails,
@@ -70,20 +70,25 @@ const SignUp = () => {
       setFormError(`Enter a valid 10 digit mobile number`);
       return;
     }
-
+    setloading(true);
     setFormError(null);
-    // Store the form data
-    const newDetails: basicDetails = {
-      name: refs.current.name!.value,
-      mobile: Number(mobileNumber),
-      otp: 0,
-    };
-    setBasicDetails(newDetails);
+    try {
+      // Store the form data
+      const newDetails: basicDetails = {
+        name: refs.current.name!.value,
+        mobile: Number(mobileNumber),
+        otp: 0,
+      };
+      setBasicDetails(newDetails);
 
-    const res = await auth.signUp(newDetails.mobile.toString());
-    if (res) {
-      setSession(res.data.data.Session);
-      toggleModal();
+      const res = await auth.signUp(newDetails.mobile.toString());
+      if (res) {
+        setSession(res.data.data.Session);
+        toggleModal();
+      }
+    } catch (error) {
+      console.log(error);
+      setloading(false);
     }
   }
 
@@ -98,7 +103,7 @@ const SignUp = () => {
     }
 
     setFormError(null); // Reset error message
-
+    setloading(true);
     try {
       const response = await auth.verifyLoginOtp(
         basicDetails.mobile!.toString(),
@@ -123,11 +128,17 @@ const SignUp = () => {
     } catch (error) {
       console.error("Failed to verify OTP", error);
       setFormError("Failed to verify OTP. Please try again.");
+    } finally {
+      setloading(false);
     }
   };
 
   const renderError = (): [boolean, string] => {
     return formError ? [true, formError] : [false, ""];
+  };
+  const notYouRedirect = () => {
+    setloading(false);
+    toggleModal();
   };
 
   return (
@@ -161,106 +172,117 @@ const SignUp = () => {
       </div>
       <div className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] p-2 md:max-h-[100vh] md:p-[2.2rem]">
         <div className="flex flex-col gap-7 rounded-xl bg-white p-5 xs:min-w-[90%] md:p-6">
-          <h1 className="text-3xl font-semibold">Basic Details</h1>
-          <div className="flex min-h-full min-w-full flex-col items-center gap-5">
-            <form onSubmit={handleSignUp}>
-              <div
-                className={`${formError ? "mt-9" : "my-9"} flex flex-col items-center justify-between xs:gap-7 md:flex-row`}
-              >
-                {fields.map((field) => (
+          {loading ? (
+            <Loadingeanimation width="w-56" />
+          ) : (
+            <>
+              <h1 className="text-3xl font-semibold">Basic Details</h1>
+              <div className="flex min-h-full min-w-full flex-col items-center gap-5">
+                <form onSubmit={handleSignUp}>
                   <div
-                    key={field.id}
-                    className="col-span-2 flex min-w-[40%] flex-col gap-4 md:col-span-1"
+                    className={`${formError ? "mt-9" : "my-9"} flex flex-col items-center justify-between xs:gap-7 md:flex-row`}
                   >
-                    <label htmlFor={field.id}>{field.label}</label>
-                    <input
-                      id={field.id}
-                      type={field.type}
-                      className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none [-moz-appearance:_textfield] [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
-                      placeholder={field.placeholder}
-                      ref={(el) => {
-                        refs.current[field.id] = el;
-                      }}
-                    />
+                    {fields.map((field) => (
+                      <div
+                        key={field.id}
+                        className="col-span-2 flex min-w-[40%] flex-col gap-4 md:col-span-1"
+                      >
+                        <label htmlFor={field.id}>{field.label}</label>
+                        <input
+                          id={field.id}
+                          type={field.type}
+                          className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none [-moz-appearance:_textfield] [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
+                          placeholder={field.placeholder}
+                          ref={(el) => {
+                            refs.current[field.id] = el;
+                          }}
+                        />
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-              {formError && !isModalOpen && (
-                <div className="mb-9 text-red-500">{formError}</div>
-              )}
-              <div className="mt-9 flex w-full flex-col-reverse justify-between gap-3 self-start md:mt-0 md:flex-row md:items-center md:px-0">
-                <div className="flex gap-2 xs:text-sm md:gap-3">
-                  <input type="checkbox" id="tc" placeholder="t&c" required />I
-                  agree with{" "}
-                  <span className="text-[#2E3192] underline">
-                    Terms & Conditions
-                  </span>
-                </div>
-              </div>
-              <div className="mt-9">
-                <p className="self-start text-gray-500 xs:mt-5 xs:text-sm">
-                  To verify it&apos;s you, we will send you an OTP to your
-                  mobile number.
-                </p>
-              </div>
-              <div className="h-[1px] w-[80%] self-start bg-gray-300" />
-              <div className="mt-5 flex flex-col items-start self-start">
-                or continue with
-                <div
-                  className="google mt-5 flex cursor-pointer gap-5"
-                  onClick={auth.authWithGoogle}
-                >
-                  <svg
-                    width="32"
-                    height="32"
-                    viewBox="0 0 32 32"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M29.0753 13.388H28.0013V13.3327H16.0013V18.666H23.5366C22.4373 21.7707 19.4833 23.9993 16.0013 23.9993C11.5833 23.9993 8.0013 20.4173 8.0013 15.9993C8.0013 11.5813 11.5833 7.99935 16.0013 7.99935C18.0406 7.99935 19.896 8.76868 21.3086 10.0253L25.08 6.25402C22.6986 4.03468 19.5133 2.66602 16.0013 2.66602C8.63797 2.66602 2.66797 8.63602 2.66797 15.9993C2.66797 23.3627 8.63797 29.3327 16.0013 29.3327C23.3646 29.3327 29.3346 23.3627 29.3346 15.9993C29.3346 15.1053 29.2426 14.2327 29.0753 13.388Z"
-                      fill="#FFC107"
-                    />
-                    <path
-                      d="M4.20312 9.79335L8.58379 13.006C9.76912 10.0713 12.6398 7.99935 15.9991 7.99935C18.0385 7.99935 19.8938 8.76868 21.3065 10.0253L25.0778 6.25402C22.6965 4.03468 19.5111 2.66602 15.9991 2.66602C10.8778 2.66602 6.43646 5.55735 4.20312 9.79335Z"
-                      fill="#FF3D00"
-                    />
-                    <path
-                      d="M15.9989 29.3338C19.4429 29.3338 22.5722 28.0158 24.9382 25.8725L20.8116 22.3805C19.4279 23.4327 17.7372 24.0018 15.9989 24.0005C12.5309 24.0005 9.58624 21.7891 8.47691 18.7031L4.12891 22.0531C6.33557 26.3711 10.8169 29.3338 15.9989 29.3338Z"
-                      fill="#4CAF50"
-                    />
-                    <path
-                      d="M29.074 13.3893H28V13.334H16V18.6673H23.5353C23.0095 20.1449 22.0622 21.4361 20.8107 22.3813L20.8127 22.38L24.9393 25.872C24.6473 26.1373 29.3333 22.6673 29.3333 16.0007C29.3333 15.1067 29.2413 14.234 29.074 13.3893Z"
-                      fill="#1976D2"
-                    />
-                  </svg>
-                </div>
-                <div className="flex min-w-[56vw] flex-col justify-between gap-9 md:flex-row">
-                  <div className="mt-5 flex gap-2 xs:text-sm">
-                    already have an account ?{" "}
-                    <Link
-                      href={"/login"}
-                      className="font-semibold text-[#2E3192]"
+                  {formError && !isModalOpen && (
+                    <div className="mb-9 text-red-500">{formError}</div>
+                  )}
+                  <div className="mt-9 flex w-full flex-col-reverse justify-between gap-3 self-start md:mt-0 md:flex-row md:items-center md:px-0">
+                    <div className="flex gap-2 xs:text-sm md:gap-3">
+                      <input
+                        type="checkbox"
+                        id="tc"
+                        placeholder="t&c"
+                        required
+                      />
+                      I agree with{" "}
+                      <span className="text-[#2E3192] underline">
+                        Terms & Conditions
+                      </span>
+                    </div>
+                  </div>
+                  <div className="mt-9">
+                    <p className="self-start text-gray-500 xs:mt-5 xs:text-sm">
+                      To verify it&apos;s you, we will send you an OTP to your
+                      mobile number.
+                    </p>
+                  </div>
+                  <div className="h-[1px] w-[80%] self-start bg-gray-300" />
+                  <div className="mt-5 flex flex-col items-start self-start">
+                    or continue with
+                    <div
+                      className="google mt-5 flex cursor-pointer gap-5"
+                      onClick={auth.authWithGoogle}
                     >
-                      LogIn
-                    </Link>
+                      <svg
+                        width="32"
+                        height="32"
+                        viewBox="0 0 32 32"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M29.0753 13.388H28.0013V13.3327H16.0013V18.666H23.5366C22.4373 21.7707 19.4833 23.9993 16.0013 23.9993C11.5833 23.9993 8.0013 20.4173 8.0013 15.9993C8.0013 11.5813 11.5833 7.99935 16.0013 7.99935C18.0406 7.99935 19.896 8.76868 21.3086 10.0253L25.08 6.25402C22.6986 4.03468 19.5133 2.66602 16.0013 2.66602C8.63797 2.66602 2.66797 8.63602 2.66797 15.9993C2.66797 23.3627 8.63797 29.3327 16.0013 29.3327C23.3646 29.3327 29.3346 23.3627 29.3346 15.9993C29.3346 15.1053 29.2426 14.2327 29.0753 13.388Z"
+                          fill="#FFC107"
+                        />
+                        <path
+                          d="M4.20312 9.79335L8.58379 13.006C9.76912 10.0713 12.6398 7.99935 15.9991 7.99935C18.0385 7.99935 19.8938 8.76868 21.3065 10.0253L25.0778 6.25402C22.6965 4.03468 19.5111 2.66602 15.9991 2.66602C10.8778 2.66602 6.43646 5.55735 4.20312 9.79335Z"
+                          fill="#FF3D00"
+                        />
+                        <path
+                          d="M15.9989 29.3338C19.4429 29.3338 22.5722 28.0158 24.9382 25.8725L20.8116 22.3805C19.4279 23.4327 17.7372 24.0018 15.9989 24.0005C12.5309 24.0005 9.58624 21.7891 8.47691 18.7031L4.12891 22.0531C6.33557 26.3711 10.8169 29.3338 15.9989 29.3338Z"
+                          fill="#4CAF50"
+                        />
+                        <path
+                          d="M29.074 13.3893H28V13.334H16V18.6673H23.5353C23.0095 20.1449 22.0622 21.4361 20.8107 22.3813L20.8127 22.38L24.9393 25.872C24.6473 26.1373 29.3333 22.6673 29.3333 16.0007C29.3333 15.1067 29.2413 14.234 29.074 13.3893Z"
+                          fill="#1976D2"
+                        />
+                      </svg>
+                    </div>
+                    <div className="flex min-w-[56vw] flex-col justify-between gap-9 md:flex-row">
+                      <div className="mt-5 flex gap-2 xs:text-sm">
+                        already have an account ?{" "}
+                        <Link
+                          href={"/login"}
+                          className="font-semibold text-[#2E3192]"
+                        >
+                          LogIn
+                        </Link>
+                      </div>
+                      <button
+                        type="submit"
+                        className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+                      >
+                        Verify
+                      </button>
+                    </div>
                   </div>
-                  <button
-                    type="submit"
-                    className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                  >
-                    Verify
-                  </button>
-                </div>
+                </form>
               </div>
-            </form>
-          </div>
+            </>
+          )}
         </div>
       </div>
       {isModalOpen && (
         <OtpModal
           mobileNo={basicDetails.mobile}
-          notYouRedirect={toggleModal}
+          notYouRedirect={notYouRedirect}
           verifyFunction={handleVerify}
           onChangeFunction={(value) =>
             setBasicDetails({ ...basicDetails, otp: Number(value) })

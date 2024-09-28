@@ -10,6 +10,9 @@ import { add } from "date-fns";
 import { addMakeUpArtist } from "@/services/vendors/makeupArtist";
 import jwt from "jsonwebtoken";
 import Image from "next/image";
+import Agreement from "../(Agreement)/Agreement";
+import Plans from "../(Plans)/Plans";
+import Registration_Completed from "../(Registration-Completed)/page";
 
 interface Package {
   type: string;
@@ -201,7 +204,7 @@ const VenueForm: React.FC = () => {
     });
 
     try {
-      addMakeUpArtist(formData);
+      await addMakeUpArtist(formData);
       console.log("Makeup Artist added successfully");
     } catch (error) {
       console.log(" error adding makeup artist" + error);
@@ -309,83 +312,114 @@ const VenueForm: React.FC = () => {
             currentPage={currentPage}
             handleSubmit={handleSubmit}
             handleContinue={() => {
-              // setCurrentPage(6);
-              handleSubmit();
+              setCurrentPage(6);
+              //handleSubmit();
             }}
           />
         );
+      case 6:
+        return (
+          <>
+            <Agreement setCurrentPage={setCurrentPage} />
+          </>
+        );
+      case 7:
+        return (
+          <>
+            <Plans
+              handleformSubmit={handleSubmit}
+              setCurrentPage={setCurrentPage}
+            />
+          </>
+        );
+      case 8:
+        return (
+          <>
+            <Registration_Completed />
+          </>
+        );
       default:
-        return <>thankyou</>;
+        return (
+          <>
+            <center>
+              <h2>Loading....</h2>
+            </center>
+          </>
+        );
     }
   };
 
   return (
-    <div className="m-0 flex w-full flex-col overflow-x-hidden lg:h-[calc(100vh-4.2rem)] lg:flex-row">
-      <div className="flex flex-col items-start justify-between bg-[#FFFFFF] p-4 xs:gap-7 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
-        <div className="flex w-[100%] flex-col justify-center">
-          <div className="flex flex-col gap-1 px-3 lg:mt-[2rem]">
-            <span className="text-lg font-semibold">
-              Step {currentPage} of 5
-            </span>
-            <div className="flex gap-4">
-              <button
-                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 1 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                onClick={() => setCurrentPage(1)}
-              ></button>
+    <div
+      className={`m-0 flex w-full flex-col overflow-x-hidden lg:flex-row ${currentPage <= 5 ? "lg:h-[calc(100vh-4.2rem)]" : ""}`}
+    >
+      {currentPage <= 5 && (
+        <div className="flex flex-col items-start justify-between bg-[#FFFFFF] p-4 xs:gap-7 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
+          <div className="flex w-[100%] flex-col justify-center">
+            <div className="flex flex-col gap-1 px-3 lg:mt-[2rem]">
+              <span className="text-lg font-semibold">
+                Step {currentPage} of 5
+              </span>
+              <div className="flex gap-4">
+                <button
+                  className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 1 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                  onClick={() => setCurrentPage(1)}
+                ></button>
 
-              <button
-                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 2 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                onClick={() => setCurrentPage(2)}
-              ></button>
+                <button
+                  className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 2 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                  onClick={() => setCurrentPage(2)}
+                ></button>
 
-              <button
-                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 3 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                onClick={() => setCurrentPage(3)}
-              ></button>
+                <button
+                  className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 3 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                  onClick={() => setCurrentPage(3)}
+                ></button>
 
-              <button
-                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 4 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                onClick={() => setCurrentPage(4)}
-              ></button>
+                <button
+                  className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 4 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                  onClick={() => setCurrentPage(4)}
+                ></button>
 
-              <button
-                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 5 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                onClick={() => setCurrentPage(5)}
-              ></button>
+                <button
+                  className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 5 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                  onClick={() => setCurrentPage(5)}
+                ></button>
+              </div>
             </div>
           </div>
+          <div className="flex h-[50%] flex-col items-start justify-center gap-9 px-3 md:px-3">
+            <h1 className="text-[8vw] font-bold md:text-[3vw]">
+              {currentPage === 1 && "Fill out your Basic details "}
+              {currentPage === 2 && "Fill out your Service details "}
+              {currentPage === 3 && "Fill out your pricing and policy"}
+              {currentPage === 4 && "Fill out your policy"}
+              {currentPage === 5 && "Fill out extra detail of your company"}
+            </h1>
+            <p className="text-black xs:text-sm md:w-[90%]">
+              {currentPage === 1 &&
+                "Please provide the details of the venue offered by your company."}
+              {currentPage === 2 &&
+                "Please provide the details of the venue offered by your company."}
+              {currentPage === 3 &&
+                "Please provide the details of the venue offered by your company."}
+              {currentPage === 4 &&
+                "Please provide the details of the venue offered by your company."}
+              {currentPage === 5 &&
+                "Please provide the details of the venue offered by your company."}
+            </p>
+          </div>
+          <div className="relative h-[10rem] lg:w-full">
+            <Image
+              src={"/tajmahal.png"}
+              alt=""
+              width={400}
+              height={200}
+              className="h-full w-full object-cover"
+            />
+          </div>
         </div>
-        <div className="flex h-[50%] flex-col items-start justify-center gap-9 px-3 md:px-3">
-          <h1 className="text-[8vw] font-bold md:text-[3vw]">
-            {currentPage === 1 && "Fill out your Basic details "}
-            {currentPage === 2 && "Fill out your Service details "}
-            {currentPage === 3 && "Fill out your pricing and policy"}
-            {currentPage === 4 && "Fill out your policy"}
-            {currentPage === 5 && "Fill out extra detail of your company"}
-          </h1>
-          <p className="text-black xs:text-sm md:w-[90%]">
-            {currentPage === 1 &&
-              "Please provide the details of the venue offered by your company."}
-            {currentPage === 2 &&
-              "Please provide the details of the venue offered by your company."}
-            {currentPage === 3 &&
-              "Please provide the details of the venue offered by your company."}
-            {currentPage === 4 &&
-              "Please provide the details of the venue offered by your company."}
-            {currentPage === 5 &&
-              "Please provide the details of the venue offered by your company."}
-          </p>
-        </div>
-        <div className="relative h-[10rem] lg:w-full">
-          <Image
-            src={"/tajmahal.png"}
-            alt=""
-            width={400}
-            height={200}
-            className="h-full w-full object-cover"
-          />
-        </div>
-      </div>
+      )}
       <div className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] p-6 md:p-[1rem]">
         {renderPage()}
       </div>

@@ -7,7 +7,10 @@ import Page3 from "./page3/page3";
 import Page4 from "./page4/page4";
 import Page5 from "./page5/page5";
 import Page6 from "./preview/page6";
-
+import Agreement from "../(Agreement)/Agreement";
+import Plans from "../(Plans)/Plans";
+import Registration_Completed from "../(Registration-Completed)/page";
+import { addInvitation } from "@/services/vendors/invitation";
 interface Package {
   type: string;
   priceRange: [number, number];
@@ -229,6 +232,13 @@ const Invitation: React.FC = () => {
     formData.forEach((value, key) => {
       console.log(`${key}: ${value}`);
     });
+
+    try {
+      await addInvitation(formData);
+      console.log("Invitation added successfully");
+    } catch (error) {
+      console.log(" error adding makeup artist" + error);
+    }
   };
 
   const renderPage = () => {
@@ -311,48 +321,34 @@ const Invitation: React.FC = () => {
             handleStepClick={handleStepClick}
           />
         );
+      case 6:
+        return (
+          <>
+            <Agreement setCurrentPage={setCurrentPage} />
+          </>
+        );
+      case 7:
+        return (
+          <>
+            <Plans
+              handleformSubmit={handleSubmit}
+              setCurrentPage={setCurrentPage}
+            />
+          </>
+        );
+      case 8:
+        return (
+          <>
+            <Registration_Completed />
+          </>
+        );
       default:
         return (
-          <Page6
-            formState={formState}
-            updateFormState={updateFormState}
-            typesOfInvitationsYouDesign={typesOfInvitationsYouDesign}
-            setTypesOfInvitationsYouDesign={setTypesOfInvitationsYouDesign}
-            formalinvitation={formalinvitation}
-            setFormalInvitation={setFormalInvitation}
-            casualinvitation={casualinvitation}
-            setCasualInvitation={setCasualInvitation}
-            Electronicinvitation={Electronicinvitation}
-            setElectronicInvitation={setElectronicInvitation}
-            handmadeinvitation={handmadeinvitation}
-            setHandmadeInvitation={setHandmadeInvitation}
-            printedInvitation={printedInvitation}
-            setPrintedInvitation={setPrintedInvitation}
-            specialyInvitation={specialyInvitation}
-            setSpecialyInvitation={setSpecialyInvitation}
-            uniqueInvitation={uniqueInvitation}
-            setUniqueInvitation={setUniqueInvitation}
-            relegiousInvitation={relegiousInvitation}
-            setRelegiousInvitation={setRelegiousInvitation}
-            otherInvitation={otherInvitation}
-            setOtherInvitation={setOtherInvitation}
-            paperType={paperType}
-            setPaperType={setPaperType}
-            envelopeTypes={envelopTypes}
-            setEnvelopeTypes={setEnvelopTypes}
-            perPeicePriceRange={perPeicePriceRange}
-            setperPeicePriceRange={setperPeicePriceRange}
-            bulkPriceRange={bulkPriceRange}
-            setbulkPriceRange={setbulkPriceRange}
-            advancePayment={advancePayment}
-            setAdvancePayment={setAdvancePayment}
-            handlePackageChange={handlePackageChange}
-            addPackage={addPackage}
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-            handleSubmit={handleSubmit}
-            handleStepClick={handleStepClick}
-          />
+          <>
+            <center>
+              <h2>Loading....</h2>
+            </center>
+          </>
         );
     }
   };

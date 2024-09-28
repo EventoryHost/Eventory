@@ -55,9 +55,9 @@ const Organization = ({
 
   return (
     <>
-      <div className="flex min-w-[100%] items-center justify-between gap-9">
-        <div className="flex h-[100%] w-[50%] flex-col items-start justify-between gap-9">
-          <div className="flex w-[100%] flex-col gap-4">
+      <div className="flex items-center justify-between gap-9">
+        <div className="flex h-[100%] w-max flex-col items-start justify-between gap-9">
+          <div className="flex flex-col gap-4">
             <label htmlFor="fullName">Full Name</label>
             <input
               id="fullName"
@@ -116,9 +116,6 @@ const Organization = ({
                 )
               }
             ></textarea>
-            {/* {typeof clientTestimonials === "object" && (
-              <p className="mt-2 text-gray-500">{clientTestimonials.name}</p>
-            )} */}
           </div>
         </div>
       </div>

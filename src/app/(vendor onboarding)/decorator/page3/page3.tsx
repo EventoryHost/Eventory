@@ -2,8 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 import Appetizers from "../../(components)/Appetizers";
-import { ArrowLeft } from "lucide-react";
-import { Checkbox } from "@mui/material";
 import FileInput from "@/components/fileInput";
 
 const _themesElement = [
@@ -16,14 +14,13 @@ const _themesElement = [
 ];
 
 interface FormState {
-  themePhoto: string | File | File[];
-  themeVideo: string | File | File[];
+  themephotos: string | File | File[];
+  themevideos: string | File | File[];
 }
 
 interface Page3Props {
   handleContinue: () => void;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
-  currentPage: number;
   formState: FormState;
   updateFormState: (newState: Partial<FormState>) => void;
   themesElements: string[];
@@ -33,182 +30,182 @@ interface Page3Props {
 const Page3: React.FC<Page3Props> = ({
   formState,
   updateFormState,
+  setCurrentPage,
   themesElements,
   setThemesElements,
   handleContinue,
-  currentPage,
-  setCurrentPage,
 }) => {
-  const { themePhoto, themeVideo } = formState;
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-  };
+  const { themephotos, themevideos } = formState;
 
   return (
-    <div className="scroll-touch items-strech flex w-[100%] flex-col gap-9 overflow-y-scroll bg-[#F7F6F9] scrollbar-hide">
-      <div className="flex flex-col gap-6 rounded-xl bg-white p-3 md:p-6">
-        <div className="flex items-center gap-4">
-          <ArrowLeft
-            className="ml-2 mr-1 h-6 w-6 cursor-pointer text-[#2E3192]"
-            aria-hidden="true"
-            onClick={() => setCurrentPage(currentPage - 1)}
-          />
-          <h1 className="text-2xl font-semibold">
-            Theme Elements<span className="text-red-500">*</span>
-          </h1>
-        </div>
-        <div className="flex min-h-full min-w-full flex-col items-center gap-5">
-          <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-            <Appetizers
-              field={"_themesElement"}
-              appetizers={_themesElement}
-              selectedAppetizers={themesElements}
-              setSelectedAppetizers={setThemesElements}
-            />
+    <div className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide xs:w-[95%] xs:min-w-[90%]">
+      <div className="flex min-w-full flex-col items-start justify-around gap-10">
+        <div className="flex flex-col gap-9 rounded-xl bg-white p-3 xs:min-w-[100%] md:p-6">
+          <div className="flex items-start justify-start">
+            <h1 className="text-3xl font-semibold">Theme Elements</h1>
+            <span className="text-red-600">*</span>
           </div>
-        </div>
-      </div>
-      <div className="flex flex-col gap-9 rounded-xl bg-white p-3 xs:min-w-[100%] md:p-6">
-        <div className="flex min-h-full min-w-full flex-col items-center gap-5">
-          <div className="item-center flex min-w-full flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
-            <div className="flex min-w-[45%] flex-col gap-2">
-              <div className="flex items-center gap-1 text-base font-medium">
-                Theme Photos* <span className="text-red-500">*</span>
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <rect
-                    x="1.33398"
-                    y="1.3335"
-                    width="13.3333"
-                    height="13.3333"
-                    rx="6.66667"
-                    stroke="#2B3F6C"
-                  />
-                  <path
-                    d="M8.33398 11.3335L8.33398 7.3335"
-                    stroke="#2B3F6C"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                  <path
-                    d="M7.00065 7.3335L8.33398 7.3335"
-                    stroke="#2B3F6C"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                  <path
-                    d="M8.33398 5.33366L8.33398 4.66699"
-                    stroke="#2B3F6C"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </div>
-              <span className="text-small font-light">PNG,JPG,PDF</span>
-
-              <FileInput
-                label="themePhoto"
-                multiple={true}
-                onFileSelect={(file) => {
-                  updateFormState({ themePhoto: file });
-                }}
-                acceptedFileTypes="image/png, .pdf, image/jpg"
-              />
-              <span className="text-base font-medium">or Continue via</span>
-              <input
-                type="text"
-                className="w-full rounded-xl border-2 bg-white p-3 py-5 text-sm outline-none"
-                placeholder="Enter your portfolio links"
-                value={
-                  typeof formState.themePhoto === "string"
-                    ? formState.themePhoto
-                    : ""
-                }
-                onChange={(e) =>
-                  updateFormState({ themePhoto: e.target.value })
-                }
-                required
-              />
-            </div>
-            <div className="flex min-w-[45%] flex-col gap-2">
-              <div className="flex items-center gap-1 text-base font-medium">
-                Theme Videos <span className="text-red-500">*</span>
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <rect
-                    x="1.33398"
-                    y="1.3335"
-                    width="13.3333"
-                    height="13.3333"
-                    rx="6.66667"
-                    stroke="#2B3F6C"
-                  />
-                  <path
-                    d="M8.33398 11.3335L8.33398 7.3335"
-                    stroke="#2B3F6C"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                  <path
-                    d="M7.00065 7.3335L8.33398 7.3335"
-                    stroke="#2B3F6C"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                  <path
-                    d="M8.33398 5.33366L8.33398 4.66699"
-                    stroke="#2B3F6C"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </div>
-              <span className="text-small font-light">MP4, MKV</span>
-
-              <FileInput
-                label="themeVideo"
-                multiple={true}
-                onFileSelect={(file) => {
-                  updateFormState({ themeVideo: file });
-                }}
-                acceptedFileTypes="image/png, .pdf, image/jpg"
-              />
-              <span className="text-base font-medium">or Continue via</span>
-              <input
-                type="text"
-                className="w-full rounded-xl border-2 bg-white p-3 py-5 text-sm outline-none"
-                placeholder="Enter your portfolio links"
-                value={
-                  typeof formState.themeVideo === "string"
-                    ? formState.themeVideo
-                    : ""
-                }
-                onChange={(e) =>
-                  updateFormState({ themeVideo: e.target.value })
-                }
-                required
+          <div className="flex min-h-full min-w-full flex-col items-center gap-5">
+            <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+              <Appetizers
+                field={"_themesElement"}
+                appetizers={_themesElement}
+                selectedAppetizers={themesElements}
+                setSelectedAppetizers={setThemesElements}
               />
             </div>
           </div>
-
-          <div className="items-strech flex flex-row gap-7 self-end">
-            <button
-              className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-              onClick={handleContinue}
-            >
-              Continue
-            </button>
+        </div>
+        <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[100%] md:p-6">
+          <div className="flex min-h-full min-w-full flex-col items-center gap-5">
+            <div className="flex min-w-full flex-row items-start justify-between gap-2">
+              <div className="flex min-w-[40%] flex-col gap-2">
+                <label
+                  className="flex items-center justify-start gap-2"
+                  htmlFor="category"
+                >
+                  <p>
+                    Theme Photos<span className="text-red-600">*</span>
+                  </p>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect
+                      x="1.33398"
+                      y="1.33398"
+                      width="13.3333"
+                      height="13.3333"
+                      rx="6.66667"
+                      stroke="#2B3F6C"
+                    />
+                    <path
+                      d="M8.33398 11.334L8.33398 7.33398"
+                      stroke="#2B3F6C"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M7.00065 7.33398L8.33398 7.33398"
+                      stroke="#2B3F6C"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M8.33398 5.33464L8.33398 4.66797"
+                      stroke="#2B3F6C"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </label>
+                <p className="text-gray-500">PNG, PDF, JPG</p>
+                <FileInput
+                  label="themephotos"
+                  onFileSelect={(file: File | File[]) => {
+                    const newFiles = Array.isArray(file) ? file : [file]; // Handle single or multiple files
+                    updateFormState({ themephotos: newFiles });
+                  }}
+                  acceptedFileTypes="image/png, .pdf, image/jpg"
+                />
+              </div>
+              <div className="flex min-w-[40%] flex-col gap-2">
+                <label
+                  className="flex items-center justify-start gap-2"
+                  htmlFor="category"
+                >
+                  <p>
+                    Theme Videos<span className="text-red-600">*</span>
+                  </p>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect
+                      x="1.33398"
+                      y="1.33398"
+                      width="13.3333"
+                      height="13.3333"
+                      rx="6.66667"
+                      stroke="#2B3F6C"
+                    />
+                    <path
+                      d="M8.33398 11.334L8.33398 7.33398"
+                      stroke="#2B3F6C"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M7.00065 7.33398L8.33398 7.33398"
+                      stroke="#2B3F6C"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M8.33398 5.33464L8.33398 4.66797"
+                      stroke="#2B3F6C"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </label>
+                <p className="text-gray-500">MP4 MKV</p>
+                <FileInput
+                  label="themevideos"
+                  onFileSelect={(file: File | File[]) => {
+                    const newFiles = Array.isArray(file) ? file : [file]; // Handle single or multiple files
+                    updateFormState({ themevideos: newFiles });
+                  }}
+                  acceptedFileTypes="video/mp4, video/x-msvideo, .mp4, .avi"
+                />
+              </div>
+            </div>
+            <div className="flex min-w-full flex-row items-start justify-between gap-2">
+              <div className="flex min-w-[40%] flex-col gap-4">
+                <label htmlFor="category">Or Continue Via</label>
+                <input
+                  id="businessName"
+                  type="text"
+                  className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
+                  placeholder="Enter Your Link"
+                  onChange={(e) =>
+                    updateFormState({ themephotos: e.target.value })
+                  }
+                />
+              </div>
+              <div className="flex min-w-[40%] flex-col gap-4">
+                <label htmlFor="category">Or Continue Via</label>
+                <input
+                  id="businessName"
+                  type="text"
+                  className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
+                  placeholder="Enter Your Link"
+                  onChange={(e) =>
+                    updateFormState({ themevideos: e.target.value })
+                  }
+                />
+              </div>
+            </div>
+            <div className="mt-9 flex flex-row items-stretch gap-7 self-end bg-white">
+              <button
+                className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+                onClick={() => setCurrentPage((prevPage) => prevPage - 1)}
+              >
+                Back
+              </button>
+              <button
+                className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+                onClick={handleContinue}
+              >
+                Continue
+              </button>
+            </div>
           </div>
         </div>
       </div>
