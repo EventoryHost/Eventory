@@ -11,9 +11,9 @@ import { addPropRental } from "@/services/vendors/propRental";
 import Image from "next/image";
 import { Import } from "lucide-react";
 import Preview from "./preview/preview";
-import Plans from "../Plans/Plans";
-import Agreement from "../Agreement/Agreement";
-import Registration_Completed from "../Registration-Completed/page";
+import Plans from "../(Plans)/Plans";
+import Agreement from "../(Agreement)/Agreement";
+import Registration_Completed from "../(Registration-Completed)/page";
 
 export interface FormState {
   // Page1
