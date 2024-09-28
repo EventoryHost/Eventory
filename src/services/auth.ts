@@ -31,14 +31,14 @@ const signUp = async (mobile: String) => {
     if (axios.isAxiosError(error)) {
       // Now TypeScript knows 'error' is an AxiosError
       if (error.response) {
-        throw new Error(error.response.data.message || 'Something went wrong');
+        throw new Error(error.response.data.message || "Something went wrong");
       } else {
         throw new Error(error.message);
       }
     } else {
-      throw new Error('An unexpected error occurred');
+      throw new Error("An unexpected error occurred");
     }
-}
+  }
 };
 
 const verifySignUpOtp = async (mobile: String, otp: String) => {
