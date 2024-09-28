@@ -51,10 +51,10 @@ export interface FormState {
   certificates_awards: string | File;
 
   //page 7
-  insurancePolicy: string | File|File[];
-  cancellationPolicy: string | File|File[];
-  termsAndConditions: string | File|File[];
-  privacyPolicy: string | File|File[];
+  insurancePolicy: string | File | File[];
+  cancellationPolicy: string | File | File[];
+  termsAndConditions: string | File | File[];
+  privacyPolicy: string | File | File[];
 
   references: boolean;
   experience: string;

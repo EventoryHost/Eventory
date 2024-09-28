@@ -497,7 +497,7 @@ const Caterer = () => {
       case 8:
         return (
           <>
-            <Agreement setCurrentPage={setCurrentPage}  />
+            <Agreement setCurrentPage={setCurrentPage} />
           </>
         );
       case 9:

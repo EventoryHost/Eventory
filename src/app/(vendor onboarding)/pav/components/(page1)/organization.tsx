@@ -9,8 +9,8 @@ type Page1Props = {
   setFullName: (fullName: string) => void;
   organizationMembers: string;
   setOrganizationMembers: (organizationMembers: string) => void;
-  clientTestimonials: string | File|File[];
-  setClientTestimonials: (clientTestimonials: string | File|File[]) => void;
+  clientTestimonials: string | File | File[];
+  setClientTestimonials: (clientTestimonials: string | File | File[]) => void;
   handleContinue: () => void;
 };
 

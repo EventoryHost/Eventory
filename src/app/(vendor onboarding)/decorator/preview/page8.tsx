@@ -583,7 +583,7 @@ function Preview({
             <span className="">Insurance coverage policy</span>
 
             <span className="font-semibold">
-            {typeof formState.insurancePolicy === "string" ? (
+              {typeof formState.insurancePolicy === "string" ? (
                 <div>{formState.insurancePolicy}</div> // Handle string case
               ) : Array.isArray(formState.insurancePolicy) ? (
                 <FileDisplay files={formState.insurancePolicy} /> // Handle File[] case
@@ -595,7 +595,7 @@ function Preview({
           <div className="flex w-1/2 flex-col">
             <span className="">Cancellation Policy</span>
             <span className="font-semibold">
-            {typeof formState.cancellationPolicy === "string" ? (
+              {typeof formState.cancellationPolicy === "string" ? (
                 <div>{formState.cancellationPolicy}</div> // Handle string case
               ) : Array.isArray(formState.cancellationPolicy) ? (
                 <FileDisplay files={formState.cancellationPolicy} /> // Handle File[] case
@@ -611,7 +611,7 @@ function Preview({
             <span className="">Terms & Condition</span>
 
             <span className="font-semibold">
-            {typeof formState.termsAndConditions === "string" ? (
+              {typeof formState.termsAndConditions === "string" ? (
                 <div>{formState.termsAndConditions}</div> // Handle string case
               ) : Array.isArray(formState.termsAndConditions) ? (
                 <FileDisplay files={formState.termsAndConditions} /> // Handle File[] case
@@ -623,7 +623,7 @@ function Preview({
           <div className="flex w-1/2 flex-col">
             <span className="">Privacy Policy</span>
             <span className="font-semibold">
-            {typeof formState.privacyPolicy === "string" ? (
+              {typeof formState.privacyPolicy === "string" ? (
                 <div>{formState.privacyPolicy}</div> // Handle string case
               ) : Array.isArray(formState.privacyPolicy) ? (
                 <FileDisplay files={formState.privacyPolicy} /> // Handle File[] case
