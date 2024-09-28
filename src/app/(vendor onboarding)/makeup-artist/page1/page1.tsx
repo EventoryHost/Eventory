@@ -104,7 +104,7 @@ const Page: React.FC<Page1Props> = ({
   setMakeupArtist_organisation,
   handleContinue,
   currentPage,
-  setCurrentPage
+  setCurrentPage,
 }) => {
   const { artistDescription, portfolioUrls } = formState;
 
@@ -113,7 +113,6 @@ const Page: React.FC<Page1Props> = ({
   }
 
   return (
-
     <div className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide xs:w-[95%] xs:min-w-[90%]">
       <div className="flex min-w-full flex-col items-start justify-around gap-10">
         <div className="flex min-w-full flex-col items-start justify-around gap-10 rounded-xl bg-white p-3 md:p-6">
@@ -150,7 +149,6 @@ const Page: React.FC<Page1Props> = ({
 
           {category === "Individual" && (
             <>
-
               <div className="item-start flex min-w-full flex-col justify-between gap-4 md:flex-row">
                 <div className="flex min-w-[40%] flex-col gap-4">
                   <label
@@ -376,10 +374,9 @@ const Page: React.FC<Page1Props> = ({
               />
             </div>
             <div className="items-strech mt-9 flex flex-row gap-7 self-end">
-              
               <button
                 className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={()=>setCurrentPage(currentPage + 1)}
+                onClick={() => setCurrentPage(currentPage + 1)}
               >
                 Continue
               </button>
@@ -403,10 +400,9 @@ const Page: React.FC<Page1Props> = ({
               />
             </div>
             <div className="items-strech mt-9 flex flex-row gap-7 self-end">
-              
               <button
                 className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={()=>setCurrentPage(currentPage + 1)}
+                onClick={() => setCurrentPage(currentPage + 1)}
               >
                 Continue
               </button>
@@ -430,10 +426,9 @@ const Page: React.FC<Page1Props> = ({
               />
             </div>
             <div className="items-strech mt-9 flex flex-row gap-7 self-end">
-              
               <button
                 className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={()=>setCurrentPage(currentPage + 1)}
+                onClick={() => setCurrentPage(currentPage + 1)}
               >
                 Continue
               </button>
@@ -441,7 +436,6 @@ const Page: React.FC<Page1Props> = ({
           </div>
         </div>
       )}
-
     </div>
   );
 };

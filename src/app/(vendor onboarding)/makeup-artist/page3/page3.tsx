@@ -9,7 +9,7 @@ interface Package {
   priceRange: [number, number];
 }
 
-interface FormState { }
+interface FormState {}
 interface Page3Props {
   handleContinue: () => void;
 
@@ -48,7 +48,6 @@ const Page: React.FC<Page3Props> = ({
   handleContinue,
   currentPage,
   setCurrentPage,
-
 }) => {
   const handlePercentageChange = (newValue: number) => {
     setAdvancePayment(newValue);
@@ -130,7 +129,7 @@ const Page: React.FC<Page3Props> = ({
                   />
                 </div>
 
-                <div className="flex h-full min-w-[40%] flex-col  justify-between">
+                <div className="flex h-full min-w-[40%] flex-col justify-between">
                   <label htmlFor={`hourlyPriceRange${index}`}>
                     Select price range
                   </label>
@@ -228,7 +227,7 @@ const Page: React.FC<Page3Props> = ({
                   />
                 </div>
 
-                <div className="flex h-full min-w-[40%] flex-col  justify-between">
+                <div className="flex h-full min-w-[40%] flex-col justify-between">
                   <label htmlFor={`hourlyPackages${index}`}>
                     Select price range
                   </label>
@@ -326,7 +325,7 @@ const Page: React.FC<Page3Props> = ({
                   />
                 </div>
 
-                <div className="flex h-full min-w-[40%] flex-col  justify-between">
+                <div className="flex h-full min-w-[40%] flex-col justify-between">
                   <label htmlFor={`setratesbyWorker${index}`}>
                     Select price range
                   </label>
@@ -423,15 +422,13 @@ const Page: React.FC<Page3Props> = ({
               </button>
               <button
                 className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={()=>setCurrentPage(currentPage + 1)}
+                onClick={() => setCurrentPage(currentPage + 1)}
               >
                 Continue
               </button>
             </div>
           </div>
-        
         </div>
-
       </div>
     </div>
   );

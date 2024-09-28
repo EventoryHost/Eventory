@@ -18,7 +18,13 @@ interface Page2Props {
   setCurrentPage: (page: number) => void;
 }
 
-const Page: React.FC<Page2Props> = ({ formState, updateFormState, handleContinue , currentPage, setCurrentPage }) => {
+const Page: React.FC<Page2Props> = ({
+  formState,
+  updateFormState,
+  handleContinue,
+  currentPage,
+  setCurrentPage,
+}) => {
   const { termsAndConditions, cancellationPolicy } = formState;
 
   function handleTermsAndConditions(file: File): void {
@@ -30,7 +36,6 @@ const Page: React.FC<Page2Props> = ({ formState, updateFormState, handleContinue
 
   return (
     <div className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide xs:w-[95%] xs:min-w-[90%]">
-
       <div className="flex min-w-full flex-col items-start justify-around gap-10">
         <div className="flex min-w-full flex-col items-start justify-around gap-10 rounded-xl bg-white p-3 md:p-6">
           <h1 className="text-3xl font-semibold">Pricing and Policies</h1>
@@ -107,13 +112,12 @@ const Page: React.FC<Page2Props> = ({ formState, updateFormState, handleContinue
               </button>
               <button
                 className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={()=>setCurrentPage(currentPage + 1)}
+                onClick={() => setCurrentPage(currentPage + 1)}
               >
                 Continue
               </button>
             </div>
           </div>
-          
         </div>
       </div>
     </div>

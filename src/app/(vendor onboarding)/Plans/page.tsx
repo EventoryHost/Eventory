@@ -346,5 +346,60 @@ export default Plans;
 
                                 </div>
                             </div>
+                        ))
+                    }
+                </div>
+
+    /*
+    const fetchVendor = async (
+        userId: string,
+        email: string,
+        mobile: string
+    ) => {
+        const res = await getvendor(userId, email, mobile);
+        return res;
+    };
+
+    useEffect(() => {
+         const fetchData = async () => {
+            const token = localStorage.getItem("token");
+
+            if (token) {
+                try {
+                    const { userId, email } = jwt.decode(token) as {
+                        userId: string;
+                        email: string;
+                    };
+
+                    if (userId && email) {
+                        const user = await fetchVendor(userId, email, "");
+                        //console.log(user);
+                        setVendorId(user.id);
+                        setVendorName(user.name);
+                        //console.log(user.id);
+                        //console.log(user?.name);
+                    } else {
+                        console.error("Token does not contain expected data.");
+                    }
+                } catch (error) {
+                    console.error("Failed to decode token:", error);
+                }
+            } else {
+                console.log("No token found in localStorage.");
+            }
+        };
+
+        fetchData();
+        
+    }, []);
+
+
+    const navigateToSuccess = () => {
+        router.push('/Registration-Completed');
+    };
+
+    const navigateToFailure = () => {
+        router.push('/Payment-Failed');
+    };
 
 */

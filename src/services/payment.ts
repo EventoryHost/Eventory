@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useRouter } from 'next/navigation'; // Adjusted import
+import { useRouter } from "next/navigation"; // Adjusted import
 
 // import Razorpay from "razorpay";
 
@@ -49,7 +49,7 @@ const verifyPayment = async (
 
     return response.data;
   } catch (error) {
-    console.log(error)
+    console.log(error);
     if (axios.isAxiosError(error)) {
       console.log(error.message);
     }
@@ -57,9 +57,9 @@ const verifyPayment = async (
 };
 
 const handlePayment = async (
-  amount: string, // amt of plans 
-  plan: string, // vendor plans name 
-  id: string, // vendor id 
+  amount: string, // amt of plans
+  plan: string, // vendor plans name
+  id: string, // vendor id
   name: string, // vendor name from flow
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>,
   handleSubmit: () => void,
@@ -89,7 +89,6 @@ const handlePayment = async (
         handleSubmit();
         setCurrentPage((prevPage) => prevPage + 1)
         console.log(verifyResponse);
-
       },
       order_id: order_id,
       prefill: {

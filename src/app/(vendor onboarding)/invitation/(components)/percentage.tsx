@@ -8,7 +8,11 @@ interface PercentageProps {
   disable: boolean;
 }
 
-const Percentage: React.FC<PercentageProps> = ({ initialValue, onChange,disable }) => {
+const Percentage: React.FC<PercentageProps> = ({
+  initialValue,
+  onChange,
+  disable,
+}) => {
   const [value, setValue] = React.useState(initialValue);
 
   const handleChange = (event: Event, newValue: number | number[]) => {
@@ -18,7 +22,7 @@ const Percentage: React.FC<PercentageProps> = ({ initialValue, onChange,disable 
   };
 
   return (
-    <Box  sx={{ width: 330 }}>
+    <Box sx={{ width: 330 }}>
       <Slider
         sx={{ color: "#2E3192" }}
         valueLabelDisplay="auto"

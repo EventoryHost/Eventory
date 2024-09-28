@@ -12,7 +12,6 @@ const seatingOptions = [
   { value: "500+", label: "500+ persons" },
 ];
 
-
 const timeOptions = [
   { value: "00:00", label: "00:01 AM" },
   { value: "01:00", label: "01:00 AM" },
@@ -54,8 +53,8 @@ interface Page1Props {
   formState: FormState;
   updateFormState: (newState: Partial<FormState>) => void;
   handleContinue: () => void;
-  address : string;
-  operatingHours : { openingTime?: string; closingTime?: string };
+  address: string;
+  operatingHours: { openingTime?: string; closingTime?: string };
 }
 
 const Page1: React.FC<Page1Props> = ({
@@ -72,13 +71,14 @@ const Page1: React.FC<Page1Props> = ({
     operatingHours,
   } = formState;
 
-
   return (
-    <div className="flex flex-col items-start gap-7 h-auto overflow-y-scroll rounded-xl bg-white p-3 xs:w-[100%] xs:min-w-[90%] xs:justify-start md:p-6">
+    <div className="flex h-auto flex-col items-start gap-7 overflow-y-scroll rounded-xl bg-white p-3 xs:w-[100%] xs:min-w-[90%] xs:justify-start md:p-6">
       <h1 className="text-3xl font-semibold">Basic Details</h1>
       <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
         <div className="flex min-w-[40%] flex-col gap-4">
-          <label htmlFor="businessName">Venue Name <span className="text-red-600">*</span></label>
+          <label htmlFor="businessName">
+            Venue Name <span className="text-red-600">*</span>
+          </label>
           <input
             id="businessName"
             type="text"
@@ -89,17 +89,16 @@ const Page1: React.FC<Page1Props> = ({
           />
         </div>
         <div className="flex min-w-[40%] flex-col gap-4">
-          <label htmlFor="category">Capacity<span className="text-red-600">*</span></label>
+          <label htmlFor="category">
+            Capacity<span className="text-red-600">*</span>
+          </label>
           <Combobox
             options={seatingOptions}
             placeholder="Select your category"
-            setFunction={(value) =>
-              updateFormState({ capacity: value })
-            }
+            setFunction={(value) => updateFormState({ capacity: value })}
             className="flex items-center justify-between rounded-xl border-2 py-6 text-gray-400 hover:text-[#2E3192]"
           />
         </div>
-
       </div>
 
       {/* <div className="flex min-w-[40%] flex-col gap-4">
@@ -112,10 +111,12 @@ const Page1: React.FC<Page1Props> = ({
             />
           </div> */}
 
-      <div className="flex  min-w-full flex-col items-center gap-5">
+      <div className="flex min-w-full flex-col items-center gap-5">
         <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
           <div className="flex min-w-[40%] flex-col gap-4">
-            <label htmlFor="category">Manager Name (POC)<span className="text-red-600">*</span></label>
+            <label htmlFor="category">
+              Manager Name (POC)<span className="text-red-600">*</span>
+            </label>
             <input
               id="businessName"
               type="text"
@@ -133,14 +134,13 @@ const Page1: React.FC<Page1Props> = ({
               formState={formState}
             />
           </div>
-
-
-
         </div>
         <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
           {/* Venue Address */}
           <div className="flex min-w-[40%] flex-col gap-4">
-            <label htmlFor="businessName">Venue Address<span className="text-red-600">*</span></label>
+            <label htmlFor="businessName">
+              Venue Address<span className="text-red-600">*</span>
+            </label>
             <input
               id="businessName"
               type="text"

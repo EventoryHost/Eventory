@@ -16,15 +16,13 @@ const Pages = [Page1, Page2, Page3, Preview];
 =======
 import Page1 from "./page1/page1";
 import Page2 from "./page2/page2";
-import Page3 from "./page3/page3"
+import Page3 from "./page3/page3";
 import preview from "./preview/preview";
 import { addPropRental } from "@/services/vendors/propRental";
 import Page4 from "./page4/page4";
 import Page5 from "./page5/page5";
 import Image from "next/image";
 import { Import } from "lucide-react";
-
->>>>>>> 51a70a8a201ab2b34c6316628a57c387716876d3
 
 export interface FormState {
   // Page1
@@ -45,20 +43,18 @@ export interface FormState {
   insurancePolicy: string | File;
   privacyPolicy: string | File;
 
-
   // Page3
   furnitureAndDecorListUrl: string | File;
   tentAndCanopyListUrl: string | File;
   audioVisualListUrl: string | File;
   photos: string | File | File[];
-  videos:string | File | File[];
-  awardsAndRecognize:string;
-  clientTestimonial:string;
-  instaUrl:string;
-  websiteUrl:string;
+  videos: string | File | File[];
+  awardsAndRecognize: string;
+  clientTestimonial: string;
+  instaUrl: string;
+  websiteUrl: string;
   termsAndConditions: string | File | File[];
-  cancellationPolicy: string | File |File[];
-
+  cancellationPolicy: string | File | File[];
 
   furnitureHourlyPricingEntries: PricingEntry[];
   tentHourlyPricingEntries: PricingEntry[];
@@ -93,7 +89,7 @@ export interface FormState {
   dealCheckboxPage5: boolean;
   workerCheckboxPage5: boolean;
   advancedPaymentCheckboxPage5: false;
-};
+}
 
 type PricingEntry = {
   name: string;
@@ -109,7 +105,7 @@ const RootPage = () => {
     workDescription: "",
     eventSize: "",
     numberOfWorkers: "",
-    handleChange: (key: keyof FormState, value: any) => { },
+    handleChange: (key: keyof FormState, value: any) => {},
 
     // URL's for the files
     itemCatalogue: true,
@@ -118,10 +114,10 @@ const RootPage = () => {
     videos: [],
     maintenance: "",
     services: "",
-    awardsAndRecognize:"",
-    instaUrl:"",
-    websiteUrl:"",
-    clientTestimonial:"",
+    awardsAndRecognize: "",
+    instaUrl: "",
+    websiteUrl: "",
+    clientTestimonial: "",
 
     insurancePolicy: "",
     cancellationPolicy: "",
@@ -259,7 +255,6 @@ const RootPage = () => {
     setCurrentPage(pageIndex);
   };
 
-
   const [selectedCategory, setSelectedCategory] = useState("Furniture & Decor");
   const [selectedEvents, setselectedEvents] = useState<string[]>([]);
   const [serviceProvided, setServiceProvided] = useState<string[]>([]);
@@ -394,7 +389,7 @@ const RootPage = () => {
     );
 
     formData.append("insurancePolicy", formState.insurancePolicy || "");
-   
+
     formData.append("privacyPolicy", formState.privacyPolicy || "");
     formData.append(
       "furnitureAndDecorListUrl",
@@ -575,10 +570,9 @@ const RootPage = () => {
             setCurrentPage={setCurrentPage}
             handleSubmit={handleSubmit}
           />
-        )
+        );
       case 2:
         return (
-
           <Page2
             formState={formState}
             updateFormState={updateFormState}
@@ -590,9 +584,8 @@ const RootPage = () => {
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
             handleSubmit={handleSubmit}
-
           />
-        )
+        );
       case 3:
         return (
           <Page3
@@ -617,19 +610,15 @@ const RootPage = () => {
             selectedLightOptions={selectedLightOptions}
             setSelectedLightOptions={setSelectedLightOptions}
             handleChange={handleChange}
-
           />
-        )
-
-
+        );
     }
   };
 
-
   return (
     <div className="m-0 flex w-full flex-col overflow-x-hidden lg:h-[calc(100vh-4.2rem)] lg:flex-row">
-      <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 pt-4 md:min-w-[30%] lg:max-w-[30%]">
-        <div className="flex w-[90%] m-auto flex-col justify-center">
+      <div className="flex flex-col items-start justify-between bg-[#FFFFFF] pt-4 xs:gap-7 md:min-w-[30%] lg:max-w-[30%]">
+        <div className="m-auto flex w-[90%] flex-col justify-center">
           <div className="flex flex-col gap-1 px-6 lg:mt-[2rem]">
             <span className="text-lg font-semibold">
               Step {currentPage} of 4
@@ -654,32 +643,42 @@ const RootPage = () => {
                 className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 4 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
                 onClick={() => setCurrentPage(4)}
               ></button>
-
-
             </div>
           </div>
         </div>
-        <div className="flex h-[50%] flex-col items-start justify-center gap-9 px-3 md:px-6  w-[90%] m-auto">
-          <h1 className="md:text-4xl text-2xl font-bold  ">
+        <div className="m-auto flex h-[50%] w-[90%] flex-col items-start justify-center gap-9 px-3 md:px-6">
+          <h1 className="text-2xl font-bold md:text-4xl">
             {currentPage === 2 && "Fill out your Service details  "}
             {currentPage === 1 && "Fill the basic information"}
-            {currentPage === 3 && selectedCategory==='Furniture & Decor' && "Fill the Furniture and Decor Rentals details"}
-            {currentPage === 3 && selectedCategory==='Tent and Canopy' && "Fill the Tent and Canopy rentals details"}
-            {currentPage === 3 && selectedCategory==='Audio-Visual' && "Fill the Audio-Visual rentals details"}
+            {currentPage === 3 &&
+              selectedCategory === "Furniture & Decor" &&
+              "Fill the Furniture and Decor Rentals details"}
+            {currentPage === 3 &&
+              selectedCategory === "Tent and Canopy" &&
+              "Fill the Tent and Canopy rentals details"}
+            {currentPage === 3 &&
+              selectedCategory === "Audio-Visual" &&
+              "Fill the Audio-Visual rentals details"}
 
             {currentPage === 4 && "Fill the Staffing and Equipment details"}
-
           </h1>
-          <p className="text-black text-xl ">
-            {currentPage === 2 && "Please provide the details of the venue offered by your company."}
-            {currentPage === 1 && "Please provide the basic information of the rental service offered by your company."}
-            {currentPage === 3 && selectedCategory==='Furniture & Decor' && "Please provide the event details of the catering service offered by your company."}
-            {currentPage === 3 && selectedCategory==='Tent and Canopy' && "Please provide the event details of the catering service offered by your company."}
-            {currentPage === 3 && selectedCategory==='Audio-Visual' && "Please provide the Audio-Visual rentals service offered by your company."}
+          <p className="text-xl text-black">
+            {currentPage === 2 &&
+              "Please provide the details of the venue offered by your company."}
+            {currentPage === 1 &&
+              "Please provide the basic information of the rental service offered by your company."}
+            {currentPage === 3 &&
+              selectedCategory === "Furniture & Decor" &&
+              "Please provide the event details of the catering service offered by your company."}
+            {currentPage === 3 &&
+              selectedCategory === "Tent and Canopy" &&
+              "Please provide the event details of the catering service offered by your company."}
+            {currentPage === 3 &&
+              selectedCategory === "Audio-Visual" &&
+              "Please provide the Audio-Visual rentals service offered by your company."}
 
             {currentPage === 4 &&
               "Please provide the staffing and equipment details of the catering service offered by your company."}
-
           </p>
         </div>
         <div className="relative h-[10rem] w-full">
