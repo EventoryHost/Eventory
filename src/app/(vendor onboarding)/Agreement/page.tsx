@@ -1,5 +1,5 @@
 "use client";
-type Pagechangetype = {
+interface Pagechangetype  {
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 };
 
