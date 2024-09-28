@@ -20,10 +20,10 @@ const Page = () => {
   //states for page1
   const [type, setType] = useState<pavtypes>("individual");
   const [name, setFullName] = useState("");
-  const [clientTestimonials, setClientTestimonials] = useState<string | File|File[]>(
-    "",
-  );
-  const [portfolio, setPortfolio] = useState<string | File|File[]>("");
+  const [clientTestimonials, setClientTestimonials] = useState<
+    string | File | File[]
+  >("");
+  const [portfolio, setPortfolio] = useState<string | File | File[]>("");
   const [groupMembers, setGroupMembers] = useState("");
   const [organizationMembers, setOrganizationMembers] = useState("");
 
@@ -49,10 +49,10 @@ const Page = () => {
   const [setupsInstallations, setSetupsInstallations] =
     useState<boolean>(false);
   const [bookingDeposit, setBookingDeposit] = useState<boolean>(false);
-  const [cancellationPolicy, setCancellationPolicy] = useState<File | string|File[]>(
-    "",
-  );
-  const [tnc, setTnc] = useState<File | string|File[]>("");
+  const [cancellationPolicy, setCancellationPolicy] = useState<
+    File | string | File[]
+  >("");
+  const [tnc, setTnc] = useState<File | string | File[]>("");
 
   //states for page5
   const [hourlyPackages, setHourlyPackages] = useState<Package[]>([
@@ -136,7 +136,7 @@ const Page = () => {
     formData.append("venId", "SomeVenID");
     formData.append("type", type);
     formData.append("name", name);
-    
+
     if (Array.isArray(clientTestimonials)) {
       clientTestimonials.forEach((file) => {
         if (file instanceof File) {

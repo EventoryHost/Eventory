@@ -32,12 +32,12 @@ interface FormState {
   onsiteMakeup: boolean;
 
   artistDescription: string;
-  portfolioUrls: string | File|File[];
+  portfolioUrls: string | File | File[];
   makeup_groupmembers: string;
   organisationMembers: string;
   // Page 2
-  termsAndConditions: string | File|File[];
-  cancellationPolicy: string | File|File[];
+  termsAndConditions: string | File | File[];
+  cancellationPolicy: string | File | File[];
   // Page 3
   // Page 4
 }
@@ -177,7 +177,7 @@ const VenueForm: React.FC = () => {
       });
     } else {
       formData.append("termsAndConditions", formState.termsAndConditions);
-    }    
+    }
     if (Array.isArray(formState.cancellationPolicy)) {
       formState.cancellationPolicy.forEach((file) => {
         formData.append("cancellationPolicy", file); // No index here
