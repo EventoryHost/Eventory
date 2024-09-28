@@ -27,10 +27,10 @@ const Page: React.FC<Page2Props> = ({
 }) => {
   const { termsAndConditions, cancellationPolicy } = formState;
 
-  function handleTermsAndConditions(file: File): void {
+  function handleTermsAndConditions(file: File | File[]): void {
     updateFormState({ termsAndConditions: file });
   }
-  function handleCancellationPolicy(file: File): void {
+  function handleCancellationPolicy(file: File | File[]): void {
     updateFormState({ cancellationPolicy: file });
   }
 

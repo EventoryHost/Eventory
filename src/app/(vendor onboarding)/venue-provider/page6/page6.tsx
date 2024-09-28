@@ -7,7 +7,7 @@ import { set } from "date-fns";
 interface Page6Props {
   formState: FormState;
   updateFormState: (newState: Partial<FormState>) => void;
-  handleSubmit: (e: React.FormEvent) => void;
+  handleContinue: () => void;
   audioVisualEquipment: string[];
   accessibilityFeatures: string[];
   facilities: string[];
@@ -34,8 +34,8 @@ interface Page6Props {
 
 const Page6: React.FC<Page6Props> = ({
   formState,
-  handleSubmit,
   currentPage,
+  handleContinue,
   setCurrentPage,
   address,
   operatingHours,
@@ -412,10 +412,7 @@ const Page6: React.FC<Page6Props> = ({
             </button>
             <button
               className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-              onClick={() => {
-                setCurrentPage(currentPage + 1);
-                handleSubmit;
-              }}
+              onClick={handleContinue}
             >
               Submit
             </button>

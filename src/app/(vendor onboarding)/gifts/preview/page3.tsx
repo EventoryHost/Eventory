@@ -236,7 +236,7 @@ const Preview: React.FC<PreviewProps> = ({
 
               {/* Next Button */}
               <button
-                onClick={handleSubmit}
+                onClick={() => setCurrentPage(currentPage + 1)}
                 className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
               >
                 Submit

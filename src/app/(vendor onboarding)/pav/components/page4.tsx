@@ -1,306 +1,261 @@
 "use client";
 
-import { CheckCircle, Upload } from "lucide-react";
-import React, { useState } from "react";
 import FileInput from "@/components/fileInput";
+import Dropdown from "../../(components)/Dropdown";
 
-type Page1Props = {
-  proposalsToClients: boolean;
-  setProposalsToClients: (proposalsToClients: boolean) => void;
-  freeInitialConsultation: boolean;
-  setFreeInitialConsultation: (freeInitialConsultation: boolean) => void;
-  advanceSetup: boolean;
-  setAdvanceSetup: (advanceSetup: boolean) => void;
-  collaborationWithOtherVendors: boolean;
-  setCollaborationWithOtherVendors: (
-    collaborationWithOtherVendors: boolean,
-  ) => void;
-  setupsInstallations: boolean;
-  setSetupsInstallations: (setupsInstallations: boolean) => void;
-  bookingDeposit: boolean;
-  setBookingDeposit: (bookingDeposit: boolean) => void;
-  cancellationPolicy: string | File | File[];
-  setCancellationPolicy: (cancellationPolicy: string | File | File[]) => void;
-  tnc: string | File | File[];
-  setTnc: (tnc: string | File | File[]) => void;
+interface FormState {
+  photos: string | File | File[];
+  videos: string | File | File[];
+  websiteurl: string;
+  intstagramurl: string;
+  clientTestimonials: string;
+  Recongnition_awards: string;
+  advbookingperiod: string;
+  writtenthemeproposalafterconsultaion: boolean;
+  revisionforinitialthemeproposal: boolean;
+}
+
+interface PageProps {
   handleContinue: () => void;
-};
-
-const Page4 = ({
-  proposalsToClients,
-  setProposalsToClients,
-  freeInitialConsultation,
-  setFreeInitialConsultation,
-  advanceSetup,
-  setAdvanceSetup,
-  collaborationWithOtherVendors,
-  setCollaborationWithOtherVendors,
-  setupsInstallations,
-  setSetupsInstallations,
-  bookingDeposit,
-  setBookingDeposit,
-  cancellationPolicy,
-  setCancellationPolicy,
-  tnc,
-  setTnc,
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
+  photos: string | File | File[];
+  videos: string | File | File[];
+  setPhotos: React.Dispatch<React.SetStateAction<string | File | File[]>>;
+  setVideos: React.Dispatch<React.SetStateAction<string | File | File[]>>;
+  websiteurl: string;
+  setwebsiteurl: (websiteurl: string) => void;
+  intstagramurl: string;
+  setintstagramurl: (intstagramurl: string) => void;
+  Recongnition_awards: string;
+  setRecongnition_awards: (Recongnition_awards: string) => void;
+  advbookingperiod: string;
+  setadvbookingperiod: (advbookingperiod: string) => void;
+  clientTestimonials: string;
+  setclientTestimonials: (clientTestimonials: string) => void;
+  writtenthemeproposalafterconsultaion: boolean;
+  setwrittenthemeproposalafterconsultaion: (
+    writtenthemeproposalafterconsultaion: boolean,
+  ) => void;
+  freerevisionforinitialthemeproposal: boolean;
+  setrevisionforinitialthemeproposal: (
+    freerevisionforinitialthemeproposal: boolean,
+  ) => void;
+}
+const advbookingperiodlist = [
+  "Less then a week",
+  "1-2 weeks",
+  "More then 2 weeks",
+];
+const Page6: React.FC<PageProps> = ({
   handleContinue,
-}: Page1Props) => {
-  const [cancellationFileName, setCancellationFileName] = useState<string>("");
-  const [tncFileName, setTncFileName] = useState<string>("");
+  setCurrentPage,
+  photos,
+  videos,
+  setPhotos,
+  setVideos,
+  websiteurl,
+  setwebsiteurl,
+  intstagramurl,
+  setintstagramurl,
+  Recongnition_awards,
+  setRecongnition_awards,
+  advbookingperiod,
+  setadvbookingperiod,
+  clientTestimonials,
+  setclientTestimonials,
+  writtenthemeproposalafterconsultaion,
+  setwrittenthemeproposalafterconsultaion,
+  freerevisionforinitialthemeproposal,
+  setrevisionforinitialthemeproposal,
+}) => {
   return (
-    <div
-      className="flex flex-col items-start gap-7 overflow-y-scroll rounded-xl bg-white p-3 xs:w-[100%] xs:min-w-[90%] xs:justify-start md:p-6"
-      onSubmit={(e) => {
-        e.preventDefault();
-        handleContinue();
-      }}
-    >
-      <h1 className="text-3xl font-semibold">Basic Details</h1>
-      <div className="flex min-w-[100%] flex-col items-start justify-between gap-9 md:flex-row">
-        <div className="flex h-[100%] flex-col items-start justify-between gap-9 md:w-[50%]">
-          {/* Proposals to Clients */}
-          <div className="flex flex-col gap-5">
-            <p className="text-md font-md">
-              Do you provide design proposals to clients?
-            </p>
-            <div className="flex gap-7">
-              <div className="flex items-center gap-3">
-                <input
-                  type="radio"
-                  name="proposalsToClients"
-                  checked={proposalsToClients}
-                  onChange={(e) => {
-                    e.preventDefault();
-                    setProposalsToClients(true);
+    <div className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide xs:w-[95%] xs:min-w-[90%]">
+      <div className="flex min-w-full flex-col items-start justify-around gap-10">
+        <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[100%] md:p-6">
+          <div className="flex gap-9">
+            <h1 className="text-3xl font-semibold">Additional Details</h1>
+          </div>
+          <div className="flex min-w-full flex-col items-center gap-5">
+            <div className="flex min-w-full flex-row items-start justify-between gap-2">
+              <div className="flex min-w-[40%] flex-col gap-4">
+                <label htmlFor="category">
+                  Photos<span className="text-red-600">*</span>
+                </label>
+                <p className="text-gray-500">PNG, PDF, JPG</p>
+                <FileInput
+                  label="Photos"
+                  onFileSelect={(file: File | File[]) => {
+                    const newFiles = Array.isArray(file) ? file : [file]; // Handle single or multiple files
+                    setPhotos(newFiles);
                   }}
+                  acceptedFileTypes="image/png, .pdf, image/jpg"
                 />
-                <label className="text-sm">Yes</label>
               </div>
-              <div className="flex items-center gap-3">
-                <input
-                  type="radio"
-                  name="proposalsToClients"
-                  checked={!proposalsToClients}
-                  onChange={(e) => {
-                    e.preventDefault();
-                    setProposalsToClients(false);
+              <div className="flex min-w-[40%] flex-col gap-4">
+                <label htmlFor="category">
+                  Videos<span className="text-red-600">*</span>
+                </label>
+                <p className="text-gray-500">MP4 MKV</p>
+                <FileInput
+                  label="Videos"
+                  onFileSelect={(file: File | File[]) => {
+                    const newFiles = Array.isArray(file) ? file : [file]; // Handle single or multiple files
+                    setVideos(newFiles);
                   }}
+                  acceptedFileTypes="video/mp4, video/x-msvideo, .mp4, .avi"
                 />
-                <label className="text-sm">No</label>
+              </div>
+            </div>
+            <div className="flex min-w-full flex-row items-start justify-between gap-2">
+              <div className="flex min-w-[40%] flex-col gap-4">
+                <label htmlFor="category">Or Continue Via</label>
+                <input
+                  id="Photos"
+                  type="text"
+                  className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
+                  placeholder="Provide Your URL"
+                  onChange={(e) => setPhotos(e.target.value)}
+                />
+              </div>
+              <div className="flex min-w-[40%] flex-col gap-4">
+                <label htmlFor="category">Or Continue Via</label>
+                <input
+                  id="Videos"
+                  type="text"
+                  className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
+                  placeholder="Provide Your URL"
+                  onChange={(e) => setVideos(e.target.value)}
+                />
               </div>
             </div>
           </div>
 
-          {/* Free Initial Consultation */}
-          <div className="flex flex-col gap-5">
-            <p className="text-md font-md">
-              Do you provide free initial consultation?
-            </p>
-            <div className="flex gap-7">
-              <div className="flex items-center gap-3">
+          <div className="flex min-w-full flex-col items-center gap-5 bg-white">
+            <div className="flex min-w-full flex-row items-start justify-between gap-2">
+              <div className="flex min-w-[40%] flex-col gap-4">
+                <label htmlFor="category">Client Testimonials </label>
                 <input
-                  type="radio"
-                  name="freeInitialConsultation"
-                  checked={freeInitialConsultation}
-                  onChange={(e) => {
-                    e.preventDefault();
-                    setFreeInitialConsultation(true);
-                  }}
+                  id="Client"
+                  type="text"
+                  className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
+                  placeholder="Provide Your URL"
+                  onChange={(e) => setclientTestimonials(e.target.value)}
                 />
-                <label className="text-sm">Yes</label>
               </div>
-              <div className="flex items-center gap-3">
+              <div className="flex min-w-[40%] flex-col gap-4">
+                <label htmlFor="category">Awards/Recognition</label>
                 <input
-                  type="radio"
-                  name="freeInitialConsultation"
-                  checked={!freeInitialConsultation}
-                  onChange={(e) => {
-                    e.preventDefault();
-                    setFreeInitialConsultation(false);
-                  }}
+                  id="Awards"
+                  type="text"
+                  className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
+                  placeholder="Provide Your URL"
+                  onChange={(e) => setRecongnition_awards(e.target.value)}
                 />
-                <label className="text-sm">No</label>
               </div>
             </div>
-          </div>
-
-          {/* Advance Setup */}
-          <div className="flex flex-col gap-5">
-            <p className="text-md font-md">Do you provide advance setup?</p>
-            <div className="flex gap-7">
-              <div className="flex items-center gap-3">
+            <div className="flex min-w-full flex-row items-start justify-between gap-2">
+              <div className="flex min-w-[40%] flex-col gap-4">
+                <label htmlFor="category">Instagram URL</label>
                 <input
-                  type="radio"
-                  name="advanceSetup"
-                  checked={advanceSetup}
-                  onChange={(e) => {
-                    e.preventDefault();
-                    setAdvanceSetup(true);
-                  }}
+                  id="Instagram"
+                  type="text"
+                  className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
+                  placeholder="Provide Your URL"
+                  onChange={(e) => setintstagramurl(e.target.value)}
                 />
-                <label className="text-sm">Yes</label>
               </div>
-              <div className="flex items-center gap-3">
+              <div className="flex min-w-[40%] flex-col gap-4">
+                <label htmlFor="category">Website URL</label>
                 <input
-                  type="radio"
-                  name="advanceSetup"
-                  checked={!advanceSetup}
-                  onChange={(e) => {
-                    e.preventDefault();
-                    setAdvanceSetup(false);
-                  }}
+                  id="businessName"
+                  type="text"
+                  className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
+                  placeholder="Provide Your URL"
+                  onChange={(e) => setwebsiteurl(e.target.value)}
                 />
-                <label className="text-sm">No</label>
               </div>
             </div>
-          </div>
-
-          {/* Collaboration with Other Vendors */}
-          <div className="flex flex-col gap-5">
-            <p className="text-md font-md">
-              Do you collaborate with other vendors?
-            </p>
-            <div className="flex gap-7">
-              <div className="flex items-center gap-3">
-                <input
-                  type="radio"
-                  name="collaborationWithOtherVendors"
-                  checked={collaborationWithOtherVendors}
-                  onChange={(e) => {
-                    e.preventDefault();
-                    setCollaborationWithOtherVendors(true);
-                  }}
+            <div className="flex min-w-full flex-row items-start justify-start gap-2">
+              <div className="flex min-w-[40%] flex-col gap-4">
+                <label htmlFor="category">
+                  Advanced Booking Period<span className="text-red-600">*</span>
+                </label>
+                <Dropdown
+                  options={advbookingperiodlist}
+                  onSelect={(value: string) => setadvbookingperiod(value)}
+                  placeholder="Select Your Advance Booking Period"
                 />
-                <label className="text-sm">Yes</label>
-              </div>
-              <div className="flex items-center gap-3">
-                <input
-                  type="radio"
-                  name="collaborationWithOtherVendors"
-                  checked={!collaborationWithOtherVendors}
-                  onChange={(e) => {
-                    e.preventDefault();
-                    setCollaborationWithOtherVendors(false);
-                  }}
-                />
-                <label className="text-sm">No</label>
               </div>
             </div>
-          </div>
+            <div className="flex min-w-full flex-row items-start justify-between gap-6">
+              <div className="flex min-w-[50%] flex-col gap-6 lg:max-w-[60%]">
+                <label htmlFor="businessName">
+                  Do you offer revisions to the initail theme Proposal?
+                </label>
+                <div className="flex flex-row items-center justify-start gap-4">
+                  <input
+                    type="radio"
+                    checked={freerevisionforinitialthemeproposal === true}
+                    onChange={() => setrevisionforinitialthemeproposal(true)}
+                    className="h-4 w-4 accent-[#2E3192]"
+                  />
+                  <p>Yes</p>
 
-          {/* Setups & Installations */}
-          <div className="flex flex-col gap-5">
-            <p className="text-md font-md">
-              Do you provide setup & installation?
-            </p>
-            <div className="flex gap-7">
-              <div className="flex items-center gap-3">
-                <input
-                  type="radio"
-                  name="setupsInstallations"
-                  checked={setupsInstallations}
-                  onChange={(e) => {
-                    e.preventDefault();
-                    setSetupsInstallations(true);
-                  }}
-                />
-                <label className="text-sm">Yes</label>
+                  <input
+                    type="radio"
+                    checked={freerevisionforinitialthemeproposal === false}
+                    onChange={() => setrevisionforinitialthemeproposal(false)}
+                    className="h-4 w-4 accent-[#2E3192]"
+                  />
+                  <p>No</p>
+                </div>
               </div>
-              <div className="flex items-center gap-3">
-                <input
-                  type="radio"
-                  name="setupsInstallations"
-                  checked={!setupsInstallations}
-                  onChange={(e) => {
-                    e.preventDefault();
-                    setSetupsInstallations(false);
-                  }}
-                />
-                <label className="text-sm">No</label>
-              </div>
-            </div>
-          </div>
+              <div className="flex min-w-[50%] flex-col gap-6 lg:max-w-[60%]">
+                <label htmlFor="businessName">
+                  Do you Provide a written theme proposal after consultaion?
+                </label>
+                <div className="flex flex-row items-center justify-start gap-4">
+                  <input
+                    type="radio"
+                    checked={writtenthemeproposalafterconsultaion === true}
+                    onChange={() =>
+                      setwrittenthemeproposalafterconsultaion(true)
+                    }
+                    className="h-4 w-4 accent-[#2E3192]"
+                  />
+                  <p>Yes</p>
 
-          {/* Booking Deposit */}
-          <div className="flex flex-col gap-5">
-            <p className="text-md font-md">
-              Do you require any booking deposit for your services?
-            </p>
-            <div className="flex gap-7">
-              <div className="flex items-center gap-3">
-                <input
-                  type="radio"
-                  name="bookingDeposit"
-                  checked={bookingDeposit}
-                  onChange={(e) => {
-                    e.preventDefault();
-                    setBookingDeposit(true);
-                  }}
-                />
-                <label className="text-sm">Yes</label>
-              </div>
-              <div className="flex items-center gap-3">
-                <input
-                  type="radio"
-                  name="bookingDeposit"
-                  checked={!bookingDeposit}
-                  onChange={(e) => {
-                    e.preventDefault();
-                    setBookingDeposit(false);
-                  }}
-                />
-                <label className="text-sm">No</label>
+                  <input
+                    type="radio"
+                    className="h-4 w-4 accent-[#2E3192]"
+                    checked={writtenthemeproposalafterconsultaion === false}
+                    onChange={() =>
+                      setwrittenthemeproposalafterconsultaion(false)
+                    }
+                  />
+                  <p>No</p>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-
-        {/* File Upload & Text Areas */}
-        <div className="flex h-[100%] flex-col items-start justify-start gap-9 md:w-[50%]">
-          <div className="flex w-[100%] flex-col gap-1">
-            <label htmlFor="cancellationPolicy">Cancellation Policy</label>
-            <FileInput
-              label="Cancellation Policy"
-              onFileSelect={setCancellationPolicy}
-              acceptedFileTypes="image/png, .pdf, image/jpg"
-            />
-            <p className="text-md mt-5">or Provide Via</p>
-            <textarea
-              cols={30}
-              rows={1}
-              onChange={(e) => setCancellationPolicy(e.target.value)}
-              placeholder="Enter cancellation policy"
-              className="mt-5 resize-none rounded-xl border-2 border-gray-300 p-3"
-            />
-          </div>
-
-          <div className="flex w-[100%] flex-col gap-1">
-            <label htmlFor="tnc">Terms & Conditions</label>
-            <FileInput
-              label="Terms & Conditions"
-              onFileSelect={setTnc}
-              acceptedFileTypes="image/png, .pdf, image/jpg"
-            />
-            <p className="text-md mt-5">or Provide Via</p>
-            <textarea
-              cols={30}
-              rows={1}
-              onChange={(e) => setTnc(e.target.value)}
-              placeholder="Enter terms and conditions"
-              className="mt-5 resize-none rounded-xl border-2 border-gray-300 p-3"
-            />
+            <div className="mt-9 flex flex-row items-stretch gap-7 self-end bg-white">
+              <button
+                className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+                onClick={() => setCurrentPage((prevPage) => prevPage - 1)}
+              >
+                Back
+              </button>
+              <button
+                className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+                onClick={handleContinue}
+              >
+                Continue
+              </button>
+            </div>
           </div>
         </div>
       </div>
-
-      <button
-        onClick={handleContinue}
-        className="flex w-full items-center justify-center rounded-xl bg-[#2E3192] py-3 text-white hover:bg-[#2E3192]/90"
-      >
-        Continue
-      </button>
     </div>
   );
 };
 
-export default Page4;
+export default Page6;
