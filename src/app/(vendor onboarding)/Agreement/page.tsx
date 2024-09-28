@@ -54,7 +54,7 @@ const Agreement = ({ setCurrentPage }: Pagechangetype) => {
             <h2>3. LINKED SITES</h2>
             <p>
               This Site may contain links to other independent third-party Web
-              sites ("Linked Sites”). These Linked Sites are provided solely as
+              sites ( `&quot;`Linked Sites  `&quot;`). These Linked Sites are provided solely as
               a convenience to our visitors. Such Linked Sites are not under our
               control, and we are not responsible for and do not endorse the
               content of such Linked Sites, including any information or
@@ -85,7 +85,7 @@ const Agreement = ({ setCurrentPage }: Pagechangetype) => {
               UNDERSTAND AND AGREE THAT: (i) YOUR USE OF THE SITE, INCLUDING ANY
               RELIANCE ON ANY SUCH OPINION, ADVICE, STATEMENT, MEMORANDUM, OR
               INFORMATION CONTAINED HEREIN, SHALL BE AT YOUR SOLE RISK; (ii) THE
-              SITE IS PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS; (iii)
+              SITE IS PROVIDED ON AN  `&quot;`AS IS `&quot;` AND  `&quot;`AS AVAILABLE `&quot;` BASIS; (iii)
               EXCEPT AS EXPRESSLY PROVIDED HEREIN WE DISCLAIM ALL WARRANTIES OF
               ANY KIND, WHETHER EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED
               TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
@@ -125,14 +125,14 @@ const Agreement = ({ setCurrentPage }: Pagechangetype) => {
               This Site and all its Contents are intended solely for personal,
               non-commercial use. Except as expressly provided, nothing within
               the Site shall be construed as conferring any license under our or
-              any third party's intellectual property rights, whether by
+              any third party`&apos;`s intellectual property rights, whether by
               estoppel, implication, waiver, or otherwise. Without limiting the
               generality of the foregoing, you acknowledge and agree that all
               content available through and used to operate the Site and its
               services is protected by copyright, trademark, patent, or other
               proprietary rights. You agree not to: (a) modify, alter, or deface
               any of the trademarks, service marks, trade dress (collectively
-              "Trademarks") or other intellectual property made available by us
+                `&quot;`Trademarks `&quot;`) or other intellectual property made available by us
               in connection with the Site; (b) hold yourself out as in any way
               sponsored by, affiliated with, or endorsed by us, or any of our
               affiliates or service providers; (c) use any of the Trademarks or
@@ -152,11 +152,11 @@ const Agreement = ({ setCurrentPage }: Pagechangetype) => {
             <h2>8. INDEMNITY</h2>
             <p>
               By using the Site web sites you agree to indemnify us and
-              affiliated entities (collectively "Indemnities") and hold them
+              affiliated entities (collectively  `&quot;`Indemnities `&quot;`) and hold them
               harmless from any and all claims and expenses, including (without
-              limitation) attorney's fees, arising from your use of the Site web
+              limitation) attorney`&apos;`s fees, arising from your use of the Site web
               sites, your use of the Products and Services, or your submission
-              of ideas and/or related materials to us or from any person's use
+              of ideas and/or related materials to us or from any person`&apos;`s use
               of any ID, membership or password you maintain with any portion of
               the Site, regardless of whether such use is authorized by you.
             </p>
@@ -174,7 +174,7 @@ const Agreement = ({ setCurrentPage }: Pagechangetype) => {
               intellectual property infringement. We will promptly process and
               investigate notices of alleged infringement and will take
               appropriate actions under the Digital Millennium Copyright Act
-              ("DMCA") and other applicable intellectual property laws. Notices
+              ( `&quot;`DMCA `&quot;`) and other applicable intellectual property laws. Notices
               of claimed infringement should be directed to:
             </p>
             <p>
@@ -216,7 +216,7 @@ const Agreement = ({ setCurrentPage }: Pagechangetype) => {
               supersede any other agreement, proposals and communications,
               written or oral, between our representatives and you with respect
               to the subject matter hereof, including any terms and conditions
-              on any of customer's documents or purchase orders.
+              on any of customer`&apos;`s documents or purchase orders.
             </p>
 
             <h3>B.</h3>

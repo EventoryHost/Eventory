@@ -9,8 +9,8 @@ type Page1Props = {
   setFullName: (fullName: string) => void;
   organizationMembers: string;
   setOrganizationMembers: (organizationMembers: string) => void;
-  clientTestimonials: string | File;
-  setClientTestimonials: (clientTestimonials: string | File) => void;
+  clientTestimonials: string | File|File[];
+  setClientTestimonials: (clientTestimonials: string | File|File[]) => void;
   handleContinue: () => void;
 };
 
@@ -116,9 +116,9 @@ const Organization = ({
                 )
               }
             ></textarea>
-            {typeof clientTestimonials === "object" && (
+            {/* {typeof clientTestimonials === "object" && (
               <p className="mt-2 text-gray-500">{clientTestimonials.name}</p>
-            )}
+            )} */}
           </div>
         </div>
       </div>

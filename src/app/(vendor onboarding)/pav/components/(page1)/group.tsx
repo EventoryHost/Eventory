@@ -7,8 +7,8 @@ import { Combobox } from "@/components/ui/combobox";
 type GroupProps = {
   fullName: string;
   setFullName: (fullName: string) => void;
-  portfolio: string | File;
-  setPortfolio: (portfolio: string | File) => void;
+  portfolio: string | File|File[];
+  setPortfolio: (portfolio: string | File|File[]) => void;
   groupMembers: string;
   setGroupMembers: (groupMembers: string) => void;
   handleContinue: () => void;

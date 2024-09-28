@@ -11,10 +11,10 @@ type Page1Props = {
   setType: (type: pavtypes) => void;
   fullName: string;
   setFullName: (fullName: string) => void;
-  clientTestimonials: string | File;
-  setClientTestimonials: (clientTestimonials: string | File) => void;
-  portfolio: string | File;
-  setPortfolio: (portfolio: string | File) => void;
+  clientTestimonials: string | File|File[];
+  setClientTestimonials: (clientTestimonials: string | File|File[]) => void;
+  portfolio: string | File|File[];
+  setPortfolio: (portfolio: string | File|File[]) => void;
   groupMembers: string;
   setGroupMembers: (groupMembers: string) => void;
   organizationMembers: string;

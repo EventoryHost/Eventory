@@ -20,10 +20,10 @@ const Page = () => {
   //states for page1
   const [type, setType] = useState<pavtypes>("individual");
   const [name, setFullName] = useState("");
-  const [clientTestimonials, setClientTestimonials] = useState<string | File>(
+  const [clientTestimonials, setClientTestimonials] = useState<string | File|File[]>(
     "",
   );
-  const [portfolio, setPortfolio] = useState<string | File>("");
+  const [portfolio, setPortfolio] = useState<string | File|File[]>("");
   const [groupMembers, setGroupMembers] = useState("");
   const [organizationMembers, setOrganizationMembers] = useState("");
 
@@ -49,10 +49,10 @@ const Page = () => {
   const [setupsInstallations, setSetupsInstallations] =
     useState<boolean>(false);
   const [bookingDeposit, setBookingDeposit] = useState<boolean>(false);
-  const [cancellationPolicy, setCancellationPolicy] = useState<File | string>(
+  const [cancellationPolicy, setCancellationPolicy] = useState<File | string|File[]>(
     "",
   );
-  const [tnc, setTnc] = useState<File | string>("");
+  const [tnc, setTnc] = useState<File | string|File[]>("");
 
   //states for page5
   const [hourlyPackages, setHourlyPackages] = useState<Package[]>([
@@ -136,13 +136,26 @@ const Page = () => {
     formData.append("venId", "SomeVenID");
     formData.append("type", type);
     formData.append("name", name);
-    formData.append(
-      "clientTestimonials",
-      clientTestimonials instanceof File
-        ? clientTestimonials.name
-        : clientTestimonials,
-    );
-    formData.append("portfolio", portfolio);
+    
+    if (Array.isArray(clientTestimonials)) {
+      clientTestimonials.forEach((file) => {
+        if (file instanceof File) {
+          formData.append("clientTestimonials", file); // Append as 'photos' without the array index
+        }
+      });
+    } else if (typeof clientTestimonials === "string") {
+      formData.append("clientTestimonials", clientTestimonials); // Append the string (URL)
+    }
+    if (Array.isArray(portfolio)) {
+      portfolio.forEach((file) => {
+        if (file instanceof File) {
+          formData.append("portfolio", file); // Append as 'photos' without the array index
+        }
+      });
+    } else if (typeof portfolio === "string") {
+      formData.append("portfolio", portfolio); // Append the string (URL)
+    }
+
     formData.append(
       "numberOfMembers",
       groupMembers == "" ? organizationMembers : groupMembers,
@@ -169,8 +182,25 @@ const Page = () => {
     );
     formData.append("setupsInstallations", JSON.stringify(setupsInstallations));
     formData.append("bookingDeposit", JSON.stringify(bookingDeposit));
-    formData.append("cancellationPolicy", cancellationPolicy);
-    formData.append("termsAndConditions", tnc);
+
+    if (Array.isArray(cancellationPolicy)) {
+      cancellationPolicy.forEach((file) => {
+        if (file instanceof File) {
+          formData.append("cancellationPolicy", file); // Append as 'photos' without the array index
+        }
+      });
+    } else if (typeof cancellationPolicy === "string") {
+      formData.append("cancellationPolicy", cancellationPolicy); // Append the string (URL)
+    }
+    if (Array.isArray(tnc)) {
+      tnc.forEach((file) => {
+        if (file instanceof File) {
+          formData.append("termsAndConditions", file); // Append as 'photos' without the array index
+        }
+      });
+    } else if (typeof tnc === "string") {
+      formData.append("termsAndConditions", tnc); // Append the string (URL)
+    }
     formData.append("hourlyPackages", JSON.stringify(hourlyPackages));
     formData.append("dailyPackages", JSON.stringify(dailyPackages));
 

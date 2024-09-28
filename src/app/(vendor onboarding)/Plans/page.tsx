@@ -337,7 +337,7 @@ const Plans = ({ setCurrentPage, handleformSubmit }: Pagechangetype) => {
               </div>
               {error && (
                 <p className="text-md font-poppins font-medium text-red-600">
-                  Fill All The Req* Field's
+                  Fill All The Req* Field`&apos;`s
                 </p>
               )}
             </form>

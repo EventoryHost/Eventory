@@ -4,10 +4,10 @@ import FileInput from "@/components/fileInput"; // Import the reusable FileInput
 type Page1Props = {
   fullname: string;
   setFullname: (fullname: string) => void;
-  portfolio: string | File;
-  setPortfolio: (portfolio: string | File) => void;
-  clientTestimonials: string | File;
-  setClientTestimonials: (clientTestimonials: string | File) => void;
+  portfolio: string | File|File[];
+  setPortfolio: (portfolio: string | File|File[]) => void;
+  clientTestimonials: string | File|File[];
+  setClientTestimonials: (clientTestimonials: string | File|File[]) => void;
   handleContinue: () => void;
 };
 
