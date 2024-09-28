@@ -134,12 +134,7 @@ type page3Props = {
   setSelectedFurniture: (value: SetStateAction<string[]>) => void;
   selectedDecor: string[];
   setSelectedDecor: (value: any) => void;
-<<<<<<< HEAD
   formState: FormState;
-=======
-  formState: formState;
-  // setFormState: (formState: FormState) => void;
->>>>>>> 51a70a8a201ab2b34c6316628a57c387716876d3
   selectedTentOptions: string[];
   setSelectedTentOptions: React.Dispatch<SetStateAction<string[]>>;
   selectedAudioOptions: string[];

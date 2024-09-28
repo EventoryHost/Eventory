@@ -33,11 +33,8 @@ interface Page6Props {
 
 const Page6: React.FC<Page6Props> = ({
   formState,
-<<<<<<< HEAD
-  handleContinue,
-=======
-  handleSubmit,
   currentPage,
+  handleContinue,
   setCurrentPage,
   address,
   operatingHours,
@@ -46,7 +43,6 @@ const Page6: React.FC<Page6Props> = ({
   venueTypes,
   restrictionsPolicies,
   specialFeatures,
->>>>>>> 51a70a8a201ab2b34c6316628a57c387716876d3
   audioVisualEquipment,
   accessibilityFeatures,
   facilities,

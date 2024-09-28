@@ -290,41 +290,14 @@ const VenueForm: React.FC = () => {
             advanceBookingPeriod={formState.advanceBookingPeriod}
           />
         );
-      case 4:
-        return (
-          <Page4
-            hourlyPackages={hourlyPackages}
-            setHourlyPackages={setHourlyPackages}
-            dailyPackages={dailyPackages}
-            setDailyPackages={setDailyPackages}
-            seasonalPackages={seasonalPackages}
-            setSeasonalPackages={setSeasonalPackages}
-            handlePackageChange={handlePackageChange}
-            addPackage={addPackage}
-            handleContinue={() => {
-              setCurrentPage(5);
-              handleContinue();
-            }}
-          />
-        );
-      case 5:
-        return (
-          <Page5
-            formState={formState}
-            updateFormState={updateFormState}
-            handleContinue={() => {
-              setCurrentPage(6);
-              handleContinue();
-            }}
-          />
-        );
+
+
 
       case 5:
         return (
           <Page6
             formState={formState}
             updateFormState={updateFormState}
-            handleSubmit={handleSubmit}
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
             address={formState.address}
@@ -334,7 +307,7 @@ const VenueForm: React.FC = () => {
             venueTypes={venueTypes}
             handleContinue={() => {
               setCurrentPage(7);
-              handleContinue();
+              // handleContinue();
             }}
             audioVisualEquipment={audioVisualEquipment}
             accessibilityFeatures={accessibilityFeatures}
@@ -359,16 +332,7 @@ const VenueForm: React.FC = () => {
             <center><h2>Loading....</h2></center>
           </>
         )
-          <Page1
-            formState={formState}
-            updateFormState={updateFormState}
-            handleContinue={() => {
-              setCurrentPage(2);
-            }}
-            address={formState.address}
-            operatingHours={formState.operatingHours}
-          />
-        );
+
     }
   };
 
@@ -387,95 +351,78 @@ const VenueForm: React.FC = () => {
                     className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 1 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
                     onClick={() => setCurrentPage(1)}
                   ></button>
-    <div className="m-0 flex w-full flex-col overflow-x-hidden lg:h-[calc(100vh-4.2rem)] lg:flex-row">
-      <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
-        <div className="flex w-[100%] flex-col justify-center">
-          <div className="mx-6 flex flex-col gap-1 px-3 lg:mt-[2rem]">
-            <span className="text-lg font-semibold">Step 1 of 6</span>
-            <div className="flex gap-4">
-              <button
-                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 1 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                onClick={() => setCurrentPage(1)}
-              ></button>
+                  <div className="m-0 flex w-full flex-col overflow-x-hidden lg:h-[calc(100vh-4.2rem)] lg:flex-row">
+                    <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
+                      <div className="flex w-[100%] flex-col justify-center">
+                        <div className="mx-6 flex flex-col gap-1 px-3 lg:mt-[2rem]">
+                          <span className="text-lg font-semibold">Step 1 of 6</span>
+                          <div className="flex gap-4">
+                            <button
+                              className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 1 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                              onClick={() => setCurrentPage(1)}
+                            ></button>
 
-                  <button
-                    className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 2 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                    onClick={() => setCurrentPage(2)}
-                  ></button>
+                            <button
+                              className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 2 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                              onClick={() => setCurrentPage(2)}
+                            ></button>
 
-                  <button
-                    className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 3 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                    onClick={() => setCurrentPage(3)}
-                  ></button>
+                            <button
+                              className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 3 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                              onClick={() => setCurrentPage(3)}
+                            ></button>
 
-                  <button
-                    className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 4 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                    onClick={() => setCurrentPage(4)}
-                  ></button>
+                            <button
+                              className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 4 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                              onClick={() => setCurrentPage(4)}
+                            ></button>
 
-                  <button
-                    className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 5 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                    onClick={() => setCurrentPage(5)}
-                  ></button>
+                            <button
+                              className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 5 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                              onClick={() => setCurrentPage(5)}
+                            ></button>
 
-                  <button
-                    className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 6 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                    onClick={() => setCurrentPage(6)}
-                  ></button>
+                            <button
+                              className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 6 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                              onClick={() => setCurrentPage(6)}
+                            ></button>
+                          </div>
+                        </div>
+                      </div>
+
+
+                      )
+      }
+                      <button
+                        className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 5 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                        onClick={() => setCurrentPage(5)}
+                      ></button>
+                    </div>
+                  </div>
+                </div>
+                <div className="mx-6 flex h-[50%] flex-col items-start justify-center gap-9 px-3 md:px-3">
+                  <h1 className="text-[40px] font-semibold md:text-[3vw]">
+                    Fill out your Venue details
+                  </h1>
+                  <p className="xs:text-md text-[#797878] md:w-[90%]">
+                    Please Provide details of the venue provided by your company.
+                  </p>
+                </div>
+                <div className="relative h-[10rem] lg:w-full">
+                  <Image
+                    src={"/tajmahal.png"}
+                    alt=""
+                    width={400}
+                    height={200}
+                    className="h-full w-full object-cover"
+                  />
                 </div>
               </div>
+              <div className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] p-2 md:p-[1rem]">
+                {renderPage()}
+              </div>
             </div>
-            <div className="flex h-[50%] flex-col items-start justify-center gap-9 px-3 md:px-3">
-              <h1 className="text-[8vw] font-bold md:text-[3vw]">
-                Tell us about your business
-              </h1>
-              <p className="text-black xs:text-sm md:w-[90%]">
-                Fill out your Business details to get verified and proceed to
-                registration process.
-              </p>
-            </div>
-            <div className="relative h-[10rem] lg:w-full">
-              <Image
-                src={"/tajmahal.png"}
-                alt=""
-                width={400}
-                height={200}
-                className="h-full w-full object-cover"
-              />
-            </div>
-          </div>
-        )
-      }
-              <button
-                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 5 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                onClick={() => setCurrentPage(5)}
-              ></button>
-            </div>
-          </div>
-        </div>
-        <div className="mx-6 flex h-[50%] flex-col items-start justify-center gap-9 px-3 md:px-3">
-          <h1 className="text-[40px] font-semibold md:text-[3vw]">
-            Fill out your Venue details
-          </h1>
-          <p className="xs:text-md text-[#797878] md:w-[90%]">
-            Please Provide details of the venue provided by your company.
-          </p>
-        </div>
-        <div className="relative h-[10rem] lg:w-full">
-          <Image
-            src={"/tajmahal.png"}
-            alt=""
-            width={400}
-            height={200}
-            className="h-full w-full object-cover"
-          />
-        </div>
-      </div>
-      <div className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] p-2 md:p-[1rem]">
-        {renderPage()}
-      </div>
-    </div>
-  );
+            );
 };
 
-export default VenueForm;
+            export default VenueForm;
