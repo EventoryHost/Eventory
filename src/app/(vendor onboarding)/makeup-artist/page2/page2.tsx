@@ -5,8 +5,8 @@ import { Upload } from "lucide-react";
 import FileInput from "@/components/fileInput";
 
 interface FormState {
-  termsAndConditions: string | File|File[];
-  cancellationPolicy: string | File|File[];
+  termsAndConditions: string | File | File[];
+  cancellationPolicy: string | File | File[];
 }
 
 interface Page2Props {
@@ -47,9 +47,11 @@ const Page: React.FC<Page2Props> = ({
                   <p className="text-xl font-semibold">Terms and Conditions</p>
                   <p className="text-gray-500">PNG, PDF, JPG</p>
                   <FileInput
-                    label="Terms and Conditions"
-                    onFileSelect={handleTermsAndConditions}
-                    acceptedFileTypes=".pdf,.doc,.docx" // Specify accepted file types
+                    label="terms and conditions"
+                    onFileSelect={(file) =>
+                      updateFormState({ termsAndConditions: file })
+                    }
+                    acceptedFileTypes=".png,.pdf,.jpg"
                   />
                 </div>
               </div>
@@ -60,9 +62,11 @@ const Page: React.FC<Page2Props> = ({
                   <p className="text-gray-500">PNG, PDF, JPG</p>
 
                   <FileInput
-                    label="Cancellation Policy"
-                    onFileSelect={handleCancellationPolicy}
-                    acceptedFileTypes=".pdf,.doc,.docx"
+                    label="cancellation policy"
+                    onFileSelect={(file) =>
+                      updateFormState({ cancellationPolicy: file })
+                    }
+                    acceptedFileTypes=".png,.pdf,.jpg"
                   />
                 </div>
               </div>

@@ -1,9 +1,10 @@
 import StepBar from "@/app/(components)/stepBar";
 import FileInput from "@/components/fileInput";
 import { ArrowLeft, Upload } from "lucide-react";
-import { SetStateAction } from "react";
+import { SetStateAction, useEffect } from "react";
 import { FormState } from "../page";
 import Appetizers from "../../(components)/Appetizers";
+import { Console } from "console";
 
 interface formState {
   itemCatalogue: boolean | File;
@@ -49,6 +50,10 @@ const Page2: React.FC<page2Props> = ({
     "Audio visuals",
     "Others",
   ];
+
+  useEffect(() => {
+    console.log(formState.customization);
+  }, [formState.customization]);
   return (
     <div className="flex h-full w-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide">
       <div className="flex min-w-full flex-col items-start justify-around gap-10">

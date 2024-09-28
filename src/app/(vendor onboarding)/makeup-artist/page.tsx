@@ -35,12 +35,12 @@ interface FormState {
   onsiteMakeup: boolean;
 
   artistDescription: string;
-  portfolioUrls: string | File|File[];
+  portfolioUrls: string | File | File[];
   makeup_groupmembers: string;
   organisationMembers: string;
   // Page 2
-  termsAndConditions: string | File|File[];
-  cancellationPolicy: string | File|File[];
+  termsAndConditions: string | File | File[];
+  cancellationPolicy: string | File | File[];
   // Page 3
   // Page 4
 }
@@ -164,36 +164,30 @@ const VenueForm: React.FC = () => {
     formData.append("artistDescription", formState.artistDescription);
     if (Array.isArray(formState.portfolioUrls)) {
       formState.portfolioUrls.forEach((file) => {
-        if (file instanceof File) {
-          formData.append("portfolioUrls", file); // Append as 'photos' without the array index
-        }
+        formData.append("portfolioUrls", file); // No index here
       });
-    } else if (typeof formState.portfolioUrls === "string") {
-      formData.append("portfolioUrls", formState.portfolioUrls); // Append the string (URL)
+    } else {
+      formData.append("portfolioUrls", formState.portfolioUrls);
     }
+
     formData.append("makeup_groupmembers", formState.makeup_groupmembers);
     formData.append("organisationMembers", formState.organisationMembers);
 
     //page 2
     if (Array.isArray(formState.termsAndConditions)) {
       formState.termsAndConditions.forEach((file) => {
-        if (file instanceof File) {
-          formData.append("termsAndConditions", file); // Append as 'photos' without the array index
-        }
+        formData.append("termsAndConditions", file); // No index here
       });
-    } else if (typeof formState.termsAndConditions === "string") {
-      formData.append("termsAndConditions", formState.termsAndConditions); // Append the string (URL)
+    } else {
+      formData.append("termsAndConditions", formState.termsAndConditions);
     }
     if (Array.isArray(formState.cancellationPolicy)) {
       formState.cancellationPolicy.forEach((file) => {
-        if (file instanceof File) {
-          formData.append("cancellationPolicy", file); // Append as 'photos' without the array index
-        }
+        formData.append("cancellationPolicy", file); // No index here
       });
-    } else if (typeof formState.cancellationPolicy === "string") {
-      formData.append("cancellationPolicy", formState.cancellationPolicy); // Append the string (URL)
+    } else {
+      formData.append("cancellationPolicy", formState.cancellationPolicy);
     }
-
     //page 3
     formData.append("advancePayment", advancePayment.toString());
     formData.append("hourlyPackage", JSON.stringify(hourlyPackage));

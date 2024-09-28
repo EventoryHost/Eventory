@@ -49,7 +49,7 @@ export interface FormState {
   writtenthemeproposalafterconsultaion: boolean;
   revisionforinitialthemeproposal: boolean;
 
-  // Page 3
+  //page 7
   cancellationPolicy: string | File | File[];
   termsAndConditions: string | File | File[];
 
@@ -249,33 +249,36 @@ const Decorators: React.FC = () => {
     formData.append("websiteurl", formState.websiteurl);
     formData.append("intstagramurl", formState.intstagramurl);
     formData.append("clientTestimonials", formState.clientTestimonials);
-    formData.append("Recongnition_awards", formState.Recongnition_awards);
-    formData.append("advbookingperiod", formState.advbookingperiod);
-    formData.append("writtenthemeproposalafterconsultaion", formState.writtenthemeproposalafterconsultaion.toString());
-    formData.append("revisionforinitialthemeproposal", formState.revisionforinitialthemeproposal.toString());
-    // 5
+    //page 7
+   
     if (Array.isArray(formState.cancellationPolicy)) {
       formState.cancellationPolicy.forEach((file) => {
-        if (file instanceof File) {
-          formData.append('cancellationPolicy', file); // Append as 'photos' without the array index
-        }
+        formData.append("cancellationPolicy", file); // No index here
       });
-    } else if (typeof formState.cancellationPolicy === 'string') {
-      formData.append('photos', formState.cancellationPolicy); // Append the string (URL)
+    } else {
+      formData.append("cancellationPolicy", formState.cancellationPolicy);
     }
-    
     if (Array.isArray(formState.termsAndConditions)) {
       formState.termsAndConditions.forEach((file) => {
-        if (file instanceof File) {
-          formData.append('termsAndConditions', file); // Append as 'photos' without the array index
-        }
+        formData.append("termsAndConditions", file); // No index here
       });
-    } else if (typeof formState.termsAndConditions === 'string') {
-      formData.append('photos', formState.termsAndConditions); // Append the string (URL)
+    } else {
+      formData.append("termsAndConditions", formState.termsAndConditions);
     }
 
-    console.log(formData);
+    
 
+    // Append form data for debugging
+    formData.forEach((value, key) => {
+      console.log(`${key}: ${value}`);
+    });
+
+    try {
+      await addDecorator(formData);
+      alert("Tried adding decorator");
+    } catch (error) {
+      console.error("Error adding venue:", error);
+    }
   };
 
   const renderPage = () => {

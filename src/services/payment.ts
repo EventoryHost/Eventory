@@ -63,6 +63,7 @@ const handlePayment = async (
   name: string, // vendor name from flow
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>,
   handleSubmit: () => void,
+  
 ) => {
   try {
     const orderResponse = await createOrder(amount, plan, id);

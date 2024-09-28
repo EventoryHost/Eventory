@@ -68,7 +68,7 @@ const _audioEquipments = [
   "Recording Equipment",
   "Conference and Meeting Equipment",
   "Lighting and Effects",
-  "Other",
+  "Others",
 ];
 const _visualEquipments = [
   "Projectors",
@@ -86,7 +86,7 @@ const _visualEquipments = [
   "Presentation Aids",
   "Virtual Reality (VR) Equipment",
   "Augmented Reality (AR) Equipment",
-  "Other",
+  "Others",
 ];
 const _lightEquipments = [
   "Traditional Indian Tents",
@@ -101,7 +101,7 @@ const _lightEquipments = [
   "Gazebos",
   "Shade Structures",
   "Temporary Structures",
-  "Other",
+  "Others",
 ];
 
 type PricingEntry = {
@@ -126,8 +126,13 @@ interface formState {
 }
 
 type page3Props = {
-  selectedEvents: string[];
-  setselectedEvents: (value: SetStateAction<string[]>) => void;
+  selectedFurnitureEvents: string[];
+  setselectedFurnitureEvents: (value: SetStateAction<string[]>) => void;
+  selectedTentEvents: string[];
+  setselectedTentEvents: (value: SetStateAction<string[]>) => void;
+  selectedAudioEvents: string[];
+  setselectedAudioEvents: (value: SetStateAction<string[]>) => void;
+
   selectedCategory: string;
   setSelectedCategory: (value: any) => void;
   selectedFurniture: string[];
@@ -152,9 +157,14 @@ type page3Props = {
 
 function Page3({
   selectedCategory,
-  selectedEvents,
+  selectedFurnitureEvents,
+  selectedTentEvents,
+  selectedAudioEvents,
+  setselectedFurnitureEvents,
+  setselectedAudioEvents,
+  setselectedTentEvents,
   setSelectedCategory,
-  setselectedEvents,
+
   selectedFurniture,
   setSelectedFurniture,
   selectedDecor,
@@ -261,32 +271,38 @@ function Page3({
               </div>
             </div>
 
-            <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
+            <div className="flex flex-col gap-6 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
               <h1 className="text-xl font-semibold">Types of Event</h1>
-              <Appetizers
-                field={"types_of_events"}
-                appetizers={_typesOfEvents}
-                selectedAppetizers={selectedEvents}
-                setSelectedAppetizers={setselectedEvents}
-              />
+              <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+                <Appetizers
+                  field={"furniture_types_of_events"}
+                  appetizers={_typesOfEvents}
+                  selectedAppetizers={selectedFurnitureEvents}
+                  setSelectedAppetizers={setselectedFurnitureEvents}
+                />
+              </div>
             </div>
-            <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
+            <div className="flex flex-col gap-6 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
               <h1 className="text-xl font-semibold">Furniture</h1>
-              <Appetizers
-                field={"furniture_options"}
-                appetizers={furnitureOptions}
-                selectedAppetizers={selectedFurniture}
-                setSelectedAppetizers={setSelectedFurniture}
-              />
+              <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+                <Appetizers
+                  field={"furniture_options"}
+                  appetizers={furnitureOptions}
+                  selectedAppetizers={selectedFurniture}
+                  setSelectedAppetizers={setSelectedFurniture}
+                />
+              </div>
             </div>
-            <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
+            <div className="flex flex-col gap-6 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
               <h1 className="text-xl font-semibold">Decor</h1>
-              <Appetizers
-                field={"decor_options"}
-                appetizers={DecorOptions}
-                selectedAppetizers={selectedDecor}
-                setSelectedAppetizers={setSelectedDecor}
-              />
+              <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+                <Appetizers
+                  field={"decor_options"}
+                  appetizers={DecorOptions}
+                  selectedAppetizers={selectedDecor}
+                  setSelectedAppetizers={setSelectedDecor}
+                />
+              </div>
             </div>
           </div>
         )}
@@ -316,23 +332,27 @@ function Page3({
                 </div>
               </div>
             </div>
-            <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
+            <div className="flex flex-col gap-6 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
               <h1 className="text-xl font-semibold">Types of Event</h1>
-              <Appetizers
-                field={"types_of_events"}
-                appetizers={_typesOfEvents}
-                selectedAppetizers={selectedEvents}
-                setSelectedAppetizers={setselectedEvents}
-              />
+              <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+                <Appetizers
+                  field={"tent_types_of_events"}
+                  appetizers={_typesOfEvents}
+                  selectedAppetizers={selectedTentEvents}
+                  setSelectedAppetizers={setselectedTentEvents}
+                />
+              </div>
             </div>
-            <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
+            <div className="flex flex-col gap-6 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
               <h1 className="text-xl font-semibold">Tent and Canopy</h1>
-              <Appetizers
-                field={"tent_and_canopy"}
-                appetizers={_tentAndCanopy}
-                selectedAppetizers={selectedTentOptions}
-                setSelectedAppetizers={setSelectedTentOptions}
-              />
+              <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+                <Appetizers
+                  field={"tent_and_canopy"}
+                  appetizers={_tentAndCanopy}
+                  selectedAppetizers={selectedTentOptions}
+                  setSelectedAppetizers={setSelectedTentOptions}
+                />
+              </div>
             </div>
           </>
         )}
@@ -361,41 +381,49 @@ function Page3({
                 </div>
               </div>
             </div>
-            <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
+            <div className="flex flex-col gap-6 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
               <h1 className="text-xl font-semibold">Types of Event</h1>
-              <Appetizers
-                field={"types_of_events"}
-                appetizers={_typesOfEvents}
-                selectedAppetizers={selectedEvents}
-                setSelectedAppetizers={setselectedEvents}
-              />
+              <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+                <Appetizers
+                  field={"audio_types_of_events"}
+                  appetizers={_typesOfEvents}
+                  selectedAppetizers={selectedAudioEvents}
+                  setSelectedAppetizers={setselectedAudioEvents}
+                />
+              </div>
             </div>
-            <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
+            <div className="flex flex-col gap-6 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
               <h1 className="text-xl font-semibold">Audio Equipment</h1>
-              <Appetizers
-                field={"audio_equipments"}
-                appetizers={_audioEquipments}
-                selectedAppetizers={selectedAudioOptions}
-                setSelectedAppetizers={setSelectedAudioOptions}
-              />
+              <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+                <Appetizers
+                  field={"audio_equipments"}
+                  appetizers={_audioEquipments}
+                  selectedAppetizers={selectedAudioOptions}
+                  setSelectedAppetizers={setSelectedAudioOptions}
+                />
+              </div>
             </div>
-            <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
+            <div className="flex flex-col gap-6 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
               <h1 className="text-xl font-semibold">Visual Equipment</h1>
-              <Appetizers
-                field={"visual_equipment"}
-                appetizers={_visualEquipments}
-                selectedAppetizers={selectedvisualOptions}
-                setSelectedAppetizers={setSelectedVisualOptions}
-              />
+              <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+                <Appetizers
+                  field={"visual_equipment"}
+                  appetizers={_visualEquipments}
+                  selectedAppetizers={selectedvisualOptions}
+                  setSelectedAppetizers={setSelectedVisualOptions}
+                />
+              </div>
             </div>
-            <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
+            <div className="flex flex-col gap-6 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
               <h1 className="text-xl font-semibold">Light Equipment</h1>
-              <Appetizers
-                field={"light_equipments"}
-                appetizers={_lightEquipments}
-                selectedAppetizers={selectedLightOptions}
-                setSelectedAppetizers={setSelectedLightOptions}
-              />
+              <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+                <Appetizers
+                  field={"light_equipments"}
+                  appetizers={_lightEquipments}
+                  selectedAppetizers={selectedLightOptions}
+                  setSelectedAppetizers={setSelectedLightOptions}
+                />
+              </div>
             </div>
           </>
         )}
@@ -557,8 +585,19 @@ function Page3({
                 <span className="text-small font-light">MP4, MKV</span>
                 <FileInput
                   label="videos"
-                  onFileSelect={(file) => {
-                    updateFormState({ videos: file });
+                  onFileSelect={(files) => {
+                    const existingVideos = Array.isArray(formState.videos)
+                      ? formState.videos
+                      : formState.videos instanceof File
+                        ? [formState.videos]
+                        : [];
+
+                    const newVideos = [
+                      ...existingVideos,
+                      ...(Array.isArray(files) ? files : [files]),
+                    ];
+
+                    updateFormState({ videos: newVideos });
                   }}
                   acceptedFileTypes="image/png, .pdf, image/jpg"
                   multiple
@@ -761,9 +800,10 @@ function Page3({
                   onClick={() => {
                     console.log(
                       formState.furnitureAndDecorListUrl,
-                      formState.cancellationPolicy,
+                      formState.termsAndConditions,
                       formState.clientTestimonial,
                       formState.photos,
+                      formState.videos,
                     );
                     setCurrentPage(currentPage + 1);
                   }}
