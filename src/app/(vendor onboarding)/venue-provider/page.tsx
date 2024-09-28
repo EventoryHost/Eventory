@@ -10,9 +10,9 @@ import Page3 from "./page3/page3";
 import Page4 from "./page4/page4";
 import Page6 from "./page6/page6";
 import { addVenue } from "../../../services/vendors/venue";
-import Agreement from "../Agreement/page";
+import Agreement from "../Agreement/Agreement";
 import Registration_Completed from "../Registration-Completed/page";
-import Plans from "../Plans/page";
+import Plans from "../Plans/Plans";
 
 interface Package {
   type: string;
