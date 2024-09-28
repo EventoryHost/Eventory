@@ -8,9 +8,14 @@ import { ArrowLeft } from "lucide-react";
 import { FormState } from "../page";
 
 const _typesOfEvents = [
-  "Anniversary Celebration ", "Birthday Party ", "Corporate Event ", "Cultural Events",
-  "Wedding Events", "Seasonal Parties", "Others"
-]
+  "Anniversary Celebration ",
+  "Birthday Party ",
+  "Corporate Event ",
+  "Cultural Events",
+  "Wedding Events",
+  "Seasonal Parties",
+  "Others",
+];
 const furnitureOptions = [
   "Chair",
   "Sofa and Couches",
@@ -64,7 +69,7 @@ interface formState {
   termsAndConditions: string | File | File[];
   cancellationPolicy: string | File | File[];
   handleChange: (key: string, value: any) => void;
-};
+}
 
 type page3Props = {
   selectedFurnitureEvents: string[];
@@ -133,28 +138,31 @@ function Page3({
   const [formPage, setFormPage] = useState(1);
   const handleCategorySelection = (category: string) => {
     setSelectedCategory(category);
-
-
   };
 
   return (
-    <div className="flex h-full w-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide ">
+    <div className="flex h-full w-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide">
       <div className="flex min-w-full flex-col items-start justify-around gap-10">
         <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
-          <div className="flex gap-4 items-center">
-            <ArrowLeft className="mr-1 ml-2 h-6 w-6 text-[#2E3192] cursor-pointer" aria-hidden="true" onClick={() => setCurrentPage(currentPage - 1)} />
-            <h1 className=" text-2xl font-semibold">Menu Details</h1>
+          <div className="flex items-center gap-4">
+            <ArrowLeft
+              className="ml-2 mr-1 h-6 w-6 cursor-pointer text-[#2E3192]"
+              aria-hidden="true"
+              onClick={() => setCurrentPage(currentPage - 1)}
+            />
+            <h1 className="text-2xl font-semibold">Menu Details</h1>
           </div>
-          <div className="flex  space-x-4 overflow-hidden rounded-full border border-[#2E3192] p-4">
+          <div className="flex space-x-4 overflow-hidden rounded-full border border-[#2E3192] p-4">
             <button
               onClick={() => {
                 setSelectedCategory("Furniture & Decor");
                 handleCategorySelection("Furniture & Decor");
               }}
-              className={`rounded-full px-4 py-2 text-[#2E3192] ${selectedCategory === "Furniture & Decor"
-                ? "bg-[#2E3192] text-white"
-                : ""
-                }`}
+              className={`rounded-full px-4 py-2 text-[#2E3192] ${
+                selectedCategory === "Furniture & Decor"
+                  ? "bg-[#2E3192] text-white"
+                  : ""
+              }`}
             >
               Furniture & Decor
             </button>
@@ -163,10 +171,11 @@ function Page3({
                 setSelectedCategory("Tent and Canopy");
                 handleCategorySelection("Tent and Canopy");
               }}
-              className={`rounded-full px-4 py-2 text-[#2E3192] ${selectedCategory === "Tent and Canopy"
-                ? "bg-[#2E3192] text-white"
-                : ""
-                }`}
+              className={`rounded-full px-4 py-2 text-[#2E3192] ${
+                selectedCategory === "Tent and Canopy"
+                  ? "bg-[#2E3192] text-white"
+                  : ""
+              }`}
             >
               Tent and Canopy
             </button>
@@ -175,10 +184,11 @@ function Page3({
                 setSelectedCategory("Audio-Visual");
                 handleCategorySelection("Audio-Visual");
               }}
-              className={`rounded-full px-4 py-2 text-[#2E3192] ${selectedCategory === "Audio-Visual"
-                ? "bg-[#2E3192] text-white"
-                : ""
-                }`}
+              className={`rounded-full px-4 py-2 text-[#2E3192] ${
+                selectedCategory === "Audio-Visual"
+                  ? "bg-[#2E3192] text-white"
+                  : ""
+              }`}
             >
               Audio-Visual
             </button>
@@ -196,7 +206,9 @@ function Page3({
                   <label className="text-base font-medium" htmlFor="category">
                     Upload list
                   </label>
-                  <p className="text-gray-500 text-xs font-light">PNG, PDF, JPG</p>
+                  <p className="text-xs font-light text-gray-500">
+                    PNG, PDF, JPG
+                  </p>
                   <FileInput
                     label="furniture and decor list"
                     onFileSelect={(file) => {
@@ -243,7 +255,6 @@ function Page3({
                 selectedAppetizers={selectedDecor}
                 setSelectedAppetizers={setSelectedDecor}
               />
-              </div>
             </div>
 
 
@@ -260,7 +271,9 @@ function Page3({
                   <label className="text-base font-medium" htmlFor="category">
                     Upload list
                   </label>
-                  <p className="text-gray-500 text-xs font-light">PNG, PDF, JPG</p>
+                  <p className="text-xs font-light text-gray-500">
+                    PNG, PDF, JPG
+                  </p>
                   <FileInput
                     label="furniture and decor list"
                     onFileSelect={(file) => {
@@ -304,14 +317,14 @@ function Page3({
           <>
             <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
               <div className="flex min-h-full min-w-full flex-col gap-5">
-                <h1 className="text-2xl font-semibold">
-                  Audio-Visual Rentals
-                </h1>
+                <h1 className="text-2xl font-semibold">Audio-Visual Rentals</h1>
                 <div className="flex min-w-[40%] flex-col">
                   <label className="text-base font-medium" htmlFor="category">
                     Upload list
                   </label>
-                  <p className="text-gray-500 text-xs font-light">PNG, PDF, JPG</p>
+                  <p className="text-xs font-light text-gray-500">
+                    PNG, PDF, JPG
+                  </p>
                   <FileInput
                     label="furniture and decor list"
                     onFileSelect={(file) => {
@@ -373,21 +386,48 @@ function Page3({
             </div>
           </>
         )}
-        <div className="flex  min-w-full flex-col  gap-8 rounded-xl bg-white p-3 md:p-6">
-          <h1 className=" text-2xl font-semibold">Additional Details</h1>
+        <div className="flex min-w-full flex-col gap-8 rounded-xl bg-white p-3 md:p-6">
+          <h1 className="text-2xl font-semibold">Additional Details</h1>
 
-          <div className="flex min-w-full flex-col items-start justify-between  md:flex-row gap-6 ">
-            <div className="flex min-w-[48%]  flex-col gap-8">
-              <div className="flex flex-col  gap-2">
-
-                <div className="text-base font-medium flex items-center gap-1">Photo <span className="text-red-500 ">*</span>
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="1.33398" y="1.3335" width="13.3333" height="13.3333" rx="6.66667" stroke="#2B3F6C" />
-                    <path d="M8.33398 11.3335L8.33398 7.3335" stroke="#2B3F6C" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M7.00065 7.3335L8.33398 7.3335" stroke="#2B3F6C" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M8.33398 5.33366L8.33398 4.66699" stroke="#2B3F6C" stroke-linecap="round" stroke-linejoin="round" />
+          <div className="flex min-w-full flex-col items-start justify-between gap-6 md:flex-row">
+            <div className="flex min-w-[48%] flex-col gap-8">
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center gap-1 text-base font-medium">
+                  Photo <span className="text-red-500">*</span>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect
+                      x="1.33398"
+                      y="1.3335"
+                      width="13.3333"
+                      height="13.3333"
+                      rx="6.66667"
+                      stroke="#2B3F6C"
+                    />
+                    <path
+                      d="M8.33398 11.3335L8.33398 7.3335"
+                      stroke="#2B3F6C"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M7.00065 7.3335L8.33398 7.3335"
+                      stroke="#2B3F6C"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M8.33398 5.33366L8.33398 4.66699"
+                      stroke="#2B3F6C"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
                   </svg>
-
                 </div>
                 <span className="text-small font-light">PNG,JPG</span>
 
@@ -417,35 +457,39 @@ function Page3({
                 <input
                   type="text"
                   name="photos"
-                  className="w-full rounded-xl border-2 bg-white p-3 py-5 outline-none text-sm"
+                  className="w-full rounded-xl border-2 bg-white p-3 py-5 text-sm outline-none"
                   placeholder="Enter your portfolio links"
-                  onChange={(e) => { updateFormState({ photos: e.target.value }) }}
+                  onChange={(e) => {
+                    updateFormState({ photos: e.target.value });
+                  }}
                   value={
-                    typeof formState.photos === 'string'
+                    typeof formState.photos === "string"
                       ? formState.photos
                       : Array.isArray(formState.photos)
-                        ? formState.photos.map((file: File) => file.name).join(', ')
+                        ? formState.photos
+                            .map((file: File) => file.name)
+                            .join(", ")
                         : (formState.photos as File)?.name
                   }
                 />
-
-
               </div>
-              <div className="flex flex-col  gap-2">
-                <label className="font-medium text-base" htmlFor="vendorName">
+              <div className="flex flex-col gap-2">
+                <label className="text-base font-medium" htmlFor="vendorName">
                   Award and Recognization
                 </label>
                 <input
                   id="vendorName"
                   type="text"
                   value={formState.awardsAndRecognize || ""}
-                  onChange={(e) => handleChange("awardsAndRecognize", e.target.value)}
+                  onChange={(e) =>
+                    handleChange("awardsAndRecognize", e.target.value)
+                  }
                   className="w-full rounded-xl border-2 bg-white p-4 outline-none"
                   placeholder="Provide your URL"
                 />
               </div>
-              <div className="flex flex-col  gap-2">
-                <label className="font-medium text-base" htmlFor="vendorName">
+              <div className="flex flex-col gap-2">
+                <label className="text-base font-medium" htmlFor="vendorName">
                   Instagram
                 </label>
                 <input
@@ -457,19 +501,45 @@ function Page3({
                   placeholder="Provide your Instagram URL for the Venue"
                 />
               </div>
-
             </div>
-            <div className="flex min-w-[48%]  flex-col gap-8">
-              <div className="flex flex-col  gap-2">
-
-                <div className="text-base font-medium flex items-center gap-1">Videos <span className="text-red-500 ">*</span>
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="1.33398" y="1.3335" width="13.3333" height="13.3333" rx="6.66667" stroke="#2B3F6C" />
-                    <path d="M8.33398 11.3335L8.33398 7.3335" stroke="#2B3F6C" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M7.00065 7.3335L8.33398 7.3335" stroke="#2B3F6C" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M8.33398 5.33366L8.33398 4.66699" stroke="#2B3F6C" stroke-linecap="round" stroke-linejoin="round" />
+            <div className="flex min-w-[48%] flex-col gap-8">
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center gap-1 text-base font-medium">
+                  Videos <span className="text-red-500">*</span>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect
+                      x="1.33398"
+                      y="1.3335"
+                      width="13.3333"
+                      height="13.3333"
+                      rx="6.66667"
+                      stroke="#2B3F6C"
+                    />
+                    <path
+                      d="M8.33398 11.3335L8.33398 7.3335"
+                      stroke="#2B3F6C"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M7.00065 7.3335L8.33398 7.3335"
+                      stroke="#2B3F6C"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M8.33398 5.33366L8.33398 4.66699"
+                      stroke="#2B3F6C"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
                   </svg>
-
                 </div>
                 <span className="text-small font-light">MP4, MKV</span>
                 <FileInput
@@ -494,34 +564,39 @@ function Page3({
                 <span className="text-base font-medium">or Continue via</span>
                 <input
                   type="text"
-                  className="w-full rounded-xl border-2 bg-white p-3 py-5 outline-none text-sm"
+                  className="w-full rounded-xl border-2 bg-white p-3 py-5 text-sm outline-none"
                   placeholder="Enter your portfolio links"
-                  onChange={(e) => { updateFormState({ videos: e.target.value }) }}
+                  onChange={(e) => {
+                    updateFormState({ videos: e.target.value });
+                  }}
                   value={
-                    typeof formState.videos === 'string'
+                    typeof formState.videos === "string"
                       ? formState.videos
                       : Array.isArray(formState.videos)
-                        ? formState.videos.map((file: File) => file.name).join(', ')
+                        ? formState.videos
+                            .map((file: File) => file.name)
+                            .join(", ")
                         : (formState.videos as File)?.name
                   }
                 />
-
               </div>
-              <div className="flex flex-col  gap-2">
-                <label className="font-medium text-base" htmlFor="vendorName">
+              <div className="flex flex-col gap-2">
+                <label className="text-base font-medium" htmlFor="vendorName">
                   Client Testimonials
                 </label>
                 <input
                   id="vendorName"
                   type="text"
                   value={formState.clientTestimonial || ""}
-                  onChange={(e) => handleChange("clientTestimonial", e.target.value)}
+                  onChange={(e) =>
+                    handleChange("clientTestimonial", e.target.value)
+                  }
                   className="w-full rounded-xl border-2 bg-white p-4 outline-none"
                   placeholder="Provide your URL"
                 />
               </div>
-              <div className="flex flex-col  gap-2">
-                <label className="font-medium text-base" htmlFor="vendorName">
+              <div className="flex flex-col gap-2">
+                <label className="text-base font-medium" htmlFor="vendorName">
                   Website URL
                 </label>
                 <input
@@ -536,19 +611,48 @@ function Page3({
             </div>
           </div>
         </div>
-        <div className="flex  min-w-full flex-col  gap-8 rounded-xl bg-white p-3 md:p-6">
-          <h1 className=" text-2xl font-semibold">Policies</h1>
+        <div className="flex min-w-full flex-col gap-8 rounded-xl bg-white p-3 md:p-6">
+          <h1 className="text-2xl font-semibold">Policies</h1>
 
-          <div className="flex min-w-full flex-col items-start justify-between  md:flex-row gap-6 ">
-
-            <div className="flex min-w-[48%]  flex-col gap-8">
-              <div className="flex flex-col  gap-2">
-                <div className="text-base font-medium flex gap-1 items-center">Terms & Conditions <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="1.33398" y="1.3335" width="13.3333" height="13.3333" rx="6.66667" stroke="#2B3F6C" />
-                  <path d="M8.33398 11.3335L8.33398 7.3335" stroke="#2B3F6C" stroke-linecap="round" stroke-linejoin="round" />
-                  <path d="M7.00065 7.3335L8.33398 7.3335" stroke="#2B3F6C" stroke-linecap="round" stroke-linejoin="round" />
-                  <path d="M8.33398 5.33366L8.33398 4.66699" stroke="#2B3F6C" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
+          <div className="flex min-w-full flex-col items-start justify-between gap-6 md:flex-row">
+            <div className="flex min-w-[48%] flex-col gap-8">
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center gap-1 text-base font-medium">
+                  Terms & Conditions{" "}
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect
+                      x="1.33398"
+                      y="1.3335"
+                      width="13.3333"
+                      height="13.3333"
+                      rx="6.66667"
+                      stroke="#2B3F6C"
+                    />
+                    <path
+                      d="M8.33398 11.3335L8.33398 7.3335"
+                      stroke="#2B3F6C"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M7.00065 7.3335L8.33398 7.3335"
+                      stroke="#2B3F6C"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M8.33398 5.33366L8.33398 4.66699"
+                      stroke="#2B3F6C"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
                 </div>
                 <span className="text-small font-light">PNG,JPG,PDF</span>
 
@@ -560,7 +664,7 @@ function Page3({
                   multiple={false}
                   acceptedFileTypes="image/png, .pdf, image/jpg"
                 />
-                <p className=" font-medium text-base">or Provide Via</p>
+                <p className="text-base font-medium">or Provide Via</p>
                 <textarea
                   cols={10}
                   rows={5}
@@ -569,24 +673,56 @@ function Page3({
                     updateFormState({ termsAndConditions: e.target.value })
                   }
                   value={
-                    typeof formState.termsAndConditions === 'string'
+                    typeof formState.termsAndConditions === "string"
                       ? formState.termsAndConditions
                       : Array.isArray(formState.termsAndConditions)
-                        ? formState.termsAndConditions.map((file: File) => file.name).join(', ')
+                        ? formState.termsAndConditions
+                            .map((file: File) => file.name)
+                            .join(", ")
                         : (formState.termsAndConditions as File)?.name
                   }
-                  className="  w-[95%] rounded-xl border-2 border-gray-300 p-3"
+                  className="w-[95%] rounded-xl border-2 border-gray-300 p-3"
                 ></textarea>
               </div>
             </div>
-            <div className="flex min-w-[48%]  flex-col gap-8">
-              <div className="flex gap-2 flex-col">
-                <div className="text-base font-medium flex gap-1 items-center">Cancellation Policies <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="1.33398" y="1.3335" width="13.3333" height="13.3333" rx="6.66667" stroke="#2B3F6C" />
-                  <path d="M8.33398 11.3335L8.33398 7.3335" stroke="#2B3F6C" stroke-linecap="round" stroke-linejoin="round" />
-                  <path d="M7.00065 7.3335L8.33398 7.3335" stroke="#2B3F6C" stroke-linecap="round" stroke-linejoin="round" />
-                  <path d="M8.33398 5.33366L8.33398 4.66699" stroke="#2B3F6C" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
+            <div className="flex min-w-[48%] flex-col gap-8">
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center gap-1 text-base font-medium">
+                  Cancellation Policies{" "}
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect
+                      x="1.33398"
+                      y="1.3335"
+                      width="13.3333"
+                      height="13.3333"
+                      rx="6.66667"
+                      stroke="#2B3F6C"
+                    />
+                    <path
+                      d="M8.33398 11.3335L8.33398 7.3335"
+                      stroke="#2B3F6C"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M7.00065 7.3335L8.33398 7.3335"
+                      stroke="#2B3F6C"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M8.33398 5.33366L8.33398 4.66699"
+                      stroke="#2B3F6C"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
                 </div>
                 <span className="text-small font-light">PNG,JPG,PDF</span>
 
@@ -597,27 +733,27 @@ function Page3({
                   }}
                   acceptedFileTypes="image/png, .pdf, image/jpg"
                 />
-                <p className="font-medium text-base">or Provide Via</p>
+                <p className="text-base font-medium">or Provide Via</p>
                 <textarea
                   cols={30}
                   rows={5}
-
                   placeholder="Enter your venue details"
                   onChange={(e) =>
                     updateFormState({ cancellationPolicy: e.target.value })
                   }
-
-                  className="  w-[95%] rounded-xl border-2 border-gray-300 p-3"
+                  className="w-[95%] rounded-xl border-2 border-gray-300 p-3"
                   value={
-                    typeof formState.cancellationPolicy === 'string'
+                    typeof formState.cancellationPolicy === "string"
                       ? formState.cancellationPolicy
                       : Array.isArray(formState.cancellationPolicy)
-                        ? formState.cancellationPolicy.map((file: File) => file.name).join(', ')
+                        ? formState.cancellationPolicy
+                            .map((file: File) => file.name)
+                            .join(", ")
                         : (formState.cancellationPolicy as File)?.name
                   }
                 ></textarea>
               </div>
-              <div className="items-strech  flex flex-row gap-7 self-end">
+              <div className="items-strech flex flex-row gap-7 self-end">
                 <button
                   className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
                   onClick={() => {
@@ -629,7 +765,6 @@ function Page3({
                 </button>
               </div>
             </div>
-
           </div>
         </div>
       </div>

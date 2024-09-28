@@ -114,19 +114,19 @@ export const getvendor = async (
     const res = await axios.post(
       `${process.env.NEXT_PUBLIC_BASE_URL}/auth/get-vendor`,
       {
-        vendorId ,
+        vendorId,
         email,
         phone,
       },
     );
     //console.log(res.data);
-    return res.data; // expect user in reponse 
+    return res.data; // expect user in reponse
   } catch (error) {
     if (axios.isAxiosError(error)) {
       throw Error(error.message);
     }
   }
-}
+};
 const auth = {
   authWithGoogle,
   signUp,

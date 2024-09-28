@@ -1,5 +1,5 @@
-"use client"
-import Link from "next/link"
+"use client";
+import Link from "next/link";
 function Registration_Completed() {
     return (
         <>
@@ -58,4 +58,4 @@ function Registration_Completed() {
         </>
     )
 }
-export default Registration_Completed
+export default Registration_Completed;

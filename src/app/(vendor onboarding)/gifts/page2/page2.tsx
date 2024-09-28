@@ -88,7 +88,7 @@ const Page2: React.FC<PageProps> = ({
 
   return (
     <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden lg:flex-row">
- <div className="hidden lg:fixed lg:left-0 lg:top-[5.2rem] lg:flex lg:h-[calc(100vh-5.2rem)] lg:w-[30%] lg:flex-col lg:items-start lg:gap-9 lg:overflow-hidden lg:bg-[#FFFFFF] lg:px-8">
+      <div className="hidden lg:fixed lg:left-0 lg:top-[5.2rem] lg:flex lg:h-[calc(100vh-5.2rem)] lg:w-[30%] lg:flex-col lg:items-start lg:gap-9 lg:overflow-hidden lg:bg-[#FFFFFF] lg:px-8">
         <div className="mt-4 flex items-center justify-start gap-1">
           <ThreeStepBar currentStep={3} />
         </div>
@@ -127,8 +127,8 @@ const Page2: React.FC<PageProps> = ({
           </div>
         </div>
 
-        <div className="flex w-full flex-col items-center justify-center bg-[#F7F6F9] ">
-        <div className="mx-auto flex max-w-7xl flex-col gap-7 rounded-xl bg-white p-6 md:w-[62em] md:p-12">
+        <div className="flex w-full flex-col items-center justify-center bg-[#F7F6F9]">
+          <div className="mx-auto flex max-w-7xl flex-col gap-7 rounded-xl bg-white p-6 md:w-[62em] md:p-12">
             <h2 className="text-3xl font-semibold">Pricing and Policies</h2>
             <div className="flex items-center">
               <input

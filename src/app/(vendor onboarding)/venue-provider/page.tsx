@@ -77,7 +77,7 @@ const VenueForm: React.FC = () => {
   const updateFormState = (newState: Partial<FormState>) => {
     setFormState((prev) => ({ ...prev, ...newState }));
   };
-  
+
   const [audioVisualEquipment, setAudioVisualEquipment] = useState<string[]>(
     [],
   );
@@ -85,7 +85,9 @@ const VenueForm: React.FC = () => {
     [],
   );
   const [facilities, setFacilities] = useState<string[]>([]);
-  const [restrictionsPolicies, setRestrictionsPolicies] = useState<string[]>([]);
+  const [restrictionsPolicies, setRestrictionsPolicies] = useState<string[]>(
+    [],
+  );
   const [specialFeatures, setSpecialFeatures] = useState<string[]>([]);
 
   const [venueTypes, setVenueTypes] = useState<string[]>([]);
@@ -188,22 +190,22 @@ const VenueForm: React.FC = () => {
     if (Array.isArray(formState.photos)) {
       formState.photos.forEach((file) => {
         if (file instanceof File) {
-          formData.append('photos', file); // Append as 'photos' without the array index
+          formData.append("photos", file); // Append as 'photos' without the array index
         }
       });
-    } else if (typeof formState.photos === 'string') {
-      formData.append('photos', formState.photos); // Append the string (URL)
+    } else if (typeof formState.photos === "string") {
+      formData.append("photos", formState.photos); // Append the string (URL)
     }
 
     // Handle videos field
     if (Array.isArray(formState.videos)) {
       formState.videos.forEach((file) => {
         if (file instanceof File) {
-          formData.append('videos', file); // Append as 'videos' without the array index
+          formData.append("videos", file); // Append as 'videos' without the array index
         }
       });
-    } else if (typeof formState.videos === 'string') {
-      formData.append('videos', formState.videos); // Append the string (URL)
+    } else if (typeof formState.videos === "string") {
+      formData.append("videos", formState.videos); // Append the string (URL)
     }
 
     // Social Links
