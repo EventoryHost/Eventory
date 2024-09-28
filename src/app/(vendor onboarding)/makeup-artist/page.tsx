@@ -11,7 +11,7 @@ import { addMakeUpArtist } from "@/services/vendors/makeupArtist";
 import jwt from "jsonwebtoken";
 import Image from "next/image";
 import Agreement from "../Agreement/Agreement";
-import Plans from "../Plans/page";
+import Plans from "../Plans/Plans";
 import Registration_Completed from "../Registration-Completed/page";
 
 interface Package {

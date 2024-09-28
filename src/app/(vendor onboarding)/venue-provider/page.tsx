@@ -12,7 +12,7 @@ import Page6 from "./page6/page6";
 import { addVenue } from "../../../services/vendors/venue";
 import Agreement from "../Agreement/Agreement";
 import Registration_Completed from "../Registration-Completed/page";
-import Plans from "../Plans/page";
+import Plans from "../Plans/Plans";
 
 interface Package {
   type: string;

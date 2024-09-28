@@ -7,7 +7,7 @@ import Page2 from "./page2/page2";
 import Preview from "./preview/page3";
 import { addGift } from "@/services/vendors/gift";
 import Agreement from "../Agreement/Agreement";
-import Plans from "../Plans/page";
+import Plans from "../Plans/Plans";
 import Registration_Completed from "../Registration-Completed/page";
 
 const Pages = [Page1, Page2, Preview]; // List of pages
