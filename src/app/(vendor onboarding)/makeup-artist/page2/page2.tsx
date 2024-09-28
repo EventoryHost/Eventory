@@ -5,8 +5,8 @@ import { Upload } from "lucide-react";
 import FileInput from "@/components/fileInput";
 
 interface FormState {
-  termsAndConditions: string | File;
-  cancellationPolicy: string | File;
+  termsAndConditions: string | File|File[];
+  cancellationPolicy: string | File|File[];
 }
 
 interface Page2Props {
@@ -27,10 +27,10 @@ const Page: React.FC<Page2Props> = ({
 }) => {
   const { termsAndConditions, cancellationPolicy } = formState;
 
-  function handleTermsAndConditions(file: File): void {
+  function handleTermsAndConditions(file: File|File[]): void {
     updateFormState({ termsAndConditions: file });
   }
-  function handleCancellationPolicy(file: File): void {
+  function handleCancellationPolicy(file: File|File[]): void {
     updateFormState({ cancellationPolicy: file });
   }
 
@@ -76,9 +76,13 @@ const Page: React.FC<Page2Props> = ({
                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 pb-[8vw] text-sm outline-none"
                   placeholder="Enter Your Terms And Conditions"
                   value={
-                    typeof termsAndConditions === "string"
-                      ? termsAndConditions
-                      : termsAndConditions.name
+                    typeof formState.termsAndConditions === "string"
+                      ? formState.termsAndConditions
+                      : Array.isArray(formState.termsAndConditions)
+                        ? formState.termsAndConditions
+                            .map((file: File) => file.name)
+                            .join(", ")
+                        : (formState.termsAndConditions as File)?.name
                   }
                   onChange={(e) =>
                     updateFormState({ termsAndConditions: e.target.value })
@@ -93,9 +97,13 @@ const Page: React.FC<Page2Props> = ({
                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 pb-[8vw] text-sm outline-none"
                   placeholder="Enter Your Cancellation Policy"
                   value={
-                    typeof cancellationPolicy === "string"
-                      ? cancellationPolicy
-                      : cancellationPolicy.name
+                    typeof formState.cancellationPolicy === "string"
+                      ? formState.cancellationPolicy
+                      : Array.isArray(formState.cancellationPolicy)
+                        ? formState.cancellationPolicy
+                            .map((file: File) => file.name)
+                            .join(", ")
+                        : (formState.cancellationPolicy as File)?.name
                   }
                   onChange={(e) =>
                     updateFormState({ cancellationPolicy: e.target.value })

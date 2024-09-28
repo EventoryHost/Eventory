@@ -11,7 +11,7 @@ import Page6 from "./preview/page5";
 
 import { addDecorator } from "@/services/vendors/decorator";
 import Image from "next/image";
-import Agreement from "../Agreement/page";
+import Agreement from "../Agreement/Agreement";
 import Plans from "../Plans/page";
 import Registration_Completed from "../Registration-Completed/page";
 

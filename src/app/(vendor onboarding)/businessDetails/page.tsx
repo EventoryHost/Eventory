@@ -301,7 +301,7 @@ const BusinessDetails = () => {
                 </div>
 
               </div>
-              {error && <p className="font-poppins text-red-600 flex flex-col items-start self-start font-medium text-md">Fill All The Req* Field's</p>}
+              {error && <p className="font-poppins text-red-600 flex flex-col items-start self-start font-medium text-md">Fill All The Req* Field&apos;s</p>}
               <div className="flex flex-col items-start self-end">
                 <button
                   disabled={loading}

@@ -10,7 +10,7 @@ import { add } from "date-fns";
 import { addMakeUpArtist } from "@/services/vendors/makeupArtist";
 import jwt from "jsonwebtoken";
 import Image from "next/image";
-import Agreement from "../Agreement/page";
+import Agreement from "../Agreement/Agreement";
 import Plans from "../Plans/page";
 import Registration_Completed from "../Registration-Completed/page";
 
@@ -35,12 +35,12 @@ interface FormState {
   onsiteMakeup: boolean;
 
   artistDescription: string;
-  portfolioUrls: string | File;
+  portfolioUrls: string | File|File[];
   makeup_groupmembers: string;
   organisationMembers: string;
   // Page 2
-  termsAndConditions: string | File;
-  cancellationPolicy: string | File;
+  termsAndConditions: string | File|File[];
+  cancellationPolicy: string | File|File[];
   // Page 3
   // Page 4
 }
@@ -162,13 +162,37 @@ const VenueForm: React.FC = () => {
     formData.append("artistName", formState.artistName);
     formData.append("category", category);
     formData.append("artistDescription", formState.artistDescription);
-    formData.append("portfolioUrls", formState.portfolioUrls);
+    if (Array.isArray(formState.portfolioUrls)) {
+      formState.portfolioUrls.forEach((file) => {
+        if (file instanceof File) {
+          formData.append("portfolioUrls", file); // Append as 'photos' without the array index
+        }
+      });
+    } else if (typeof formState.portfolioUrls === "string") {
+      formData.append("portfolioUrls", formState.portfolioUrls); // Append the string (URL)
+    }
     formData.append("makeup_groupmembers", formState.makeup_groupmembers);
     formData.append("organisationMembers", formState.organisationMembers);
 
     //page 2
-    formData.append("termsAndConditions", formState.termsAndConditions);
-    formData.append("cancellationPolicy", formState.cancellationPolicy);
+    if (Array.isArray(formState.termsAndConditions)) {
+      formState.termsAndConditions.forEach((file) => {
+        if (file instanceof File) {
+          formData.append("termsAndConditions", file); // Append as 'photos' without the array index
+        }
+      });
+    } else if (typeof formState.termsAndConditions === "string") {
+      formData.append("termsAndConditions", formState.termsAndConditions); // Append the string (URL)
+    }
+    if (Array.isArray(formState.cancellationPolicy)) {
+      formState.cancellationPolicy.forEach((file) => {
+        if (file instanceof File) {
+          formData.append("cancellationPolicy", file); // Append as 'photos' without the array index
+        }
+      });
+    } else if (typeof formState.cancellationPolicy === "string") {
+      formData.append("cancellationPolicy", formState.cancellationPolicy); // Append the string (URL)
+    }
 
     //page 3
     formData.append("advancePayment", advancePayment.toString());

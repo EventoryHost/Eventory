@@ -5,7 +5,7 @@ import Slider from "@mui/material/Slider";
 interface PercentageProps {
   initialValue: number;
   onChange: (value: number) => void;
-  disable: boolean;
+  disable?: boolean;
 }
 
 const Percentage: React.FC<PercentageProps> = ({

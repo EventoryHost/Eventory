@@ -6,7 +6,7 @@ import Page1 from "./page1/page1";
 import Page2 from "./page2/page2";
 import Preview from "./preview/page3";
 import { addGift } from "@/services/vendors/gift";
-import Agreement from "../Agreement/page";
+import Agreement from "../Agreement/Agreement";
 import Plans from "../Plans/page";
 import Registration_Completed from "../Registration-Completed/page";
 

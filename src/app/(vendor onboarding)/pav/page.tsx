@@ -10,7 +10,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { addPhotographer } from "@/services/vendors/photographer";
 import "react-toastify/dist/ReactToastify.css";
-import Agreement from "../Agreement/page";
+import Agreement from "../Agreement/Agreement";
 import Plans from "../Plans/page";
 import Registration_Completed from "../Registration-Completed/page";
 

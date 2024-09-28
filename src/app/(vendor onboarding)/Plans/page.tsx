@@ -274,7 +274,7 @@ const Plans = ({ setCurrentPage, handleformSubmit }: Pagechangetype) => {
                                     onChange={handleChange}
                                 />
                             </div>
-                            {error && <p className="font-poppins text-red-600 font-medium text-md">Fill All The Req* Field's</p>}
+                            {error && <p className="font-poppins text-red-600 font-medium text-md">Fill All The Req* Field&apos;s</p>}
                         </form>
                     </div>
                     <div className="w-[418px] flex flex-col gap-4 h-[513px] ">

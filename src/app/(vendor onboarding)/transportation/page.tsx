@@ -6,7 +6,7 @@ import Page2 from "./page2/page2";
 import Page3 from "./page3/page3";
 import Page4 from "./page4/page4";
 import Preview from "./preview/page5";
-import Agreement from "../Agreement/page";
+import Agreement from "../Agreement/Agreement";
 import Registration_Completed from "../Registration-Completed/page";
 import Plans from "../Plans/page";
 import { addTransport } from "@/services/vendors/transport";

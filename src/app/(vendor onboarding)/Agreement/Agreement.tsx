@@ -120,7 +120,7 @@ const Agreement = ({ setCurrentPage }: PageProps) => {
               This Site and all its Contents are intended solely for personal,
               non-commercial use. Except as expressly provided, nothing within
               the Site shall be construed as conferring any license under our or
-              any third party's intellectual property rights, whether by
+              any third party&apos;s intellectual property rights, whether by
               estoppel, implication, waiver, or otherwise. Without limiting the
               generality of the foregoing, you acknowledge and agree that all
               content available through and used to operate the Site and its
@@ -149,10 +149,10 @@ const Agreement = ({ setCurrentPage }: PageProps) => {
               By using the Site web sites you agree to indemnify us and
               affiliated entities (collectively &quot;Indemnities&quot;) and
               hold them harmless from any and all claims and expenses, including
-              (without limitation) attorney's fees, arising from your use of the
+              (without limitation) attorney&apos;s fees, arising from your use of the
               Site web sites, your use of the Products and Services, or your
               submission of ideas and/or related materials to us or from any
-              person's use of any ID, membership or password you maintain with
+              person&apos;s use of any ID, membership or password you maintain with
               any portion of the Site, regardless of whether such use is
               authorized by you.&quot;
             </p>
