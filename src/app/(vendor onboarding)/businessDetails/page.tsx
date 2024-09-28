@@ -6,7 +6,7 @@ import jwt from "jsonwebtoken";
 import { useRouter } from "next/navigation";
 import { addBusinessDetails } from "@/services/auth";
 import tajmahal from "/public/tajmahal.png";
-import { useToast } from "@/components/hooks/use-toast"
+import { useToast } from "@/components/hooks/use-toast";
 import MultipleDropdown from "@/components/MultiDropdown";
 
 const categories = [
@@ -19,24 +19,21 @@ const categories = [
   { value: "makeup-artist", label: "Makeup Artist" },
 ];
 
-
 const teamsize = [
   { value: "1-5", label: "1-5 persons" },
   { value: "6-15", label: "6-15 persons" },
   { value: "16-30", label: "16-30 persons" },
   { value: "31-50", label: "31-50 persons" },
-  { value: "51+", label: "More then 50" }
+  { value: "51+", label: "More then 50" },
 ];
-
 
 const annualrevenue = [
   { value: "0-3", label: "1-5 Lakh" },
   { value: "3-7", label: "6-15 Lakh" },
   { value: "7-12", label: "16-30 Lakh" },
   { value: "12-18", label: "31-50 Lakh" },
-  { value: "18+", label: "More then 18 Lakhs" }
+  { value: "18+", label: "More then 18 Lakhs" },
 ];
-
 
 const yearsInOperation = [
   { value: "1-2", label: "1-2 years" },
@@ -70,19 +67,18 @@ export type businessDetails = {
 
 const BusinessDetails = () => {
   const [loading, setloading] = useState(false);
-  const { toast } = useToast()
+  const { toast } = useToast();
   const [businessDetails, setBusinessDetails] = useState<businessDetails>({
-    businessName: '',
-    category: '',
-    gstin: '',
-    years: '',
-    businessAddress: '',
+    businessName: "",
+    category: "",
+    gstin: "",
+    years: "",
+    businessAddress: "",
     pinCode: 0,
     cities: [],
-    teamsize: '',
-    annualrevenue: ''
-  } as businessDetails,
-  );
+    teamsize: "",
+    annualrevenue: "",
+  } as businessDetails);
   const refs = useRef(
     {} as Record<
       keyof businessDetails,
@@ -113,9 +109,7 @@ const BusinessDetails = () => {
   }, [businessDetails]);
 
   const handleBizSubmit = async (e: React.FormEvent) => {
-
     e.preventDefault();
-
 
     const newDetails: businessDetails = {
       businessName: refs.current.businessName!.value,
@@ -145,18 +139,21 @@ const BusinessDetails = () => {
     }
 
     try {
-      setloading(true)
+      setloading(true);
       console.log(newDetails);
       toast({
         title: "Redirecting",
         description: ` Redirecting ${newDetails.businessName} To ${newDetails.category}`,
-      })
+      });
       // Update business details state
       setBusinessDetails(newDetails);
       // console.log("Business Details:", newDetails);
       // Retrieve user information from token
       const token = localStorage.getItem("token")!;
-      const { userId, email } = jwt.decode(token) as { userId: string; email: string };
+      const { userId, email } = jwt.decode(token) as {
+        userId: string;
+        email: string;
+      };
 
       // Submit business details to the backend
       await addBusinessDetails(userId, newDetails);
@@ -167,23 +164,20 @@ const BusinessDetails = () => {
         variant: "destructive",
         title: "Something went wrong.",
         description: "There was a problem with your request. Check internet",
-      })
+      });
     } finally {
-      setloading(false)
+      setloading(false);
     }
-
-
   };
 
-
   return (
-    <div className="flex h-full lg:h-[calc(100vh-4.2rem)] w-screen flex-col overflow-hidden lg:flex-row">
+    <div className="flex h-full w-screen flex-col overflow-hidden lg:h-[calc(100vh-4.2rem)] lg:flex-row">
       <div className="flex flex-col items-center justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[35%] md:max-w-[35%]">
         <div className="flex h-[90%] flex-col items-center justify-center gap-3 px-5 md:mx-7">
-          <h1 className="text-2xl  font-bold md:text-3xl lg:text-4xl">
+          <h1 className="text-2xl font-bold md:text-3xl lg:text-4xl">
             Tell us about your business
           </h1>
-          <p className="text-[#797878] xs:text-lg font-normal font-Helvetica">
+          <p className="font-Helvetica font-normal text-[#797878] xs:text-lg">
             Fill out your Business details to get verified and proceed to
             registration process.
           </p>
@@ -197,13 +191,15 @@ const BusinessDetails = () => {
         </div>
       </div>
       <div className="flex min-w-[65%] max-w-[80%] flex-col items-center justify-center bg-[#F7F6F9] p-2 md:p-[1rem]">
-        <div className="flex flex-col gap-7 rounded-xl bg-white p-3 md:p-6 h-full overflow-y-scroll scrollbar-hide xs:w-[95%] xs:min-w-[90%]">
+        <div className="flex h-full flex-col gap-7 overflow-y-scroll rounded-xl bg-white p-3 scrollbar-hide xs:w-[95%] xs:min-w-[90%] md:p-6">
           <h1 className="text-3xl font-semibold">Business Details</h1>
           <form onSubmit={handleBizSubmit}>
             <div className="flex min-h-full flex-col items-center gap-5">
               <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
                 <div className="flex min-w-[45%] flex-col gap-4">
-                  <label htmlFor="businessName">Business Name <span className="text-red-600">*</span></label>
+                  <label htmlFor="businessName">
+                    Business Name <span className="text-red-600">*</span>
+                  </label>
                   <input
                     id="businessName"
                     type="text"
@@ -216,18 +212,26 @@ const BusinessDetails = () => {
                   />
                 </div>
                 <div className="flex min-w-[45%] flex-col gap-4">
-                  <label htmlFor="category">Type Of Service<span className="text-red-600">*</span></label>
+                  <label htmlFor="category">
+                    Type Of Service<span className="text-red-600">*</span>
+                  </label>
                   <Dropdown2
                     options={categories}
-                    onSelect={(value: string) => setBusinessDetails({ ...businessDetails, category: value })}
+                    onSelect={(value: string) =>
+                      setBusinessDetails({
+                        ...businessDetails,
+                        category: value,
+                      })
+                    }
                     placeholder="Select Your Service"
                   />
-
                 </div>
               </div>
               <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
                 <div className="flex min-w-[45%] flex-col gap-4">
-                  <label htmlFor="gstin">GSTIN <span className="text-red-600">*</span></label>
+                  <label htmlFor="gstin">
+                    GSTIN <span className="text-red-600">*</span>
+                  </label>
                   <input
                     id="gstin"
                     type="text"
@@ -242,17 +246,26 @@ const BusinessDetails = () => {
                   />
                 </div>
                 <div className="flex min-w-[45%] flex-col gap-4">
-                  <label htmlFor="years">Team Size<span className="text-red-600">*</span></label>
+                  <label htmlFor="years">
+                    Team Size<span className="text-red-600">*</span>
+                  </label>
                   <Dropdown2
                     options={teamsize}
-                    onSelect={(value: string) => setBusinessDetails({ ...businessDetails, teamsize: value })}
+                    onSelect={(value: string) =>
+                      setBusinessDetails({
+                        ...businessDetails,
+                        teamsize: value,
+                      })
+                    }
                     placeholder="Provide Year Of Oprations"
                   />
                 </div>
               </div>
               <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
                 <div className="flex min-w-[45%] flex-col gap-4">
-                  <label htmlFor="businessAddress">Business Address <span className="text-red-600">*</span></label>
+                  <label htmlFor="businessAddress">
+                    Business Address <span className="text-red-600">*</span>
+                  </label>
                   <input
                     id="businessAddress"
                     type="text"
@@ -265,7 +278,9 @@ const BusinessDetails = () => {
                   />
                 </div>
                 <div className="flex min-w-[45%] flex-col gap-4">
-                  <label htmlFor="pinCode">Pin Code<span className="text-red-600">*</span></label>
+                  <label htmlFor="pinCode">
+                    Pin Code<span className="text-red-600">*</span>
+                  </label>
                   <input
                     id="pinCode"
                     type="number"
@@ -279,38 +294,56 @@ const BusinessDetails = () => {
                 </div>
               </div>
               <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-                <div className="flex max-w-[45%] min-w-[45%] flex-col gap-4">
-                  <label htmlFor="cities">Operational City(s)<span className="text-red-600">*</span></label>
+                <div className="flex min-w-[45%] max-w-[45%] flex-col gap-4">
+                  <label htmlFor="cities">
+                    Operational City(s)<span className="text-red-600">*</span>
+                  </label>
                   <MultipleDropdown
                     options={operationalCities}
-                    onSelect={(value: string[]) => setBusinessDetails((prevDetails) => ({
-                      ...prevDetails,
-                      cities: value // You don't need to spread value, it's already an array
-                    }))}
+                    onSelect={(value: string[]) =>
+                      setBusinessDetails((prevDetails) => ({
+                        ...prevDetails,
+                        cities: value, // You don't need to spread value, it's already an array
+                      }))
+                    }
                     placeholder="Provide Cities Where You Operate"
                   />
                 </div>
                 <div className="flex min-w-[45%] flex-col gap-4">
-                  <label htmlFor="years">Years in Operation <span className="text-red-600">*</span></label>
+                  <label htmlFor="years">
+                    Years in Operation <span className="text-red-600">*</span>
+                  </label>
                   <Dropdown2
                     options={yearsInOperation}
-                    onSelect={(value: string) => setBusinessDetails({ ...businessDetails, years: value })}
+                    onSelect={(value: string) =>
+                      setBusinessDetails({ ...businessDetails, years: value })
+                    }
                     placeholder="Provide Year Of Oprations"
                   />
                 </div>
               </div>
               <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
                 <div className="flex min-w-[45%] flex-col gap-4">
-                  <label htmlFor="cities">Annual Revenue<span className="text-red-600">*</span></label>
+                  <label htmlFor="cities">
+                    Annual Revenue<span className="text-red-600">*</span>
+                  </label>
                   <Dropdown2
                     options={annualrevenue}
-                    onSelect={(value: string) => setBusinessDetails({ ...businessDetails, annualrevenue: value })}
+                    onSelect={(value: string) =>
+                      setBusinessDetails({
+                        ...businessDetails,
+                        annualrevenue: value,
+                      })
+                    }
                     placeholder="Select The Range of your revenue"
                   />
                 </div>
-
               </div>
-              {error && <p className="font-poppins text-red-600 flex flex-col items-start self-start font-medium text-md">Fill All The Req* Field's</p>}
+              {error && (
+                <p className="text-md flex flex-col items-start self-start font-poppins font-medium text-red-600">
+                  Fill All The Req* Field's
+                </p>
+              )}
               <div className="flex flex-col items-start self-end">
                 <button
                   disabled={loading}
