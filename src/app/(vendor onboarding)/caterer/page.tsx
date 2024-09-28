@@ -16,7 +16,6 @@ import Agreement from "../Agreement/Agreement";
 import Plans from "../Plans/Plans";
 import Registration_Completed from "../Registration-Completed/page";
 
-
 interface Package {
   type: string;
   priceRange: [number, number];
@@ -158,12 +157,10 @@ const Caterer = () => {
         return null;
       }
       return decodedToken.userId;
-    }
-    catch (error) {
+    } catch (error) {
       console.error("Error decoding token:", error);
       return null;
     }
-
   }
 
   const handleContinue = () => {
@@ -499,22 +496,24 @@ const Caterer = () => {
       case 8:
         return (
           <>
-
             <Agreement setCurrentPage={setCurrentPage} />
           </>
-        )
+        );
       case 9:
         return (
           <>
-            <Plans handleformSubmit={handleSubmit} setCurrentPage={setCurrentPage} />
+            <Plans
+              handleformSubmit={handleSubmit}
+              setCurrentPage={setCurrentPage}
+            />
           </>
-        )
+        );
       case 10:
         return (
           <>
             <Registration_Completed />
           </>
-        )
+        );
       case 8:
         return (
           <>
@@ -539,9 +538,11 @@ const Caterer = () => {
       default:
         return (
           <>
-            <center><h2>Loading....</h2></center>
+            <center>
+              <h2>Loading....</h2>
+            </center>
           </>
-        )
+        );
     }
   };
 

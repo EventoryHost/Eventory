@@ -127,8 +127,8 @@ const RootPage = () => {
       ...prevState,
       [key]:
         typeof prevState[key] === "object" &&
-          prevState[key] !== null &&
-          !Array.isArray(prevState[key])
+        prevState[key] !== null &&
+        !Array.isArray(prevState[key])
           ? { ...(prevState[key] as Record<string, any>), [nestedKey]: value }
           : { [nestedKey]: value },
     }));
@@ -170,7 +170,6 @@ const RootPage = () => {
             formState={formState}
             navigateToPage={navigateToPage}
             handleChange={handleChange}
-
             packages={packages}
             addPackage={addPackage}
           />
@@ -181,7 +180,6 @@ const RootPage = () => {
             formState={formState}
             handleChange={handleChange}
             navigateToPage={navigateToPage}
-
           />
         );
       case 5:
@@ -189,9 +187,7 @@ const RootPage = () => {
           <Preview
             formState={formState}
             handleChange={handleChange}
-
             navigateToPage={navigateToPage}
-
           />
         );
       case 6:
@@ -199,30 +195,34 @@ const RootPage = () => {
           <>
             <Agreement setCurrentPage={setCurrentPage} />
           </>
-        )
+        );
       case 7:
         return (
           <>
-            <Plans handleformSubmit={handleSubmit} setCurrentPage={setCurrentPage} />
+            <Plans
+              handleformSubmit={handleSubmit}
+              setCurrentPage={setCurrentPage}
+            />
           </>
-        )
+        );
       case 8:
         return (
           <>
             <Registration_Completed />
           </>
-        )
+        );
       default:
         return (
           <>
-            <center><h2>Loading....</h2></center>
+            <center>
+              <h2>Loading....</h2>
+            </center>
           </>
-        )
+        );
     }
   };
 
-  const handleSubmit =async () => {
-  
+  const handleSubmit = async () => {
     console.log(formState);
     // Add form submission logic here
     try {
@@ -253,7 +253,6 @@ const RootPage = () => {
             Next
           </button>
         )}
-        
       </div>
     </div>
   );

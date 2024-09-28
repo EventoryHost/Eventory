@@ -37,14 +37,12 @@ const Page1 = ({
   setEventsize,
   setEvent,
   events,
-  handleContinue
+  handleContinue,
 }: Page1Props) => {
-
-
   return (
     <div className="scroll-touch flex flex-col items-start gap-7 overflow-y-scroll rounded-xl p-3 scrollbar-hide xs:w-[95%] xs:min-w-[90%] xs:justify-start md:p-6">
-      <div className="flex w-[100%] flex-col items-start rounded-xl bg-white p-5 justify-start gap-9">
-        <div className="flex justify-start gap-5 items-center">
+      <div className="flex w-[100%] flex-col items-start justify-start gap-9 rounded-xl bg-white p-5">
+        <div className="flex items-center justify-start gap-5">
           <h1 className="text-3xl font-semibold"> Basic Details</h1>
         </div>
         <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
@@ -55,12 +53,10 @@ const Page1 = ({
             <input
               id="Full Name"
               type="text"
-              className='w-full rounded-xl border-2 bg-white p-5 py-3 outline-none'
+              className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
               placeholder="Enter your full name"
               value={fullName}
-              onChange={(e) =>
-                setFullName(e.target.value)
-              }
+              onChange={(e) => setFullName(e.target.value)}
               required
             />
           </div>
@@ -72,7 +68,7 @@ const Page1 = ({
             <input
               id="eventsize"
               type="number"
-              className='w-full rounded-xl border-2 bg-white p-5 py-3 outline-none'
+              className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
               placeholder="Select Your Event size"
               value={eventsize}
               onChange={(e) => setEventsize(parseInt(e.target.value))}
@@ -89,18 +85,15 @@ const Page1 = ({
             <textarea
               id="eventsize"
               rows={5}
-              className='w-full rounded-xl border-2 bg-white p-5 py-3 outline-none'
+              className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
               placeholder="Enter Description about your background"
               value={description}
-              onChange={(e) =>
-                setDescription(e.target.value)
-              }
+              onChange={(e) => setDescription(e.target.value)}
             />
           </div>
         </div>
       </div>
-      <div className="flex min-w-full flex-col  rounded-xl bg-white p-5 items-center gap-9">
-
+      <div className="flex min-w-full flex-col items-center gap-9 rounded-xl bg-white p-5">
         <div className="flex min-w-[100%] flex-col gap-5 rounded-xl bg-white">
           <label htmlFor="years">
             Types of Event<span className="text-red-500">*</span>
@@ -113,12 +106,10 @@ const Page1 = ({
                 setSelectedAppetizers={setEvent}
                 field={"events"}
               />
-
             </div>
           </div>
         </div>
         <div className="mt-9 flex flex-row items-stretch gap-7 self-end">
-
           <button
             className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
             onClick={handleContinue}

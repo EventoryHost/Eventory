@@ -5,8 +5,8 @@ import React, { useEffect } from "react";
 import FileDisplay from "../../caterer/(components)/File";
 
 interface FormState {
-  termsAndConditions: string | File|File[];
-  cancellationPolicy: string | File|File[];
+  termsAndConditions: string | File | File[];
+  cancellationPolicy: string | File | File[];
   artistName: string;
   category: string;
   makeupArtists_individual: string[];
@@ -19,7 +19,7 @@ interface FormState {
   onsiteMakeup: boolean;
   organisationMembers: string;
   artistDescription: string;
-  portfolioUrls: string | File|File[];
+  portfolioUrls: string | File | File[];
 }
 
 interface Page5Props {
@@ -40,7 +40,7 @@ interface Page5Props {
   organisationMembers: string;
   artistDescription: string;
   currentPage: number;
-  portfolioUrls: string | File|File[];
+  portfolioUrls: string | File | File[];
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
   handleSubmit: () => void;
 }
@@ -103,14 +103,13 @@ const Page: React.FC<Page5Props> = ({
         <div className="flex w-1/2 flex-col">
           <span className="text-xl">PortFolio</span>
           <span className="mt-4 font-semibold">
-          {typeof formState.portfolioUrls === "string" ? (
-                <div>{formState.portfolioUrls}</div> // Handle string case
-              ) : Array.isArray(formState.portfolioUrls) ? (
-                <FileDisplay files={formState.portfolioUrls} /> // Handle File[] case
-              ) : (
-                <FileDisplay file={formState.portfolioUrls} /> // Handle single File case
-              )}
-           
+            {typeof formState.portfolioUrls === "string" ? (
+              <div>{formState.portfolioUrls}</div> // Handle string case
+            ) : Array.isArray(formState.portfolioUrls) ? (
+              <FileDisplay files={formState.portfolioUrls} /> // Handle File[] case
+            ) : (
+              <FileDisplay file={formState.portfolioUrls} /> // Handle single File case
+            )}
           </span>
         </div>
       </div>
@@ -153,25 +152,25 @@ const Page: React.FC<Page5Props> = ({
         <div className="flex w-1/2 flex-col">
           <span className="text-xl">Cancellation Policy</span>
           <span className="font-semibold">
-          {typeof formState.cancellationPolicy === "string" ? (
-                <div>{formState.cancellationPolicy}</div> // Handle string case
-              ) : Array.isArray(formState.cancellationPolicy) ? (
-                <FileDisplay files={formState.cancellationPolicy} /> // Handle File[] case
-              ) : (
-                <FileDisplay file={formState.cancellationPolicy} /> // Handle single File case
-              )}
+            {typeof formState.cancellationPolicy === "string" ? (
+              <div>{formState.cancellationPolicy}</div> // Handle string case
+            ) : Array.isArray(formState.cancellationPolicy) ? (
+              <FileDisplay files={formState.cancellationPolicy} /> // Handle File[] case
+            ) : (
+              <FileDisplay file={formState.cancellationPolicy} /> // Handle single File case
+            )}
           </span>
         </div>
         <div className="flex w-1/2 flex-col">
           <span className="text-xl">Terms and Conditions</span>
           <span className="font-semibold">
-          {typeof formState.termsAndConditions === "string" ? (
-                <div>{formState.termsAndConditions}</div> // Handle string case
-              ) : Array.isArray(formState.termsAndConditions) ? (
-                <FileDisplay files={formState.termsAndConditions} /> // Handle File[] case
-              ) : (
-                <FileDisplay file={formState.termsAndConditions} /> // Handle single File case
-              )}
+            {typeof formState.termsAndConditions === "string" ? (
+              <div>{formState.termsAndConditions}</div> // Handle string case
+            ) : Array.isArray(formState.termsAndConditions) ? (
+              <FileDisplay files={formState.termsAndConditions} /> // Handle File[] case
+            ) : (
+              <FileDisplay file={formState.termsAndConditions} /> // Handle single File case
+            )}
           </span>
         </div>
       </div>

@@ -108,7 +108,7 @@ const Page: React.FC<Page1Props> = ({
 }) => {
   const { artistDescription, portfolioUrls } = formState;
 
-  function handlePortfolioSelect(file: File|File[]): void {
+  function handlePortfolioSelect(file: File | File[]): void {
     updateFormState({ portfolioUrls: file });
   }
 
@@ -239,7 +239,6 @@ const Page: React.FC<Page1Props> = ({
                                 .join(", ")
                             : (formState.portfolioUrls as File)?.name
                       }
-                      
                       onChange={(e) =>
                         updateFormState({ portfolioUrls: e.target.value })
                       }

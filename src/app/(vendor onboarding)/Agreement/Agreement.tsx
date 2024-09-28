@@ -149,12 +149,12 @@ const Agreement = ({ setCurrentPage }: PageProps) => {
               By using the Site web sites you agree to indemnify us and
               affiliated entities (collectively &quot;Indemnities&quot;) and
               hold them harmless from any and all claims and expenses, including
-              (without limitation) attorney&apos;s fees, arising from your use of the
-              Site web sites, your use of the Products and Services, or your
-              submission of ideas and/or related materials to us or from any
-              person&apos;s use of any ID, membership or password you maintain with
-              any portion of the Site, regardless of whether such use is
-              authorized by you.&quot;
+              (without limitation) attorney&apos;s fees, arising from your use
+              of the Site web sites, your use of the Products and Services, or
+              your submission of ideas and/or related materials to us or from
+              any person&apos;s use of any ID, membership or password you
+              maintain with any portion of the Site, regardless of whether such
+              use is authorized by you.&quot;
             </p>
             <h2>9. COPYRIGHT AND TRADEMARK NOTICE</h2>
             <p>

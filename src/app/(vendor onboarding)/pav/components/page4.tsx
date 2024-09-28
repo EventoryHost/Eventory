@@ -33,16 +33,19 @@ interface PageProps {
   clientTestimonials: string;
   setclientTestimonials: (clientTestimonials: string) => void;
   writtenthemeproposalafterconsultaion: boolean;
-  setwrittenthemeproposalafterconsultaion: (writtenthemeproposalafterconsultaion: boolean) => void;
+  setwrittenthemeproposalafterconsultaion: (
+    writtenthemeproposalafterconsultaion: boolean,
+  ) => void;
   freerevisionforinitialthemeproposal: boolean;
-  setrevisionforinitialthemeproposal: (freerevisionforinitialthemeproposal: boolean) => void;
-
+  setrevisionforinitialthemeproposal: (
+    freerevisionforinitialthemeproposal: boolean,
+  ) => void;
 }
 const advbookingperiodlist = [
   "Less then a week",
   "1-2 weeks",
-  "More then 2 weeks"
-]
+  "More then 2 weeks",
+];
 const Page6: React.FC<PageProps> = ({
   handleContinue,
   setCurrentPage,
@@ -65,9 +68,6 @@ const Page6: React.FC<PageProps> = ({
   freerevisionforinitialthemeproposal,
   setrevisionforinitialthemeproposal,
 }) => {
-
-
-
   return (
     <div className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide xs:w-[95%] xs:min-w-[90%]">
       <div className="flex min-w-full flex-col items-start justify-around gap-10">
@@ -78,19 +78,23 @@ const Page6: React.FC<PageProps> = ({
           <div className="flex min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-row items-start justify-between gap-2">
               <div className="flex min-w-[40%] flex-col gap-4">
-                <label htmlFor="category">Photos<span className="text-red-600">*</span></label>
+                <label htmlFor="category">
+                  Photos<span className="text-red-600">*</span>
+                </label>
                 <p className="text-gray-500">PNG, PDF, JPG</p>
                 <FileInput
                   label="Photos"
                   onFileSelect={(file: File | File[]) => {
                     const newFiles = Array.isArray(file) ? file : [file]; // Handle single or multiple files
-                    setPhotos( newFiles );
+                    setPhotos(newFiles);
                   }}
                   acceptedFileTypes="image/png, .pdf, image/jpg"
                 />
               </div>
               <div className="flex min-w-[40%] flex-col gap-4">
-                <label htmlFor="category">Videos<span className="text-red-600">*</span></label>
+                <label htmlFor="category">
+                  Videos<span className="text-red-600">*</span>
+                </label>
                 <p className="text-gray-500">MP4 MKV</p>
                 <FileInput
                   label="Videos"
@@ -110,9 +114,7 @@ const Page6: React.FC<PageProps> = ({
                   type="text"
                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                   placeholder="Provide Your URL"
-                  onChange={(e) =>
-                    setPhotos(e.target.value)
-                  }
+                  onChange={(e) => setPhotos(e.target.value)}
                 />
               </div>
               <div className="flex min-w-[40%] flex-col gap-4">
@@ -122,15 +124,13 @@ const Page6: React.FC<PageProps> = ({
                   type="text"
                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                   placeholder="Provide Your URL"
-                  onChange={(e) =>
-                    setVideos(e.target.value)
-                  }
+                  onChange={(e) => setVideos(e.target.value)}
                 />
               </div>
             </div>
           </div>
 
-          <div className="flex min-w-full flex-col items-center bg-white gap-5">
+          <div className="flex min-w-full flex-col items-center gap-5 bg-white">
             <div className="flex min-w-full flex-row items-start justify-between gap-2">
               <div className="flex min-w-[40%] flex-col gap-4">
                 <label htmlFor="category">Client Testimonials </label>
@@ -139,9 +139,7 @@ const Page6: React.FC<PageProps> = ({
                   type="text"
                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                   placeholder="Provide Your URL"
-                  onChange={(e) =>
-                    setclientTestimonials(e.target.value)
-                  }
+                  onChange={(e) => setclientTestimonials(e.target.value)}
                 />
               </div>
               <div className="flex min-w-[40%] flex-col gap-4">
@@ -151,9 +149,7 @@ const Page6: React.FC<PageProps> = ({
                   type="text"
                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                   placeholder="Provide Your URL"
-                  onChange={(e) =>
-                    setRecongnition_awards(e.target.value)
-                  }
+                  onChange={(e) => setRecongnition_awards(e.target.value)}
                 />
               </div>
             </div>
@@ -165,9 +161,7 @@ const Page6: React.FC<PageProps> = ({
                   type="text"
                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                   placeholder="Provide Your URL"
-                  onChange={(e) =>
-                    setintstagramurl(e.target.value)
-                  }
+                  onChange={(e) => setintstagramurl(e.target.value)}
                 />
               </div>
               <div className="flex min-w-[40%] flex-col gap-4">
@@ -177,15 +171,15 @@ const Page6: React.FC<PageProps> = ({
                   type="text"
                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                   placeholder="Provide Your URL"
-                  onChange={(e) =>
-                    setwebsiteurl(e.target.value)
-                  }
+                  onChange={(e) => setwebsiteurl(e.target.value)}
                 />
               </div>
             </div>
             <div className="flex min-w-full flex-row items-start justify-start gap-2">
               <div className="flex min-w-[40%] flex-col gap-4">
-                <label htmlFor="category">Advanced Booking Period<span className="text-red-600">*</span></label>
+                <label htmlFor="category">
+                  Advanced Booking Period<span className="text-red-600">*</span>
+                </label>
                 <Dropdown
                   options={advbookingperiodlist}
                   onSelect={(value: string) => setadvbookingperiod(value)}
@@ -202,9 +196,7 @@ const Page6: React.FC<PageProps> = ({
                   <input
                     type="radio"
                     checked={freerevisionforinitialthemeproposal === true}
-                    onChange={() =>
-                      setrevisionforinitialthemeproposal(true)
-                    }
+                    onChange={() => setrevisionforinitialthemeproposal(true)}
                     className="h-4 w-4 accent-[#2E3192]"
                   />
                   <p>Yes</p>
@@ -212,13 +204,10 @@ const Page6: React.FC<PageProps> = ({
                   <input
                     type="radio"
                     checked={freerevisionforinitialthemeproposal === false}
-                    onChange={() =>
-                      setrevisionforinitialthemeproposal(false)
-                    }
+                    onChange={() => setrevisionforinitialthemeproposal(false)}
                     className="h-4 w-4 accent-[#2E3192]"
                   />
                   <p>No</p>
-
                 </div>
               </div>
               <div className="flex min-w-[50%] flex-col gap-6 lg:max-w-[60%]">
@@ -229,7 +218,9 @@ const Page6: React.FC<PageProps> = ({
                   <input
                     type="radio"
                     checked={writtenthemeproposalafterconsultaion === true}
-                    onChange={() => setwrittenthemeproposalafterconsultaion(true)}
+                    onChange={() =>
+                      setwrittenthemeproposalafterconsultaion(true)
+                    }
                     className="h-4 w-4 accent-[#2E3192]"
                   />
                   <p>Yes</p>
@@ -238,13 +229,15 @@ const Page6: React.FC<PageProps> = ({
                     type="radio"
                     className="h-4 w-4 accent-[#2E3192]"
                     checked={writtenthemeproposalafterconsultaion === false}
-                    onChange={() => setwrittenthemeproposalafterconsultaion(false)}
+                    onChange={() =>
+                      setwrittenthemeproposalafterconsultaion(false)
+                    }
                   />
                   <p>No</p>
                 </div>
               </div>
             </div>
-            <div className="mt-9 flex bg-white flex-row items-stretch gap-7 self-end">
+            <div className="mt-9 flex flex-row items-stretch gap-7 self-end bg-white">
               <button
                 className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
                 onClick={() => setCurrentPage((prevPage) => prevPage - 1)}
