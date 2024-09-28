@@ -61,6 +61,8 @@ const handlePayment = async (
   plan: string, // vendor plans name
   id: string, // vendor id
   name: string, // vendor name from flow
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>,
+  handleSubmit: () => void,
 ) => {
   try {
     const orderResponse = await createOrder(amount, plan, id);
@@ -84,6 +86,8 @@ const handlePayment = async (
           payment_id,
           signature,
         );
+        handleSubmit();
+        setCurrentPage((prevPage) => prevPage + 1);
         console.log(verifyResponse);
       },
       order_id: order_id,

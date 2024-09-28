@@ -2,6 +2,7 @@ import { EditIcon } from "lucide-react";
 import Appetizers from "../../(components)/Appetizers";
 import File from "../../caterer/(components)/File";
 import { FormState } from "../page";
+import FileDisplay from "../../caterer/(components)/File";
 
 const _cuisine = ["North Indian", "South Indian", "Chinese", "Italian"];
 const regional = [
@@ -583,9 +584,11 @@ function Preview({
 
             <span className="font-semibold">
               {typeof formState.insurancePolicy === "string" ? (
-                "no file selected"
+                <div>{formState.insurancePolicy}</div> // Handle string case
+              ) : Array.isArray(formState.insurancePolicy) ? (
+                <FileDisplay files={formState.insurancePolicy} /> // Handle File[] case
               ) : (
-                <File file={formState.insurancePolicy} />
+                <FileDisplay file={formState.insurancePolicy} /> // Handle single File case
               )}
             </span>
           </div>
@@ -593,9 +596,11 @@ function Preview({
             <span className="">Cancellation Policy</span>
             <span className="font-semibold">
               {typeof formState.cancellationPolicy === "string" ? (
-                "no file selected"
+                <div>{formState.cancellationPolicy}</div> // Handle string case
+              ) : Array.isArray(formState.cancellationPolicy) ? (
+                <FileDisplay files={formState.cancellationPolicy} /> // Handle File[] case
               ) : (
-                <File file={formState.cancellationPolicy} />
+                <FileDisplay file={formState.cancellationPolicy} /> // Handle single File case
               )}
             </span>
           </div>
@@ -607,9 +612,11 @@ function Preview({
 
             <span className="font-semibold">
               {typeof formState.termsAndConditions === "string" ? (
-                "no file selected"
+                <div>{formState.termsAndConditions}</div> // Handle string case
+              ) : Array.isArray(formState.termsAndConditions) ? (
+                <FileDisplay files={formState.termsAndConditions} /> // Handle File[] case
               ) : (
-                <File file={formState.termsAndConditions} />
+                <FileDisplay file={formState.termsAndConditions} /> // Handle single File case
               )}
             </span>
           </div>
@@ -617,9 +624,11 @@ function Preview({
             <span className="">Privacy Policy</span>
             <span className="font-semibold">
               {typeof formState.privacyPolicy === "string" ? (
-                "no file selected"
+                <div>{formState.privacyPolicy}</div> // Handle string case
+              ) : Array.isArray(formState.privacyPolicy) ? (
+                <FileDisplay files={formState.privacyPolicy} /> // Handle File[] case
               ) : (
-                <File file={formState.privacyPolicy} />
+                <FileDisplay file={formState.privacyPolicy} /> // Handle single File case
               )}
             </span>
           </div>

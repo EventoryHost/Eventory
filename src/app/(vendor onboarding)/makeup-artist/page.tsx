@@ -32,12 +32,12 @@ interface FormState {
   onsiteMakeup: boolean;
 
   artistDescription: string;
-  portfolioUrls: string | File;
+  portfolioUrls: string | File | File[];
   makeup_groupmembers: string;
   organisationMembers: string;
   // Page 2
-  termsAndConditions: string | File;
-  cancellationPolicy: string | File;
+  termsAndConditions: string | File | File[];
+  cancellationPolicy: string | File | File[];
   // Page 3
   // Page 4
 }
@@ -159,14 +159,32 @@ const VenueForm: React.FC = () => {
     formData.append("artistName", formState.artistName);
     formData.append("category", category);
     formData.append("artistDescription", formState.artistDescription);
-    formData.append("portfolioUrls", formState.portfolioUrls);
+    if (Array.isArray(formState.portfolioUrls)) {
+      formState.portfolioUrls.forEach((file) => {
+        formData.append("portfolioUrls", file); // No index here
+      });
+    } else {
+      formData.append("portfolioUrls", formState.portfolioUrls);
+    }
+
     formData.append("makeup_groupmembers", formState.makeup_groupmembers);
     formData.append("organisationMembers", formState.organisationMembers);
 
     //page 2
-    formData.append("termsAndConditions", formState.termsAndConditions);
-    formData.append("cancellationPolicy", formState.cancellationPolicy);
-
+    if (Array.isArray(formState.termsAndConditions)) {
+      formState.termsAndConditions.forEach((file) => {
+        formData.append("termsAndConditions", file); // No index here
+      });
+    } else {
+      formData.append("termsAndConditions", formState.termsAndConditions);
+    }
+    if (Array.isArray(formState.cancellationPolicy)) {
+      formState.cancellationPolicy.forEach((file) => {
+        formData.append("cancellationPolicy", file); // No index here
+      });
+    } else {
+      formData.append("cancellationPolicy", formState.cancellationPolicy);
+    }
     //page 3
     formData.append("advancePayment", advancePayment.toString());
     formData.append("hourlyPackage", JSON.stringify(hourlyPackage));

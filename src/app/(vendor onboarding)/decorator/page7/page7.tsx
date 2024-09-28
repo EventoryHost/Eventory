@@ -4,10 +4,10 @@ import FileInput from "@/components/fileInput";
 import { ArrowLeft } from "lucide-react";
 
 interface FormState {
-  insurancePolicy: string | File;
-  cancellationPolicy: string | File;
-  termsAndConditions: string | File;
-  privacyPolicy: string | File;
+  insurancePolicy: string | File | File[];
+  cancellationPolicy: string | File | File[];
+  termsAndConditions: string | File | File[];
+  privacyPolicy: string | File | File[];
 }
 
 interface Page7Props {

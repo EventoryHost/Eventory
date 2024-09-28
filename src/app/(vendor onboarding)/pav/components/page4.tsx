@@ -19,10 +19,10 @@ type Page1Props = {
   setSetupsInstallations: (setupsInstallations: boolean) => void;
   bookingDeposit: boolean;
   setBookingDeposit: (bookingDeposit: boolean) => void;
-  cancellationPolicy: string | File;
-  setCancellationPolicy: (cancellationPolicy: string | File) => void;
-  tnc: string | File;
-  setTnc: (tnc: string | File) => void;
+  cancellationPolicy: string | File | File[];
+  setCancellationPolicy: (cancellationPolicy: string | File | File[]) => void;
+  tnc: string | File | File[];
+  setTnc: (tnc: string | File | File[]) => void;
   handleContinue: () => void;
 };
 

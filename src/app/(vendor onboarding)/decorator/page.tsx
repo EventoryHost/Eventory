@@ -51,10 +51,10 @@ export interface FormState {
   certificates_awards: string | File;
 
   //page 7
-  insurancePolicy: string | File;
-  cancellationPolicy: string | File;
-  termsAndConditions: string | File;
-  privacyPolicy: string | File;
+  insurancePolicy: string | File | File[];
+  cancellationPolicy: string | File | File[];
+  termsAndConditions: string | File | File[];
+  privacyPolicy: string | File | File[];
 
   references: boolean;
   experience: string;
@@ -302,10 +302,35 @@ const Decorators: React.FC = () => {
     formData.append("clientTestimonials", formState.clientTestimonials);
     formData.append("certificates_awards", formState.certificates_awards);
     //page 7
-    formData.append("insurancePolicy", formState.insurancePolicy);
-    formData.append("cancellationPolicy", formState.cancellationPolicy);
-    formData.append("termsAndConditions", formState.termsAndConditions);
-    formData.append("privacyPolicy", formState.privacyPolicy);
+    if (Array.isArray(formState.insurancePolicy)) {
+      formState.insurancePolicy.forEach((file) => {
+        formData.append("insurancePolicy", file); // No index here
+      });
+    } else {
+      formData.append("insurancePolicy", formState.insurancePolicy);
+    }
+    if (Array.isArray(formState.cancellationPolicy)) {
+      formState.cancellationPolicy.forEach((file) => {
+        formData.append("cancellationPolicy", file); // No index here
+      });
+    } else {
+      formData.append("cancellationPolicy", formState.cancellationPolicy);
+    }
+    if (Array.isArray(formState.termsAndConditions)) {
+      formState.termsAndConditions.forEach((file) => {
+        formData.append("termsAndConditions", file); // No index here
+      });
+    } else {
+      formData.append("termsAndConditions", formState.termsAndConditions);
+    }
+
+    if (Array.isArray(formState.privacyPolicy)) {
+      formState.privacyPolicy.forEach((file) => {
+        formData.append("privacyPolicy", file); // No index here
+      });
+    } else {
+      formData.append("privacyPolicy", formState.privacyPolicy);
+    }
 
     // Append form data for debugging
     formData.forEach((value, key) => {
