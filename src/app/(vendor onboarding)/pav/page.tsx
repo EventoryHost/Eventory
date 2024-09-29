@@ -12,7 +12,7 @@ import { addPhotographer } from "@/services/vendors/photographer";
 import "react-toastify/dist/ReactToastify.css";
 import Agreement from "../(Agreement)/Agreement";
 import Plans from "../(Plans)/Plans";
-import Registration_Completed from "../(Registration-Completed)/page";
+import Registration_Completed from "../(Registration-Completed)/thankupage";
 
 const Page = () => {
   //states for page1

@@ -9,7 +9,7 @@ import Page5 from "./page5/page5";
 import Page6 from "./preview/page6";
 import Agreement from "../(Agreement)/Agreement";
 import Plans from "../(Plans)/Plans";
-import Registration_Completed from "../(Registration-Completed)/page";
+import Registration_Completed from "../(Registration-Completed)/thankupage";
 import { addInvitation } from "@/services/vendors/invitation";
 interface Package {
   type: string;
