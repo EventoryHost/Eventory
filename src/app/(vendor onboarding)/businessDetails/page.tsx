@@ -389,18 +389,18 @@ const BusinessDetails = () => {
                 </div>
               </div>
             </div>
-              {error && (
-                <p className="text-md flex flex-col items-start self-start font-poppins font-medium text-red-600">
-                  Fill All The Req&apos; Field&apos;s
-                </p>
-              )}
-              <div className="flex flex-col items-start self-end">
-                <button
-                  type="submit"
-                  className="rounded-2xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                >
-                  Register
-                </button>
+            {error && (
+              <p className="text-md flex flex-col items-start self-start font-poppins font-medium text-red-600">
+                Fill All The Req&apos; Field&apos;s
+              </p>
+            )}
+            <div className="flex flex-col items-start self-end">
+              <button
+                type="submit"
+                className="rounded-2xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+              >
+                Register
+              </button>
               {error && (
                 <p className="text-md flex flex-col items-start self-start font-poppins font-medium text-red-600">
                   Fill All The Req&apos; Field&apos;s
