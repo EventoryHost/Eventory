@@ -8,7 +8,7 @@ import Page4 from "./page4/page4";
 import Preview from "./preview/page5";
 import Agreement from "../(Agreement)/Agreement";
 import Plans from "../(Plans)/Plans";
-import Registration_Completed from "../(Registration-Completed)/page";
+import Registration_Completed from "../(Registration-Completed)/thankupage";
 import { addTransport } from "@/services/vendors/transport";
 
 // Define the pages in sequence

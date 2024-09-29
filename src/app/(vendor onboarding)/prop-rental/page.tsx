@@ -14,7 +14,7 @@ import { Import } from "lucide-react";
 import Preview from "./preview/preview";
 import Plans from "../(Plans)/Plans";
 import Agreement from "../(Agreement)/Agreement";
-import Registration_Completed from "../(Registration-Completed)/page";
+import Registration_Completed from "../(Registration-Completed)/thankupage";
 
 export interface FormState {
   // Page1

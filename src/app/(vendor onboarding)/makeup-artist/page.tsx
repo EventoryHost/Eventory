@@ -12,7 +12,7 @@ import jwt from "jsonwebtoken";
 import Image from "next/image";
 import Agreement from "../(Agreement)/Agreement";
 import Plans from "../(Plans)/Plans";
-import Registration_Completed from "../(Registration-Completed)/page";
+import Registration_Completed from "../(Registration-Completed)/thankupage";
 
 interface Package {
   type: string;

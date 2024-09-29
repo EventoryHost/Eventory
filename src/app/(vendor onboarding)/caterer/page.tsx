@@ -14,7 +14,7 @@ import Page8 from "./preview/preview";
 import { addCaterer } from "@/services/vendors/caterer";
 import Agreement from "../(Agreement)/Agreement";
 import Plans from "../(Plans)/Plans";
-import Registration_Completed from "../(Registration-Completed)/page";
+import Registration_Completed from "../(Registration-Completed)/thankupage";
 
 interface Package {
   type: string;

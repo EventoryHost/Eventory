@@ -341,7 +341,7 @@ const BusinessDetails = () => {
               </div>
               {error && (
                 <p className="text-md flex flex-col items-start self-start font-poppins font-medium text-red-600">
-                  Fill All The Req* Field's
+                  Fill All The Req&apos; Field&apos;s
                 </p>
               )}
               <div className="flex flex-col items-start self-end">

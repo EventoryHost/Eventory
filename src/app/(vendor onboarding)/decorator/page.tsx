@@ -12,7 +12,7 @@ import { addDecorator } from "@/services/vendors/decorator";
 import Image from "next/image";
 import Agreement from "../(Agreement)/Agreement";
 import Plans from "../(Plans)/Plans";
-import Registration_Completed from "../(Registration-Completed)/page";
+import Registration_Completed from "../(Registration-Completed)/thankupage";
 
 interface Package {
   type: string;
@@ -394,7 +394,7 @@ const Decorators: React.FC = () => {
       className={`m-0 flex w-full flex-col overflow-x-hidden ${currentPage <= 6 ? "lg:h-[calc(100vh-4.2rem)]" : ""} lg:flex-row`}
     >
       {currentPage <= 6 && (
-        <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[35%] lg:max-w-[35%]">
+        <div className="flex flex-col items-start justify-between bg-[#FFFFFF] px-8 xs:gap-7 xs:pt-4 md:min-w-[35%] lg:max-w-[35%]">
           <div className="flex w-[100%] flex-col justify-center">
             <div className="flex flex-col gap-1 px-3 lg:mt-[2rem]">
               <span className="text-lg font-semibold">
@@ -437,7 +437,7 @@ const Decorators: React.FC = () => {
               </div>
             </div>
           </div>
-          <div className="flex h-[40%] flex-col items-start justify-center gap-9 px-3 pt-3 md:px-3">
+          <div className="flex h-[40%] flex-col items-start justify-center gap-5 px-3 pt-3 md:px-3">
             <h1 className="text-[8vw] font-bold md:text-[3vw]">
               {currentPage === 1 && "Fill out event details"}
               {currentPage === 2 && "Fill out themes related details "}

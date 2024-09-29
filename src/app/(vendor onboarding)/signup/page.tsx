@@ -8,6 +8,7 @@ import auth from "@/services/auth";
 import OtpModal from "@/components/ui/otp-modal";
 import tajmahal from "/public/tajmahal.png";
 import { useRouter } from "next/navigation";
+import { useToast } from "@/components/hooks/use-toast";
 const fields: {
   id: keyof basicDetails;
   label: string;
@@ -35,6 +36,7 @@ type basicDetails = {
 };
 
 const SignUp = () => {
+  const { toast } = useToast();
   const [loading, setloading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [basicDetails, setBasicDetails] = useState<basicDetails>(
@@ -87,6 +89,12 @@ const SignUp = () => {
         toggleModal();
       }
     } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: String(error) || "Something goes wrong",
+      });
+      setFormError(String(error) || "Something goes wrong");
       console.log(error);
       setloading(false);
     }
@@ -201,7 +209,7 @@ const SignUp = () => {
                     ))}
                   </div>
                   {formError && !isModalOpen && (
-                    <div className="mb-9 text-red-500">{formError}</div>
+                    <div className="mx-3 my-4 text-red-500">{formError}</div>
                   )}
                   <div className="mt-9 flex w-full flex-col-reverse justify-between gap-3 self-start md:mt-0 md:flex-row md:items-center md:px-0">
                     <div className="flex gap-2 xs:text-sm md:gap-3">

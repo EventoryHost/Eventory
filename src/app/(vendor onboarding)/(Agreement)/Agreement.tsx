@@ -3,13 +3,15 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import jwt from "jsonwebtoken";
 import { getvendor } from "@/services/auth";
+import { useToast } from "@/components/hooks/use-toast";
 type PageProps = {
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 };
 
 const Agreement = ({ setCurrentPage }: PageProps) => {
   const [checked, setIschecked] = useState(false);
-
+  const { toast } = useToast();
+  const [signature, setsignature] = useState("");
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -78,23 +80,29 @@ const Agreement = ({ setCurrentPage }: PageProps) => {
         <div className="h-[828px] w-[66.06rem]">
           <div className="scrollbar-rounded-xl absolute h-[828px] w-[66.06rem] overflow-y-scroll pl-12 pr-6 text-left text-gray-500">
             <p>
-              This Vendor Agreement ("Agreement") is entered into as of{" "}
-              {new Date().toLocaleDateString()} between:
+              This Vendor Agreement (&quot;Agreement&quot;) is entered into as
+              of {new Date().toLocaleDateString()}
+              <br />
+              between:
             </p>
             <p>
-              Eventory ("Platform" or "Company"), having its principal place of
-              business at: 13-D, Atmaram House, 1-Tolstoy Marg, Connaught Place,
-              New Delhi -11001
+              Eventory (&quot;Platform&quot; or &quot;Company&quot;), having its
+              principal place of business
               <br />
-              and;
+              at: 13-D, Atmaram House, 1-Tolstoy Marg, Connaught Place, New
+              Delhi -11001
+              <br />
+              And
               <br />
               {formData?.fullName || "Vendor Name"} having its principal place
-              of business at {formData?.address || "Vendor Address"}.
+              of business
+              <br />
+              at: {formData?.address || "Vendor Address"}.
             </p>
             <br />
             <p>
-              Collectively referred to as the "Parties" and individually as a
-              "Party."
+              Collectively referred to as the &quot;Parties&quot; and
+              individually as a &quot;Party.&quot;
             </p>
 
             <h2>1. Definitions</h2>
@@ -206,9 +214,9 @@ const Agreement = ({ setCurrentPage }: PageProps) => {
               dynamic pricing will be covered by the Vendor.
             </p>
             <p>
-              If the Vendor cancels a booking 'x' days before the actual booking
-              date, they shall be liable to pay 'y' % of the BOOKING AMOUNT to
-              Eventory as follows:
+              If the Vendor cancels a booking &apos;x&apos; days before the
+              actual booking date, they shall be liable to pay &apos;y&apos; %
+              of the BOOKING AMOUNT to Eventory as follows:
             </p>
             <p>14+ days: 0%</p>
             <p>10-14 days: 5%</p>
@@ -218,10 +226,10 @@ const Agreement = ({ setCurrentPage }: PageProps) => {
             <p>On the day of the booking: 35%</p>
 
             <p>
-              6.2 Customer Cancellation: If a customer cancels a booking 'x'
-              days before the actual booking date, they will be charged 'y' % of
-              the BOOKING AMOUNT, and the remaining amount will be refunded as
-              follows:
+              6.2 Customer Cancellation: If a customer cancels a booking
+              &apos;x&apos; days before the actual booking date, they will be
+              charged &apos;y&apos; % of the BOOKING AMOUNT, and the remaining
+              amount will be refunded as follows:
             </p>
             <p>14+ days: 0%</p>
             <p>10-14 days: 10%</p>
@@ -241,7 +249,7 @@ const Agreement = ({ setCurrentPage }: PageProps) => {
               services at the same price.
             </p>
 
-            <h2>7. Vendor's Representation and Warranties</h2>
+            <h2>7. Vendor&apos;s Representation and Warranties</h2>
             <p>
               7.1 Performance: The Vendor warrants that it has the necessary
               skills, experience, and resources to perform the services
@@ -330,7 +338,12 @@ const Agreement = ({ setCurrentPage }: PageProps) => {
             <p>Date: {new Date().toLocaleDateString()}</p>
             <p>For Vendor:</p>
             <p>
-              Signature: <input className="border-b-2" type="text" />
+              Signature:{" "}
+              <input
+                onChange={(e) => setsignature(e.target.value)}
+                className={`border-b-2 ${signature.length < 2 ? "border-b-red-600" : "border-b-blue-600"}`}
+                type="text"
+              />
             </p>
             <p>Name: {formData?.fullName || "Vendor Name"}</p>
             <p>Date: {new Date().toLocaleDateString()}</p>
@@ -378,11 +391,16 @@ const Agreement = ({ setCurrentPage }: PageProps) => {
             <h2>Cancel</h2>
           </button>
           <button
-            onClick={() =>
-              checked
+            onClick={() => {
+              checked && signature.length >= 2
                 ? setCurrentPage((prevPage) => prevPage + 1)
-                : alert("Please mark the checkbox")
-            }
+                : toast({
+                    variant: "destructive",
+                    title: "Pls Complete Following Staff",
+                    description:
+                      "Pls Check the Checkmark And Write Your Signature At The Bottem Of Agreement",
+                  });
+            }}
             className="flex h-[48px] w-[164px] items-center justify-center rounded-2xl bg-[rgba(46,49,146,1)] p-4 font-poppins text-white"
           >
             Agree & Pay
