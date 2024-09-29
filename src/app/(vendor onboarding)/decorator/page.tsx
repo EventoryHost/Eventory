@@ -7,12 +7,12 @@ import Page2 from "./page2/page2";
 import Page3 from "./page3/page3";
 import Page4 from "./page4/page4";
 import Page5 from "./page5/page5";
-import Page6 from "./page6/page6";
-import Page7 from "./page7/page7";
-import Page8 from "./preview/page8";
-
+import Page6 from "./preview/page5";
 import { addDecorator } from "@/services/vendors/decorator";
 import Image from "next/image";
+import Agreement from "../(Agreement)/Agreement";
+import Plans from "../(Plans)/Plans";
+import Registration_Completed from "../(Registration-Completed)/thankupage";
 
 interface Package {
   type: string;
@@ -23,6 +23,8 @@ export interface FormState {
   // Page-specific states
   // Page 1
   businessName: string;
+  duration: string;
+  eventsize: string;
 
   // Page 2
   propthemesOffered: boolean;
@@ -32,31 +34,24 @@ export interface FormState {
   customDesignProcess: string;
 
   // Page 3
-  backDropoptions: string;
-  decorationoptions: string;
-  prop_accessory: string;
-
+  themephotos: string | File | File[];
+  themevideos: string | File | File[];
   // Page 4
-  freeInitialConsultation: boolean;
-  revisionPolicy: boolean;
-  writtenthemeProposal: boolean;
-  setup_installation: boolean;
-  consulationProcess: string;
-
-  //page 6
-  portfolio: string | File;
-  ratings_reviews: string | File;
-  clientTestimonials: string | File;
-  certificates_awards: string | File;
+  photos: string | File | File[];
+  videos: string | File | File[];
+  websiteurl: string;
+  intstagramurl: string;
+  clientTestimonials: string;
+  Recongnition_awards: string;
+  advbookingperiod: string;
+  writtenthemeproposalafterconsultaion: boolean;
+  revisionforinitialthemeproposal: boolean;
 
   //page 7
-  insurancePolicy: string | File;
-  cancellationPolicy: string | File;
-  termsAndConditions: string | File;
-  privacyPolicy: string | File;
+  cancellationPolicy: string | File | File[];
+  termsAndConditions: string | File | File[];
 
-  references: boolean;
-  experience: string;
+  //page 5
 }
 
 const Decorators: React.FC = () => {
@@ -65,6 +60,8 @@ const Decorators: React.FC = () => {
   const [formState, setFormState] = useState<FormState>({
     //page1
     businessName: "",
+    duration: "",
+    eventsize: "",
 
     // Page 2
     propthemesOffered: false,
@@ -74,29 +71,22 @@ const Decorators: React.FC = () => {
     customDesignProcess: "",
 
     //page 3
-    backDropoptions: "",
-    decorationoptions: "",
-    prop_accessory: "",
-    // Page 4
-    freeInitialConsultation: true,
-    revisionPolicy: true,
-    writtenthemeProposal: true,
-    setup_installation: true,
-    consulationProcess: "",
+    themephotos: "",
+    themevideos: "",
 
-    //page6
-    portfolio: "",
-    ratings_reviews: "",
+    //page4
+    photos: "",
+    videos: "",
+    websiteurl: "",
+    intstagramurl: "",
     clientTestimonials: "",
-    certificates_awards: "",
-    //page7
-    insurancePolicy: "",
+    Recongnition_awards: "",
+    advbookingperiod: "",
+    writtenthemeproposalafterconsultaion: false,
+    revisionforinitialthemeproposal: false,
+    //page5
     cancellationPolicy: "",
     termsAndConditions: "",
-    privacyPolicy: "",
-
-    references: false,
-    experience: "",
   });
 
   const updateFormState = (newState: Partial<FormState>) => {
@@ -110,54 +100,10 @@ const Decorators: React.FC = () => {
   const [corporateEvents, setCorporateEvents] = useState<string[]>([]);
   const [seasonalEvents, setSeasonalEvents] = useState<string[]>([]);
   const [culturalEvents, setCulturalEvents] = useState<string[]>([]);
-
   //page 2
   const [themesOffered, setThemesOffered] = useState<string[]>([]);
-
   //page 3
   const [themesElements, setThemesElements] = useState<string[]>([]);
-
-  //page 4
-
-  //page 5
-  const [hourlyPackages, setHourlyPackages] = useState<Package[]>([
-    { type: "", priceRange: [0, 0] },
-  ]);
-
-  const [dailyPackages, setDailyPackages] = useState<Package[]>([
-    { type: "", priceRange: [0, 0] },
-  ]);
-
-  const [additionalCharges, setAdditionalCharges] = useState<Package[]>([
-    { type: "", priceRange: [0, 0] },
-  ]);
-  const [advancePayment, setAdvancePayment] = useState(25);
-
-  const handlePackageChange = (
-    setPackages: React.Dispatch<React.SetStateAction<Package[]>>,
-    index: number,
-    field: "type" | "priceRange",
-    value: string | [number, number],
-  ) => {
-    setPackages((prevPackages) => {
-      const newPackages = [...prevPackages];
-      if (field === "type") {
-        newPackages[index].type = value as string;
-      } else {
-        newPackages[index].priceRange = value as [number, number];
-      }
-      return newPackages;
-    });
-  };
-
-  const addPackage = (
-    setPackages: React.Dispatch<React.SetStateAction<Package[]>>,
-  ) => {
-    setPackages((prevPackages) => [
-      ...prevPackages,
-      { type: "", priceRange: [0, 100000] },
-    ]);
-  };
 
   function getVendorId(): string | null {
     const token = localStorage.getItem("token");
@@ -183,7 +129,7 @@ const Decorators: React.FC = () => {
   }
 
   const handleContinue = () => {
-    console.log("continue");
+    setCurrentPage(currentPage + 1);
   };
 
   // Submit form data
@@ -206,9 +152,12 @@ const Decorators: React.FC = () => {
     const formData = new FormData();
 
     formData.append("venId", venId);
-    formData.append("name", formState.businessName);
 
     //page 1
+    formData.append("name", formState.businessName);
+    formData.append("duration", formState.duration);
+    formData.append("eventsize", formState.eventsize);
+
     typesOfEvents.forEach((type) => {
       formData.append("typesOfEvents", type);
     });
@@ -225,6 +174,9 @@ const Decorators: React.FC = () => {
       formData.append("culturalEvents", event);
     });
     //page 2
+    themesOffered.forEach((event) => {
+      formData.append("themesOffered", event);
+    });
     formData.append(
       "propthemesOffered",
       formState.propthemesOffered.toString(),
@@ -235,71 +187,74 @@ const Decorators: React.FC = () => {
       "customizationsThemes",
       formState.customizationsThemes.toString(),
     );
+
     formData.append("customDesignProcess", formState.customDesignProcess);
-    //page 3
-    formData.append("backDropoptions", formState.backDropoptions);
-    formData.append("decorationoptions", formState.decorationoptions);
-    formData.append("prop_accessory", formState.prop_accessory);
-    //page 4
-    formData.append(
-      "freeInitialConsultation",
-      formState.freeInitialConsultation.toString(),
-    );
-    formData.append("revisionPolicy", formState.revisionPolicy.toString());
-    formData.append(
-      "writtenthemeProposal",
-      formState.writtenthemeProposal.toString(),
-    );
-    formData.append(
-      "setup_installation",
-      formState.setup_installation.toString(),
-    );
-    formData.append("consulationProcess", formState.consulationProcess);
-    //page 5
-    hourlyPackages.forEach((packageData, index) => {
-      formData.append(`hourlyPackages[${index}][type]`, packageData.type);
-      formData.append(
-        `hourlyPackages[${index}][priceRange][0]`,
-        packageData.priceRange[0].toString(),
-      );
-      formData.append(
-        `hourlyPackages[${index}][priceRange][1]`,
-        packageData.priceRange[1].toString(),
-      );
+
+    // 3
+    themesElements.forEach((event) => {
+      formData.append("themesElements", event);
     });
-    dailyPackages.forEach((packageData, index) => {
-      formData.append(`dailyPackages[${index}][type]`, packageData.type);
-      formData.append(
-        `dailyPackages[${index}][priceRange][0]`,
-        packageData.priceRange[0].toString(),
-      );
-      formData.append(
-        `dailyPackages[${index}][priceRange][1]`,
-        packageData.priceRange[1].toString(),
-      );
-    });
-    additionalCharges.forEach((packageData, index) => {
-      formData.append(`additionalCharges[${index}][type]`, packageData.type);
-      formData.append(
-        `additionalCharges[${index}][priceRange][0]`,
-        packageData.priceRange[0].toString(),
-      );
-      formData.append(
-        `additionalCharges[${index}][priceRange][1]`,
-        packageData.priceRange[1].toString(),
-      );
-    });
-    formData.append("advancePayment", advancePayment.toString());
-    //page 6
-    formData.append("portfolio", formState.portfolio);
-    formData.append("ratings_reviews", formState.ratings_reviews);
+
+    if (Array.isArray(formState.themevideos)) {
+      formState.themevideos.forEach((file) => {
+        if (file instanceof File) {
+          formData.append("themevideos", file); // Append as 'photos' without the array index
+        }
+      });
+    } else if (typeof formState.themevideos === "string") {
+      formData.append("themevideos", formState.themevideos); // Append the string (URL)
+    }
+
+    if (Array.isArray(formState.themephotos)) {
+      formState.themephotos.forEach((file) => {
+        if (file instanceof File) {
+          formData.append("themephotos", file); // Append as 'photos' without the array index
+        }
+      });
+    } else if (typeof formState.themephotos === "string") {
+      formData.append("photos", formState.themephotos); // Append the string (URL)
+    }
+
+    //4
+
+    if (Array.isArray(formState.photos)) {
+      formState.photos.forEach((file) => {
+        if (file instanceof File) {
+          formData.append("photos", file); // Append as 'photos' without the array index
+        }
+      });
+    } else if (typeof formState.photos === "string") {
+      formData.append("photos", formState.photos); // Append the string (URL)
+    }
+
+    if (Array.isArray(formState.videos)) {
+      formState.videos.forEach((file) => {
+        if (file instanceof File) {
+          formData.append("photos", file); // Append as 'photos' without the array index
+        }
+      });
+    } else if (typeof formState.videos === "string") {
+      formData.append("photos", formState.videos); // Append the string (URL)
+    }
+    formData.append("websiteurl", formState.websiteurl);
+    formData.append("intstagramurl", formState.intstagramurl);
     formData.append("clientTestimonials", formState.clientTestimonials);
-    formData.append("certificates_awards", formState.certificates_awards);
     //page 7
-    formData.append("insurancePolicy", formState.insurancePolicy);
-    formData.append("cancellationPolicy", formState.cancellationPolicy);
-    formData.append("termsAndConditions", formState.termsAndConditions);
-    formData.append("privacyPolicy", formState.privacyPolicy);
+
+    if (Array.isArray(formState.cancellationPolicy)) {
+      formState.cancellationPolicy.forEach((file) => {
+        formData.append("cancellationPolicy", file); // No index here
+      });
+    } else {
+      formData.append("cancellationPolicy", formState.cancellationPolicy);
+    }
+    if (Array.isArray(formState.termsAndConditions)) {
+      formState.termsAndConditions.forEach((file) => {
+        formData.append("termsAndConditions", file); // No index here
+      });
+    } else {
+      formData.append("termsAndConditions", formState.termsAndConditions);
+    }
 
     // Append form data for debugging
     formData.forEach((value, key) => {
@@ -331,10 +286,7 @@ const Decorators: React.FC = () => {
             setSeasonalEvents={setSeasonalEvents}
             culturalEvents={culturalEvents}
             setCulturalEvents={setCulturalEvents}
-            handleContinue={() => {
-              setCurrentPage(2);
-              handleContinue();
-            }}
+            handleContinue={handleContinue}
           />
         );
       case 2:
@@ -343,87 +295,48 @@ const Decorators: React.FC = () => {
             formState={formState}
             updateFormState={updateFormState}
             themesOffered={themesOffered}
+            setCurrentPage={setCurrentPage}
             setThemesOffered={setThemesOffered}
-            handleContinue={() => {
-              setCurrentPage(3);
-              handleContinue();
-            }}
+            handleContinue={handleContinue}
           />
         );
 
       case 3:
         return (
           <Page3
+            setCurrentPage={setCurrentPage}
             formState={formState}
             updateFormState={updateFormState}
             themesElements={themesElements}
             setThemesElements={setThemesElements}
-            handleContinue={() => {
-              setCurrentPage(4);
-              handleContinue();
-            }}
+            handleContinue={handleContinue}
           />
         );
 
       case 4:
         return (
           <Page4
+            setCurrentPage={setCurrentPage}
             formState={formState}
             updateFormState={updateFormState}
-            handleContinue={() => {
-              setCurrentPage(5);
-              handleContinue();
-            }}
+            handleContinue={handleContinue}
           />
         );
-
       case 5:
         return (
           <Page5
-            hourlyPackages={hourlyPackages}
-            setHourlyPackages={setHourlyPackages}
-            dailyPackages={dailyPackages}
-            setDailyPackages={setDailyPackages}
-            additionalCharges={additionalCharges}
-            setAdditionalCharges={setAdditionalCharges}
-            handlePackageChange={handlePackageChange}
-            addPackage={addPackage}
-            advancePayment={advancePayment}
-            setAdvancePayment={setAdvancePayment}
-            handleContinue={() => {
-              setCurrentPage(6);
-              handleContinue();
-            }}
+            setCurrentPage={setCurrentPage}
+            formState={formState}
+            updateFormState={updateFormState}
+            themesElements={themesElements}
+            setThemesElements={setThemesElements}
+            handleContinue={handleContinue}
           />
         );
 
       case 6:
         return (
           <Page6
-            formState={formState}
-            updateFormState={updateFormState}
-            handleContinue={() => {
-              setCurrentPage(7);
-              handleContinue();
-            }}
-          />
-        );
-
-      case 7:
-        return (
-          <Page7
-            formState={formState}
-            updateFormState={updateFormState}
-            handleContinue={() => {
-              setCurrentPage(8);
-              handleContinue();
-            }}
-          />
-        );
-
-      case 8:
-        return (
-          <Page8
             setCurrentPage={setCurrentPage}
             typeOfevents={typesOfEvents}
             setTypesOfEvents={setTypesOfEvents}
@@ -441,112 +354,124 @@ const Decorators: React.FC = () => {
             setThemesOffered={setThemesOffered}
             themesElements={themesElements}
             setThemesElements={setThemesElements}
-            hourlyPackages={hourlyPackages}
-            setHourlyPackages={setHourlyPackages}
-            dailyPackages={dailyPackages}
-            setDailyPackages={setDailyPackages}
-            additionalCharges={additionalCharges}
-            setAdditionalCharges={setAdditionalCharges}
-            handlePackageChange={handlePackageChange}
-            addPackage={addPackage}
-            advancePayment={advancePayment}
-            setAdvancePayment={setAdvancePayment}
-            handleContinue={() => {
-              setCurrentPage(9);
-              handleContinue();
-            }}
+            handleContinue={handleContinue}
           />
+        );
+      case 7:
+        return (
+          <>
+            <Agreement setCurrentPage={setCurrentPage} />
+          </>
+        );
+      case 8:
+        return (
+          <>
+            <Plans
+              handleformSubmit={handleSubmit}
+              setCurrentPage={setCurrentPage}
+            />
+          </>
+        );
+      case 9:
+        return (
+          <>
+            <Registration_Completed />
+          </>
+        );
+      default:
+        return (
+          <>
+            <center>
+              <h2>Loading....</h2>
+            </center>
+          </>
         );
     }
   };
 
   return (
-    <div className="m-0 flex w-full flex-col overflow-x-hidden lg:h-[calc(100vh-4.2rem)] lg:flex-row">
-      <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
-        <div className="flex w-[100%] flex-col justify-center">
-          <div className="flex flex-col gap-1 px-3 lg:mt-[2rem]">
-            <span className="text-lg font-semibold">
-              Step {currentPage} of 8
-            </span>
-            <div className="flex gap-4">
-              <button
-                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 1 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                onClick={() => setCurrentPage(1)}
-              ></button>
+    <div
+      className={`m-0 flex w-full flex-col overflow-x-hidden ${currentPage <= 6 ? "lg:h-[calc(100vh-4.2rem)]" : ""} lg:flex-row`}
+    >
+      {currentPage <= 6 && (
+        <div className="flex flex-col items-start justify-between bg-[#FFFFFF] px-8 xs:gap-7 xs:pt-4 md:min-w-[35%] lg:max-w-[35%]">
+          <div className="flex w-[100%] flex-col justify-center">
+            <div className="flex flex-col gap-1 px-3 lg:mt-[2rem]">
+              <span className="text-lg font-semibold">
+                Step {currentPage} of 6
+              </span>
+              <div className="flex gap-4">
+                <button
+                  className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 1 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                  onClick={() => setCurrentPage(1)}
+                ></button>
 
-              <button
-                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 2 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                onClick={() => setCurrentPage(2)}
-              ></button>
+                <button
+                  className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 2 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                  onClick={() => setCurrentPage(2)}
+                ></button>
 
-              <button
-                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 3 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                onClick={() => setCurrentPage(3)}
-              ></button>
+                <button
+                  className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 3 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                  onClick={() => setCurrentPage(3)}
+                ></button>
 
-              <button
-                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 4 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                onClick={() => setCurrentPage(4)}
-              ></button>
+                <button
+                  className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 4 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                  onClick={() => setCurrentPage(4)}
+                ></button>
 
-              <button
+                {/* <button
                 className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 5 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
                 onClick={() => setCurrentPage(5)}
-              ></button>
+              ></button> */}
 
-              <button
-                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 6 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                onClick={() => setCurrentPage(6)}
-              ></button>
-              <button
-                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 7 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                onClick={() => setCurrentPage(7)}
-              ></button>
-              <button
-                className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 8 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                onClick={() => setCurrentPage(8)}
-              ></button>
+                <button
+                  className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 5 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                  onClick={() => setCurrentPage(5)}
+                ></button>
+                <button
+                  className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 6 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                  onClick={() => setCurrentPage(6)}
+                ></button>
+              </div>
             </div>
           </div>
+          <div className="flex h-[40%] flex-col items-start justify-center gap-5 px-3 pt-3 md:px-3">
+            <h1 className="text-[8vw] font-bold md:text-[3vw]">
+              {currentPage === 1 && "Fill out event details"}
+              {currentPage === 2 && "Fill out themes related details "}
+              {currentPage === 3 && "Fill out theme elements details"}
+              {currentPage === 4 && "Fill out your ratings and reviews"}
+              {currentPage === 5 && "Fill out Some Mandatory details"}
+              {currentPage === 6 && "Preview details"}
+            </h1>
+            <p className="font-Helvetica font-normal text-[#797878] xs:text-xl">
+              {currentPage === 1 && "Select the types of events you cover "}
+              {currentPage === 2 &&
+                "Provide the details of the themes you offer and related details."}
+              {currentPage === 3 &&
+                "Provide the details of the themes elements you provide and describe it in detail."}
+              {currentPage === 4 &&
+                "Fill out the details or upload the links/pdf if available."}
+              {currentPage === 5 &&
+                "Fill out the details or upload the links/pdf if available."}
+              {currentPage === 6 &&
+                "Please recheck the information provided by you. "}
+            </p>
+          </div>
+          <div className="relative h-[10rem] lg:w-full">
+            <Image
+              src={"/tajmahal.png"}
+              alt=""
+              width={400}
+              height={200}
+              className="h-full w-full object-cover"
+            />
+          </div>
         </div>
-        <div className="flex h-[50%] flex-col items-start justify-center gap-9 px-3 md:px-3">
-          <h1 className="text-[8vw] font-bold md:text-[3vw]">
-            {currentPage === 1 && "Tell us about your business"}
-            {currentPage === 2 && "Fill the menu details"}
-            {currentPage === 3 && "Fill the Event details"}
-            {currentPage === 4 && "Fill the Staffing and Equipment details"}
-            {currentPage === 5 && "Fill the Booking and pricing details"}
-            {currentPage === 6 && "Fill the Additional details"}
-            {currentPage === 7 && "Preview details"}
-          </h1>
-          <p className="text-black xs:text-sm md:w-[90%]">
-            {currentPage === 1 &&
-              "Fill out your Business details to get verified and proceed to the registration process."}
-            {currentPage === 2 &&
-              "Please provide the menu details of the catering service offered by your company."}
-            {currentPage === 3 &&
-              "Please provide the event details of the catering service offered by your company."}
-            {currentPage === 4 &&
-              "Please provide the staffing and equipment details of the catering service offered by your company."}
-            {currentPage === 5 &&
-              "Please provide the booking and pricing details of the catering service offered by your company."}
-            {currentPage === 6 &&
-              "Please provide the additional details of the catering service offered by your company."}
-            {currentPage === 7 &&
-              "Please recheck the information provided by you. "}
-          </p>
-        </div>
-        <div className="relative h-[10rem] lg:w-full">
-          <Image
-            src={"/tajmahal.png"}
-            alt=""
-            width={400}
-            height={200}
-            className="h-full w-full object-cover"
-          />
-        </div>
-      </div>
-      <div className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] p-6 md:p-[1rem]">
+      )}
+      <div className="flex min-w-[65%] flex-col items-center justify-center bg-[#F7F6F9] p-6 md:p-[1rem]">
         {renderPage()}
       </div>
     </div>

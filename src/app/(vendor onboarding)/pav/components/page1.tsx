@@ -5,89 +5,126 @@ import Individual from "./(page1)/individual";
 import Group from "./(page1)/group";
 import Organization from "./(page1)/organization";
 import { pavtypes } from "@/types/types";
+import Appetizers from "../../(components)/Appetizers";
 
 type Page1Props = {
-  type: pavtypes;
-  setType: (type: pavtypes) => void;
   fullName: string;
   setFullName: (fullName: string) => void;
-  clientTestimonials: string | File;
-  setClientTestimonials: (clientTestimonials: string | File) => void;
-  portfolio: string | File;
-  setPortfolio: (portfolio: string | File) => void;
-  groupMembers: string;
-  setGroupMembers: (groupMembers: string) => void;
-  organizationMembers: string;
-  setOrganizationMembers: (organizationMembers: string) => void;
+  description: string;
+  setDescription: (description: string) => void;
+  eventsize: number;
+  events: string[];
+  setEventsize: (eventsize: number) => void;
+  setEvent: React.Dispatch<React.SetStateAction<string[]>>;
   handleContinue: () => void;
 };
 
+const eventslist = [
+  "Anniversary Celebration",
+  "Birthday Party",
+  "Corporate Party",
+  "Cultural Events",
+  "Wedding Events",
+  "Seasonal Parties",
+  "Others",
+];
 const Page1 = ({
-  type,
-  setType,
   fullName,
   setFullName,
-  clientTestimonials,
-  setClientTestimonials,
-  portfolio,
-  setPortfolio,
-  groupMembers,
-  setGroupMembers,
-  organizationMembers,
-  setOrganizationMembers,
+  description,
+  setDescription,
+  eventsize,
+  setEventsize,
+  setEvent,
+  events,
   handleContinue,
 }: Page1Props) => {
-  // State to manage the selected option (individual, group, organization)
-  const [selectedOption, setSelectedOption] = useState<pavtypes>("individual");
-
-  const renderComponent = () => {
-    switch (selectedOption) {
-      case "individual":
-        return (
-          <Individual
-            fullname={fullName}
-            setFullname={setFullName}
-            portfolio={portfolio}
-            setPortfolio={setPortfolio}
-            clientTestimonials={clientTestimonials}
-            setClientTestimonials={setClientTestimonials}
-            handleContinue={handleContinue}
-          />
-        );
-      case "grp":
-        return (
-          <Group
-            fullName={fullName}
-            setFullName={setFullName}
-            portfolio={portfolio}
-            setPortfolio={setPortfolio}
-            groupMembers={groupMembers}
-            setGroupMembers={setGroupMembers}
-            handleContinue={handleContinue}
-          />
-        );
-      case "org":
-        return (
-          <Organization
-            fullName={fullName}
-            setFullName={setFullName}
-            organizationMembers={organizationMembers}
-            setOrganizationMembers={setOrganizationMembers}
-            clientTestimonials={clientTestimonials}
-            setClientTestimonials={setClientTestimonials}
-            handleContinue={handleContinue}
-          />
-        );
-      default:
-        return null;
-    }
-  };
-
   return (
-    <div className="flex flex-col items-start gap-7 overflow-y-scroll rounded-xl bg-white p-3 xs:w-[100%] xs:min-w-[90%] xs:justify-start md:p-6">
-      <div className="flex w-[100%] items-center justify-start gap-9">
-        <h1 className="text-3xl font-semibold">Basic Details</h1>
-        <div className="flex flex-col gap-5 md:flex-row">
+    <div className="scroll-touch flex flex-col items-start gap-7 overflow-y-scroll rounded-xl p-3 scrollbar-hide xs:w-[95%] xs:min-w-[90%] xs:justify-start md:p-6">
+      <div className="flex w-[100%] flex-col items-start justify-start gap-9 rounded-xl bg-white p-5">
+        <div className="flex items-center justify-start gap-5">
+          <h1 className="text-3xl font-semibold"> Basic Details</h1>
+        </div>
+        <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
+          <div className="flex min-w-[40%] flex-col gap-4">
+            <label htmlFor="businessName">
+              Full Name(POC)<span className="text-red-500">*</span>
+            </label>
+            <input
+              id="Full Name"
+              type="text"
+              className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
+              placeholder="Enter your full name"
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
+              required
+            />
+          </div>
+
+          <div className="flex min-w-[40%] flex-col gap-4">
+            <label htmlFor="businessName">
+              Event size<span className="text-red-500">*</span>
+            </label>
+            <input
+              id="eventsize"
+              type="number"
+              className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
+              placeholder="Select Your Event size"
+              value={eventsize}
+              onChange={(e) => setEventsize(parseInt(e.target.value))}
+              required
+            />
+          </div>
+        </div>
+
+        <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
+          <div className="flex min-w-[40%] flex-col gap-4">
+            <label htmlFor="businessName">
+              Description about your background
+            </label>
+            <textarea
+              id="eventsize"
+              rows={5}
+              className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
+              placeholder="Enter Description about your background"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+          </div>
+        </div>
+      </div>
+      <div className="flex min-w-full flex-col items-center gap-9 rounded-xl bg-white p-5">
+        <div className="flex min-w-[100%] flex-col gap-5 rounded-xl bg-white">
+          <label htmlFor="years">
+            Types of Event<span className="text-red-500">*</span>
+          </label>
+          <div className="flex min-h-full min-w-full flex-col items-center gap-5">
+            <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+              <Appetizers
+                appetizers={eventslist}
+                selectedAppetizers={events}
+                setSelectedAppetizers={setEvent}
+                field={"events"}
+              />
+            </div>
+          </div>
+        </div>
+        <div className="mt-9 flex flex-row items-stretch gap-7 self-end">
+          <button
+            className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+            onClick={handleContinue}
+          >
+            Continue
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Page1;
+/*
+<div className="flex flex-col gap-5 md:flex-row">
           <div className="flex items-center gap-3">
             <input
               type="radio"
@@ -131,10 +168,28 @@ const Page1 = ({
             <label htmlFor="organization">Organization</label>
           </div>
         </div>
-      </div>
-      {renderComponent()}
-    </div>
-  );
-};
 
-export default Page1;
+
+        <input
+              id="cateringName"
+              type="text"
+              className={getInputClassName(formState.cateringName)}
+              placeholder="Enter your catering name"
+              value={formState.cateringName}
+              onChange={(e) =>
+                updateFormState({ cateringName: e.target.value })
+              }
+              required
+            />
+            <input
+              id="businessName"
+              type="text"
+              className={getInputClassName(formState.businessName)}
+              placeholder="Enter your business name"
+              value={formState.businessName}
+              onChange={(e) =>
+                updateFormState({ businessName: e.target.value })
+              }
+              required
+            />
+*/

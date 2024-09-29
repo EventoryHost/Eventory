@@ -29,7 +29,14 @@ const signUp = async (mobile: String) => {
     return await axios(config);
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      throw Error(error.message);
+      // Now TypeScript knows 'error' is an AxiosError
+      if (error.response) {
+        throw new Error(error.response.data.message || "Something went wrong");
+      } else {
+        throw new Error(error.message);
+      }
+    } else {
+      throw new Error("An unexpected error occurred");
     }
   }
 };
@@ -105,6 +112,28 @@ export const addBusinessDetails = async (
     }
   }
 };
+export const getvendor = async (
+  vendorId: string,
+  email: string,
+  phone: string,
+) => {
+  try {
+    const res = await axios.post(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/auth/get-vendor`,
+      {
+        vendorId,
+        email,
+        phone,
+      },
+    );
+    //console.log(res.data);
+    return res.data; // expect user in reponse
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      throw Error(error.message);
+    }
+  }
+};
 const auth = {
   authWithGoogle,
   signUp,
@@ -112,5 +141,6 @@ const auth = {
   verifyLoginOtp,
   login,
   addBusinessDetails,
+  getvendor,
 };
 export default auth;

@@ -1,13 +1,17 @@
 import StepBar from "@/app/(components)/stepBar";
 import FileInput from "@/components/fileInput";
-import { Upload } from "lucide-react";
-import { SetStateAction } from "react";
+import { ArrowLeft, Upload } from "lucide-react";
+import { SetStateAction, useEffect } from "react";
+import { FormState } from "../page";
+import Appetizers from "../../(components)/Appetizers";
+import { Console } from "console";
 
 interface formState {
-  insurancePolicy: string | File;
-  cancellationPolicy: string | File;
-  termsAndConditions: string | File;
-  privacyPolicy: string | File;
+  itemCatalogue: boolean | File;
+  customization: boolean;
+  maintenance: string;
+  services: string;
+
   handleChange: (key: string, value: any) => void;
 }
 
@@ -17,207 +21,236 @@ type PricingEntry = {
   max: number;
 };
 
-export interface page2Props {
+type page2Props = {
   formState: formState;
   handleChange: (key: string, value: any) => void;
   handleNestedChange: (key: string, nestedKey: string, value: any) => void;
   navigateToPage: (page: number) => void;
-  selectedCategory: string;
-  setSelectedCategory: (value: any) => void;
-  selectedAppetizers: string[];
-  setselectedAppetizers: (value: SetStateAction<string[]>) => void;
-  selectedDecor: string[];
-  setSelectedDecor: (value: any) => void;
-  selectedTentOptions: string[];
-  setSelectedTentOptions: (value: any) => void;
-  selectedAudioOptions: string[];
-  setSelectedAudioOptions: (value: any) => void;
-  selectedvisualOptions: string[];
-  setSelectedVisualOptions: (value: any) => void;
-  selectedLightOptions: string[];
-  setSelectedLightOptions: (value: any) => void;
-  percentageValuePage3: number;
-  percentageValuePage4: number;
-  percentageValuePage5: number;
-  furnitureHourlyPricingEntries: any;
-  tentHourlyPricingEntries: any;
-  furnitureDealPricingEntries: any;
-  furnitureWorkerPricingEntries: any;
-  handleAddPricingEntry: (entry: PricingEntry) => void;
-  handleAddTentHourlyPricingEntries: (entry: PricingEntry) => void;
-  handleAddTentPricingEntry: (entry: PricingEntry) => void;
-  handleAddAudioPricingEntry: (entry: PricingEntry) => void;
-  updateFormState: (value: any) => void;
-}
+  updateFormState: (newState: Partial<FormState>) => void;
+  currentPage: number;
+  setCurrentPage: (value: any) => void;
+  handleSubmit: () => void;
+  serviceProvided: string[];
+  setServiceProvided: (value: SetStateAction<string[]>) => void;
+};
 
 const Page2: React.FC<page2Props> = ({
   formState,
   handleChange,
-  handleNestedChange,
   updateFormState,
+  handleNestedChange,
+  currentPage,
+  setCurrentPage,
+  serviceProvided,
+  setServiceProvided,
 }) => {
+  const _serviceProvided = [
+    "Furniture and Decor",
+    "Tent and Canopy",
+    "Audio visuals",
+    "Others",
+  ];
+
+  useEffect(() => {
+    console.log(formState.customization);
+  }, [formState.customization]);
   return (
-    <div className="flex h-full min-h-[calc(100vh-5.2rem)] w-full flex-col overflow-hidden lg:flex-row">
-      <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
-        <div className="flex items-center justify-start gap-1 xs:self-start xs:pl-5 lg:mt-[2rem]">
-          <StepBar currentStep={2} />
-        </div>
-        <div className="ml-8 flex h-[50%] flex-col items-start justify-center gap-9 px-9 xs:pl-5 md:px-11 lg:p-8">
-          <h1 className="text-2xl font-semibold md:text-4xl lg:text-5xl">
-            Fill out your Basic details
-          </h1>
-          <p className="text-gray-600 xs:text-sm md:w-[90%] lg:text-lg">
-            Please provide the details of the business offered by your company.
-          </p>
-        </div>
-        <div className="relative h-[10rem] lg:w-full">
-          <img
-            src={"/tajmahal.png"}
-            alt="Taj Mahal"
-            className="h-full w-full object-cover"
-          />
+    <div className="flex h-full w-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide">
+      <div className="flex min-w-full flex-col items-start justify-around gap-10">
+        <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
+          <div className="flex items-center gap-4">
+            <ArrowLeft
+              className="ml-2 mr-1 h-6 w-6 cursor-pointer text-[#2E3192]"
+              aria-hidden="true"
+              onClick={() => setCurrentPage(currentPage - 1)}
+            />
+            <h1 className="text-2xl font-semibold">Services Details</h1>
+          </div>
+          <div className="flex min-h-full min-w-full flex-col items-center gap-8">
+            <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
+              <div className="flex min-w-[48%] flex-col gap-2">
+                <p className="flex items-center gap-1 text-base font-medium">
+                  Items Catalogue
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect
+                      x="1.33398"
+                      y="1.3335"
+                      width="13.3333"
+                      height="13.3333"
+                      rx="6.66667"
+                      stroke="#2B3F6C"
+                    />
+                    <path
+                      d="M8.33398 11.3335L8.33398 7.3335"
+                      stroke="#2B3F6C"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M7.00065 7.3335L8.33398 7.3335"
+                      stroke="#2B3F6C"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M8.33398 5.33366L8.33398 4.66699"
+                      stroke="#2B3F6C"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>{" "}
+                </p>
+                <div className="flex gap-6">
+                  <div className="flex items-center gap-4">
+                    <input
+                      id="itemCatalogueYes"
+                      type="radio"
+                      name="itemCatalogue"
+                      value="true"
+                      checked={!!formState.itemCatalogue}
+                      onChange={() => updateFormState({ itemCatalogue: true })}
+                      className="h-4 w-4 accent-[#2E3192]"
+                    />
+                    <label htmlFor="itemCatalogueYes" className="text-sm">
+                      Yes
+                    </label>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <input
+                      id="itemCatalogueNo"
+                      type="radio"
+                      name="itemCatalogue"
+                      value="false"
+                      checked={!formState.itemCatalogue}
+                      onChange={() => updateFormState({ itemCatalogue: false })}
+                      className="h-4 w-4 accent-[#2E3192]"
+                    />
+                    <label htmlFor="itemCatalogueNo" className="text-sm">
+                      No
+                    </label>
+                  </div>
+                </div>
+
+                {formState.itemCatalogue && (
+                  <>
+                    <span className="text-small font-light">PNG,JPG,PDF</span>
+
+                    <FileInput
+                      label="itemCatalogue"
+                      onFileSelect={(file) => {
+                        if (!Array.isArray(file)) {
+                          updateFormState({ itemCatalogue: file });
+                        }
+                      }}
+                      acceptedFileTypes="image/png, .pdf, image/jpg"
+                    />
+                  </>
+                )}
+              </div>
+              <div className="flex min-w-[48%] flex-col gap-2">
+                <p className="text-base font-medium">
+                  Do you offer customization(branding, color, theme of Items)?
+                  <span className="text-red-500">*</span>{" "}
+                </p>
+                <div className="flex gap-6">
+                  <div className="flex items-center gap-4">
+                    <input
+                      id="customizationYes"
+                      type="radio"
+                      name="customization"
+                      value="true"
+                      checked={!!formState.customization}
+                      onChange={() => updateFormState({ customization: true })}
+                      className="h-4 w-4 accent-[#2E3192]"
+                    />
+                    <label htmlFor="customizationYes" className="text-sm">
+                      Yes
+                    </label>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <input
+                      id="customizationNo"
+                      type="radio"
+                      name="customization"
+                      value="false"
+                      checked={!formState.customization}
+                      onChange={() => updateFormState({ customization: false })}
+                      className="h-4 w-4 accent-[#2E3192]"
+                    />
+                    <label htmlFor="customizationNo" className="text-sm">
+                      No
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
+              <div className="flex min-w-[48%] flex-col gap-2">
+                <p className="text-base font-medium">
+                  How you handle maintenance and repairs?
+                </p>
+                <textarea
+                  rows={5}
+                  placeholder="Process you follow to maintain your rental items"
+                  onChange={(e) =>
+                    updateFormState({ maintenance: e.target.value })
+                  }
+                  className="mt-4 rounded-xl border-2 border-gray-300 p-3"
+                ></textarea>
+              </div>
+              <div className="flex min-w-[48%] flex-col gap-2">
+                <p className="text-base font-medium">
+                  What areas do you provide service for?
+                </p>
+                <textarea
+                  rows={5}
+                  placeholder="Like nearby, outstation,etc."
+                  onChange={(e) =>
+                    updateFormState({ services: e.target.value })
+                  }
+                  className="mt-4 rounded-xl border-2 border-gray-300 p-3"
+                ></textarea>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div className="scroll-touch flex max-h-[calc(100vh-5.2rem)] min-w-[70%] flex-col items-center gap-9 overflow-y-scroll bg-[#F7F6F9] p-2 md:p-[1rem]">
-        <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
-          <div className="flex gap-9">
-            <h1 className="text-3xl font-semibold">Mandatory Details</h1>
-          </div>
-          <div className="flex flex-col items-center gap-5 p-4 md:p-6">
-            {/* Row 1: Insurance Coverage Policy & Cancellation Policy */}
-            <div className="flex w-full flex-col gap-4 md:flex-row md:gap-6">
-              <div className="flex w-full flex-col gap-4 md:w-1/2">
-                <label className="font-semibold" htmlFor="insurancePolicy">
-                  Insurance Coverage Policy
-                </label>
-                <p className="text-gray-500">PNG, PDF, JPG</p>
-                <FileInput
-                  label="insurance policy"
-                  onFileSelect={(file) => {
-                    updateFormState({ insurancePolicy: file });
-                  }}
-                  acceptedFileTypes="image/png, .pdf, image/jpg"
-                />
-              </div>
-              <div className="flex w-full flex-col gap-4 md:w-1/2">
-                <label className="font-semibold" htmlFor="cancellationPolicy">
-                  Cancellation Policy
-                </label>
-                <p className="text-gray-500">PNG, PDF, JPG</p>
-                <FileInput
-                  label="cancellation policy"
-                  onFileSelect={(file) => {
-                    updateFormState({ cancellationPolicy: file });
-                  }}
-                  acceptedFileTypes="image/png, .pdf, image/jpg"
-                />
-              </div>
-            </div>
+      <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
+        <label htmlFor="category" className="text-xl font-medium">
+          Services you provide?<span className="text-red-500">*</span>
+        </label>
 
-            {/* Row 2: Insurance Policy & Cancellation Policy Inputs */}
-            <div className="flex w-full flex-col gap-4 md:flex-row md:gap-6">
-              <div className="flex w-full flex-col gap-4 md:w-1/2">
-                <label htmlFor="insurancePolicy">Or Provide Via</label>
-                <input
-                  id="insurancePolicy"
-                  type="text"
-                  className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
-                  placeholder="Enter your insurance policy description"
-                  value={
-                    typeof formState.insurancePolicy === "string"
-                      ? formState.insurancePolicy
-                      : formState.insurancePolicy?.name || ""
-                  }
-                  onChange={(e) =>
-                    handleChange("insurancePolicy", e.target.value)
-                  }
-                />
-              </div>
-              <div className="flex w-full flex-col gap-4 md:w-1/2">
-                <label htmlFor="cancellationPolicy">Or Provide Via</label>
-                <input
-                  id="cancellationPolicy"
-                  type="text"
-                  className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
-                  placeholder="Enter your cancellation policy description"
-                  value={
-                    typeof formState.cancellationPolicy === "string"
-                      ? formState.cancellationPolicy
-                      : formState.cancellationPolicy?.name || ""
-                  }
-                  onChange={(e) =>
-                    handleChange("cancellationPolicy", e.target.value)
-                  }
-                />
-              </div>
-            </div>
+        <div className="flex min-h-full min-w-full flex-col items-center">
+          <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+            <Appetizers
+              field={"additionalServices"}
+              appetizers={_serviceProvided}
+              selectedAppetizers={serviceProvided}
+              setSelectedAppetizers={setServiceProvided}
+            />
           </div>
-        </div>
-        <div className="flex flex-col gap-7 rounded-xl bg-white p-4 xs:min-w-[90%] md:p-6">
-          {/* Row 1: Terms and Conditions & Privacy Policy Uploads */}
-          <div className="flex w-full flex-col gap-6 md:flex-row md:gap-6">
-            <div className="flex w-full flex-col gap-4 md:w-1/2">
-              <label className="font-semibold" htmlFor="termsAndConditions">
-                Terms and Conditions
-              </label>
-              <p className="text-gray-500">PNG, PDF, JPG</p>
-              <FileInput
-                label="terms and conditions"
-                onFileSelect={(file) => {
-                  updateFormState({ termsAndConditions: file });
-                }}
-                acceptedFileTypes="image/png, .pdf, image/jpg"
-              />
-            </div>
-            <div className="flex w-full flex-col gap-4 md:w-1/2">
-              <label className="font-semibold" htmlFor="privacyPolicy">
-                Privacy Policy
-              </label>
-              <p className="text-gray-500">PNG, PDF, JPG</p>
-              <FileInput
-                label="privacy policy"
-                onFileSelect={(file) => {
-                  updateFormState({ privacyPolicy: file });
-                }}
-                acceptedFileTypes="image/png, .pdf, image/jpg"
-              />
-            </div>
-          </div>
-
-          {/* Row 2: Terms and Conditions & Privacy Policy Inputs */}
-          <div className="flex w-full flex-col gap-6 md:flex-row md:gap-6">
-            <div className="flex w-full flex-col gap-4 md:w-1/2">
-              <label htmlFor="termsAndConditions">Or Provide Via</label>
-              <input
-                id="termsAndConditions"
-                type="text"
-                className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
-                placeholder="Enter your terms and conditions description"
-                value={
-                  typeof formState.termsAndConditions === "string"
-                    ? formState.termsAndConditions
-                    : formState.termsAndConditions?.name || ""
-                }
-                onChange={(e) =>
-                  handleChange("termsAndConditions", e.target.value)
-                }
-              />
-            </div>
-            <div className="flex w-full flex-col gap-4 md:w-1/2">
-              <label htmlFor="privacyPolicy">Or Provide Via</label>
-              <input
-                id="privacyPolicy"
-                type="text"
-                className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
-                placeholder="Enter your privacy policy description"
-                value={
-                  typeof formState.privacyPolicy === "string"
-                    ? formState.privacyPolicy
-                    : formState.privacyPolicy?.name || ""
-                }
-                onChange={(e) => handleChange("privacyPolicy", e.target.value)}
-              />
-            </div>
+          <div className="items-strech flex flex-row gap-7 self-end">
+            <button
+              className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+              onClick={() => {
+                console.log(
+                  formState.customization,
+                  formState.itemCatalogue,
+                  formState.maintenance,
+                  formState.services,
+                  serviceProvided,
+                );
+                setCurrentPage(currentPage + 1);
+              }}
+            >
+              Continue
+            </button>
           </div>
         </div>
       </div>

@@ -1,72 +1,65 @@
-import { useState } from "react";
-import { Upload, CheckCircle, X } from "lucide-react";
+import React, { useState } from "react";
+import { Upload, PlusCircle } from "lucide-react";
 
 type FileInputProps = {
   label: string;
-  onFileSelect: (files: File[]) => void;
+  onFileSelect: (files: File | File[]) => void;
   acceptedFileTypes: string;
+  multiple?: boolean;
 };
 
 const FileInput = ({
   label,
   onFileSelect,
   acceptedFileTypes,
+  multiple = false,
 }: FileInputProps) => {
-  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+  const [fileNames, setFileNames] = useState<string[]>([]);
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const filesArray = Array.from(e.target.files || []);
-    const updatedFiles = [...selectedFiles, ...filesArray];
-    setSelectedFiles(updatedFiles);
-    onFileSelect(updatedFiles);
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+    if (files) {
+      const fileList = Array.from(files);
+      const names = fileList.map((file) => file.name);
+      setFileNames(names);
+
+      // Call the onFileSelect callback with the correct file list
+      onFileSelect(multiple ? fileList : fileList[0]);
+    }
   };
 
-  const removeFile = (index: number) => {
-    const updatedFiles = selectedFiles.filter((_, i) => i !== index);
-    setSelectedFiles(updatedFiles);
-    onFileSelect(updatedFiles);
-  };
+  const displayText =
+    fileNames.length > 0
+      ? fileNames.join(", ")
+      : `Upload ${multiple ? "files" : "file"}`;
 
   return (
-    <div className="mt-5 flex w-fit flex-col items-center justify-start">
-      <div
-        className={`flex w-fit items-center justify-end self-start rounded-xl border-2 border-dashed border-gray-400 bg-gray-200 p-3 transition-all hover:bg-gray-300`}
+    <div
+      className={`flex w-fit items-center justify-center gap-2 rounded-xl border-2 border-dashed p-3 px-6 transition-all ${
+        fileNames.length > 0
+          ? "border-green-500 bg-green-100"
+          : "border-gray-400 bg-gray-200 hover:bg-gray-300"
+      }`}
+    >
+      <Upload
+        className={fileNames.length > 0 ? "text-green-500" : "text-[#2E3192]"}
+      />
+      <input
+        type="file"
+        name={label}
+        accept={acceptedFileTypes}
+        onChange={handleFileChange}
+        className="hidden"
+        id={label.replace(" ", "-").toLowerCase()}
+        multiple={multiple}
+      />
+      <label
+        htmlFor={label.replace(" ", "-").toLowerCase()}
+        className="cursor-pointer text-[#2E3192]"
       >
-        <Upload className="mr-2 text-indigo-500" />
-        <input
-          type="file"
-          accept={acceptedFileTypes}
-          multiple
-          onChange={handleFileChange}
-          className="hidden"
-          id={label.replace(" ", "-").toLowerCase()}
-        />
-        <label
-          htmlFor={label.replace(" ", "-").toLowerCase()}
-          className="cursor-pointer"
-        >
-          Upload
-        </label>
-      </div>
-
-      <div className="mt-2 flex max-w-full flex-wrap gap-2 overflow-hidden">
-        {selectedFiles.map((file, index) => (
-          <div
-            key={index}
-            className="flex max-w-[200px] items-center truncate rounded-lg bg-gray-300 px-2 py-1"
-          >
-            <span className="truncate">
-              {file.name.length > 15
-                ? file.name.slice(0, 15) + "..."
-                : file.name}
-            </span>
-            <X
-              className="ml-2 cursor-pointer text-red-500"
-              onClick={() => removeFile(index)}
-            />
-          </div>
-        ))}
-      </div>
+        {displayText}
+      </label>
+      {fileNames.length > 0 && <PlusCircle className="ml-2 text-green-500" />}
     </div>
   );
 };
