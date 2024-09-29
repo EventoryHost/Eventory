@@ -272,7 +272,7 @@ const BusinessDetails = () => {
                         teamsize: value,
                       })
                     }
-                    placeholder="Provide Year Of Oprations"
+                    placeholder="Provide Year Of Operations"
                   />
                 </div>
               </div>
@@ -311,7 +311,7 @@ const BusinessDetails = () => {
               <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
                 <div className="flex min-w-[40%] flex-col gap-4">
                   <label htmlFor="pinCode">
-                    Pin Code <span className="text-red-500">*</span>
+                    Pin Code <span className="text-red-600">*</span>
                   </label>
                   <input
                     id="pinCode"
@@ -371,6 +371,36 @@ const BusinessDetails = () => {
                   />
                 </div>
               </div>
+              <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+                <div className="flex min-w-[45%] flex-col gap-4">
+                  <label htmlFor="cities">
+                    Annual Revenue<span className="text-red-600">*</span>
+                  </label>
+                  <Dropdown2
+                    options={annualrevenue}
+                    onSelect={(value: string) =>
+                      setBusinessDetails({
+                        ...businessDetails,
+                        annualrevenue: value,
+                      })
+                    }
+                    placeholder="Select The Range of your revenue"
+                  />
+                </div>
+              </div>
+            </div>
+              {error && (
+                <p className="text-md flex flex-col items-start self-start font-poppins font-medium text-red-600">
+                  Fill All The Req&apos; Field&apos;s
+                </p>
+              )}
+              <div className="flex flex-col items-start self-end">
+                <button
+                  type="submit"
+                  className="rounded-2xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+                >
+                  Register
+                </button>
               {error && (
                 <p className="text-md flex flex-col items-start self-start font-poppins font-medium text-red-600">
                   Fill All The Req&apos; Field&apos;s

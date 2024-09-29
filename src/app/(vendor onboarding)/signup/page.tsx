@@ -8,10 +8,9 @@ import auth from "@/services/auth";
 import OtpModal from "@/components/ui/otp-modal";
 import tajmahal from "/public/tajmahal.png";
 import { useRouter } from "next/navigation";
-import { useToast } from "@/components/hooks/use-toast";
 import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"; // Import Toastify CSS
-
+import "react-toastify/dist/ReactToastify.css";
+import { useToast } from "@/components/hooks/use-toast";
 const fields: {
   id: keyof basicDetails;
   label: string;
@@ -153,9 +152,9 @@ const SignUp = () => {
   return (
     <div className="flex max-h-[100vh] w-full flex-col overflow-hidden lg:flex-row">
       <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:h-[91vh] md:min-w-[35%] lg:max-w-[30%]">
-        <div className="flex flex-col items-center justify-center max-h-fit lg:mt-[5rem] gap-3">
+        <div className="flex max-h-fit flex-col items-center justify-center gap-3 lg:mt-[5rem]">
           <p className="text-xl text-gray-900">Step 1 of 2</p>
-          <div className="flex items-center justify-start gap-1 xs:self-start xs:pl-5 md:px-11 ">
+          <div className="flex items-center justify-start gap-1 xs:self-start xs:pl-5 md:px-11">
             <button className="h-[0.4rem] w-[3rem] rounded-xl bg-[#2E3192]"></button>
             <button className="h-[0.4rem] w-[3rem] rounded-xl bg-gray-300"></button>
           </div>
