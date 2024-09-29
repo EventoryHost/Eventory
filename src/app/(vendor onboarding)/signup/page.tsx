@@ -8,6 +8,8 @@ import auth from "@/services/auth";
 import OtpModal from "@/components/ui/otp-modal";
 import tajmahal from "/public/tajmahal.png";
 import { useRouter } from "next/navigation";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useToast } from "@/components/hooks/use-toast";
 const fields: {
   id: keyof basicDetails;
@@ -36,7 +38,6 @@ type basicDetails = {
 };
 
 const SignUp = () => {
-  const { toast } = useToast();
   const [loading, setloading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [basicDetails, setBasicDetails] = useState<basicDetails>(
@@ -89,11 +90,6 @@ const SignUp = () => {
         toggleModal();
       }
     } catch (error) {
-      toast({
-        variant: "destructive",
-        title: "Error",
-        description: String(error) || "Something goes wrong",
-      });
       setFormError(String(error) || "Something goes wrong");
       console.log(error);
       setloading(false);
@@ -107,6 +103,7 @@ const SignUp = () => {
     // Check if OTP is 6 digits long
     if (inputOtp.length !== 6) {
       setFormError(`Please fill in the OTP correctly`);
+      toast.error("OTP must be 6 digits");
       return;
     }
 
@@ -129,15 +126,18 @@ const SignUp = () => {
         // Store token in local storage
         localStorage.setItem("token", token);
         console.log("OTP verification successful");
+        toast.success("OTP verification successful");
         router.push("/businessDetails");
       } else {
         console.error("OTP verification failed or response is invalid");
+        toast.error("Incorrect OTP, please try again");
       }
     } catch (error) {
       console.error("Failed to verify OTP", error);
       setFormError("Failed to verify OTP. Please try again.");
     } finally {
       setloading(false);
+      toast.error("Failed to verify OTP. Please try again.");
     }
   };
 
@@ -150,27 +150,25 @@ const SignUp = () => {
   };
 
   return (
-    <div className="flex w-full flex-col overflow-hidden lg:flex-row">
-      <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-h-[100vh] md:min-w-[30%] lg:max-w-[30%]">
-        <div className="flex items-center justify-start gap-1 xs:self-start xs:pl-5 md:px-11 lg:mt-[5rem]">
-          <button className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2E3192] p-5 text-white shadow-xl">
-            1
-          </button>
-          <div className="h-[0.3rem] w-[4rem] rounded-xl bg-gray-300"></div>
-          <button className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-300 p-5">
-            2
-          </button>
+    <div className="flex max-h-[100vh] w-full flex-col overflow-hidden lg:flex-row">
+      <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:h-[91vh] md:min-w-[35%] lg:max-w-[30%]">
+        <div className="flex max-h-fit flex-col items-center justify-center gap-3 lg:mt-[5rem]">
+          <p className="text-xl text-gray-900">Step 1 of 2</p>
+          <div className="flex items-center justify-start gap-1 xs:self-start xs:pl-5 md:px-11">
+            <button className="h-[0.4rem] w-[3rem] rounded-xl bg-[#2E3192]"></button>
+            <button className="h-[0.4rem] w-[3rem] rounded-xl bg-gray-300"></button>
+          </div>
         </div>
         <div className="flex h-[50%] flex-col items-start justify-center gap-9 px-9 xs:pl-5 md:px-11 lg:p-8">
-          <h1 className="text-3xl font-bold md:text-4xl lg:text-5xl">
-            Tell us about you
+          <h1 className="text-3xl font-semibold md:text-4xl lg:text-5xl">
+            Vendor Sign Up
           </h1>
-          <p className="text-black xs:text-sm md:w-[90%]">
-            Fill out your personal details to get verified and proceed to the
+          <p className="text-sm text-gray-700 md:text-lg">
+            Fill out your personal details to get verified and proceed to
             registration process.
           </p>
         </div>
-        <div className="relative h-[10rem] lg:w-full">
+        <div className="relative h-[14rem] lg:w-full">
           <Image
             src={tajmahal}
             alt="Image of Indian monuments"
@@ -178,7 +176,7 @@ const SignUp = () => {
           />
         </div>
       </div>
-      <div className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] p-2 md:max-h-[100vh] md:p-[2.2rem]">
+      <div className="flex flex-1 flex-col items-center justify-center bg-[#F7F6F9] p-2 md:max-h-[100vh] md:p-[2.2rem]">
         <div className="flex flex-col gap-7 rounded-xl bg-white p-5 xs:min-w-[90%] md:p-6">
           {loading ? (
             <Loadingeanimation width="w-56" />

@@ -58,7 +58,7 @@ export function DropdownBar() {
   const [location, setLocation] = useState<string>("");
 
   return (
-    <div className="flex max-w-full flex-col items-center justify-center rounded-xl lpt:flex-row lpt:gap-0">
+    <div className="mt-9 flex max-w-full flex-col items-center justify-center rounded-xl lpt:flex-row lpt:gap-0">
       <ComboboxDemo
         options={frameworks}
         placeholder="Select Event"
