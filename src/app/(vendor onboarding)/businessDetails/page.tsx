@@ -28,10 +28,10 @@ const teamsize = [
 ];
 
 const annualrevenue = [
-  { value: "0-3", label: "1-5 Lakh" },
-  { value: "3-7", label: "6-15 Lakh" },
-  { value: "7-12", label: "16-30 Lakh" },
-  { value: "12-18", label: "31-50 Lakh" },
+  { value: "0-3", label: "0-3 Lakh" },
+  { value: "3-7", label: "3-7 Lakh" },
+  { value: "7-12", label: "7-12 Lakh" },
+  { value: "12-18", label: "12-18 Lakh" },
   { value: "18+", label: "More then 18 Lakhs" },
 ];
 
@@ -40,14 +40,6 @@ const yearsInOperation = [
   { value: "3-5", label: "3-5 years" },
   { value: "6-10", label: "6-10 years" },
   { value: "10+", label: "10+ years" },
-];
-
-const teamSize = [
-  { value: "Individual", label: "Individual" },
-  { value: "6-15", label: "6-15 years" },
-  { value: "16-30", label: "16-30 years" },
-  { value: "31-50", label: "31-50 years" },
-  { value: "50+", label: "More than 50" },
 ];
 
 const operationalCities = [
@@ -205,7 +197,7 @@ const BusinessDetails = () => {
           />
         </div>
       </div>
-      <div className="flex h-[91vh] min-w-[65%] flex-col items-center justify-start overflow-y-scroll bg-[#F7F6F9] p-2 md:p-[1rem]">
+      <div className="scroll-touch flex h-[91vh] min-w-[65%] flex-col items-center justify-start overflow-y-scroll bg-[#F7F6F9] p-2 scrollbar-hide md:p-[1rem]">
         <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
           <h1 className="text-3xl font-semibold">Business Details</h1>
           <form onSubmit={handleBizSubmit}>
@@ -292,24 +284,7 @@ const BusinessDetails = () => {
                     required
                   />
                 </div>
-                <div className="flex min-w-[40%] flex-col gap-4">
-                  <label htmlFor="revenue">
-                    Annual Revenue <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    id="revenue"
-                    type="text"
-                    className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
-                    placeholder="Enter Annual Revenue"
-                    ref={(el) => {
-                      refs.current.annualrevenue = el;
-                    }}
-                    required
-                  />
-                </div>
-              </div>
-              <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-                <div className="flex min-w-[40%] flex-col gap-4">
+                <div className="flex min-w-[45%] flex-col gap-4">
                   <label htmlFor="pinCode">
                     Pin Code <span className="text-red-600">*</span>
                   </label>
@@ -371,21 +346,26 @@ const BusinessDetails = () => {
                   />
                 </div>
               </div>
-              <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-                <div className="flex min-w-[45%] flex-col gap-4">
-                  <label htmlFor="cities">
-                    Annual Revenue<span className="text-red-600">*</span>
-                  </label>
-                  <Dropdown2
-                    options={annualrevenue}
-                    onSelect={(value: string) =>
-                      setBusinessDetails({
-                        ...businessDetails,
-                        annualrevenue: value,
-                      })
-                    }
-                    placeholder="Select The Range of your revenue"
-                  />
+              <div className="flex flex-col items-start gap-9 self-end md:flex-row">
+                <button
+                  type="submit"
+                  className="rounded-2xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+                >
+                  Register
+                </button>
+                {error && (
+                  <p className="text-md flex flex-col items-start self-start font-poppins font-medium text-red-600">
+                    Fill All The Req&apos; Field&apos;s
+                  </p>
+                )}
+                <div className="flex flex-col items-start self-end">
+                  <button
+                    disabled={loading}
+                    type="submit"
+                    className="rounded-2xl bg-[#2E3192] text-white xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+                  >
+                    {loading ? "Loading" : "Continue"}
+                  </button>
                 </div>
               </div>
             </div>
@@ -394,29 +374,6 @@ const BusinessDetails = () => {
                 Fill All The Req&apos; Field&apos;s
               </p>
             )}
-            <div className="flex flex-col items-start self-end">
-              <button
-                type="submit"
-                className="rounded-2xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-              >
-                Register
-              </button>
-              {error && (
-                <p className="text-md flex flex-col items-start self-start font-poppins font-medium text-red-600">
-                  Fill All The Req&apos; Field&apos;s
-                </p>
-              )}
-              <div className="flex flex-col items-start self-end">
-                <button
-                  disabled={loading}
-                  type="submit"
-                  className="rounded-2xl bg-[#2E3192] text-white xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                >
-                  {loading ? "Loading" : "Continue"}
-                  {loading ? "Loading" : "Continue"}
-                </button>
-              </div>
-            </div>
           </form>
         </div>
       </div>
