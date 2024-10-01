@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export function Categories() {
   return (
-    <section className="px-3 pb-7 pt-7 md:px-3">
+    <section className="px-3 pb-7 pt-7 md:px-3 bg-[#BFBFEF]">
       <div className="flex w-full flex-col items-start justify-between md:flex-row md:items-center md:px-[7%]">
         <div className="flex flex-col">
           <h1 className="text-3xl font-bold md:text-5xl">Explore Events</h1>
