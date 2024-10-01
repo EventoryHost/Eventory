@@ -73,12 +73,12 @@ const FileDisplay: React.FC<FileDisplayProps> = ({ file, files }) => {
                 className="h-8 w-8"
                 alt="file"
               />
-              <div className="flex flex-col">
-                <span className="font-semibold">
+              <div className="flex items-start h-14 w-[100%] justify-left flex-col">
+                <span className="font-semibold overflow-hidden h-7 ">
                   {f.name || "No file selected"}
                 </span>
                 {f.size !== undefined && (
-                  <span className="text-sm text-gray-500">
+                  <span className="text-sm h-5 text-gray-500">
                     {formatSize(f.size)}
                   </span>
                 )}
