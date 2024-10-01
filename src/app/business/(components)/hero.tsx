@@ -56,7 +56,7 @@ const Hero = (props: Props) => {
                   </div>
 
                   <div className="flex h-full flex-wrap text-center text-xs font-semibold leading-relaxed md:text-xl lg:text-3xl xl:text-3xl">
-                    <div>Serving Citiess</div>
+                    <div>Serving Cities</div>
                     <div className="w-full text-center">1</div>
                   </div>
 
