@@ -203,14 +203,16 @@ const Agreement = ({ setCurrentPage }: PageProps) => {
                 Back
               </button>
             </Link>
-            <Link href="/next-page">
+            {/* <Link href="/next-page"> */}
               <button
                 className={`rounded bg-blue-600 px-4 py-2 font-bold text-white ${!checked ? "cursor-not-allowed opacity-50" : ""}`}
                 disabled={!checked}
+                onClick={() => setCurrentPage(prev => prev + 1)}
+
               >
                 Next
               </button>
-            </Link>
+            {/* </Link> */}
           </div>
         </div>
       </div>

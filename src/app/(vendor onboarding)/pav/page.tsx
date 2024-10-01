@@ -361,13 +361,13 @@ const Page = () => {
       {
         currentPage <= 6 &&
         (
-          <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 px-8 md:min-w-[35%] lg:max-w-[35%]">
-            <div className="flex w-[100%] flex-col justify-center">
-              <div className="flex flex-col gap-1 px-3 lg:mt-[2rem]">
+          <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 pt-4 md:min-w-[30%] lg:max-w-[30%]">
+            <div className="flex w-[90%] m-auto flex-col justify-center">
+              <div className="flex flex-col gap-1 px-6 lg:mt-[2rem]">
                 <span className="text-lg font-semibold">
                   Step {currentPage} of 6
                 </span>
-                <div className="flex gap-4">
+                <div className="flex gap-2">
                   <button
                     className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 1 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
                     onClick={() => setCurrentPage(1)}
@@ -399,8 +399,8 @@ const Page = () => {
                 </div>
               </div>
             </div>
-            <div className="flex h-[40%] flex-col items-start justify-center pt-3 gap-5 px-3 md:px-3">
-              <h1 className="text-[8vw] font-bold md:text-[3vw]">
+            <div className="m-auto flex h-[50%] w-[90%] flex-col items-start justify-center gap-9 px-3 md:px-6">
+              <h1 className="text-2xl font-bold md:text-4xl">
                 {currentPage === 1 && "Fill out Basic details"}
                 {currentPage === 2 && (togglesection ? "Tell us about the photography service" : "Tell us about the videography service")}
                 {currentPage === 3 && "Tell us about the Booking and Pricing"}
@@ -409,7 +409,7 @@ const Page = () => {
                 {currentPage === 6 && "Preview details"}
 
               </h1>
-              <p className="text-[#797878] xs:text-xl font-normal font-Helvetica ">
+              <p className="text-black text-xl ">
                 {currentPage === 1 &&
                   "Fill out Basic details and Select the types of events you cover "}
                 {currentPage === 2 && (togglesection ? "Please provide the details of the Photography service offered by your company." : "Please provide the details of the Videography service offered by your company.")}
@@ -423,7 +423,7 @@ const Page = () => {
 
               </p>
             </div>
-            <div className="relative h-[10rem] lg:w-full">
+            <div className="relative h-[10rem] w-full">
               <Image
                 src={"/tajmahal.png"}
                 alt=""
@@ -435,7 +435,7 @@ const Page = () => {
           </div>
         )
       }
-      <div className="flex min-w-[65%] flex-col items-center justify-center bg-[#F7F6F9] p-6 md:p-[1rem]">
+      <div className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] p-6 md:p-[1rem]">
         {renderPage()}
       </div>
     </div>

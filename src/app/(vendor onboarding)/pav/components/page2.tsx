@@ -104,7 +104,7 @@ const Page1 = ({
 
   return (
     <div
-      className="scroll-touch flex flex-col items-start gap-7 overflow-y-scroll rounded-xl p-3 scrollbar-hide xs:w-[95%] xs:min-w-[90%] xs:justify-start md:p-6"
+      className="scroll-touch flex flex-col items-start gap-7 overflow-y-scroll rounded-xl p-3 scrollbar-hide xs:justify-start md:p-6"
       onSubmit={(e) => e.preventDefault()}
     >
       <div className="flex w-[100%] flex-col justify-start rounded-xl bg-white p-5">

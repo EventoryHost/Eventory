@@ -42,7 +42,7 @@ const Page1 = ({
 
 
   return (
-    <div className="scroll-touch flex flex-col items-start gap-7 overflow-y-scroll rounded-xl p-3 scrollbar-hide xs:w-[95%] xs:min-w-[90%] xs:justify-start md:p-6">
+    <div className="scroll-touch flex flex-col items-start gap-7 overflow-y-scroll rounded-xl p-3 scrollbar-hide  xs:justify-start md:p-6">
       <div className="flex w-[100%] flex-col items-start rounded-xl bg-white p-5 justify-start gap-9">
         <div className="flex justify-start gap-5 items-center">
           <h1 className="text-3xl font-semibold"> Basic Details</h1>
