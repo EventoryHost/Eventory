@@ -16,7 +16,7 @@ const FileDisplay: React.FC<FileDisplayProps> = ({ file, files }) => {
   // If there's a single file, display it
   if (file) {
     return (
-      <div className="flex w-full items-center justify-between space-x-2 rounded-3xl border p-2 px-6 gap-10">
+      <div className="flex w-full items-center justify-between gap-10 space-x-2 rounded-3xl border p-2 px-6">
         <div className="flex items-center gap-4">
           <img src={"/selection/fileicon.svg"} className="h-8 w-8" alt="file" />
           <div className="flex flex-col">
@@ -65,7 +65,7 @@ const FileDisplay: React.FC<FileDisplayProps> = ({ file, files }) => {
         {files.map((f, index) => (
           <div
             key={index}
-            className="flex items-center w-full justify-between space-x-10 rounded-3xl border p-2 px-6 gap-10"
+            className="flex w-full items-center justify-between gap-10 space-x-10 rounded-3xl border p-2 px-6"
           >
             <div className="flex items-center gap-4">
               <img

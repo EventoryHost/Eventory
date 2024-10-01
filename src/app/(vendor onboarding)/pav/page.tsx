@@ -10,14 +10,11 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { addPhotographer } from "@/services/vendors/photographer";
 import "react-toastify/dist/ReactToastify.css";
-import Agreement from "../Agreement/page";
-import Plans from "../Plans/page";
-import Registration_Completed from "../Registration-Completed/page";
-
+import Agreement from "../(Agreement)/Agreement";
+import Plans from "../(Plans)/Plans";
+import Registration_Completed from "../(Registration-Completed)/thankupage";
 
 const Page = () => {
-
-
   //states for page1
 
   const [name, setFullName] = useState("");
@@ -25,25 +22,30 @@ const Page = () => {
   const [eventsize, setEventsize] = useState<number>(0);
   const [events, setEvents] = useState<string[]>([]);
 
-
   //states for page2
-  const [togglesection, settogglesection] = useState(true)
+  const [togglesection, settogglesection] = useState(true);
 
   const [Photosstyles, setPhotosStyles] = useState<string[]>([]);
   const [Photosequipments, setPhotosequipments] = useState<string[]>([]);
   const [PhotosAddons, setPhotosAddons] = useState<string[]>([]);
-  const [Photosfinaldeliverymethods, setPhotosFinaldeliverymethods] = useState<string[]>([]);
+  const [Photosfinaldeliverymethods, setPhotosFinaldeliverymethods] = useState<
+    string[]
+  >([]);
   const [Videosstyles, setVideosStyles] = useState<string[]>([]);
   const [Videosequipments, setVideossequipments] = useState<string[]>([]);
   const [VideoAddons, setVideoAddons] = useState<string[]>([]);
-  const [Videofinaldeliverymethods, setVideoFinaldeliverymethods] = useState<string[]>([]);
-
+  const [Videofinaldeliverymethods, setVideoFinaldeliverymethods] = useState<
+    string[]
+  >([]);
 
   //states for page4
-  const [Durationoffinaldelivery, setDurationoffinaldelivery] = useState<string>("");
+  const [Durationoffinaldelivery, setDurationoffinaldelivery] =
+    useState<string>("");
   const [Packagetype, setPackagetype] = useState<string>("");
-  const [availablefordestinationevents, setavailablefordestinationevents] = useState<boolean>(false);
-  const [postproductionservices, setpostproductionservices] = useState<boolean>(false);
+  const [availablefordestinationevents, setavailablefordestinationevents] =
+    useState<boolean>(false);
+  const [postproductionservices, setpostproductionservices] =
+    useState<boolean>(false);
 
   const [proposalsToClients, setProposalsToClients] = useState<boolean>(false);
   const [freeInitialConsultation, setFreeInitialConsultation] =
@@ -53,20 +55,24 @@ const Page = () => {
     useState<boolean>(false);
   const [bookingDeposit, setBookingDeposit] = useState<boolean>(false);
 
-
   //states for page5
-  const [termsandconditions, settermsandconditions] = useState<string | File | File[]>([]);
+  const [termsandconditions, settermsandconditions] = useState<
+    string | File | File[]
+  >([]);
   const [policy, setpolicy] = useState<string | File | File[]>([]);
   const [websiteurl, setwebsiteurl] = useState("");
   const [intstagramurl, setintstagramurl] = useState("");
   const [Recongnition_awards, setRecongnition_awards] = useState("");
   const [advbookingperiod, setadvbookingperiod] = useState("");
   const [clientTestimonials, setclientTestimonials] = useState("");
-  const [writtenthemeproposalafterconsultaion, setwrittenthemeproposalafterconsultaion] =
-    useState<boolean>(false);
-  const [freerevisionforinitialthemeproposal, setrevisionforinitialthemeproposal] =
-    useState<boolean>(false);
-
+  const [
+    writtenthemeproposalafterconsultaion,
+    setwrittenthemeproposalafterconsultaion,
+  ] = useState<boolean>(false);
+  const [
+    freerevisionforinitialthemeproposal,
+    setrevisionforinitialthemeproposal,
+  ] = useState<boolean>(false);
 
   //6
   const [photos, setPhotos] = useState<string | File | File[]>([]);
@@ -80,7 +86,6 @@ const Page = () => {
     type: string;
     priceRange: [number, number];
   }
-
 
   const handleContinue = () => {
     setCurrentPage(currentPage + 1);
@@ -101,41 +106,72 @@ const Page = () => {
     formData.append("Photosstyles", JSON.stringify(Photosstyles));
     formData.append("Photosequipments", JSON.stringify(Photosequipments));
     formData.append("PhotosAddones", JSON.stringify(PhotosAddons));
-    formData.append("Photosfinaldeliverymethods", JSON.stringify(Photosfinaldeliverymethods));
+    formData.append(
+      "Photosfinaldeliverymethods",
+      JSON.stringify(Photosfinaldeliverymethods),
+    );
 
     // page 3
     formData.append("Videosstyles", JSON.stringify(Videosstyles));
     formData.append("Videosequipments", JSON.stringify(Videosequipments));
     formData.append("VideoAddones", JSON.stringify(VideoAddons));
-    formData.append("Videofinaldeliverymethods", JSON.stringify(Videofinaldeliverymethods));
+    formData.append(
+      "Videofinaldeliverymethods",
+      JSON.stringify(Videofinaldeliverymethods),
+    );
 
     // page 4
     formData.append("Durationoffinaldelivery", Durationoffinaldelivery);
     formData.append("Packagetype", Packagetype);
-    formData.append("availablefordestinationevents", JSON.stringify(availablefordestinationevents));
-    formData.append("postproductionservices", JSON.stringify(postproductionservices));
+    formData.append(
+      "availablefordestinationevents",
+      JSON.stringify(availablefordestinationevents),
+    );
+    formData.append(
+      "postproductionservices",
+      JSON.stringify(postproductionservices),
+    );
 
-    formData.append("freeInitialConsultation", JSON.stringify(freeInitialConsultation));
+    formData.append(
+      "freeInitialConsultation",
+      JSON.stringify(freeInitialConsultation),
+    );
     formData.append("advanceSetup", JSON.stringify(advanceSetup));
     formData.append("setupsInstallations", JSON.stringify(setupsInstallations));
     formData.append("bookingDeposit", JSON.stringify(bookingDeposit));
 
     // page 5
-    formData.append("termsandconditions", termsandconditions instanceof File ? termsandconditions : JSON.stringify(termsandconditions));
-    formData.append("policy", policy instanceof File ? policy : JSON.stringify(policy));
+    formData.append(
+      "termsandconditions",
+      termsandconditions instanceof File
+        ? termsandconditions
+        : JSON.stringify(termsandconditions),
+    );
+    formData.append(
+      "policy",
+      policy instanceof File ? policy : JSON.stringify(policy),
+    );
     formData.append("websiteurl", websiteurl);
     formData.append("intstagramurl", intstagramurl);
     formData.append("Recongnition_awards", Recongnition_awards);
     formData.append("advbookingperiod", advbookingperiod);
     formData.append("clientTestimonials", clientTestimonials);
-    formData.append("writtenthemeproposalafterconsultaion", JSON.stringify(writtenthemeproposalafterconsultaion));
-    formData.append("freerevisionforinitialthemeproposal", JSON.stringify(freerevisionforinitialthemeproposal));
+    formData.append(
+      "writtenthemeproposalafterconsultaion",
+      JSON.stringify(writtenthemeproposalafterconsultaion),
+    );
+    formData.append(
+      "freerevisionforinitialthemeproposal",
+      JSON.stringify(freerevisionforinitialthemeproposal),
+    );
 
     // page 6
     if (photos instanceof File) {
       formData.append("photos", photos);
     } else if (Array.isArray(photos)) {
-      photos.forEach((photo, index) => formData.append(`photos[${index}]`, photo));
+      photos.forEach((photo, index) =>
+        formData.append(`photos[${index}]`, photo),
+      );
     } else {
       formData.append("photos", JSON.stringify(photos));
     }
@@ -143,7 +179,9 @@ const Page = () => {
     if (videos instanceof File) {
       formData.append("videos", videos);
     } else if (Array.isArray(videos)) {
-      videos.forEach((video, index) => formData.append(`videos[${index}]`, video));
+      videos.forEach((video, index) =>
+        formData.append(`videos[${index}]`, video),
+      );
     } else {
       formData.append("videos", JSON.stringify(videos));
     }
@@ -240,13 +278,21 @@ const Page = () => {
             setadvbookingperiod={setadvbookingperiod}
             clientTestimonials={clientTestimonials}
             setclientTestimonials={setclientTestimonials}
-            writtenthemeproposalafterconsultaion={writtenthemeproposalafterconsultaion}
-            setwrittenthemeproposalafterconsultaion={setwrittenthemeproposalafterconsultaion}
-            freerevisionforinitialthemeproposal={freerevisionforinitialthemeproposal}
-            setrevisionforinitialthemeproposal={setrevisionforinitialthemeproposal}
+            writtenthemeproposalafterconsultaion={
+              writtenthemeproposalafterconsultaion
+            }
+            setwrittenthemeproposalafterconsultaion={
+              setwrittenthemeproposalafterconsultaion
+            }
+            freerevisionforinitialthemeproposal={
+              freerevisionforinitialthemeproposal
+            }
+            setrevisionforinitialthemeproposal={
+              setrevisionforinitialthemeproposal
+            }
             handleContinue={handleContinue}
           />
-        )
+        );
       case 5:
         return (
           <Page5
@@ -257,7 +303,7 @@ const Page = () => {
             policy={policy}
             handleContinue={handleContinue}
           />
-        )
+        );
       case 6:
         return (
           <Preview
@@ -319,123 +365,140 @@ const Page = () => {
             setadvbookingperiod={setadvbookingperiod}
             clientTestimonials={clientTestimonials}
             setclientTestimonials={setclientTestimonials}
-            writtenthemeproposalafterconsultaion={writtenthemeproposalafterconsultaion}
-            setwrittenthemeproposalafterconsultaion={setwrittenthemeproposalafterconsultaion}
-            freerevisionforinitialthemeproposal={freerevisionforinitialthemeproposal}
-            setrevisionforinitialthemeproposal={setrevisionforinitialthemeproposal}
+            writtenthemeproposalafterconsultaion={
+              writtenthemeproposalafterconsultaion
+            }
+            setwrittenthemeproposalafterconsultaion={
+              setwrittenthemeproposalafterconsultaion
+            }
+            freerevisionforinitialthemeproposal={
+              freerevisionforinitialthemeproposal
+            }
+            setrevisionforinitialthemeproposal={
+              setrevisionforinitialthemeproposal
+            }
             termsandconditions={termsandconditions}
             settermsandconditions={settermsandconditions}
             setpolicy={setpolicy}
             policy={policy}
           />
-        )
+        );
       case 7:
         return (
           <>
             <Agreement setCurrentPage={setCurrentPage} />
           </>
-        )
+        );
       case 8:
         return (
           <>
-            <Plans handleformSubmit={handleSubmit} setCurrentPage={setCurrentPage} />
+            <Plans
+              handleformSubmit={handleSubmit}
+              setCurrentPage={setCurrentPage}
+            />
           </>
-        )
+        );
       case 9:
         return (
           <>
             <Registration_Completed />
           </>
-        )
+        );
       default:
         return (
           <>
-            <center><h2>Loading....</h2></center>
+            <center>
+              <h2>Loading....</h2>
+            </center>
           </>
-        )
+        );
     }
   };
 
   return (
-    <div className={`m-0 flex w-full flex-col overflow-x-hidden lg:flex-row ${currentPage <= 6 ? 'lg:h-[calc(100vh-4.2rem)]' : ''} lg:flex-row `}>
-      {
-        currentPage <= 6 &&
-        (
-          <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 pt-4 md:min-w-[30%] lg:max-w-[30%]">
-            <div className="flex w-[90%] m-auto flex-col justify-center">
-              <div className="flex flex-col gap-1 px-6 lg:mt-[2rem]">
-                <span className="text-lg font-semibold">
-                  Step {currentPage} of 6
-                </span>
-                <div className="flex gap-2">
-                  <button
-                    className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 1 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                    onClick={() => setCurrentPage(1)}
-                  ></button>
+    <div
+      className={`m-0 flex w-full flex-col overflow-x-hidden lg:flex-row ${currentPage <= 6 ? "lg:h-[calc(100vh-4.2rem)]" : ""} lg:flex-row`}
+    >
+      {currentPage <= 6 && (
+        <div className="flex flex-col items-start justify-between bg-[#FFFFFF] px-8 xs:gap-7 xs:pt-4 md:min-w-[35%] lg:max-w-[35%]">
+          <div className="flex w-[100%] flex-col justify-center">
+            <div className="flex flex-col gap-1 px-3 lg:mt-[2rem]">
+              <span className="text-lg font-semibold">
+                Step {currentPage} of 6
+              </span>
+              <div className="flex gap-4">
+                <button
+                  className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 1 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                  onClick={() => setCurrentPage(1)}
+                ></button>
 
-                  <button
-                    className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 2 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                    onClick={() => setCurrentPage(2)}
-                  ></button>
+                <button
+                  className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 2 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                  onClick={() => setCurrentPage(2)}
+                ></button>
 
-                  <button
-                    className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 3 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                    onClick={() => setCurrentPage(3)}
-                  ></button>
+                <button
+                  className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 3 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                  onClick={() => setCurrentPage(3)}
+                ></button>
 
-                  <button
-                    className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 4 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                    onClick={() => setCurrentPage(4)}
-                  ></button>
+                <button
+                  className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 4 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                  onClick={() => setCurrentPage(4)}
+                ></button>
 
-                  <button
-                    className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 5 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                    onClick={() => setCurrentPage(5)}
-                  ></button>
-                  <button
-                    className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 6 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                    onClick={() => setCurrentPage(6)}
-                  ></button>
-                </div>
+                <button
+                  className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 5 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                  onClick={() => setCurrentPage(5)}
+                ></button>
+                <button
+                  className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 6 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                  onClick={() => setCurrentPage(6)}
+                ></button>
               </div>
             </div>
-            <div className="m-auto flex h-[50%] w-[90%] flex-col items-start justify-center gap-9 px-3 md:px-6">
-              <h1 className="text-2xl font-bold md:text-4xl">
-                {currentPage === 1 && "Fill out Basic details"}
-                {currentPage === 2 && (togglesection ? "Tell us about the photography service" : "Tell us about the videography service")}
-                {currentPage === 3 && "Tell us about the Booking and Pricing"}
-                {currentPage === 4 && "Fill the additional details"}
-                {currentPage === 5 && "Fill out Some mandatory details"}
-                {currentPage === 6 && "Preview details"}
-
-              </h1>
-              <p className="text-black text-xl ">
-                {currentPage === 1 &&
-                  "Fill out Basic details and Select the types of events you cover "}
-                {currentPage === 2 && (togglesection ? "Please provide the details of the Photography service offered by your company." : "Please provide the details of the Videography service offered by your company.")}
-                {currentPage === 3 &&
-                  "Fill out the precising details and get onboard within 12hrs of verification."}
-                {currentPage === 4 &&
-                  "Fill out the additional details of the services offered by your company."}
-                {currentPage === 5 &&
-                  "Provide the details By Url or uploading pdf."}
-                {currentPage === 6 && "Please recheck the information provided by you. "}
-
-              </p>
-            </div>
-            <div className="relative h-[10rem] w-full">
-              <Image
-                src={"/tajmahal.png"}
-                alt=""
-                width={400}
-                height={200}
-                className="h-full w-full object-cover"
-              />
-            </div>
           </div>
-        )
-      }
-      <div className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] p-6 md:p-[1rem]">
+          <div className="flex h-[40%] flex-col items-start justify-center gap-5 px-3 pt-3 md:px-3">
+            <h1 className="text-[8vw] font-bold md:text-[3vw]">
+              {currentPage === 1 && "Fill out Basic details"}
+              {currentPage === 2 &&
+                (togglesection
+                  ? "Tell us about the photography service"
+                  : "Tell us about the videography service")}
+              {currentPage === 3 && "Tell us about the Booking and Pricing"}
+              {currentPage === 4 && "Fill the additional details"}
+              {currentPage === 5 && "Fill out Some mandatory details"}
+              {currentPage === 6 && "Preview details"}
+            </h1>
+            <p className="font-Helvetica font-normal text-[#797878] xs:text-xl">
+              {currentPage === 1 &&
+                "Fill out Basic details and Select the types of events you cover "}
+              {currentPage === 2 &&
+                (togglesection
+                  ? "Please provide the details of the Photography service offered by your company."
+                  : "Please provide the details of the Videography service offered by your company.")}
+              {currentPage === 3 &&
+                "Fill out the precising details and get onboard within 12hrs of verification."}
+              {currentPage === 4 &&
+                "Fill out the additional details of the services offered by your company."}
+              {currentPage === 5 &&
+                "Provide the details By Url or uploading pdf."}
+              {currentPage === 6 &&
+                "Please recheck the information provided by you. "}
+            </p>
+          </div>
+          <div className="relative h-[10rem] lg:w-full">
+            <Image
+              src={"/tajmahal.png"}
+              alt=""
+              width={400}
+              height={200}
+              className="h-full w-full object-cover"
+            />
+          </div>
+        </div>
+      )}
+      <div className="flex min-w-[65%] flex-col items-center justify-center bg-[#F7F6F9] p-6 md:p-[1rem]">
         {renderPage()}
       </div>
     </div>

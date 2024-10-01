@@ -3,6 +3,7 @@ import "../globals.css";
 
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import "./navbar.css";
 import { IoIosClose } from "react-icons/io";
 import {
@@ -22,8 +23,14 @@ const Navbar = () => {
     setShowNavbar(!showNavbar);
   };
 
+  const pathname = usePathname();
+
   return (
-    <nav className="bg-rgba(0,0,0,0.12) navbar flex flex-col shadow-md">
+    <nav
+      className={`navbar flex flex-col shadow-md ${
+        pathname === "/" ? "bg-[#BFBFEF]" : "bg-white"
+      }`}
+    >
       <div className="container flex items-center justify-between">
         {/* logo eventory part */}
         <div className="logo flex flex-col items-center justify-center">

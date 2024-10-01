@@ -20,36 +20,24 @@ const Feed: React.FC = () => {
 
   return (
     <>
-      <div className="flex w-[100%] flex-col flex-wrap justify-start overflow-hidden md:flex-row md:py-0 lpt:h-[90vh]">
-        <div className="flex w-[100%] items-center justify-start lg:w-[50%]">
-          <div className="mb-[10%] mt-[10%] flex h-[70vh] flex-col items-start justify-start px-[4%] md:h-[80vh] lg:mb-[40%] lg:h-[90vh]">
-            <h1 className="text-4xl font-bold md:text-6xl">
-              Find the Perfect
-              <br />
-              <FlipWords words={words} className="" /> for Your Event
+      <div className="flex w-[100%] flex-col flex-wrap justify-center overflow-hidden bg-gradient-to-b from-[#BFBFEF] to-[#ffffff] md:flex-row md:py-0">
+        <div className="flex w-[100%] flex-col items-center justify-center py-[8%] md:py-[3%]">
+          <div className="flex flex-col items-center justify-center px-[4%]">
+            <h1 className="text-center text-4xl font-bold md:text-6xl">
+              Find the Perfect <FlipWords words={words} className="" />
+              <br /> for Your Event
             </h1>
-            <p className="mt-7 w-[70%] md:text-xl">
+            <p className="mt-7 text-center md:w-[70%] md:text-xl">
               Discover, compare, and book top-rated vendors for weddings,
               corporate events, parties, and more – all in one place.
             </p>
-            <div className="mt-7 flex items-start justify-center self-start">
+            <div className="flex w-[100%] items-center justify-center self-start">
               <DropdownBar />
             </div>
           </div>
         </div>
-        <div className="ml-4 flex-1 pr-5">
-          <div className="max-w-[100%]">
-            {isMounted && isMediumScreenOrLarger && (
-              <ParallaxScroll className="custom-class" />
-            )}
-          </div>
-        </div>
+        <Horizontal />
       </div>
-      {isMounted && !isMediumScreenOrLarger && (
-        <>
-          <Horizontal />
-        </>
-      )}
     </>
   );
 };

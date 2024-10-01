@@ -10,9 +10,9 @@ import { add } from "date-fns";
 import { addMakeUpArtist } from "@/services/vendors/makeupArtist";
 import jwt from "jsonwebtoken";
 import Image from "next/image";
-import Agreement from "../Agreement/page";
-import Plans from "../Plans/page";
-import Registration_Completed from "../Registration-Completed/page";
+import Agreement from "../(Agreement)/Agreement";
+import Plans from "../(Plans)/Plans";
+import Registration_Completed from "../(Registration-Completed)/thankupage";
 
 interface Package {
   type: string;
@@ -35,12 +35,12 @@ interface FormState {
   onsiteMakeup: boolean;
 
   artistDescription: string;
-  portfolioUrls: string | File;
+  portfolioUrls: string | File | File[];
   makeup_groupmembers: string;
   organisationMembers: string;
   // Page 2
-  termsAndConditions: string | File;
-  cancellationPolicy: string | File;
+  termsAndConditions: string | File | File[];
+  cancellationPolicy: string | File | File[];
   // Page 3
   // Page 4
 }
@@ -162,14 +162,32 @@ const VenueForm: React.FC = () => {
     formData.append("artistName", formState.artistName);
     formData.append("category", category);
     formData.append("artistDescription", formState.artistDescription);
-    formData.append("portfolioUrls", formState.portfolioUrls);
+    if (Array.isArray(formState.portfolioUrls)) {
+      formState.portfolioUrls.forEach((file) => {
+        formData.append("portfolioUrls", file); // No index here
+      });
+    } else {
+      formData.append("portfolioUrls", formState.portfolioUrls);
+    }
+
     formData.append("makeup_groupmembers", formState.makeup_groupmembers);
     formData.append("organisationMembers", formState.organisationMembers);
 
     //page 2
-    formData.append("termsAndConditions", formState.termsAndConditions);
-    formData.append("cancellationPolicy", formState.cancellationPolicy);
-
+    if (Array.isArray(formState.termsAndConditions)) {
+      formState.termsAndConditions.forEach((file) => {
+        formData.append("termsAndConditions", file); // No index here
+      });
+    } else {
+      formData.append("termsAndConditions", formState.termsAndConditions);
+    }
+    if (Array.isArray(formState.cancellationPolicy)) {
+      formState.cancellationPolicy.forEach((file) => {
+        formData.append("cancellationPolicy", file); // No index here
+      });
+    } else {
+      formData.append("cancellationPolicy", formState.cancellationPolicy);
+    }
     //page 3
     formData.append("advancePayment", advancePayment.toString());
     formData.append("hourlyPackage", JSON.stringify(hourlyPackage));
@@ -194,8 +212,8 @@ const VenueForm: React.FC = () => {
   };
 
   const handleContinue = () => {
-    console.log('continue')
-  }
+    console.log("continue");
+  };
 
   const renderPage = () => {
     switch (currentPage) {
@@ -224,7 +242,8 @@ const VenueForm: React.FC = () => {
         );
       case 2:
         return (
-          <Page2 formState={formState}
+          <Page2
+            formState={formState}
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
             updateFormState={updateFormState}
@@ -273,7 +292,6 @@ const VenueForm: React.FC = () => {
       case 5:
         return (
           <Page5
-
             formState={formState}
             updateFormState={updateFormState}
             category={category}
@@ -298,103 +316,110 @@ const VenueForm: React.FC = () => {
               //handleSubmit();
             }}
           />
-        )
+        );
       case 6:
         return (
           <>
             <Agreement setCurrentPage={setCurrentPage} />
           </>
-        )
+        );
       case 7:
         return (
           <>
-            <Plans handleformSubmit={handleSubmit} setCurrentPage={setCurrentPage} />
+            <Plans
+              handleformSubmit={handleSubmit}
+              setCurrentPage={setCurrentPage}
+            />
           </>
-        )
+        );
       case 8:
         return (
           <>
             <Registration_Completed />
           </>
-        )
+        );
       default:
         return (
           <>
-            <center><h2>Loading....</h2></center>
+            <center>
+              <h2>Loading....</h2>
+            </center>
           </>
         );
     }
   };
 
   return (
-    <div className={`m-0 flex w-full flex-col overflow-x-hidden lg:flex-row ${currentPage <= 5 ? 'lg:h-[calc(100vh-4.2rem)]' : ''}`}>
-      {
-        currentPage <= 5 &&
-        (
-          <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[30%] lg:max-w-[30%] p-4">
-            <div className="flex w-[100%] flex-col justify-center">
-              <div className="flex flex-col gap-1 px-3 lg:mt-[2rem]">
-                <span className="text-lg font-semibold">
-                  Step {currentPage} of 5
-                </span>
-                <div className="flex gap-4">
-                  <button
-                    className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 1 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                    onClick={() => setCurrentPage(1)}
-                  ></button>
+    <div
+      className={`m-0 flex w-full flex-col overflow-x-hidden lg:flex-row ${currentPage <= 5 ? "lg:h-[calc(100vh-4.2rem)]" : ""}`}
+    >
+      {currentPage <= 5 && (
+        <div className="flex flex-col items-start justify-between bg-[#FFFFFF] p-4 xs:gap-7 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
+          <div className="flex w-[100%] flex-col justify-center">
+            <div className="flex flex-col gap-1 px-3 lg:mt-[2rem]">
+              <span className="text-lg font-semibold">
+                Step {currentPage} of 5
+              </span>
+              <div className="flex gap-4">
+                <button
+                  className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 1 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                  onClick={() => setCurrentPage(1)}
+                ></button>
 
-                  <button
-                    className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 2 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                    onClick={() => setCurrentPage(2)}
-                  ></button>
+                <button
+                  className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 2 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                  onClick={() => setCurrentPage(2)}
+                ></button>
 
-                  <button
-                    className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 3 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                    onClick={() => setCurrentPage(3)}
-                  ></button>
+                <button
+                  className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 3 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                  onClick={() => setCurrentPage(3)}
+                ></button>
 
-                  <button
-                    className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 4 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                    onClick={() => setCurrentPage(4)}
-                  ></button>
+                <button
+                  className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 4 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                  onClick={() => setCurrentPage(4)}
+                ></button>
 
-                  <button
-                    className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 5 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                    onClick={() => setCurrentPage(5)}
-                  ></button>
-
-                </div>
+                <button
+                  className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 5 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                  onClick={() => setCurrentPage(5)}
+                ></button>
               </div>
             </div>
-            <div className="flex h-[50%] flex-col items-start justify-center gap-9 px-3 md:px-3">
-              <h1 className="text-[8vw] font-bold md:text-[3vw]">
-                {currentPage === 1 && "Fill out your Basic details "}
-                {currentPage === 2 && "Fill out your Service details "}
-                {currentPage === 3 && "Fill out your pricing and policy"}
-                {currentPage === 4 && "Fill out your policy"}
-                {currentPage === 5 && "Fill out extra detail of your company"}
-
-              </h1>
-              <p className="text-black xs:text-sm md:w-[90%]">
-                {currentPage === 1 && 'Please provide the details of the venue offered by your company.'}
-                {currentPage === 2 && 'Please provide the details of the venue offered by your company.'}
-                {currentPage === 3 && 'Please provide the details of the venue offered by your company.'}
-                {currentPage === 4 && 'Please provide the details of the venue offered by your company.'}
-                {currentPage === 5 && 'Please provide the details of the venue offered by your company.'}
-              </p>
-            </div>
-            <div className="relative h-[10rem] lg:w-full">
-              <Image
-                src={"/tajmahal.png"}
-                alt=""
-                width={400}
-                height={200}
-                className="h-full w-full object-cover"
-              />
-            </div>
           </div>
-        )
-      }
+          <div className="flex h-[50%] flex-col items-start justify-center gap-9 px-3 md:px-3">
+            <h1 className="text-[8vw] font-bold md:text-[3vw]">
+              {currentPage === 1 && "Fill out your Basic details "}
+              {currentPage === 2 && "Fill out your Service details "}
+              {currentPage === 3 && "Fill out your pricing and policy"}
+              {currentPage === 4 && "Fill out your policy"}
+              {currentPage === 5 && "Fill out extra detail of your company"}
+            </h1>
+            <p className="text-black xs:text-sm md:w-[90%]">
+              {currentPage === 1 &&
+                "Please provide the details of the venue offered by your company."}
+              {currentPage === 2 &&
+                "Please provide the details of the venue offered by your company."}
+              {currentPage === 3 &&
+                "Please provide the details of the venue offered by your company."}
+              {currentPage === 4 &&
+                "Please provide the details of the venue offered by your company."}
+              {currentPage === 5 &&
+                "Please provide the details of the venue offered by your company."}
+            </p>
+          </div>
+          <div className="relative h-[10rem] lg:w-full">
+            <Image
+              src={"/tajmahal.png"}
+              alt=""
+              width={400}
+              height={200}
+              className="h-full w-full object-cover"
+            />
+          </div>
+        </div>
+      )}
       <div className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] p-6 md:p-[1rem]">
         {renderPage()}
       </div>

@@ -8,12 +8,11 @@ import Page3 from "./page3/page3";
 import Page4 from "./page4/page4";
 import Page5 from "./page5/page5";
 import Page6 from "./preview/page5";
-
 import { addDecorator } from "@/services/vendors/decorator";
 import Image from "next/image";
-import Agreement from "../Agreement/page";
-import Plans from "../Plans/page";
-import Registration_Completed from "../Registration-Completed/page";
+import Agreement from "../(Agreement)/Agreement";
+import Plans from "../(Plans)/Plans";
+import Registration_Completed from "../(Registration-Completed)/thankupage";
 
 interface Package {
   type: string;
@@ -34,7 +33,6 @@ export interface FormState {
   customizationsThemes: boolean;
   customDesignProcess: string;
 
-
   // Page 3
   themephotos: string | File | File[];
   themevideos: string | File | File[];
@@ -49,13 +47,11 @@ export interface FormState {
   writtenthemeproposalafterconsultaion: boolean;
   revisionforinitialthemeproposal: boolean;
 
-  // Page 3
+  //page 7
   cancellationPolicy: string | File | File[];
   termsAndConditions: string | File | File[];
 
   //page 5
-
-
 }
 
 const Decorators: React.FC = () => {
@@ -91,8 +87,6 @@ const Decorators: React.FC = () => {
     //page5
     cancellationPolicy: "",
     termsAndConditions: "",
-
-
   });
 
   const updateFormState = (newState: Partial<FormState>) => {
@@ -110,8 +104,6 @@ const Decorators: React.FC = () => {
   const [themesOffered, setThemesOffered] = useState<string[]>([]);
   //page 3
   const [themesElements, setThemesElements] = useState<string[]>([]);
-
-
 
   function getVendorId(): string | null {
     const token = localStorage.getItem("token");
@@ -161,7 +153,6 @@ const Decorators: React.FC = () => {
 
     formData.append("venId", venId);
 
-
     //page 1
     formData.append("name", formState.businessName);
     formData.append("duration", formState.duration);
@@ -199,7 +190,7 @@ const Decorators: React.FC = () => {
 
     formData.append("customDesignProcess", formState.customDesignProcess);
 
-    // 3 
+    // 3
     themesElements.forEach((event) => {
       formData.append("themesElements", event);
     });
@@ -207,75 +198,75 @@ const Decorators: React.FC = () => {
     if (Array.isArray(formState.themevideos)) {
       formState.themevideos.forEach((file) => {
         if (file instanceof File) {
-          formData.append('themevideos', file); // Append as 'photos' without the array index
+          formData.append("themevideos", file); // Append as 'photos' without the array index
         }
       });
-    } else if (typeof formState.themevideos === 'string') {
-      formData.append('themevideos', formState.themevideos); // Append the string (URL)
+    } else if (typeof formState.themevideos === "string") {
+      formData.append("themevideos", formState.themevideos); // Append the string (URL)
     }
 
     if (Array.isArray(formState.themephotos)) {
       formState.themephotos.forEach((file) => {
         if (file instanceof File) {
-          formData.append('themephotos', file); // Append as 'photos' without the array index
+          formData.append("themephotos", file); // Append as 'photos' without the array index
         }
       });
-    } else if (typeof formState.themephotos === 'string') {
-      formData.append('photos', formState.themephotos); // Append the string (URL)
+    } else if (typeof formState.themephotos === "string") {
+      formData.append("photos", formState.themephotos); // Append the string (URL)
     }
 
-    //4 
-
+    //4
 
     if (Array.isArray(formState.photos)) {
       formState.photos.forEach((file) => {
         if (file instanceof File) {
-          formData.append('photos', file); // Append as 'photos' without the array index
+          formData.append("photos", file); // Append as 'photos' without the array index
         }
       });
-    } else if (typeof formState.photos === 'string') {
-      formData.append('photos', formState.photos); // Append the string (URL)
+    } else if (typeof formState.photos === "string") {
+      formData.append("photos", formState.photos); // Append the string (URL)
     }
 
     if (Array.isArray(formState.videos)) {
       formState.videos.forEach((file) => {
         if (file instanceof File) {
-          formData.append('photos', file); // Append as 'photos' without the array index
+          formData.append("photos", file); // Append as 'photos' without the array index
         }
       });
-    } else if (typeof formState.videos === 'string') {
-      formData.append('photos', formState.videos); // Append the string (URL)
+    } else if (typeof formState.videos === "string") {
+      formData.append("photos", formState.videos); // Append the string (URL)
     }
     formData.append("websiteurl", formState.websiteurl);
     formData.append("intstagramurl", formState.intstagramurl);
     formData.append("clientTestimonials", formState.clientTestimonials);
-    formData.append("Recongnition_awards", formState.Recongnition_awards);
-    formData.append("advbookingperiod", formState.advbookingperiod);
-    formData.append("writtenthemeproposalafterconsultaion", formState.writtenthemeproposalafterconsultaion.toString());
-    formData.append("revisionforinitialthemeproposal", formState.revisionforinitialthemeproposal.toString());
-    // 5
+    //page 7
+
     if (Array.isArray(formState.cancellationPolicy)) {
       formState.cancellationPolicy.forEach((file) => {
-        if (file instanceof File) {
-          formData.append('cancellationPolicy', file); // Append as 'photos' without the array index
-        }
+        formData.append("cancellationPolicy", file); // No index here
       });
-    } else if (typeof formState.cancellationPolicy === 'string') {
-      formData.append('photos', formState.cancellationPolicy); // Append the string (URL)
+    } else {
+      formData.append("cancellationPolicy", formState.cancellationPolicy);
     }
-
     if (Array.isArray(formState.termsAndConditions)) {
       formState.termsAndConditions.forEach((file) => {
-        if (file instanceof File) {
-          formData.append('termsAndConditions', file); // Append as 'photos' without the array index
-        }
+        formData.append("termsAndConditions", file); // No index here
       });
-    } else if (typeof formState.termsAndConditions === 'string') {
-      formData.append('photos', formState.termsAndConditions); // Append the string (URL)
+    } else {
+      formData.append("termsAndConditions", formState.termsAndConditions);
     }
 
-    console.log(formData);
+    // Append form data for debugging
+    formData.forEach((value, key) => {
+      console.log(`${key}: ${value}`);
+    });
 
+    try {
+      await addDecorator(formData);
+      alert("Tried adding decorator");
+    } catch (error) {
+      console.error("Error adding venue:", error);
+    }
   };
 
   const renderPage = () => {
@@ -371,117 +362,119 @@ const Decorators: React.FC = () => {
           <>
             <Agreement setCurrentPage={setCurrentPage} />
           </>
-        )
+        );
       case 8:
         return (
           <>
-            <Plans handleformSubmit={handleSubmit} setCurrentPage={setCurrentPage} />
+            <Plans
+              handleformSubmit={handleSubmit}
+              setCurrentPage={setCurrentPage}
+            />
           </>
-        )
+        );
       case 9:
         return (
           <>
             <Registration_Completed />
           </>
-        )
+        );
       default:
         return (
           <>
-            <center><h2>Loading....</h2></center>
+            <center>
+              <h2>Loading....</h2>
+            </center>
           </>
-        )
+        );
     }
   };
 
   return (
-    <div className={`m-0 flex w-full flex-col overflow-x-hidden ${currentPage <= 6 ? 'lg:h-[calc(100vh-4.2rem)]' : ''} lg:flex-row `}>
-      {
-        currentPage <= 6 &&
-        (
-          <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 pt-4 md:min-w-[30%] lg:max-w-[30%]">
-            <div className="flex w-[90%] m-auto flex-col justify-center">
-              <div className="flex flex-col gap-1 px-3 lg:mt-[2rem]">
-                <span className="text-lg font-semibold">
-                  Step {currentPage} of 6
-                </span>
-                <div className="flex gap-2">
+    <div
+      className={`m-0 flex w-full flex-col overflow-x-hidden ${currentPage <= 6 ? "lg:h-[calc(100vh-4.2rem)]" : ""} lg:flex-row`}
+    >
+      {currentPage <= 6 && (
+        <div className="flex flex-col items-start justify-between bg-[#FFFFFF] px-8 xs:gap-7 xs:pt-4 md:min-w-[35%] lg:max-w-[35%]">
+          <div className="flex w-[100%] flex-col justify-center">
+            <div className="flex flex-col gap-1 px-3 lg:mt-[2rem]">
+              <span className="text-lg font-semibold">
+                Step {currentPage} of 6
+              </span>
+              <div className="flex gap-4">
                 <button
-                    className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 1 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                    onClick={() => setCurrentPage(1)}
-                  ></button>
+                  className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 1 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                  onClick={() => setCurrentPage(1)}
+                ></button>
 
-                  <button
-                    className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 2 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                    onClick={() => setCurrentPage(2)}
-                  ></button>
+                <button
+                  className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 2 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                  onClick={() => setCurrentPage(2)}
+                ></button>
 
-                  <button
-                    className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 3 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                    onClick={() => setCurrentPage(3)}
-                  ></button>
+                <button
+                  className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 3 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                  onClick={() => setCurrentPage(3)}
+                ></button>
 
-                  <button
-                    className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 4 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                    onClick={() => setCurrentPage(4)}
-                  ></button>
+                <button
+                  className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 4 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                  onClick={() => setCurrentPage(4)}
+                ></button>
 
-                  {/* <button
+                {/* <button
                 className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 5 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
                 onClick={() => setCurrentPage(5)}
               ></button> */}
 
-                  <button
-                    className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 5 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                    onClick={() => setCurrentPage(5)}
-                  ></button>
-                  <button
-                    className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 6 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                    onClick={() => setCurrentPage(6)}
-                  ></button>
-                </div>
+                <button
+                  className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 5 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                  onClick={() => setCurrentPage(5)}
+                ></button>
+                <button
+                  className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 6 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
+                  onClick={() => setCurrentPage(6)}
+                ></button>
               </div>
             </div>
-            <div className="m-auto flex h-[50%] w-[90%] flex-col items-start justify-center gap-9 px-3 md:px-6">
-            <h1 className="text-3xl font-bold md:text-5xl">
-            {currentPage === 1 && "Fill out event details"}
-                {currentPage === 2 && "Fill out themes related details "}
-                {currentPage === 3 && "Fill out theme elements details"}
-                {currentPage === 4 && "Fill out your ratings and reviews"}
-                {currentPage === 5 && "Fill out Some Mandatory details"}
-                {currentPage === 6 && "Preview details"}
-
-              </h1>
-              <p className="text-xl text-black">
-              {currentPage === 1 &&
-                  "Select the types of events you cover "}
-                {currentPage === 2 &&
-                  "Provide the details of the themes you offer and related details."}
-                {currentPage === 3 &&
-                  "Provide the details of the themes elements you provide and describe it in detail."}
-                {currentPage === 4 &&
-                  "Fill out the details or upload the links/pdf if available."}
-                {currentPage === 5 &&
-                  "Fill out the details or upload the links/pdf if available."}
-                {currentPage === 6 && "Please recheck the information provided by you. "}
-
-              </p>
-            </div>
-            <div className="relative h-[10rem] lg:w-full">
-              <Image
-                src={"/tajmahal.png"}
-                alt=""
-                width={400}
-                height={200}
-                className="h-full w-full object-cover"
-              />
-            </div>
           </div>
-        )
-      }
-      <div className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] p-6 md:p-[1rem]">
+          <div className="flex h-[40%] flex-col items-start justify-center gap-5 px-3 pt-3 md:px-3">
+            <h1 className="text-[8vw] font-bold md:text-[3vw]">
+              {currentPage === 1 && "Fill out event details"}
+              {currentPage === 2 && "Fill out themes related details "}
+              {currentPage === 3 && "Fill out theme elements details"}
+              {currentPage === 4 && "Fill out your ratings and reviews"}
+              {currentPage === 5 && "Fill out Some Mandatory details"}
+              {currentPage === 6 && "Preview details"}
+            </h1>
+            <p className="font-Helvetica font-normal text-[#797878] xs:text-xl">
+              {currentPage === 1 && "Select the types of events you cover "}
+              {currentPage === 2 &&
+                "Provide the details of the themes you offer and related details."}
+              {currentPage === 3 &&
+                "Provide the details of the themes elements you provide and describe it in detail."}
+              {currentPage === 4 &&
+                "Fill out the details or upload the links/pdf if available."}
+              {currentPage === 5 &&
+                "Fill out the details or upload the links/pdf if available."}
+              {currentPage === 6 &&
+                "Please recheck the information provided by you. "}
+            </p>
+          </div>
+          <div className="relative h-[10rem] lg:w-full">
+            <Image
+              src={"/tajmahal.png"}
+              alt=""
+              width={400}
+              height={200}
+              className="h-full w-full object-cover"
+            />
+          </div>
+        </div>
+      )}
+      <div className="flex min-w-[65%] flex-col items-center justify-center bg-[#F7F6F9] p-6 md:p-[1rem]">
         {renderPage()}
       </div>
-    </div >
+    </div>
   );
 };
 

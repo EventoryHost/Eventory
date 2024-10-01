@@ -6,9 +6,9 @@ import Page1 from "./page1/page1";
 import Page2 from "./page2/page2";
 import Preview from "./preview/page3";
 import { addGift } from "@/services/vendors/gift";
-import Agreement from "../Agreement/page";
-import Plans from "../Plans/page";
-import Registration_Completed from "../Registration-Completed/page";
+import Agreement from "../(Agreement)/Agreement";
+import Plans from "../(Plans)/Plans";
+import Registration_Completed from "../(Registration-Completed)/thankupage";
 
 const Pages = [Page1, Page2, Preview]; // List of pages
 
@@ -54,7 +54,11 @@ const RootPage = () => {
   };
 
   // Handle nested form field change
-  const handleNestedChange = (key: keyof FormState, nestedKey: string, value: any) => {
+  const handleNestedChange = (
+    key: keyof FormState,
+    nestedKey: string,
+    value: any,
+  ) => {
     setFormState((prevState) => ({
       ...prevState,
       [key]:
@@ -94,7 +98,10 @@ const RootPage = () => {
       return null;
     }
     try {
-      const decodedToken = jwt.decode(token) as { userId?: string; email?: string };
+      const decodedToken = jwt.decode(token) as {
+        userId?: string;
+        email?: string;
+      };
       return decodedToken?.userId || null;
     } catch (error) {
       console.error("Error decoding token:", error);
@@ -169,7 +176,7 @@ const RootPage = () => {
       case 2:
         return (
           <Preview
-          navigateToPage={setCurrentPage}
+            navigateToPage={setCurrentPage}
             key={currentPage}
             formState={formState}
             handleChange={handleChange}
@@ -184,7 +191,12 @@ const RootPage = () => {
       case 3:
         return <Agreement setCurrentPage={setCurrentPage} />;
       case 4:
-        return <Plans handleformSubmit={handleSubmit} setCurrentPage={setCurrentPage} />;
+        return (
+          <Plans
+            handleformSubmit={handleSubmit}
+            setCurrentPage={setCurrentPage}
+          />
+        );
       case 5:
         return <Registration_Completed />;
       default:
@@ -192,11 +204,7 @@ const RootPage = () => {
     }
   };
 
-  return (
-    <div className="flex flex-col w-full">
-      {renderPage()}
-    </div>
-  );
+  return <div className="flex w-full flex-col">{renderPage()}</div>;
 };
 
 export default RootPage;

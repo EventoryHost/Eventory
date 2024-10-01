@@ -23,7 +23,7 @@ const Dropdown: React.FC<DropdownProps> = ({
   const handleSelect = (option: Option) => {
     setSelectedOption(option);
     setIsOpen(false);
-    onSelect(option.value); // Pass the `value` to the parent
+    onSelect(option.value); // Pass the value to the parent
   };
 
   return (

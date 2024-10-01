@@ -54,9 +54,17 @@ const Dropdown: React.FC<DropdownProps> = ({
                 onClick={() => handleSelect(option)}
               >
                 {selectedOption === option ? (
-                  <img src={"/selection/Choice_2.svg"} className="h-5 w-5" />
+                  <img
+                    src={"/selection/Choice_2.svg"}
+                    className="h-5 w-5"
+                    alt=""
+                  />
                 ) : (
-                  <img src={"/selection/Choice.svg"} className="h-5 w-5" />
+                  <img
+                    src={"/selection/Choice.svg"}
+                    className="h-5 w-5"
+                    alt=""
+                  />
                 )}
 
                 {option}

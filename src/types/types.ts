@@ -9,13 +9,13 @@ export type BasicDetails = "photo" | "video" | "both";
 
 export interface pavFormState {
   fullName: string;
-  
+
   description: string;
-  
+
   eventsize: number;
   events: string[];
   Selectedstyles: string[];
-  
+
   Selectedequipments: string[];
   setSelectedEquipments: React.Dispatch<React.SetStateAction<string[]>>;
   Addons: string[];
@@ -55,12 +55,17 @@ export interface pavFormState {
   clientTestimonials: string;
   setclientTestimonials: (clientTestimonials: string) => void;
   writtenthemeproposalafterconsultaion: boolean;
-  setwrittenthemeproposalafterconsultaion: (writtenthemeproposalafterconsultaion: boolean) => void;
+  setwrittenthemeproposalafterconsultaion: (
+    writtenthemeproposalafterconsultaion: boolean,
+  ) => void;
   freerevisionforinitialthemeproposal: boolean;
-  setrevisionforinitialthemeproposal: (freerevisionforinitialthemeproposal: boolean) => void;
+  setrevisionforinitialthemeproposal: (
+    freerevisionforinitialthemeproposal: boolean,
+  ) => void;
   policy: string | File | File[];
   termsandconditions: string | File | File[];
-  settermsandconditions: React.Dispatch<React.SetStateAction<string | File | File[]>>;
+  settermsandconditions: React.Dispatch<
+    React.SetStateAction<string | File | File[]>
+  >;
   setpolicy: React.Dispatch<React.SetStateAction<string | File | File[]>>;
-  
 }

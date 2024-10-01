@@ -6,7 +6,6 @@ import FileInput from "@/components/fileInput";
 import Dropdown from "../../(components)/Dropdown";
 
 type Page1Props = {
-
   Durationoffinaldelivery: string;
   setDurationoffinaldelivery: (Durationoffinaldelivery: string) => void;
   Packagetype: string;
@@ -49,24 +48,17 @@ const Page4 = ({
   setCurrentPage,
   handleContinue,
 }: Page1Props) => {
-
-
   const durations = [
     "Less than 1 week",
     "Less then 2 weeks",
     "2-4 weeks",
     "More than 4 weeks",
   ];
-  const packagetypes = [
-    "Costomize",
-    "Standard",
-    "Both",
-  ];
-
+  const packagetypes = ["Costomize", "Standard", "Both"];
 
   return (
     <div
-      className="scroll-touch flex flex-col items-start gap-7  overflow-y-scroll rounded-xl bg-white p-3  scrollbar-hide xs:w-[95%] xs:min-w-[90%] xs:justify-start md:p-6"
+      className="scroll-touch flex flex-col items-start gap-7 overflow-y-scroll rounded-xl bg-white p-3 scrollbar-hide xs:w-[95%] xs:min-w-[90%] xs:justify-start md:p-6"
       onSubmit={(e) => {
         e.preventDefault();
         handleContinue();
@@ -75,17 +67,17 @@ const Page4 = ({
       <h1 className="text-3xl font-semibold">Consultation details</h1>
       <div className="flex min-w-[100%] flex-col items-start justify-between gap-5 md:flex-row">
         <div className="flex flex-col items-start justify-between gap-9">
-          <div className="flex flex-col w-max items-start justify-between gap-5 md:flex-row">
+          <div className="flex w-max flex-col items-start justify-between gap-5 md:flex-row">
             <div className="flex min-w-[60%] flex-col gap-4">
               <label htmlFor="businessName">
-                Duration of Final Delivery of Photos/Videos<span className="text-red-500">*</span>
+                Duration of Final Delivery of Photos/Videos
+                <span className="text-red-500">*</span>
               </label>
               <Dropdown
                 options={durations}
                 onSelect={(value: string) => setDurationoffinaldelivery(value)}
                 placeholder="Select Your Work Delivery time"
               />
-
             </div>
 
             <div className="flex min-w-[60%] flex-col gap-4">
@@ -100,38 +92,40 @@ const Page4 = ({
             </div>
           </div>
 
-          <div className="flex flex-col w-max items-start justify-between gap-5 md:flex-row">
+          <div className="flex w-max flex-col items-start justify-between gap-5 md:flex-row">
             <div className="flex min-w-[57%] flex-col gap-5">
               {/* Proposals to Clients */}
               <div className="flex flex-col gap-5">
-                <p className="text-md font-md">Do You Provide Design Proposals to Clients?</p>
+                <p className="text-md font-md">
+                  Do You Provide Design Proposals to Clients?
+                </p>
                 <div className="flex gap-7">
                   <div className="flex items-center gap-3">
-                    <div className="relative flex justify-center items-center h-4 w-4">
+                    <div className="relative flex h-4 w-4 items-center justify-center">
                       <input
                         type="radio"
                         name="proposalsToClients"
-                        className="appearance-none h-4 w-4 border border-black checked:border-[#2E3192] rounded-full checked:bg-white focus:outline-none"
+                        className="h-4 w-4 appearance-none rounded-full border border-black checked:border-[#2E3192] checked:bg-white focus:outline-none"
                         checked={proposalsToClients}
                         onChange={() => setProposalsToClients(true)}
                       />
                       {proposalsToClients && (
-                        <div className="absolute w-2 h-2 inset-1 bg-[#2E3192] rounded-full"></div>
+                        <div className="absolute inset-1 h-2 w-2 rounded-full bg-[#2E3192]"></div>
                       )}
                     </div>
                     <label className="text-sm">Yes</label>
                   </div>
                   <div className="flex items-center gap-3">
-                    <div className="relative flex justify-center items-center h-4 w-4">
+                    <div className="relative flex h-4 w-4 items-center justify-center">
                       <input
                         type="radio"
                         name="proposalsToClients"
-                        className="appearance-none h-4 w-4 border border-black checked:border-[#2E3192] rounded-full checked:bg-white focus:outline-none"
+                        className="h-4 w-4 appearance-none rounded-full border border-black checked:border-[#2E3192] checked:bg-white focus:outline-none"
                         checked={!proposalsToClients}
                         onChange={() => setProposalsToClients(false)}
                       />
                       {!proposalsToClients && (
-                        <div className="absolute w-2 h-2 inset-1 bg-[#2E3192] rounded-full"></div>
+                        <div className="absolute inset-1 h-2 w-2 rounded-full bg-[#2E3192]"></div>
                       )}
                     </div>
                     <label className="text-sm">No</label>
@@ -142,34 +136,36 @@ const Page4 = ({
             <div className="flex min-w-[55%] flex-col gap-4">
               {/* Free Initial Consultation */}
               <div className="flex flex-col gap-5">
-                <p className="text-md font-md">Do You Provide Free Initial Consultation?</p>
+                <p className="text-md font-md">
+                  Do You Provide Free Initial Consultation?
+                </p>
                 <div className="flex gap-7">
                   <div className="flex items-center gap-3">
-                    <div className="relative flex justify-center items-center h-4 w-4">
+                    <div className="relative flex h-4 w-4 items-center justify-center">
                       <input
                         type="radio"
                         name="freeInitialConsultation"
-                        className="appearance-none h-4 w-4 border border-black checked:border-[#2E3192] rounded-full checked:bg-white focus:outline-none"
+                        className="h-4 w-4 appearance-none rounded-full border border-black checked:border-[#2E3192] checked:bg-white focus:outline-none"
                         checked={freeInitialConsultation}
                         onChange={() => setFreeInitialConsultation(true)}
                       />
                       {freeInitialConsultation && (
-                        <div className="absolute w-2 h-2 inset-1 bg-[#2E3192] rounded-full"></div>
+                        <div className="absolute inset-1 h-2 w-2 rounded-full bg-[#2E3192]"></div>
                       )}
                     </div>
                     <label className="text-sm">Yes</label>
                   </div>
                   <div className="flex items-center gap-3">
-                    <div className="relative flex justify-center items-center h-4 w-4">
+                    <div className="relative flex h-4 w-4 items-center justify-center">
                       <input
                         type="radio"
                         name="freeInitialConsultation"
-                        className="appearance-none h-4 w-4 border border-black checked:border-[#2E3192] rounded-full checked:bg-white focus:outline-none"
+                        className="h-4 w-4 appearance-none rounded-full border border-black checked:border-[#2E3192] checked:bg-white focus:outline-none"
                         checked={!freeInitialConsultation}
                         onChange={() => setFreeInitialConsultation(false)}
                       />
                       {!freeInitialConsultation && (
-                        <div className="absolute w-2 h-2 inset-1 bg-[#2E3192] rounded-full"></div>
+                        <div className="absolute inset-1 h-2 w-2 rounded-full bg-[#2E3192]"></div>
                       )}
                     </div>
                     <label className="text-sm">No</label>
@@ -179,38 +175,40 @@ const Page4 = ({
             </div>
           </div>
 
-          <div className="flex flex-col w-max items-start justify-between md:flex-row">
-            <div className="flex min-w-[5%] flex-col gap-">
+          <div className="flex w-max flex-col items-start justify-between md:flex-row">
+            <div className="gap- flex min-w-[5%] flex-col">
               {/* Booking Deposit */}
               <div className="flex flex-col gap-5">
-                <p className="text-md font-md">Do You Require Any Booking Deposit For Your Services?</p>
+                <p className="text-md font-md">
+                  Do You Require Any Booking Deposit For Your Services?
+                </p>
                 <div className="flex gap-7">
                   <div className="flex items-center gap-3">
-                    <div className="relative flex justify-center items-center h-4 w-4">
+                    <div className="relative flex h-4 w-4 items-center justify-center">
                       <input
                         type="radio"
                         name="bookingDeposit"
-                        className="appearance-none h-4 w-4 border border-black checked:border-[#2E3192] rounded-full checked:bg-white focus:outline-none"
+                        className="h-4 w-4 appearance-none rounded-full border border-black checked:border-[#2E3192] checked:bg-white focus:outline-none"
                         checked={bookingDeposit}
                         onChange={() => setBookingDeposit(true)}
                       />
                       {bookingDeposit && (
-                        <div className="absolute w-2 h-2 inset-1 bg-[#2E3192] rounded-full"></div>
+                        <div className="absolute inset-1 h-2 w-2 rounded-full bg-[#2E3192]"></div>
                       )}
                     </div>
                     <label className="text-sm">Yes</label>
                   </div>
                   <div className="flex items-center gap-3">
-                    <div className="relative flex justify-center items-center h-4 w-4">
+                    <div className="relative flex h-4 w-4 items-center justify-center">
                       <input
                         type="radio"
                         name="bookingDeposit"
-                        className="appearance-none h-4 w-4 border border-black checked:border-[#2E3192] rounded-full checked:bg-white focus:outline-none"
+                        className="h-4 w-4 appearance-none rounded-full border border-black checked:border-[#2E3192] checked:bg-white focus:outline-none"
                         checked={!bookingDeposit}
                         onChange={() => setBookingDeposit(false)}
                       />
                       {!bookingDeposit && (
-                        <div className="absolute w-2 h-2 inset-1 bg-[#2E3192] rounded-full"></div>
+                        <div className="absolute inset-1 h-2 w-2 rounded-full bg-[#2E3192]"></div>
                       )}
                     </div>
                     <label className="text-sm">No</label>
@@ -218,18 +216,19 @@ const Page4 = ({
                 </div>
               </div>
             </div>
-            <div className="flex min-w-[57.5%]  flex-col gap-5">
+            <div className="flex min-w-[57.5%] flex-col gap-5">
               <div className="flex flex-col gap-5">
-                <p className="text-md w-[70%] font-md">
-                  Are You Available For Destination Events or Out Of Town Bookings ?
+                <p className="text-md font-md w-[70%]">
+                  Are You Available For Destination Events or Out Of Town
+                  Bookings ?
                 </p>
                 <div className="flex gap-7">
                   <div className="flex items-center gap-3">
-                    <div className="relative flex justify-center items-center h-4 w-4">
+                    <div className="relative flex h-4 w-4 items-center justify-center">
                       <input
                         type="radio"
                         name="availablefordestinationevents"
-                        className="appearance-none h-4 w-4 border border-black checked:border-[#2E3192] rounded-full checked:bg-white focus:outline-none"
+                        className="h-4 w-4 appearance-none rounded-full border border-black checked:border-[#2E3192] checked:bg-white focus:outline-none"
                         checked={availablefordestinationevents}
                         onChange={(e) => {
                           e.preventDefault();
@@ -238,18 +237,20 @@ const Page4 = ({
                       />
                       {/* Add the inner circle to simulate padding */}
                       {availablefordestinationevents && (
-                        <center><div className="absolute  w-2 h-2 inset-1 bg-[#2E3192] rounded-full"></div></center>
+                        <center>
+                          <div className="absolute inset-1 h-2 w-2 rounded-full bg-[#2E3192]"></div>
+                        </center>
                       )}
                     </div>
                     <label className="text-sm">Yes</label>
                   </div>
 
                   <div className="flex items-center gap-3">
-                    <div className="relative flex justify-center items-center h-4 w-4">
+                    <div className="relative flex h-4 w-4 items-center justify-center">
                       <input
                         type="radio"
                         name="availablefordestinationevents"
-                        className="appearance-none h-4 w-4 border border-black checked:border-[#2E3192] rounded-full checked:bg-white focus:outline-none"
+                        className="h-4 w-4 appearance-none rounded-full border border-black checked:border-[#2E3192] checked:bg-white focus:outline-none"
                         checked={!availablefordestinationevents}
                         onChange={(e) => {
                           e.preventDefault();
@@ -258,7 +259,9 @@ const Page4 = ({
                       />
                       {/* Add the inner circle to simulate padding */}
                       {!availablefordestinationevents && (
-                        <center><div className="absolute  w-2 h-2 inset-1 bg-[#2E3192] rounded-full"></div></center>
+                        <center>
+                          <div className="absolute inset-1 h-2 w-2 rounded-full bg-[#2E3192]"></div>
+                        </center>
                       )}
                     </div>
                     <label className="text-sm">No</label>
@@ -268,39 +271,40 @@ const Page4 = ({
             </div>
           </div>
 
-          <div className="flex flex-col w-max items-start justify-between gap-5 md:flex-row">
-            <div className="flex justify-between w-max gap-4">
-
+          <div className="flex w-max flex-col items-start justify-between gap-5 md:flex-row">
+            <div className="flex w-max justify-between gap-4">
               {/* Advance Setup */}
-              <div className="flex flex-col min-w-[66.4%] gap-5">
-                <p className="text-md font-md">Do You Provide Advance Set-Up?</p>
+              <div className="flex min-w-[66.4%] flex-col gap-5">
+                <p className="text-md font-md">
+                  Do You Provide Advance Set-Up?
+                </p>
                 <div className="flex gap-7">
                   <div className="flex items-center gap-3">
-                    <div className="relative flex justify-center items-center h-4 w-4">
+                    <div className="relative flex h-4 w-4 items-center justify-center">
                       <input
                         type="radio"
                         name="advanceSetup"
-                        className="appearance-none h-4 w-4 border border-black checked:border-[#2E3192] rounded-full checked:bg-white focus:outline-none"
+                        className="h-4 w-4 appearance-none rounded-full border border-black checked:border-[#2E3192] checked:bg-white focus:outline-none"
                         checked={advanceSetup}
                         onChange={() => setAdvanceSetup(true)}
                       />
                       {advanceSetup && (
-                        <div className="absolute w-2 h-2 inset-1 bg-[#2E3192] rounded-full"></div>
+                        <div className="absolute inset-1 h-2 w-2 rounded-full bg-[#2E3192]"></div>
                       )}
                     </div>
                     <label className="text-sm">Yes</label>
                   </div>
                   <div className="flex items-center gap-3">
-                    <div className="relative flex justify-center items-center h-4 w-4">
+                    <div className="relative flex h-4 w-4 items-center justify-center">
                       <input
                         type="radio"
                         name="advanceSetup"
-                        className="appearance-none h-4 w-4 border border-black checked:border-[#2E3192] rounded-full checked:bg-white focus:outline-none"
+                        className="h-4 w-4 appearance-none rounded-full border border-black checked:border-[#2E3192] checked:bg-white focus:outline-none"
                         checked={!advanceSetup}
                         onChange={() => setAdvanceSetup(false)}
                       />
                       {!advanceSetup && (
-                        <div className="absolute w-2 h-2 inset-1 bg-[#2E3192] rounded-full"></div>
+                        <div className="absolute inset-1 h-2 w-2 rounded-full bg-[#2E3192]"></div>
                       )}
                     </div>
                     <label className="text-sm">No</label>
@@ -310,34 +314,36 @@ const Page4 = ({
 
               {/* Post-Production Services */}
               <div className="flex min-w-[75%] flex-col gap-5">
-                <p className="text-md font-md">Do You Offer Post-Production Services?</p>
+                <p className="text-md font-md">
+                  Do You Offer Post-Production Services?
+                </p>
                 <div className="flex gap-7">
                   <div className="flex items-center gap-3">
-                    <div className="relative flex justify-center items-center h-4 w-4">
+                    <div className="relative flex h-4 w-4 items-center justify-center">
                       <input
                         type="radio"
                         name="postproductionservices"
-                        className="appearance-none h-4 w-4 border border-black checked:border-[#2E3192] rounded-full checked:bg-white focus:outline-none"
+                        className="h-4 w-4 appearance-none rounded-full border border-black checked:border-[#2E3192] checked:bg-white focus:outline-none"
                         checked={postproductionservices}
                         onChange={() => setpostproductionservices(true)}
                       />
                       {postproductionservices && (
-                        <div className="absolute w-2 h-2 inset-1 bg-[#2E3192] rounded-full"></div>
+                        <div className="absolute inset-1 h-2 w-2 rounded-full bg-[#2E3192]"></div>
                       )}
                     </div>
                     <label className="text-sm">Yes</label>
                   </div>
                   <div className="flex items-center gap-3">
-                    <div className="relative flex justify-center items-center h-4 w-4">
+                    <div className="relative flex h-4 w-4 items-center justify-center">
                       <input
                         type="radio"
                         name="postproductionservices"
-                        className="appearance-none h-4 w-4 border border-black checked:border-[#2E3192] rounded-full checked:bg-white focus:outline-none"
+                        className="h-4 w-4 appearance-none rounded-full border border-black checked:border-[#2E3192] checked:bg-white focus:outline-none"
                         checked={!postproductionservices}
                         onChange={() => setpostproductionservices(false)}
                       />
                       {!postproductionservices && (
-                        <div className="absolute w-2 h-2 inset-1 bg-[#2E3192] rounded-full"></div>
+                        <div className="absolute inset-1 h-2 w-2 rounded-full bg-[#2E3192]"></div>
                       )}
                     </div>
                     <label className="text-sm">No</label>

@@ -7,9 +7,9 @@ import Page3 from "./page3/page3";
 import Page4 from "./page4/page4";
 import Page5 from "./page5/page5";
 import Page6 from "./preview/page6";
-import Agreement from "../Agreement/page";
-import Plans from "../Plans/page";
-import Registration_Completed from "../Registration-Completed/page";
+import Agreement from "../(Agreement)/Agreement";
+import Plans from "../(Plans)/Plans";
+import Registration_Completed from "../(Registration-Completed)/thankupage";
 import { addInvitation } from "@/services/vendors/invitation";
 interface Package {
   type: string;
@@ -326,25 +326,30 @@ const Invitation: React.FC = () => {
           <>
             <Agreement setCurrentPage={setCurrentPage} />
           </>
-        )
+        );
       case 7:
         return (
           <>
-            <Plans handleformSubmit={handleSubmit} setCurrentPage={setCurrentPage} />
+            <Plans
+              handleformSubmit={handleSubmit}
+              setCurrentPage={setCurrentPage}
+            />
           </>
-        )
+        );
       case 8:
         return (
           <>
             <Registration_Completed />
           </>
-        )
+        );
       default:
         return (
           <>
-            <center><h2>Loading....</h2></center>
+            <center>
+              <h2>Loading....</h2>
+            </center>
           </>
-        )
+        );
     }
   };
 

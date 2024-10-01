@@ -45,13 +45,16 @@ const Page2: React.FC<page2Props> = ({
   serviceProvided,
   setServiceProvided,
 }) => {
-  const _serviceProvided=[
-    "Furniture and Decor","Tent and Canopy","Audio visuals","Others"
-  ]
+  const _serviceProvided = [
+    "Furniture and Decor",
+    "Tent and Canopy",
+    "Audio visuals",
+    "Others",
+  ];
 
-  useEffect(()=>{
-    console.log(formState.customization)
-  },[formState.customization])
+  useEffect(() => {
+    console.log(formState.customization);
+  }, [formState.customization]);
   return (
     <div className="flex h-full w-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide">
       <div className="flex min-w-full flex-col items-start justify-around gap-10">

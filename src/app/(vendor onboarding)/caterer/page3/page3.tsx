@@ -11,7 +11,14 @@ const _EventTypes = [
   "Weddings",
 ];
 
-const _additionalServices = ["Table Setting and Decoration", "Live Cooking Stations", "Bartending", "Food Packing for Guests", "Cleanup Services", "Others"];
+const _additionalServices = [
+  "Table Setting and Decoration",
+  "Live Cooking Stations",
+  "Bartending",
+  "Food Packing for Guests",
+  "Cleanup Services",
+  "Others",
+];
 
 interface page3Props {
   selectedEventTypes: string[];
@@ -76,8 +83,8 @@ const Page3: React.FC<page3Props> = ({
               setSelectedAppetizers={setSelectedAdditionalServices}
             />
           </div>
-        <div className="items-strech  flex flex-row gap-7 self-end">
-
+        </div>
+        <div className="items-strech flex flex-row gap-7 self-end">
           <button
             className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
             onClick={handleSubmit}
@@ -85,9 +92,6 @@ const Page3: React.FC<page3Props> = ({
             Continue
           </button>
         </div>
-        </div>
-
-
       </div>
     </div>
   );

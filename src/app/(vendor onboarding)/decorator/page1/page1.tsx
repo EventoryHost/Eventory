@@ -76,19 +76,9 @@ interface FormState {
   duration: string;
 }
 
-const teamsizelist = [
-  "1-5",
-  "6-15",
-  "16-30",
-  "31-50",
-  "51+"
-];
+const teamsizelist = ["1-5", "6-15", "16-30", "31-50", "51+"];
 
-const durationlist = [
-  "Less Then 2 hours",
-  "2-5 Hours",
-  "More Then 5 hours"
-];
+const durationlist = ["Less Then 2 hours", "2-5 Hours", "More Then 5 hours"];
 
 interface Page1Props {
   formState: {
@@ -126,7 +116,9 @@ const Page1: React.FC<Page1Props> = ({
   updateFormState,
   handleContinue,
 }) => {
-  const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
+  ) => {
     const { name, value } = e.target;
     updateFormState({ [name]: value });
   };
@@ -139,26 +131,33 @@ const Page1: React.FC<Page1Props> = ({
   };
 
   const handledropdowneventsize = (value: string) => {
-    updateFormState({ "eventsize": value });
+    updateFormState({ eventsize: value });
   };
   const handledropdownduration = (value: string) => {
-    updateFormState({ "duration": value });
+    updateFormState({ duration: value });
   };
-
-
 
   return (
     <div className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide xs:w-[95%] xs:min-w-[90%]">
       <div className="flex min-w-full flex-col items-start justify-around gap-10">
         <div className="flex flex-col gap-9 rounded-xl bg-white p-3 xs:min-w-[100%] md:p-6">
-
-          <div className="flex w-[100%] flex-col items-start rounded-xl bg-white p-5 justify-start gap-9">
-            <div className="flex justify-start gap-5 items-center">
-              <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M10.3233 10L6.35314 13.9702C5.88229 14.441 5.88229 15.2044 6.35314 15.6753L10.3233 19.6455M6.70627 14.8227L23.5858 14.8227" stroke="#2B3F6C" stroke-width="1.5" stroke-linecap="round" />
+          <div className="flex w-[100%] flex-col items-start justify-start gap-9 rounded-xl bg-white p-5">
+            <div className="flex items-center justify-start gap-5">
+              <svg
+                width="30"
+                height="30"
+                viewBox="0 0 30 30"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M10.3233 10L6.35314 13.9702C5.88229 14.441 5.88229 15.2044 6.35314 15.6753L10.3233 19.6455M6.70627 14.8227L23.5858 14.8227"
+                  stroke="#2B3F6C"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                />
               </svg>
               <h1 className="text-3xl font-semibold"> Basic Details</h1>
-
             </div>
             <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
               <div className="flex min-w-[40%] flex-col gap-4">
@@ -166,7 +165,7 @@ const Page1: React.FC<Page1Props> = ({
                   Full Name(POC)<span className="text-red-500">*</span>
                 </label>
                 <input
-                  className='w-full rounded-xl border-2 bg-white p-5 py-3 outline-none'
+                  className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
                   id="businessName"
                   name="businessName"
                   value={formState.businessName}
@@ -190,9 +189,7 @@ const Page1: React.FC<Page1Props> = ({
 
             <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
               <div className="flex min-w-[40%] flex-col gap-4">
-                <label htmlFor="businessName">
-                  Decoration setup duration
-                </label>
+                <label htmlFor="businessName">Decoration setup duration</label>
                 <Dropdown
                   options={durationlist}
                   onSelect={(value: string) => handledropdownduration(value)}
@@ -266,7 +263,6 @@ const Page1: React.FC<Page1Props> = ({
               />
             </div>
             <div className="items-strech mt-9 flex flex-row gap-7 self-end">
-
               <button
                 className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
                 onClick={handleContinue}

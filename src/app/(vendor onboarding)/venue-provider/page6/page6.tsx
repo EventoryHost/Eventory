@@ -34,8 +34,8 @@ interface Page6Props {
 
 const Page6: React.FC<Page6Props> = ({
   formState,
-  handleContinue,
   currentPage,
+  handleContinue,
   setCurrentPage,
   address,
   operatingHours,
