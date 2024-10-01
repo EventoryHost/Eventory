@@ -197,7 +197,7 @@ const BusinessDetails = () => {
           />
         </div>
       </div>
-      <div className="flex h-[91vh] min-w-[65%] flex-col items-center justify-start overflow-y-scroll scrollbar-hide scroll-touch bg-[#F7F6F9] p-2 md:p-[1rem]">
+      <div className="scroll-touch flex h-[91vh] min-w-[65%] flex-col items-center justify-start overflow-y-scroll bg-[#F7F6F9] p-2 scrollbar-hide md:p-[1rem]">
         <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
           <h1 className="text-3xl font-semibold">Business Details</h1>
           <form onSubmit={handleBizSubmit}>
@@ -346,7 +346,7 @@ const BusinessDetails = () => {
                   />
                 </div>
               </div>
-              <div className="flex md:flex-row flex-col gap-9 items-start self-end">
+              <div className="flex flex-col items-start gap-9 self-end md:flex-row">
                 <button
                   type="submit"
                   className="rounded-2xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
