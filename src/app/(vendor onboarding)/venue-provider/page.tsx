@@ -383,52 +383,47 @@ const VenueForm: React.FC = () => {
     >
       {currentPage <= 5 && (
         <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[30%] lg:max-w-[30%]">
-          <div className="flex w-[100%] flex-col justify-center">
-            <div className="mx-6 flex flex-col gap-1 px-3 lg:mt-[2rem]">
+          <div className="m-auto flex w-[90%] flex-col justify-center">
+            <div className="flex flex-col gap-1 px-3 lg:mt-[2rem]">
               <span className="text-lg font-semibold">Step 1 of 6</span>
-              <div className="flex gap-4">
+              <div className="flex gap-2">
                 <button
                   className={`flex h-2 w-10 items-center justify-center rounded-full ${
                     currentPage >= 1 ? "bg-[#2E3192] text-white" : "bg-gray-300"
                   }`}
-                  onClick={() => setCurrentPage(1)}
                 ></button>
 
                 <button
                   className={`flex h-2 w-10 items-center justify-center rounded-full ${
                     currentPage >= 2 ? "bg-[#2E3192] text-white" : "bg-gray-300"
                   }`}
-                  onClick={() => setCurrentPage(2)}
                 ></button>
 
                 <button
                   className={`flex h-2 w-10 items-center justify-center rounded-full ${
                     currentPage >= 3 ? "bg-[#2E3192] text-white" : "bg-gray-300"
                   }`}
-                  onClick={() => setCurrentPage(3)}
                 ></button>
 
                 <button
                   className={`flex h-2 w-10 items-center justify-center rounded-full ${
                     currentPage >= 4 ? "bg-[#2E3192] text-white" : "bg-gray-300"
                   }`}
-                  onClick={() => setCurrentPage(4)}
                 ></button>
 
                 <button
                   className={`flex h-2 w-10 items-center justify-center rounded-full ${
                     currentPage >= 5 ? "bg-[#2E3192] text-white" : "bg-gray-300"
                   }`}
-                  onClick={() => setCurrentPage(5)}
                 ></button>
               </div>
             </div>
           </div>
-          <div className="mx-6 flex h-[50%] flex-col items-start justify-center gap-9 px-3 md:px-3">
-            <h1 className="text-[40px] font-semibold md:text-[3vw]">
+          <div className="m-auto flex h-[50%] w-[90%] flex-col items-start justify-center gap-9 px-3 md:px-6">
+          <h1 className="text-2xl font-bold md:text-4xl">
               Fill out your Venue details
             </h1>
-            <p className="xs:text-md text-[#797878] md:w-[90%]">
+            <p className="text-xl text-black">
               Please Provide details of the venue provided by your company.
             </p>
           </div>
