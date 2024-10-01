@@ -54,7 +54,7 @@ const Caterer = () => {
     cateringName: "",
     businessName: "",
     preSetMenu: "",
-    customizableMenu: false,
+    customizableMenu: true,
     tastingSessions: false,
     businessLicenses: false,
     foodSafety: false,

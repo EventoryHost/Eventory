@@ -3,13 +3,14 @@
 import { Combobox } from "@/components/ui/combobox";
 import { OperatingHoursDropdown } from "../(components)/comboBoxNew";
 import { useEffect } from "react";
+import Dropdown from "../../(components)/Dropdown";
 
-const seatingOptions = [
-  { value: "less than 50", label: "less than 50 persons" },
-  { value: "50-100", label: "50-100 persons" },
-  { value: "100-300", label: "100-300 persons" },
-  { value: "300-400", label: "300-400 persons" },
-  { value: "500+", label: "500+ persons" },
+const _capacity = [
+  "Less than 50 persons",
+  "50-100 persons",
+  "100-300 persons",
+  "300-400 persons",
+  "More than 500 ",
 ];
 
 const timeOptions = [
@@ -72,10 +73,10 @@ const Page1: React.FC<Page1Props> = ({
   } = formState;
 
   return (
-    <div className="flex h-auto flex-col items-start gap-7 overflow-y-scroll scrollbar-hide rounded-xl bg-white p-3 xs:w-[95%] xs:min-w-[90%] xs:justify-start md:p-6">
+    <div className="flex h-auto flex-col items-start gap-7 overflow-y-scroll scrollbar-hide rounded-xl bg-white p-3 w-full xs:justify-start md:p-6">
       <h1 className="text-3xl font-semibold">Basic Details</h1>
       <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-        <div className="flex min-w-[40%] flex-col gap-4">
+        <div className="flex min-w-[45%] flex-col gap-4">
           <label htmlFor="businessName">
             Venue Name <span className="text-red-600">*</span>
           </label>
@@ -88,20 +89,22 @@ const Page1: React.FC<Page1Props> = ({
             onChange={(e) => updateFormState({ name: e.target.value })}
           />
         </div>
-        <div className="flex min-w-[40%] flex-col gap-4">
+        <div className="flex min-w-[45%] flex-col gap-4">
           <label htmlFor="category">
             Capacity<span className="text-red-600">*</span>
           </label>
-          <Combobox
-            options={seatingOptions}
-            placeholder="Select your category"
-            setFunction={(value) => updateFormState({ capacity: value })}
-            className="flex items-center justify-between rounded-xl border-2 py-6 text-gray-400 hover:text-[#2E3192]"
+          <Dropdown
+            options={_capacity}
+            onSelect={(option: string) => {
+              updateFormState({ capacity: option });
+            }}
+            placeholder="Minimum guests required"
           />
+          
         </div>
       </div>
 
-      {/* <div className="flex min-w-[40%] flex-col gap-4">
+      {/* <div className="flex min-w-[45%] flex-col gap-4">
             <label htmlFor="category">Venue Type</label>
             <Combobox
               options={venueTypes}
@@ -113,7 +116,7 @@ const Page1: React.FC<Page1Props> = ({
 
       <div className="flex min-w-full flex-col items-center gap-5">
         <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-          <div className="flex min-w-[40%] flex-col gap-4">
+          <div className="flex min-w-[45%] flex-col gap-4">
             <label htmlFor="category">
               Manager Name (POC)<span className="text-red-600">*</span>
             </label>
@@ -126,7 +129,7 @@ const Page1: React.FC<Page1Props> = ({
               onChange={(e) => updateFormState({ managerName: e.target.value })}
             />
           </div>
-          <div className="flex min-w-[40%] flex-col gap-4">
+          <div className="flex min-w-[45%] flex-col gap-4">
             <label htmlFor="category">Operating hours</label>
             <OperatingHoursDropdown
               timeOptions={timeOptions}
@@ -137,7 +140,7 @@ const Page1: React.FC<Page1Props> = ({
         </div>
         <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
           {/* Venue Address */}
-          <div className="flex min-w-[40%] flex-col gap-4">
+          <div className="flex min-w-[45%] flex-col gap-4">
             <label htmlFor="businessName">
               Venue Address<span className="text-red-600">*</span>
             </label>
@@ -152,7 +155,7 @@ const Page1: React.FC<Page1Props> = ({
           </div>
 
           {/* Venue Description */}
-          <div className="flex min-w-[40%] flex-col gap-4">
+          <div className="flex min-w-[45%] flex-col gap-4">
             <label htmlFor="businessName">Venue Description</label>
             <input
               id="businessName"
@@ -167,7 +170,7 @@ const Page1: React.FC<Page1Props> = ({
           </div>
         </div>
 
-        {/* <div className="flex min-w-[40%] flex-col gap-4">
+        {/* <div className="flex min-w-[45%] flex-col gap-4">
             <label htmlFor="category">Standing Capacity</label>
             <Combobox
               options={standingOptions}

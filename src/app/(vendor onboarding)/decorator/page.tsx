@@ -465,7 +465,7 @@ const Decorators: React.FC = () => {
           </div>
         </div>
       )}
-      <div className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] p-6 md:p-[1rem]">
+      <div className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] p-6 md:p-12">
         {renderPage()}
       </div>
     </div>

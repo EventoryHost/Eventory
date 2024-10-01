@@ -138,7 +138,7 @@ const Page1: React.FC<Page1Props> = ({
   };
 
   return (
-    <div className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide xs:w-[95%] xs:min-w-[90%]">
+    <div className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide ">
       <div className="flex min-w-full flex-col items-start justify-around gap-10">
         <div className="flex flex-col gap-9 rounded-xl bg-white p-3 xs:min-w-[100%] md:p-6">
           <div className="flex w-[100%] flex-col items-start justify-start gap-9 rounded-xl bg-white p-5">
@@ -146,7 +146,7 @@ const Page1: React.FC<Page1Props> = ({
               <h1 className="text-3xl font-semibold"> Basic Details</h1>
             </div>
             <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
-              <div className="flex min-w-[40%] flex-col gap-4">
+              <div className="flex min-w-[50%] flex-col gap-4">
                 <label  className="text-base font-medium" htmlFor="businessName">
                   Full Name(POC)<span className="text-red-500">*</span>
                 </label>

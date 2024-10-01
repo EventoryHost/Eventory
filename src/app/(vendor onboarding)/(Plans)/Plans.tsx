@@ -389,7 +389,7 @@ const Plans = ({ setCurrentPage, handleformSubmit }: Pagechangetype) => {
               onClick={handleSubmit}
               className="flex h-[48px] w-[100%] items-center justify-center rounded-2xl bg-[rgba(46,49,146,1)] p-4 font-poppins text-white"
             >
-              Buy Now
+              Pay ₹{price}
             </button>
           </div>
         </div>
