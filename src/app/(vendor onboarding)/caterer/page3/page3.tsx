@@ -76,7 +76,6 @@ const Page3: React.FC<page3Props> = ({
               setSelectedAppetizers={setSelectedAdditionalServices}
             />
           </div>
-        </div>
         <div className="items-strech  flex flex-row gap-7 self-end">
 
           <button
@@ -85,6 +84,7 @@ const Page3: React.FC<page3Props> = ({
           >
             Continue
           </button>
+        </div>
         </div>
 
 

@@ -263,7 +263,7 @@ const Decorators: React.FC = () => {
     } else if (typeof formState.cancellationPolicy === 'string') {
       formData.append('photos', formState.cancellationPolicy); // Append the string (URL)
     }
-    
+
     if (Array.isArray(formState.termsAndConditions)) {
       formState.termsAndConditions.forEach((file) => {
         if (file instanceof File) {
@@ -398,14 +398,14 @@ const Decorators: React.FC = () => {
       {
         currentPage <= 6 &&
         (
-          <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[35%] lg:max-w-[35%]">
-            <div className="flex w-[100%] flex-col justify-center">
+          <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 pt-4 md:min-w-[30%] lg:max-w-[30%]">
+            <div className="flex w-[90%] m-auto flex-col justify-center">
               <div className="flex flex-col gap-1 px-3 lg:mt-[2rem]">
                 <span className="text-lg font-semibold">
                   Step {currentPage} of 6
                 </span>
-                <div className="flex gap-4">
-                  <button
+                <div className="flex gap-2">
+                <button
                     className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 1 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
                     onClick={() => setCurrentPage(1)}
                   ></button>
@@ -425,7 +425,7 @@ const Decorators: React.FC = () => {
                     onClick={() => setCurrentPage(4)}
                   ></button>
 
-              {/* <button
+                  {/* <button
                 className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 5 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
                 onClick={() => setCurrentPage(5)}
               ></button> */}
@@ -441,9 +441,9 @@ const Decorators: React.FC = () => {
                 </div>
               </div>
             </div>
-            <div className="flex h-[40%] flex-col items-start justify-center gap-9 pt-3 px-3 md:px-3">
-              <h1 className="text-[8vw] font-bold md:text-[3vw]">
-                {currentPage === 1 && "Fill out event details"}
+            <div className="m-auto flex h-[50%] w-[90%] flex-col items-start justify-center gap-9 px-3 md:px-6">
+            <h1 className="text-3xl font-bold md:text-5xl">
+            {currentPage === 1 && "Fill out event details"}
                 {currentPage === 2 && "Fill out themes related details "}
                 {currentPage === 3 && "Fill out theme elements details"}
                 {currentPage === 4 && "Fill out your ratings and reviews"}
@@ -451,8 +451,8 @@ const Decorators: React.FC = () => {
                 {currentPage === 6 && "Preview details"}
 
               </h1>
-              <p className="text-[#797878] xs:text-xl font-normal font-Helvetica ">
-                {currentPage === 1 &&
+              <p className="text-xl text-black">
+              {currentPage === 1 &&
                   "Select the types of events you cover "}
                 {currentPage === 2 &&
                   "Provide the details of the themes you offer and related details."}
@@ -478,7 +478,7 @@ const Decorators: React.FC = () => {
           </div>
         )
       }
-      <div className="flex min-w-[65%] flex-col items-center justify-center bg-[#F7F6F9] p-6 md:p-[1rem]">
+      <div className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] p-6 md:p-[1rem]">
         {renderPage()}
       </div>
     </div >
