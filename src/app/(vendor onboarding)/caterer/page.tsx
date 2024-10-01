@@ -599,7 +599,7 @@ const Caterer = () => {
             </div>
           </div>
           <div className="m-auto flex h-[50%] w-[90%] flex-col items-start justify-center gap-9 px-3 md:px-6">
-            <h1 className="text-3xl font-bold md:text-5xl">
+            <h1 className="text-2xl font-bold md:text-4xl">
               {currentPage === 1 && "Tell us about you"}
               {currentPage === 2 && "Fill the menu details"}
               {currentPage === 3 && "Fill the Event details"}
