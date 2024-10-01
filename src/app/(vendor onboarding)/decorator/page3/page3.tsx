@@ -61,7 +61,8 @@ const Page3: React.FC<Page3Props> = ({
             <div className="flex min-w-full flex-row items-start justify-between gap-2">
               <div className="flex min-w-[40%] flex-col gap-2">
                 <label
-                  className="flex items-center justify-start gap-2"
+               
+                  className="flex text-base font-medium items-center justify-start gap-2"
                   htmlFor="category"
                 >
                   <p>
@@ -114,7 +115,8 @@ const Page3: React.FC<Page3Props> = ({
               </div>
               <div className="flex min-w-[40%] flex-col gap-2">
                 <label
-                  className="flex items-center justify-start gap-2"
+
+                  className="flex text-base font-medium items-center justify-start gap-2"
                   htmlFor="category"
                 >
                   <p>
@@ -168,7 +170,7 @@ const Page3: React.FC<Page3Props> = ({
             </div>
             <div className="flex min-w-full flex-row items-start justify-between gap-2">
               <div className="flex min-w-[40%] flex-col gap-4">
-                <label htmlFor="category">Or Continue Via</label>
+                <label  className="text-base font-medium" htmlFor="category">Or Continue Via</label>
                 <input
                   id="businessName"
                   type="text"
@@ -180,7 +182,7 @@ const Page3: React.FC<Page3Props> = ({
                 />
               </div>
               <div className="flex min-w-[40%] flex-col gap-4">
-                <label htmlFor="category">Or Continue Via</label>
+                <label  className="text-base font-medium" htmlFor="category">Or Continue Via</label>
                 <input
                   id="businessName"
                   type="text"

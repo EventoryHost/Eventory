@@ -194,27 +194,27 @@ function Preview({
           <div className="mt-4 flex flex-col justify-start gap-6">
             <div className="flex items-start justify-between">
               <div className="w-[50%]">
-                <h2 className="font-poppins text-lg font-medium text-[#263238]">
+                <h2 className="font-poppins text-lg font-medium ">
                   Full Name (POC)
                 </h2>
-                <h3 className="font-helvetica text-lg font-semibold text-[#263238]">
+                <h3 className="font-helvetica text-lg font-medium">
                   {fullName}
                 </h3>
               </div>
               <div className="w-[50%]">
-                <h2 className="font-poppins text-lg font-medium text-[#263238]">
+                <h2 className="font-poppins text-lg font-medium ">
                   Event Size
                 </h2>
-                <h3 className="font-helvetica text-lg font-semibold text-[#263238]">
+                <h3 className="font-helvetica text-lg font-medium ">
                   {eventsize}
                 </h3>
               </div>
             </div>
             <div>
-              <h2 className="font-poppins text-lg font-medium text-[#263238]">
+              <h2 className="font-poppins text-lg font-medium ">
                 Decoration Setup Duration
               </h2>
-              <h3 className="font-helvetica text-lg font-semibold text-[#263238]">
+              <h3 className="font-helvetica text-lg font-medium ">
                 {description}
               </h3>
             </div>
@@ -253,7 +253,7 @@ function Preview({
 
           <div className="w-full">
             <div className="my-4 flex flex-col gap-6">
-              <span className="text-xl">Types of Styles</span>
+              <span className="font-medium text-xl">Types of Styles</span>
               <Appetizers
                 appetizers={photoSelectedstyles}
                 selectedAppetizers={photoSelectedstyles}
@@ -261,7 +261,7 @@ function Preview({
               />
             </div>
             <div className="my-4 flex flex-col gap-6">
-              <span className="text-xl">Equiment Available</span>
+              <span className="font-medium text-xl">Equiment Available</span>
               <Appetizers
                 appetizers={photoequipments}
                 selectedAppetizers={photoequipments}
@@ -269,7 +269,7 @@ function Preview({
               />
             </div>
             <div className="my-4 flex flex-col gap-6">
-              <span className="text-xl">Add-One Or Upgrades Available</span>
+              <span className="font-medium text-xl">Add-One Or Upgrades Available</span>
               <Appetizers
                 appetizers={photoAddons}
                 selectedAppetizers={photoAddons}
@@ -277,7 +277,7 @@ function Preview({
               />
             </div>
             <div className="my-4 flex flex-col gap-6">
-              <span className="text-xl">Final Delivery Methods</span>
+              <span className="font-medium text-xl">Final Delivery Methods</span>
               <Appetizers
                 appetizers={photofinaldeliverymethods}
                 selectedAppetizers={photofinaldeliverymethods}
@@ -311,7 +311,7 @@ function Preview({
 
           <div className="w-full">
             <div className="my-4 flex flex-col gap-6">
-              <span className="text-xl">Types of Styles</span>
+              <span className="font-medium text-xl">Types of Styles</span>
               <Appetizers
                 appetizers={videoSelectedstyles}
                 selectedAppetizers={videoSelectedstyles}
@@ -319,7 +319,7 @@ function Preview({
               />
             </div>
             <div className="my-4 flex flex-col gap-6">
-              <span className="text-xl">Equiment Available</span>
+              <span className="font-medium text-xl">Equiment Available</span>
               <Appetizers
                 appetizers={Selectedvideoequipments}
                 selectedAppetizers={Selectedvideoequipments}
@@ -327,7 +327,7 @@ function Preview({
               />
             </div>
             <div className="my-4 flex flex-col gap-6">
-              <span className="text-xl">Add-One Or Upgrades Available</span>
+              <span className="font-medium text-xl">Add-One Or Upgrades Available</span>
               <Appetizers
                 appetizers={videoAddons}
                 selectedAppetizers={videoAddons}
@@ -335,7 +335,7 @@ function Preview({
               />
             </div>
             <div className="my-4 flex flex-col gap-6">
-              <span className="text-xl">Final Delivery Methods</span>
+              <span className="font-medium text-xl">Final Delivery Methods</span>
               <Appetizers
                 appetizers={videofinaldeliverymethods}
                 selectedAppetizers={videofinaldeliverymethods}
@@ -369,73 +369,73 @@ function Preview({
           <div className="mt-4 flex flex-col justify-start gap-6">
             <div className="flex items-start justify-between">
               <div className="w-[50%]">
-                <h2 className="font-poppins text-lg font-medium text-[#263238]">
+                <h2 className="font-poppins text-lg font-medium ">
                   Duration of Final Delivery of Photos/Videos
                 </h2>
-                <h3 className="font-helvetica text-lg text-[#263238]">
+                <h3 className="font-helvetica text-lg font-medium  ">
                   {Durationoffinaldelivery}
                 </h3>
               </div>
               <div className="w-[50%]">
-                <h2 className="font-poppins text-lg font-medium text-[#263238]">
+                <h2 className="font-poppins text-lg font-medium ">
                   Package Type
                 </h2>
-                <h3 className="font-helvetica text-lg text-[#263238]">
+                <h3 className="font-helvetica text-lg  font-medium ">
                   {Packagetype}
                 </h3>
               </div>
             </div>
             <div className="flex items-start justify-between">
               <div className="w-[50%]">
-                <h2 className="font-poppins text-lg font-medium text-[#263238]">
+                <h2 className="font-poppins text-lg font-medium ">
                   Do You Provide Design Proposals to Clients
                 </h2>
-                <h3 className="font-helvetica text-lg text-[#263238]">
+                <h3 className="font-helvetica text-lg font-medium ">
                   {proposalsToClients ? "Yes" : "No"}
                 </h3>
               </div>
               <div className="w-[50%]">
-                <h2 className="font-poppins text-lg font-medium text-[#263238]">
+                <h2 className="font-poppins text-lg font-medium ">
                   Do You Provide Free Initial Consultation
                 </h2>
-                <h3 className="font-helvetica text-lg text-[#263238]">
+                <h3 className="font-helvetica text-lg  font-medium ">
                   {freeInitialConsultation ? "Yes" : "No"}
                 </h3>
               </div>
             </div>
-            <div className="flex items-start justify-between">
+            <div className="flex items-start gap-16 justify-between">
               <div>
-                <h2 className="font-poppins text-lg font-medium text-[#263238]">
+                <h2 className="min-w-[50%] font-poppins text-lg font-medium ]">
                   Do You Require Any Booking Deposits For Your Services ?
                 </h2>
-                <h3 className="font-helvetica text-lg text-[#263238]">
+                <h3 className="font-helvetica text-lg  font-medium ">
                   {bookingDeposit ? "Yes" : "No"}
                 </h3>
               </div>
               <div>
-                <h2 className="font-poppins text-lg font-medium text-[#263238]">
+                <h2 className="min-w-[50%] font-poppins text-lg font-medium">
                   Are You Available For Desination Events Or Out OF Town
                   Bookings ?
                 </h2>
-                <h3 className="font-helvetica text-lg text-[#263238]">
+                <h3 className="font-helvetica text-lg  font-medium ">
                   {availablefordestinationevents ? "Yes" : "No"}
                 </h3>
               </div>
             </div>
             <div className="flex items-start justify-between">
-              <div>
-                <h2 className="font-poppins text-lg font-medium text-[#263238]">
+              <div className="w-[50%]">
+                <h2 className="font-poppins text-lg font-medium ">
                   Do You Provide Advance Set-Up ?
                 </h2>
-                <h3 className="font-helvetica text-lg text-[#263238]">
+                <h3 className="font-helvetica text-lg font-medium  ">
                   {advanceSetup ? "Yes" : "No"}
                 </h3>
               </div>
-              <div>
-                <h2 className="font-poppins text-lg font-medium text-[#263238]">
+              <div className="w-[50%]">
+                <h2 className="font-poppins text-lg font-medium ">
                   Do You Offer Post-Production Services ?
                 </h2>
-                <h3 className="font-helvetica text-lg text-[#263238]">
+                <h3 className="font-helvetica text-lg  font-medium ">
                   {postproductionservices ? "Yes" : "No"}
                 </h3>
               </div>
@@ -465,9 +465,9 @@ function Preview({
             </div>
           </div>
           <div className="flex gap-6">
-            <div className="m-6 mt-6 flex flex-col gap-1">
-              <span className="text-base font-normal">Photos</span>
-              <div className="w-[60%] font-semibold">
+            <div className="mt-6 min-w-[50%] max-w-[50%] flex flex-col gap-1">
+              <span className="text-base font-medium">Photos</span>
+              <div className="  font-semibold">
                 {Array.isArray(photos) ? (
                   <FileDisplay files={photos} />
                 ) : (
@@ -475,9 +475,9 @@ function Preview({
                 )}
               </div>
             </div>
-            <div className="m-6 mt-6 flex flex-col gap-1">
-              <span className="text-base font-normal">Videos</span>
-              <div className="w-[60%] font-semibold">
+            <div className="mt-6 min-w-[50%] max-w-[50%] flex flex-col gap-1">
+              <span className="text-base font-medium">Videos</span>
+              <div className="  font-semibold">
                 {Array.isArray(videos) ? (
                   <FileDisplay files={videos} />
                 ) : (
@@ -489,36 +489,36 @@ function Preview({
           <div className="mt-4 flex flex-col justify-start gap-6">
             <div className="flex items-start justify-between">
               <div className="w-[50%]">
-                <h2 className="font-poppins text-lg font-medium text-[#263238]">
+                <h2 className="font-poppins text-lg font-medium ">
                   Awards/Recognition
                 </h2>
-                <h3 className="font-helvetica text-lg text-[#263238]">
+                <h3 className="font-helvetica text-lg ">
                   {Recongnition_awards}
                 </h3>
               </div>
               <div className="w-[50%]">
-                <h2 className="font-poppins text-lg font-medium text-[#263238]">
+                <h2 className="font-poppins text-lg font-medium ]">
                   Client Testimonials
                 </h2>
-                <h3 className="font-helvetica text-lg text-[#263238]">
+                <h3 className="font-helvetica text-lg ">
                   {clientTestimonials}
                 </h3>
               </div>
             </div>
             <div className="flex items-start justify-between">
               <div className="w-[50%]">
-                <h2 className="font-poppins text-lg font-medium text-[#263238]">
+                <h2 className="font-poppins text-lg font-medium ]">
                   Instagram URL
                 </h2>
-                <h3 className="font-helvetica text-lg text-[#263238]">
+                <h3 className="font-helvetica text-lg ">
                   {intstagramurl}
                 </h3>
               </div>
               <div className="w-[50%]">
-                <h2 className="font-poppins text-lg font-medium text-[#263238]">
+                <h2 className="font-poppins text-lg font-medium ">
                   Website URL
                 </h2>
-                <h3 className="font-helvetica text-lg text-[#263238]">
+                <h3 className="font-helvetica text-lg font-medium  ">
                   {websiteurl}
                 </h3>
               </div>
@@ -550,11 +550,11 @@ function Preview({
           </div>
           <div className="w-full">
             <div className="flex gap-6">
-              <div className="m-6 mt-6 flex flex-col gap-1">
+              <div className="mt-6 min-w-[50%] max-w-[50%] flex flex-col gap-1">
                 <span className="text-base font-normal">
                   Terms And Conditions
                 </span>
-                <div className="w-[60%] font-semibold">
+                <div className=" font-semibold">
                   {Array.isArray(termsandconditions) ? (
                     <FileDisplay files={termsandconditions} />
                   ) : (
@@ -562,11 +562,11 @@ function Preview({
                   )}
                 </div>
               </div>
-              <div className="m-6 mt-6 flex flex-col gap-1">
+              <div className="mt-6 min-w-[50%] max-w-[50%] flex flex-col gap-1">
                 <span className="text-base font-normal">
                   Cancellation Policy
                 </span>
-                <div className="w-[60%] font-semibold">
+                <div className="font-semibold">
                   {Array.isArray(policy) ? (
                     <FileDisplay files={policy} />
                   ) : (

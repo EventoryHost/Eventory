@@ -26,11 +26,6 @@ const Page6 = ({
       <div className="scroll-touch items-strech flex w-[100%] flex-col gap-9 overflow-y-scroll bg-[#F7F6F9] scrollbar-hide">
         <div className="flex flex-col gap-7 rounded-xl bg-white p-3 md:p-6">
           <div className="flex items-center gap-4">
-            <ArrowLeft
-              className="ml-2 mr-1 h-6 w-6 cursor-pointer text-[#2E3192]"
-              aria-hidden="true"
-              onClick={() => setCurrentPage((pravpage) => pravpage - 1)}
-            />
             <h1 className="text-2xl font-semibold">Policies</h1>
           </div>
           <div className="flex min-h-full min-w-full flex-col items-center gap-8">
@@ -78,8 +73,9 @@ const Page6 = ({
 
                   <FileInput
                     label="tnc"
-                    onFileSelect={(file) => {
-                      settermsandconditions(file);
+                    onFileSelect={(file: File | File[]) => {
+                      const newFiles = Array.isArray(file) ? file : [file]; // Handle single or multiple files
+                      settermsandconditions(newFiles);
                     }}
                     multiple={false}
                     acceptedFileTypes="image/png, .pdf, image/jpg"
@@ -90,15 +86,6 @@ const Page6 = ({
                     rows={5}
                     placeholder="Enter your venue details"
                     onChange={(e) => settermsandconditions(e.target.value)}
-                    value={
-                      typeof termsandconditions === "string"
-                        ? termsandconditions
-                        : Array.isArray(termsandconditions)
-                          ? termsandconditions
-                              .map((file: File) => file.name)
-                              .join(", ")
-                          : (termsandconditions as File)?.name
-                    }
                     className="w-[95%] rounded-xl border-2 border-gray-300 p-3"
                   ></textarea>
                 </div>
@@ -146,8 +133,9 @@ const Page6 = ({
 
                   <FileInput
                     label="cancellation_policy"
-                    onFileSelect={(file) => {
-                      setpolicy(file);
+                    onFileSelect={(file: File | File[]) => {
+                      const newFiles = Array.isArray(file) ? file : [file]; // Handle single or multiple files
+                      setpolicy(newFiles);
                     }}
                     acceptedFileTypes="image/png, .pdf, image/jpg"
                   />
@@ -158,13 +146,7 @@ const Page6 = ({
                     placeholder="Enter your venue details"
                     onChange={(e) => setpolicy(e.target.value)}
                     className="w-[95%] rounded-xl border-2 border-gray-300 p-3"
-                    value={
-                      typeof policy === "string"
-                        ? policy
-                        : Array.isArray(policy)
-                          ? policy.map((file: File) => file.name).join(", ")
-                          : (policy as File)?.name
-                    }
+
                   ></textarea>
                 </div>
               </div>

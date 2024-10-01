@@ -47,7 +47,7 @@ const Page1 = ({
         </div>
         <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
           <div className="flex min-w-[40%] flex-col gap-4">
-            <label htmlFor="businessName">
+            <label className="text-base font-medium" htmlFor="businessName">
               Full Name(POC)<span className="text-red-500">*</span>
             </label>
             <input
@@ -62,7 +62,7 @@ const Page1 = ({
           </div>
 
           <div className="flex min-w-[40%] flex-col gap-4">
-            <label htmlFor="businessName">
+            <label className="text-base font-medium" htmlFor="businessName">
               Event size<span className="text-red-500">*</span>
             </label>
             <input
@@ -79,7 +79,7 @@ const Page1 = ({
 
         <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
           <div className="flex min-w-[40%] flex-col gap-4">
-            <label htmlFor="businessName">
+            <label className="text-base font-medium" htmlFor="businessName">
               Description about your background
             </label>
             <textarea
@@ -95,9 +95,10 @@ const Page1 = ({
       </div>
       <div className="flex min-w-full flex-col items-center gap-9 rounded-xl bg-white p-5">
         <div className="flex min-w-[100%] flex-col gap-5 rounded-xl bg-white">
-          <label htmlFor="years">
-            Types of Event<span className="text-red-500">*</span>
-          </label>
+
+          <div className="flex items-center justify-start gap-5">
+            <h1 className="text-3xl font-semibold">Types of Event<span className="text-red-500">*</span></h1>
+          </div>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers

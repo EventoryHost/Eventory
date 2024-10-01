@@ -373,12 +373,12 @@ const Agreement = ({ setCurrentPage }: PageProps) => {
             </label>
           </div>
           <h2>
-            I agree{" "}
+            i agree with{" "}
             <Link
               className="font-poppins text-[rgba(46,49,146,1)] underline"
               href="/"
             >
-              Vendor Agreement
+              Terms & Conditions
             </Link>
             <span className="text-red-600">*</span>
           </h2>
@@ -403,7 +403,7 @@ const Agreement = ({ setCurrentPage }: PageProps) => {
             }}
             className="flex h-[48px] w-[164px] items-center justify-center rounded-2xl bg-[rgba(46,49,146,1)] p-4 font-poppins text-white"
           >
-            Agree & Pay
+            Continue
           </button>
         </div>
       </div>
