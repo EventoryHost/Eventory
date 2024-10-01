@@ -35,6 +35,7 @@ export interface FormState {
   tentAndCanopyListUrl: string | File;
   audioVisualListUrl: string | File;
   photos: string | File | File[];
+
   videos: string | File | File[];
   awardsAndRecognize: string;
   clientTestimonial: string;
@@ -103,6 +104,7 @@ const RootPage = () => {
     instaUrl: "",
     websiteUrl: "",
     clientTestimonial: "",
+
 
     cancellationPolicy: "",
     termsAndConditions: "",
