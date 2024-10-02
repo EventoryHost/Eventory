@@ -95,9 +95,10 @@ const Page1 = ({
       </div>
       <div className="flex min-w-full flex-col items-center gap-9 rounded-xl bg-white p-5">
         <div className="flex min-w-[100%] flex-col gap-5 rounded-xl bg-white">
-
-          <div className="flex items-center justify-start mb-5 gap-5">
-            <h1 className="text-3xl font-semibold">Types of Event<span className="text-red-500">*</span></h1>
+          <div className="mb-5 flex items-center justify-start gap-5">
+            <h1 className="text-3xl font-semibold">
+              Types of Event<span className="text-red-500">*</span>
+            </h1>
           </div>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">

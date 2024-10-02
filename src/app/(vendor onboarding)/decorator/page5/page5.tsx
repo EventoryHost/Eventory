@@ -38,17 +38,17 @@ const Page5: React.FC<Page3Props> = ({
   const { cancellationPolicy, termsAndConditions } = formState;
 
   return (
-    <div className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide w-full">
+    <div className="flex h-full w-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide">
       <div className="flex min-w-full flex-col items-start justify-around gap-10">
         <div className="flex flex-col gap-9 rounded-xl bg-white p-3 xs:min-w-[100%] md:p-6">
           <div className="flex items-start justify-start">
-            <h1  className="text-3xl font-semibold">Policies</h1>
+            <h1 className="text-3xl font-semibold">Policies</h1>
           </div>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-row items-start justify-between gap-2">
               <div className="flex min-w-[45%] flex-col gap-2">
                 <label
-                  className="flex text-base font-medium items-center justify-start gap-2"
+                  className="flex items-center justify-start gap-2 text-base font-medium"
                   htmlFor="category"
                 >
                   <p>Terms and Conditions</p>
@@ -65,7 +65,7 @@ const Page5: React.FC<Page3Props> = ({
               </div>
               <div className="flex min-w-[45%] flex-col gap-2">
                 <label
-                  className="flex  text-base font-medium items-center justify-start gap-2"
+                  className="flex items-center justify-start gap-2 text-base font-medium"
                   htmlFor="category"
                 >
                   <p>Cancellation Policy</p>
@@ -83,7 +83,9 @@ const Page5: React.FC<Page3Props> = ({
             </div>
             <div className="flex min-w-full flex-row items-start justify-between gap-2">
               <div className="flex min-w-[45%] flex-col gap-4">
-                <label  className="text-base font-medium" htmlFor="category">Or Provide Via</label>
+                <label className="text-base font-medium" htmlFor="category">
+                  Or Provide Via
+                </label>
                 <input
                   id="businessName"
                   type="text"
@@ -95,7 +97,9 @@ const Page5: React.FC<Page3Props> = ({
                 />
               </div>
               <div className="flex min-w-[45%] flex-col gap-4">
-                <label  className="text-base font-medium" htmlFor="category">Or Continue Via</label>
+                <label className="text-base font-medium" htmlFor="category">
+                  Or Continue Via
+                </label>
                 <input
                   id="businessName"
                   type="text"

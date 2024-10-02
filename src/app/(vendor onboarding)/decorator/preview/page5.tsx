@@ -46,7 +46,7 @@ function Preview({
   setCurrentPage,
 }: PagePreviewProps) {
   return (
-    <div className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide ">
+    <div className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide">
       <div className="flex min-w-full flex-col items-start justify-around gap-10">
         <div className="flex w-[100%] flex-col gap-7 rounded-xl bg-white p-4 xs:min-w-[90%] md:p-6">
           <div className="flex items-center justify-start gap-5">
@@ -97,24 +97,24 @@ function Preview({
             <div className="mt-4 flex flex-col justify-start gap-6">
               <div className="flex items-start justify-between">
                 <div className="w-[50%]">
-                  <h2 className="font-poppins  text-lg font-medium ">
+                  <h2 className="font-poppins text-lg font-medium">
                     Full Name (POC)
                   </h2>
-                  <h3 className="font-helvetica text-lg font-semibold ">
+                  <h3 className="font-helvetica text-lg font-semibold">
                     {formState.businessName}
                   </h3>
                 </div>
                 <div className="w-[50%]">
-                  <h2 className="font-poppins text-lg font-medium ">
+                  <h2 className="font-poppins text-lg font-medium">
                     Event Size
                   </h2>
-                  <h3 className="font-helvetica text-lg font-semibold ">
+                  <h3 className="font-helvetica text-lg font-semibold">
                     {formState.eventsize}
                   </h3>
                 </div>
               </div>
               <div>
-                <h2 className="font-poppins text-lg font-medium ">
+                <h2 className="font-poppins text-lg font-medium">
                   Decoration Setup Duration
                 </h2>
                 <h3 className="font-helvetica text-lg font-semibold">
@@ -123,7 +123,7 @@ function Preview({
               </div>
             </div>
             <div className="mt-4 flex flex-col gap-6">
-              <span className=" font-medium text-xl">Types of Event</span>
+              <span className="text-xl font-medium">Types of Event</span>
               <Appetizers
                 appetizers={typeOfevents}
                 selectedAppetizers={typeOfevents}
@@ -132,7 +132,7 @@ function Preview({
             </div>
 
             <div className="mt-4 flex flex-col gap-6">
-              <span className=" font-medium text-xl">Wedding Events</span>
+              <span className="text-xl font-medium">Wedding Events</span>
               <Appetizers
                 appetizers={weddingEvents}
                 selectedAppetizers={weddingEvents}
@@ -140,7 +140,7 @@ function Preview({
               />
             </div>
             <div className="mt-4 flex flex-col gap-6">
-              <span className="  font-medium text-xl">Corporate Events</span>
+              <span className="text-xl font-medium">Corporate Events</span>
               <Appetizers
                 appetizers={corporateEvents}
                 selectedAppetizers={corporateEvents}
@@ -148,7 +148,7 @@ function Preview({
               />
             </div>
             <div className="mt-4 flex flex-col gap-6">
-              <span className=" font-medium text-xl">Seasonal Event</span>
+              <span className="text-xl font-medium">Seasonal Event</span>
               <Appetizers
                 appetizers={seasonalEvents}
                 selectedAppetizers={seasonalEvents}
@@ -156,7 +156,7 @@ function Preview({
               />
             </div>
             <div className="mt-4 flex flex-col gap-6">
-              <span className=" font-medium text-xl">Cultural Events</span>
+              <span className="text-xl font-medium">Cultural Events</span>
               <Appetizers
                 appetizers={culturalEvents}
                 selectedAppetizers={culturalEvents}
@@ -191,7 +191,7 @@ function Preview({
 
           <div className="w-full">
             <div className="my-4 flex flex-col gap-6">
-              <span className=" font-medium text-xl">Themes</span>
+              <span className="text-xl font-medium">Themes</span>
               <Appetizers
                 appetizers={themesOffered}
                 selectedAppetizers={themesOffered}
@@ -206,7 +206,7 @@ function Preview({
                     Do you offer prop selection for themes ?
                   </span>
 
-                  <span className="font-poppins  font-medium text-lg">
+                  <span className="font-poppins text-lg font-medium">
                     {formState.propthemesOffered ? "yes" : "no"}
                   </span>
                 </div>
@@ -214,7 +214,7 @@ function Preview({
                   <span className="font-poppins text-lg font-medium">
                     Do you adapt themes to different venue sizes ?
                   </span>
-                  <span className="font-poppins font-medium  text-lg">
+                  <span className="font-poppins text-lg font-medium">
                     {formState.adobtThemes ? "yes" : "no"}
                   </span>
                 </div>
@@ -225,7 +225,7 @@ function Preview({
                     Do you adapt themes to different venue sizes ?
                   </span>
 
-                  <span className="font-poppins font-medium  text-lg">
+                  <span className="font-poppins text-lg font-medium">
                     {formState.colorschmes ? "yes" : "no"}
                   </span>
                 </div>
@@ -233,16 +233,16 @@ function Preview({
                   <span className="font-poppins text-lg font-medium">
                     Do you offer customization of themes ?
                   </span>
-                  <span className="font-poppins font-medium  text-lg">
+                  <span className="font-poppins text-lg font-medium">
                     {formState.customizationsThemes ? "yes" : "no"}
                   </span>
                 </div>
               </div>
               <div className="mt-4 flex w-3/4 flex-col">
-                <span className="font-poppins  text-lg font-medium">
+                <span className="font-poppins text-lg font-medium">
                   Custom design process
                 </span>
-                <span className="mt-2 font-poppins  font-medium text-lg">
+                <span className="mt-2 font-poppins text-lg font-medium">
                   {formState.customDesignProcess}
                 </span>
               </div>
@@ -274,7 +274,7 @@ function Preview({
 
           <div className="w-full gap-6">
             <div className="mt-4 flex flex-col gap-6">
-              <span className="text-xl font-medium ">Themes Elements</span>
+              <span className="text-xl font-medium">Themes Elements</span>
               <Appetizers
                 appetizers={themesElements}
                 selectedAppetizers={themesElements}
@@ -283,7 +283,7 @@ function Preview({
             </div>
 
             <div className="mt-6 flex gap-6">
-              <div className="mt-6 min-w-[50%] max-w-[50%] flex flex-col gap-1">
+              <div className="mt-6 flex min-w-[50%] max-w-[50%] flex-col gap-1">
                 <span className="text-base font-medium">Theme Photos</span>
                 <div className="font-semibold">
                   {Array.isArray(formState.themephotos) ? (
@@ -293,9 +293,9 @@ function Preview({
                   )}
                 </div>
               </div>
-              <div className="mt-6 min-w-[50%] max-w-[50%]  flex flex-col gap-1">
+              <div className="mt-6 flex min-w-[50%] max-w-[50%] flex-col gap-1">
                 <span className="text-base font-medium">Theme videos</span>
-                <div className=" font-semibold">
+                <div className="font-semibold">
                   {Array.isArray(formState.themevideos) ? (
                     <FileDisplay files={formState.themevideos} />
                   ) : (
@@ -330,9 +330,9 @@ function Preview({
             </div>
           </div>
           <div className="flex gap-6">
-            <div className="mt-6 min-w-[50%] max-w-[50%] flex flex-col gap-1">
+            <div className="mt-6 flex min-w-[50%] max-w-[50%] flex-col gap-1">
               <span className="text-base font-medium">Photos</span>
-              <div className="  font-semibold">
+              <div className="font-semibold">
                 {Array.isArray(formState.photos) ? (
                   <FileDisplay files={formState.photos} />
                 ) : (
@@ -340,7 +340,7 @@ function Preview({
                 )}
               </div>
             </div>
-            <div className=" mt-6 min-w-[50%] max-w-[50%] flex flex-col gap-1">
+            <div className="mt-6 flex min-w-[50%] max-w-[50%] flex-col gap-1">
               <span className="text-base font-medium">Videos</span>
               <div className="font-semibold">
                 {Array.isArray(formState.videos) ? (
@@ -354,45 +354,45 @@ function Preview({
           <div className="mt-4 flex flex-col justify-start gap-6">
             <div className="flex items-start justify-between">
               <div className="w-[50%]">
-                <h2 className="font-poppins text-lg font-medium ">
+                <h2 className="font-poppins text-lg font-medium">
                   Awards/Recognition
                 </h2>
-                <h3 className="font-helvetica  font-medium  text-lg ">
+                <h3 className="font-helvetica text-lg font-medium">
                   {formState.Recongnition_awards}
                 </h3>
               </div>
               <div className="w-[50%]">
-                <h2 className="font-poppins   text-lg font-medium ">
+                <h2 className="font-poppins text-lg font-medium">
                   Client Testimonials
                 </h2>
-                <h3 className="font-helvetica font-medium  text-lg ">
+                <h3 className="font-helvetica text-lg font-medium">
                   {formState.clientTestimonials}
                 </h3>
               </div>
             </div>
             <div className="flex items-start justify-between">
               <div className="w-[50%]">
-                <h2 className="font-poppins text-lg font-medium ]">
+                <h2 className="] font-poppins text-lg font-medium">
                   Instagram URL
                 </h2>
-                <h3 className="font-helvetica  font-medium text-lg ">
+                <h3 className="font-helvetica text-lg font-medium">
                   {formState.intstagramurl}
                 </h3>
               </div>
               <div className="w-[50%]">
-                <h2 className="font-poppins text-lg font-medium ">
+                <h2 className="font-poppins text-lg font-medium">
                   Website URL
                 </h2>
-                <h3 className="font-helvetica  font-medium text-lg ">
+                <h3 className="font-helvetica text-lg font-medium">
                   {formState.websiteurl}
                 </h3>
               </div>
             </div>
             <div>
-              <h2 className="font-poppins text-lg font-medium ">
+              <h2 className="font-poppins text-lg font-medium">
                 Advance Booking Period ?
               </h2>
-              <h3 className="font-helvetica  font-medium text-lg ">
+              <h3 className="font-helvetica text-lg font-medium">
                 {formState.advbookingperiod}
               </h3>
             </div>
@@ -405,7 +405,7 @@ function Preview({
                     Do you offer revisions to the initial theme proposal?
                   </span>
 
-                  <p className="font-poppins text-lg font-medium ">
+                  <p className="font-poppins text-lg font-medium">
                     {formState.revisionforinitialthemeproposal ? "yes" : "no"}
                   </p>
                 </div>
@@ -414,7 +414,7 @@ function Preview({
                     Do you provide a written theme proposal after consultation?
                   </span>
 
-                  <p className="font-poppins text-lg font-medium ">
+                  <p className="font-poppins text-lg font-medium">
                     {formState.writtenthemeproposalafterconsultaion
                       ? "yes"
                       : "no"}
@@ -448,11 +448,11 @@ function Preview({
           </div>
           <div className="w-full">
             <div className="flex gap-2">
-              <div className="max-w-[50%] min-w-[50%] mt-6 flex flex-col gap-1">
+              <div className="mt-6 flex min-w-[50%] max-w-[50%] flex-col gap-1">
                 <span className="text-base font-normal">
                   Terms And Conditions
                 </span>
-                <div className=" font-semibold">
+                <div className="font-semibold">
                   {Array.isArray(formState.termsAndConditions) ? (
                     <FileDisplay files={formState.termsAndConditions} />
                   ) : (
@@ -460,7 +460,7 @@ function Preview({
                   )}
                 </div>
               </div>
-              <div className="m-6 mt-6 max-w-[50%] min-w-[50%] flex flex-col gap-1">
+              <div className="m-6 mt-6 flex min-w-[50%] max-w-[50%] flex-col gap-1">
                 <span className="text-base font-normal">
                   Cancellation Policy
                 </span>

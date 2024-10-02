@@ -391,11 +391,11 @@ const Decorators: React.FC = () => {
 
   return (
     <div
-    className={`m-0 flex w-full flex-col overflow-x-hidden ${currentPage <= 6 ? "lg:h-[calc(100vh-4.2rem)]" : ""} lg:flex-row`}
+      className={`m-0 flex w-full flex-col overflow-x-hidden ${currentPage <= 6 ? "lg:h-[calc(100vh-4.2rem)]" : ""} lg:flex-row`}
     >
       {currentPage <= 6 && (
         <div className="flex flex-col items-start justify-between bg-[#FFFFFF] pt-4 xs:gap-7 md:min-w-[30%] lg:max-w-[30%]">
-        <div className="m-auto flex w-[90%] flex-col justify-center">
+          <div className="m-auto flex w-[90%] flex-col justify-center">
             <div className="flex flex-col gap-1 px-3 lg:mt-[2rem]">
               <span className="text-lg font-semibold">
                 Step {currentPage} of 6
@@ -433,7 +433,7 @@ const Decorators: React.FC = () => {
           </div>
           <div className="m-auto flex h-[50%] w-[90%] flex-col items-start justify-center gap-9 px-3 md:px-6">
             <h1 className="text-2xl font-bold md:text-4xl">
-          {currentPage === 1 && "Fill out event details"}
+              {currentPage === 1 && "Fill out event details"}
               {currentPage === 2 && "Fill out themes related details "}
               {currentPage === 3 && "Fill out theme elements details"}
               {currentPage === 4 && "Fill out your ratings and reviews"}

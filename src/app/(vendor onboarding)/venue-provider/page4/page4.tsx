@@ -28,8 +28,8 @@ const Page4: React.FC<PageProps> = ({
   setCurrentPage,
 }) => {
   return (
-    <div className="scroll-touch flex flex-col items-start gap-7 overflow-y-scroll scrollbar-hide rounded-xl bg-white p-3 w-full xs:justify-start">
-      <div className="flex flex-col gap-7 rounded-xl bg-white p-3 w-full md:p-6">
+    <div className="scroll-touch flex w-full flex-col items-start gap-7 overflow-y-scroll rounded-xl bg-white p-3 scrollbar-hide xs:justify-start">
+      <div className="flex w-full flex-col gap-7 rounded-xl bg-white p-3 md:p-6">
         <h1 className="text-3xl font-semibold">Basic Details</h1>
 
         <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">

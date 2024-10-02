@@ -33,8 +33,9 @@ interface Page3Props {
 }
 
 const advanceBookingPeriodOptions = [
-  "Less than a week","1-2 weeks","More than 2 weeks",
-
+  "Less than a week",
+  "1-2 weeks",
+  "More than 2 weeks",
 ];
 
 const Page3: React.FC<Page3Props> = ({
@@ -45,10 +46,10 @@ const Page3: React.FC<Page3Props> = ({
   setCurrentPage,
 }) => {
   return (
-    <div className="scroll-touch flex flex-col items-start gap-7 overflow-y-scroll scrollbar-hide rounded-xl bg-white p-3 xs:w-[95%] xs:min-w-[90%] xs:justify-start md:p-6">
+    <div className="scroll-touch flex flex-col items-start gap-7 overflow-y-scroll rounded-xl bg-white p-3 scrollbar-hide xs:w-[95%] xs:min-w-[90%] xs:justify-start md:p-6">
       <h1 className="text-3xl font-semibold">Additional Details </h1>
 
-      <div className="flex w-full flex-col ">
+      <div className="flex w-full flex-col">
         <div className="grid grid-cols-2 gap-10">
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-1 text-base font-medium">
@@ -121,14 +122,10 @@ const Page3: React.FC<Page3Props> = ({
                 typeof formState.photos === "string"
                   ? formState.photos
                   : Array.isArray(formState.photos)
-                    ? formState.photos
-                      .map((file: File) => file.name)
-                      .join(", ")
+                    ? formState.photos.map((file: File) => file.name).join(", ")
                     : (formState.photos as File)?.name
               }
-              onChange={(e) =>
-                updateFormState({ photos: e.target.value })
-              }
+              onChange={(e) => updateFormState({ photos: e.target.value })}
             />
             {/* 
                   <input
@@ -212,14 +209,10 @@ const Page3: React.FC<Page3Props> = ({
                 typeof formState.videos === "string"
                   ? formState.videos
                   : Array.isArray(formState.videos)
-                    ? formState.videos
-                      .map((file: File) => file.name)
-                      .join(", ")
+                    ? formState.videos.map((file: File) => file.name).join(", ")
                     : (formState.videos as File)?.name
               }
             />
-
-
           </div>
         </div>
 
@@ -228,7 +221,7 @@ const Page3: React.FC<Page3Props> = ({
             <h2 className="mb-2 text-base font-medium">Awards/Recognition</h2>
             <input
               type="text"
-              className="w-full rounded-xl border-2 bg-white p-3 py-5 outline-none text-sm"
+              className="w-full rounded-xl border-2 bg-white p-3 py-5 text-sm outline-none"
               placeholder="Provide your URL"
               value={formState.awards}
               onChange={(e) => updateFormState({ awards: e.target.value })}
@@ -238,7 +231,7 @@ const Page3: React.FC<Page3Props> = ({
             <h2 className="mb-2 text-base font-medium">Client Testimonials</h2>
             <input
               type="text"
-              className="w-full rounded-xl border-2 bg-white p-3 py-5 outline-none text-sm"
+              className="w-full rounded-xl border-2 bg-white p-3 py-5 text-sm outline-none"
               placeholder="Provide your URL"
               value={formState.clientTestimonials}
               onChange={(e) =>
@@ -253,7 +246,7 @@ const Page3: React.FC<Page3Props> = ({
             <h2 className="mb-2 text-base font-medium">Instagram URL</h2>
             <input
               type="text"
-              className="w-full rounded-xl border-2 bg-white p-3 py-5 outline-none text-sm"
+              className="w-full rounded-xl border-2 bg-white p-3 py-5 text-sm outline-none"
               placeholder="Provide your Instagram URL for the Venue"
               value={formState.instagramURL}
               onChange={(e) =>
@@ -265,7 +258,7 @@ const Page3: React.FC<Page3Props> = ({
             <h2 className="mb-2 text-base font-medium">Website URL</h2>
             <input
               type="text"
-              className="w-full rounded-xl border-2 bg-white p-3 py-5 outline-none text-sm"
+              className="w-full rounded-xl border-2 bg-white p-3 py-5 text-sm outline-none"
               placeholder="Provide your website URL for the venue"
               value={formState.websiteURL}
               onChange={(e) => updateFormState({ websiteURL: e.target.value })}
@@ -281,30 +274,29 @@ const Page3: React.FC<Page3Props> = ({
             <Dropdown
               options={advanceBookingPeriodOptions}
               onSelect={(value) =>
-                updateFormState({ advanceBookingPeriod: value })}
-                placeholder="Select Advance Booking Period"
-                />
-            
+                updateFormState({ advanceBookingPeriod: value })
+              }
+              placeholder="Select Advance Booking Period"
+            />
           </div>
         </div>
       </div>
 
       <div className="items-strech mt-9 flex flex-row gap-7 self-end">
-          <button
-            className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-            onClick={() => setCurrentPage(currentPage - 1)}
-          >
-            Previous
-          </button>
-          <button
-            className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-            onClick={handleContinue}
-          >
-            Continue
-          </button>
-        </div>
+        <button
+          className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+          onClick={() => setCurrentPage(currentPage - 1)}
+        >
+          Previous
+        </button>
+        <button
+          className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+          onClick={handleContinue}
+        >
+          Continue
+        </button>
+      </div>
     </div>
-    
   );
 };
 
