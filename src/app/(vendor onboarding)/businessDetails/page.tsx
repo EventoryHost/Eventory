@@ -7,16 +7,15 @@ import { useRouter } from "next/navigation";
 import { addBusinessDetails } from "@/services/auth";
 import tajmahal from "/public/tajmahal.png";
 import { useToast } from "@/components/hooks/use-toast";
-import MultipleDropdown from "@/components/MultiDropdown";
+import MultipleDropdown from "./(componets)/MultiDropdown2";
 
 const categories = [
   { value: "venue-provider", label: "Venue Provider" },
   { value: "pav", label: "Photo & Videography" },
-  { value: "pav", label: "Photo & Videography" },
   { value: "caterer", label: "Caterers" },
   { value: "decorator", label: "Decorator" },
   { value: "prop-rental", label: "Prop Rental" },
-  { value: "makeup-artist", label: "Makeup Artist" },
+  { value: "entertainment-provider", label: "Entertainment Provider" }
 ];
 
 const teamsize = [
@@ -79,6 +78,9 @@ const BusinessDetails = () => {
     teamsize: "",
     annualrevenue: "",
   } as businessDetails);
+
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null); // New state for tracking open dropdown
+  
   const refs = useRef(
     {} as Record<
       keyof businessDetails,
@@ -170,6 +172,14 @@ const BusinessDetails = () => {
     }
   };
 
+  // Function to manage dropdown open/close behavior
+  const toggleDropdown = (dropdownName: string) => {
+    setOpenDropdown((prevDropdown) =>
+      prevDropdown === dropdownName ? null : dropdownName
+    );
+  };
+
+
   return (
     <div className="flex min-h-[91vh] w-full flex-col overflow-y-scroll lg:flex-row">
       <div className="flex h-[91vh] flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[35%] lg:max-w-[30%]">
@@ -207,16 +217,7 @@ const BusinessDetails = () => {
                   <label htmlFor="businessName">
                     Business Name <span className="text-red-600">*</span>
                   </label>
-                  <input
-                    id="businessName"
-                    type="text"
-                    className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
-                    placeholder="Enter your business name"
-                    ref={(el) => {
-                      refs.current.businessName = el;
-                    }}
-                    required
-                  />
+                  <input id="businessName" type="text" className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none" ref={(el) => { refs.current.businessName = el; }} required />
                 </div>
                 <div className="flex min-w-[45%] flex-col gap-4">
                   <label htmlFor="category">
@@ -224,47 +225,26 @@ const BusinessDetails = () => {
                   </label>
                   <Dropdown2
                     options={categories}
-                    onSelect={(value: string) =>
-                      setBusinessDetails({
-                        ...businessDetails,
-                        category: value,
-                      })
-                    }
+                    isOpen={openDropdown === "category"}
+                    onToggle={() => toggleDropdown("category")}
+                    onSelect={(value: string) => setBusinessDetails({ ...businessDetails, category: value })}
                     placeholder="Select Your Service"
                   />
                 </div>
               </div>
               <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
                 <div className="flex min-w-[45%] flex-col gap-4">
-                  <label htmlFor="gstin">
-                    GSTIN <span className="text-red-600">*</span>
-                  </label>
-                  <input
-                    id="gstin"
-                    type="text"
-                    minLength={15}
-                    maxLength={15}
-                    className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
-                    placeholder="Enter your GSTIN"
-                    ref={(el) => {
-                      refs.current.gstin = el;
-                    }}
-                    required
-                  />
+                  <label htmlFor="gstin">GSTIN <span className="text-red-600">*</span></label>
+                  <input id="gstin" type="text" minLength={15} maxLength={15} className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none" ref={(el) => { refs.current.gstin = el; }} required />
                 </div>
                 <div className="flex min-w-[45%] flex-col gap-4">
-                  <label htmlFor="years">
-                    Team Size<span className="text-red-600">*</span>
-                  </label>
+                  <label htmlFor="teamsize">Team Size<span className="text-red-600">*</span></label>
                   <Dropdown2
                     options={teamsize}
-                    onSelect={(value: string) =>
-                      setBusinessDetails({
-                        ...businessDetails,
-                        teamsize: value,
-                      })
-                    }
-                    placeholder="Provide Year Of Operations"
+                    isOpen={openDropdown === "teamsize"}
+                    onToggle={() => toggleDropdown("teamsize")}
+                    onSelect={(value: string) => setBusinessDetails({ ...businessDetails, teamsize: value })}
+                    placeholder="Select Team Size"
                   />
                 </div>
               </div>
@@ -273,84 +253,54 @@ const BusinessDetails = () => {
                   <label htmlFor="businessAddress">
                     Business Address <span className="text-red-600">*</span>
                   </label>
-                  <input
-                    id="businessAddress"
-                    type="text"
-                    className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
-                    placeholder="Enter your business address"
-                    ref={(el) => {
-                      refs.current.businessAddress = el;
-                    }}
-                    required
-                  />
+                  <input id="businessAddress" type="text" className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none" ref={(el) => { refs.current.businessAddress = el; }} required />
                 </div>
                 <div className="flex min-w-[45%] flex-col gap-4">
-                  <label htmlFor="pinCode">
-                    Pin Code <span className="text-red-600">*</span>
-                  </label>
-                  <input
-                    id="pinCode"
-                    type="number"
-                    className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none [-moz-appearance:_textfield] [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
-                    placeholder="Enter pin code"
-                    ref={(el) => {
-                      refs.current.pinCode = el;
-                    }}
-                    required
-                  />
+                  <label htmlFor="pinCode">Pin Code <span className="text-red-600">*</span></label>
+                  <input id="pinCode" type="number" className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none" ref={(el) => { refs.current.pinCode = el; }} required />
                 </div>
               </div>
               <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-                <div className="flex min-w-[45%] max-w-[45%] flex-col gap-4">
-                  <label htmlFor="cities">
-                    Operational City(s)<span className="text-red-600">*</span>
-                  </label>
+                <div className="flex min-w-[45%] flex-col gap-4">
+                  <label htmlFor="cities">Operational City(s)<span className="text-red-600">*</span></label>
                   <MultipleDropdown
                     options={operationalCities}
+                    isOpen={openDropdown === "cities"}
+                    onToggle={() => toggleDropdown("cities")}
                     onSelect={(value: string[]) =>
                       setBusinessDetails((prevDetails) => ({
                         ...prevDetails,
-                        cities: value, // You don't need to spread value, it's already an array
+                        cities: value,
                       }))
                     }
                     placeholder="Provide Cities Where You Operate"
                   />
                 </div>
                 <div className="flex min-w-[45%] flex-col gap-4">
-                  <label htmlFor="years">
-                    Years in Operation <span className="text-red-600">*</span>
-                  </label>
+                  <label htmlFor="years">Years in Operation <span className="text-red-600">*</span></label>
                   <Dropdown2
                     options={yearsInOperation}
-                    onSelect={(value: string) =>
-                      setBusinessDetails({ ...businessDetails, years: value })
-                    }
-                    placeholder="Provide Year Of Oprations"
+                    isOpen={openDropdown === "yearsInOperation"}
+                    onToggle={() => toggleDropdown("yearsInOperation")}
+                    onSelect={(value: string) => setBusinessDetails({ ...businessDetails, years: value })}
+                    placeholder="Provide Year Of Operations"
                   />
                 </div>
               </div>
               <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
                 <div className="flex min-w-[45%] flex-col gap-4">
-                  <label htmlFor="cities">
-                    Annual Revenue<span className="text-red-600">*</span>
-                  </label>
+                  <label htmlFor="annualrevenue">Annual Revenue<span className="text-red-600">*</span></label>
                   <Dropdown2
                     options={annualrevenue}
-                    onSelect={(value: string) =>
-                      setBusinessDetails({
-                        ...businessDetails,
-                        annualrevenue: value,
-                      })
-                    }
+                    isOpen={openDropdown === "annualrevenue"}
+                    onToggle={() => toggleDropdown("annualrevenue")}
+                    onSelect={(value: string) => setBusinessDetails({ ...businessDetails, annualrevenue: value })}
                     placeholder="Select The Range of your revenue"
                   />
                 </div>
               </div>
               <div className="flex flex-col items-start gap-9 self-end md:flex-row">
-                <button
-                  type="submit"
-                  className="rounded-2xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                >
+                <button type="submit" className="rounded-2xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3">
                   Register
                 </button>
                 {error && (
@@ -359,21 +309,12 @@ const BusinessDetails = () => {
                   </p>
                 )}
                 <div className="flex flex-col items-start self-end">
-                  <button
-                    disabled={loading}
-                    type="submit"
-                    className="rounded-2xl bg-[#2E3192] text-white xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                  >
+                  <button disabled={loading} type="submit" className="rounded-2xl bg-[#2E3192] text-white xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3">
                     {loading ? "Loading" : "Continue"}
                   </button>
                 </div>
               </div>
             </div>
-            {error && (
-              <p className="text-md flex flex-col items-start self-start font-poppins font-medium text-red-600">
-                Fill All The Req&apos; Field&apos;s
-              </p>
-            )}
           </form>
         </div>
       </div>

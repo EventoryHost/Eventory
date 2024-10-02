@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ChevronDown } from "lucide-react";
 
 interface Option {
@@ -9,21 +9,18 @@ interface Option {
 interface DropdownProps {
   options: Option[];
   onSelect: (value: string) => void;
-  placeholder?: string; // New placeholder prop
+  isOpen: boolean; // New prop to control open/close state
+  onToggle: () => void; // New prop to toggle open/close
+  placeholder?: string;
 }
 
-const Dropdown: React.FC<DropdownProps> = ({
-  options,
-  onSelect,
-  placeholder = "Select an option",
-}) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [selectedOption, setSelectedOption] = useState<Option | null>(null); // Allow null for initial state
+const Dropdown: React.FC<DropdownProps> = ({ options, onSelect, isOpen, onToggle, placeholder = "Select an option" }) => {
+  const [selectedOption, setSelectedOption] = useState<Option | null>(null);
 
   const handleSelect = (option: Option) => {
     setSelectedOption(option);
-    setIsOpen(false);
-    onSelect(option.value); // Pass the value to the parent
+    onSelect(option.value);
+    onToggle(); // Close the dropdown after selection
   };
 
   return (
@@ -31,7 +28,7 @@ const Dropdown: React.FC<DropdownProps> = ({
       <button
         type="button"
         className="flex w-full items-center justify-between rounded-xl border-2 bg-white p-5 py-3 text-left shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={onToggle}
       >
         <span className={`${selectedOption ? "text-black" : "text-gray-400"}`}>
           {selectedOption ? selectedOption.label : placeholder}
@@ -46,9 +43,7 @@ const Dropdown: React.FC<DropdownProps> = ({
               <li
                 key={option.value}
                 className={`relative flex cursor-pointer select-none items-center gap-1 py-2 pl-3 pr-9 ${
-                  selectedOption?.value === option.value
-                    ? "text-black"
-                    : "text-gray-900"
+                  selectedOption?.value === option.value ? "text-black" : "text-gray-900"
                 }`}
                 onClick={() => handleSelect(option)}
               >
@@ -69,3 +64,5 @@ const Dropdown: React.FC<DropdownProps> = ({
 };
 
 export default Dropdown;
+  
+
