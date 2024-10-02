@@ -78,7 +78,7 @@ const Login = () => {
     // console.log("Login deets: ", loginDetails);
     // console.log("inp: ", inputOtp);
     setloading(true);
-    try {
+    try { //  mobile, code, session, name
       const response = await auth.verifyLoginOtp(
         loginDetails.mobile,
         inputOtp,
@@ -135,13 +135,13 @@ const Login = () => {
     type: string;
     placeholder: string;
   }[] = [
-    {
-      id: "mobile",
-      label: "Mobile No.",
-      type: "number",
-      placeholder: "Enter your mobile no.",
-    },
-  ];
+      {
+        id: "mobile",
+        label: "Mobile No.",
+        type: "number",
+        placeholder: "Enter your mobile no.",
+      },
+    ];
 
   return (
     <div className="flex min-h-[88vh] w-full flex-col overflow-hidden lg:flex-row">
@@ -169,7 +169,6 @@ const Login = () => {
             <Loadingeanimation width="w-56" />
           ) : (
             <>
-              <h1 className="text-3xl font-bold">Login</h1>
               <div className="flex min-h-full min-w-full flex-col items-center gap-5">
                 <form onSubmit={(e) => handleLogin(e)}>
                   <div className="grid grid-cols-2 gap-5">
@@ -194,18 +193,14 @@ const Login = () => {
                   {formError && (
                     <div className="pl-5 text-red-500">{formError}</div>
                   )}
-                  <div className="mt-9 flex w-full flex-col-reverse justify-between gap-3 self-start md:mt-0 md:flex-row md:items-center md:px-0">
-                    <div className="mt-5 flex gap-2 xs:text-sm md:mt-9 md:gap-3">
-                      <Link
-                        href={"/"}
-                        className="font-semibold text-[#2E3192] underline"
-                      >
-                        Forgot Your Pasword ?
-                      </Link>
-                    </div>
+                  <div className="mb-9 mt-5">
+                    <p className="self-start text-gray-500 xs:mt-5 xs:text-md">
+                      To verify it&apos;s you, we will send you an OTP to your
+                      mobile number.
+                    </p>
                   </div>
                   <div className="h-[1px] w-[80%] self-start bg-gray-300" />
-                  <div className="flex flex-col items-start self-start">
+                  <div className="flex mt-5 flex-col items-start self-start">
                     or continue with
                     <div
                       className="google mt-5 flex cursor-pointer gap-5"
@@ -237,20 +232,20 @@ const Login = () => {
                       </svg>
                     </div>
                     <div className="flex min-w-[56vw] flex-col justify-between gap-9 md:flex-row">
-                      <div className="mt-5 flex gap-2 xs:text-sm">
-                        Don&apos;t have an account ?{" "}
+                      <div className="mt-5 text-gray-500 flex gap-2 xs:text-md">
+                        Don&apos;t have an account?{" "}
                         <Link
                           href={"/signup"}
                           className="font-semibold text-[#2E3192]"
                         >
-                          SignUp
+                          Sign In
                         </Link>
                       </div>
                       <button
                         type="submit"
                         className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-3 xs:py-2 xs:text-sm md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
                       >
-                        Login
+                        Log In
                       </button>
                     </div>
                   </div>

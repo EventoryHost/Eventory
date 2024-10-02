@@ -25,9 +25,15 @@ const Page6 = ({
     <div className="flex h-full w-full flex-col overflow-hidden scrollbar-hide lg:flex-row">
       <div className="scroll-touch items-strech flex w-[100%] flex-col gap-9 overflow-y-scroll bg-[#F7F6F9] scrollbar-hide">
         <div className="flex flex-col gap-7 rounded-xl bg-white p-3 md:p-6">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center justify-start gap-5">
+            <ArrowLeft
+              className="ml-2 mr-1 h-6 w-6 cursor-pointer text-[#2E3192]"
+              aria-hidden="true"
+              onClick={() => setCurrentPage((prevPage) => prevPage - 1)}
+            />
             <h1 className="text-2xl font-semibold">Policies</h1>
           </div>
+
           <div className="flex min-h-full min-w-full flex-col items-center gap-8">
             <div className="flex min-w-full flex-col items-start justify-between md:flex-row">
               <div className="flex min-w-[50%] flex-col gap-8">

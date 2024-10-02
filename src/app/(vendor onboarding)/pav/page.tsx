@@ -422,7 +422,7 @@ const Page = () => {
       {currentPage <= 6 && (
         <div className="flex flex-col items-start justify-between bg-[#FFFFFF] pt-4 xs:gap-7 md:min-w-[30%] lg:max-w-[30%]">
           <div className="m-auto flex w-[90%] flex-col justify-center">
-            <div className="flex flex-col gap-1 px-3 lg:mt-[2rem]">
+            <div className="flex flex-col gap-1 px-3 md:px-6 lg:mt-[2rem]">
               <span className="text-lg font-semibold">
                 Step {currentPage} of 6
               </span>

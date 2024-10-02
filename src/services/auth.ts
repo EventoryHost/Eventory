@@ -108,7 +108,14 @@ export const addBusinessDetails = async (
     return res;
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      throw Error(error.message);
+      // Now TypeScript knows 'error' is an AxiosError
+      if (error.response) {
+        throw new Error(error.response.data.message || "Something went wrong");
+      } else {
+        throw new Error(error.message);
+      }
+    } else {
+      throw new Error("An unexpected error occurred");
     }
   }
 };

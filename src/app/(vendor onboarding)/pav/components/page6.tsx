@@ -1,3 +1,4 @@
+import { ArrowLeft } from "lucide-react";
 import Appetizers from "../../(components)/Appetizers";
 import FileDisplay from "../../caterer/(components)/File";
 
@@ -146,26 +147,17 @@ function Preview({
     <div className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide xs:w-[95%] xs:min-w-[90%]">
       <div className="flex min-w-full flex-col items-start justify-around gap-10">
         <div className="flex w-[100%] flex-col gap-7 rounded-xl bg-white p-4 xs:min-w-[90%] md:p-6">
+
           <div className="flex items-center justify-start gap-5">
-            <svg
+            <ArrowLeft
+              className="ml-2 mr-1 h-6 w-6 cursor-pointer text-[#2E3192]"
+              aria-hidden="true"
               onClick={() => setCurrentPage((prevPage) => prevPage - 1)}
-              width="30"
-              height="30"
-              viewBox="0 0 30 30"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M10.3233 10L6.35314 13.9702C5.88229 14.441 5.88229 15.2044 6.35314 15.6753L10.3233 19.6455M6.70627 14.8227L23.5858 14.8227"
-                stroke="#2B3F6C"
-                stroke-width="1.5"
-                stroke-linecap="round"
-              />
-            </svg>
-            <div className="flex">
-              <h1 className="text-3xl font-semibold">Photo And Videography</h1>
-            </div>
+            />
+            <h1 className="text-3xl font-semibold">Photo And Videography</h1>
           </div>
+
+
 
           <div className="flex gap-9">
             <div className="flex w-[100%] justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
