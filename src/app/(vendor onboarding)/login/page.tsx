@@ -41,24 +41,25 @@ const Login = () => {
       setFormError(`Enter a valid 10 digit mobile number`);
       return;
     }
+
     setloading(true);
     setFormError(null);
+
     try {
-      const newDetails: loginDetails = {
-        mobile: mobileNumber,
-      };
-      setLoginDetails(newDetails);
+      const res = await auth.login(mobileNumber);
 
-      const res = await auth.login(newDetails.mobile);
-      if (res) {
-        console.log("Response: ", res.data.data.Session);
-        setLoginDetails({ ...loginDetails, session: res.data.data.Session });
+      if (res && res.data && res.data.data.Session) {
+        setLoginDetails((prevDetails) => ({
+          ...prevDetails,
+          mobile: mobileNumber,  // Update the mobile in state
+          session: res.data.data.Session,  // Set the session
+        }));
+
+        toggleModal();  // Show the OTP modal
       }
-
-      toggleModal();
     } catch (error) {
       console.log(error);
-      setFormError("Something want wrong");
+      setFormError("Something went wrong");
     } finally {
       setloading(false);
     }
@@ -74,28 +75,26 @@ const Login = () => {
       return;
     }
 
+    const mobileNumber = loginDetails.mobile;
     setFormError(null);
-    // console.log("Login deets: ", loginDetails);
-    // console.log("inp: ", inputOtp);
     setloading(true);
+    console.log(mobileNumber);
     try {
-      //  mobile, code, session, name
       const response = await auth.verifyLoginOtp(
-        loginDetails.mobile,
+        mobileNumber,  // use mobile from loginDetails
         inputOtp,
         loginDetails.session!,
       );
-      if (response && response.data.userData) {
+      console.log(response?.data)
+      if (response && response.data.user) {
         // Generate JWT token with an expiration time
         const token = jwt.sign(
-          response.data.userData,
+          response.data.user,
           process.env.NEXT_PUBLIC_JWT_SECRET as string,
         );
-        // Store token in local storage
         localStorage.setItem("token", token);
         console.log("Generated Token:", token);
 
-        // Decode the token for testing
         const decoded = jwt.decode(token) as {
           name: string;
           email: string;
@@ -116,11 +115,12 @@ const Login = () => {
         console.log("OTP verified successfully");
         // Router.push("/");
       } else {
-        console.error("OTP verification failed or response is invalid");
+        
+        console.error(`OTP verification failed${response?.data}`);
       }
     } catch (error) {
       console.log(error);
-      setFormError("OTP verification failed or response is invalid");
+      setFormError(`OTP verification failed ${String(error) || "Error"}`);
     } finally {
       setloading(false);
     }
@@ -136,13 +136,13 @@ const Login = () => {
     type: string;
     placeholder: string;
   }[] = [
-    {
-      id: "mobile",
-      label: "Mobile No.",
-      type: "number",
-      placeholder: "Enter your mobile no.",
-    },
-  ];
+      {
+        id: "mobile",
+        label: "Mobile No.",
+        type: "number",
+        placeholder: "Enter your mobile no.",
+      },
+    ];
 
   return (
     <div className="flex min-h-[88vh] w-full flex-col overflow-hidden lg:flex-row">

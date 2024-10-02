@@ -71,7 +71,13 @@ const verifyLoginOtp = async (
     return res;
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      throw new Error(error.message);
+      if (error.response) {
+        throw new Error(error.response.data.error || "Something went wrong");
+      } else {
+        throw new Error(error.message);
+      }
+    } else {
+      throw new Error("An unexpected error occurred");
     }
   }
 };
@@ -88,7 +94,13 @@ const login = async (mobile: String) => {
     return res; // expect session id in response
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      throw Error(error.message);
+      if (error.response) {
+        throw new Error(error.response.data.error	 || "Something went wrong");
+      } else {
+        throw new Error(error.message);
+      }
+    } else {
+      throw new Error("An unexpected error occurred");
     }
   }
 };
