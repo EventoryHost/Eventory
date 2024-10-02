@@ -7,16 +7,15 @@ import { useRouter } from "next/navigation";
 import { addBusinessDetails } from "@/services/auth";
 import tajmahal from "/public/tajmahal.png";
 import { useToast } from "@/components/hooks/use-toast";
-import MultipleDropdown from "@/components/MultiDropdown";
+import MultipleDropdown from "./(componets)/MultiDropdown2";
 
 const categories = [
   { value: "venue-provider", label: "Venue Provider" },
   { value: "pav", label: "Photo & Videography" },
-  { value: "pav", label: "Photo & Videography" },
   { value: "caterer", label: "Caterers" },
   { value: "decorator", label: "Decorator" },
   { value: "prop-rental", label: "Prop Rental" },
-  { value: "makeup-artist", label: "Makeup Artist" },
+  { value: "entertainment-provider", label: "Entertainment Provider" },
 ];
 
 const teamsize = [
@@ -79,6 +78,9 @@ const BusinessDetails = () => {
     teamsize: "",
     annualrevenue: "",
   } as businessDetails);
+
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null); // New state for tracking open dropdown
+
   const refs = useRef(
     {} as Record<
       keyof businessDetails,
@@ -170,6 +172,13 @@ const BusinessDetails = () => {
     }
   };
 
+  // Function to manage dropdown open/close behavior
+  const toggleDropdown = (dropdownName: string) => {
+    setOpenDropdown((prevDropdown) =>
+      prevDropdown === dropdownName ? null : dropdownName,
+    );
+  };
+
   return (
     <div className="flex min-h-[91vh] w-full flex-col overflow-y-scroll lg:flex-row">
       <div className="flex h-[91vh] flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[35%] lg:max-w-[30%]">
@@ -211,7 +220,6 @@ const BusinessDetails = () => {
                     id="businessName"
                     type="text"
                     className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
-                    placeholder="Enter your business name"
                     ref={(el) => {
                       refs.current.businessName = el;
                     }}
@@ -224,6 +232,8 @@ const BusinessDetails = () => {
                   </label>
                   <Dropdown2
                     options={categories}
+                    isOpen={openDropdown === "category"}
+                    onToggle={() => toggleDropdown("category")}
                     onSelect={(value: string) =>
                       setBusinessDetails({
                         ...businessDetails,
@@ -245,7 +255,6 @@ const BusinessDetails = () => {
                     minLength={15}
                     maxLength={15}
                     className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
-                    placeholder="Enter your GSTIN"
                     ref={(el) => {
                       refs.current.gstin = el;
                     }}
@@ -253,18 +262,20 @@ const BusinessDetails = () => {
                   />
                 </div>
                 <div className="flex min-w-[45%] flex-col gap-4">
-                  <label htmlFor="years">
+                  <label htmlFor="teamsize">
                     Team Size<span className="text-red-600">*</span>
                   </label>
                   <Dropdown2
                     options={teamsize}
+                    isOpen={openDropdown === "teamsize"}
+                    onToggle={() => toggleDropdown("teamsize")}
                     onSelect={(value: string) =>
                       setBusinessDetails({
                         ...businessDetails,
                         teamsize: value,
                       })
                     }
-                    placeholder="Provide Year Of Operations"
+                    placeholder="Select Team Size"
                   />
                 </div>
               </div>
@@ -277,7 +288,6 @@ const BusinessDetails = () => {
                     id="businessAddress"
                     type="text"
                     className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
-                    placeholder="Enter your business address"
                     ref={(el) => {
                       refs.current.businessAddress = el;
                     }}
@@ -291,8 +301,7 @@ const BusinessDetails = () => {
                   <input
                     id="pinCode"
                     type="number"
-                    className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none [-moz-appearance:_textfield] [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
-                    placeholder="Enter pin code"
+                    className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
                     ref={(el) => {
                       refs.current.pinCode = el;
                     }}
@@ -301,16 +310,18 @@ const BusinessDetails = () => {
                 </div>
               </div>
               <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-                <div className="flex min-w-[45%] max-w-[45%] flex-col gap-4">
+                <div className="flex min-w-[45%] flex-col gap-4">
                   <label htmlFor="cities">
                     Operational City(s)<span className="text-red-600">*</span>
                   </label>
                   <MultipleDropdown
                     options={operationalCities}
+                    isOpen={openDropdown === "cities"}
+                    onToggle={() => toggleDropdown("cities")}
                     onSelect={(value: string[]) =>
                       setBusinessDetails((prevDetails) => ({
                         ...prevDetails,
-                        cities: value, // You don't need to spread value, it's already an array
+                        cities: value,
                       }))
                     }
                     placeholder="Provide Cities Where You Operate"
@@ -322,20 +333,24 @@ const BusinessDetails = () => {
                   </label>
                   <Dropdown2
                     options={yearsInOperation}
+                    isOpen={openDropdown === "yearsInOperation"}
+                    onToggle={() => toggleDropdown("yearsInOperation")}
                     onSelect={(value: string) =>
                       setBusinessDetails({ ...businessDetails, years: value })
                     }
-                    placeholder="Provide Year Of Oprations"
+                    placeholder="Provide Year Of Operations"
                   />
                 </div>
               </div>
               <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
                 <div className="flex min-w-[45%] flex-col gap-4">
-                  <label htmlFor="cities">
+                  <label htmlFor="annualrevenue">
                     Annual Revenue<span className="text-red-600">*</span>
                   </label>
                   <Dropdown2
                     options={annualrevenue}
+                    isOpen={openDropdown === "annualrevenue"}
+                    onToggle={() => toggleDropdown("annualrevenue")}
                     onSelect={(value: string) =>
                       setBusinessDetails({
                         ...businessDetails,
@@ -369,11 +384,6 @@ const BusinessDetails = () => {
                 </div>
               </div>
             </div>
-            {error && (
-              <p className="text-md flex flex-col items-start self-start font-poppins font-medium text-red-600">
-                Fill All The Req&apos; Field&apos;s
-              </p>
-            )}
           </form>
         </div>
       </div>
