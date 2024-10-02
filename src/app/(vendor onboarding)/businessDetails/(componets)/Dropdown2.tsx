@@ -14,7 +14,13 @@ interface DropdownProps {
   placeholder?: string;
 }
 
-const Dropdown: React.FC<DropdownProps> = ({ options, onSelect, isOpen, onToggle, placeholder = "Select an option" }) => {
+const Dropdown: React.FC<DropdownProps> = ({
+  options,
+  onSelect,
+  isOpen,
+  onToggle,
+  placeholder = "Select an option",
+}) => {
   const [selectedOption, setSelectedOption] = useState<Option | null>(null);
 
   const handleSelect = (option: Option) => {
@@ -43,7 +49,9 @@ const Dropdown: React.FC<DropdownProps> = ({ options, onSelect, isOpen, onToggle
               <li
                 key={option.value}
                 className={`relative flex cursor-pointer select-none items-center gap-1 py-2 pl-3 pr-9 ${
-                  selectedOption?.value === option.value ? "text-black" : "text-gray-900"
+                  selectedOption?.value === option.value
+                    ? "text-black"
+                    : "text-gray-900"
                 }`}
                 onClick={() => handleSelect(option)}
               >
@@ -64,5 +72,3 @@ const Dropdown: React.FC<DropdownProps> = ({ options, onSelect, isOpen, onToggle
 };
 
 export default Dropdown;
-  
-

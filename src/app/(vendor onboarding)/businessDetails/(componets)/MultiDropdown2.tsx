@@ -25,14 +25,14 @@ const MultipleDropdown: React.FC<MultipleDropdownProps> = ({
 
   const handleSelect = (option: Option) => {
     const isSelected = selectedOptions.some(
-      (selected) => selected.value === option.value
+      (selected) => selected.value === option.value,
     );
 
     let updatedSelectedOptions;
     if (isSelected) {
       // Remove the option if it's already selected
       updatedSelectedOptions = selectedOptions.filter(
-        (selected) => selected.value !== option.value
+        (selected) => selected.value !== option.value,
       );
     } else {
       // Add the option if it's not selected
@@ -87,7 +87,9 @@ const MultipleDropdown: React.FC<MultipleDropdownProps> = ({
         className="flex w-full items-center justify-between rounded-xl border-2 bg-white p-5 py-3 text-left shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
         onClick={onToggle} // Use onToggle to handle the click
       >
-        <span className={`${selectedOptions.length ? "text-black" : "text-gray-400"}`}>
+        <span
+          className={`${selectedOptions.length ? "text-black" : "text-gray-400"}`}
+        >
           {renderSelectedText()}
         </span>
         <ChevronDown className="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
@@ -101,7 +103,7 @@ const MultipleDropdown: React.FC<MultipleDropdownProps> = ({
                 key={option.value}
                 className={`relative flex cursor-pointer select-none items-center gap-1 py-2 pl-3 pr-9 ${
                   selectedOptions.some(
-                    (selected) => selected.value === option.value
+                    (selected) => selected.value === option.value,
                   )
                     ? "text-black"
                     : "text-gray-900"
@@ -109,7 +111,7 @@ const MultipleDropdown: React.FC<MultipleDropdownProps> = ({
                 onClick={() => handleSelect(option)}
               >
                 {selectedOptions.some(
-                  (selected) => selected.value === option.value
+                  (selected) => selected.value === option.value,
                 ) ? (
                   <img src={"/selection/Choice_2.svg"} className="h-5 w-5" />
                 ) : (
@@ -126,4 +128,3 @@ const MultipleDropdown: React.FC<MultipleDropdownProps> = ({
 };
 
 export default MultipleDropdown;
-
