@@ -112,7 +112,6 @@ const Page1 = ({
             onClick={() => setCurrentPage((prevPage) => prevPage - 1)}
           />
 
-
           <h1 className="text-3xl font-semibold">Fill Out Following Details</h1>
         </div>
         <div className="mt-6 flex h-[60px] w-max space-x-2 rounded-full border-[1px] border-[hsl(0,0%,25%)] p-2">

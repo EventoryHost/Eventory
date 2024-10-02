@@ -455,26 +455,25 @@ function Preview({
         <div className="flex min-w-[45%] flex-col gap-2">
           <label className="text-base font-normal">Photos</label>
           <span className="text-sm font-bold">
-          {typeof formState.photos === "string" ? (
-                <div>{formState.photos}</div> // Handle string case
-              ) : Array.isArray(formState.photos) ? (
-                <FileDisplay files={formState.photos} /> // Handle File[] case
-              ) : (
-                <FileDisplay file={formState.photos} /> // Handle single File case
-              )}
-            
+            {typeof formState.photos === "string" ? (
+              <div>{formState.photos}</div> // Handle string case
+            ) : Array.isArray(formState.photos) ? (
+              <FileDisplay files={formState.photos} /> // Handle File[] case
+            ) : (
+              <FileDisplay file={formState.photos} /> // Handle single File case
+            )}
           </span>
         </div>
         <div className="flex min-w-[45%] flex-col gap-2">
           <label className="text-base font-normal">Videos</label>
           <span className="text-sm font-bold">
-          {typeof formState.videos === "string" ? (
-                <div>{formState.videos}</div> // Handle string case
-              ) : Array.isArray(formState.videos) ? (
-                <FileDisplay files={formState.videos} /> // Handle File[] case
-              ) : (
-                <FileDisplay file={formState.videos} /> // Handle single File case
-              )}
+            {typeof formState.videos === "string" ? (
+              <div>{formState.videos}</div> // Handle string case
+            ) : Array.isArray(formState.videos) ? (
+              <FileDisplay files={formState.videos} /> // Handle File[] case
+            ) : (
+              <FileDisplay file={formState.videos} /> // Handle single File case
+            )}
           </span>
         </div>
       </div>

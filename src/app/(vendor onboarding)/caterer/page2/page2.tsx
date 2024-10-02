@@ -169,7 +169,7 @@ const Page2 = ({
               setAddManually(!addManually);
               setMenu([]);
             }}
-            className={`cursor-pointer rounded-xl border-2  text-center  xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3 ${addManually?"border-2 border-[#2E3192] bg-white text-[#2E3192]" : "bg-[#2E3192] text-white"}`}
+            className={`cursor-pointer rounded-xl border-2 text-center xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3 ${addManually ? "border-2 border-[#2E3192] bg-white text-[#2E3192]" : "bg-[#2E3192] text-white"}`}
           >
             Add Manually
           </div>

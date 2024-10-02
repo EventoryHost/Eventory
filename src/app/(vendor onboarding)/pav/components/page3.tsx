@@ -225,7 +225,7 @@ const Page4 = ({
             </div>
             <div className="flex min-w-[57.5%] flex-col gap-5">
               <div className="flex flex-col gap-5">
-                <p className="text-base font-medium w-[70%]">
+                <p className="w-[70%] text-base font-medium">
                   Are You Available For Destination Events or Out Of Town
                   Bookings ?
                 </p>
@@ -282,7 +282,7 @@ const Page4 = ({
             <div className="flex w-max justify-between gap-4">
               {/* Advance Setup */}
               <div className="flex min-w-[66.4%] flex-col gap-5">
-                <p className="text-base font-medium ">
+                <p className="text-base font-medium">
                   Do You Provide Advance Set-Up?
                 </p>
                 <div className="flex gap-7">

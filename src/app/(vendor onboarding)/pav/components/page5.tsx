@@ -152,7 +152,6 @@ const Page6 = ({
                     placeholder="Enter your venue details"
                     onChange={(e) => setpolicy(e.target.value)}
                     className="w-[95%] rounded-xl border-2 border-gray-300 p-3"
-
                   ></textarea>
                 </div>
               </div>

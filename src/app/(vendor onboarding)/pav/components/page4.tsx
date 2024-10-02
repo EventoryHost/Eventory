@@ -81,7 +81,7 @@ const Page6: React.FC<PageProps> = ({
             />
             <h1 className="text-3xl font-semibold">Additional Details</h1>
           </div>
-          
+
           <div className="flex min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-row items-start justify-between gap-2">
               <div className="flex min-w-[40%] flex-col gap-4">
@@ -115,7 +115,9 @@ const Page6: React.FC<PageProps> = ({
             </div>
             <div className="flex min-w-full flex-row items-start justify-between gap-2">
               <div className="flex min-w-[40%] flex-col gap-4">
-                <label className="text-base font-medium" htmlFor="category">Or Continue Via</label>
+                <label className="text-base font-medium" htmlFor="category">
+                  Or Continue Via
+                </label>
                 <input
                   id="Photos"
                   type="text"
@@ -125,7 +127,9 @@ const Page6: React.FC<PageProps> = ({
                 />
               </div>
               <div className="flex min-w-[40%] flex-col gap-4">
-                <label className="text-base font-medium" htmlFor="category">Or Continue Via</label>
+                <label className="text-base font-medium" htmlFor="category">
+                  Or Continue Via
+                </label>
                 <input
                   id="Videos"
                   type="text"
@@ -140,7 +144,9 @@ const Page6: React.FC<PageProps> = ({
           <div className="flex min-w-full flex-col items-center gap-5 bg-white">
             <div className="flex min-w-full flex-row items-start justify-between gap-2">
               <div className="flex min-w-[40%] flex-col gap-4">
-                <label className="text-base font-medium" htmlFor="category">Client Testimonials </label>
+                <label className="text-base font-medium" htmlFor="category">
+                  Client Testimonials{" "}
+                </label>
                 <input
                   id="Client"
                   type="text"
@@ -150,7 +156,9 @@ const Page6: React.FC<PageProps> = ({
                 />
               </div>
               <div className="flex min-w-[40%] flex-col gap-4">
-                <label className="text-base font-medium" htmlFor="category">Awards/Recognition</label>
+                <label className="text-base font-medium" htmlFor="category">
+                  Awards/Recognition
+                </label>
                 <input
                   id="Awards"
                   type="text"
@@ -162,7 +170,9 @@ const Page6: React.FC<PageProps> = ({
             </div>
             <div className="flex min-w-full flex-row items-start justify-between gap-2">
               <div className="flex min-w-[40%] flex-col gap-4">
-                <label className="text-base font-medium" htmlFor="category">Instagram URL</label>
+                <label className="text-base font-medium" htmlFor="category">
+                  Instagram URL
+                </label>
                 <input
                   id="Instagram"
                   type="text"
@@ -172,7 +182,9 @@ const Page6: React.FC<PageProps> = ({
                 />
               </div>
               <div className="flex min-w-[40%] flex-col gap-4">
-                <label className="text-base font-medium" htmlFor="category">Website URL</label>
+                <label className="text-base font-medium" htmlFor="category">
+                  Website URL
+                </label>
                 <input
                   id="businessName"
                   type="text"

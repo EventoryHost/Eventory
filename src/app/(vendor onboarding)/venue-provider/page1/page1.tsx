@@ -73,7 +73,7 @@ const Page1: React.FC<Page1Props> = ({
   } = formState;
 
   return (
-    <div className="flex h-auto flex-col items-start gap-7 overflow-y-scroll scrollbar-hide rounded-xl bg-white p-3 w-full xs:justify-start md:p-6">
+    <div className="flex h-auto w-full flex-col items-start gap-7 overflow-y-scroll rounded-xl bg-white p-3 scrollbar-hide xs:justify-start md:p-6">
       <h1 className="text-3xl font-semibold">Basic Details</h1>
       <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
         <div className="flex min-w-[45%] flex-col gap-4">
@@ -100,7 +100,6 @@ const Page1: React.FC<Page1Props> = ({
             }}
             placeholder="Minimum guests required"
           />
-          
         </div>
       </div>
 

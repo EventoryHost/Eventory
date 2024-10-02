@@ -105,7 +105,6 @@ const RootPage = () => {
     websiteUrl: "",
     clientTestimonial: "",
 
-
     cancellationPolicy: "",
     termsAndConditions: "",
     furnitureAndDecorListUrl: "",
@@ -561,7 +560,7 @@ const RootPage = () => {
             </div>
           </div>
           <div className="m-auto flex h-[50%] w-[90%] flex-col items-start justify-center gap-9 px-3 md:px-6">
-          <h1 className="text-2xl font-bold md:text-4xl">
+            <h1 className="text-2xl font-bold md:text-4xl">
               {currentPage === 2 && "Fill out your Service details  "}
               {currentPage === 1 && "Fill the basic information"}
               {currentPage === 3 &&

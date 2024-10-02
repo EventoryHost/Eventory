@@ -17,19 +17,19 @@ const fields: {
   type: string;
   placeholder: string;
 }[] = [
-    {
-      id: "name",
-      label: "Full Name",
-      type: "text",
-      placeholder: "Enter your full name",
-    },
-    {
-      id: "mobile",
-      label: "Mobile No.",
-      type: "number",
-      placeholder: "Enter your mobile no.",
-    },
-  ];
+  {
+    id: "name",
+    label: "Full Name",
+    type: "text",
+    placeholder: "Enter your full name",
+  },
+  {
+    id: "mobile",
+    label: "Mobile No.",
+    type: "number",
+    placeholder: "Enter your mobile no.",
+  },
+];
 
 type basicDetails = {
   name: string;
@@ -150,9 +150,8 @@ const SignUp = () => {
   };
 
   return (
-    <div className="flex max-h-[100vh] lg:h-[calc(100vh-4.2rem)] w-full flex-col overflow-hidden lg:flex-row">
+    <div className="flex max-h-[100vh] w-full flex-col overflow-hidden lg:h-[calc(100vh-4.2rem)] lg:flex-row">
       <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:h-[91vh] md:min-w-[35%] lg:max-w-[30%]">
-      
         <div className="flex h-[90%] flex-col items-start justify-center gap-9 px-9 xs:pl-5 md:px-11 lg:p-8">
           <h1 className="text-3xl font-semibold md:text-4xl lg:text-5xl">
             Vendor Sign Up
@@ -171,7 +170,7 @@ const SignUp = () => {
         </div>
       </div>
       <div className="flex flex-1 flex-col items-center justify-center bg-[#F7F6F9] p-2 md:max-h-[100vh] md:p-[2.2rem]">
-        <div className="flex flex-col  rounded-xl bg-white p-5 xs:min-w-[90%] md:p-6">
+        <div className="flex flex-col rounded-xl bg-white p-5 xs:min-w-[90%] md:p-6">
           {loading ? (
             <Loadingeanimation width="w-56" />
           ) : (
@@ -180,14 +179,17 @@ const SignUp = () => {
               <div className="flex min-h-full min-w-full flex-col items-center gap-3">
                 <form onSubmit={handleSignUp}>
                   <div
-                    className={`mt-9  flex flex-col items-center justify-between xs:gap-7 md:flex-row`}
+                    className={`mt-9 flex flex-col items-center justify-between xs:gap-7 md:flex-row`}
                   >
                     {fields.map((field) => (
                       <div
                         key={field.id}
                         className="col-span-2 flex min-w-[45%] flex-col gap-2 md:col-span-1"
                       >
-                        <label htmlFor={field.id}>{field.label}<span className="text-red-600">*</span></label>
+                        <label htmlFor={field.id}>
+                          {field.label}
+                          <span className="text-red-600">*</span>
+                        </label>
                         <input
                           id={field.id}
                           type={field.type}
@@ -203,16 +205,18 @@ const SignUp = () => {
                   {formError && !isModalOpen && (
                     <div className="pl-4 text-red-500">{formError}321</div>
                   )}
-                  <div className="mt-5 p-2 flex w-full flex-col-reverse justify-between gap-3 self-start md:mt-0 md:flex-row md:items-center md:px-0">
-                    <div className="flex mt-5 gap-1 xs:text-md">
+                  <div className="mt-5 flex w-full flex-col-reverse justify-between gap-3 self-start p-2 md:mt-0 md:flex-row md:items-center md:px-0">
+                    <div className="xs:text-md mt-5 flex gap-1">
                       <h2>
                         By continueing. You agree with{" "}
-                        <span className="text-[#2E3192] underline">Privacy Policy</span>
+                        <span className="text-[#2E3192] underline">
+                          Privacy Policy
+                        </span>
                       </h2>
                     </div>
                   </div>
                   <div className="mb-9 mt-5">
-                    <p className="self-start text-gray-500 xs:mt-5 xs:text-md">
+                    <p className="xs:text-md self-start text-gray-500 xs:mt-5">
                       To verify it&apos;s you, we will send you an OTP to your
                       mobile number.
                     </p>
@@ -250,7 +254,7 @@ const SignUp = () => {
                       </svg>
                     </div>
                     <div className="flex min-w-[56vw] flex-col justify-between gap-9 md:flex-row">
-                      <div className="mt-5 text-gray-500 flex gap-2 xs:text-md">
+                      <div className="xs:text-md mt-5 flex gap-2 text-gray-500">
                         Already have an account?{" "}
                         <Link
                           href={"/login"}
@@ -272,7 +276,7 @@ const SignUp = () => {
             </>
           )}
         </div>
-      </div >
+      </div>
       {isModalOpen && (
         <OtpModal
           mobileNo={basicDetails.mobile}
@@ -285,7 +289,7 @@ const SignUp = () => {
           renderError={renderError}
         />
       )}
-    </div >
+    </div>
   );
 };
 

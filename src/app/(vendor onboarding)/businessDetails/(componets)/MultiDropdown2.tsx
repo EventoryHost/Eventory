@@ -84,7 +84,7 @@ const MultipleDropdown: React.FC<MultipleDropdownProps> = ({
     <div className="relative w-full">
       <button
         type="button"
-        className="flex w-full items-center justify-between rounded-xl border-2 bg-white p-3 py- text-left shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+        className="py- flex w-full items-center justify-between rounded-xl border-2 bg-white p-3 text-left shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
         onClick={onToggle} // Use onToggle to handle the click
       >
         <span

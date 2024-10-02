@@ -49,7 +49,7 @@ const Page6: React.FC<Page6Props> = ({
   };
 
   return (
-    <div className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide w-full">
+    <div className="flex h-full w-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide">
       <div className="flex min-w-full flex-col items-start justify-around gap-10">
         <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[100%] md:p-6">
           <div className="flex gap-9">
@@ -57,7 +57,7 @@ const Page6: React.FC<Page6Props> = ({
           </div>
           <div className="flex min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-row items-start justify-between gap-2">
-              <div className="flex  min-w-[45%] flex-col gap-4">
+              <div className="flex min-w-[45%] flex-col gap-4">
                 <label className="text-base font-medium" htmlFor="category">
                   Photos<span className="text-red-600">*</span>
                 </label>
@@ -72,7 +72,7 @@ const Page6: React.FC<Page6Props> = ({
                 />
               </div>
               <div className="flex min-w-[45%] flex-col gap-4">
-                <label  className="text-base font-medium" htmlFor="category">
+                <label className="text-base font-medium" htmlFor="category">
                   Videos<span className="text-red-600">*</span>
                 </label>
                 <p className="text-gray-500">MP4 MKV</p>
@@ -88,7 +88,9 @@ const Page6: React.FC<Page6Props> = ({
             </div>
             <div className="flex min-w-full flex-row items-start justify-between gap-2">
               <div className="flex min-w-[45%] flex-col gap-4">
-                <label  className="text-base font-medium" htmlFor="category">Or Continue Via</label>
+                <label className="text-base font-medium" htmlFor="category">
+                  Or Continue Via
+                </label>
                 <input
                   id="businessName"
                   type="text"
@@ -98,7 +100,9 @@ const Page6: React.FC<Page6Props> = ({
                 />
               </div>
               <div className="flex min-w-[45%] flex-col gap-4">
-                <label  className="text-base font-medium" htmlFor="category">Or Continue Via</label>
+                <label className="text-base font-medium" htmlFor="category">
+                  Or Continue Via
+                </label>
                 <input
                   id="businessName"
                   type="text"
@@ -113,7 +117,9 @@ const Page6: React.FC<Page6Props> = ({
           <div className="flex min-w-full flex-col items-center gap-5 bg-white">
             <div className="flex min-w-full flex-row items-start justify-between gap-2">
               <div className="flex min-w-[45%] flex-col gap-4">
-                <label  className="text-base font-medium" htmlFor="category">Client Testimonials </label>
+                <label className="text-base font-medium" htmlFor="category">
+                  Client Testimonials{" "}
+                </label>
                 <input
                   id="businessName"
                   type="text"
@@ -125,7 +131,9 @@ const Page6: React.FC<Page6Props> = ({
                 />
               </div>
               <div className="flex min-w-[45%] flex-col gap-4">
-                <label  className="text-base font-medium" htmlFor="category">Awards/Recognition</label>
+                <label className="text-base font-medium" htmlFor="category">
+                  Awards/Recognition
+                </label>
                 <input
                   id="businessName"
                   type="text"
@@ -139,7 +147,9 @@ const Page6: React.FC<Page6Props> = ({
             </div>
             <div className="flex min-w-full flex-row items-start justify-between gap-2">
               <div className="flex min-w-[45%] flex-col gap-4">
-                <label  className="text-base font-medium" htmlFor="category">Instagram URL</label>
+                <label className="text-base font-medium" htmlFor="category">
+                  Instagram URL
+                </label>
                 <input
                   id="businessName"
                   type="text"
@@ -151,7 +161,9 @@ const Page6: React.FC<Page6Props> = ({
                 />
               </div>
               <div className="flex min-w-[45%] flex-col gap-4">
-                <label  className="text-base font-medium" htmlFor="category">Website URL</label>
+                <label className="text-base font-medium" htmlFor="category">
+                  Website URL
+                </label>
                 <input
                   id="businessName"
                   type="text"
@@ -165,7 +177,7 @@ const Page6: React.FC<Page6Props> = ({
             </div>
             <div className="flex min-w-full flex-row items-start justify-start gap-2">
               <div className="flex min-w-[45%] flex-col gap-4">
-                <label  className="text-base font-medium" htmlFor="category">
+                <label className="text-base font-medium" htmlFor="category">
                   Advanced Booking Period<span className="text-red-600">*</span>
                 </label>
                 <Dropdown
@@ -178,8 +190,8 @@ const Page6: React.FC<Page6Props> = ({
               </div>
             </div>
             <div className="flex min-w-full flex-row items-center justify-between gap-4">
-              <div className="flex max-w-[45%] flex-col gap-6 ">
-                <label  className="text-base font-medium" htmlFor="businessName">
+              <div className="flex max-w-[45%] flex-col gap-6">
+                <label className="text-base font-medium" htmlFor="businessName">
                   Do you offer revisions to the initail theme Proposal?
                 </label>
                 <div className="flex flex-row items-center justify-start gap-4">
@@ -206,8 +218,8 @@ const Page6: React.FC<Page6Props> = ({
                   <p>No</p>
                 </div>
               </div>
-              <div className="flex max-w-[45%] flex-col gap-6 ">
-                <label  className="text-base font-medium" htmlFor="businessName">
+              <div className="flex max-w-[45%] flex-col gap-6">
+                <label className="text-base font-medium" htmlFor="businessName">
                   Do you Provide a written theme proposal after consultaion?
                 </label>
                 <div className="flex flex-row items-center justify-start gap-4">

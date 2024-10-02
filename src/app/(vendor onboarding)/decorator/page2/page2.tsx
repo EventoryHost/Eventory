@@ -54,7 +54,7 @@ const Page2: React.FC<Page2Props> = ({
   } = formState;
 
   return (
-    <div className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide ">
+    <div className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide">
       <div className="flex min-w-full flex-col items-start justify-around gap-10">
         <div className="flex flex-col gap-9 rounded-xl bg-white p-3 xs:min-w-[100%] md:p-6">
           <div className="flex items-center justify-start gap-5">
@@ -128,7 +128,10 @@ const Page2: React.FC<Page2Props> = ({
             <div className="flex min-w-full flex-row items-start justify-between gap-6">
               <div className="flex flex-col gap-4 lg:max-w-[60%]">
                 <div className="flex min-w-[40%] flex-col gap-6">
-                  <label className="text-base font-medium" htmlFor="businessName">
+                  <label
+                    className="text-base font-medium"
+                    htmlFor="businessName"
+                  >
                     Do you assist with creating color schemes ?
                   </label>
                   <div className="flex flex-row items-center justify-start gap-4">
@@ -150,7 +153,10 @@ const Page2: React.FC<Page2Props> = ({
                   </div>
                 </div>
                 <div className="flex min-w-[40%] flex-col gap-6">
-                  <label className="text-base font-medium" htmlFor="businessName">
+                  <label
+                    className="text-base font-medium"
+                    htmlFor="businessName"
+                  >
                     Do you offer customization of themes ?
                   </label>
                   <div className="flex flex-row items-center justify-start gap-4">
@@ -179,7 +185,9 @@ const Page2: React.FC<Page2Props> = ({
                 </div>
               </div>
               <div className="flex min-w-[50%] flex-col gap-5">
-                <label className="text-base font-medium" htmlFor="category">Custom Design Process</label>
+                <label className="text-base font-medium" htmlFor="category">
+                  Custom Design Process
+                </label>
                 <textarea
                   id="businessName"
                   rows={5}

@@ -78,7 +78,8 @@ const Login = () => {
     // console.log("Login deets: ", loginDetails);
     // console.log("inp: ", inputOtp);
     setloading(true);
-    try { //  mobile, code, session, name
+    try {
+      //  mobile, code, session, name
       const response = await auth.verifyLoginOtp(
         loginDetails.mobile,
         inputOtp,
@@ -135,13 +136,13 @@ const Login = () => {
     type: string;
     placeholder: string;
   }[] = [
-      {
-        id: "mobile",
-        label: "Mobile No.",
-        type: "number",
-        placeholder: "Enter your mobile no.",
-      },
-    ];
+    {
+      id: "mobile",
+      label: "Mobile No.",
+      type: "number",
+      placeholder: "Enter your mobile no.",
+    },
+  ];
 
   return (
     <div className="flex min-h-[88vh] w-full flex-col overflow-hidden lg:flex-row">
@@ -194,13 +195,13 @@ const Login = () => {
                     <div className="pl-5 text-red-500">{formError}</div>
                   )}
                   <div className="mb-9 mt-5">
-                    <p className="self-start text-gray-500 xs:mt-5 xs:text-md">
+                    <p className="xs:text-md self-start text-gray-500 xs:mt-5">
                       To verify it&apos;s you, we will send you an OTP to your
                       mobile number.
                     </p>
                   </div>
                   <div className="h-[1px] w-[80%] self-start bg-gray-300" />
-                  <div className="flex mt-5 flex-col items-start self-start">
+                  <div className="mt-5 flex flex-col items-start self-start">
                     or continue with
                     <div
                       className="google mt-5 flex cursor-pointer gap-5"
@@ -232,7 +233,7 @@ const Login = () => {
                       </svg>
                     </div>
                     <div className="flex min-w-[56vw] flex-col justify-between gap-9 md:flex-row">
-                      <div className="mt-5 text-gray-500 flex gap-2 xs:text-md">
+                      <div className="xs:text-md mt-5 flex gap-2 text-gray-500">
                         Don&apos;t have an account?{" "}
                         <Link
                           href={"/signup"}

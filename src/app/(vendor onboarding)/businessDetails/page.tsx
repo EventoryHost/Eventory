@@ -157,8 +157,8 @@ const BusinessDetails = () => {
         userId: string;
         email: string;
       };
-      console.log(userId)
-      console.log(email)
+      console.log(userId);
+      console.log(email);
       // Submit business details to the backend
       await addBusinessDetails(userId, newDetails);
       // Redirect to the category page after successful submission
@@ -167,7 +167,9 @@ const BusinessDetails = () => {
       toast({
         variant: "destructive",
         title: error ? "Error" : "Something went wrong.",
-        description: String(error) || "There was a problem with your request. Check internet",
+        description:
+          String(error) ||
+          "There was a problem with your request. Check internet",
       });
     } finally {
       setloading(false);
@@ -182,8 +184,8 @@ const BusinessDetails = () => {
   };
 
   return (
-    <div className="flex h-max lg:h-[calc(100vh-4.2rem)] w-full flex-col overflow-y-scroll lg:flex-row">
-      <div className="flex h-max lg:h-[calc(100vh-4.2rem)] flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[35%] lg:max-w-[30%]">
+    <div className="flex h-max w-full flex-col overflow-y-scroll lg:h-[calc(100vh-4.2rem)] lg:flex-row">
+      <div className="flex h-max flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[35%] lg:h-[calc(100vh-4.2rem)] lg:max-w-[30%]">
         <div className="flex h-[100%] flex-col items-center justify-center gap-9 px-9 xs:pl-5 md:px-11 lg:p-8">
           <h1 className="text-3xl font-semibold md:text-4xl lg:text-5xl">
             Tell us about your business
@@ -201,7 +203,7 @@ const BusinessDetails = () => {
           />
         </div>
       </div>
-      <div className="scroll-touch flex h-max lg:h-[calc(100vh-4.2rem)] min-w-[65%] flex-col items-center justify-start overflow-y-scroll bg-[#F7F6F9] p-2 scrollbar-hide md:p-[1rem]">
+      <div className="scroll-touch flex h-max min-w-[65%] flex-col items-center justify-start overflow-y-scroll bg-[#F7F6F9] p-2 scrollbar-hide md:p-[1rem] lg:h-[calc(100vh-4.2rem)]">
         <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
           <h1 className="text-3xl font-semibold">Business Details</h1>
           <form onSubmit={handleBizSubmit}>
@@ -304,7 +306,7 @@ const BusinessDetails = () => {
                       refs.current.pinCode = el;
                     }}
                     required
-                     placeholder="Pin-Code"
+                    placeholder="Pin-Code"
                   />
                 </div>
               </div>

@@ -159,11 +159,11 @@ export function OperatingHoursDropdown({
       {/* Dropdown menu */}
       {open && (
         <div className="absolute z-10 mt-2 w-full rounded-md border border-gray-300 bg-white p-4">
-          <div className="flex gap-10 ">
+          <div className="flex gap-10">
             {/* Start Time Picker */}
             <div className="relative flex-1">
               <label className="mb-2 block font-semibold">Start Time</label>
-              <div className="relative ">
+              <div className="relative">
                 <AlarmClockIcon className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 transform text-gray-400" />
                 <select
                   value={startValue}
@@ -178,13 +178,12 @@ export function OperatingHoursDropdown({
                       },
                     });
                   }}
-                  className="w-full appearance-none rounded-md border border-gray-300 py-2 px-4 text-center text-sm text-gray-400"
+                  className="w-full appearance-none rounded-md border border-gray-300 px-4 py-2 text-center text-sm text-gray-400"
                 >
                   <option value="">HH:MM</option>
                   {timeOptions.map((option) => (
-                    <option key={option.value} value={option.value} >
+                    <option key={option.value} value={option.value}>
                       {option.label}
-                      
                     </option>
                   ))}
                 </select>
@@ -209,7 +208,7 @@ export function OperatingHoursDropdown({
                       },
                     });
                   }}
-                  className="text-gray-400 w-full appearance-none rounded-md border border-gray-300 py-2 px-4 text-center text-sm"
+                  className="w-full appearance-none rounded-md border border-gray-300 px-4 py-2 text-center text-sm text-gray-400"
                 >
                   <option value="">HH:MM</option>
                   {timeOptions.map((option) => (
