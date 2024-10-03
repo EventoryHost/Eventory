@@ -13,8 +13,9 @@ type loginDetails = {
   otp?: string;
   session?: string;
 };
-
+import { useToast } from "@/components/hooks/use-toast";
 const Login = () => {
+  const { toast } = useToast();
   const [Loading, setloading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loginDetails, setLoginDetails] = useState<loginDetails>(
@@ -59,6 +60,13 @@ const Login = () => {
       }
     } catch (error) {
       console.log(error);
+      toast({
+        variant: "destructive",
+        title: error ? "Error" : "Something went wrong.",
+        description:
+          String(error) ||
+          "There was a problem with your request. Check internet",
+      });
       setFormError("Something went wrong");
     } finally {
       setloading(false);
@@ -85,11 +93,11 @@ const Login = () => {
         inputOtp,
         loginDetails.session!,
       );
-      console.log(response?.data)
-      if (response && response.data.user) {
+      console.log(response?.data.data.user)
+      if (response && response.data.data.user) {
         // Generate JWT token with an expiration time
         const token = jwt.sign(
-          response.data.user,
+          response.data.data.user,
           process.env.NEXT_PUBLIC_JWT_SECRET as string,
         );
         localStorage.setItem("token", token);
@@ -113,13 +121,31 @@ const Login = () => {
         }
 
         console.log("OTP verified successfully");
+        toast({
+          title: "Logged-In Successfully",
+          description: `Logged-In Successfully`,
+        });
+        toggleModal();
         // Router.push("/");
       } else {
-        
+        toast({
+          variant: "destructive",
+          title: response?.data?.error ? "Error" : "Something went wrong.",
+          description:
+            String(response?.data?.error) ||
+            "There was a problem with your request. Check internet",
+        });
         console.error(`OTP verification failed${response?.data}`);
       }
     } catch (error) {
       console.log(error);
+      toast({
+        variant: "destructive",
+        title: error ? "Error" : "Something went wrong.",
+        description:
+          String(error) ||
+          "There was a problem with your request. Check internet",
+      });
       setFormError(`OTP verification failed ${String(error) || "Error"}`);
     } finally {
       setloading(false);
@@ -167,7 +193,9 @@ const Login = () => {
       <div className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] p-2 md:p-[2.2rem]">
         <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
           {Loading ? (
-            <Loadingeanimation width="w-56" />
+            <div className="my-14">
+              <Loadingeanimation width="w-56 " />
+            </div>
           ) : (
             <>
               <div className="flex min-h-full min-w-full flex-col items-center gap-5">

@@ -38,6 +38,7 @@ type basicDetails = {
 };
 
 const SignUp = () => {
+  const { toast  : toast2} = useToast();
   const [loading, setloading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [basicDetails, setBasicDetails] = useState<basicDetails>(
@@ -127,6 +128,10 @@ const SignUp = () => {
         localStorage.setItem("token", token);
         console.log("OTP verification successful");
         toast.success("OTP verification successful");
+        toast2({
+          title: "Redirecting",
+          description: `Signup Successfull Redirecting To BusinessDetails`,
+        });
         router.push("/businessDetails");
       } else {
         console.error("OTP verification failed or response is invalid");
@@ -172,7 +177,9 @@ const SignUp = () => {
       <div className="flex flex-1 flex-col items-center justify-center bg-[#F7F6F9] p-2 md:max-h-[100vh] md:p-[2.2rem]">
         <div className="flex flex-col rounded-xl bg-white p-5 xs:min-w-[90%] md:p-6">
           {loading ? (
-            <Loadingeanimation width="w-56" />
+            <div className="my-24">
+              <Loadingeanimation width="w-56 " />
+            </div> 
           ) : (
             <>
               <h1 className="text-3xl font-semibold">Basic Details</h1>
