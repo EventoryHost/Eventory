@@ -97,11 +97,11 @@ const BusinessDetails = () => {
     const token = urlParams.get("session_token");
     if (token) {
       localStorage.setItem("token", token);
-      const { userId, email } = jwt.decode(token) as {
-        userId: string;
+      const { id, email } = jwt.decode(token) as {
+        id: string;
         email: string;
       };
-      console.log("User ID:", userId);
+      console.log("User ID:", id);
       console.log("Email:", email);
     }
   }, []);
@@ -153,14 +153,15 @@ const BusinessDetails = () => {
       // console.log("Business Details:", newDetails);
       // Retrieve user information from token
       const token = localStorage.getItem("token")!;
-      const { userId, email } = jwt.decode(token) as {
-        userId: string;
+      const { id, email } = jwt.decode(token) as {
+        id: string;
         email: string;
       };
-      console.log(userId);
+      console.log(token);
+      console.log(id);
       console.log(email);
       // Submit business details to the backend
-      await addBusinessDetails(userId, newDetails);
+      await addBusinessDetails(id, newDetails);
       // Redirect to the category page after successful submission
       router.push(`/${businessDetails.category}`);
     } catch (error) {
