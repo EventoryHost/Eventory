@@ -60,9 +60,9 @@ const Page6: React.FC<Page6Props> = ({
   insurancePolicy,
 }) => {
   return (
-    <div className="scroll-touch flex w-full flex-col items-start gap-7 overflow-y-scroll rounded-xl bg-white p-3 scrollbar-hide xs:justify-start">
-      <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[100%] md:p-3">
-        <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
+    <div className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide xs:w-[95%] xs:min-w-[90%]">
+      <div className="flex min-w-full flex-col items-start justify-around gap-10">
+        <div className="flex w-[100%] flex-col gap-7 rounded-xl bg-white p-4 xs:min-w-[90%] md:p-6">
           <h1 className="text-3xl font-bold">Venue Providers</h1>
 
           <div className="flex w-full items-center justify-between rounded-xl bg-[#F0EFFC] p-2 pl-4 text-xl font-semibold">
