@@ -153,8 +153,8 @@ const Page1: React.FC<Page1Props> = ({
                 <path
                   d="M10.3233 10L6.35314 13.9702C5.88229 14.441 5.88229 15.2044 6.35314 15.6753L10.3233 19.6455M6.70627 14.8227L23.5858 14.8227"
                   stroke="#2B3F6C"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
                 />
               </svg>
               <h1 className="text-3xl font-semibold"> Basic Details</h1>
