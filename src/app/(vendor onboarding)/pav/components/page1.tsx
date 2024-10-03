@@ -6,15 +6,16 @@ import Group from "./(page1)/group";
 import Organization from "./(page1)/organization";
 import { pavtypes } from "@/types/types";
 import Appetizers from "../../(components)/Appetizers";
+import Dropdown from "../../(components)/Dropdown";
 
 type Page1Props = {
   fullName: string;
   setFullName: (fullName: string) => void;
   description: string;
   setDescription: (description: string) => void;
-  eventsize: number;
+  eventsize: string;
   events: string[];
-  setEventsize: (eventsize: number) => void;
+  setEventsize: (eventsize: string) => void;
   setEvent: React.Dispatch<React.SetStateAction<string[]>>;
   handleContinue: () => void;
 };
@@ -27,6 +28,12 @@ const eventslist = [
   "Wedding Events",
   "Seasonal Parties",
   "Others",
+];
+const eventOptions = [
+  "Less than 50",
+  "50-100 persons",
+  "100-300 persons",
+  "More than 300 ",
 ];
 const Page1 = ({
   fullName,
@@ -46,14 +53,14 @@ const Page1 = ({
           <h1 className="text-3xl font-semibold"> Basic Details</h1>
         </div>
         <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
-          <div className="flex min-w-[40%] flex-col gap-4">
+          <div className="flex min-w-[45%] max-w-[45%] flex-col gap-4">
             <label className="text-base font-medium" htmlFor="businessName">
               Full Name(POC)<span className="text-red-500">*</span>
             </label>
             <input
               id="Full Name"
               type="text"
-              className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
+              className="w-full rounded-xl border-2 bg-white p-5 h-16 py-3 outline-none"
               placeholder="Enter your full name"
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
@@ -61,24 +68,22 @@ const Page1 = ({
             />
           </div>
 
-          <div className="flex min-w-[40%] flex-col gap-4">
+          <div className="flex min-w-[45%] max-w-[45%] flex-col gap-4">
             <label className="text-base font-medium" htmlFor="businessName">
               Event size<span className="text-red-500">*</span>
             </label>
-            <input
-              id="eventsize"
-              type="number"
-              className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
-              placeholder="Select Your Event size"
-              value={eventsize}
-              onChange={(e) => setEventsize(parseInt(e.target.value))}
-              required
+            <Dropdown
+              options={eventOptions}
+              onSelect={(option: string) => {
+                setEventsize(option);
+              }}
+              placeholder="Select event size you cover"
             />
           </div>
         </div>
 
         <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
-          <div className="flex min-w-[40%] flex-col gap-4">
+          <div className="flex min-w-[45%] max-w-[45%] flex-col gap-4">
             <label className="text-base font-medium" htmlFor="businessName">
               Description about your background
             </label>

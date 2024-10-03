@@ -7,9 +7,9 @@ type PagePreviewProps = {
   setFullName: (fullName: string) => void;
   description: string;
   setDescription: (description: string) => void;
-  eventsize: number;
+  eventsize: string;
   events: string[];
-  setEventsize: (eventsize: number) => void;
+  setEventsize: (eventsize: string) => void;
   setEvent: React.Dispatch<React.SetStateAction<string[]>>;
   photoSelectedstyles: string[];
   setphotoSelectedstyles: React.Dispatch<React.SetStateAction<string[]>>;

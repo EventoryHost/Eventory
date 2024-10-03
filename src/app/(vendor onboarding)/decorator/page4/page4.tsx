@@ -2,6 +2,7 @@
 
 import FileInput from "@/components/fileInput";
 import Dropdown from "../../(components)/Dropdown";
+import { ArrowLeft } from "lucide-react";
 
 interface FormState {
   photos: string | File | File[];
@@ -52,9 +53,15 @@ const Page6: React.FC<Page6Props> = ({
     <div className="flex h-full w-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide">
       <div className="flex min-w-full flex-col items-start justify-around gap-10">
         <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[100%] md:p-6">
-          <div className="flex gap-9">
+          <div className="flex items-center justify-start gap-5">
+            <ArrowLeft
+              className="ml-2 mr-1 h-6 w-6 cursor-pointer text-[#2E3192]"
+              aria-hidden="true"
+              onClick={() => setCurrentPage((prevPage) => prevPage - 1)}
+            />
             <h1 className="text-3xl font-semibold">Additional Details</h1>
           </div>
+         
           <div className="flex min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-row items-start justify-between gap-2">
               <div className="flex min-w-[45%] flex-col gap-4">

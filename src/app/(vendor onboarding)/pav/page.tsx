@@ -19,7 +19,7 @@ const Page = () => {
 
   const [name, setFullName] = useState("");
   const [description, setDescription] = useState<string>("");
-  const [eventsize, setEventsize] = useState<number>(0);
+  const [eventsize, setEventsize] = useState<string>("");
   const [events, setEvents] = useState<string[]>([]);
 
   //states for page2
