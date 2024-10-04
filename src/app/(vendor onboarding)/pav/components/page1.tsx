@@ -60,7 +60,7 @@ const Page1 = ({
             <input
               id="Full Name"
               type="text"
-              className="w-full rounded-xl border-2 bg-white p-5 h-16 py-3 outline-none"
+              className="h-16 w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
               placeholder="Enter your full name"
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}

@@ -70,7 +70,7 @@ const Agreement = ({ setCurrentPage }: PageProps) => {
   }, []);
 
   return (
-    <div className="flex lg:h-[calc(100vh-10.2rem)]  w-screen justify-center bg-[#F7F6F9]">
+    <div className="flex w-screen justify-center bg-[#F7F6F9] lg:h-[calc(100vh-10.2rem)]">
       <div className="w-[68.75rem] rounded-2xl bg-[#ffffff] pl-4 pr-8 pt-8">
         <div>
           <h2 className="mb-2 mt-2 font-poppins text-2xl font-bold text-[rgba(46,49,146,1)]">
@@ -80,8 +80,8 @@ const Agreement = ({ setCurrentPage }: PageProps) => {
             Your Agreement
           </h4>
         </div>
-        <div className="lg:h-[calc(100vh-26.2rem)] w-[66.06rem]">
-          <div className="scrollbar-rounded-xl lg:h-[calc(100vh-26.2rem)] absolute w-[66.06rem] overflow-y-scroll pl-12 pr-6 text-left text-gray-500">
+        <div className="w-[66.06rem] lg:h-[calc(100vh-26.2rem)]">
+          <div className="scrollbar-rounded-xl absolute w-[66.06rem] overflow-y-scroll pl-12 pr-6 text-left text-gray-500 lg:h-[calc(100vh-26.2rem)]">
             <p>
               This Vendor Agreement (&quot;Agreement&quot;) is entered into as
               of {new Date().toLocaleDateString()}
@@ -395,14 +395,14 @@ const Agreement = ({ setCurrentPage }: PageProps) => {
           </button>
           <button
             onClick={() => {
-              checked && (signature === formData.fullName)
+              checked && signature === formData.fullName
                 ? setCurrentPage((prevPage) => prevPage + 1)
                 : toast({
-                  variant: "destructive",
-                  title: "Pls Complete Following Staff",
-                  description:
-                    "Pls Check the Checkmark And Write Your Signature At The Bottem Of Agreement",
-                });
+                    variant: "destructive",
+                    title: "Pls Complete Following Staff",
+                    description:
+                      "Pls Check the Checkmark And Write Your Signature At The Bottem Of Agreement",
+                  });
             }}
             className="flex h-[48px] w-[164px] items-center justify-center rounded-2xl bg-[rgba(46,49,146,1)] p-4 font-poppins text-white"
           >

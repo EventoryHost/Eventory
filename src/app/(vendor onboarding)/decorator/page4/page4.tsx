@@ -61,7 +61,7 @@ const Page6: React.FC<Page6Props> = ({
             />
             <h1 className="text-3xl font-semibold">Additional Details</h1>
           </div>
-         
+
           <div className="flex min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-row items-start justify-between gap-2">
               <div className="flex min-w-[45%] flex-col gap-4">
