@@ -65,8 +65,9 @@ const Page2: React.FC<Page2Props> = ({
                 onClick={() => setCurrentPage((prevPage) => prevPage - 1)}
               />
 
-              <h1 className="text-3xl font-semibold">Theme Offered<span className="text-red-600">*</span></h1>
-              
+              <h1 className="text-3xl font-semibold">
+                Theme Offered<span className="text-red-600">*</span>
+              </h1>
             </div>
           </div>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">

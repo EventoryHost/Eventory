@@ -385,7 +385,9 @@ const VenueForm: React.FC = () => {
         <div className="flex flex-col items-start justify-between bg-[#FFFFFF] pt-4 xs:gap-7 md:min-w-[30%] lg:max-w-[30%]">
           <div className="m-auto flex w-[90%] flex-col justify-center">
             <div className="flex flex-col gap-1 px-3 lg:mt-[2rem]">
-              <span className="text-lg font-semibold">Step {currentPage} of 5</span>
+              <span className="text-lg font-semibold">
+                Step {currentPage} of 5
+              </span>
               <div className="flex gap-2">
                 <button
                   className={`flex h-2 w-10 items-center justify-center rounded-full ${

@@ -48,7 +48,9 @@ const Page3: React.FC<Page3Props> = ({
               aria-hidden="true"
               onClick={() => setCurrentPage((prevPage) => prevPage - 1)}
             />
-            <h1 className="text-3xl font-semibold">Theme Elements<span className="text-red-600">*</span></h1>
+            <h1 className="text-3xl font-semibold">
+              Theme Elements<span className="text-red-600">*</span>
+            </h1>
           </div>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">

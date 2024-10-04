@@ -38,7 +38,7 @@ type basicDetails = {
 };
 
 const SignUp = () => {
-  const { toast  : toast2} = useToast();
+  const { toast: toast2 } = useToast();
   const [loading, setloading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [basicDetails, setBasicDetails] = useState<basicDetails>(
@@ -179,7 +179,7 @@ const SignUp = () => {
           {loading ? (
             <div className="my-24">
               <Loadingeanimation width="w-56 " />
-            </div> 
+            </div>
           ) : (
             <>
               <h1 className="text-3xl font-semibold">Basic Details</h1>

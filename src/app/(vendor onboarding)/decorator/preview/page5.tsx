@@ -76,7 +76,6 @@ function Preview({
               1. Basic Details
               <div className="align-center flex justify-center p-1">
                 <button onClick={() => setCurrentPage(1)}>
-
                   <EditIcon size={28} />
                 </button>
               </div>
@@ -159,7 +158,6 @@ function Preview({
               2. Themes Offered
               <div className="align-center flex justify-center p-1">
                 <button onClick={() => setCurrentPage(2)}>
-
                   <EditIcon size={28} />
                 </button>
               </div>
@@ -230,7 +228,6 @@ function Preview({
               3. Themes Element
               <div className="align-center flex justify-center p-1">
                 <button onClick={() => setCurrentPage(3)}>
-
                   <EditIcon size={28} />
                 </button>
               </div>
@@ -276,7 +273,6 @@ function Preview({
               4. Consultation Details
               <div className="align-center flex justify-center p-1">
                 <button onClick={() => setCurrentPage(4)}>
-
                   <EditIcon size={28} />
                 </button>
               </div>
@@ -381,7 +377,6 @@ function Preview({
               5. Policies
               <div className="align-center flex justify-center p-1">
                 <button onClick={() => setCurrentPage(5)}>
-
                   <EditIcon size={28} />
                 </button>
               </div>

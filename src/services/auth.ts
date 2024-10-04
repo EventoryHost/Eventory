@@ -95,7 +95,7 @@ const login = async (mobile: String) => {
   } catch (error) {
     if (axios.isAxiosError(error)) {
       if (error.response) {
-        throw new Error(error.response.data.error	 || "Something went wrong");
+        throw new Error(error.response.data.error || "Something went wrong");
       } else {
         throw new Error(error.message);
       }

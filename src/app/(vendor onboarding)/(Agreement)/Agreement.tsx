@@ -403,14 +403,14 @@ const Agreement = ({ setCurrentPage }: PageProps) => {
           </button>
           <button
             onClick={() => {
-              checked && (signature === formData.fullName)
+              checked && signature === formData.fullName
                 ? setCurrentPage((prevPage) => prevPage + 1)
                 : toast({
-                  variant: "destructive",
-                  title: "Pls Complete Following Staff",
-                  description:
-                    "Pls Check the Checkmark And Write Your Signature At The Bottem Of Agreement",
-                });
+                    variant: "destructive",
+                    title: "Pls Complete Following Staff",
+                    description:
+                      "Pls Check the Checkmark And Write Your Signature At The Bottem Of Agreement",
+                  });
             }}
             className="flex h-[48px] w-[164px] items-center justify-center rounded-2xl bg-[rgba(46,49,146,1)] p-4 font-poppins text-white"
           >

@@ -52,11 +52,11 @@ const Login = () => {
       if (res && res.data && res.data.data.Session) {
         setLoginDetails((prevDetails) => ({
           ...prevDetails,
-          mobile: mobileNumber,  // Update the mobile in state
-          session: res.data.data.Session,  // Set the session
+          mobile: mobileNumber, // Update the mobile in state
+          session: res.data.data.Session, // Set the session
         }));
 
-        toggleModal();  // Show the OTP modal
+        toggleModal(); // Show the OTP modal
       }
     } catch (error) {
       console.log(error);
@@ -89,11 +89,11 @@ const Login = () => {
     console.log(mobileNumber);
     try {
       const response = await auth.verifyLoginOtp(
-        mobileNumber,  // use mobile from loginDetails
+        mobileNumber, // use mobile from loginDetails
         inputOtp,
         loginDetails.session!,
       );
-      console.log(response?.data.data.user)
+      console.log(response?.data.data.user);
       if (response && response.data.data.user) {
         // Generate JWT token with an expiration time
         const token = jwt.sign(
@@ -162,13 +162,13 @@ const Login = () => {
     type: string;
     placeholder: string;
   }[] = [
-      {
-        id: "mobile",
-        label: "Mobile No.",
-        type: "number",
-        placeholder: "Enter your mobile no.",
-      },
-    ];
+    {
+      id: "mobile",
+      label: "Mobile No.",
+      type: "number",
+      placeholder: "Enter your mobile no.",
+    },
+  ];
 
   return (
     <div className="flex min-h-[88vh] w-full flex-col overflow-hidden lg:flex-row">

@@ -160,13 +160,10 @@ function Preview({
             1. Basic Details
             <div className="align-center flex justify-center p-1">
               <button onClick={() => setCurrentPage(1)}>
-
                 <EditIcon size={28} />
               </button>
             </div>
           </div>
-
-
 
           <div className="mt-4 flex flex-col justify-start gap-6">
             <div className="flex items-start justify-between">
@@ -206,12 +203,10 @@ function Preview({
             2. Photography Details
             <div className="align-center flex justify-center p-1">
               <button onClick={() => setCurrentPage(2)}>
-
                 <EditIcon size={28} />
               </button>
             </div>
           </div>
-
 
           <div className="w-full">
             <div className="my-4 flex flex-col gap-6">
@@ -255,13 +250,10 @@ function Preview({
             3. Videography Details
             <div className="align-center flex justify-center p-1">
               <button onClick={() => setCurrentPage(3)}>
-
                 <EditIcon size={28} />
               </button>
             </div>
           </div>
-
-
 
           <div className="w-full">
             <div className="my-4 flex flex-col gap-6">
@@ -305,12 +297,10 @@ function Preview({
             4. Consultation Details
             <div className="align-center flex justify-center p-1">
               <button onClick={() => setCurrentPage(4)}>
-
                 <EditIcon size={28} />
               </button>
             </div>
           </div>
-
 
           <div className="mt-4 flex flex-col justify-start gap-6">
             <div className="flex items-start justify-between">
@@ -391,12 +381,10 @@ function Preview({
             5. Additional Details
             <div className="align-center flex justify-center p-1">
               <button onClick={() => setCurrentPage(5)}>
-
                 <EditIcon size={28} />
               </button>
             </div>
           </div>
-
 
           <div className="flex gap-6">
             <div className="mt-6 flex min-w-[50%] max-w-[50%] flex-col gap-1">
@@ -459,12 +447,10 @@ function Preview({
             6. Policies
             <div className="align-center flex justify-center p-1">
               <button onClick={() => setCurrentPage(6)}>
-
                 <EditIcon size={28} />
               </button>
             </div>
           </div>
-
 
           <div className="w-full">
             <div className="flex gap-6">
