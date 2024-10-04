@@ -75,7 +75,7 @@ const Page3: React.FC<page3Props> = ({
         </label>
 
         <div className="flex min-h-full min-w-full flex-col items-center">
-          <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+          <div className="flex min-w-full flex-col items-center my-4 justify-between gap-5 md:flex-row">
             <Appetizers
               field={"additionalServices"}
               appetizers={_additionalServices}
@@ -83,7 +83,7 @@ const Page3: React.FC<page3Props> = ({
               setSelectedAppetizers={setSelectedAdditionalServices}
             />
           </div>
-          <div className="items-strech flex flex-row gap-7 self-end">
+          <div className="items-strech flex  flex-row gap-7 self-end">
             <button
               className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
               onClick={handleSubmit}
