@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import ReactMarkdown from 'react-markdown';
+import ReactMarkdown from "react-markdown";
 const privacypoicy = `
 
 **PRIVACY POLICY**  
@@ -181,26 +181,25 @@ New Delhi, Delhi 110001
 India  
 
  
-`
+`;
 
 const privacy = () => {
-
-    return (
-        <div className="flex py-9 w-screen justify-center bg-[#F7F6F9]">
-            <div className="w-[68.75rem] rounded-2xl bg-[#ffffff] pl-4 pr-8 pt-8">
-                <div>
-                    <h2 className="mb-3 font-poppins text-2xl font-bold text-[rgba(46,49,146,1)]">
-                        Privacy Policy
-                    </h2>
-                </div>
-                <div className="w-[66.06rem]">
-                    <div className="w-[66.06rem] pl-12 pr-6 text-left text-gray-500">
-                        <ReactMarkdown>{privacypoicy}</ReactMarkdown>
-                    </div>
-                </div>
-            </div>
+  return (
+    <div className="flex w-screen justify-center bg-[#F7F6F9] py-9">
+      <div className="w-[68.75rem] rounded-2xl bg-[#ffffff] pl-4 pr-8 pt-8">
+        <div>
+          <h2 className="mb-3 font-poppins text-2xl font-bold text-[rgba(46,49,146,1)]">
+            Privacy Policy
+          </h2>
         </div>
-    );
+        <div className="w-[66.06rem]">
+          <div className="w-[66.06rem] pl-12 pr-6 text-left text-gray-500">
+            <ReactMarkdown>{privacypoicy}</ReactMarkdown>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default privacy;
