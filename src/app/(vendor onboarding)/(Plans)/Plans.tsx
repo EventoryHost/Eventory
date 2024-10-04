@@ -193,7 +193,7 @@ const Plans = ({ setCurrentPage, handleformSubmit }: Pagechangetype) => {
         id="razorpay-checkout-js"
         src="https://checkout.razorpay.com/v1/checkout.js"
       />
-      <div className="w-screen bg-[#F7F6F9] py-[3.5rem]">
+      <div className="w-screen bg-[#F7F6F9] py-[0.5rem]">
         <div className="flex h-max w-[264px] flex-col justify-center gap-6 pl-[72px]">
           <div
             onClick={() => setCurrentPage((prevPage) => prevPage - 1)}

@@ -216,9 +216,9 @@ const SignUp = () => {
                     <div className="xs:text-md mt-5 flex gap-1">
                       <h2>
                         By continueing. You agree with{" "}
-                        <span className="text-[#2E3192] underline">
+                        <Link  href={"/privacy-policy"} className="text-[#2E3192] underline">
                           Privacy Policy
-                        </span>
+                        </Link>
                       </h2>
                     </div>
                   </div>

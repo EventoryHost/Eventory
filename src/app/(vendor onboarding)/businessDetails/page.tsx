@@ -14,9 +14,7 @@ const categories = [
   { value: "decorator", label: "Decorator" },
   { value: "prop-rental", label: "Prop Rental" },
   { value: "pav", label: "Photo & Videography" },
-  { value: "makeup-artist", label: "Makeup-Artist" },
   { value: "venue-provider", label: "Venue Provider" },
-  { value: "transportation", label: "Transportation Provider" },
 ];
 
 const teamsize = [
@@ -212,7 +210,7 @@ const BusinessDetails = () => {
               <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
                 <div className="flex min-w-[45%] max-w-[45%] flex-col gap-4">
                   <label htmlFor="businessName">
-                    Business Name <span className="text-red-600">*</span>
+                    Business Name<span className="text-red-600">*</span>
                   </label>
                   <input
                     id="businessName"
@@ -246,7 +244,7 @@ const BusinessDetails = () => {
               <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
                 <div className="flex min-w-[45%] max-w-[45%] flex-col gap-4">
                   <label htmlFor="gstin">
-                    GSTIN <span className="text-red-600">*</span>
+                    GSTIN<span className="text-red-600">*</span>
                   </label>
                   <input
                     id="gstin"
@@ -282,7 +280,7 @@ const BusinessDetails = () => {
               <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
                 <div className="flex min-w-[45%] max-w-[45%] flex-col gap-4">
                   <label htmlFor="businessAddress">
-                    Business Address <span className="text-red-600">*</span>
+                    Business Address<span className="text-red-600">*</span>
                   </label>
                   <input
                     id="businessAddress"
@@ -297,7 +295,7 @@ const BusinessDetails = () => {
                 </div>
                 <div className="flex min-w-[45%] max-w-[45%] flex-col gap-4">
                   <label htmlFor="pinCode">
-                    Pin Code <span className="text-red-600">*</span>
+                    Pin Code<span className="text-red-600">*</span>
                   </label>
                   <input
                     id="pinCode"
@@ -331,7 +329,7 @@ const BusinessDetails = () => {
                 </div>
                 <div className="flex min-w-[45%] max-w-[45%] flex-col gap-4">
                   <label htmlFor="years">
-                    Years in Operation <span className="text-red-600">*</span>
+                    Years in Operation<span className="text-red-600">*</span>
                   </label>
                   <Dropdown2
                     options={yearsInOperation}
