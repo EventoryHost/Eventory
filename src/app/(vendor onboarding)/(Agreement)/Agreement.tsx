@@ -62,7 +62,8 @@ const Agreement = ({ setCurrentPage }: PageProps) => {
             toast({
               variant: "destructive",
               title: "Error Something went wrong.",
-              description: "There was a problem with your request. Pls Login Again",
+              description:
+                "There was a problem with your request. Pls Login Again",
             });
             console.error("Token does not contain expected data.");
           }
@@ -111,8 +112,8 @@ const Agreement = ({ setCurrentPage }: PageProps) => {
               </h1>
 
               <p>
-                This Vendor Agreement (&quot;<strong>Agreement</strong>&quot;) is
-                entered into as of{" "}
+                This Vendor Agreement (&quot;<strong>Agreement</strong>&quot;)
+                is entered into as of{" "}
                 <strong>{new Date().toLocaleDateString()}</strong> between:
               </p>
 
@@ -123,13 +124,13 @@ const Agreement = ({ setCurrentPage }: PageProps) => {
                 business at:
                 <br />
                 <strong>
-                  13-D, Atmaram House, 1-Tolstoy Marg, Connaught Place, New Delhi
-                  -11001
+                  13-D, Atmaram House, 1-Tolstoy Marg, Connaught Place, New
+                  Delhi -11001
                 </strong>
                 <br />
                 And <br />
-                <strong>{formData?.fullName || "Vendor Name"}</strong> having its
-                principal place of business at: <br />
+                <strong>{formData?.fullName || "Vendor Name"}</strong> having
+                its principal place of business at: <br />
                 <strong>{formData?.address || "Vendor Address"}</strong>.
               </p>
 
@@ -159,33 +160,34 @@ const Agreement = ({ setCurrentPage }: PageProps) => {
                   event planning, etc.).
                 </li>
                 <li>
-                  <strong>1.5 Booking Amount:</strong> The base price of the goods
-                  or services offered by the Vendor.
+                  <strong>1.5 Booking Amount:</strong> The base price of the
+                  goods or services offered by the Vendor.
                 </li>
               </ul>
 
               <strong>2. Scope of Services</strong>
               <ul>
                 <li>
-                  <strong>2.1 Description of Services:</strong> The Vendor agrees
-                  to provide the following services:{" "}
+                  <strong>2.1 Description of Services:</strong> The Vendor
+                  agrees to provide the following services:{" "}
                   <strong>{formData?.typeofservice || "Service Type"}</strong>.
                 </li>
                 <li>
                   <strong>2.2 Service Standards:</strong> The Vendor agrees to
-                  deliver services in a professional manner, adhering to industry
-                  standards, and will comply with all legal and regulatory
-                  requirements.
+                  deliver services in a professional manner, adhering to
+                  industry standards, and will comply with all legal and
+                  regulatory requirements.
                 </li>
               </ul>
 
               <strong>3. Term and Termination</strong>
               <ul>
                 <li>
-                  <strong>3.1 Agreement Term:</strong> This Agreement is effective
-                  as of <strong>{new Date().toLocaleDateString()}</strong> and
-                  shall remain in effect until terminated by either Party as
-                  provided in this section.
+                  <strong>3.1 Agreement Term:</strong> This Agreement is
+                  effective as of{" "}
+                  <strong>{new Date().toLocaleDateString()}</strong> and shall
+                  remain in effect until terminated by either Party as provided
+                  in this section.
                 </li>
                 <li>
                   <strong>3.2 Termination by Vendor:</strong> The Vendor may
@@ -199,8 +201,8 @@ const Agreement = ({ setCurrentPage }: PageProps) => {
                 </li>
                 <li>
                   <strong>3.3 Termination by Platform:</strong> The Platform may
-                  terminate this Agreement immediately if the Vendor breaches any
-                  terms of this Agreement or fails to provide services up to
+                  terminate this Agreement immediately if the Vendor breaches
+                  any terms of this Agreement or fails to provide services up to
                   required standards.
                 </li>
                 <li>
@@ -239,14 +241,15 @@ const Agreement = ({ setCurrentPage }: PageProps) => {
               <strong>5. Vendor Obligations</strong>
               <ul>
                 <li>
-                  <strong>5.1 Compliance with Laws:</strong> The Vendor agrees to
-                  comply with all applicable local, state, and national laws and
-                  regulations.
+                  <strong>5.1 Compliance with Laws:</strong> The Vendor agrees
+                  to comply with all applicable local, state, and national laws
+                  and regulations.
                 </li>
                 <li>
-                  <strong>5.2 Licenses and Permits:</strong> The Vendor is solely
-                  responsible for obtaining and maintaining any licenses, permits,
-                  and certifications required to perform the agreed-upon services.
+                  <strong>5.2 Licenses and Permits:</strong> The Vendor is
+                  solely responsible for obtaining and maintaining any licenses,
+                  permits, and certifications required to perform the
+                  agreed-upon services.
                 </li>
                 <li>
                   <strong>5.3 Insurance:</strong> The Vendor shall maintain
@@ -267,16 +270,18 @@ const Agreement = ({ setCurrentPage }: PageProps) => {
               </strong>
               <ul>
                 <li>
-                  <strong>6.1 Vendor Cancellation:</strong> If a Vendor cancels a
-                  booking at the last moment, the Platform will provide customers
-                  with alternative recommendations. Any price differences due to
-                  dynamic pricing will be covered by the Vendor.
+                  <strong>6.1 Vendor Cancellation:</strong> If a Vendor cancels
+                  a booking at the last moment, the Platform will provide
+                  customers with alternative recommendations. Any price
+                  differences due to dynamic pricing will be covered by the
+                  Vendor.
                 </li>
                 <li>
                   <strong>6.2 Customer Cancellation:</strong> If a customer
                   cancels a booking, they will be charged a percentage of the
                   BOOKING AMOUNT, and the remaining amount will be refunded
-                  depending on how many days in advance the cancellation is made.
+                  depending on how many days in advance the cancellation is
+                  made.
                 </li>
               </ul>
 
@@ -288,8 +293,8 @@ const Agreement = ({ setCurrentPage }: PageProps) => {
                   the services professionally and efficiently.
                 </li>
                 <li>
-                  <strong>7.2 Non-Infringement:</strong> The Vendor warrants that
-                  all services provided do not infringe on any third-party
+                  <strong>7.2 Non-Infringement:</strong> The Vendor warrants
+                  that all services provided do not infringe on any third-party
                   intellectual property rights.
                 </li>
                 <li>
@@ -303,12 +308,12 @@ const Agreement = ({ setCurrentPage }: PageProps) => {
               <ul>
                 <li>
                   <strong>8.1 Visibility and Marketing:</strong> The Vendor’s
-                  visibility on the Platform depends on factors such as quality of
-                  service, pricing competitiveness, and profile updates.
+                  visibility on the Platform depends on factors such as quality
+                  of service, pricing competitiveness, and profile updates.
                 </li>
                 <li>
-                  <strong>8.2 No Guarantee of Bookings:</strong> The Platform does
-                  not guarantee a fixed number of bookings or orders to any
+                  <strong>8.2 No Guarantee of Bookings:</strong> The Platform
+                  does not guarantee a fixed number of bookings or orders to any
                   Vendor. Success depends on several factors such as customer
                   preferences and service quality.
                 </li>
@@ -317,9 +322,9 @@ const Agreement = ({ setCurrentPage }: PageProps) => {
               <strong>9. Dispute Resolution</strong>
               <ul>
                 <li>
-                  <strong>9.1 Disputes with Users:</strong> The Platform will act
-                  as an intermediary in any disputes between the Vendor and the
-                  user.
+                  <strong>9.1 Disputes with Users:</strong> The Platform will
+                  act as an intermediary in any disputes between the Vendor and
+                  the user.
                 </li>
                 <li>
                   <strong>9.2 Arbitration:</strong> Any disputes between the
@@ -356,8 +361,8 @@ const Agreement = ({ setCurrentPage }: PageProps) => {
               </strong>
               <p>
                 <strong>
-                  The Parties have executed this Agreement as of the date written
-                  below:
+                  The Parties have executed this Agreement as of the date
+                  written below:
                 </strong>
               </p>
               <br />
@@ -383,10 +388,11 @@ const Agreement = ({ setCurrentPage }: PageProps) => {
                   <strong>Signature:</strong>{" "}
                   <input
                     onChange={(e) => setsignature(e.target.value)}
-                    className={`border-b-2 ${signature === formData?.fullName
-                      ? "border-b-blue-600"
-                      : "border-b-red-600"
-                      }`}
+                    className={`border-b-2 ${
+                      signature === formData?.fullName
+                        ? "border-b-blue-600"
+                        : "border-b-red-600"
+                    }`}
                     type="text"
                     value={signature}
                     placeholder="Enter your signature"
@@ -446,11 +452,11 @@ const Agreement = ({ setCurrentPage }: PageProps) => {
                 checked && signature === formData.fullName
                   ? setCurrentPage((prevPage) => prevPage + 1)
                   : toast({
-                    variant: "destructive",
-                    title: "Pls Complete Following Staff",
-                    description:
-                      "Pls Check the Checkmark And Write Your Signature At The Bottem Of Agreement",
-                  });
+                      variant: "destructive",
+                      title: "Pls Complete Following Staff",
+                      description:
+                        "Pls Check the Checkmark And Write Your Signature At The Bottem Of Agreement",
+                    });
               }}
               className="flex h-[48px] w-[164px] items-center justify-center rounded-2xl bg-[rgba(46,49,146,1)] p-4 font-poppins text-white"
             >

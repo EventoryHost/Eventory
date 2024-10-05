@@ -17,19 +17,19 @@ const fields: {
   type: string;
   placeholder: string;
 }[] = [
-    {
-      id: "name",
-      label: "Full Name",
-      type: "text",
-      placeholder: "Enter your full name",
-    },
-    {
-      id: "mobile",
-      label: "Mobile No.",
-      type: "number",
-      placeholder: "Enter your mobile no.",
-    },
-  ];
+  {
+    id: "name",
+    label: "Full Name",
+    type: "text",
+    placeholder: "Enter your full name",
+  },
+  {
+    id: "mobile",
+    label: "Mobile No.",
+    type: "number",
+    placeholder: "Enter your mobile no.",
+  },
+];
 
 type basicDetails = {
   name: string;
@@ -93,7 +93,6 @@ const SignUp = () => {
     } catch (error) {
       setFormError(String(error) || "Something goes wrong");
       console.log(error);
-
     } finally {
       setloading(false);
     }
@@ -178,7 +177,6 @@ const SignUp = () => {
       </div>
       <div className="flex flex-1 flex-col items-center justify-center bg-[#F7F6F9] p-2 md:max-h-[100vh] md:p-[2.2rem]">
         <div className="flex flex-col rounded-xl bg-white p-5 xs:min-w-[90%] md:p-6">
-
           <h1 className="text-3xl font-semibold">Basic Details</h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-3">
             <form onSubmit={handleSignUp}>

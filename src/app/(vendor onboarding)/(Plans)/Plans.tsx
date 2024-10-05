@@ -140,7 +140,7 @@ const Plans = ({ setCurrentPage, handleformSubmit }: Pagechangetype) => {
   useEffect(() => {
     const fetchData = async () => {
       const token = localStorage.getItem("token");
-      setloader(true)
+      setloader(true);
       if (token) {
         try {
           const { id, email, name, mobile } = jwt.decode(token) as {
@@ -181,7 +181,8 @@ const Plans = ({ setCurrentPage, handleformSubmit }: Pagechangetype) => {
             toast({
               variant: "destructive",
               title: "Error Something went wrong.",
-              description: "There was a problem with your request. Pls Login Again",
+              description:
+                "There was a problem with your request. Pls Login Again",
             });
             console.error("Token does not contain expected data.");
           }
@@ -189,7 +190,8 @@ const Plans = ({ setCurrentPage, handleformSubmit }: Pagechangetype) => {
           toast({
             variant: "destructive",
             title: "Error Something went wrong.",
-            description: "There was a problem with your request. Pls Login Again",
+            description:
+              "There was a problem with your request. Pls Login Again",
           });
           console.error("Failed to decode token:", error);
         } finally {
