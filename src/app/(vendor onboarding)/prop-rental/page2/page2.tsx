@@ -68,7 +68,7 @@ const Page2: React.FC<page2Props> = ({
           </div>
           <div className="flex min-h-full min-w-full flex-col items-center gap-8">
             <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
-              <div className="flex min-w-[48%] flex-col gap-2">
+              <div className="flex max-w-[48%] flex-col gap-2">
                 <p className="flex items-center gap-1 text-base font-medium">
                   Items Catalogue
                   <svg
@@ -153,7 +153,7 @@ const Page2: React.FC<page2Props> = ({
                   </>
                 )}
               </div>
-              <div className="flex min-w-[48%] flex-col gap-2">
+              <div className="flex max-w-[48%] flex-col gap-2">
                 <p className="text-base font-medium">
                   Do you offer customization(branding, color, theme of Items)?
                   <span className="text-red-500">*</span>{" "}

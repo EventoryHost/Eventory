@@ -54,7 +54,7 @@ const Caterer = () => {
     cateringName: "",
     businessName: "",
     preSetMenu: "",
-    customizableMenu: false,
+    customizableMenu: true,
     tastingSessions: false,
     businessLicenses: false,
     foodSafety: false,
@@ -560,36 +560,29 @@ const Caterer = () => {
               <div className="flex gap-2">
                 <button
                   className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 1 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                  onClick={() => setCurrentPage(1)}
                 ></button>
 
                 <button
                   className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 2 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                  onClick={() => setCurrentPage(2)}
                 ></button>
 
                 <button
                   className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 3 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                  onClick={() => setCurrentPage(3)}
                 ></button>
 
                 <button
                   className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 4 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                  onClick={() => setCurrentPage(4)}
                 ></button>
 
                 <button
                   className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 5 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                  onClick={() => setCurrentPage(5)}
                 ></button>
 
                 <button
                   className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 6 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                  onClick={() => setCurrentPage(6)}
                 ></button>
                 <button
                   className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 7 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                  onClick={() => setCurrentPage(7)}
                 ></button>
                 {/* <button
                 className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 8 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
@@ -599,7 +592,7 @@ const Caterer = () => {
             </div>
           </div>
           <div className="m-auto flex h-[50%] w-[90%] flex-col items-start justify-center gap-9 px-3 md:px-6">
-            <h1 className="text-3xl font-bold md:text-5xl">
+            <h1 className="text-2xl font-bold md:text-4xl">
               {currentPage === 1 && "Tell us about you"}
               {currentPage === 2 && "Fill the menu details"}
               {currentPage === 3 && "Fill the Event details"}

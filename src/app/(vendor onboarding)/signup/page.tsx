@@ -38,6 +38,7 @@ type basicDetails = {
 };
 
 const SignUp = () => {
+  const { toast: toast2 } = useToast();
   const [loading, setloading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [basicDetails, setBasicDetails] = useState<basicDetails>(
@@ -127,6 +128,10 @@ const SignUp = () => {
         localStorage.setItem("token", token);
         console.log("OTP verification successful");
         toast.success("OTP verification successful");
+        toast2({
+          title: "Redirecting",
+          description: `Signup Successfull Redirecting To BusinessDetails`,
+        });
         router.push("/businessDetails");
       } else {
         console.error("OTP verification failed or response is invalid");
@@ -150,16 +155,9 @@ const SignUp = () => {
   };
 
   return (
-    <div className="flex max-h-[100vh] w-full flex-col overflow-hidden lg:flex-row">
+    <div className="flex max-h-[100vh] w-full flex-col overflow-hidden lg:h-[calc(100vh-4.2rem)] lg:flex-row">
       <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:h-[91vh] md:min-w-[35%] lg:max-w-[30%]">
-        <div className="flex max-h-fit flex-col items-center justify-center gap-3 lg:mt-[5rem]">
-          <p className="text-xl text-gray-900">Step 1 of 2</p>
-          <div className="flex items-center justify-start gap-1 xs:self-start xs:pl-5 md:px-11">
-            <button className="h-[0.4rem] w-[3rem] rounded-xl bg-[#2E3192]"></button>
-            <button className="h-[0.4rem] w-[3rem] rounded-xl bg-gray-300"></button>
-          </div>
-        </div>
-        <div className="flex h-[50%] flex-col items-start justify-center gap-9 px-9 xs:pl-5 md:px-11 lg:p-8">
+        <div className="flex h-[90%] flex-col items-start justify-center gap-9 px-9 xs:pl-5 md:px-11 lg:p-8">
           <h1 className="text-3xl font-semibold md:text-4xl lg:text-5xl">
             Vendor Sign Up
           </h1>
@@ -177,23 +175,28 @@ const SignUp = () => {
         </div>
       </div>
       <div className="flex flex-1 flex-col items-center justify-center bg-[#F7F6F9] p-2 md:max-h-[100vh] md:p-[2.2rem]">
-        <div className="flex flex-col gap-7 rounded-xl bg-white p-5 xs:min-w-[90%] md:p-6">
+        <div className="flex flex-col rounded-xl bg-white p-5 xs:min-w-[90%] md:p-6">
           {loading ? (
-            <Loadingeanimation width="w-56" />
+            <div className="my-24">
+              <Loadingeanimation width="w-56 " />
+            </div>
           ) : (
             <>
               <h1 className="text-3xl font-semibold">Basic Details</h1>
-              <div className="flex min-h-full min-w-full flex-col items-center gap-5">
+              <div className="flex min-h-full min-w-full flex-col items-center gap-3">
                 <form onSubmit={handleSignUp}>
                   <div
-                    className={`${formError ? "mt-9" : "my-9"} flex flex-col items-center justify-between xs:gap-7 md:flex-row`}
+                    className={`mt-9 flex flex-col items-center justify-between xs:gap-7 md:flex-row`}
                   >
                     {fields.map((field) => (
                       <div
                         key={field.id}
-                        className="col-span-2 flex min-w-[40%] flex-col gap-4 md:col-span-1"
+                        className="col-span-2 flex min-w-[45%] flex-col gap-2 md:col-span-1"
                       >
-                        <label htmlFor={field.id}>{field.label}</label>
+                        <label htmlFor={field.id}>
+                          {field.label}
+                          <span className="text-red-600">*</span>
+                        </label>
                         <input
                           id={field.id}
                           type={field.type}
@@ -207,24 +210,23 @@ const SignUp = () => {
                     ))}
                   </div>
                   {formError && !isModalOpen && (
-                    <div className="mx-3 my-4 text-red-500">{formError}</div>
+                    <div className="pl-4 text-red-500">{formError}321</div>
                   )}
-                  <div className="mt-9 flex w-full flex-col-reverse justify-between gap-3 self-start md:mt-0 md:flex-row md:items-center md:px-0">
-                    <div className="flex gap-2 xs:text-sm md:gap-3">
-                      <input
-                        type="checkbox"
-                        id="tc"
-                        placeholder="t&c"
-                        required
-                      />
-                      I agree with{" "}
-                      <span className="text-[#2E3192] underline">
-                        Terms & Conditions
-                      </span>
+                  <div className="mt-5 flex w-full flex-col-reverse justify-between gap-3 self-start p-2 md:mt-0 md:flex-row md:items-center md:px-0">
+                    <div className="xs:text-md mt-5 flex gap-1">
+                      <h2>
+                        By continueing. You agree with{" "}
+                        <Link
+                          href={"/privacy-policy"}
+                          className="text-[#2E3192] underline"
+                        >
+                          Privacy Policy
+                        </Link>
+                      </h2>
                     </div>
                   </div>
-                  <div className="mt-9">
-                    <p className="self-start text-gray-500 xs:mt-5 xs:text-sm">
+                  <div className="mb-9 mt-5">
+                    <p className="xs:text-md self-start text-gray-500 xs:mt-5">
                       To verify it&apos;s you, we will send you an OTP to your
                       mobile number.
                     </p>
@@ -262,13 +264,13 @@ const SignUp = () => {
                       </svg>
                     </div>
                     <div className="flex min-w-[56vw] flex-col justify-between gap-9 md:flex-row">
-                      <div className="mt-5 flex gap-2 xs:text-sm">
-                        already have an account ?{" "}
+                      <div className="xs:text-md mt-5 flex gap-2 text-gray-500">
+                        Already have an account?{" "}
                         <Link
                           href={"/login"}
                           className="font-semibold text-[#2E3192]"
                         >
-                          LogIn
+                          Log In
                         </Link>
                       </div>
                       <button

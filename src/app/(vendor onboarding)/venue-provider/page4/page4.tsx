@@ -28,12 +28,12 @@ const Page4: React.FC<PageProps> = ({
   setCurrentPage,
 }) => {
   return (
-    <div className="scroll-touch flex flex-col items-start gap-7 overflow-y-scroll rounded-xl bg-white p-3 xs:w-[95%] xs:min-w-[90%] xs:justify-start">
-      <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
+    <div className="scroll-touch flex w-full flex-col items-start gap-7 overflow-y-scroll rounded-xl bg-white p-3 scrollbar-hide xs:justify-start">
+      <div className="flex w-full flex-col gap-7 rounded-xl bg-white p-3 md:p-6">
         <h1 className="text-3xl font-semibold">Basic Details</h1>
 
         <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-          <div className="flex min-w-[40%] flex-col items-start justify-center">
+          <div className="flex min-w-[45%] flex-col items-start justify-center">
             <p className="mb-2 text-lg font-semibold">Terms & Conditions</p>
             <FileInput
               label="tnc"
@@ -64,7 +64,7 @@ const Page4: React.FC<PageProps> = ({
             ></textarea>
           </div>
 
-          <div className="flex min-w-[40%] flex-col items-start justify-center">
+          <div className="flex min-w-[45%] flex-col items-start justify-center">
             <p className="mb-2 text-lg font-semibold">Cancellation Policies</p>
             <FileInput
               label="cancellation policy"
@@ -96,7 +96,7 @@ const Page4: React.FC<PageProps> = ({
           </div>
         </div>
 
-        <div className="flex w-[40%] min-w-[40%] flex-col items-start justify-center">
+        <div className="flex w-[40%] min-w-[45%] flex-col items-start justify-center">
           <p className="mb- text-lg font-semibold">Insurance Coverage Policy</p>
           <FileInput
             label="insurance policy"

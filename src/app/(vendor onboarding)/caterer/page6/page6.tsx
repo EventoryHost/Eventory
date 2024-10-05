@@ -181,7 +181,7 @@ const Page6 = ({
                     }}
                     acceptedFileTypes="image/png, .pdf, image/jpg"
                   />
-                  <p className="mt-4">or continue via</p>
+                  <span className="text-base font-medium">or Continue via</span>
                   <input
                     type="text"
                     className="w-full rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-300"

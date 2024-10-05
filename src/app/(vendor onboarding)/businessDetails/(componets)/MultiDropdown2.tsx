@@ -53,10 +53,10 @@ const MultipleDropdown: React.FC<MultipleDropdownProps> = ({
             <span
               key={option.value}
               onClick={() => handleSelect(option)}
-              className="flex h-10 items-center justify-around gap-2 rounded-lg bg-indigo-100 px-3 py-1 text-sm font-medium text-indigo-700"
+              className="flex h-8 items-center justify-around gap-2 rounded-lg bg-indigo-100 px-3 py-1 text-sm font-medium text-indigo-700"
             >
               {option.label}
-              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white text-center">
+              <span className="flex h-4 w-5 items-center justify-center rounded-full bg-white text-center">
                 <svg
                   width="13"
                   height="13"
@@ -84,7 +84,7 @@ const MultipleDropdown: React.FC<MultipleDropdownProps> = ({
     <div className="relative w-full">
       <button
         type="button"
-        className="flex w-full items-center justify-between rounded-xl border-2 bg-white p-5 py-3 text-left shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+        className="py- flex w-full items-center justify-between rounded-xl border-2 bg-white p-3 text-left shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
         onClick={onToggle} // Use onToggle to handle the click
       >
         <span

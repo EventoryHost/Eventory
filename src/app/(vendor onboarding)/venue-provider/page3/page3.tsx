@@ -3,6 +3,7 @@
 import FileInput from "@/components/fileInput";
 import { Combobox } from "../(components)/comboBoxNew";
 import { useEffect } from "react";
+import Dropdown from "../../(components)/Dropdown";
 
 interface FormState {
   termsConditions: string | File | File[];
@@ -32,9 +33,9 @@ interface Page3Props {
 }
 
 const advanceBookingPeriodOptions = [
-  { value: "Less than a week", label: "Less than a week" },
-  { value: "1-2 weeks", label: "1-2 weeks" },
-  { value: "More than 2 weeks", label: "More than 2 weeks" },
+  "Less than a week",
+  "1-2 weeks",
+  "More than 2 weeks",
 ];
 
 const Page3: React.FC<Page3Props> = ({
@@ -45,16 +46,51 @@ const Page3: React.FC<Page3Props> = ({
   setCurrentPage,
 }) => {
   return (
-    <div className="scroll-touch flex flex-col items-start gap-7 overflow-y-scroll rounded-xl bg-white p-3 xs:w-[95%] xs:min-w-[90%] xs:justify-start md:p-6">
+    <div className="scroll-touch flex flex-col items-start gap-7 overflow-y-scroll rounded-xl bg-white p-3 scrollbar-hide xs:w-[95%] xs:min-w-[90%] xs:justify-start md:p-6">
       <h1 className="text-3xl font-semibold">Additional Details </h1>
 
-      <div className="container mx-auto p-4">
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <h2 className="mb-2 text-xl font-semibold">
-              Photos<span className="text-red-600">*</span>
-            </h2>
-            <p className="mb-4 text-sm text-gray-600">PNG, JPG</p>
+      <div className="flex w-full flex-col">
+        <div className="grid grid-cols-2 gap-10">
+          <div className="flex flex-col gap-2">
+            <div className="flex items-center gap-1 text-base font-medium">
+              Photo <span className="text-red-500">*</span>
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect
+                  x="1.33398"
+                  y="1.3335"
+                  width="13.3333"
+                  height="13.3333"
+                  rx="6.66667"
+                  stroke="#2B3F6C"
+                />
+                <path
+                  d="M8.33398 11.3335L8.33398 7.3335"
+                  stroke="#2B3F6C"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M7.00065 7.3335L8.33398 7.3335"
+                  stroke="#2B3F6C"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M8.33398 5.33366L8.33398 4.66699"
+                  stroke="#2B3F6C"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+            <span className="text-small font-light">PNG,JPG</span>
+
             <FileInput
               label="Photos"
               multiple={true}
@@ -77,10 +113,10 @@ const Page3: React.FC<Page3Props> = ({
               }}
               acceptedFileTypes="image/png, .pdf, image/jpg"
             />
-            <p className="mt-4">or continue via</p>
+            <span className="text-base font-medium">or Continue via</span>
             <input
               type="text"
-              className="w-full rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-300"
+              className="w-full rounded-xl border-2 bg-white p-3 py-5 text-sm outline-none"
               placeholder="Enter your portfolio link"
               value={
                 typeof formState.photos === "string"
@@ -91,15 +127,59 @@ const Page3: React.FC<Page3Props> = ({
               }
               onChange={(e) => updateFormState({ photos: e.target.value })}
             />
+            {/* 
+                  <input
+                    type="text"
+                    className="w-full rounded-xl border-2 bg-white p-3 py-5 outline-none text-sm"
+                    placeholder="Enter your portfolio links"
+                    value={typeof formState.photos === 'string' ? formState.photos : ''}
+                    onChange={(e) =>
+                      updateFormState({ photos: e.target.value })
+                    }
+                    required
+                  /> */}
           </div>
-          <div>
-            <h2 className="mb-2 text-xl font-semibold">
-              Videos<span className="text-red-600">*</span>
-            </h2>
-            <p className="mb-4 text-sm text-gray-600">MP4, MKV</p>
+          <div className="flex flex-col gap-2">
+            <div className="flex items-center gap-1 text-base font-medium">
+              Videos <span className="text-red-500">*</span>
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect
+                  x="1.33398"
+                  y="1.3335"
+                  width="13.3333"
+                  height="13.3333"
+                  rx="6.66667"
+                  stroke="#2B3F6C"
+                />
+                <path
+                  d="M8.33398 11.3335L8.33398 7.3335"
+                  stroke="#2B3F6C"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M7.00065 7.3335L8.33398 7.3335"
+                  stroke="#2B3F6C"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M8.33398 5.33366L8.33398 4.66699"
+                  stroke="#2B3F6C"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+            <span className="text-small font-light">MP4, MKV</span>
             <FileInput
-              label="tnc"
-              multiple={true}
+              label="videos"
               onFileSelect={(files) => {
                 const existingVideos = Array.isArray(formState.videos)
                   ? formState.videos
@@ -115,12 +195,16 @@ const Page3: React.FC<Page3Props> = ({
                 updateFormState({ videos: newVideos });
               }}
               acceptedFileTypes="image/png, .pdf, image/jpg"
+              multiple
             />
-            <p className="mt-4">or continue via</p>
+            <span className="text-base font-medium">or Continue via</span>
             <input
               type="text"
-              className="w-full rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-300"
-              placeholder="Enter your portfolio link"
+              className="w-full rounded-xl border-2 bg-white p-3 py-5 text-sm outline-none"
+              placeholder="Enter your portfolio links"
+              onChange={(e) => {
+                updateFormState({ videos: e.target.value });
+              }}
               value={
                 typeof formState.videos === "string"
                   ? formState.videos
@@ -128,27 +212,26 @@ const Page3: React.FC<Page3Props> = ({
                     ? formState.videos.map((file: File) => file.name).join(", ")
                     : (formState.videos as File)?.name
               }
-              onChange={(e) => updateFormState({ videos: e.target.value })}
             />
           </div>
         </div>
 
-        <div className="mt-8 grid grid-cols-2 gap-4">
+        <div className="mt-8 grid grid-cols-2 gap-10">
           <div>
-            <h2 className="mb-2 text-xl font-semibold">Awards/Recognition</h2>
+            <h2 className="mb-2 text-base font-medium">Awards/Recognition</h2>
             <input
               type="text"
-              className="w-full rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-300"
+              className="w-full rounded-xl border-2 bg-white p-3 py-5 text-sm outline-none"
               placeholder="Provide your URL"
               value={formState.awards}
               onChange={(e) => updateFormState({ awards: e.target.value })}
             />
           </div>
           <div>
-            <h2 className="mb-2 text-xl font-semibold">Client Testimonials</h2>
+            <h2 className="mb-2 text-base font-medium">Client Testimonials</h2>
             <input
               type="text"
-              className="w-full rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-300"
+              className="w-full rounded-xl border-2 bg-white p-3 py-5 text-sm outline-none"
               placeholder="Provide your URL"
               value={formState.clientTestimonials}
               onChange={(e) =>
@@ -158,12 +241,12 @@ const Page3: React.FC<Page3Props> = ({
           </div>
         </div>
 
-        <div className="mt-8 grid grid-cols-2 gap-4">
+        <div className="mt-8 grid grid-cols-2 gap-10">
           <div>
-            <h2 className="mb-2 text-xl font-semibold">Instagram URL</h2>
+            <h2 className="mb-2 text-base font-medium">Instagram URL</h2>
             <input
               type="text"
-              className="w-full rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-300"
+              className="w-full rounded-xl border-2 bg-white p-3 py-5 text-sm outline-none"
               placeholder="Provide your Instagram URL for the Venue"
               value={formState.instagramURL}
               onChange={(e) =>
@@ -172,10 +255,10 @@ const Page3: React.FC<Page3Props> = ({
             />
           </div>
           <div>
-            <h2 className="mb-2 text-xl font-semibold">Website URL</h2>
+            <h2 className="mb-2 text-base font-medium">Website URL</h2>
             <input
               type="text"
-              className="w-full rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-300"
+              className="w-full rounded-xl border-2 bg-white p-3 py-5 text-sm outline-none"
               placeholder="Provide your website URL for the venue"
               value={formState.websiteURL}
               onChange={(e) => updateFormState({ websiteURL: e.target.value })}
@@ -183,17 +266,17 @@ const Page3: React.FC<Page3Props> = ({
           </div>
         </div>
 
-        <div className="mt-8 grid grid-cols-2 gap-4">
+        <div className="mt-8 grid grid-cols-2 gap-10">
           <div>
-            <h2 className="mb-2 text-xl font-semibold">
+            <h2 className="mb-2 text-base font-medium">
               Advance Booking Period<span className="text-red-600">*</span>
             </h2>
-            <Combobox
+            <Dropdown
               options={advanceBookingPeriodOptions}
-              placeholder="Select Advance Booking Period"
-              setFunction={(value) =>
+              onSelect={(value) =>
                 updateFormState({ advanceBookingPeriod: value })
               }
+              placeholder="Select Advance Booking Period"
             />
           </div>
         </div>
