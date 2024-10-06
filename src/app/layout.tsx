@@ -1,7 +1,13 @@
+// import { Inter } from 'next/font/google';
 import type { Metadata } from "next";
 import Footer from "./(components)/footer";
 import "./globals.css";
 import Nav from "./(components)/nav";
+
+
+import { Providers } from './providers';
+
+// const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: "Eventory",
@@ -26,12 +32,14 @@ export default function RootLayout({
         />
         <link rel="icon" href="/logo-with-bg.svg" />
       </head>
-      <body>
-        <header>
-          <Nav />
-        </header>
-        {children}
-        <footer></footer>
+      <body >
+        <Providers>
+          <header>
+            <Nav />
+          </header>
+          {children}
+          <footer></footer>
+        </Providers>
       </body>
     </html>
   );

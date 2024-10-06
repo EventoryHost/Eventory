@@ -116,7 +116,7 @@ export const getvendor = async (
     const res = await axios.post(
       `${process.env.NEXT_PUBLIC_BASE_URL}/auth/get-vendor`,
       {
-        vendorId ,
+        vendorId,
         email,
         phone,
       },
@@ -129,6 +129,48 @@ export const getvendor = async (
     }
   }
 }
+
+
+// Logic for react-redux store's data saving to backend
+export const addBusinessDetails2 = async (userId: string, businessDetails: any ) => {
+  try {
+    const response = await axios.post(`http://localhost:4000/api/business-details`, {
+      userId,
+      businessDetails,
+    });
+    return response;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      throw Error(error.message);
+    }
+  }
+}
+export const getBusinessDetails = async (userId: string) => { 
+  try {
+    const response = await axios.get(`http://localhost:4000/api/business-details/${userId}`, {
+      headers: {
+        Authorization: `${localStorage.getItem("token")}`, 
+      },
+    });
+
+    if (response.status === 200) {
+      return { success: true, data: response.data };
+    } else {
+      return { success: false, message: response.data.message || "Failed to fetch business details." };
+    }
+  } catch (error: any) {
+    return { success: false, message: error.response?.data?.message || "Error fetching business details." };
+  }
+};
+
+
+
+
+
+
+
+
+
 const auth = {
   authWithGoogle,
   signUp,
