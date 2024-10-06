@@ -21,10 +21,10 @@ const _themesOffered = [
 ];
 
 interface FormState {
-  propthemesOffered: boolean;
-  adobtThemes: boolean;
-  colorschmes: boolean;
-  customizationsThemes: boolean;
+  propthemesOffered: boolean | null;
+  adobtThemes: boolean | null;
+  colorschmes: boolean | null;
+  customizationsThemes: boolean | null;
   customDesignProcess: string;
 }
 
@@ -172,7 +172,7 @@ const Page2: React.FC<Page2Props> = ({
                     <input
                       type="radio"
                       value="true"
-                      checked={customizationsThemes}
+                      checked={customizationsThemes === true}
                       onChange={() =>
                         updateFormState({ customizationsThemes: true })
                       }
@@ -183,7 +183,7 @@ const Page2: React.FC<Page2Props> = ({
                     <input
                       type="radio"
                       value="false"
-                      checked={!customizationsThemes}
+                      checked={customizationsThemes === false}
                       onChange={() =>
                         updateFormState({ customizationsThemes: false })
                       }

@@ -124,7 +124,7 @@ const _experience = [
   { value: "other", label: "Other" },
 ];
 interface FormState {
-  references: boolean;
+  references: boolean | null;
   portfolio: string;
   experience: string;
   currentPage: number;

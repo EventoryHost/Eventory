@@ -17,14 +17,14 @@ const _typesOfPaperUsedForInvitations = [
 ];
 
 interface FormState {
-  customInvitationsFromScratch: boolean;
-  semiCustomInvitations: boolean;
-  foilStamping: boolean;
-  engraving: boolean;
-  letterPressPrinting: boolean;
-  preDesignedCards: boolean;
-  differentCardstockWeights: boolean;
-  informationInserts: boolean;
+  customInvitationsFromScratch: boolean | null;
+  semiCustomInvitations: boolean | null;
+  foilStamping: boolean | null;
+  engraving: boolean | null;
+  letterPressPrinting: boolean | null;
+  preDesignedCards: boolean | null;
+  differentCardstockWeights: boolean | null;
+  informationInserts: boolean | null;
 }
 
 interface Page2Props {

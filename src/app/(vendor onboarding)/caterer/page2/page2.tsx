@@ -262,33 +262,32 @@ const Page2 = ({
                 Customizable<span className="text-red-500">*</span>
               </p>
               <div className="flex gap-4">
-                <div className="flex items-center gap-2">
-                  <input
-                    id="customizableMenuYes"
-                    type="radio"
-                    name="customizableMenu"
-                    value="true"
-                    checked={customizableMenu}
-                    onChange={() => updateFormState({ customizableMenu: true })}
-                    className="h-4 w-4 accent-[#2E3192]"
-                  />
-                  <label htmlFor="customizableMenuYes">Yes</label>
-                </div>
-                <div className="flex items-center gap-2">
-                  <input
-                    id="customizableMenuNo"
-                    type="radio"
-                    name="customizableMenu"
-                    value="false"
-                    checked={!customizableMenu}
-                    onChange={() =>
-                      updateFormState({ customizableMenu: false })
-                    }
-                    className="h-4 w-4 accent-[#2E3192]"
-                  />
-                  <label htmlFor="customizableMenuNo">No</label>
-                </div>
-              </div>
+  <div className="flex items-center gap-2">
+    <input
+      id="customizableMenuYes"
+      type="radio"
+      name="customizableMenu"
+      value="true"
+      checked={customizableMenu === true} // Ensure checked is always a boolean
+      onChange={() => updateFormState({ customizableMenu: true })}
+      className="h-4 w-4 accent-[#2E3192]"
+    />
+    <label htmlFor="customizableMenuYes">Yes</label>
+  </div>
+  <div className="flex items-center gap-2">
+    <input
+      id="customizableMenuNo"
+      type="radio"
+      name="customizableMenu"
+      value="false"
+      checked={customizableMenu === false} // Ensure checked is always a boolean
+      onChange={() => updateFormState({ customizableMenu: false })}
+      className="h-4 w-4 accent-[#2E3192]"
+    />
+    <label htmlFor="customizableMenuNo">No</label>
+  </div>
+</div>
+
             </div>
           </div>
           <div className="items-strech flex flex-row gap-7 self-end">

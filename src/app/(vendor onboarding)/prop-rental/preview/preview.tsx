@@ -119,7 +119,7 @@ type FormState = {
 
   // Page2
   itemCatalogue: boolean | File;
-  customization: boolean;
+  customization: boolean | null;
   maintenance: string;
   services: string;
 
@@ -654,19 +654,19 @@ function Preview({
 
       <div className="mr-[5%] flex w-full justify-end gap-[32px]">
         {/* Previous Button */}
-        <button
+        {/* <button
           onClick={() => setCurrentPage(currentPage - 1)}
           className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
         >
           Previous
-        </button>
+        </button> */}
 
         {/* Next Button */}
         <button
           onClick={() => setCurrentPage(currentPage + 1)}
           className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
         >
-          Submit
+          Continue
         </button>
       </div>
     </div>

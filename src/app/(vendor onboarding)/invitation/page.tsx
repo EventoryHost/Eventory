@@ -19,35 +19,35 @@ interface Package {
 interface FormState {
   // Page-specific states
   // Page 1
-  references: boolean;
+  references: boolean | null;
   portfolio: string;
   experience: string;
   // Page 2
-  customInvitationsFromScratch: boolean;
-  semiCustomInvitations: boolean;
-  foilStamping: boolean;
-  engraving: boolean;
-  letterPressPrinting: boolean;
-  preDesignedCards: boolean;
-  differentCardstockWeights: boolean;
-  informationInserts: boolean;
+  customInvitationsFromScratch: boolean | null;
+  semiCustomInvitations: boolean | null;
+  foilStamping: boolean | null;
+  engraving: boolean | null;
+  letterPressPrinting: boolean | null;
+  preDesignedCards: boolean | null;
+  differentCardstockWeights: boolean | null;
+  informationInserts: boolean | null;
   // Page 3
 
-  additionalStationery: boolean;
-  thankYouCards: boolean;
-  designConcepts: boolean;
-  discussVision: boolean;
-  specialTouch: boolean;
-  initialConsultation: boolean;
-  allowRevisions: boolean;
-  provideProofs: boolean;
-  designconcept: boolean;
+  additionalStationery: boolean | null;
+  thankYouCards: boolean | null;
+  designConcepts: boolean | null;
+  discussVision: boolean | null;
+  specialTouch: boolean | null;
+  initialConsultation: boolean | null;
+  allowRevisions: boolean | null;
+  provideProofs: boolean | null;
+  designconcept: boolean | null;
   // Page 4
   termsandConditions: string;
   cancellationPolicy: string;
   clienttestimonials: string;
-  extracharges: boolean;
-  deposit: boolean;
+  extracharges: boolean | null;
+  deposit: boolean | null;
 
   currentPage: number;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
@@ -58,35 +58,35 @@ const Invitation: React.FC = () => {
   // global variables
   const [formState, setFormState] = useState<FormState>({
     //page1
-    references: false,
+    references: null,
     portfolio: "",
     experience: "",
     // Page 2
-    customInvitationsFromScratch: false,
-    semiCustomInvitations: false,
-    foilStamping: false,
-    engraving: false,
-    letterPressPrinting: false,
-    preDesignedCards: false,
-    differentCardstockWeights: false,
-    informationInserts: false,
+    customInvitationsFromScratch: null,
+    semiCustomInvitations: null,
+    foilStamping: null,
+    engraving: null,
+    letterPressPrinting: null,
+    preDesignedCards: null,
+    differentCardstockWeights: null,
+    informationInserts: null,
 
     //page 3
-    additionalStationery: false,
-    thankYouCards: false,
-    designConcepts: false,
-    discussVision: false,
-    specialTouch: false,
-    initialConsultation: false,
-    allowRevisions: false,
-    provideProofs: false,
-    designconcept: false,
+    additionalStationery: null,
+    thankYouCards: null,
+    designConcepts: null,
+    discussVision: null,
+    specialTouch: null,
+    initialConsultation: null,
+    allowRevisions: null,
+    provideProofs: null,
+    designconcept: null,
     // Page 4
     termsandConditions: "",
     cancellationPolicy: "",
     clienttestimonials: "",
-    extracharges: false,
-    deposit: false,
+    extracharges: null,
+    deposit: null,
     currentPage,
     setCurrentPage,
   });
@@ -167,7 +167,9 @@ const Invitation: React.FC = () => {
     const formData = new FormData();
     // Append form data
     //page 1
-    formData.append("references", formState.references.toString());
+    formData.append("references",
+     formState.references ? formState.references.toString() : "null");
+
     formData.append("portfolio", formState.portfolio);
     formData.append("experience", formState.experience);
     formData.append(
@@ -187,41 +189,51 @@ const Invitation: React.FC = () => {
     //page 2
     formData.append(
       "customInvitationsFromScratch",
-      formState.customInvitationsFromScratch.toString(),
+      formState.customInvitationsFromScratch ? formState.customInvitationsFromScratch.toString() : "null",
     );
     formData.append(
       "semiCustomInvitations",
-      formState.semiCustomInvitations.toString(),
+     formState.semiCustomInvitations ? formState.semiCustomInvitations.toString() : "null",
     );
-    formData.append("foilStamping", formState.foilStamping.toString());
-    formData.append("engraving", formState.engraving.toString());
+    formData.append("foilStamping",
+    formState.foilStamping ? formState.foilStamping.toString() : "null");
+
+    formData.append("engraving",
+    formState.engraving ? formState.engraving.toString() : "null");
+
     formData.append(
       "letterPressPrinting",
-      formState.letterPressPrinting.toString(),
+    formState.letterPressPrinting ? formState.letterPressPrinting.toString() : "null",
     );
-    formData.append("preDesignedCards", formState.preDesignedCards.toString());
+
+    formData.append("preDesignedCards",
+    formState.preDesignedCards ? formState.preDesignedCards.toString():"null");
+
     formData.append(
       "differentCardstockWeights",
-      formState.differentCardstockWeights.toString(),
+     formState.differentCardstockWeights ? formState.differentCardstockWeights.toString() : "null",
     );
     formData.append(
       "informationInserts",
-      formState.informationInserts.toString(),
+     formState.informationInserts ? formState.informationInserts.toString() : "null",
     );
     formData.append("paperType", paperType.join(","));
 
     //page 3
     formData.append(
       "additionalStationery",
-      formState.additionalStationery.toString(),
+     formState.additionalStationery ? formState.additionalStationery.toString() : "null",
     );
 
     // Page 4
     formData.append("termsandConditions", formState.termsandConditions);
     formData.append("cancellationPolicy", formState.cancellationPolicy);
     formData.append("clienttestimonials", formState.clienttestimonials);
-    formData.append("extracharges", formState.extracharges.toString());
-    formData.append("deposit", formState.deposit.toString());
+    formData.append("extracharges",
+     formState.extracharges ? formState.extracharges.toString():"null");
+
+    formData.append("deposit",
+    formState.deposit ? formState.deposit.toString() : "null");
 
     //page 5
     formData.append("perPeicePriceRange", JSON.stringify(perPeicePriceRange));

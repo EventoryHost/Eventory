@@ -26,7 +26,7 @@ export interface FormState {
 
   // Page2
   itemCatalogue: boolean | File;
-  customization: boolean;
+  customization: boolean | null;
   maintenance: string;
   services: string;
 
@@ -35,6 +35,7 @@ export interface FormState {
   tentAndCanopyListUrl: string | File;
   audioVisualListUrl: string | File;
   photos: string | File | File[];
+
   videos: string | File | File[];
   awardsAndRecognize: string;
   clientTestimonial: string;
@@ -93,8 +94,8 @@ const RootPage = () => {
     handleChange: (key: keyof FormState, value: any) => {},
 
     // URL's for the files
-    itemCatalogue: true,
-    customization: false,
+    itemCatalogue: false,
+    customization: null,
     photos: [],
     videos: [],
     maintenance: "",
@@ -308,7 +309,9 @@ const RootPage = () => {
         formState.itemCatalogue ? "true" : "false",
       );
     }
-    formData.append("customization", formState.customization.toString());
+    formData.append("customization",
+    formState.customization ? formState.customization.toString() : "null");
+
     formData.append("maintenance", formState.maintenance);
     formData.append("services", formState.services);
     // Handle photos field
@@ -535,29 +538,25 @@ const RootPage = () => {
       {currentPage <= 4 && (
         <div className="flex flex-col items-start justify-between bg-[#FFFFFF] pt-4 xs:gap-7 md:min-w-[30%] lg:max-w-[30%]">
           <div className="m-auto flex w-[90%] flex-col justify-center">
-            <div className="flex flex-col gap-1 px-6 lg:mt-[2rem]">
+            <div className="flex flex-col gap-1 px-3 lg:mt-[2rem]">
               <span className="text-lg font-semibold">
                 Step {currentPage} of 4
               </span>
               <div className="flex gap-2">
                 <button
                   className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 1 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                  onClick={() => setCurrentPage(1)}
                 ></button>
 
                 <button
                   className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 2 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                  onClick={() => setCurrentPage(2)}
                 ></button>
 
                 <button
                   className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 3 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                  onClick={() => setCurrentPage(3)}
                 ></button>
 
                 <button
                   className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 4 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                  onClick={() => setCurrentPage(4)}
                 ></button>
               </div>
             </div>
