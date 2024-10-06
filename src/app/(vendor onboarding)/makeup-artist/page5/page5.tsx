@@ -2,10 +2,11 @@
 
 import { EditIcon } from "lucide-react";
 import React, { useEffect } from "react";
+import FileDisplay from "../../caterer/(components)/File";
 
 interface FormState {
-  termsAndConditions: string | File;
-  cancellationPolicy: string | File;
+  termsAndConditions: string | File | File[];
+  cancellationPolicy: string | File | File[];
   artistName: string;
   category: string;
   makeupArtists_individual: string[];
@@ -18,7 +19,7 @@ interface FormState {
   onsiteMakeup: boolean;
   organisationMembers: string;
   artistDescription: string;
-  portfolioUrls: string | File;
+  portfolioUrls: string | File | File[];
 }
 
 interface Page5Props {
@@ -39,7 +40,7 @@ interface Page5Props {
   organisationMembers: string;
   artistDescription: string;
   currentPage: number;
-  portfolioUrls: string | File;
+  portfolioUrls: string | File | File[];
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
   handleSubmit: () => void;
 }
@@ -55,17 +56,15 @@ const Page: React.FC<Page5Props> = ({
   currentPage,
   setCurrentPage,
   onsiteMakeup,
-  handleContinue
-
+  handleContinue,
 }) => {
   return (
-
     <div className="flex h-full flex-col items-start justify-start gap-8 overflow-y-scroll rounded-xl bg-white p-6 scrollbar-hide xs:w-[95%] xs:min-w-[90%] md:p-6">
       <h1 className="text-3xl font-semibold">
         {formState.artistName} / Make-up Artist
       </h1>
 
-      <div className="flex items-center w-full justify-between rounded-xl bg-gray-200 p-2 text-xl font-medium">
+      <div className="flex w-full items-center justify-between rounded-xl bg-gray-200 p-2 text-xl font-medium">
         <span className="ml-4">1. Basic Details</span>
         <button
           onClick={() => setCurrentPage(1)}
@@ -94,7 +93,7 @@ const Page: React.FC<Page5Props> = ({
         </div>
       )}
 
-      <div className="mx-8 mt-6 flex justify-between w-full">
+      <div className="mx-8 mt-6 flex w-full justify-between">
         <div className="flex w-1/2 flex-col">
           <span className="text-xl">Venue Description</span>
           <span className="mt-4 font-semibold">
@@ -104,9 +103,13 @@ const Page: React.FC<Page5Props> = ({
         <div className="flex w-1/2 flex-col">
           <span className="text-xl">PortFolio</span>
           <span className="mt-4 font-semibold">
-            {(typeof formState.portfolioUrls === "string"
-              ? formState.portfolioUrls
-              : formState.portfolioUrls.name) || "No File Uploaded"}
+            {typeof formState.portfolioUrls === "string" ? (
+              <div>{formState.portfolioUrls}</div> // Handle string case
+            ) : Array.isArray(formState.portfolioUrls) ? (
+              <FileDisplay files={formState.portfolioUrls} /> // Handle File[] case
+            ) : (
+              <FileDisplay file={formState.portfolioUrls} /> // Handle single File case
+            )}
           </span>
         </div>
       </div>
@@ -135,7 +138,7 @@ const Page: React.FC<Page5Props> = ({
           </div>
         </div>
       </div>
-      <div className="flex w-full  items-center justify-between rounded-xl bg-gray-200 p-2 text-xl font-medium">
+      <div className="flex w-full items-center justify-between rounded-xl bg-gray-200 p-2 text-xl font-medium">
         <span className="ml-4">2. Policies</span>
         <button
           onClick={() => setCurrentPage(2)}
@@ -145,26 +148,34 @@ const Page: React.FC<Page5Props> = ({
         </button>
       </div>
 
-      <div className="mx-8 mt-2 flex justify-between w-full">
+      <div className="mx-8 mt-2 flex w-full justify-between">
         <div className="flex w-1/2 flex-col">
           <span className="text-xl">Cancellation Policy</span>
           <span className="font-semibold">
-            {(typeof formState.cancellationPolicy === "string"
-              ? formState.cancellationPolicy
-              : formState.cancellationPolicy.name) || "No file uploaded"}
+            {typeof formState.cancellationPolicy === "string" ? (
+              <div>{formState.cancellationPolicy}</div> // Handle string case
+            ) : Array.isArray(formState.cancellationPolicy) ? (
+              <FileDisplay files={formState.cancellationPolicy} /> // Handle File[] case
+            ) : (
+              <FileDisplay file={formState.cancellationPolicy} /> // Handle single File case
+            )}
           </span>
         </div>
         <div className="flex w-1/2 flex-col">
           <span className="text-xl">Terms and Conditions</span>
           <span className="font-semibold">
-            {(typeof formState.termsAndConditions === "string"
-              ? formState.termsAndConditions
-              : formState.termsAndConditions.name) || "No File Uploaded"}
+            {typeof formState.termsAndConditions === "string" ? (
+              <div>{formState.termsAndConditions}</div> // Handle string case
+            ) : Array.isArray(formState.termsAndConditions) ? (
+              <FileDisplay files={formState.termsAndConditions} /> // Handle File[] case
+            ) : (
+              <FileDisplay file={formState.termsAndConditions} /> // Handle single File case
+            )}
           </span>
         </div>
       </div>
 
-      <div className="flex items-center w-full justify-between rounded-xl bg-gray-200 p-2 text-xl font-medium">
+      <div className="flex w-full items-center justify-between rounded-xl bg-gray-200 p-2 text-xl font-medium">
         <span className="ml-4">3. Pricing </span>
         <button
           onClick={() => setCurrentPage(3)}
@@ -174,7 +185,7 @@ const Page: React.FC<Page5Props> = ({
         </button>
       </div>
 
-      <div className="mx-8 mt-2 flex justify-between w-full">
+      <div className="mx-8 mt-2 flex w-full justify-between">
         <div className="flex w-1/3 flex-col">
           <span className="text-xl">Hourly Package</span>
           <div className="mt-4 flex flex-col">

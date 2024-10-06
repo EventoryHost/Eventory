@@ -132,15 +132,13 @@ body {
   }
 }
 
-
 /* Scroll bar With Blue Track pad */
 @layer components {
   .scrollbar-rounded-xl {
     @apply overflow-y-scroll; /* Ensure the element is scrollable */
     scrollbar-width: thin; /* Firefox: Make the scrollbar thin */
     scrollbar-color: #1e3a8a #f1f1f1; /* Firefox: Thumb color and track color */
-    direction:ltr;
-    
+    direction: ltr;
   }
 
   /* Chrome, Safari, and other WebKit-based browsers */
@@ -175,5 +173,4 @@ body {
 .custom-shadow {
   @apply shadow-sm;
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
-
 }

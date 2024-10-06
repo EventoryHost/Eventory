@@ -112,10 +112,8 @@ type PricingEntry = {
 type FormState = {
   // Page1
   managerName: string;
-  phoneNumber: string;
   workDescription: string;
   eventSize: string;
-  numberOfWorkers: string;
   handleChange: (key: keyof FormState, value: any) => void;
   [key: string]: any;
 
@@ -124,10 +122,6 @@ type FormState = {
   customization: boolean;
   maintenance: string;
   services: string;
-
-  insurancePolicy: string | File;
-  privacyPolicy: string | File;
-
 
   // Page3
   furnitureAndDecorListUrl: string | File;
@@ -194,7 +188,8 @@ function Preview({
   setselectedFurnitureEvents,
   setselectedAudioEvents,
   setselectedTentEvents,
-  selectedFurniture, setSelectedFurniture,
+  selectedFurniture,
+  setSelectedFurniture,
   setServiceProvided,
   serviceProvided,
   selectedDecor,
@@ -212,75 +207,95 @@ function Preview({
   handleSubmit,
 }: PagePreviewProps) {
   return (
-    <div className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll rounded-xl bg-white p-6 scrollbar-hide w-full md:p-10">
-      <span className=" text-xl font-semibold">
+    <div className="flex h-full w-full flex-col items-start justify-start gap-5 overflow-y-scroll rounded-xl bg-white p-6 scrollbar-hide md:p-10">
+      <span className="text-xl font-semibold">
         {formState.managerName} / Prop-Rentals
       </span>
 
       <div className="flex w-[100%] justify-between rounded-xl bg-[rgba(96,94,216,0.1)] p-2 pl-4 text-xl font-semibold">
         1. Basic Information
-        <div className="align-center flex justify-center m-1">
+        <div className="align-center m-1 flex justify-center">
           <button onClick={() => setCurrentPage(1)}>
-            <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M14.4844 3.80552C15.5576 2.73077 17.2981 2.73011 18.372 3.80405L20.8639 6.2959C21.9287 7.36068 21.9397 9.08444 20.8887 10.1628L11.6556 19.6361C10.95 20.3599 9.98237 20.7681 8.97194 20.7681L6.21979 20.768C4.94055 20.7679 3.91893 19.7015 3.97273 18.4224L4.09089 15.6134C4.13039 14.6744 4.52067 13.7844 5.1845 13.1195L14.4844 3.80552ZM17.3122 4.86551C16.824 4.37736 16.0329 4.37766 15.5451 4.86618L13.8904 6.52336L18.1727 10.8003L19.8153 9.11505C20.2931 8.62488 20.288 7.84136 19.804 7.35737L17.3122 4.86551ZM6.24516 14.1802L12.8302 7.58522L17.1253 11.875L10.5822 18.5883C10.1589 19.0226 9.57827 19.2675 8.97201 19.2675L6.21986 19.2674C5.79344 19.2674 5.45291 18.9119 5.47084 18.4856L5.58899 15.6765C5.61269 15.1131 5.84686 14.5791 6.24516 14.1802ZM21.5121 20.6958C21.9262 20.6958 22.2619 20.3598 22.2619 19.9455C22.2619 19.5311 21.9262 19.1952 21.5121 19.1952H15.3828C14.9687 19.1952 14.6331 19.5311 14.6331 19.9455C14.6331 20.3598 14.9687 20.6958 15.3828 20.6958H21.5121Z" fill="#2B3F6C" />
+            <svg
+              width="25"
+              height="24"
+              viewBox="0 0 25 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M14.4844 3.80552C15.5576 2.73077 17.2981 2.73011 18.372 3.80405L20.8639 6.2959C21.9287 7.36068 21.9397 9.08444 20.8887 10.1628L11.6556 19.6361C10.95 20.3599 9.98237 20.7681 8.97194 20.7681L6.21979 20.768C4.94055 20.7679 3.91893 19.7015 3.97273 18.4224L4.09089 15.6134C4.13039 14.6744 4.52067 13.7844 5.1845 13.1195L14.4844 3.80552ZM17.3122 4.86551C16.824 4.37736 16.0329 4.37766 15.5451 4.86618L13.8904 6.52336L18.1727 10.8003L19.8153 9.11505C20.2931 8.62488 20.288 7.84136 19.804 7.35737L17.3122 4.86551ZM6.24516 14.1802L12.8302 7.58522L17.1253 11.875L10.5822 18.5883C10.1589 19.0226 9.57827 19.2675 8.97201 19.2675L6.21986 19.2674C5.79344 19.2674 5.45291 18.9119 5.47084 18.4856L5.58899 15.6765C5.61269 15.1131 5.84686 14.5791 6.24516 14.1802ZM21.5121 20.6958C21.9262 20.6958 22.2619 20.3598 22.2619 19.9455C22.2619 19.5311 21.9262 19.1952 21.5121 19.1952H15.3828C14.9687 19.1952 14.6331 19.5311 14.6331 19.9455C14.6331 20.3598 14.9687 20.6958 15.3828 20.6958H21.5121Z"
+                fill="#2B3F6C"
+              />
             </svg>
-
           </button>
         </div>
       </div>
 
       <div className="w-full">
-        <div className="flex  flex-col items-start justify-between gap-5 md:flex-row  ">
-          <div className="mt-4 w-full md:w-1/2 flex flex-col gap-1 items-start">
+        <div className="flex flex-col items-start justify-between gap-5 md:flex-row">
+          <div className="mt-4 flex w-full flex-col items-start gap-1 md:w-1/2">
             <span className="text-base font-normal">manager name (POC)</span>
-            <span className="text-sm font-bold">
-              {formState.managerName}
-            </span>
+            <span className="text-sm font-bold">{formState.managerName}</span>
           </div>
-          <div className="mt-4 w-full md:w-1/2 flex flex-col gap-1 items-start">
+          <div className="mt-4 flex w-full flex-col items-start gap-1 md:w-1/2">
             <span className="text-base font-normal">Event Size</span>
-            <span className=" text-sm font-bold">
-              {formState.eventSize}
-            </span>
+            <span className="text-sm font-bold">{formState.eventSize}</span>
           </div>
         </div>
 
-        <div className=" mt-4 flex flex-col gap-1 w-1/2">
+        <div className="mt-4 flex w-1/2 flex-col gap-1">
           <span className="text-base font-normal">Description about you</span>
-          <span className=" text-sm font-bold break-words">
+          <span className="break-words text-sm font-bold">
             {formState.workDescription}
           </span>
         </div>
-
       </div>
-
-
 
       <div className="flex w-[100%] justify-between rounded-xl bg-[rgba(96,94,216,0.1)] p-2 pl-4 text-xl font-semibold">
         2. Services Details
-        <div className="align-center flex justify-center ">
+        <div className="align-center flex justify-center">
           <button onClick={() => setCurrentPage(2)}>
-            <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M14.4844 3.80552C15.5576 2.73077 17.2981 2.73011 18.372 3.80405L20.8639 6.2959C21.9287 7.36068 21.9397 9.08444 20.8887 10.1628L11.6556 19.6361C10.95 20.3599 9.98237 20.7681 8.97194 20.7681L6.21979 20.768C4.94055 20.7679 3.91893 19.7015 3.97273 18.4224L4.09089 15.6134C4.13039 14.6744 4.52067 13.7844 5.1845 13.1195L14.4844 3.80552ZM17.3122 4.86551C16.824 4.37736 16.0329 4.37766 15.5451 4.86618L13.8904 6.52336L18.1727 10.8003L19.8153 9.11505C20.2931 8.62488 20.288 7.84136 19.804 7.35737L17.3122 4.86551ZM6.24516 14.1802L12.8302 7.58522L17.1253 11.875L10.5822 18.5883C10.1589 19.0226 9.57827 19.2675 8.97201 19.2675L6.21986 19.2674C5.79344 19.2674 5.45291 18.9119 5.47084 18.4856L5.58899 15.6765C5.61269 15.1131 5.84686 14.5791 6.24516 14.1802ZM21.5121 20.6958C21.9262 20.6958 22.2619 20.3598 22.2619 19.9455C22.2619 19.5311 21.9262 19.1952 21.5121 19.1952H15.3828C14.9687 19.1952 14.6331 19.5311 14.6331 19.9455C14.6331 20.3598 14.9687 20.6958 15.3828 20.6958H21.5121Z" fill="#2B3F6C" />
+            <svg
+              width="25"
+              height="24"
+              viewBox="0 0 25 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M14.4844 3.80552C15.5576 2.73077 17.2981 2.73011 18.372 3.80405L20.8639 6.2959C21.9287 7.36068 21.9397 9.08444 20.8887 10.1628L11.6556 19.6361C10.95 20.3599 9.98237 20.7681 8.97194 20.7681L6.21979 20.768C4.94055 20.7679 3.91893 19.7015 3.97273 18.4224L4.09089 15.6134C4.13039 14.6744 4.52067 13.7844 5.1845 13.1195L14.4844 3.80552ZM17.3122 4.86551C16.824 4.37736 16.0329 4.37766 15.5451 4.86618L13.8904 6.52336L18.1727 10.8003L19.8153 9.11505C20.2931 8.62488 20.288 7.84136 19.804 7.35737L17.3122 4.86551ZM6.24516 14.1802L12.8302 7.58522L17.1253 11.875L10.5822 18.5883C10.1589 19.0226 9.57827 19.2675 8.97201 19.2675L6.21986 19.2674C5.79344 19.2674 5.45291 18.9119 5.47084 18.4856L5.58899 15.6765C5.61269 15.1131 5.84686 14.5791 6.24516 14.1802ZM21.5121 20.6958C21.9262 20.6958 22.2619 20.3598 22.2619 19.9455C22.2619 19.5311 21.9262 19.1952 21.5121 19.1952H15.3828C14.9687 19.1952 14.6331 19.5311 14.6331 19.9455C14.6331 20.3598 14.9687 20.6958 15.3828 20.6958H21.5121Z"
+                fill="#2B3F6C"
+              />
             </svg>
           </button>
         </div>
       </div>
 
       <div className="w-full">
-        <div className="flex  flex-col items-start justify-between gap-5 md:flex-row  ">
-          <div className="mt-4 w-full md:w-1/2 flex flex-col gap-1 items-start">
+        <div className="flex flex-col items-start justify-between gap-5 md:flex-row">
+          <div className="mt-4 flex w-full flex-col items-start gap-1 md:w-1/2">
             <span className="text-base font-normal">catalogue</span>
             <span className="font-semibold">
-              {(formState.itemCatalogue && typeof formState.itemCatalogue === "object") ? (
-                <span className="font-semibold ">
+              {formState.itemCatalogue &&
+              typeof formState.itemCatalogue === "object" ? (
+                <span className="font-semibold">
                   <FileDisplay file={formState.itemCatalogue} />
-                </span>) : "no"}
+                </span>
+              ) : (
+                "no"
+              )}
             </span>
           </div>
-          <div className="mt-4 w-full md:w-1/2 flex flex-col gap-1 items-start">
-            <span className="text-base font-normal">Do you offer customization(branding, color, theme of Items) ?</span>
-            <span className=" text-sm font-bold">
+          <div className="mt-4 flex w-full flex-col items-start gap-1 md:w-1/2">
+            <span className="text-base font-normal">
+              Do you offer customization(branding, color, theme of Items) ?
+            </span>
+            <span className="text-sm font-bold">
               {formState.customization ? "yes" : "no"}
             </span>
           </div>
@@ -288,18 +303,26 @@ function Preview({
       </div>
 
       <div className="w-full">
-        <div className="flex flex-col items-start justify-between gap-5 md:flex-row  ">
-          <div className="mt-4 w-full md:w-1/2 flex flex-col gap-1 items-start">
-            <span className="text-base font-normal">How do you handle maintenance and repairs?</span>
-            <span className="text-sm font-bold w-full break-words">{formState.maintenance}</span>
+        <div className="flex flex-col items-start justify-between gap-5 md:flex-row">
+          <div className="mt-4 flex w-full flex-col items-start gap-1 md:w-1/2">
+            <span className="text-base font-normal">
+              How do you handle maintenance and repairs?
+            </span>
+            <span className="w-full break-words text-sm font-bold">
+              {formState.maintenance}
+            </span>
           </div>
-          <div className="mt-4 w-full md:w-1/2 flex flex-col gap-1 items-start">
-            <span className="text-base font-normal">What areas do you provide service for?</span>
-            <span className="text-sm font-bold w-full break-words">{formState.services}</span>
+          <div className="mt-4 flex w-full flex-col items-start gap-1 md:w-1/2">
+            <span className="text-base font-normal">
+              What areas do you provide service for?
+            </span>
+            <span className="w-full break-words text-sm font-bold">
+              {formState.services}
+            </span>
           </div>
         </div>
       </div>
-      <div className="flex flex-col items-start justify-between gap-2   ">
+      <div className="flex flex-col items-start justify-between gap-2">
         <span className="text-base font-normal">Selected Decor</span>
         <Appetizers
           appetizers={serviceProvided}
@@ -308,34 +331,46 @@ function Preview({
         />
       </div>
 
-
       <div className="flex w-[100%] justify-between rounded-xl bg-[rgba(96,94,216,0.1)] p-2 pl-4 text-xl font-semibold">
         3. Furniture and Decor Rentals
         <div className="align-center flex justify-center p-1">
           <button onClick={() => setCurrentPage(3)}>
-            <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M14.4844 3.80552C15.5576 2.73077 17.2981 2.73011 18.372 3.80405L20.8639 6.2959C21.9287 7.36068 21.9397 9.08444 20.8887 10.1628L11.6556 19.6361C10.95 20.3599 9.98237 20.7681 8.97194 20.7681L6.21979 20.768C4.94055 20.7679 3.91893 19.7015 3.97273 18.4224L4.09089 15.6134C4.13039 14.6744 4.52067 13.7844 5.1845 13.1195L14.4844 3.80552ZM17.3122 4.86551C16.824 4.37736 16.0329 4.37766 15.5451 4.86618L13.8904 6.52336L18.1727 10.8003L19.8153 9.11505C20.2931 8.62488 20.288 7.84136 19.804 7.35737L17.3122 4.86551ZM6.24516 14.1802L12.8302 7.58522L17.1253 11.875L10.5822 18.5883C10.1589 19.0226 9.57827 19.2675 8.97201 19.2675L6.21986 19.2674C5.79344 19.2674 5.45291 18.9119 5.47084 18.4856L5.58899 15.6765C5.61269 15.1131 5.84686 14.5791 6.24516 14.1802ZM21.5121 20.6958C21.9262 20.6958 22.2619 20.3598 22.2619 19.9455C22.2619 19.5311 21.9262 19.1952 21.5121 19.1952H15.3828C14.9687 19.1952 14.6331 19.5311 14.6331 19.9455C14.6331 20.3598 14.9687 20.6958 15.3828 20.6958H21.5121Z" fill="#2B3F6C" />
+            <svg
+              width="25"
+              height="24"
+              viewBox="0 0 25 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M14.4844 3.80552C15.5576 2.73077 17.2981 2.73011 18.372 3.80405L20.8639 6.2959C21.9287 7.36068 21.9397 9.08444 20.8887 10.1628L11.6556 19.6361C10.95 20.3599 9.98237 20.7681 8.97194 20.7681L6.21979 20.768C4.94055 20.7679 3.91893 19.7015 3.97273 18.4224L4.09089 15.6134C4.13039 14.6744 4.52067 13.7844 5.1845 13.1195L14.4844 3.80552ZM17.3122 4.86551C16.824 4.37736 16.0329 4.37766 15.5451 4.86618L13.8904 6.52336L18.1727 10.8003L19.8153 9.11505C20.2931 8.62488 20.288 7.84136 19.804 7.35737L17.3122 4.86551ZM6.24516 14.1802L12.8302 7.58522L17.1253 11.875L10.5822 18.5883C10.1589 19.0226 9.57827 19.2675 8.97201 19.2675L6.21986 19.2674C5.79344 19.2674 5.45291 18.9119 5.47084 18.4856L5.58899 15.6765C5.61269 15.1131 5.84686 14.5791 6.24516 14.1802ZM21.5121 20.6958C21.9262 20.6958 22.2619 20.3598 22.2619 19.9455C22.2619 19.5311 21.9262 19.1952 21.5121 19.1952H15.3828C14.9687 19.1952 14.6331 19.5311 14.6331 19.9455C14.6331 20.3598 14.9687 20.6958 15.3828 20.6958H21.5121Z"
+                fill="#2B3F6C"
+              />
             </svg>
           </button>
         </div>
       </div>
 
       <div className="w-full">
-        <div className="flex  flex-col items-start justify-between gap-5   ">
-          <div className="mt-4  md:w-1/2 flex flex-col gap-1 items-start">
+        <div className="flex flex-col items-start justify-between gap-5">
+          <div className="mt-4 flex flex-col items-start gap-1 md:w-1/2">
             <span className="text-base font-normal">Uploaded List</span>
             <span className="font-semibold">
-              {(formState.furnitureAndDecorListUrl && typeof formState.furnitureAndDecorListUrl === "object") ? (
-                <span className="font-semibold ">
+              {formState.furnitureAndDecorListUrl &&
+              typeof formState.furnitureAndDecorListUrl === "object" ? (
+                <span className="font-semibold">
                   <FileDisplay file={formState.furnitureAndDecorListUrl} />
-                </span>) : "no"}
+                </span>
+              ) : (
+                "no"
+              )}
             </span>
           </div>
-
         </div>
-
       </div>
-      <div className="flex flex-col items-start justify-between gap-2   ">
+      <div className="flex flex-col items-start justify-between gap-2">
         <span className="text-base font-normal">Types of event </span>
         <Appetizers
           appetizers={selectedFurnitureEvents}
@@ -343,7 +378,7 @@ function Preview({
           setSelectedAppetizers={setselectedFurnitureEvents}
         />
       </div>
-      <div className="flex flex-col items-start justify-between gap-2   ">
+      <div className="flex flex-col items-start justify-between gap-2">
         <span className="text-base font-normal">Furniture</span>
         <Appetizers
           appetizers={selectedFurniture}
@@ -351,7 +386,7 @@ function Preview({
           setSelectedAppetizers={setSelectedFurniture}
         />
       </div>
-      <div className="flex flex-col items-start justify-between gap-2   ">
+      <div className="flex flex-col items-start justify-between gap-2">
         <span className="text-base font-normal">Decor</span>
         <Appetizers
           appetizers={selectedDecor}
@@ -364,28 +399,41 @@ function Preview({
         4. Tent and Canopy Rentals
         <div className="align-center flex justify-center p-1">
           <button onClick={() => setCurrentPage(3)}>
-            <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M14.4844 3.80552C15.5576 2.73077 17.2981 2.73011 18.372 3.80405L20.8639 6.2959C21.9287 7.36068 21.9397 9.08444 20.8887 10.1628L11.6556 19.6361C10.95 20.3599 9.98237 20.7681 8.97194 20.7681L6.21979 20.768C4.94055 20.7679 3.91893 19.7015 3.97273 18.4224L4.09089 15.6134C4.13039 14.6744 4.52067 13.7844 5.1845 13.1195L14.4844 3.80552ZM17.3122 4.86551C16.824 4.37736 16.0329 4.37766 15.5451 4.86618L13.8904 6.52336L18.1727 10.8003L19.8153 9.11505C20.2931 8.62488 20.288 7.84136 19.804 7.35737L17.3122 4.86551ZM6.24516 14.1802L12.8302 7.58522L17.1253 11.875L10.5822 18.5883C10.1589 19.0226 9.57827 19.2675 8.97201 19.2675L6.21986 19.2674C5.79344 19.2674 5.45291 18.9119 5.47084 18.4856L5.58899 15.6765C5.61269 15.1131 5.84686 14.5791 6.24516 14.1802ZM21.5121 20.6958C21.9262 20.6958 22.2619 20.3598 22.2619 19.9455C22.2619 19.5311 21.9262 19.1952 21.5121 19.1952H15.3828C14.9687 19.1952 14.6331 19.5311 14.6331 19.9455C14.6331 20.3598 14.9687 20.6958 15.3828 20.6958H21.5121Z" fill="#2B3F6C" />
+            <svg
+              width="25"
+              height="24"
+              viewBox="0 0 25 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M14.4844 3.80552C15.5576 2.73077 17.2981 2.73011 18.372 3.80405L20.8639 6.2959C21.9287 7.36068 21.9397 9.08444 20.8887 10.1628L11.6556 19.6361C10.95 20.3599 9.98237 20.7681 8.97194 20.7681L6.21979 20.768C4.94055 20.7679 3.91893 19.7015 3.97273 18.4224L4.09089 15.6134C4.13039 14.6744 4.52067 13.7844 5.1845 13.1195L14.4844 3.80552ZM17.3122 4.86551C16.824 4.37736 16.0329 4.37766 15.5451 4.86618L13.8904 6.52336L18.1727 10.8003L19.8153 9.11505C20.2931 8.62488 20.288 7.84136 19.804 7.35737L17.3122 4.86551ZM6.24516 14.1802L12.8302 7.58522L17.1253 11.875L10.5822 18.5883C10.1589 19.0226 9.57827 19.2675 8.97201 19.2675L6.21986 19.2674C5.79344 19.2674 5.45291 18.9119 5.47084 18.4856L5.58899 15.6765C5.61269 15.1131 5.84686 14.5791 6.24516 14.1802ZM21.5121 20.6958C21.9262 20.6958 22.2619 20.3598 22.2619 19.9455C22.2619 19.5311 21.9262 19.1952 21.5121 19.1952H15.3828C14.9687 19.1952 14.6331 19.5311 14.6331 19.9455C14.6331 20.3598 14.9687 20.6958 15.3828 20.6958H21.5121Z"
+                fill="#2B3F6C"
+              />
             </svg>
           </button>
         </div>
       </div>
       <div className="w-full">
-        <div className="flex  flex-col items-start justify-between gap-5   ">
-          <div className="mt-4  md:w-1/2 flex flex-col gap-1 items-start">
+        <div className="flex flex-col items-start justify-between gap-5">
+          <div className="mt-4 flex flex-col items-start gap-1 md:w-1/2">
             <span className="text-base font-normal">Uploaded List</span>
             <span className="font-semibold">
-              {(formState.tentAndCanopyListUrl && typeof formState.tentAndCanopyListUrl === "object") ? (
-                <span className="font-semibold min-w-full">
+              {formState.tentAndCanopyListUrl &&
+              typeof formState.tentAndCanopyListUrl === "object" ? (
+                <span className="min-w-full font-semibold">
                   <FileDisplay file={formState.tentAndCanopyListUrl} />
-                </span>) : "no"}
+                </span>
+              ) : (
+                "no"
+              )}
             </span>
           </div>
-
         </div>
-
       </div>
-      <div className="flex flex-col items-start justify-between gap-2   ">
+      <div className="flex flex-col items-start justify-between gap-2">
         <span className="text-base font-normal">Types of event </span>
         <Appetizers
           appetizers={selectedTentEvents}
@@ -393,7 +441,7 @@ function Preview({
           setSelectedAppetizers={setselectedTentEvents}
         />
       </div>
-      <div className="flex flex-col items-start justify-between gap-2   ">
+      <div className="flex flex-col items-start justify-between gap-2">
         <span className="text-base font-normal">Tent and Canopy</span>
         <Appetizers
           appetizers={selectedTentOptions}
@@ -406,26 +454,41 @@ function Preview({
         5. Audio-Visual Rentals
         <div className="align-center flex justify-center p-1">
           <button onClick={() => setCurrentPage(3)}>
-            <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M14.4844 3.80552C15.5576 2.73077 17.2981 2.73011 18.372 3.80405L20.8639 6.2959C21.9287 7.36068 21.9397 9.08444 20.8887 10.1628L11.6556 19.6361C10.95 20.3599 9.98237 20.7681 8.97194 20.7681L6.21979 20.768C4.94055 20.7679 3.91893 19.7015 3.97273 18.4224L4.09089 15.6134C4.13039 14.6744 4.52067 13.7844 5.1845 13.1195L14.4844 3.80552ZM17.3122 4.86551C16.824 4.37736 16.0329 4.37766 15.5451 4.86618L13.8904 6.52336L18.1727 10.8003L19.8153 9.11505C20.2931 8.62488 20.288 7.84136 19.804 7.35737L17.3122 4.86551ZM6.24516 14.1802L12.8302 7.58522L17.1253 11.875L10.5822 18.5883C10.1589 19.0226 9.57827 19.2675 8.97201 19.2675L6.21986 19.2674C5.79344 19.2674 5.45291 18.9119 5.47084 18.4856L5.58899 15.6765C5.61269 15.1131 5.84686 14.5791 6.24516 14.1802ZM21.5121 20.6958C21.9262 20.6958 22.2619 20.3598 22.2619 19.9455C22.2619 19.5311 21.9262 19.1952 21.5121 19.1952H15.3828C14.9687 19.1952 14.6331 19.5311 14.6331 19.9455C14.6331 20.3598 14.9687 20.6958 15.3828 20.6958H21.5121Z" fill="#2B3F6C" />
+            <svg
+              width="25"
+              height="24"
+              viewBox="0 0 25 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M14.4844 3.80552C15.5576 2.73077 17.2981 2.73011 18.372 3.80405L20.8639 6.2959C21.9287 7.36068 21.9397 9.08444 20.8887 10.1628L11.6556 19.6361C10.95 20.3599 9.98237 20.7681 8.97194 20.7681L6.21979 20.768C4.94055 20.7679 3.91893 19.7015 3.97273 18.4224L4.09089 15.6134C4.13039 14.6744 4.52067 13.7844 5.1845 13.1195L14.4844 3.80552ZM17.3122 4.86551C16.824 4.37736 16.0329 4.37766 15.5451 4.86618L13.8904 6.52336L18.1727 10.8003L19.8153 9.11505C20.2931 8.62488 20.288 7.84136 19.804 7.35737L17.3122 4.86551ZM6.24516 14.1802L12.8302 7.58522L17.1253 11.875L10.5822 18.5883C10.1589 19.0226 9.57827 19.2675 8.97201 19.2675L6.21986 19.2674C5.79344 19.2674 5.45291 18.9119 5.47084 18.4856L5.58899 15.6765C5.61269 15.1131 5.84686 14.5791 6.24516 14.1802ZM21.5121 20.6958C21.9262 20.6958 22.2619 20.3598 22.2619 19.9455C22.2619 19.5311 21.9262 19.1952 21.5121 19.1952H15.3828C14.9687 19.1952 14.6331 19.5311 14.6331 19.9455C14.6331 20.3598 14.9687 20.6958 15.3828 20.6958H21.5121Z"
+                fill="#2B3F6C"
+              />
             </svg>
           </button>
         </div>
       </div>
       <div className="w-full">
-        <div className="flex  flex-col items-start justify-between gap-5   ">
-          <div className="mt-4  md:w-1/2 flex flex-col gap-1 items-start">
+        <div className="flex flex-col items-start justify-between gap-5">
+          <div className="mt-4 flex flex-col items-start gap-1 md:w-1/2">
             <span className="text-base font-normal">Upload List</span>
             <span className="font-semibold">
-              {(formState.audioVisualListUrl && typeof formState.audioVisualListUrl === "object") ? (
-                <span className="font-semibold min-w-full">
+              {formState.audioVisualListUrl &&
+              typeof formState.audioVisualListUrl === "object" ? (
+                <span className="min-w-full font-semibold">
                   <FileDisplay file={formState.audioVisualListUrl} />
-                </span>) : "no"}
+                </span>
+              ) : (
+                "no"
+              )}
             </span>
           </div>
         </div>
       </div>
-      <div className="flex flex-col items-start justify-between gap-2   ">
+      <div className="flex flex-col items-start justify-between gap-2">
         <span className="text-base font-normal">Types of event </span>
         <Appetizers
           appetizers={selectedAudioEvents}
@@ -433,7 +496,7 @@ function Preview({
           setSelectedAppetizers={setselectedAudioEvents}
         />
       </div>
-      <div className="flex flex-col items-start justify-between gap-2   ">
+      <div className="flex flex-col items-start justify-between gap-2">
         <span className="text-base font-normal">Audio Equipment </span>
         <Appetizers
           appetizers={selectedAudioOptions}
@@ -441,7 +504,7 @@ function Preview({
           setSelectedAppetizers={setSelectedAudioOptions}
         />
       </div>
-      <div className="flex flex-col items-start justify-between gap-2   ">
+      <div className="flex flex-col items-start justify-between gap-2">
         <span className="text-base font-normal">Visual Equipment </span>
         <Appetizers
           appetizers={selectedvisualOptions}
@@ -449,7 +512,7 @@ function Preview({
           setSelectedAppetizers={setSelectedVisualOptions}
         />
       </div>
-      <div className="flex flex-col items-start justify-between gap-2   ">
+      <div className="flex flex-col items-start justify-between gap-2">
         <span className="text-base font-normal">Light Equipment </span>
         <Appetizers
           appetizers={selectedLightOptions}
@@ -462,18 +525,30 @@ function Preview({
         6. Additional Details
         <div className="align-center flex justify-center p-1">
           <button onClick={() => setCurrentPage(4)}>
-            <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M14.4844 3.80552C15.5576 2.73077 17.2981 2.73011 18.372 3.80405L20.8639 6.2959C21.9287 7.36068 21.9397 9.08444 20.8887 10.1628L11.6556 19.6361C10.95 20.3599 9.98237 20.7681 8.97194 20.7681L6.21979 20.768C4.94055 20.7679 3.91893 19.7015 3.97273 18.4224L4.09089 15.6134C4.13039 14.6744 4.52067 13.7844 5.1845 13.1195L14.4844 3.80552ZM17.3122 4.86551C16.824 4.37736 16.0329 4.37766 15.5451 4.86618L13.8904 6.52336L18.1727 10.8003L19.8153 9.11505C20.2931 8.62488 20.288 7.84136 19.804 7.35737L17.3122 4.86551ZM6.24516 14.1802L12.8302 7.58522L17.1253 11.875L10.5822 18.5883C10.1589 19.0226 9.57827 19.2675 8.97201 19.2675L6.21986 19.2674C5.79344 19.2674 5.45291 18.9119 5.47084 18.4856L5.58899 15.6765C5.61269 15.1131 5.84686 14.5791 6.24516 14.1802ZM21.5121 20.6958C21.9262 20.6958 22.2619 20.3598 22.2619 19.9455C22.2619 19.5311 21.9262 19.1952 21.5121 19.1952H15.3828C14.9687 19.1952 14.6331 19.5311 14.6331 19.9455C14.6331 20.3598 14.9687 20.6958 15.3828 20.6958H21.5121Z" fill="#2B3F6C" />
+            <svg
+              width="25"
+              height="24"
+              viewBox="0 0 25 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M14.4844 3.80552C15.5576 2.73077 17.2981 2.73011 18.372 3.80405L20.8639 6.2959C21.9287 7.36068 21.9397 9.08444 20.8887 10.1628L11.6556 19.6361C10.95 20.3599 9.98237 20.7681 8.97194 20.7681L6.21979 20.768C4.94055 20.7679 3.91893 19.7015 3.97273 18.4224L4.09089 15.6134C4.13039 14.6744 4.52067 13.7844 5.1845 13.1195L14.4844 3.80552ZM17.3122 4.86551C16.824 4.37736 16.0329 4.37766 15.5451 4.86618L13.8904 6.52336L18.1727 10.8003L19.8153 9.11505C20.2931 8.62488 20.288 7.84136 19.804 7.35737L17.3122 4.86551ZM6.24516 14.1802L12.8302 7.58522L17.1253 11.875L10.5822 18.5883C10.1589 19.0226 9.57827 19.2675 8.97201 19.2675L6.21986 19.2674C5.79344 19.2674 5.45291 18.9119 5.47084 18.4856L5.58899 15.6765C5.61269 15.1131 5.84686 14.5791 6.24516 14.1802ZM21.5121 20.6958C21.9262 20.6958 22.2619 20.3598 22.2619 19.9455C22.2619 19.5311 21.9262 19.1952 21.5121 19.1952H15.3828C14.9687 19.1952 14.6331 19.5311 14.6331 19.9455C14.6331 20.3598 14.9687 20.6958 15.3828 20.6958H21.5121Z"
+                fill="#2B3F6C"
+              />
             </svg>
           </button>
         </div>
       </div>
       <div className="w-full">
-        <div className="flex  flex-col items-start justify-between gap-5 md:flex-row  ">
-          <div className="mt-4  md:w-1/2 flex flex-col gap-1 items-start">
+        <div className="flex flex-col items-start justify-between gap-5 md:flex-row">
+          <div className="mt-4 flex flex-col items-start gap-1 md:w-1/2">
             <span className="text-base font-normal">photos</span>
             <span className="text-sm font-bold">
-              {Array.isArray(formState.photos) && formState.photos.length > 0 ? (
+              {Array.isArray(formState.photos) &&
+              formState.photos.length > 0 ? (
                 formState.photos.map((photo, index) => (
                   <span key={index} className="block">
                     {photo.name}
@@ -484,10 +559,11 @@ function Preview({
               )}
             </span>
           </div>
-          <div className="mt-4  md:w-1/2 flex flex-col gap-1 items-start">
+          <div className="mt-4 flex flex-col items-start gap-1 md:w-1/2">
             <span className="text-base font-normal">Videos</span>
             <span className="text-sm font-bold">
-              {Array.isArray(formState.videos) && formState.videos.length > 0 ? (
+              {Array.isArray(formState.videos) &&
+              formState.videos.length > 0 ? (
                 formState.videos.map((video, index) => (
                   <span key={index} className="block">
                     {video.name}
@@ -499,32 +575,28 @@ function Preview({
             </span>
           </div>
         </div>
-        <div className="flex  flex-col items-start justify-between gap-5 md:flex-row  ">
-          <div className="mt-4  md:w-1/2 flex flex-col gap-1 items-start">
+        <div className="flex flex-col items-start justify-between gap-5 md:flex-row">
+          <div className="mt-4 flex flex-col items-start gap-1 md:w-1/2">
             <span className="text-base font-normal">Awards/Recognition</span>
             <span className="text-sm font-bold">
               {formState.awardsAndRecognize}
             </span>
           </div>
-          <div className="mt-4  md:w-1/2 flex flex-col gap-1 items-start">
+          <div className="mt-4 flex flex-col items-start gap-1 md:w-1/2">
             <span className="text-base font-normal">Clients Testimonals</span>
             <span className="text-sm font-bold">
               {formState.clientTestimonial}
             </span>
           </div>
         </div>
-        <div className="flex  flex-col items-start justify-between gap-5 md:flex-row  ">
-          <div className="mt-4  md:w-1/2 flex flex-col gap-1 items-start">
+        <div className="flex flex-col items-start justify-between gap-5 md:flex-row">
+          <div className="mt-4 flex flex-col items-start gap-1 md:w-1/2">
             <span className="text-base font-normal">Instagram uRL</span>
-            <span className="text-sm font-bold">
-              {formState.instaUrl}
-            </span>
+            <span className="text-sm font-bold">{formState.instaUrl}</span>
           </div>
-          <div className="mt-4  md:w-1/2 flex flex-col gap-1 items-start">
+          <div className="mt-4 flex flex-col items-start gap-1 md:w-1/2">
             <span className="text-base font-normal">Website URL</span>
-            <span className="text-sm font-bold">
-              {formState.websiteUrl}
-            </span>
+            <span className="text-sm font-bold">{formState.websiteUrl}</span>
           </div>
         </div>
       </div>
@@ -533,18 +605,29 @@ function Preview({
         Policies
         <div className="align-center flex justify-center p-1">
           <button onClick={() => setCurrentPage(5)}>
-            <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M14.4844 3.80552C15.5576 2.73077 17.2981 2.73011 18.372 3.80405L20.8639 6.2959C21.9287 7.36068 21.9397 9.08444 20.8887 10.1628L11.6556 19.6361C10.95 20.3599 9.98237 20.7681 8.97194 20.7681L6.21979 20.768C4.94055 20.7679 3.91893 19.7015 3.97273 18.4224L4.09089 15.6134C4.13039 14.6744 4.52067 13.7844 5.1845 13.1195L14.4844 3.80552ZM17.3122 4.86551C16.824 4.37736 16.0329 4.37766 15.5451 4.86618L13.8904 6.52336L18.1727 10.8003L19.8153 9.11505C20.2931 8.62488 20.288 7.84136 19.804 7.35737L17.3122 4.86551ZM6.24516 14.1802L12.8302 7.58522L17.1253 11.875L10.5822 18.5883C10.1589 19.0226 9.57827 19.2675 8.97201 19.2675L6.21986 19.2674C5.79344 19.2674 5.45291 18.9119 5.47084 18.4856L5.58899 15.6765C5.61269 15.1131 5.84686 14.5791 6.24516 14.1802ZM21.5121 20.6958C21.9262 20.6958 22.2619 20.3598 22.2619 19.9455C22.2619 19.5311 21.9262 19.1952 21.5121 19.1952H15.3828C14.9687 19.1952 14.6331 19.5311 14.6331 19.9455C14.6331 20.3598 14.9687 20.6958 15.3828 20.6958H21.5121Z" fill="#2B3F6C" />
+            <svg
+              width="25"
+              height="24"
+              viewBox="0 0 25 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M14.4844 3.80552C15.5576 2.73077 17.2981 2.73011 18.372 3.80405L20.8639 6.2959C21.9287 7.36068 21.9397 9.08444 20.8887 10.1628L11.6556 19.6361C10.95 20.3599 9.98237 20.7681 8.97194 20.7681L6.21979 20.768C4.94055 20.7679 3.91893 19.7015 3.97273 18.4224L4.09089 15.6134C4.13039 14.6744 4.52067 13.7844 5.1845 13.1195L14.4844 3.80552ZM17.3122 4.86551C16.824 4.37736 16.0329 4.37766 15.5451 4.86618L13.8904 6.52336L18.1727 10.8003L19.8153 9.11505C20.2931 8.62488 20.288 7.84136 19.804 7.35737L17.3122 4.86551ZM6.24516 14.1802L12.8302 7.58522L17.1253 11.875L10.5822 18.5883C10.1589 19.0226 9.57827 19.2675 8.97201 19.2675L6.21986 19.2674C5.79344 19.2674 5.45291 18.9119 5.47084 18.4856L5.58899 15.6765C5.61269 15.1131 5.84686 14.5791 6.24516 14.1802ZM21.5121 20.6958C21.9262 20.6958 22.2619 20.3598 22.2619 19.9455C22.2619 19.5311 21.9262 19.1952 21.5121 19.1952H15.3828C14.9687 19.1952 14.6331 19.5311 14.6331 19.9455C14.6331 20.3598 14.9687 20.6958 15.3828 20.6958H21.5121Z"
+                fill="#2B3F6C"
+              />
             </svg>
           </button>
         </div>
       </div>
       <div className="w-full">
-      <div className="flex  flex-col items-start justify-between gap-5 md:flex-row  ">
-          <div className="mt-4  md:w-1/2 flex flex-col gap-1 items-start">
+        <div className="flex flex-col items-start justify-between gap-5 md:flex-row">
+          <div className="mt-4 flex flex-col items-start gap-1 md:w-1/2">
             <span className="text-base font-normal">Terms and Condition</span>
-            
-            <span className="font-semibold ">
+
+            <span className="font-semibold">
               {typeof formState.termsAndConditions === "string" ? (
                 <div>{formState.termsAndConditions}</div> // Handle string case
               ) : Array.isArray(formState.termsAndConditions) ? (
@@ -554,10 +637,10 @@ function Preview({
               )}
             </span>
           </div>
-          <div className="mt-4  md:w-1/2 flex flex-col gap-1 items-start">
+          <div className="mt-4 flex flex-col items-start gap-1 md:w-1/2">
             <span className="text-base font-normal">cancellation policy</span>
             <span className="text-sm font-bold">
-            {typeof formState.cancellationPolicy === "string" ? (
+              {typeof formState.cancellationPolicy === "string" ? (
                 <div>{formState.cancellationPolicy}</div> // Handle string case
               ) : Array.isArray(formState.cancellationPolicy) ? (
                 <FileDisplay files={formState.cancellationPolicy} /> // Handle File[] case
@@ -568,7 +651,6 @@ function Preview({
           </div>
         </div>
       </div>
-
 
       <div className="mr-[5%] flex w-full justify-end gap-[32px]">
         {/* Previous Button */}
@@ -581,15 +663,13 @@ function Preview({
 
         {/* Next Button */}
         <button
-          onClick={handleSubmit}
+          onClick={() => setCurrentPage(currentPage + 1)}
           className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
         >
           Submit
         </button>
       </div>
-
     </div>
-
   );
 }
 

@@ -203,9 +203,7 @@ function Preview({
             <div className="flex w-[100%] justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
               Rating & Reviews
               <div className="align-center flex justify-center p-1">
-                <button
-                onClick={() => setCurrentPage(1)}
-                >
+                <button onClick={() => setCurrentPage(1)}>
                   <EditIcon size={32} />
                 </button>
               </div>
@@ -315,9 +313,7 @@ function Preview({
             <div className="flex w-[100%] justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
               Rating & Reviews
               <div className="align-center flex justify-center p-1">
-                <button
-                onClick={() => setCurrentPage(2)}
-                >
+                <button onClick={() => setCurrentPage(2)}>
                   <EditIcon size={32} />
                 </button>
               </div>
@@ -413,9 +409,7 @@ function Preview({
             <div className="flex w-[100%] justify-between rounded-xl bg-gray-200 p-2 pl-4 text-3xl font-semibold">
               Pricing & Policies
               <div className="align-center flex justify-center p-1">
-                <button
-                onClick={() => setCurrentPage(4)}
-                >
+                <button onClick={() => setCurrentPage(4)}>
                   <EditIcon size={32} />
                 </button>
               </div>

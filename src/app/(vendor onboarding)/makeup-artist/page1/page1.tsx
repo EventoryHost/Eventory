@@ -64,7 +64,7 @@ const _groupMembers = [
 interface FormState {
   artistName: string;
   artistDescription: string;
-  portfolioUrls: string | File;
+  portfolioUrls: string | File | File[];
   makeup_groupmembers: string;
   organisationMembers: string;
 }
@@ -73,7 +73,7 @@ interface Page1Props {
   handleContinue: () => void;
 
   formState: FormState;
-  portfolioUrls: string | File;
+  portfolioUrls: string | File | File[];
   updateFormState: (newState: Partial<FormState>) => void;
   artistName: string;
   category: string;
@@ -104,16 +104,15 @@ const Page: React.FC<Page1Props> = ({
   setMakeupArtist_organisation,
   handleContinue,
   currentPage,
-  setCurrentPage
+  setCurrentPage,
 }) => {
   const { artistDescription, portfolioUrls } = formState;
 
-  function handlePortfolioSelect(file: File): void {
+  function handlePortfolioSelect(file: File | File[]): void {
     updateFormState({ portfolioUrls: file });
   }
 
   return (
-
     <div className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide xs:w-[95%] xs:min-w-[90%]">
       <div className="flex min-w-full flex-col items-start justify-around gap-10">
         <div className="flex min-w-full flex-col items-start justify-around gap-10 rounded-xl bg-white p-3 md:p-6">
@@ -150,7 +149,6 @@ const Page: React.FC<Page1Props> = ({
 
           {category === "Individual" && (
             <>
-
               <div className="item-start flex min-w-full flex-col justify-between gap-4 md:flex-row">
                 <div className="flex min-w-[40%] flex-col gap-4">
                   <label
@@ -195,9 +193,28 @@ const Page: React.FC<Page1Props> = ({
                     </p>
                     <p className="text-gray-500">PNG, PDF, JPG</p>
                     <FileInput
-                      label="Portfolio"
-                      onFileSelect={handlePortfolioSelect}
-                      acceptedFileTypes=".pdf,.doc,.docx"
+                      label="Photos"
+                      multiple={true}
+                      onFileSelect={(files) => {
+                        // Determine existing photos from the previous state
+                        const existingPhotos = Array.isArray(
+                          formState.portfolioUrls,
+                        )
+                          ? formState.portfolioUrls
+                          : formState.portfolioUrls instanceof File
+                            ? [formState.portfolioUrls]
+                            : [];
+
+                        // Create the new photos array by combining existing and newly selected files
+                        const newPhotos = [
+                          ...existingPhotos,
+                          ...(Array.isArray(files) ? files : [files]),
+                        ];
+
+                        // Update the form state with the new photos array
+                        updateFormState({ portfolioUrls: newPhotos });
+                      }}
+                      acceptedFileTypes="image/png, .pdf, image/jpg"
                     />
                   </div>
 
@@ -214,9 +231,13 @@ const Page: React.FC<Page1Props> = ({
                       className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                       placeholder="Enter URL"
                       value={
-                        typeof portfolioUrls === "string"
-                          ? portfolioUrls
-                          : portfolioUrls.name
+                        typeof formState.portfolioUrls === "string"
+                          ? formState.portfolioUrls
+                          : Array.isArray(formState.portfolioUrls)
+                            ? formState.portfolioUrls
+                                .map((file: File) => file.name)
+                                .join(", ")
+                            : (formState.portfolioUrls as File)?.name
                       }
                       onChange={(e) =>
                         updateFormState({ portfolioUrls: e.target.value })
@@ -249,9 +270,28 @@ const Page: React.FC<Page1Props> = ({
                       <label htmlFor="category">Portfolio of past work</label>
                       <p className="text-gray-500">PNG, PDF, JPG</p>
                       <FileInput
-                        label=""
-                        onFileSelect={handlePortfolioSelect}
-                        acceptedFileTypes=".pdf,.doc,.docx"
+                        label="Photos"
+                        multiple={true}
+                        onFileSelect={(files) => {
+                          // Determine existing photos from the previous state
+                          const existingPhotos = Array.isArray(
+                            formState.portfolioUrls,
+                          )
+                            ? formState.portfolioUrls
+                            : formState.portfolioUrls instanceof File
+                              ? [formState.portfolioUrls]
+                              : [];
+
+                          // Create the new photos array by combining existing and newly selected files
+                          const newPhotos = [
+                            ...existingPhotos,
+                            ...(Array.isArray(files) ? files : [files]),
+                          ];
+
+                          // Update the form state with the new photos array
+                          updateFormState({ portfolioUrls: newPhotos });
+                        }}
+                        acceptedFileTypes="image/png, .pdf, image/jpg"
                       />
                     </div>
                   </div>
@@ -280,9 +320,13 @@ const Page: React.FC<Page1Props> = ({
                       className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                       placeholder="portfolio url"
                       value={
-                        typeof portfolioUrls === "string"
-                          ? portfolioUrls
-                          : portfolioUrls.name
+                        typeof formState.portfolioUrls === "string"
+                          ? formState.portfolioUrls
+                          : Array.isArray(formState.portfolioUrls)
+                            ? formState.portfolioUrls
+                                .map((file: File) => file.name)
+                                .join(", ")
+                            : (formState.portfolioUrls as File)?.name
                       }
                       onChange={(e) =>
                         updateFormState({ portfolioUrls: e.target.value })
@@ -315,9 +359,28 @@ const Page: React.FC<Page1Props> = ({
                       <label htmlFor="category">Portfolio of past work</label>
                       <p className="text-gray-500">PNG, PDF, JPG</p>
                       <FileInput
-                        label=""
-                        onFileSelect={handlePortfolioSelect}
-                        acceptedFileTypes=".pdf,.doc,.docx"
+                        label="Photos"
+                        multiple={true}
+                        onFileSelect={(files) => {
+                          // Determine existing photos from the previous state
+                          const existingPhotos = Array.isArray(
+                            formState.portfolioUrls,
+                          )
+                            ? formState.portfolioUrls
+                            : formState.portfolioUrls instanceof File
+                              ? [formState.portfolioUrls]
+                              : [];
+
+                          // Create the new photos array by combining existing and newly selected files
+                          const newPhotos = [
+                            ...existingPhotos,
+                            ...(Array.isArray(files) ? files : [files]),
+                          ];
+
+                          // Update the form state with the new photos array
+                          updateFormState({ portfolioUrls: newPhotos });
+                        }}
+                        acceptedFileTypes="image/png, .pdf, image/jpg"
                       />
                     </div>
                   </div>
@@ -346,9 +409,13 @@ const Page: React.FC<Page1Props> = ({
                       className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                       placeholder="portfolio url"
                       value={
-                        typeof portfolioUrls === "string"
-                          ? portfolioUrls
-                          : portfolioUrls.name
+                        typeof formState.portfolioUrls === "string"
+                          ? formState.portfolioUrls
+                          : Array.isArray(formState.portfolioUrls)
+                            ? formState.portfolioUrls
+                                .map((file: File) => file.name)
+                                .join(", ")
+                            : (formState.portfolioUrls as File)?.name
                       }
                       onChange={(e) =>
                         updateFormState({ portfolioUrls: e.target.value })
@@ -376,10 +443,9 @@ const Page: React.FC<Page1Props> = ({
               />
             </div>
             <div className="items-strech mt-9 flex flex-row gap-7 self-end">
-              
               <button
                 className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={()=>setCurrentPage(currentPage + 1)}
+                onClick={() => setCurrentPage(currentPage + 1)}
               >
                 Continue
               </button>
@@ -403,10 +469,9 @@ const Page: React.FC<Page1Props> = ({
               />
             </div>
             <div className="items-strech mt-9 flex flex-row gap-7 self-end">
-              
               <button
                 className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={()=>setCurrentPage(currentPage + 1)}
+                onClick={() => setCurrentPage(currentPage + 1)}
               >
                 Continue
               </button>
@@ -430,10 +495,9 @@ const Page: React.FC<Page1Props> = ({
               />
             </div>
             <div className="items-strech mt-9 flex flex-row gap-7 self-end">
-              
               <button
                 className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={()=>setCurrentPage(currentPage + 1)}
+                onClick={() => setCurrentPage(currentPage + 1)}
               >
                 Continue
               </button>
@@ -441,7 +505,6 @@ const Page: React.FC<Page1Props> = ({
           </div>
         </div>
       )}
-
     </div>
   );
 };

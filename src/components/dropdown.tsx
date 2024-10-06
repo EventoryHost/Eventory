@@ -56,9 +56,9 @@ export function ComboboxDemo({
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent 
-        className="w-[200px] p-0" 
-        side="bottom" 
+      <PopoverContent
+        className="w-[200px] p-0"
+        side="bottom"
         align="start"
         sideOffset={5}
         alignOffset={0}

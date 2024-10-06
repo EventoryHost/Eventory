@@ -5,8 +5,8 @@ import { Upload } from "lucide-react";
 import FileInput from "@/components/fileInput";
 
 interface FormState {
-  termsAndConditions: string | File;
-  cancellationPolicy: string | File;
+  termsAndConditions: string | File | File[];
+  cancellationPolicy: string | File | File[];
 }
 
 interface Page2Props {
@@ -18,19 +18,24 @@ interface Page2Props {
   setCurrentPage: (page: number) => void;
 }
 
-const Page: React.FC<Page2Props> = ({ formState, updateFormState, handleContinue , currentPage, setCurrentPage }) => {
+const Page: React.FC<Page2Props> = ({
+  formState,
+  updateFormState,
+  handleContinue,
+  currentPage,
+  setCurrentPage,
+}) => {
   const { termsAndConditions, cancellationPolicy } = formState;
 
-  function handleTermsAndConditions(file: File): void {
+  function handleTermsAndConditions(file: File | File[]): void {
     updateFormState({ termsAndConditions: file });
   }
-  function handleCancellationPolicy(file: File): void {
+  function handleCancellationPolicy(file: File | File[]): void {
     updateFormState({ cancellationPolicy: file });
   }
 
   return (
     <div className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide xs:w-[95%] xs:min-w-[90%]">
-
       <div className="flex min-w-full flex-col items-start justify-around gap-10">
         <div className="flex min-w-full flex-col items-start justify-around gap-10 rounded-xl bg-white p-3 md:p-6">
           <h1 className="text-3xl font-semibold">Pricing and Policies</h1>
@@ -42,9 +47,11 @@ const Page: React.FC<Page2Props> = ({ formState, updateFormState, handleContinue
                   <p className="text-xl font-semibold">Terms and Conditions</p>
                   <p className="text-gray-500">PNG, PDF, JPG</p>
                   <FileInput
-                    label="Terms and Conditions"
-                    onFileSelect={handleTermsAndConditions}
-                    acceptedFileTypes=".pdf,.doc,.docx" // Specify accepted file types
+                    label="terms and conditions"
+                    onFileSelect={(file) =>
+                      updateFormState({ termsAndConditions: file })
+                    }
+                    acceptedFileTypes=".png,.pdf,.jpg"
                   />
                 </div>
               </div>
@@ -55,9 +62,11 @@ const Page: React.FC<Page2Props> = ({ formState, updateFormState, handleContinue
                   <p className="text-gray-500">PNG, PDF, JPG</p>
 
                   <FileInput
-                    label="Cancellation Policy"
-                    onFileSelect={handleCancellationPolicy}
-                    acceptedFileTypes=".pdf,.doc,.docx"
+                    label="cancellation policy"
+                    onFileSelect={(file) =>
+                      updateFormState({ cancellationPolicy: file })
+                    }
+                    acceptedFileTypes=".png,.pdf,.jpg"
                   />
                 </div>
               </div>
@@ -71,9 +80,13 @@ const Page: React.FC<Page2Props> = ({ formState, updateFormState, handleContinue
                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 pb-[8vw] text-sm outline-none"
                   placeholder="Enter Your Terms And Conditions"
                   value={
-                    typeof termsAndConditions === "string"
-                      ? termsAndConditions
-                      : termsAndConditions.name
+                    typeof formState.termsAndConditions === "string"
+                      ? formState.termsAndConditions
+                      : Array.isArray(formState.termsAndConditions)
+                        ? formState.termsAndConditions
+                            .map((file: File) => file.name)
+                            .join(", ")
+                        : (formState.termsAndConditions as File)?.name
                   }
                   onChange={(e) =>
                     updateFormState({ termsAndConditions: e.target.value })
@@ -88,9 +101,13 @@ const Page: React.FC<Page2Props> = ({ formState, updateFormState, handleContinue
                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 pb-[8vw] text-sm outline-none"
                   placeholder="Enter Your Cancellation Policy"
                   value={
-                    typeof cancellationPolicy === "string"
-                      ? cancellationPolicy
-                      : cancellationPolicy.name
+                    typeof formState.cancellationPolicy === "string"
+                      ? formState.cancellationPolicy
+                      : Array.isArray(formState.cancellationPolicy)
+                        ? formState.cancellationPolicy
+                            .map((file: File) => file.name)
+                            .join(", ")
+                        : (formState.cancellationPolicy as File)?.name
                   }
                   onChange={(e) =>
                     updateFormState({ cancellationPolicy: e.target.value })
@@ -107,13 +124,12 @@ const Page: React.FC<Page2Props> = ({ formState, updateFormState, handleContinue
               </button>
               <button
                 className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={()=>setCurrentPage(currentPage + 1)}
+                onClick={() => setCurrentPage(currentPage + 1)}
               >
                 Continue
               </button>
             </div>
           </div>
-          
         </div>
       </div>
     </div>

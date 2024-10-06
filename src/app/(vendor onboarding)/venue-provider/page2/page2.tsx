@@ -39,7 +39,7 @@ const accessibilityFeatures = [
   "Sensory Rooms",
   "Visual Sign Support",
   "Emergency Procedures",
-  "Others", 
+  "Others",
 ];
 
 const restrictions = [
@@ -54,7 +54,7 @@ const restrictions = [
   "Event Permit",
   "Fire Safety",
   "Others",
-]
+];
 
 const specialFeaturez = [
   "Historic Significance",
@@ -69,8 +69,7 @@ const specialFeaturez = [
   "Renewable Energy",
   "Culture Exhibits",
   "Others",
-]
-
+];
 
 const _audioEquipment = [
   "Microphones",
@@ -80,7 +79,7 @@ const _audioEquipment = [
   "Projection Screens",
   "Lcd Projectors",
   "Led Screens",
-  "PTZ (Pan-Tilt-Zoom) Cameras", 
+  "PTZ (Pan-Tilt-Zoom) Cameras",
   "Monitors",
   "Camcorders",
   "Dlp Projectors",
@@ -109,7 +108,7 @@ const _facilities = [
   "Banquet Hall",
   "Bridal Room",
   "Charging Stations",
-  "Fill Hvac Control",  
+  "Fill Hvac Control",
   "First Aid Equipments",
   "Garden Area",
   "High Speed Internet",
@@ -147,8 +146,6 @@ interface Page2Props {
   setRestrictionsPolicies: React.Dispatch<React.SetStateAction<string[]>>;
   specialFeatures: string[];
   setSpecialFeatures: React.Dispatch<React.SetStateAction<string[]>>;
-
-  
 }
 
 const Page2: React.FC<Page2Props> = ({
@@ -171,8 +168,6 @@ const Page2: React.FC<Page2Props> = ({
   setRestrictionsPolicies,
   specialFeatures,
   setSpecialFeatures,
-
-
 }) => {
   return (
     <>
@@ -182,60 +177,77 @@ const Page2: React.FC<Page2Props> = ({
             <h1 className="text-3xl font-semibold">Venue Feature details</h1>
           </div>
           <div className="flex gap-10">
-
             <div>
-              <h3 className="text-lg font-medium">In-house Catering service?<span className="text-red-600">*</span></h3>
+              <h3 className="text-lg font-medium">
+                In-house Catering service?
+                <span className="text-red-600">*</span>
+              </h3>
               <div className="flex gap-2">
-                <div className="flex items-center mt-2">
+                <div className="mt-2 flex items-center">
                   <input
                     type="radio"
                     name="catering"
                     id="catering-yes"
                     onChange={() => updateFormState({ catererServices: true })}
-                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    className="h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
                   />
-                  <label htmlFor="catering-yes" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                  <label
+                    htmlFor="catering-yes"
+                    className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                  >
                     Yes
                   </label>
                 </div>
-                <div className="flex items-center mt-2">
+                <div className="mt-2 flex items-center">
                   <input
                     type="radio"
                     name="catering"
                     id="catering-no"
                     onChange={() => updateFormState({ catererServices: false })}
-                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    className="h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
                   />
-                  <label htmlFor="catering-no" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                  <label
+                    htmlFor="catering-no"
+                    className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                  >
                     No
                   </label>
                 </div>
               </div>
             </div>
             <div>
-              <h3 className="text-lg font-medium">In-house Decorating Service?<span className="text-red-600">*</span></h3>
+              <h3 className="text-lg font-medium">
+                In-house Decorating Service?
+                <span className="text-red-600">*</span>
+              </h3>
               <div className="flex gap-2">
-                <div className="flex items-center mt-2">
+                <div className="mt-2 flex items-center">
                   <input
                     type="radio"
                     name="decorating"
                     id="decorating-yes"
                     onChange={() => updateFormState({ decorServices: true })}
-                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    className="h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
                   />
-                  <label htmlFor="decorating-yes" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                  <label
+                    htmlFor="decorating-yes"
+                    className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                  >
                     Yes
                   </label>
                 </div>
-                <div className="flex items-center mt-2">
+                <div className="mt-2 flex items-center">
                   <input
                     type="radio"
                     name="decorating"
                     id="decorating-no"
                     onChange={() => updateFormState({ decorServices: false })}
-                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    className="h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
                   />
-                  <label htmlFor="decorating-no" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                  <label
+                    htmlFor="decorating-no"
+                    className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                  >
                     No
                   </label>
                 </div>
@@ -244,9 +256,7 @@ const Page2: React.FC<Page2Props> = ({
           </div>
         </div>
         <div className="flex flex-col gap-9 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
-          <h1 className="text-3xl font-semibold">
-            Types of Venue
-          </h1>
+          <h1 className="text-3xl font-semibold">Types of Venue</h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers

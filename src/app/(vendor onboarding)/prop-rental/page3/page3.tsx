@@ -8,9 +8,14 @@ import { ArrowLeft } from "lucide-react";
 import { FormState } from "../page";
 
 const _typesOfEvents = [
-  "Anniversary Celebration ", "Birthday Party ", "Corporate Event ", "Cultural Events",
-  "Wedding Events", "Seasonal Parties", "Others"
-]
+  "Anniversary Celebration ",
+  "Birthday Party ",
+  "Corporate Event ",
+  "Cultural Events",
+  "Wedding Events",
+  "Seasonal Parties",
+  "Others",
+];
 const furnitureOptions = [
   "Chair",
   "Sofa and Couches",
@@ -35,15 +40,69 @@ const DecorOptions = [
 ];
 const _tentAndCanopy = [
   "Tent and Canopy",
-  "Marquee Tents", "Pagoda Tents", "Pole Tents",
-  "Frame Tents", "Event Specific Tent", "Pop-Up Canopies",
-  "Garden Canopies", "Event Canopies", "Gazebos", "Shade Structures",
-  "Temporary Structures", "Others"
-]
-const _audioEquipments = ["Speakers", "Microphones", "Mixing Consoles", "Amplifiers", "Signal Processors", "Cables and Accessories", "Playback Equipment", "DJ Equipment", "Audio Interfaces", "In-Ear Monitoring Systems", "Portable PA Systems", "Recording Equipment", "Conference and Meeting Equipment", "Lighting and Effects", "Other"]
-const _visualEquipments = ["Projectors", "Screens", "LED Displays", "TV Screens", "Video Wall", "Video Cameras", "Playback and Recording Equipment", "Camera Accessories", "Video Switchers and Mixers", "Visual Effects", "Signal Distribution", "Interactive Displays", "Presentation Aids", "Virtual Reality (VR) Equipment", "Augmented Reality (AR) Equipment", "Other"]
-const _lightEquipments = ["Traditional Indian Tents", "Marquee Tents", "Pagoda Tents", "Pole Tents", "Frame Tents", "Event Specific Tent", "Pop-Up Canopies", "Garden Canopies", "Event Canopies", "Gazebos", "Shade Structures", "Temporary Structures", "Other"]
-
+  "Marquee Tents",
+  "Pagoda Tents",
+  "Pole Tents",
+  "Frame Tents",
+  "Event Specific Tent",
+  "Pop-Up Canopies",
+  "Garden Canopies",
+  "Event Canopies",
+  "Gazebos",
+  "Shade Structures",
+  "Temporary Structures",
+  "Others",
+];
+const _audioEquipments = [
+  "Speakers",
+  "Microphones",
+  "Mixing Consoles",
+  "Amplifiers",
+  "Signal Processors",
+  "Cables and Accessories",
+  "Playback Equipment",
+  "DJ Equipment",
+  "Audio Interfaces",
+  "In-Ear Monitoring Systems",
+  "Portable PA Systems",
+  "Recording Equipment",
+  "Conference and Meeting Equipment",
+  "Lighting and Effects",
+  "Others",
+];
+const _visualEquipments = [
+  "Projectors",
+  "Screens",
+  "LED Displays",
+  "TV Screens",
+  "Video Wall",
+  "Video Cameras",
+  "Playback and Recording Equipment",
+  "Camera Accessories",
+  "Video Switchers and Mixers",
+  "Visual Effects",
+  "Signal Distribution",
+  "Interactive Displays",
+  "Presentation Aids",
+  "Virtual Reality (VR) Equipment",
+  "Augmented Reality (AR) Equipment",
+  "Others",
+];
+const _lightEquipments = [
+  "Traditional Indian Tents",
+  "Marquee Tents",
+  "Pagoda Tents",
+  "Pole Tents",
+  "Frame Tents",
+  "Event Specific Tent",
+  "Pop-Up Canopies",
+  "Garden Canopies",
+  "Event Canopies",
+  "Gazebos",
+  "Shade Structures",
+  "Temporary Structures",
+  "Others",
+];
 
 type PricingEntry = {
   name: string;
@@ -64,7 +123,7 @@ interface formState {
   termsAndConditions: string | File | File[];
   cancellationPolicy: string | File | File[];
   handleChange: (key: string, value: any) => void;
-};
+}
 
 type page3Props = {
   selectedFurnitureEvents: string[];
@@ -80,8 +139,7 @@ type page3Props = {
   setSelectedFurniture: (value: SetStateAction<string[]>) => void;
   selectedDecor: string[];
   setSelectedDecor: (value: any) => void;
-  formState: formState;
-  // setFormState: (formState: FormState) => void;
+  formState: FormState;
   selectedTentOptions: string[];
   setSelectedTentOptions: React.Dispatch<SetStateAction<string[]>>;
   selectedAudioOptions: string[];
@@ -106,7 +164,7 @@ function Page3({
   setselectedAudioEvents,
   setselectedTentEvents,
   setSelectedCategory,
-  
+
   selectedFurniture,
   setSelectedFurniture,
   selectedDecor,
@@ -121,7 +179,7 @@ function Page3({
   setSelectedVisualOptions,
   handleChange,
   formState,
- 
+
   updateFormState,
   currentPage,
   setCurrentPage,
@@ -129,28 +187,31 @@ function Page3({
   const [formPage, setFormPage] = useState(1);
   const handleCategorySelection = (category: string) => {
     setSelectedCategory(category);
-
-
   };
 
   return (
-    <div className="flex h-full w-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide ">
+    <div className="flex h-full w-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide">
       <div className="flex min-w-full flex-col items-start justify-around gap-10">
         <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
-          <div className="flex gap-4 items-center">
-            <ArrowLeft className="mr-1 ml-2 h-6 w-6 text-[#2E3192] cursor-pointer" aria-hidden="true" onClick={() => setCurrentPage(currentPage - 1)} />
-            <h1 className=" text-2xl font-semibold">Menu Details</h1>
+          <div className="flex items-center gap-4">
+            <ArrowLeft
+              className="ml-2 mr-1 h-6 w-6 cursor-pointer text-[#2E3192]"
+              aria-hidden="true"
+              onClick={() => setCurrentPage(currentPage - 1)}
+            />
+            <h1 className="text-2xl font-semibold">Menu Details</h1>
           </div>
-          <div className="flex  space-x-4 overflow-hidden rounded-full border border-[#2E3192] p-4">
+          <div className="flex space-x-4 overflow-hidden rounded-full border border-[#2E3192] p-4">
             <button
               onClick={() => {
                 setSelectedCategory("Furniture & Decor");
                 handleCategorySelection("Furniture & Decor");
               }}
-              className={`rounded-full px-4 py-2 text-[#2E3192] ${selectedCategory === "Furniture & Decor"
-                ? "bg-[#2E3192] text-white"
-                : ""
-                }`}
+              className={`rounded-full px-4 py-2 text-[#2E3192] ${
+                selectedCategory === "Furniture & Decor"
+                  ? "bg-[#2E3192] text-white"
+                  : ""
+              }`}
             >
               Furniture & Decor
             </button>
@@ -159,10 +220,11 @@ function Page3({
                 setSelectedCategory("Tent and Canopy");
                 handleCategorySelection("Tent and Canopy");
               }}
-              className={`rounded-full px-4 py-2 text-[#2E3192] ${selectedCategory === "Tent and Canopy"
-                ? "bg-[#2E3192] text-white"
-                : ""
-                }`}
+              className={`rounded-full px-4 py-2 text-[#2E3192] ${
+                selectedCategory === "Tent and Canopy"
+                  ? "bg-[#2E3192] text-white"
+                  : ""
+              }`}
             >
               Tent and Canopy
             </button>
@@ -171,10 +233,11 @@ function Page3({
                 setSelectedCategory("Audio-Visual");
                 handleCategorySelection("Audio-Visual");
               }}
-              className={`rounded-full px-4 py-2 text-[#2E3192] ${selectedCategory === "Audio-Visual"
-                ? "bg-[#2E3192] text-white"
-                : ""
-                }`}
+              className={`rounded-full px-4 py-2 text-[#2E3192] ${
+                selectedCategory === "Audio-Visual"
+                  ? "bg-[#2E3192] text-white"
+                  : ""
+              }`}
             >
               Audio-Visual
             </button>
@@ -192,7 +255,9 @@ function Page3({
                   <label className="text-base font-medium" htmlFor="category">
                     Upload list
                   </label>
-                  <p className="text-gray-500 text-xs font-light">PNG, PDF, JPG</p>
+                  <p className="text-xs font-light text-gray-500">
+                    PNG, PDF, JPG
+                  </p>
                   <FileInput
                     label="furniture and decor list"
                     onFileSelect={(file) => {
@@ -206,35 +271,39 @@ function Page3({
               </div>
             </div>
 
-            <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
+            <div className="flex flex-col gap-6 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
               <h1 className="text-xl font-semibold">Types of Event</h1>
-              <Appetizers
-                field={"furniture_types_of_events"}
-                appetizers={_typesOfEvents}
-                selectedAppetizers={selectedFurnitureEvents}
-                setSelectedAppetizers={setselectedFurnitureEvents}
-              />
+              <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+                <Appetizers
+                  field={"furniture_types_of_events"}
+                  appetizers={_typesOfEvents}
+                  selectedAppetizers={selectedFurnitureEvents}
+                  setSelectedAppetizers={setselectedFurnitureEvents}
+                />
+              </div>
             </div>
-            <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
+            <div className="flex flex-col gap-6 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
               <h1 className="text-xl font-semibold">Furniture</h1>
-              <Appetizers
-                field={"furniture_options"}
-                appetizers={furnitureOptions}
-                selectedAppetizers={selectedFurniture}
-                setSelectedAppetizers={setSelectedFurniture}
-              />
+              <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+                <Appetizers
+                  field={"furniture_options"}
+                  appetizers={furnitureOptions}
+                  selectedAppetizers={selectedFurniture}
+                  setSelectedAppetizers={setSelectedFurniture}
+                />
+              </div>
             </div>
-            <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
+            <div className="flex flex-col gap-6 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
               <h1 className="text-xl font-semibold">Decor</h1>
-              <Appetizers
-                field={"decor_options"}
-                appetizers={DecorOptions}
-                selectedAppetizers={selectedDecor}
-                setSelectedAppetizers={setSelectedDecor}
-              />
+              <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+                <Appetizers
+                  field={"decor_options"}
+                  appetizers={DecorOptions}
+                  selectedAppetizers={selectedDecor}
+                  setSelectedAppetizers={setSelectedDecor}
+                />
+              </div>
             </div>
-
-
           </div>
         )}
         {selectedCategory === "Tent and Canopy" && (
@@ -248,7 +317,9 @@ function Page3({
                   <label className="text-base font-medium" htmlFor="category">
                     Upload list
                   </label>
-                  <p className="text-gray-500 text-xs font-light">PNG, PDF, JPG</p>
+                  <p className="text-xs font-light text-gray-500">
+                    PNG, PDF, JPG
+                  </p>
                   <FileInput
                     label="furniture and decor list"
                     onFileSelect={(file) => {
@@ -261,23 +332,27 @@ function Page3({
                 </div>
               </div>
             </div>
-            <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
+            <div className="flex flex-col gap-6 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
               <h1 className="text-xl font-semibold">Types of Event</h1>
-              <Appetizers
-                field={"tent_types_of_events"}
-                appetizers={_typesOfEvents}
-                selectedAppetizers={selectedTentEvents}
-                setSelectedAppetizers={setselectedTentEvents}
-              />
+              <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+                <Appetizers
+                  field={"tent_types_of_events"}
+                  appetizers={_typesOfEvents}
+                  selectedAppetizers={selectedTentEvents}
+                  setSelectedAppetizers={setselectedTentEvents}
+                />
+              </div>
             </div>
-            <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
+            <div className="flex flex-col gap-6 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
               <h1 className="text-xl font-semibold">Tent and Canopy</h1>
-              <Appetizers
-                field={"tent_and_canopy"}
-                appetizers={_tentAndCanopy}
-                selectedAppetizers={selectedTentOptions}
-                setSelectedAppetizers={setSelectedTentOptions}
-              />
+              <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+                <Appetizers
+                  field={"tent_and_canopy"}
+                  appetizers={_tentAndCanopy}
+                  selectedAppetizers={selectedTentOptions}
+                  setSelectedAppetizers={setSelectedTentOptions}
+                />
+              </div>
             </div>
           </>
         )}
@@ -286,14 +361,14 @@ function Page3({
           <>
             <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
               <div className="flex min-h-full min-w-full flex-col gap-5">
-                <h1 className="text-2xl font-semibold">
-                  Audio-Visual Rentals
-                </h1>
+                <h1 className="text-2xl font-semibold">Audio-Visual Rentals</h1>
                 <div className="flex min-w-[40%] flex-col">
                   <label className="text-base font-medium" htmlFor="category">
                     Upload list
                   </label>
-                  <p className="text-gray-500 text-xs font-light">PNG, PDF, JPG</p>
+                  <p className="text-xs font-light text-gray-500">
+                    PNG, PDF, JPG
+                  </p>
                   <FileInput
                     label="furniture and decor list"
                     onFileSelect={(file) => {
@@ -306,59 +381,94 @@ function Page3({
                 </div>
               </div>
             </div>
-            <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
+            <div className="flex flex-col gap-6 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
               <h1 className="text-xl font-semibold">Types of Event</h1>
-              <Appetizers
-                field={"audio_types_of_events"}
-                appetizers={_typesOfEvents}
-                selectedAppetizers={selectedAudioEvents}
-                setSelectedAppetizers={setselectedAudioEvents}
-              />
+              <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+                <Appetizers
+                  field={"audio_types_of_events"}
+                  appetizers={_typesOfEvents}
+                  selectedAppetizers={selectedAudioEvents}
+                  setSelectedAppetizers={setselectedAudioEvents}
+                />
+              </div>
             </div>
-            <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
+            <div className="flex flex-col gap-6 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
               <h1 className="text-xl font-semibold">Audio Equipment</h1>
-              <Appetizers
-                field={"audio_equipments"}
-                appetizers={_audioEquipments}
-                selectedAppetizers={selectedAudioOptions}
-                setSelectedAppetizers={setSelectedAudioOptions}
-              />
+              <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+                <Appetizers
+                  field={"audio_equipments"}
+                  appetizers={_audioEquipments}
+                  selectedAppetizers={selectedAudioOptions}
+                  setSelectedAppetizers={setSelectedAudioOptions}
+                />
+              </div>
             </div>
-            <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
+            <div className="flex flex-col gap-6 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
               <h1 className="text-xl font-semibold">Visual Equipment</h1>
-              <Appetizers
-                field={"visual_equipment"}
-                appetizers={_visualEquipments}
-                selectedAppetizers={selectedvisualOptions}
-                setSelectedAppetizers={setSelectedVisualOptions}
-              />
+              <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+                <Appetizers
+                  field={"visual_equipment"}
+                  appetizers={_visualEquipments}
+                  selectedAppetizers={selectedvisualOptions}
+                  setSelectedAppetizers={setSelectedVisualOptions}
+                />
+              </div>
             </div>
-            <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">
+            <div className="flex flex-col gap-6 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
               <h1 className="text-xl font-semibold">Light Equipment</h1>
-              <Appetizers
-                field={"light_equipments"}
-                appetizers={_lightEquipments}
-                selectedAppetizers={selectedLightOptions}
-                setSelectedAppetizers={setSelectedLightOptions}
-              />
+              <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+                <Appetizers
+                  field={"light_equipments"}
+                  appetizers={_lightEquipments}
+                  selectedAppetizers={selectedLightOptions}
+                  setSelectedAppetizers={setSelectedLightOptions}
+                />
+              </div>
             </div>
           </>
         )}
-        <div className="flex  min-w-full flex-col  gap-8 rounded-xl bg-white p-3 md:p-6">
-          <h1 className=" text-2xl font-semibold">Additional Details</h1>
+        <div className="flex min-w-full flex-col gap-8 rounded-xl bg-white p-3 md:p-6">
+          <h1 className="text-2xl font-semibold">Additional Details</h1>
 
-          <div className="flex min-w-full flex-col items-start justify-between  md:flex-row gap-6 ">
-            <div className="flex min-w-[48%]  flex-col gap-8">
-              <div className="flex flex-col  gap-2">
-
-                <div className="text-base font-medium flex items-center gap-1">Photo <span className="text-red-500 ">*</span>
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="1.33398" y="1.3335" width="13.3333" height="13.3333" rx="6.66667" stroke="#2B3F6C" />
-                    <path d="M8.33398 11.3335L8.33398 7.3335" stroke="#2B3F6C" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M7.00065 7.3335L8.33398 7.3335" stroke="#2B3F6C" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M8.33398 5.33366L8.33398 4.66699" stroke="#2B3F6C" stroke-linecap="round" stroke-linejoin="round" />
+          <div className="flex min-w-full flex-col items-start justify-between gap-6 md:flex-row">
+            <div className="flex min-w-[48%] flex-col gap-8">
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center gap-1 text-base font-medium">
+                  Photo <span className="text-red-500">*</span>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect
+                      x="1.33398"
+                      y="1.3335"
+                      width="13.3333"
+                      height="13.3333"
+                      rx="6.66667"
+                      stroke="#2B3F6C"
+                    />
+                    <path
+                      d="M8.33398 11.3335L8.33398 7.3335"
+                      stroke="#2B3F6C"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M7.00065 7.3335L8.33398 7.3335"
+                      stroke="#2B3F6C"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M8.33398 5.33366L8.33398 4.66699"
+                      stroke="#2B3F6C"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
                   </svg>
-
                 </div>
                 <span className="text-small font-light">PNG,JPG</span>
 
@@ -370,15 +480,15 @@ function Page3({
                     const existingPhotos = Array.isArray(formState.photos)
                       ? formState.photos
                       : formState.photos instanceof File
-                      ? [formState.photos]
-                      : [];
-                
+                        ? [formState.photos]
+                        : [];
+
                     // Create the new photos array by combining existing and newly selected files
                     const newPhotos = [
                       ...existingPhotos,
                       ...(Array.isArray(files) ? files : [files]),
                     ];
-                
+
                     // Update the form state with the new photos array
                     updateFormState({ photos: newPhotos });
                   }}
@@ -388,35 +498,39 @@ function Page3({
                 <input
                   type="text"
                   name="photos"
-                  className="w-full rounded-xl border-2 bg-white p-3 py-5 outline-none text-sm"
+                  className="w-full rounded-xl border-2 bg-white p-3 py-5 text-sm outline-none"
                   placeholder="Enter your portfolio links"
-                  onChange={(e) => { updateFormState({ photos: e.target.value }) }}
+                  onChange={(e) => {
+                    updateFormState({ photos: e.target.value });
+                  }}
                   value={
-                    typeof formState.photos === 'string'
+                    typeof formState.photos === "string"
                       ? formState.photos
                       : Array.isArray(formState.photos)
-                        ? formState.photos.map((file: File) => file.name).join(', ')
+                        ? formState.photos
+                            .map((file: File) => file.name)
+                            .join(", ")
                         : (formState.photos as File)?.name
                   }
                 />
-
-
               </div>
-              <div className="flex flex-col  gap-2">
-                <label className="font-medium text-base" htmlFor="vendorName">
+              <div className="flex flex-col gap-2">
+                <label className="text-base font-medium" htmlFor="vendorName">
                   Award and Recognization
                 </label>
                 <input
                   id="vendorName"
                   type="text"
                   value={formState.awardsAndRecognize || ""}
-                  onChange={(e) => handleChange("awardsAndRecognize", e.target.value)}
+                  onChange={(e) =>
+                    handleChange("awardsAndRecognize", e.target.value)
+                  }
                   className="w-full rounded-xl border-2 bg-white p-4 outline-none"
                   placeholder="Provide your URL"
                 />
               </div>
-              <div className="flex flex-col  gap-2">
-                <label className="font-medium text-base" htmlFor="vendorName">
+              <div className="flex flex-col gap-2">
+                <label className="text-base font-medium" htmlFor="vendorName">
                   Instagram
                 </label>
                 <input
@@ -428,19 +542,45 @@ function Page3({
                   placeholder="Provide your Instagram URL for the Venue"
                 />
               </div>
-
             </div>
-            <div className="flex min-w-[48%]  flex-col gap-8">
-              <div className="flex flex-col  gap-2">
-
-                <div className="text-base font-medium flex items-center gap-1">Videos <span className="text-red-500 ">*</span>
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="1.33398" y="1.3335" width="13.3333" height="13.3333" rx="6.66667" stroke="#2B3F6C" />
-                    <path d="M8.33398 11.3335L8.33398 7.3335" stroke="#2B3F6C" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M7.00065 7.3335L8.33398 7.3335" stroke="#2B3F6C" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M8.33398 5.33366L8.33398 4.66699" stroke="#2B3F6C" stroke-linecap="round" stroke-linejoin="round" />
+            <div className="flex min-w-[48%] flex-col gap-8">
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center gap-1 text-base font-medium">
+                  Videos <span className="text-red-500">*</span>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect
+                      x="1.33398"
+                      y="1.3335"
+                      width="13.3333"
+                      height="13.3333"
+                      rx="6.66667"
+                      stroke="#2B3F6C"
+                    />
+                    <path
+                      d="M8.33398 11.3335L8.33398 7.3335"
+                      stroke="#2B3F6C"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M7.00065 7.3335L8.33398 7.3335"
+                      stroke="#2B3F6C"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M8.33398 5.33366L8.33398 4.66699"
+                      stroke="#2B3F6C"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
                   </svg>
-
                 </div>
                 <span className="text-small font-light">MP4, MKV</span>
                 <FileInput
@@ -449,14 +589,14 @@ function Page3({
                     const existingVideos = Array.isArray(formState.videos)
                       ? formState.videos
                       : formState.videos instanceof File
-                      ? [formState.videos]
-                      : [];
-          
+                        ? [formState.videos]
+                        : [];
+
                     const newVideos = [
                       ...existingVideos,
                       ...(Array.isArray(files) ? files : [files]),
                     ];
-          
+
                     updateFormState({ videos: newVideos });
                   }}
                   acceptedFileTypes="image/png, .pdf, image/jpg"
@@ -465,34 +605,39 @@ function Page3({
                 <span className="text-base font-medium">or Continue via</span>
                 <input
                   type="text"
-                  className="w-full rounded-xl border-2 bg-white p-3 py-5 outline-none text-sm"
+                  className="w-full rounded-xl border-2 bg-white p-3 py-5 text-sm outline-none"
                   placeholder="Enter your portfolio links"
-                  onChange={(e) => { updateFormState({ videos: e.target.value }) }}
+                  onChange={(e) => {
+                    updateFormState({ videos: e.target.value });
+                  }}
                   value={
-                    typeof formState.videos === 'string'
+                    typeof formState.videos === "string"
                       ? formState.videos
                       : Array.isArray(formState.videos)
-                        ? formState.videos.map((file: File) => file.name).join(', ')
+                        ? formState.videos
+                            .map((file: File) => file.name)
+                            .join(", ")
                         : (formState.videos as File)?.name
                   }
                 />
-
               </div>
-              <div className="flex flex-col  gap-2">
-                <label className="font-medium text-base" htmlFor="vendorName">
+              <div className="flex flex-col gap-2">
+                <label className="text-base font-medium" htmlFor="vendorName">
                   Client Testimonials
                 </label>
                 <input
                   id="vendorName"
                   type="text"
                   value={formState.clientTestimonial || ""}
-                  onChange={(e) => handleChange("clientTestimonial", e.target.value)}
+                  onChange={(e) =>
+                    handleChange("clientTestimonial", e.target.value)
+                  }
                   className="w-full rounded-xl border-2 bg-white p-4 outline-none"
                   placeholder="Provide your URL"
                 />
               </div>
-              <div className="flex flex-col  gap-2">
-                <label className="font-medium text-base" htmlFor="vendorName">
+              <div className="flex flex-col gap-2">
+                <label className="text-base font-medium" htmlFor="vendorName">
                   Website URL
                 </label>
                 <input
@@ -507,19 +652,48 @@ function Page3({
             </div>
           </div>
         </div>
-        <div className="flex  min-w-full flex-col  gap-8 rounded-xl bg-white p-3 md:p-6">
-          <h1 className=" text-2xl font-semibold">Policies</h1>
+        <div className="flex min-w-full flex-col gap-8 rounded-xl bg-white p-3 md:p-6">
+          <h1 className="text-2xl font-semibold">Policies</h1>
 
-          <div className="flex min-w-full flex-col items-start justify-between  md:flex-row gap-6 ">
-
-            <div className="flex min-w-[48%]  flex-col gap-8">
-              <div className="flex flex-col  gap-2">
-                <div className="text-base font-medium flex gap-1 items-center">Terms & Conditions <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="1.33398" y="1.3335" width="13.3333" height="13.3333" rx="6.66667" stroke="#2B3F6C" />
-                  <path d="M8.33398 11.3335L8.33398 7.3335" stroke="#2B3F6C" stroke-linecap="round" stroke-linejoin="round" />
-                  <path d="M7.00065 7.3335L8.33398 7.3335" stroke="#2B3F6C" stroke-linecap="round" stroke-linejoin="round" />
-                  <path d="M8.33398 5.33366L8.33398 4.66699" stroke="#2B3F6C" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
+          <div className="flex min-w-full flex-col items-start justify-between gap-6 md:flex-row">
+            <div className="flex min-w-[48%] flex-col gap-8">
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center gap-1 text-base font-medium">
+                  Terms & Conditions{" "}
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect
+                      x="1.33398"
+                      y="1.3335"
+                      width="13.3333"
+                      height="13.3333"
+                      rx="6.66667"
+                      stroke="#2B3F6C"
+                    />
+                    <path
+                      d="M8.33398 11.3335L8.33398 7.3335"
+                      stroke="#2B3F6C"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M7.00065 7.3335L8.33398 7.3335"
+                      stroke="#2B3F6C"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M8.33398 5.33366L8.33398 4.66699"
+                      stroke="#2B3F6C"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
                 </div>
                 <span className="text-small font-light">PNG,JPG,PDF</span>
 
@@ -531,7 +705,7 @@ function Page3({
                   multiple={false}
                   acceptedFileTypes="image/png, .pdf, image/jpg"
                 />
-                <p className=" font-medium text-base">or Provide Via</p>
+                <p className="text-base font-medium">or Provide Via</p>
                 <textarea
                   cols={10}
                   rows={5}
@@ -540,24 +714,56 @@ function Page3({
                     updateFormState({ termsAndConditions: e.target.value })
                   }
                   value={
-                    typeof formState.termsAndConditions === 'string'
+                    typeof formState.termsAndConditions === "string"
                       ? formState.termsAndConditions
                       : Array.isArray(formState.termsAndConditions)
-                        ? formState.termsAndConditions.map((file: File) => file.name).join(', ')
+                        ? formState.termsAndConditions
+                            .map((file: File) => file.name)
+                            .join(", ")
                         : (formState.termsAndConditions as File)?.name
                   }
-                  className="  w-[95%] rounded-xl border-2 border-gray-300 p-3"
+                  className="w-[95%] rounded-xl border-2 border-gray-300 p-3"
                 ></textarea>
               </div>
             </div>
-            <div className="flex min-w-[48%]  flex-col gap-8">
-              <div className="flex gap-2 flex-col">
-                <div className="text-base font-medium flex gap-1 items-center">Cancellation Policies <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="1.33398" y="1.3335" width="13.3333" height="13.3333" rx="6.66667" stroke="#2B3F6C" />
-                  <path d="M8.33398 11.3335L8.33398 7.3335" stroke="#2B3F6C" stroke-linecap="round" stroke-linejoin="round" />
-                  <path d="M7.00065 7.3335L8.33398 7.3335" stroke="#2B3F6C" stroke-linecap="round" stroke-linejoin="round" />
-                  <path d="M8.33398 5.33366L8.33398 4.66699" stroke="#2B3F6C" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
+            <div className="flex min-w-[48%] flex-col gap-8">
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center gap-1 text-base font-medium">
+                  Cancellation Policies{" "}
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect
+                      x="1.33398"
+                      y="1.3335"
+                      width="13.3333"
+                      height="13.3333"
+                      rx="6.66667"
+                      stroke="#2B3F6C"
+                    />
+                    <path
+                      d="M8.33398 11.3335L8.33398 7.3335"
+                      stroke="#2B3F6C"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M7.00065 7.3335L8.33398 7.3335"
+                      stroke="#2B3F6C"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M8.33398 5.33366L8.33398 4.66699"
+                      stroke="#2B3F6C"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
                 </div>
                 <span className="text-small font-light">PNG,JPG,PDF</span>
 
@@ -568,39 +774,44 @@ function Page3({
                   }}
                   acceptedFileTypes="image/png, .pdf, image/jpg"
                 />
-                <p className="font-medium text-base">or Provide Via</p>
+                <p className="text-base font-medium">or Provide Via</p>
                 <textarea
                   cols={30}
                   rows={5}
-
                   placeholder="Enter your venue details"
                   onChange={(e) =>
                     updateFormState({ cancellationPolicy: e.target.value })
                   }
-
-                  className="  w-[95%] rounded-xl border-2 border-gray-300 p-3"
+                  className="w-[95%] rounded-xl border-2 border-gray-300 p-3"
                   value={
-                    typeof formState.cancellationPolicy === 'string'
+                    typeof formState.cancellationPolicy === "string"
                       ? formState.cancellationPolicy
                       : Array.isArray(formState.cancellationPolicy)
-                        ? formState.cancellationPolicy.map((file: File) => file.name).join(', ')
+                        ? formState.cancellationPolicy
+                            .map((file: File) => file.name)
+                            .join(", ")
                         : (formState.cancellationPolicy as File)?.name
                   }
                 ></textarea>
               </div>
-              <div className="items-strech  flex flex-row gap-7 self-end">
+              <div className="items-strech flex flex-row gap-7 self-end">
                 <button
                   className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
                   onClick={() => {
-                    console.log(formState.furnitureAndDecorListUrl,formState.termsAndConditions,formState.clientTestimonial,formState.photos,formState.videos)
-                    setCurrentPage(currentPage + 1)
+                    console.log(
+                      formState.furnitureAndDecorListUrl,
+                      formState.termsAndConditions,
+                      formState.clientTestimonial,
+                      formState.photos,
+                      formState.videos,
+                    );
+                    setCurrentPage(currentPage + 1);
                   }}
                 >
                   Continue
                 </button>
               </div>
             </div>
-
           </div>
         </div>
       </div>

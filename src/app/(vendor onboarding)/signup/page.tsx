@@ -1,5 +1,5 @@
 "use client";
-
+import Loadingeanimation from "@/components/Loader";
 import { useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -9,8 +9,8 @@ import OtpModal from "@/components/ui/otp-modal";
 import tajmahal from "/public/tajmahal.png";
 import { useRouter } from "next/navigation";
 import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"; // Import Toastify CSS
-
+import "react-toastify/dist/ReactToastify.css";
+import { useToast } from "@/components/hooks/use-toast";
 const fields: {
   id: keyof basicDetails;
   label: string;
@@ -38,6 +38,7 @@ type basicDetails = {
 };
 
 const SignUp = () => {
+  const [loading, setloading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [basicDetails, setBasicDetails] = useState<basicDetails>(
     {} as basicDetails,
@@ -72,20 +73,26 @@ const SignUp = () => {
       setFormError(`Enter a valid 10 digit mobile number`);
       return;
     }
-
+    setloading(true);
     setFormError(null);
-    // Store the form data
-    const newDetails: basicDetails = {
-      name: refs.current.name!.value,
-      mobile: Number(mobileNumber),
-      otp: 0,
-    };
-    setBasicDetails(newDetails);
+    try {
+      // Store the form data
+      const newDetails: basicDetails = {
+        name: refs.current.name!.value,
+        mobile: Number(mobileNumber),
+        otp: 0,
+      };
+      setBasicDetails(newDetails);
 
-    const res = await auth.signUp(newDetails.mobile.toString());
-    if (res) {
-      setSession(res.data.data.Session);
-      toggleModal();
+      const res = await auth.signUp(newDetails.mobile.toString());
+      if (res) {
+        setSession(res.data.data.Session);
+        toggleModal();
+      }
+    } catch (error) {
+      setFormError(String(error) || "Something goes wrong");
+      console.log(error);
+      setloading(false);
     }
   }
 
@@ -101,7 +108,7 @@ const SignUp = () => {
     }
 
     setFormError(null); // Reset error message
-
+    setloading(true);
     try {
       const response = await auth.verifyLoginOtp(
         basicDetails.mobile!.toString(),
@@ -128,6 +135,8 @@ const SignUp = () => {
     } catch (error) {
       console.error("Failed to verify OTP", error);
       setFormError("Failed to verify OTP. Please try again.");
+    } finally {
+      setloading(false);
       toast.error("Failed to verify OTP. Please try again.");
     }
   };
@@ -135,12 +144,18 @@ const SignUp = () => {
   const renderError = (): [boolean, string] => {
     return formError ? [true, formError] : [false, ""];
   };
+  const notYouRedirect = () => {
+    setloading(false);
+    toggleModal();
+  };
 
   return (
     <div className="flex max-h-[100vh] w-full flex-col overflow-hidden lg:flex-row">
       <div className="flex flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:h-[91vh] md:min-w-[35%] lg:max-w-[30%]">
         <div className="flex max-h-fit flex-col items-center justify-center gap-3 lg:mt-[5rem]">
+        <div className="flex max-h-fit flex-col items-center justify-center gap-3 lg:mt-[5rem]">
           <p className="text-xl text-gray-900">Step 1 of 2</p>
+          <div className="flex items-center justify-start gap-1 xs:self-start xs:pl-5 md:px-11">
           <div className="flex items-center justify-start gap-1 xs:self-start xs:pl-5 md:px-11">
             <button className="h-[0.4rem] w-[3rem] rounded-xl bg-[#2E3192]"></button>
             <button className="h-[0.4rem] w-[3rem] rounded-xl bg-gray-300"></button>
@@ -267,7 +282,7 @@ const SignUp = () => {
       {isModalOpen && (
         <OtpModal
           mobileNo={basicDetails.mobile}
-          notYouRedirect={toggleModal}
+          notYouRedirect={notYouRedirect}
           verifyFunction={handleVerify}
           onChangeFunction={(value) =>
             setBasicDetails({ ...basicDetails, otp: Number(value) })

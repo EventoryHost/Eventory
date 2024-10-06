@@ -29,7 +29,14 @@ const signUp = async (mobile: String) => {
     return await axios(config);
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      throw Error(error.message);
+      // Now TypeScript knows 'error' is an AxiosError
+      if (error.response) {
+        throw new Error(error.response.data.message || "Something went wrong");
+      } else {
+        throw new Error(error.message);
+      }
+    } else {
+      throw new Error("An unexpected error occurred");
     }
   }
 };
@@ -89,8 +96,6 @@ const login = async (mobile: String) => {
 export const addBusinessDetails = async (
   id: string,
   details: businessDetails,
-  // id: string,
-  // details: businessDetails,
 ) => {
   try {
     const res = await axios.post(
@@ -117,12 +122,13 @@ export const getvendor = async (
       `${process.env.NEXT_PUBLIC_BASE_URL}/auth/get-vendor`,
       {
         vendorId,
+        vendorId,
         email,
         phone,
       },
     );
     //console.log(res.data);
-    return res.data; // expect user in reponse 
+    return res.data; // expect user in reponse
   } catch (error) {
     if (axios.isAxiosError(error)) {
       throw Error(error.message);

@@ -15,8 +15,8 @@ const StepBar: React.FC<StepBarProps> = ({ currentStep, onStepClick }) => {
         {[1, 2, 3, 4, 5].map((step) => (
           <div
             key={step}
-            onClick={() => onStepClick(step)}  // Update the step when clicked
-            className={`h-2 w-14 rounded-full cursor-pointer ${
+            onClick={() => onStepClick(step)} // Update the step when clicked
+            className={`h-2 w-14 cursor-pointer rounded-full ${
               currentStep >= step ? "bg-[#252775]" : "bg-gray-300"
             } opacity-100 ml-${step > 1 ? "2" : "0"}`}
           />

@@ -1,5 +1,5 @@
 "use client";
-
+import Dropdown2 from "./(componets)/Dropdown2";
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,11 +17,28 @@ import { Combobox } from "@/components/ui/combobox";
 
 const categories = [
   { value: "venue-provider", label: "Venue Provider" },
-  { value: "pav", label: "PaV" },
+  { value: "pav", label: "Photo & Videography" },
+  { value: "pav", label: "Photo & Videography" },
   { value: "caterer", label: "Caterers" },
   { value: "decorator", label: "Decorator" },
   { value: "prop-rental", label: "Prop Rental" },
   { value: "makeup-artist", label: "Makeup Artist" },
+];
+
+const teamsize = [
+  { value: "1-5", label: "1-5 persons" },
+  { value: "6-15", label: "6-15 persons" },
+  { value: "16-30", label: "16-30 persons" },
+  { value: "31-50", label: "31-50 persons" },
+  { value: "51+", label: "More then 50" },
+];
+
+const annualrevenue = [
+  { value: "0-3", label: "0-3 Lakh" },
+  { value: "3-7", label: "3-7 Lakh" },
+  { value: "7-12", label: "7-12 Lakh" },
+  { value: "12-18", label: "12-18 Lakh" },
+  { value: "18+", label: "More then 18 Lakhs" },
 ];
 
 const yearsInOperation = [
@@ -32,21 +49,27 @@ const yearsInOperation = [
 ];
 
 const operationalCities = [
-  { value: "ny", label: "New York" },
-  { value: "sf", label: "San Francisco" },
-  { value: "la", label: "Los Angeles" },
-  { value: "chi", label: "Chicago" },
+  { value: "del", label: "Delhi" },
+  { value: "kol", label: "Kolkata" },
+  { value: "mum", label: "Mumbai" },
+  { value: "ban", label: "bangalore" },
+  { value: "grm", label: "Gurugram" },
+  { value: "cng", label: "Chandigarh" },
+  { value: "noi", label: "Noida" },
+  { value: "Agr", label: "Agraa" },
 ];
 
 export type businessDetails = {
   businessName: string;
   category: string;
   gstin: string;
-  years: string;
+  teamsize: string;
   businessAddress: string;
   landmark: string;
   pinCode: string;
   cities: string[];
+  years: string;
+  annualrevenue: string;
 };
 
 const BusinessDetails = () => {
@@ -56,6 +79,7 @@ const BusinessDetails = () => {
   const refs = useRef({} as Record<keyof businessDetails, HTMLInputElement | HTMLButtonElement | null>);
 
 
+  const router = useRouter();
   useEffect(() => {
     if (localStorage.getItem("token")) return;
     const urlParams = new URLSearchParams(window.location.search);

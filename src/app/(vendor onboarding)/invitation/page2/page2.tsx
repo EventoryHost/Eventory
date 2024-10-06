@@ -44,7 +44,7 @@ const Page: React.FC<Page2Props> = ({
   setPaperType,
   currentPage,
   setCurrentPage,
-  handleStepClick
+  handleStepClick,
 }) => {
   const {
     customInvitationsFromScratch,

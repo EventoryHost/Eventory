@@ -16,19 +16,43 @@ const FileDisplay: React.FC<FileDisplayProps> = ({ file, files }) => {
   // If there's a single file, display it
   if (file) {
     return (
-      <div className="flex w-full items-center justify-between space-x-2 rounded-3xl border p-2 px-6 gap-10">
+      <div className="flex w-full items-center justify-between gap-10 space-x-2 rounded-3xl border p-2 px-6">
         <div className="flex items-center gap-4">
           <img src={"/selection/fileicon.svg"} className="h-8 w-8" alt="file" />
           <div className="flex flex-col">
-            <span className="font-semibold">{file.name || "No file selected"}</span>
+            <span className="font-semibold">
+              {file.name || "No file selected"}
+            </span>
             {file.size !== undefined && (
-              <span className="text-sm text-gray-500">{formatSize(file.size)}</span>
+              <span className="text-sm text-gray-500">
+                {formatSize(file.size)}
+              </span>
             )}
           </div>
         </div>
-        <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="2" y="2.5" width="20" height="20" rx="5" stroke="#2B3F6C" strokeWidth="1.5" />
-          <path d="M9.5 12L11.5 14L15.5 10" stroke="#2B3F6C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        <svg
+          width="24"
+          height="25"
+          viewBox="0 0 24 25"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect
+            x="2"
+            y="2.5"
+            width="20"
+            height="20"
+            rx="5"
+            stroke="#2B3F6C"
+            strokeWidth="1.5"
+          />
+          <path
+            d="M9.5 12L11.5 14L15.5 10"
+            stroke="#2B3F6C"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
         </svg>
       </div>
     );
@@ -41,20 +65,48 @@ const FileDisplay: React.FC<FileDisplayProps> = ({ file, files }) => {
         {files.map((f, index) => (
           <div
             key={index}
-            className="flex items-center w-full justify-between space-x-10 rounded-3xl border p-2 px-6 gap-10"
+            className="flex w-full items-center justify-between gap-10 space-x-10 rounded-3xl border p-2 px-6"
           >
             <div className="flex items-center gap-4">
-              <img src={"/selection/fileicon.svg"} className="h-8 w-8" alt="file" />
+              <img
+                src={"/selection/fileicon.svg"}
+                className="h-8 w-8"
+                alt="file"
+              />
               <div className="flex flex-col">
-                <span className="font-semibold">{f.name || "No file selected"}</span>
+                <span className="font-semibold">
+                  {f.name || "No file selected"}
+                </span>
                 {f.size !== undefined && (
-                  <span className="text-sm text-gray-500">{formatSize(f.size)}</span>
+                  <span className="text-sm text-gray-500">
+                    {formatSize(f.size)}
+                  </span>
                 )}
               </div>
             </div>
-            <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="2" y="2.5" width="20" height="20" rx="5" stroke="#2B3F6C" strokeWidth="1.5" />
-              <path d="M9.5 12L11.5 14L15.5 10" stroke="#2B3F6C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            <svg
+              width="24"
+              height="25"
+              viewBox="0 0 24 25"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect
+                x="2"
+                y="2.5"
+                width="20"
+                height="20"
+                rx="5"
+                stroke="#2B3F6C"
+                strokeWidth="1.5"
+              />
+              <path
+                d="M9.5 12L11.5 14L15.5 10"
+                stroke="#2B3F6C"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
             </svg>
           </div>
         ))}

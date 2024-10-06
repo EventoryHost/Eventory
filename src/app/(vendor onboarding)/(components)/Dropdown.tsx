@@ -25,14 +25,21 @@ const Dropdown: React.FC<DropdownProps> = ({
     <div className="relative w-full">
       <button
         type="button"
-        className="flex w-full text-sm items-center justify-between rounded-xl border-2 bg-white p-3 py-5 text-left shadow-sm hover:bg-gray-50 "
+        className="flex w-full items-center justify-between rounded-xl border-2 bg-white p-3 py-5 text-left text-sm shadow-sm hover:bg-gray-50"
         onClick={() => setIsOpen(!isOpen)}
       >
         <span className={`${selectedOption ? "text-black" : "text-gray-400"}`}>
           {selectedOption || placeholder}
         </span>
-        
-        {isOpen?<ChevronUp className="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />:<ChevronDown className="-mr-1 ml-2 h-5 w-5 text-gray-300" aria-hidden="true" />}
+
+        {isOpen ? (
+          <ChevronUp className="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
+        ) : (
+          <ChevronDown
+            className="-mr-1 ml-2 h-5 w-5 text-gray-300"
+            aria-hidden="true"
+          />
+        )}
       </button>
 
       {isOpen && (
@@ -47,9 +54,17 @@ const Dropdown: React.FC<DropdownProps> = ({
                 onClick={() => handleSelect(option)}
               >
                 {selectedOption === option ? (
-                  <img src={"/selection/Choice_2.svg"} className="h-5 w-5" />
+                  <img
+                    src={"/selection/Choice_2.svg"}
+                    className="h-5 w-5"
+                    alt=""
+                  />
                 ) : (
-                  <img src={"/selection/Choice.svg"} className="h-5 w-5" />
+                  <img
+                    src={"/selection/Choice.svg"}
+                    className="h-5 w-5"
+                    alt=""
+                  />
                 )}
 
                 {option}

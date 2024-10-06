@@ -108,7 +108,7 @@ const Preview: React.FC<PreviewProps> = ({
               </div>
 
               <div className="flex flex-col gap-6 md:flex-row">
-                <div className="flex flex-grow flex-col min-w-[45%]">
+                <div className="flex min-w-[45%] flex-grow flex-col">
                   <label
                     className="mb-2 text-lg font-medium text-gray-700"
                     htmlFor="description"
@@ -125,7 +125,7 @@ const Preview: React.FC<PreviewProps> = ({
                   </textarea>
                 </div>
 
-                <div className="flex flex-grow flex-col min-w-[45%]">
+                <div className="flex min-w-[45%] flex-grow flex-col">
                   <h2 className="mb-2 text-lg font-medium text-gray-700">
                     Do You Provide Customizable Gifts?
                   </h2>
@@ -236,7 +236,7 @@ const Preview: React.FC<PreviewProps> = ({
 
               {/* Next Button */}
               <button
-                onClick={handleSubmit}
+                onClick={() => setCurrentPage(currentPage + 1)}
                 className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
               >
                 Submit
