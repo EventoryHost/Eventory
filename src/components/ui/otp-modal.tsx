@@ -30,7 +30,7 @@ const OtpModal: React.FC<Props> = ({
     <div className="fixed inset-0 z-50 flex items-center justify-center gap-9 backdrop-brightness-50">
       <div className="flex flex-col items-center justify-center gap-4 rounded-lg bg-white p-6 shadow-lg">
         <h1 className="text-3xl font-semibold">Enter OTP</h1>
-        <p>Please enter OTP recieved at your mobile number {mobileNo}</p>
+        <p>Please enter the code sent to your mobile number {mobileNo}</p>
         <a
           onClick={notYouRedirect}
           className="mb-9 cursor-pointer font-semibold underline"
@@ -48,12 +48,12 @@ const OtpModal: React.FC<Props> = ({
             ))}
           </InputOTPGroup>
         </InputOTP>
-        <p className="mt-5">Didn&apos;t recieve an OTP? </p>
+        <p className="mt-5">Didn&apos;t recieve a code? </p>
         <a
           onClick={resendOtp}
           className="cursor-pointer font-semibold underline"
         >
-          Resend OTP
+          Resend code
         </a>
         {renderError()[0] && <p className="text-red-500">{renderError()[1]}</p>}
         <button
