@@ -138,7 +138,7 @@ export function OperatingHoursDropdown({
     <div className="relative" ref={dropdownRef}>
       {/* Button to open/close dropdown */}
       <button
-        className="flex h-14 w-full items-center justify-between rounded-lg border-2 border-gray-200 px-4 py-2 text-gray-600"
+        className="flex h-14 w-full items-center justify-between rounded-lg border-2 border-gray-200 px-4 py-2 text-gray-400"
         onClick={handleDropdownToggle}
       >
         {startValue && endValue
@@ -159,7 +159,7 @@ export function OperatingHoursDropdown({
       {/* Dropdown menu */}
       {open && (
         <div className="absolute z-10 mt-2 w-full rounded-md border border-gray-300 bg-white p-4">
-          <div className="flex gap-4">
+          <div className="flex gap-10">
             {/* Start Time Picker */}
             <div className="relative flex-1">
               <label className="mb-2 block font-semibold">Start Time</label>
@@ -178,7 +178,7 @@ export function OperatingHoursDropdown({
                       },
                     });
                   }}
-                  className="w-full appearance-none rounded-md border border-gray-300 py-2 pl-10 pr-4 text-center text-sm"
+                  className="w-full appearance-none rounded-md border border-gray-300 px-4 py-2 text-center text-sm text-gray-400"
                 >
                   <option value="">HH:MM</option>
                   {timeOptions.map((option) => (
@@ -193,7 +193,7 @@ export function OperatingHoursDropdown({
             {/* End Time Picker */}
             <div className="relative flex-1">
               <label className="mb-2 block font-semibold">End Time</label>
-              <div className="relative">
+              <div className="relative gap-2">
                 <AlarmClockIcon className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 transform text-gray-400" />
                 <select
                   value={endValue}
@@ -208,7 +208,7 @@ export function OperatingHoursDropdown({
                       },
                     });
                   }}
-                  className="w-full appearance-none rounded-md border border-gray-300 py-2 pl-10 pr-4 text-center text-sm"
+                  className="w-full appearance-none rounded-md border border-gray-300 px-4 py-2 text-center text-sm text-gray-400"
                 >
                   <option value="">HH:MM</option>
                   {timeOptions.map((option) => (

@@ -5,7 +5,7 @@ function Registration_Completed() {
     <>
       <div className="w-screen bg-[#F7F6F9] px-[72px] py-[3.5rem]">
         <div className="flex w-[264px] flex-col justify-center gap-6">
-          <Link href="/plans">
+          <Link href="/">
             <div className="flex justify-start gap-3">
               <svg
                 width="25"

@@ -13,8 +13,9 @@ type loginDetails = {
   otp?: string;
   session?: string;
 };
-
+import { useToast } from "@/components/hooks/use-toast";
 const Login = () => {
+  const { toast } = useToast();
   const [Loading, setloading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loginDetails, setLoginDetails] = useState<loginDetails>(
@@ -41,24 +42,32 @@ const Login = () => {
       setFormError(`Enter a valid 10 digit mobile number`);
       return;
     }
+
     setloading(true);
     setFormError(null);
+
     try {
-      const newDetails: loginDetails = {
-        mobile: mobileNumber,
-      };
-      setLoginDetails(newDetails);
+      const res = await auth.login(mobileNumber);
 
-      const res = await auth.login(newDetails.mobile);
-      if (res) {
-        console.log("Response: ", res.data.data.Session);
-        setLoginDetails({ ...loginDetails, session: res.data.data.Session });
+      if (res && res.data && res.data.data.Session) {
+        setLoginDetails((prevDetails) => ({
+          ...prevDetails,
+          mobile: mobileNumber, // Update the mobile in state
+          session: res.data.data.Session, // Set the session
+        }));
+
+        toggleModal(); // Show the OTP modal
       }
-
-      toggleModal();
     } catch (error) {
       console.log(error);
-      setFormError("Something want wrong");
+      toast({
+        variant: "destructive",
+        title: error ? "Error" : "Something went wrong.",
+        description:
+          String(error) ||
+          "There was a problem with your request. Check internet",
+      });
+      setFormError("Something went wrong");
     } finally {
       setloading(false);
     }
@@ -74,27 +83,26 @@ const Login = () => {
       return;
     }
 
+    const mobileNumber = loginDetails.mobile;
     setFormError(null);
-    // console.log("Login deets: ", loginDetails);
-    // console.log("inp: ", inputOtp);
     setloading(true);
+    console.log(mobileNumber);
     try {
       const response = await auth.verifyLoginOtp(
-        loginDetails.mobile,
+        mobileNumber, // use mobile from loginDetails
         inputOtp,
         loginDetails.session!,
       );
-      if (response && response.data.userData) {
+      console.log(response?.data.data.user);
+      if (response && response.data.data.user) {
         // Generate JWT token with an expiration time
         const token = jwt.sign(
-          response.data.userData,
+          response.data.data.user,
           process.env.NEXT_PUBLIC_JWT_SECRET as string,
         );
-        // Store token in local storage
         localStorage.setItem("token", token);
         console.log("Generated Token:", token);
 
-        // Decode the token for testing
         const decoded = jwt.decode(token) as {
           name: string;
           email: string;
@@ -113,13 +121,32 @@ const Login = () => {
         }
 
         console.log("OTP verified successfully");
+        toast({
+          title: "Logged-In Successfully",
+          description: `Logged-In Successfully`,
+        });
+        toggleModal();
         // Router.push("/");
       } else {
-        console.error("OTP verification failed or response is invalid");
+        toast({
+          variant: "destructive",
+          title: response?.data?.error ? "Error" : "Something went wrong.",
+          description:
+            String(response?.data?.error) ||
+            "There was a problem with your request. Check internet",
+        });
+        console.error(`OTP verification failed${response?.data}`);
       }
     } catch (error) {
       console.log(error);
-      setFormError("OTP verification failed or response is invalid");
+      toast({
+        variant: "destructive",
+        title: error ? "Error" : "Something went wrong.",
+        description:
+          String(error) ||
+          "There was a problem with your request. Check internet",
+      });
+      setFormError(`OTP verification failed ${String(error) || "Error"}`);
     } finally {
       setloading(false);
     }
@@ -166,10 +193,11 @@ const Login = () => {
       <div className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] p-2 md:p-[2.2rem]">
         <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
           {Loading ? (
-            <Loadingeanimation width="w-56" />
+            <div className="my-14">
+              <Loadingeanimation width="w-56 " />
+            </div>
           ) : (
             <>
-              <h1 className="text-3xl font-bold">Login</h1>
               <div className="flex min-h-full min-w-full flex-col items-center gap-5">
                 <form onSubmit={(e) => handleLogin(e)}>
                   <div className="grid grid-cols-2 gap-5">
@@ -194,18 +222,14 @@ const Login = () => {
                   {formError && (
                     <div className="pl-5 text-red-500">{formError}</div>
                   )}
-                  <div className="mt-9 flex w-full flex-col-reverse justify-between gap-3 self-start md:mt-0 md:flex-row md:items-center md:px-0">
-                    <div className="mt-5 flex gap-2 xs:text-sm md:mt-9 md:gap-3">
-                      <Link
-                        href={"/"}
-                        className="font-semibold text-[#2E3192] underline"
-                      >
-                        Forgot Your Pasword ?
-                      </Link>
-                    </div>
+                  <div className="mb-9 mt-5">
+                    <p className="xs:text-md self-start text-gray-500 xs:mt-5">
+                      To verify it&apos;s you, we will send you an OTP to your
+                      mobile number.
+                    </p>
                   </div>
                   <div className="h-[1px] w-[80%] self-start bg-gray-300" />
-                  <div className="flex flex-col items-start self-start">
+                  <div className="mt-5 flex flex-col items-start self-start">
                     or continue with
                     <div
                       className="google mt-5 flex cursor-pointer gap-5"
@@ -237,20 +261,20 @@ const Login = () => {
                       </svg>
                     </div>
                     <div className="flex min-w-[56vw] flex-col justify-between gap-9 md:flex-row">
-                      <div className="mt-5 flex gap-2 xs:text-sm">
-                        Don&apos;t have an account ?{" "}
+                      <div className="xs:text-md mt-5 flex gap-2 text-gray-500">
+                        Don&apos;t have an account?{" "}
                         <Link
                           href={"/signup"}
                           className="font-semibold text-[#2E3192]"
                         >
-                          SignUp
+                          Sign In
                         </Link>
                       </div>
                       <button
                         type="submit"
                         className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-3 xs:py-2 xs:text-sm md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
                       >
-                        Login
+                        Log In
                       </button>
                     </div>
                   </div>

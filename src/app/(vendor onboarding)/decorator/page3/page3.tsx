@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Appetizers from "../../(components)/Appetizers";
 import FileInput from "@/components/fileInput";
+import { ArrowLeft } from "lucide-react";
 
 const _themesElement = [
   "Backdrop",
@@ -38,12 +39,18 @@ const Page3: React.FC<Page3Props> = ({
   const { themephotos, themevideos } = formState;
 
   return (
-    <div className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide xs:w-[95%] xs:min-w-[90%]">
+    <div className="flex h-full w-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide">
       <div className="flex min-w-full flex-col items-start justify-around gap-10">
         <div className="flex flex-col gap-9 rounded-xl bg-white p-3 xs:min-w-[100%] md:p-6">
-          <div className="flex items-start justify-start">
-            <h1 className="text-3xl font-semibold">Theme Elements</h1>
-            <span className="text-red-600">*</span>
+          <div className="flex items-center justify-start gap-5">
+            <ArrowLeft
+              className="ml-2 mr-1 h-6 w-6 cursor-pointer text-[#2E3192]"
+              aria-hidden="true"
+              onClick={() => setCurrentPage((prevPage) => prevPage - 1)}
+            />
+            <h1 className="text-3xl font-semibold">
+              Theme Elements<span className="text-red-600">*</span>
+            </h1>
           </div>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
@@ -59,9 +66,9 @@ const Page3: React.FC<Page3Props> = ({
         <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[100%] md:p-6">
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-row items-start justify-between gap-2">
-              <div className="flex min-w-[40%] flex-col gap-2">
+              <div className="flex min-w-[45%] flex-col gap-2">
                 <label
-                  className="flex items-center justify-start gap-2"
+                  className="flex items-center justify-start gap-2 text-base font-medium"
                   htmlFor="category"
                 >
                   <p>
@@ -112,9 +119,9 @@ const Page3: React.FC<Page3Props> = ({
                   acceptedFileTypes="image/png, .pdf, image/jpg"
                 />
               </div>
-              <div className="flex min-w-[40%] flex-col gap-2">
+              <div className="flex min-w-[45%] flex-col gap-2">
                 <label
-                  className="flex items-center justify-start gap-2"
+                  className="flex items-center justify-start gap-2 text-base font-medium"
                   htmlFor="category"
                 >
                   <p>
@@ -166,9 +173,11 @@ const Page3: React.FC<Page3Props> = ({
                 />
               </div>
             </div>
-            <div className="flex min-w-full flex-row items-start justify-between gap-2">
-              <div className="flex min-w-[40%] flex-col gap-4">
-                <label htmlFor="category">Or Continue Via</label>
+            <div className="flex min-w-full flex-row items-start justify-between gap-4">
+              <div className="flex min-w-[45%] flex-col gap-4">
+                <label className="text-base font-medium" htmlFor="category">
+                  Or Continue Via
+                </label>
                 <input
                   id="businessName"
                   type="text"
@@ -179,8 +188,10 @@ const Page3: React.FC<Page3Props> = ({
                   }
                 />
               </div>
-              <div className="flex min-w-[40%] flex-col gap-4">
-                <label htmlFor="category">Or Continue Via</label>
+              <div className="flex min-w-[45%] flex-col gap-2">
+                <label className="text-base font-medium" htmlFor="category">
+                  Or Continue Via
+                </label>
                 <input
                   id="businessName"
                   type="text"

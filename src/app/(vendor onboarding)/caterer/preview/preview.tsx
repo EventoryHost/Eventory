@@ -455,28 +455,24 @@ function Preview({
         <div className="flex min-w-[45%] flex-col gap-2">
           <label className="text-base font-normal">Photos</label>
           <span className="text-sm font-bold">
-            {Array.isArray(formState.photos) && formState.photos.length > 0 ? (
-              formState.photos.map((photo, index) => (
-                <span key={index} className="block">
-                  {photo.name}
-                </span>
-              ))
+            {typeof formState.photos === "string" ? (
+              <div>{formState.photos}</div> // Handle string case
+            ) : Array.isArray(formState.photos) ? (
+              <FileDisplay files={formState.photos} /> // Handle File[] case
             ) : (
-              <span>No photos uploaded</span>
+              <FileDisplay file={formState.photos} /> // Handle single File case
             )}
           </span>
         </div>
         <div className="flex min-w-[45%] flex-col gap-2">
           <label className="text-base font-normal">Videos</label>
           <span className="text-sm font-bold">
-            {Array.isArray(formState.videos) && formState.videos.length > 0 ? (
-              formState.videos.map((video, index) => (
-                <span key={index} className="block">
-                  {video.name}
-                </span>
-              ))
+            {typeof formState.videos === "string" ? (
+              <div>{formState.videos}</div> // Handle string case
+            ) : Array.isArray(formState.videos) ? (
+              <FileDisplay files={formState.videos} /> // Handle File[] case
             ) : (
-              <span>No videos uploaded</span>
+              <FileDisplay file={formState.videos} /> // Handle single File case
             )}
           </span>
         </div>
