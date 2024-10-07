@@ -122,7 +122,6 @@ export const getvendor = async (
       `${process.env.NEXT_PUBLIC_BASE_URL}/auth/get-vendor`,
       {
         vendorId,
-        vendorId,
         email,
         phone,
       },

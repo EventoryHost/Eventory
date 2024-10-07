@@ -63,13 +63,11 @@ export type businessDetails = {
   businessName: string;
   category: string;
   gstin: string;
-  teamsize: string;
   businessAddress: string;
   landmark: string;
   pinCode: string;
   cities: string[];
   years: string;
-  annualrevenue: string;
 };
 
 const BusinessDetails = () => {
@@ -79,7 +77,6 @@ const BusinessDetails = () => {
   const refs = useRef({} as Record<keyof businessDetails, HTMLInputElement | HTMLButtonElement | null>);
 
 
-  const router = useRouter();
   useEffect(() => {
     if (localStorage.getItem("token")) return;
     const urlParams = new URLSearchParams(window.location.search);
