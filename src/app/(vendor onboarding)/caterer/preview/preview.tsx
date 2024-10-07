@@ -51,13 +51,13 @@ type FormState = {
   cateringName: string;
   // menu: string | File;
   preSetMenu: string;
-  customizableMenu: boolean;
+  customizableMenu: boolean | null;
   // Page 6
   portfolio: string | File;
   photos: string | File[] | File;
   videos: string | File[] | File;
-  tastingSessions: boolean;
-  businessLicenses: boolean;
+  tastingSessions: boolean | null;
+  businessLicenses: boolean | null;
   foodSafety: boolean | File;
   cateringServiceImages: string | File;
   videoEvent: string | File;

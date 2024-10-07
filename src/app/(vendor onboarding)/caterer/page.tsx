@@ -28,13 +28,13 @@ export interface FormState {
   businessName: string;
 
   preSetMenu: string;
-  customizableMenu: boolean;
+  customizableMenu: boolean | null;
 
   // Page 6
   portfolio: string | File;
   clientTestimonials: string | File | File[];
-  tastingSessions: boolean;
-  businessLicenses: boolean;
+  tastingSessions: boolean | null;
+  businessLicenses: boolean | null;
   foodSafety: boolean | File;
   cateringServiceImages: string | File;
   videoEvent: string | File;
@@ -54,9 +54,9 @@ const Caterer = () => {
     cateringName: "",
     businessName: "",
     preSetMenu: "",
-    customizableMenu: true,
-    tastingSessions: false,
-    businessLicenses: false,
+    customizableMenu: null,
+    tastingSessions: null,
+    businessLicenses: null,
     foodSafety: false,
     cateringServiceImages: "",
     videoEvent: "",
@@ -82,7 +82,7 @@ const Caterer = () => {
   const [serviceStyles, setServiceStyles] = useState<string[]>([]);
 
   //states for page2
-  const [veg, setVeg] = useState<string[]>(["Veg"]);
+  const [veg, setVeg] = useState<string[]>([""]);
 
   const [selectedAppetizers, setSelectedAppetizers] = useState<string[]>([]);
   const [selectedBeverages, setSelectedBeverages] = useState<string[]>([]);
@@ -268,7 +268,11 @@ const Caterer = () => {
     });
 
     formData.append("deposit_required", advancePayment.toString());
-    formData.append("customizable", formState.customizableMenu.toString());
+    //formData.append("customizable", formState.customizableMenu.toString());
+    formData.append(
+      "customizable",
+      formState.customizableMenu?.toString() || "null",
+    );
 
     // Handle photos field
     if (Array.isArray(formState.photos)) {
@@ -292,8 +296,22 @@ const Caterer = () => {
       formData.append("videos", formState.videos); // Append the string (URL)
     }
 
-    formData.append("tasting_sessions", formState.tastingSessions.toString());
-    formData.append("business_licenses", formState.businessLicenses.toString());
+    //formData.append("tasting_sessions", formState.tastingSessions.toString());
+    formData.append(
+      "tasting_sessions",
+      formState.tastingSessions !== null
+        ? formState.tastingSessions.toString()
+        : "null",
+    );
+
+    //formData.append("business_licenses", formState.businessLicenses.toString());
+    formData.append(
+      "business_licenses",
+      formState.tastingSessions !== null
+        ? formState.tastingSessions.toString()
+        : "null",
+    );
+
     formData.append(
       "food_safety_certificates",
       formState.foodSafety.toString(),

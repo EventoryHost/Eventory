@@ -12,8 +12,8 @@ interface FormState {
   clientTestimonials: string;
   Recongnition_awards: string;
   advbookingperiod: string;
-  writtenthemeproposalafterconsultaion: boolean;
-  revisionforinitialthemeproposal: boolean;
+  writtenthemeproposalafterconsultaion: boolean | null;
+  revisionforinitialthemeproposal: boolean | null;
 }
 
 interface Page6Props {

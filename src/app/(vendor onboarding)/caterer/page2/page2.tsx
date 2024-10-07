@@ -268,7 +268,7 @@ const Page2 = ({
                     type="radio"
                     name="customizableMenu"
                     value="true"
-                    checked={customizableMenu}
+                    checked={customizableMenu === true} // Ensure checked is always a boolean
                     onChange={() => updateFormState({ customizableMenu: true })}
                     className="h-4 w-4 accent-[#2E3192]"
                   />
@@ -280,7 +280,7 @@ const Page2 = ({
                     type="radio"
                     name="customizableMenu"
                     value="false"
-                    checked={!customizableMenu}
+                    checked={customizableMenu === false} // Ensure checked is always a boolean
                     onChange={() =>
                       updateFormState({ customizableMenu: false })
                     }

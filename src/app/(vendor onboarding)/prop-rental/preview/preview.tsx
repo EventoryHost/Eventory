@@ -119,7 +119,7 @@ type FormState = {
 
   // Page2
   itemCatalogue: boolean | File;
-  customization: boolean;
+  customization: boolean | null;
   maintenance: string;
   services: string;
 

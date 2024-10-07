@@ -26,7 +26,7 @@ export interface FormState {
 
   // Page2
   itemCatalogue: boolean | File;
-  customization: boolean;
+  customization: boolean | null;
   maintenance: string;
   services: string;
 
@@ -94,8 +94,8 @@ const RootPage = () => {
     handleChange: (key: keyof FormState, value: any) => {},
 
     // URL's for the files
-    itemCatalogue: true,
-    customization: false,
+    itemCatalogue: false,
+    customization: null,
     photos: [],
     videos: [],
     maintenance: "",
@@ -309,7 +309,11 @@ const RootPage = () => {
         formState.itemCatalogue ? "true" : "false",
       );
     }
-    formData.append("customization", formState.customization.toString());
+    formData.append(
+      "customization",
+      formState.customization ? formState.customization.toString() : "null",
+    );
+
     formData.append("maintenance", formState.maintenance);
     formData.append("services", formState.services);
     // Handle photos field

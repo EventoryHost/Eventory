@@ -22,14 +22,14 @@ const _envelopeTypes = [
 
 interface FormState {
   //page 3
-  additionalStationery: boolean;
-  thankYouCards: boolean;
-  designconcept: boolean;
-  discussVision: boolean;
-  specialTouch: boolean;
-  initialConsultation: boolean;
-  allowRevisions: boolean;
-  provideProofs: boolean;
+  additionalStationery: boolean | null;
+  thankYouCards: boolean | null;
+  designconcept: boolean | null;
+  discussVision: boolean | null;
+  specialTouch: boolean | null;
+  initialConsultation: boolean | null;
+  allowRevisions: boolean | null;
+  provideProofs: boolean | null;
 }
 
 interface Page2Props {

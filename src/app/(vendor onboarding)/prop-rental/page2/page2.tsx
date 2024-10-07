@@ -8,7 +8,7 @@ import { Console } from "console";
 
 interface formState {
   itemCatalogue: boolean | File;
-  customization: boolean;
+  customization: boolean | null;
   maintenance: string;
   services: string;
 
@@ -165,7 +165,7 @@ const Page2: React.FC<page2Props> = ({
                       type="radio"
                       name="customization"
                       value="true"
-                      checked={!!formState.customization}
+                      checked={formState.customization === true}
                       onChange={() => updateFormState({ customization: true })}
                       className="h-4 w-4 accent-[#2E3192]"
                     />
@@ -179,7 +179,7 @@ const Page2: React.FC<page2Props> = ({
                       type="radio"
                       name="customization"
                       value="false"
-                      checked={!formState.customization}
+                      checked={formState.customization === false}
                       onChange={() => updateFormState({ customization: false })}
                       className="h-4 w-4 accent-[#2E3192]"
                     />

@@ -143,6 +143,21 @@ const Page1: React.FC<Page1Props> = ({
         <div className="flex flex-col gap-9 rounded-xl bg-white p-3 xs:min-w-[100%] md:p-6">
           <div className="flex w-[100%] flex-col items-start justify-start gap-9 rounded-xl bg-white p-5">
             <div className="flex items-center justify-start gap-5">
+              <svg
+                width="30"
+                height="30"
+                viewBox="0 0 30 30"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M10.3233 10L6.35314 13.9702C5.88229 14.441 5.88229 15.2044 6.35314 15.6753L10.3233 19.6455M6.70627 14.8227L23.5858 14.8227"
+                  stroke="#2B3F6C"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                />
+              </svg>
+
               <h1 className="text-3xl font-semibold"> Basic Details</h1>
             </div>
             <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
