@@ -6,8 +6,10 @@ import { handlePayment } from "@/services/payment";
 import { getvendor } from "@/services/auth";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation"; // Import from 'next/navigation'
+import { useToast } from "@/components/hooks/use-toast";
 import Link from "next/link";
 import vendorpricecalculations from "@/services/vendorpricecalculation";
+import Loadingeanimation from "@/components/Loader";
 interface PlanDetails {
   title: string;
   price: number;
@@ -25,6 +27,7 @@ interface BusinessDetails {
 }
 
 const Plans = ({ setCurrentPage, handleformSubmit }: Pagechangetype) => {
+  const { toast } = useToast();
   const plan: PlanDetails = {
     title: "Basic",
     price: 0,
@@ -35,6 +38,7 @@ const Plans = ({ setCurrentPage, handleformSubmit }: Pagechangetype) => {
       "Up to 3 team members",
     ],
   };
+  const [loader, setloader] = useState(true);
   const [disabled, setdisabled] = useState(true);
   const [price, setPrice] = useState<number>(0);
   const [error, setError] = useState(false);
@@ -136,7 +140,7 @@ const Plans = ({ setCurrentPage, handleformSubmit }: Pagechangetype) => {
   useEffect(() => {
     const fetchData = async () => {
       const token = localStorage.getItem("token");
-
+      setloader(true);
       if (token) {
         try {
           const { id, email, name, mobile } = jwt.decode(token) as {
@@ -152,8 +156,8 @@ const Plans = ({ setCurrentPage, handleformSubmit }: Pagechangetype) => {
             setVendorId(user.id);
             setFormData((prevFormData) => ({
               ...prevFormData,
-              email: user?.email,
-              phoneNumber: user?.mobile,
+              email: user?.email || "",
+              phoneNumber: user?.mobile || "",
               fullName: user?.name,
               gstinNumber: user?.businessDetails.gstin,
               address: user?.businessDetails.businessAddress,
@@ -174,14 +178,34 @@ const Plans = ({ setCurrentPage, handleformSubmit }: Pagechangetype) => {
             );
             setPrice(price);
           } else {
+            toast({
+              variant: "destructive",
+              title: "Error Something went wrong.",
+              description:
+                "There was a problem with your request. Pls Login Again",
+            });
             console.error("Token does not contain expected data.");
           }
         } catch (error) {
+          toast({
+            variant: "destructive",
+            title: "Error Something went wrong.",
+            description:
+              "There was a problem with your request. Pls Login Again",
+          });
           console.error("Failed to decode token:", error);
+        } finally {
+          setloader(false);
         }
       } else {
+        toast({
+          variant: "destructive",
+          title: "Error Something went wrong.",
+          description: "There was a problem with your request. Pls Login Again",
+        });
         console.log("No token found in localStorage.");
       }
+      setloader(false);
     };
 
     fetchData();
@@ -403,6 +427,7 @@ const Plans = ({ setCurrentPage, handleformSubmit }: Pagechangetype) => {
           </div>
         </div>
       </div>
+      {loader && <Loadingeanimation width="w-64" />}
     </>
   );
 };
