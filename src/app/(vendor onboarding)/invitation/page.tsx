@@ -167,8 +167,10 @@ const Invitation: React.FC = () => {
     const formData = new FormData();
     // Append form data
     //page 1
-    formData.append("references",
-     formState.references ? formState.references.toString() : "null");
+    formData.append(
+      "references",
+      formState.references ? formState.references.toString() : "null",
+    );
 
     formData.append("portfolio", formState.portfolio);
     formData.append("experience", formState.experience);
@@ -189,51 +191,75 @@ const Invitation: React.FC = () => {
     //page 2
     formData.append(
       "customInvitationsFromScratch",
-      formState.customInvitationsFromScratch ? formState.customInvitationsFromScratch.toString() : "null",
+      formState.customInvitationsFromScratch
+        ? formState.customInvitationsFromScratch.toString()
+        : "null",
     );
     formData.append(
       "semiCustomInvitations",
-     formState.semiCustomInvitations ? formState.semiCustomInvitations.toString() : "null",
+      formState.semiCustomInvitations
+        ? formState.semiCustomInvitations.toString()
+        : "null",
     );
-    formData.append("foilStamping",
-    formState.foilStamping ? formState.foilStamping.toString() : "null");
+    formData.append(
+      "foilStamping",
+      formState.foilStamping ? formState.foilStamping.toString() : "null",
+    );
 
-    formData.append("engraving",
-    formState.engraving ? formState.engraving.toString() : "null");
+    formData.append(
+      "engraving",
+      formState.engraving ? formState.engraving.toString() : "null",
+    );
 
     formData.append(
       "letterPressPrinting",
-    formState.letterPressPrinting ? formState.letterPressPrinting.toString() : "null",
+      formState.letterPressPrinting
+        ? formState.letterPressPrinting.toString()
+        : "null",
     );
 
-    formData.append("preDesignedCards",
-    formState.preDesignedCards ? formState.preDesignedCards.toString():"null");
+    formData.append(
+      "preDesignedCards",
+      formState.preDesignedCards
+        ? formState.preDesignedCards.toString()
+        : "null",
+    );
 
     formData.append(
       "differentCardstockWeights",
-     formState.differentCardstockWeights ? formState.differentCardstockWeights.toString() : "null",
+      formState.differentCardstockWeights
+        ? formState.differentCardstockWeights.toString()
+        : "null",
     );
     formData.append(
       "informationInserts",
-     formState.informationInserts ? formState.informationInserts.toString() : "null",
+      formState.informationInserts
+        ? formState.informationInserts.toString()
+        : "null",
     );
     formData.append("paperType", paperType.join(","));
 
     //page 3
     formData.append(
       "additionalStationery",
-     formState.additionalStationery ? formState.additionalStationery.toString() : "null",
+      formState.additionalStationery
+        ? formState.additionalStationery.toString()
+        : "null",
     );
 
     // Page 4
     formData.append("termsandConditions", formState.termsandConditions);
     formData.append("cancellationPolicy", formState.cancellationPolicy);
     formData.append("clienttestimonials", formState.clienttestimonials);
-    formData.append("extracharges",
-     formState.extracharges ? formState.extracharges.toString():"null");
+    formData.append(
+      "extracharges",
+      formState.extracharges ? formState.extracharges.toString() : "null",
+    );
 
-    formData.append("deposit",
-    formState.deposit ? formState.deposit.toString() : "null");
+    formData.append(
+      "deposit",
+      formState.deposit ? formState.deposit.toString() : "null",
+    );
 
     //page 5
     formData.append("perPeicePriceRange", JSON.stringify(perPeicePriceRange));

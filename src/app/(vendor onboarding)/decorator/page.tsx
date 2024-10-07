@@ -180,18 +180,26 @@ const Decorators: React.FC = () => {
 
     formData.append(
       "propthemesOffered",
-      formState.propthemesOffered ? formState.propthemesOffered.toString() : "null"
+      formState.propthemesOffered
+        ? formState.propthemesOffered.toString()
+        : "null",
     );
 
-    formData.append("adobtThemes",
-      formState.adobtThemes ?  formState.adobtThemes.toString(): "null");
+    formData.append(
+      "adobtThemes",
+      formState.adobtThemes ? formState.adobtThemes.toString() : "null",
+    );
 
-    formData.append("colorschmes",
-     formState.colorschmes ?  formState.colorschmes.toString() : "null");
+    formData.append(
+      "colorschmes",
+      formState.colorschmes ? formState.colorschmes.toString() : "null",
+    );
 
     formData.append(
       "customizationsThemes",
-    formState.customizationsThemes ? formState.customizationsThemes.toString() : "null",
+      formState.customizationsThemes
+        ? formState.customizationsThemes.toString()
+        : "null",
     );
 
     formData.append("customDesignProcess", formState.customDesignProcess);

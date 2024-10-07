@@ -309,8 +309,10 @@ const RootPage = () => {
         formState.itemCatalogue ? "true" : "false",
       );
     }
-    formData.append("customization",
-    formState.customization ? formState.customization.toString() : "null");
+    formData.append(
+      "customization",
+      formState.customization ? formState.customization.toString() : "null",
+    );
 
     formData.append("maintenance", formState.maintenance);
     formData.append("services", formState.services);

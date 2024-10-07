@@ -269,8 +269,10 @@ const Caterer = () => {
 
     formData.append("deposit_required", advancePayment.toString());
     //formData.append("customizable", formState.customizableMenu.toString());
-    formData.append("customizable", formState.customizableMenu?.toString() || "null");
-
+    formData.append(
+      "customizable",
+      formState.customizableMenu?.toString() || "null",
+    );
 
     // Handle photos field
     if (Array.isArray(formState.photos)) {
@@ -297,14 +299,17 @@ const Caterer = () => {
     //formData.append("tasting_sessions", formState.tastingSessions.toString());
     formData.append(
       "tasting_sessions",
-      formState.tastingSessions !== null ? formState.tastingSessions.toString() : "null"
+      formState.tastingSessions !== null
+        ? formState.tastingSessions.toString()
+        : "null",
     );
-    
 
     //formData.append("business_licenses", formState.businessLicenses.toString());
     formData.append(
       "business_licenses",
-      formState.tastingSessions !== null ? formState.tastingSessions.toString() : "null"
+      formState.tastingSessions !== null
+        ? formState.tastingSessions.toString()
+        : "null",
     );
 
     formData.append(
@@ -439,7 +444,7 @@ const Caterer = () => {
             handleContinue={() => {
               setCurrentPage(6);
               handleContinue();
-              // handleSubmit(); 
+              // handleSubmit();
             }}
           />
         );
