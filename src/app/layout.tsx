@@ -3,6 +3,10 @@ import Footer from "./(components)/footer";
 import "./globals.css";
 import Nav from "./(components)/nav";
 import { Toaster } from "@/components/ui/toaster";
+
+import { Provider } from "react-redux";
+import { Providers } from "./providers";
+
 export const metadata: Metadata = {
   title: "Eventory",
   description: "Inventory for Events",
@@ -27,12 +31,14 @@ export default function RootLayout({
         <link rel="icon" href="/logo-with-bg.svg" />
       </head>
       <body>
-        <header>
-          <Nav />
-        </header>
-        {children}
-        <footer></footer>
-        <Toaster />
+        <Providers>
+          <header>
+            <Nav />
+          </header>
+          {children}
+          <footer></footer>
+          <Toaster />
+        </Providers>
       </body>
     </html>
   );

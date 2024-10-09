@@ -1,7 +1,7 @@
 import axios from "axios";
 
+import { businessDetails2 } from "@/app/(vendor onboarding)/businessDetails/page";
 import { businessDetails } from "@/app/(vendor onboarding)/businessDetails/page";
-import { log } from "console";
 
 const authWithGoogle = async () => {
   const cognitoDomain = process.env.NEXT_PUBLIC_COGNITO_DOMAIN;
@@ -120,7 +120,6 @@ export const addBusinessDetails = async (
     return res;
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      // Now TypeScript knows 'error' is an AxiosError
       if (error.response) {
         throw new Error(error.response.data.message || "Something went wrong");
       } else {
@@ -153,13 +152,47 @@ export const getvendor = async (
     }
   }
 };
+
+// Logic for react-redux store's data saving to backend
+export const addBusinessDetails2 = async (userId: string, businessDetails2: any ) => {
+  try {
+    const response = await axios.post(`http://localhost:4000/api/business-details`, {
+      userId,
+      businessDetails2,
+    });
+    return response;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      throw Error(error.message);
+    }
+  }
+}
+export const getBusinessDetails2 = async (userId: string) => { 
+  try {
+    const response = await axios.get(`http://localhost:4000/api/business-details/${userId}`, {
+      headers: {
+        Authorization: `${localStorage.getItem("token")}`, 
+      },
+    });
+
+    if (response.status === 200) {
+      return { success: true, data: response.data };
+    } else {
+      return { success: false, message: response.data.message || "Failed to fetch business details." };
+    }
+  } catch (error: any) {
+    return { success: false, message: error.response?.data?.message || "Error fetching business details." };
+  }
+};
+
+
 const auth = {
   authWithGoogle,
   signUp,
   verifySignUpOtp,
   verifyLoginOtp,
   login,
-  addBusinessDetails,
+  addBusinessDetails2,
   getvendor,
 };
 export default auth;
