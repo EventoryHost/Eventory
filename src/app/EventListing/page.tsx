@@ -18,7 +18,7 @@ const CarouselPage = () => {
   // Effect to update the isMobile state on window resize
   useEffect(() => {
     // Check if running in the browser
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       // Set initial value based on window width
       setIsMobile(window.innerWidth < 768);
 
@@ -27,11 +27,11 @@ const CarouselPage = () => {
       };
 
       // Add event listener on component mount
-      window.addEventListener('resize', handleResize);
+      window.addEventListener("resize", handleResize);
 
       // Cleanup event listener on component unmount
       return () => {
-        window.removeEventListener('resize', handleResize);
+        window.removeEventListener("resize", handleResize);
       };
     }
   }, []);
@@ -66,7 +66,6 @@ const CarouselPage = () => {
       src: "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/SE/pic3.jpeg",
       text: "Category 3",
     },
-    
   ];
   const popular_events = [
     {
@@ -94,8 +93,7 @@ const CarouselPage = () => {
 
       img: "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/PE/anniversary.png",
     },
-   
-  ]
+  ];
   const venues = [
     {
       name: "South India",
@@ -115,54 +113,63 @@ const CarouselPage = () => {
     },
     {
       name: "North East",
-      
+
       img: "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/RE/north-east.png",
     },
     {
       name: "Central India",
- 
+
       img: "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/RE/central-india.png",
     },
-
   ];
-
 
   return (
     <div className="min-h-screen bg-gray-100">
-      <div
-        className=" flex md:h-[399px] h-[454px] w-full items-center justify-between transition-opacity duration-1000 ease-in-out"
-
-      >
-
-        <div className="relative h-full w-full   overflow-hidden">
+      <div className="flex h-[454px] w-full items-center justify-between transition-opacity duration-1000 ease-in-out md:h-[399px]">
+        <div className="relative h-full w-full overflow-hidden">
           {slides.map((slide, index) => (
             <div
               key={index}
-              className={`flex md:flex-row flex-col justify-between md:items-center  absolute left-0 top-0 h-full w-full transition-opacity duration-1000 ease-in-out ${index === currentSlide ? "opacity-100" : "opacity-0"}`}
-               style={{
-                  background:
-                    "linear-gradient(90deg, #605ED8 0%, #4445B1 55.17%, #2E3192 100%)",
-                }}
+              className={`absolute left-0 top-0 flex h-full w-full flex-col justify-between transition-opacity duration-1000 ease-in-out md:flex-row md:items-center ${index === currentSlide ? "opacity-100" : "opacity-0"}`}
+              style={{
+                background:
+                  "linear-gradient(90deg, #605ED8 0%, #4445B1 55.17%, #2E3192 100%)",
+              }}
             >
-              <div className="flex  flex-col space-y-8 md:mx-[72px] md:my-[35px] my-10 px-6 opacity-90 justify-center">
-                <h1 className="md:text-4xl text-2xl font-semibold text-white md:w-[80%]">Turning visions into memories  </h1>
-                <h1 className="md:text-2xl text-sm font-medium text-white "> Making events successful with Eventory!</h1>
-                <h1 className="md:text-2xl text-sm font-medium text-white pt-8  "> <span className="md:text-4xl text-2xl font-semibold">Get 20% OFF</span> on your first 2 bookings</h1>
-
+              <div className="my-10 flex flex-col justify-center space-y-8 px-6 opacity-90 md:mx-[72px] md:my-[35px]">
+                <h1 className="text-2xl font-semibold text-white md:w-[80%] md:text-4xl">
+                  Turning visions into memories{" "}
+                </h1>
+                <h1 className="text-sm font-medium text-white md:text-2xl">
+                  {" "}
+                  Making events successful with Eventory!
+                </h1>
+                <h1 className="pt-8 text-sm font-medium text-white md:text-2xl">
+                  {" "}
+                  <span className="text-2xl font-semibold md:text-4xl">
+                    Get 20% OFF
+                  </span>{" "}
+                  on your first 2 bookings
+                </h1>
               </div>
-              <div className="relative h-full md:w-[597px] w-full  overflow-hidden ">
+              <div className="relative h-full w-full overflow-hidden md:w-[597px]">
                 {/* Image */}
-                <div className="absolute inset-0 transition-opacity duration-500 "
+                <div
+                  className="absolute inset-0 transition-opacity duration-500"
                   style={
                     isMobile
                       ? {
-                        maskImage: 'linear-gradient(to bottom, transparent, black 50px)', // Adjusted for mobile view
-                        WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 50px)',
-                      }
+                          maskImage:
+                            "linear-gradient(to bottom, transparent, black 50px)", // Adjusted for mobile view
+                          WebkitMaskImage:
+                            "linear-gradient(to bottom, transparent, black 50px)",
+                        }
                       : {
-                        maskImage: 'linear-gradient(to right, transparent, black 50px)', // Desktop view
-                        WebkitMaskImage: 'linear-gradient(to right, transparent, black 50px)',
-                      }
+                          maskImage:
+                            "linear-gradient(to right, transparent, black 50px)", // Desktop view
+                          WebkitMaskImage:
+                            "linear-gradient(to right, transparent, black 50px)",
+                        }
                   }
                 >
                   <Image
@@ -170,13 +177,9 @@ const CarouselPage = () => {
                     alt={`Slide ${index + 1}`}
                     layout="fill"
                     objectFit="cover"
-
                   />
                 </div>
-
               </div>
-
-
             </div>
           ))}
         </div>
@@ -187,17 +190,18 @@ const CarouselPage = () => {
         {slides.map((_, index) => (
           <button
             key={index}
-            className={`md:h-3 md:w-3 h-2 w-2 rounded-full ${index === currentSlide
-              ? "bg-[#2E3192]"
-              : "border-2 border-[#2E3192] bg-white"
-              }`}
+            className={`h-2 w-2 rounded-full md:h-3 md:w-3 ${
+              index === currentSlide
+                ? "bg-[#2E3192]"
+                : "border-2 border-[#2E3192] bg-white"
+            }`}
             onClick={() => setCurrentSlide(index)}
             aria-label={`Go to slide ${index + 1}`}
           />
         ))}
       </div>
 
-      <div className="mx-auto md:mt-10 mt-2 flex w-[85%] flex-col items-center justify-between gap-6 md:gap-16">
+      <div className="mx-auto mt-2 flex w-[85%] flex-col items-center justify-between gap-6 md:mt-10 md:gap-16">
         <div className="flex w-full flex-col items-start">
           <div className="justify-start font-poppins text-2xl font-bold md:text-4xl">
             Regional Events
@@ -205,18 +209,18 @@ const CarouselPage = () => {
           <div className="flex w-full justify-center">
             <Carousel
               plugins={[plugin.current]}
-              className="mb-4 mt-4 w-full  md:mb-0 md:max-w-[90%] max-w-[100%] overflow-x-auto md:overflow-visible scrollbar-hide"
+              className="mb-4 mt-4 w-full max-w-[100%] overflow-x-auto scrollbar-hide md:mb-0 md:max-w-[90%] md:overflow-visible"
               onMouseEnter={plugin.current.stop}
               onMouseLeave={plugin.current.reset}
             >
-              <CarouselContent className="flex overflow-x-auto md:overflow-visible scrollbar-hide md:gap-2">
+              <CarouselContent className="flex overflow-x-auto scrollbar-hide md:gap-2 md:overflow-visible">
                 {venues.map((venue, index) => (
                   <CarouselItem
                     key={index}
-                    className=" basis-[40%] md:basis-[22.22%] "
+                    className="basis-[40%] md:basis-[22.22%]"
                   >
-                    <div className="w-full ">
-                      <div className="relative aspect-square overflow-hidden rounded-xl cursor-pointer">
+                    <div className="w-full">
+                      <div className="relative aspect-square cursor-pointer overflow-hidden rounded-xl">
                         <Image
                           src={venue.img}
                           alt={venue.name}
@@ -224,8 +228,8 @@ const CarouselPage = () => {
                           objectFit="cover"
                           className="rounded-xl"
                         />
-                        <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50  text-white">
-                          <h3 className="mb-2 text-center text-xs md:text-lg font-semibold p-1 ">
+                        <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50 text-white">
+                          <h3 className="mb-2 p-1 text-center text-xs font-semibold md:text-lg">
                             {venue.name}
                           </h3>
                           {/* <p className="text-center text-sm">
@@ -250,15 +254,18 @@ const CarouselPage = () => {
           <div className="flex w-full justify-center">
             <Carousel
               plugins={[plugin.current]}
-              className="mb-4 mt-4 w-full md:mb-0 md:max-w-[90%] max-w-[100%] "
+              className="mb-4 mt-4 w-full max-w-[100%] md:mb-0 md:max-w-[90%]"
               onMouseEnter={plugin.current.stop}
               onMouseLeave={plugin.current.reset}
             >
-              <CarouselContent className="flex md:gap-2 ">
+              <CarouselContent className="flex md:gap-2">
                 {popular_events.map((venue, index) => (
-                  <CarouselItem key={index} className="md:basis-[26%] basis-[45%]">
+                  <CarouselItem
+                    key={index}
+                    className="basis-[45%] md:basis-[26%]"
+                  >
                     <div className="w-full">
-                      <div className="relative md:aspect-square aspect-[3/4] overflow-hidden rounded-xl cursor-pointer">
+                      <div className="relative aspect-[3/4] cursor-pointer overflow-hidden rounded-xl md:aspect-square">
                         <Image
                           src={venue.img}
                           alt={venue.name}
@@ -266,16 +273,19 @@ const CarouselPage = () => {
                           objectFit="cover"
                           className="rounded-xl"
                         />
-                        {isMobile && <div className="absolute inset-0 flex flex-col items-start justify-end bg-black bg-opacity-20 text-white">
-                          <h3 className="text-center text-sm md:text-lg font-semibold p-4">
-                            {venue.name}
-                          </h3>
-                        </div>}
-
+                        {isMobile && (
+                          <div className="absolute inset-0 flex flex-col items-start justify-end bg-black bg-opacity-20 text-white">
+                            <h3 className="p-4 text-center text-sm font-semibold md:text-lg">
+                              {venue.name}
+                            </h3>
+                          </div>
+                        )}
                       </div>
-                      {!isMobile && <h3 className="mb-2 text-lg font-semibold">
-                        {venue.name}
-                      </h3>}
+                      {!isMobile && (
+                        <h3 className="mb-2 text-lg font-semibold">
+                          {venue.name}
+                        </h3>
+                      )}
                     </div>
                   </CarouselItem>
                 ))}
@@ -287,7 +297,6 @@ const CarouselPage = () => {
             </Carousel>
           </div>
         </div>
-
 
         <div className="mb-4 flex w-full flex-col items-start">
           <div className="justify-start font-poppins text-2xl font-bold md:text-4xl">

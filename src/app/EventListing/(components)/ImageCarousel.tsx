@@ -77,14 +77,14 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
   };
 
   return (
-    <div className="relative md:m-8 mx-auto w-full overflow-hidden flex flex-col">
-      <div className="md:my-8 flex items-center justify-center">
+    <div className="relative mx-auto flex w-full flex-col overflow-hidden md:m-8">
+      <div className="flex items-center justify-center md:my-8">
         {getVisibleImages().map(({ index, isMiddle }) => (
           <motion.div
             key={index}
             className={`relative flex ${
               isMobile ? "w-full" : "w-1/3"
-            } flex-shrink-0 items-center justify-center cursor-pointer`}
+            } flex-shrink-0 cursor-pointer items-center justify-center`}
             initial={{ scale: 1 }}
             animate={{
               scale: isMiddle ? (isMobile ? 0.9 : 1.2) : 1, // Slightly reduce size in mobile view
@@ -95,11 +95,11 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
             <img
               src={images[index].src}
               alt={`Slide ${index + 1}`}
-              className="h-auto w-full rounded-lg object-contain " // Ensure it fits in the container
+              className="h-auto w-full rounded-lg object-contain" // Ensure it fits in the container
             />
             {isMiddle && (
-              <div className="absolute inset-0 flex md:items-end items-center justify-center rounded-lg bg-black bg-opacity-50 p-4">
-                <span className="whitespace-normal break-words  text-xs text-white text-justify ">
+              <div className="absolute inset-0 flex items-center justify-center rounded-lg bg-black bg-opacity-50 p-4 md:items-end">
+                <span className="whitespace-normal break-words text-justify text-xs text-white">
                   {images[index].text}
                 </span>
               </div>
@@ -109,11 +109,11 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
       </div>
 
       {/* Navigation dots */}
-      <div className="flex justify-center md:mt-4 space-x-2">
+      <div className="flex justify-center space-x-2 md:mt-4">
         {images.map((_, index) => (
           <button
             key={index}
-            className={`md:h-3 md:w-3 h-2 w-2 rounded-full ${
+            className={`h-2 w-2 rounded-full md:h-3 md:w-3 ${
               index === currentIndex
                 ? "bg-[#2E3192]"
                 : "border-2 border-[#2E3192] bg-white"
