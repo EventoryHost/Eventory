@@ -29,8 +29,8 @@ export interface FormState {
   };
   address: string;
   venueDescription: string;
-  catererServices: boolean;
-  decorServices: boolean;
+  catererServices: boolean | null;
+  decorServices: boolean | null;
   termsConditions: string | File | File[];
   cancellationPolicy: string | File | File[];
   insurancePolicy: string | File | File[];
@@ -51,8 +51,8 @@ const VenueForm: React.FC = () => {
     name: "",
     managerName: "",
     capacity: "",
-    catererServices: false,
-    decorServices: false,
+    catererServices: null,
+    decorServices: null,
     insurancePolicy: "",
     photos: [],
     videos: [],
@@ -128,8 +128,10 @@ const VenueForm: React.FC = () => {
     );
     formData.append("address", formState.address);
     formData.append("venueDescription", formState.venueDescription);
-    formData.append("catererServices", String(formState.catererServices));
-    formData.append("decorServices", String(formState.decorServices));
+    formData.append("catererServices", formState.catererServices !== null ? String(formState.catererServices) : "");
+
+    formData.append("decorServices", formState.decorServices !== null ? String(formState.decorServices) : "");
+
 
     // Venue Types (Array)
     venueTypes.forEach((item, index) => {

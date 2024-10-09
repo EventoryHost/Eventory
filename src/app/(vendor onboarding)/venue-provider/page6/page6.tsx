@@ -16,8 +16,8 @@ interface Page6Props {
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
   address: string;
   operatingHours: { openingTime?: string; closingTime?: string };
-  catererServices: boolean;
-  decorServices: boolean;
+  catererServices: boolean | null;
+  decorServices: boolean | null;
   venueTypes: string[];
   restrictionsPolicies: string[];
   specialFeatures: string[];
@@ -139,7 +139,8 @@ const Page6: React.FC<Page6Props> = ({
                 In-House Catering Service?
               </span>
               <span className="mt-4 text-sm font-bold">
-                {formState.catererServices ? "Available" : "Not Available"}
+                {formState.catererServices === null ? "" : formState.catererServices ? "Yes" : "No"}
+
               </span>
             </div>
             <div className="flex w-1/2 flex-col">
@@ -147,7 +148,7 @@ const Page6: React.FC<Page6Props> = ({
                 In-House Decorating Service?
               </span>
               <span className="mt-4 text-sm font-bold">
-                {formState.catererServices ? "Available" : "Not Available"}
+                {formState.decorServices === null ? "" : formState.decorServices ? "Yes" : "No"}
               </span>
             </div>
           </div>
