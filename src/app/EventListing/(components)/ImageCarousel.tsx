@@ -84,7 +84,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
             key={index}
             className={`relative flex ${
               isMobile ? "w-full" : "w-1/3"
-            } flex-shrink-0 items-center justify-center`}
+            } flex-shrink-0 items-center justify-center cursor-pointer`}
             initial={{ scale: 1 }}
             animate={{
               scale: isMiddle ? (isMobile ? 0.9 : 1.2) : 1, // Slightly reduce size in mobile view
@@ -95,7 +95,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
             <img
               src={images[index].src}
               alt={`Slide ${index + 1}`}
-              className="h-auto w-full rounded-lg object-contain" // Ensure it fits in the container
+              className="h-auto w-full rounded-lg object-contain " // Ensure it fits in the container
             />
             {isMiddle && (
               <div className="absolute inset-0 flex md:items-end items-center justify-center rounded-lg bg-black bg-opacity-50 p-4">

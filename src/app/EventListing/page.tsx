@@ -144,7 +144,7 @@ const CarouselPage = () => {
                     "linear-gradient(90deg, #605ED8 0%, #4445B1 55.17%, #2E3192 100%)",
                 }}
             >
-              <div className="flex  flex-col space-y-6 md:mx-[72px] md:my-[35px] my-10 px-6 opacity-90 justify-center">
+              <div className="flex  flex-col space-y-8 md:mx-[72px] md:my-[35px] my-10 px-6 opacity-90 justify-center">
                 <h1 className="md:text-4xl text-2xl font-semibold text-white md:w-[80%]">Turning visions into memories  </h1>
                 <h1 className="md:text-2xl text-sm font-medium text-white "> Making events successful with Eventory!</h1>
                 <h1 className="md:text-2xl text-sm font-medium text-white pt-8  "> <span className="md:text-4xl text-2xl font-semibold">Get 20% OFF</span> on your first 2 bookings</h1>
@@ -216,7 +216,7 @@ const CarouselPage = () => {
                     className=" basis-[40%] md:basis-[22.22%] "
                   >
                     <div className="w-full ">
-                      <div className="relative aspect-square overflow-hidden rounded-xl">
+                      <div className="relative aspect-square overflow-hidden rounded-xl cursor-pointer">
                         <Image
                           src={venue.img}
                           alt={venue.name}
@@ -258,7 +258,7 @@ const CarouselPage = () => {
                 {popular_events.map((venue, index) => (
                   <CarouselItem key={index} className="md:basis-[26%] basis-[45%]">
                     <div className="w-full">
-                      <div className="relative md:aspect-square aspect-[3/4] overflow-hidden rounded-xl">
+                      <div className="relative md:aspect-square aspect-[3/4] overflow-hidden rounded-xl cursor-pointer">
                         <Image
                           src={venue.img}
                           alt={venue.name}
