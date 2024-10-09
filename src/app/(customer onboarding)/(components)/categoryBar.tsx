@@ -1,8 +1,9 @@
+import Dropdown from "@/app/(vendor onboarding)/(components)/Dropdown";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 
 type CategoryBarProps = {
-  event: string;
+  event?: string;
   selected: string;
   setSelected: (item: string) => void;
   view: string;
@@ -19,6 +20,7 @@ const CategoryBar: React.FC<CategoryBarProps> = ({
   const handleSelect = (item: string) => {
     setSelected(item);
   };
+  const [sort, setSort] = useState<String>(""); // Initial value can be false
 
   const handleViewSelect = (viewType: string) => {
     setView(viewType);
@@ -30,19 +32,21 @@ const CategoryBar: React.FC<CategoryBarProps> = ({
     "special guest": ["Venues", "Caterer", "Decorator", "Invitation", "Gifts"],
     tradional: ["Venues", "Caterer", "Decorator", "Invitation", "Gifts"],
   };
-
-  const tabs = eventTabsMap[event.toLowerCase()] || [];
+const _sort=["What's New","Price: Low to High","Price: High to Low","Most Popular","Costumer Rating"]
+  const tabs = event ? eventTabsMap[event.toLowerCase()] || [] : [];
 
   return (
-    <div className="rounded-2xl border-b-2 border-[#DFDFDF]">
-      <div className="">
+    <div className={`rounded-2xl  ${event?"border-b-2 border-[#DFDFDF]":"border-0"}`}>
+      <div className=" ">
         {event && (
           <h1 className="bg-gray-100 px-16 py-6 text-base">
             {" "}
             <Link href={"/"}>Home</Link> /{event}/SearchResult
           </h1>
         )}
-        <div className="flex items-center justify-between px-[72px] py-[24px]">
+                  <div className="px-14">
+
+        <div className={`flex items-center justify-between gap-20  py-[24px] ${!event&& "bg-gray-100"} overflow-x-auto scrollbar-hide`}>
           {/* Left section - Venues list */}
           <ul className="flex items-center gap-10 text-xl font-medium">
             {tabs.map((venue, index) => (
@@ -61,7 +65,7 @@ const CategoryBar: React.FC<CategoryBarProps> = ({
           </ul>
 
           {/* Right section - View options and sort */}
-          <div className="flex items-center gap-[21px] text-sm font-normal">
+          <div className="flex items-center gap-[21px] text-sm font-normal justify-end">
             <div className="flex items-center gap-[24px]">
               <div
                 className={`flex cursor-pointer items-center gap-2 p-2 ${
@@ -119,7 +123,7 @@ const CategoryBar: React.FC<CategoryBarProps> = ({
                     strokeLinejoin="round"
                   />
                 </svg>
-                List
+                <span className="hidden md:block">List</span>
               </div>
               <div
                 className={`flex cursor-pointer items-center gap-2 p-2 ${
@@ -171,13 +175,21 @@ const CategoryBar: React.FC<CategoryBarProps> = ({
                     strokeWidth="1.5"
                   />
                 </svg>
-                Grid
+                <span className="hidden md:block">Grid</span>
               </div>
             </div>
-            <div className="flex cursor-pointer items-center gap-2 rounded-lg border border-[#DFDFDF] px-8 py-2">
-              <img src="./Filter.png" alt="Sort" />
-              Sort
+            <div className="flex cursor-pointer items-center ">
+              
+              <Dropdown
+                  options={_sort}
+                  onSelect={(option: string) => {
+                    setSort(option)
+                  }}
+                  placeholder=""
+                  sort={true}
+                />
             </div>
+          </div>
           </div>
         </div>
       </div>

@@ -12,6 +12,8 @@ import { Filter } from "lucide-react";
 const SearchPageHelper = () => {
   const searchParams = useSearchParams();
   const event = searchParams.get("event") || "all";
+  const regional_event = searchParams.get("regional_event") || "all";
+  const popular_event = searchParams.get("popular_event") || "all";
 
   const [selected, setSelected] = useState<string>("");
   const [view, setView] = useState<string>("List");
@@ -152,6 +154,11 @@ const SearchPageHelper = () => {
     "5000-5500",
     "5500-6000",
   ];
+  const slides = [
+    "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/caraousel/pic1.png",
+    "/landing_page/categories/cat_01.png",
+    "/landing_page/categories/cat_02.png",
+  ];
   const filters4 = ["4.0 and above", "4.5 and above", "5.0 and above"];
 
   const [selectedFiltersSection1, setSelectedFiltersSection1] = useState<
@@ -200,9 +207,10 @@ const SearchPageHelper = () => {
   };
   return (
     <div className="">
-      <div className="mt-2">
-        <ExploreSection />
+        <div className="mt-2">
+        <ExploreSection slides={slides}/>
       </div>
+      
       <CategoryBar
         event={event}
         selected={selected}

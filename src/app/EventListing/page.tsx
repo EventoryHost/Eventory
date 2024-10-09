@@ -11,6 +11,8 @@ import {
 import Autoplay from "embla-carousel-autoplay";
 import ImageCarousel from "./(components)/ImageCarousel";
 import Footer from "../(components)/footer";
+import Link from "next/link";
+import ExploreSection from "../(customer onboarding)/(components)/ExploreSection";
 
 const CarouselPage = () => {
   const [isMobile, setIsMobile] = useState<boolean>(false); // Initial value can be false
@@ -37,6 +39,7 @@ const CarouselPage = () => {
   }, []);
 
   const [currentSlide, setCurrentSlide] = useState(0);
+  
   const slides = [
     "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/caraousel/pic1.png",
     "/landing_page/categories/cat_01.png",
@@ -68,6 +71,7 @@ const CarouselPage = () => {
     },
     
   ];
+  
   const popular_events = [
     {
       name: "Weddings",
@@ -96,106 +100,29 @@ const CarouselPage = () => {
     },
    
   ]
-  const venues = [
-    {
-      name: "South India",
-      img: "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/RE/south-india.png",
-    },
-    {
-      name: "North India",
-      img: "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/RE/north-india.png",
-    },
-    {
-      name: "East India",
-      img: "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/RE/east-india.png",
-    },
-    {
-      name: "West India",
-      img: "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/RE/west-india.png",
-    },
-    {
-      name: "North East",
-      
-      img: "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/RE/north-east.png",
-    },
-    {
-      name: "Central India",
- 
-      img: "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/RE/central-india.png",
-    },
 
+
+  const venueNames = [
+    "Central India",
+    "East India",
+    "North East",
+
+    "North India",    "South India",
+    "West India",
   ];
+  const baseImageUrl =
+  "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/";
 
+  const venues = venueNames.map((name, index) => ({
+    name: name,
+    img: `${baseImageUrl}RE/${name.toLowerCase().replace(/ /g, "-")}-pic-${index + 1}.png`, // Adjust the naming convention as needed
+  }));
 
   return (
     <div className="min-h-screen bg-gray-100">
-      <div
-        className=" flex md:h-[399px] h-[454px] w-full items-center justify-between transition-opacity duration-1000 ease-in-out"
+      <ExploreSection slides={slides} eventType={true}/>
 
-      >
-
-        <div className="relative h-full w-full   overflow-hidden">
-          {slides.map((slide, index) => (
-            <div
-              key={index}
-              className={`flex md:flex-row flex-col justify-between md:items-center  absolute left-0 top-0 h-full w-full transition-opacity duration-1000 ease-in-out ${index === currentSlide ? "opacity-100" : "opacity-0"}`}
-               style={{
-                  background:
-                    "linear-gradient(90deg, #605ED8 0%, #4445B1 55.17%, #2E3192 100%)",
-                }}
-            >
-              <div className="flex  flex-col space-y-8 md:mx-[72px] md:my-[35px] my-10 px-6 opacity-90 justify-center">
-                <h1 className="md:text-4xl text-2xl font-semibold text-white md:w-[80%]">Turning visions into memories  </h1>
-                <h1 className="md:text-2xl text-sm font-medium text-white "> Making events successful with Eventory!</h1>
-                <h1 className="md:text-2xl text-sm font-medium text-white pt-8  "> <span className="md:text-4xl text-2xl font-semibold">Get 20% OFF</span> on your first 2 bookings</h1>
-
-              </div>
-              <div className="relative h-full md:w-[597px] w-full  overflow-hidden ">
-                {/* Image */}
-                <div className="absolute inset-0 transition-opacity duration-500 "
-                  style={
-                    isMobile
-                      ? {
-                        maskImage: 'linear-gradient(to bottom, transparent, black 50px)', // Adjusted for mobile view
-                        WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 50px)',
-                      }
-                      : {
-                        maskImage: 'linear-gradient(to right, transparent, black 50px)', // Desktop view
-                        WebkitMaskImage: 'linear-gradient(to right, transparent, black 50px)',
-                      }
-                  }
-                >
-                  <Image
-                    src={slide}
-                    alt={`Slide ${index + 1}`}
-                    layout="fill"
-                    objectFit="cover"
-
-                  />
-                </div>
-
-              </div>
-
-
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Navigation Dots */}
-      <div className="m-4 flex justify-center space-x-2">
-        {slides.map((_, index) => (
-          <button
-            key={index}
-            className={`md:h-3 md:w-3 h-2 w-2 rounded-full ${index === currentSlide
-              ? "bg-[#2E3192]"
-              : "border-2 border-[#2E3192] bg-white"
-              }`}
-            onClick={() => setCurrentSlide(index)}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
-      </div>
+      
 
       <div className="mx-auto md:mt-10 mt-2 flex w-[85%] flex-col items-center justify-between gap-6 md:gap-16">
         <div className="flex w-full flex-col items-start">
@@ -217,6 +144,8 @@ const CarouselPage = () => {
                   >
                     <div className="w-full ">
                       <div className="relative aspect-square overflow-hidden rounded-xl cursor-pointer">
+                      <a href={`/EventType?event=${encodeURIComponent(venue.name)}`}>
+
                         <Image
                           src={venue.img}
                           alt={venue.name}
@@ -224,6 +153,7 @@ const CarouselPage = () => {
                           objectFit="cover"
                           className="rounded-xl"
                         />
+                        
                         <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50  text-white">
                           <h3 className="mb-2 text-center text-xs md:text-lg font-semibold p-1 ">
                             {venue.name}
@@ -232,6 +162,7 @@ const CarouselPage = () => {
                             {venue.category}
                           </p> */}
                         </div>
+                        </a>
                       </div>
                     </div>
                   </CarouselItem>
@@ -259,6 +190,8 @@ const CarouselPage = () => {
                   <CarouselItem key={index} className="md:basis-[26%] basis-[45%]">
                     <div className="w-full">
                       <div className="relative md:aspect-square aspect-[3/4] overflow-hidden rounded-xl cursor-pointer">
+                      <a href={`/EventType?event=${encodeURIComponent(venue.name)}`}>
+
                         <Image
                           src={venue.img}
                           alt={venue.name}
@@ -266,6 +199,8 @@ const CarouselPage = () => {
                           objectFit="cover"
                           className="rounded-xl"
                         />
+                        </a>
+
                         {isMobile && <div className="absolute inset-0 flex flex-col items-start justify-end bg-black bg-opacity-20 text-white">
                           <h3 className="text-center text-sm md:text-lg font-semibold p-4">
                             {venue.name}
