@@ -227,7 +227,11 @@ function Preview({
                   Do you provide references upon request ?
                 </span>
                 <span className="font-semibold">
-                {formState.references === null ? "" : formState.references ? "yes" : "no"}
+                  {formState.references === null
+                    ? ""
+                    : formState.references
+                      ? "yes"
+                      : "no"}
                 </span>
               </div>
             </div>

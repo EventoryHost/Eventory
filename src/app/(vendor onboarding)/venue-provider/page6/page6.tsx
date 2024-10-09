@@ -139,8 +139,11 @@ const Page6: React.FC<Page6Props> = ({
                 In-House Catering Service?
               </span>
               <span className="mt-4 text-sm font-bold">
-                {formState.catererServices === null ? "" : formState.catererServices ? "Yes" : "No"}
-
+                {formState.catererServices === null
+                  ? ""
+                  : formState.catererServices
+                    ? "Yes"
+                    : "No"}
               </span>
             </div>
             <div className="flex w-1/2 flex-col">
@@ -148,7 +151,11 @@ const Page6: React.FC<Page6Props> = ({
                 In-House Decorating Service?
               </span>
               <span className="mt-4 text-sm font-bold">
-                {formState.decorServices === null ? "" : formState.decorServices ? "Yes" : "No"}
+                {formState.decorServices === null
+                  ? ""
+                  : formState.decorServices
+                    ? "Yes"
+                    : "No"}
               </span>
             </div>
           </div>

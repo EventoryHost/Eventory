@@ -128,10 +128,17 @@ const VenueForm: React.FC = () => {
     );
     formData.append("address", formState.address);
     formData.append("venueDescription", formState.venueDescription);
-    formData.append("catererServices", formState.catererServices !== null ? String(formState.catererServices) : "");
+    formData.append(
+      "catererServices",
+      formState.catererServices !== null
+        ? String(formState.catererServices)
+        : "",
+    );
 
-    formData.append("decorServices", formState.decorServices !== null ? String(formState.decorServices) : "");
-
+    formData.append(
+      "decorServices",
+      formState.decorServices !== null ? String(formState.decorServices) : "",
+    );
 
     // Venue Types (Array)
     venueTypes.forEach((item, index) => {
