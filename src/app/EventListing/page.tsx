@@ -20,7 +20,7 @@ const CarouselPage = () => {
   // Effect to update the isMobile state on window resize
   useEffect(() => {
     // Check if running in the browser
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       // Set initial value based on window width
       setIsMobile(window.innerWidth < 768);
 
@@ -29,11 +29,11 @@ const CarouselPage = () => {
       };
 
       // Add event listener on component mount
-      window.addEventListener('resize', handleResize);
+      window.addEventListener("resize", handleResize);
 
       // Cleanup event listener on component unmount
       return () => {
-        window.removeEventListener('resize', handleResize);
+        window.removeEventListener("resize", handleResize);
       };
     }
   }, []);
@@ -69,7 +69,6 @@ const CarouselPage = () => {
       src: "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/SE/pic3.jpeg",
       text: "Category 3",
     },
-    
   ];
   
   const popular_events = [
@@ -124,7 +123,7 @@ const CarouselPage = () => {
 
       
 
-      <div className="mx-auto md:mt-10 mt-2 flex w-[85%] flex-col items-center justify-between gap-6 md:gap-16">
+      <div className="mx-auto mt-2 flex w-[85%] flex-col items-center justify-between gap-6 md:mt-10 md:gap-16">
         <div className="flex w-full flex-col items-start">
           <div className="justify-start font-poppins text-2xl font-bold md:text-4xl">
             Regional Events
@@ -132,15 +131,15 @@ const CarouselPage = () => {
           <div className="flex w-full justify-center">
             <Carousel
               plugins={[plugin.current]}
-              className="mb-4 mt-4 w-full  md:mb-0 md:max-w-[90%] max-w-[100%] overflow-x-auto md:overflow-visible scrollbar-hide"
+              className="mb-4 mt-4 w-full max-w-[100%] overflow-x-auto scrollbar-hide md:mb-0 md:max-w-[90%] md:overflow-visible"
               onMouseEnter={plugin.current.stop}
               onMouseLeave={plugin.current.reset}
             >
-              <CarouselContent className="flex overflow-x-auto md:overflow-visible scrollbar-hide md:gap-2">
+              <CarouselContent className="flex overflow-x-auto scrollbar-hide md:gap-2 md:overflow-visible">
                 {venues.map((venue, index) => (
                   <CarouselItem
                     key={index}
-                    className=" basis-[40%] md:basis-[22.22%] "
+                    className="basis-[40%] md:basis-[22.22%]"
                   >
                     <div className="w-full ">
                       <div className="relative aspect-square overflow-hidden rounded-xl cursor-pointer">
@@ -181,13 +180,16 @@ const CarouselPage = () => {
           <div className="flex w-full justify-center">
             <Carousel
               plugins={[plugin.current]}
-              className="mb-4 mt-4 w-full md:mb-0 md:max-w-[90%] max-w-[100%] "
+              className="mb-4 mt-4 w-full max-w-[100%] md:mb-0 md:max-w-[90%]"
               onMouseEnter={plugin.current.stop}
               onMouseLeave={plugin.current.reset}
             >
-              <CarouselContent className="flex md:gap-2 ">
+              <CarouselContent className="flex md:gap-2">
                 {popular_events.map((venue, index) => (
-                  <CarouselItem key={index} className="md:basis-[26%] basis-[45%]">
+                  <CarouselItem
+                    key={index}
+                    className="basis-[45%] md:basis-[26%]"
+                  >
                     <div className="w-full">
                       <div className="relative md:aspect-square aspect-[3/4] overflow-hidden rounded-xl cursor-pointer">
                       <a href={`/EventType?event=${encodeURIComponent(venue.name)}`}>
@@ -208,9 +210,11 @@ const CarouselPage = () => {
                         </div>}
 
                       </div>
-                      {!isMobile && <h3 className="mb-2 text-lg font-semibold">
-                        {venue.name}
-                      </h3>}
+                      {!isMobile && (
+                        <h3 className="mb-2 text-lg font-semibold">
+                          {venue.name}
+                        </h3>
+                      )}
                     </div>
                   </CarouselItem>
                 ))}
@@ -222,7 +226,6 @@ const CarouselPage = () => {
             </Carousel>
           </div>
         </div>
-
 
         <div className="mb-4 flex w-full flex-col items-start">
           <div className="justify-start font-poppins text-2xl font-bold md:text-4xl">
