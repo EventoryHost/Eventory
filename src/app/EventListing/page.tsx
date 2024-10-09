@@ -39,7 +39,7 @@ const CarouselPage = () => {
   }, []);
 
   const [currentSlide, setCurrentSlide] = useState(0);
-  
+
   const slides = [
     "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/caraousel/pic1.png",
     "/landing_page/categories/cat_01.png",
@@ -70,7 +70,7 @@ const CarouselPage = () => {
       text: "Category 3",
     },
   ];
-  
+
   const popular_events = [
     {
       name: "Weddings",
@@ -97,20 +97,19 @@ const CarouselPage = () => {
 
       img: "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/PE/anniversary.png",
     },
-   
-  ]
-
+  ];
 
   const venueNames = [
     "Central India",
     "East India",
     "North East",
 
-    "North India",    "South India",
+    "North India",
+    "South India",
     "West India",
   ];
   const baseImageUrl =
-  "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/";
+    "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/";
 
   const venues = venueNames.map((name, index) => ({
     name: name,
@@ -119,9 +118,7 @@ const CarouselPage = () => {
 
   return (
     <div className="min-h-screen bg-gray-100">
-      <ExploreSection slides={slides} eventType={true}/>
-
-      
+      <ExploreSection slides={slides} eventType={true} />
 
       <div className="mx-auto mt-2 flex w-[85%] flex-col items-center justify-between gap-6 md:mt-10 md:gap-16">
         <div className="flex w-full flex-col items-start">
@@ -141,26 +138,27 @@ const CarouselPage = () => {
                     key={index}
                     className="basis-[40%] md:basis-[22.22%]"
                   >
-                    <div className="w-full ">
-                      <div className="relative aspect-square overflow-hidden rounded-xl cursor-pointer">
-                      <a href={`/EventType?event=${encodeURIComponent(venue.name)}`}>
+                    <div className="w-full">
+                      <div className="relative aspect-square cursor-pointer overflow-hidden rounded-xl">
+                        <a
+                          href={`/EventType?event=${encodeURIComponent(venue.name)}`}
+                        >
+                          <Image
+                            src={venue.img}
+                            alt={venue.name}
+                            layout="fill"
+                            objectFit="cover"
+                            className="rounded-xl"
+                          />
 
-                        <Image
-                          src={venue.img}
-                          alt={venue.name}
-                          layout="fill"
-                          objectFit="cover"
-                          className="rounded-xl"
-                        />
-                        
-                        <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50  text-white">
-                          <h3 className="mb-2 text-center text-xs md:text-lg font-semibold p-1 ">
-                            {venue.name}
-                          </h3>
-                          {/* <p className="text-center text-sm">
+                          <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50 text-white">
+                            <h3 className="mb-2 p-1 text-center text-xs font-semibold md:text-lg">
+                              {venue.name}
+                            </h3>
+                            {/* <p className="text-center text-sm">
                             {venue.category}
                           </p> */}
-                        </div>
+                          </div>
                         </a>
                       </div>
                     </div>
@@ -191,24 +189,26 @@ const CarouselPage = () => {
                     className="basis-[45%] md:basis-[26%]"
                   >
                     <div className="w-full">
-                      <div className="relative md:aspect-square aspect-[3/4] overflow-hidden rounded-xl cursor-pointer">
-                      <a href={`/EventType?event=${encodeURIComponent(venue.name)}`}>
-
-                        <Image
-                          src={venue.img}
-                          alt={venue.name}
-                          layout="fill"
-                          objectFit="cover"
-                          className="rounded-xl"
-                        />
+                      <div className="relative aspect-[3/4] cursor-pointer overflow-hidden rounded-xl md:aspect-square">
+                        <a
+                          href={`/EventType?event=${encodeURIComponent(venue.name)}`}
+                        >
+                          <Image
+                            src={venue.img}
+                            alt={venue.name}
+                            layout="fill"
+                            objectFit="cover"
+                            className="rounded-xl"
+                          />
                         </a>
 
-                        {isMobile && <div className="absolute inset-0 flex flex-col items-start justify-end bg-black bg-opacity-20 text-white">
-                          <h3 className="text-center text-sm md:text-lg font-semibold p-4">
-                            {venue.name}
-                          </h3>
-                        </div>}
-
+                        {isMobile && (
+                          <div className="absolute inset-0 flex flex-col items-start justify-end bg-black bg-opacity-20 text-white">
+                            <h3 className="p-4 text-center text-sm font-semibold md:text-lg">
+                              {venue.name}
+                            </h3>
+                          </div>
+                        )}
                       </div>
                       {!isMobile && (
                         <h3 className="mb-2 text-lg font-semibold">

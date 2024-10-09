@@ -207,10 +207,10 @@ const SearchPageHelper = () => {
   };
   return (
     <div className="">
-        <div className="mt-2">
-        <ExploreSection slides={slides}/>
+      <div className="mt-2">
+        <ExploreSection slides={slides} />
       </div>
-      
+
       <CategoryBar
         event={event}
         selected={selected}

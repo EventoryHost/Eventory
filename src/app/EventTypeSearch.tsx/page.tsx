@@ -15,7 +15,6 @@ const SearchPageHelper = () => {
   const searchParams = useSearchParams();
   const event = searchParams.get("event") || "all";
 
-
   const [selected, setSelected] = useState<string>("");
   const [view, setView] = useState<string>("List");
   const URLs = [
@@ -208,10 +207,10 @@ const SearchPageHelper = () => {
   };
   return (
     <div className="">
-        <div className="mt-2">
-        <ExploreSection slides={slides}/>
+      <div className="mt-2">
+        <ExploreSection slides={slides} />
       </div>
-      
+
       <CategoryBar
         event={event}
         selected={selected}
