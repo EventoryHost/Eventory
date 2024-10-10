@@ -27,10 +27,10 @@ export interface FormState {
   eventsize: string;
 
   // Page 2
-  propthemesOffered: boolean;
-  adobtThemes: boolean;
-  colorschmes: boolean;
-  customizationsThemes: boolean;
+  propthemesOffered: boolean | null;
+  adobtThemes: boolean | null;
+  colorschmes: boolean | null;
+  customizationsThemes: boolean | null;
   customDesignProcess: string;
 
   // Page 3
@@ -44,8 +44,8 @@ export interface FormState {
   clientTestimonials: string;
   Recongnition_awards: string;
   advbookingperiod: string;
-  writtenthemeproposalafterconsultaion: boolean;
-  revisionforinitialthemeproposal: boolean;
+  writtenthemeproposalafterconsultaion: boolean | null;
+  revisionforinitialthemeproposal: boolean | null;
 
   //page 7
   cancellationPolicy: string | File | File[];
@@ -64,10 +64,10 @@ const Decorators: React.FC = () => {
     eventsize: "",
 
     // Page 2
-    propthemesOffered: false,
-    adobtThemes: false,
-    colorschmes: false,
-    customizationsThemes: false,
+    propthemesOffered: null,
+    adobtThemes: null,
+    colorschmes: null,
+    customizationsThemes: null,
     customDesignProcess: "",
 
     //page 3
@@ -82,8 +82,8 @@ const Decorators: React.FC = () => {
     clientTestimonials: "",
     Recongnition_awards: "",
     advbookingperiod: "",
-    writtenthemeproposalafterconsultaion: false,
-    revisionforinitialthemeproposal: false,
+    writtenthemeproposalafterconsultaion: null,
+    revisionforinitialthemeproposal: null,
     //page5
     cancellationPolicy: "",
     termsAndConditions: "",
@@ -177,15 +177,29 @@ const Decorators: React.FC = () => {
     themesOffered.forEach((event) => {
       formData.append("themesOffered", event);
     });
+
     formData.append(
       "propthemesOffered",
-      formState.propthemesOffered.toString(),
+      formState.propthemesOffered
+        ? formState.propthemesOffered.toString()
+        : "null",
     );
-    formData.append("adobtThemes", formState.adobtThemes.toString());
-    formData.append("colorschmes", formState.colorschmes.toString());
+
+    formData.append(
+      "adobtThemes",
+      formState.adobtThemes ? formState.adobtThemes.toString() : "null",
+    );
+
+    formData.append(
+      "colorschmes",
+      formState.colorschmes ? formState.colorschmes.toString() : "null",
+    );
+
     formData.append(
       "customizationsThemes",
-      formState.customizationsThemes.toString(),
+      formState.customizationsThemes
+        ? formState.customizationsThemes.toString()
+        : "null",
     );
 
     formData.append("customDesignProcess", formState.customDesignProcess);
@@ -394,31 +408,27 @@ const Decorators: React.FC = () => {
       className={`m-0 flex w-full flex-col overflow-x-hidden ${currentPage <= 6 ? "lg:h-[calc(100vh-4.2rem)]" : ""} lg:flex-row`}
     >
       {currentPage <= 6 && (
-        <div className="flex flex-col items-start justify-between bg-[#FFFFFF] px-8 xs:gap-7 xs:pt-4 md:min-w-[35%] lg:max-w-[35%]">
-          <div className="flex w-[100%] flex-col justify-center">
+        <div className="flex flex-col items-start justify-between bg-[#FFFFFF] pt-4 xs:gap-7 md:min-w-[30%] lg:max-w-[30%]">
+          <div className="m-auto flex w-[90%] flex-col justify-center">
             <div className="flex flex-col gap-1 px-3 lg:mt-[2rem]">
               <span className="text-lg font-semibold">
                 Step {currentPage} of 6
               </span>
-              <div className="flex gap-4">
+              <div className="flex gap-2">
                 <button
                   className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 1 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                  onClick={() => setCurrentPage(1)}
                 ></button>
 
                 <button
                   className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 2 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                  onClick={() => setCurrentPage(2)}
                 ></button>
 
                 <button
                   className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 3 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                  onClick={() => setCurrentPage(3)}
                 ></button>
 
                 <button
                   className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 4 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                  onClick={() => setCurrentPage(4)}
                 ></button>
 
                 {/* <button
@@ -428,17 +438,15 @@ const Decorators: React.FC = () => {
 
                 <button
                   className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 5 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                  onClick={() => setCurrentPage(5)}
                 ></button>
                 <button
                   className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 6 ? "bg-[#2E3192] text-white" : "bg-gray-300"}`}
-                  onClick={() => setCurrentPage(6)}
                 ></button>
               </div>
             </div>
           </div>
-          <div className="flex h-[40%] flex-col items-start justify-center gap-5 px-3 pt-3 md:px-3">
-            <h1 className="text-[8vw] font-bold md:text-[3vw]">
+          <div className="m-auto flex h-[50%] w-[90%] flex-col items-start justify-center gap-9 px-3 md:px-6">
+            <h1 className="text-2xl font-bold md:text-4xl">
               {currentPage === 1 && "Fill out event details"}
               {currentPage === 2 && "Fill out themes related details "}
               {currentPage === 3 && "Fill out theme elements details"}
@@ -446,7 +454,7 @@ const Decorators: React.FC = () => {
               {currentPage === 5 && "Fill out Some Mandatory details"}
               {currentPage === 6 && "Preview details"}
             </h1>
-            <p className="font-Helvetica font-normal text-[#797878] xs:text-xl">
+            <p className="text-xl text-black">
               {currentPage === 1 && "Select the types of events you cover "}
               {currentPage === 2 &&
                 "Provide the details of the themes you offer and related details."}
@@ -471,7 +479,7 @@ const Decorators: React.FC = () => {
           </div>
         </div>
       )}
-      <div className="flex min-w-[65%] flex-col items-center justify-center bg-[#F7F6F9] p-6 md:p-[1rem]">
+      <div className="flex min-w-[70%] flex-col items-center justify-center bg-[#F7F6F9] p-6 md:p-12">
         {renderPage()}
       </div>
     </div>

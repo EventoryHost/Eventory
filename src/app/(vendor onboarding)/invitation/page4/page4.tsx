@@ -23,8 +23,8 @@ interface FormState {
   termsandConditions: string;
   cancellationPolicy: string;
   clienttestimonials: string;
-  extracharges: boolean;
-  deposit: boolean;
+  extracharges: boolean | null;
+  deposit: boolean | null;
 }
 
 interface Page4Props {

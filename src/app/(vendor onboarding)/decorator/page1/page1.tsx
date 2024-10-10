@@ -138,7 +138,7 @@ const Page1: React.FC<Page1Props> = ({
   };
 
   return (
-    <div className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide xs:w-[95%] xs:min-w-[90%]">
+    <div className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide">
       <div className="flex min-w-full flex-col items-start justify-around gap-10">
         <div className="flex flex-col gap-9 rounded-xl bg-white p-3 xs:min-w-[100%] md:p-6">
           <div className="flex w-[100%] flex-col items-start justify-start gap-9 rounded-xl bg-white p-5">
@@ -153,19 +153,20 @@ const Page1: React.FC<Page1Props> = ({
                 <path
                   d="M10.3233 10L6.35314 13.9702C5.88229 14.441 5.88229 15.2044 6.35314 15.6753L10.3233 19.6455M6.70627 14.8227L23.5858 14.8227"
                   stroke="#2B3F6C"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
                 />
               </svg>
+
               <h1 className="text-3xl font-semibold"> Basic Details</h1>
             </div>
             <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
-              <div className="flex min-w-[40%] flex-col gap-4">
-                <label htmlFor="businessName">
+              <div className="flex min-w-[50%] flex-col gap-4">
+                <label className="text-base font-medium" htmlFor="businessName">
                   Full Name(POC)<span className="text-red-500">*</span>
                 </label>
                 <input
-                  className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
+                  className="h-16 w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
                   id="businessName"
                   name="businessName"
                   value={formState.businessName}
@@ -175,8 +176,8 @@ const Page1: React.FC<Page1Props> = ({
                 />
               </div>
 
-              <div className="flex min-w-[40%] flex-col gap-4">
-                <label htmlFor="businessName">
+              <div className="flex min-w-[50%] flex-col gap-4">
+                <label className="text-base font-medium" htmlFor="businessName">
                   Event size<span className="text-red-500">*</span>
                 </label>
                 <Dropdown
@@ -188,8 +189,10 @@ const Page1: React.FC<Page1Props> = ({
             </div>
 
             <div className="flex min-w-full flex-col items-start justify-between gap-5 md:flex-row">
-              <div className="flex min-w-[40%] flex-col gap-4">
-                <label htmlFor="businessName">Decoration setup duration</label>
+              <div className="flex min-w-[50%] flex-col gap-4">
+                <label className="text-base font-medium" htmlFor="businessName">
+                  Decoration setup duration
+                </label>
                 <Dropdown
                   options={durationlist}
                   onSelect={(value: string) => handledropdownduration(value)}
@@ -200,7 +203,9 @@ const Page1: React.FC<Page1Props> = ({
           </div>
         </div>
         <div className="flex flex-col gap-9 rounded-xl bg-white p-3 xs:min-w-[100%] md:p-6">
-          <h1 className="text-3xl font-semibold">Types of Event</h1>
+          <h1 className="text-3xl font-semibold">
+            Types of Event<span className="text-red-600">*</span>
+          </h1>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
               <Appetizers

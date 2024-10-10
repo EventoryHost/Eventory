@@ -21,10 +21,10 @@ const _themesOffered = [
 ];
 
 interface FormState {
-  propthemesOffered: boolean;
-  adobtThemes: boolean;
-  colorschmes: boolean;
-  customizationsThemes: boolean;
+  propthemesOffered: boolean | null;
+  adobtThemes: boolean | null;
+  colorschmes: boolean | null;
+  customizationsThemes: boolean | null;
   customDesignProcess: string;
 }
 
@@ -54,28 +54,20 @@ const Page2: React.FC<Page2Props> = ({
   } = formState;
 
   return (
-    <div className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide xs:w-[95%] xs:min-w-[90%]">
+    <div className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide">
       <div className="flex min-w-full flex-col items-start justify-around gap-10">
         <div className="flex flex-col gap-9 rounded-xl bg-white p-3 xs:min-w-[100%] md:p-6">
           <div className="flex items-center justify-start gap-5">
-            <svg
-              onClick={() => setCurrentPage((prevPage) => prevPage - 1)}
-              width="30"
-              height="30"
-              viewBox="0 0 30 30"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M10.3233 10L6.35314 13.9702C5.88229 14.441 5.88229 15.2044 6.35314 15.6753L10.3233 19.6455M6.70627 14.8227L23.5858 14.8227"
-                stroke="#2B3F6C"
-                stroke-width="1.5"
-                stroke-linecap="round"
+            <div className="flex items-center justify-start gap-5">
+              <ArrowLeft
+                className="ml-2 mr-1 h-6 w-6 cursor-pointer text-[#2E3192]"
+                aria-hidden="true"
+                onClick={() => setCurrentPage((prevPage) => prevPage - 1)}
               />
-            </svg>
-            <div className="flex">
-              <h1 className="text-3xl font-semibold">Theme Offered</h1>
-              <span className="text-red-600">*</span>
+
+              <h1 className="text-3xl font-semibold">
+                Theme Offered<span className="text-red-600">*</span>
+              </h1>
             </div>
           </div>
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
@@ -92,8 +84,8 @@ const Page2: React.FC<Page2Props> = ({
         <div className="flex flex-col gap-9 rounded-xl bg-white p-3 xs:min-w-[100%] md:p-6">
           <div className="flex min-h-full min-w-full flex-col items-center gap-5">
             <div className="flex min-w-full flex-row items-start justify-between gap-6">
-              <div className="flex min-w-[50%] flex-col gap-6 lg:max-w-[60%]">
-                <label htmlFor="businessName">
+              <div className="flex min-w-[40%] flex-col gap-6 lg:max-w-[50%]">
+                <label className="text-base font-medium" htmlFor="businessName">
                   Do you offer prop selection for themes ?
                 </label>
                 <div className="flex flex-row items-center justify-start gap-4">
@@ -119,7 +111,7 @@ const Page2: React.FC<Page2Props> = ({
                 </div>
               </div>
               <div className="flex min-w-[50%] flex-col gap-6 lg:max-w-[60%]">
-                <label htmlFor="businessName">
+                <label className="text-base font-medium" htmlFor="businessName">
                   Do you adapt themes to different venue sizes ?
                 </label>
                 <div className="flex flex-row items-center justify-start gap-4">
@@ -143,7 +135,10 @@ const Page2: React.FC<Page2Props> = ({
             <div className="flex min-w-full flex-row items-start justify-between gap-6">
               <div className="flex flex-col gap-4 lg:max-w-[60%]">
                 <div className="flex min-w-[40%] flex-col gap-6">
-                  <label htmlFor="businessName">
+                  <label
+                    className="text-base font-medium"
+                    htmlFor="businessName"
+                  >
                     Do you assist with creating color schemes ?
                   </label>
                   <div className="flex flex-row items-center justify-start gap-4">
@@ -165,14 +160,17 @@ const Page2: React.FC<Page2Props> = ({
                   </div>
                 </div>
                 <div className="flex min-w-[40%] flex-col gap-6">
-                  <label htmlFor="businessName">
+                  <label
+                    className="text-base font-medium"
+                    htmlFor="businessName"
+                  >
                     Do you offer customization of themes ?
                   </label>
                   <div className="flex flex-row items-center justify-start gap-4">
                     <input
                       type="radio"
                       value="true"
-                      checked={customizationsThemes}
+                      checked={customizationsThemes === true}
                       onChange={() =>
                         updateFormState({ customizationsThemes: true })
                       }
@@ -183,7 +181,7 @@ const Page2: React.FC<Page2Props> = ({
                     <input
                       type="radio"
                       value="false"
-                      checked={!customizationsThemes}
+                      checked={customizationsThemes === false}
                       onChange={() =>
                         updateFormState({ customizationsThemes: false })
                       }
@@ -194,7 +192,9 @@ const Page2: React.FC<Page2Props> = ({
                 </div>
               </div>
               <div className="flex min-w-[50%] flex-col gap-5">
-                <label htmlFor="category">Custom Design Process</label>
+                <label className="text-base font-medium" htmlFor="category">
+                  Custom Design Process
+                </label>
                 <textarea
                   id="businessName"
                   rows={5}

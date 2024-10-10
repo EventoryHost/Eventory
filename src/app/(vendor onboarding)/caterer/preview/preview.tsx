@@ -51,13 +51,13 @@ type FormState = {
   cateringName: string;
   // menu: string | File;
   preSetMenu: string;
-  customizableMenu: boolean;
+  customizableMenu: boolean | null;
   // Page 6
   portfolio: string | File;
   photos: string | File[] | File;
   videos: string | File[] | File;
-  tastingSessions: boolean;
-  businessLicenses: boolean;
+  tastingSessions: boolean | null;
+  businessLicenses: boolean | null;
   foodSafety: boolean | File;
   cateringServiceImages: string | File;
   videoEvent: string | File;
@@ -173,7 +173,7 @@ function Preview({
   return (
     <div className="flex h-full w-full flex-col items-start justify-start gap-5 overflow-y-scroll rounded-xl bg-white p-6 scrollbar-hide md:p-10">
       <span className="text-xl font-semibold">
-        {formState.businessName} / Caterers
+        {formState.businessName} Caterers
       </span>
 
       <div className="flex w-[100%] justify-between rounded-xl bg-[rgba(96,94,216,0.1)] p-2 pl-4 text-xl font-semibold">
@@ -327,7 +327,11 @@ function Preview({
         <div className="m-6 mt-4 flex flex-col gap-1">
           <span className="text-base font-normal">Customizable</span>
           <span className="text-sm font-bold">
-            {formState.customizableMenu ? "yes" : "no"}
+            {formState.customizableMenu === null
+              ? ""
+              : formState.customizableMenu
+                ? "Yes"
+                : "No"}
           </span>
         </div>
       </div>
@@ -455,28 +459,24 @@ function Preview({
         <div className="flex min-w-[45%] flex-col gap-2">
           <label className="text-base font-normal">Photos</label>
           <span className="text-sm font-bold">
-            {Array.isArray(formState.photos) && formState.photos.length > 0 ? (
-              formState.photos.map((photo, index) => (
-                <span key={index} className="block">
-                  {photo.name}
-                </span>
-              ))
+            {typeof formState.photos === "string" ? (
+              <div>{formState.photos}</div> // Handle string case
+            ) : Array.isArray(formState.photos) ? (
+              <FileDisplay files={formState.photos} /> // Handle File[] case
             ) : (
-              <span>No photos uploaded</span>
+              <FileDisplay file={formState.photos} /> // Handle single File case
             )}
           </span>
         </div>
         <div className="flex min-w-[45%] flex-col gap-2">
           <label className="text-base font-normal">Videos</label>
           <span className="text-sm font-bold">
-            {Array.isArray(formState.videos) && formState.videos.length > 0 ? (
-              formState.videos.map((video, index) => (
-                <span key={index} className="block">
-                  {video.name}
-                </span>
-              ))
+            {typeof formState.videos === "string" ? (
+              <div>{formState.videos}</div> // Handle string case
+            ) : Array.isArray(formState.videos) ? (
+              <FileDisplay files={formState.videos} /> // Handle File[] case
             ) : (
-              <span>No videos uploaded</span>
+              <FileDisplay file={formState.videos} /> // Handle single File case
             )}
           </span>
         </div>
@@ -486,14 +486,22 @@ function Preview({
           <span className="text-base font-normal">Tasting sessions</span>
 
           <span className="font-semibold">
-            {formState.tastingSessions ? "yes" : "no"}
+            {formState.tastingSessions === null
+              ? ""
+              : formState.tastingSessions
+                ? "Yes"
+                : "No"}
           </span>
         </div>
         <div className="flex min-w-[45%] flex-col gap-2">
           <span className="text-base font-normal">Buisness Licenses</span>
 
           <span className="font-semibold">
-            {formState.businessLicenses ? "yes" : "no"}
+            {formState.businessLicenses === null
+              ? ""
+              : formState.businessLicenses
+                ? "Yes"
+                : "No"}
           </span>
         </div>
       </div>
@@ -506,7 +514,7 @@ function Preview({
               <File file={formState.foodSafety} />
             </span>
           ) : (
-            "no"
+            ""
           )}
         </span>
       </div>

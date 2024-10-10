@@ -306,6 +306,7 @@ function Page3({
             </div>
           </div>
         )}
+
         {selectedCategory === "Tent and Canopy" && (
           <>
             <div className="flex min-w-full flex-col items-start justify-around gap-6 rounded-xl bg-white p-3 md:p-6">

@@ -181,7 +181,7 @@ const Page6 = ({
                     }}
                     acceptedFileTypes="image/png, .pdf, image/jpg"
                   />
-                  <p className="mt-4">or continue via</p>
+                  <span className="text-base font-medium">or Continue via</span>
                   <input
                     type="text"
                     className="w-full rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-300"
@@ -223,7 +223,7 @@ const Page6 = ({
                         type="radio"
                         name="tastingSessions"
                         value="true"
-                        checked={tastingSessions}
+                        checked={tastingSessions === true} // Handle boolean explicitly
                         onChange={() =>
                           updateFormState({ tastingSessions: true })
                         }
@@ -239,7 +239,7 @@ const Page6 = ({
                         type="radio"
                         name="tastingSessions"
                         value="false"
-                        checked={!tastingSessions}
+                        checked={tastingSessions === false} // Handle boolean explicitly
                         onChange={() =>
                           updateFormState({ tastingSessions: false })
                         }
@@ -401,7 +401,7 @@ const Page6 = ({
                 </div>
 
                 <div className="flex flex-col gap-2">
-                  <p className="text-base font-medium">Buisness Licenses </p>
+                  <p className="text-base font-medium">Business Licenses</p>
                   <div className="flex gap-6">
                     <div className="flex items-center gap-4">
                       <input
@@ -409,7 +409,7 @@ const Page6 = ({
                         type="radio"
                         name="businessLicense"
                         value="true"
-                        checked={businessLicenses}
+                        checked={businessLicenses === true} // Explicitly check for true
                         onChange={() =>
                           updateFormState({ businessLicenses: true })
                         }
@@ -425,7 +425,7 @@ const Page6 = ({
                         type="radio"
                         name="businessLicense"
                         value="false"
-                        checked={!businessLicenses}
+                        checked={businessLicenses === false} // Explicitly check for false
                         onChange={() =>
                           updateFormState({ businessLicenses: false })
                         }

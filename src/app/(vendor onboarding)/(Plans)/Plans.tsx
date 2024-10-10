@@ -6,8 +6,10 @@ import { handlePayment } from "@/services/payment";
 import { getvendor } from "@/services/auth";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation"; // Import from 'next/navigation'
+import { useToast } from "@/components/hooks/use-toast";
 import Link from "next/link";
 import vendorpricecalculations from "@/services/vendorpricecalculation";
+import Loadingeanimation from "@/components/Loader";
 interface PlanDetails {
   title: string;
   price: number;
@@ -25,9 +27,10 @@ interface BusinessDetails {
 }
 
 const Plans = ({ setCurrentPage, handleformSubmit }: Pagechangetype) => {
+  const { toast } = useToast();
   const plan: PlanDetails = {
     title: "Basic",
-    price: 99,
+    price: 0,
     details: [
       "All analytics features",
       "Up to 250,000 tracked visits",
@@ -35,6 +38,8 @@ const Plans = ({ setCurrentPage, handleformSubmit }: Pagechangetype) => {
       "Up to 3 team members",
     ],
   };
+  const [loader, setloader] = useState(true);
+  const [disabled, setdisabled] = useState(true);
   const [price, setPrice] = useState<number>(0);
   const [error, setError] = useState(false);
   const router = useRouter();
@@ -135,21 +140,24 @@ const Plans = ({ setCurrentPage, handleformSubmit }: Pagechangetype) => {
   useEffect(() => {
     const fetchData = async () => {
       const token = localStorage.getItem("token");
-
+      setloader(true);
       if (token) {
         try {
-          const { userId, email } = jwt.decode(token) as {
-            userId: string;
+          const { id, email, name, mobile } = jwt.decode(token) as {
+            id: string;
             email: string;
+            name: string;
+            mobile: string;
           };
 
-          if (userId && email) {
-            const user = await fetchVendor(userId, email, "");
+          if (id && (email || mobile)) {
+            const user = await fetchVendor(id, email, mobile);
             // console.log(user);
             setVendorId(user.id);
             setFormData((prevFormData) => ({
               ...prevFormData,
-              email: user?.email,
+              email: user?.email || "",
+              phoneNumber: user?.mobile || "",
               fullName: user?.name,
               gstinNumber: user?.businessDetails.gstin,
               address: user?.businessDetails.businessAddress,
@@ -170,14 +178,34 @@ const Plans = ({ setCurrentPage, handleformSubmit }: Pagechangetype) => {
             );
             setPrice(price);
           } else {
+            toast({
+              variant: "destructive",
+              title: "Error Something went wrong.",
+              description:
+                "There was a problem with your request. Pls Login Again",
+            });
             console.error("Token does not contain expected data.");
           }
         } catch (error) {
+          toast({
+            variant: "destructive",
+            title: "Error Something went wrong.",
+            description:
+              "There was a problem with your request. Pls Login Again",
+          });
           console.error("Failed to decode token:", error);
+        } finally {
+          setloader(false);
         }
       } else {
+        toast({
+          variant: "destructive",
+          title: "Error Something went wrong.",
+          description: "There was a problem with your request. Pls Login Again",
+        });
         console.log("No token found in localStorage.");
       }
+      setloader(false);
     };
 
     fetchData();
@@ -189,7 +217,7 @@ const Plans = ({ setCurrentPage, handleformSubmit }: Pagechangetype) => {
         id="razorpay-checkout-js"
         src="https://checkout.razorpay.com/v1/checkout.js"
       />
-      <div className="w-screen bg-[#F7F6F9] py-[3.5rem]">
+      <div className="w-screen bg-[#F7F6F9] py-[0.5rem]">
         <div className="flex h-max w-[264px] flex-col justify-center gap-6 pl-[72px]">
           <div
             onClick={() => setCurrentPage((prevPage) => prevPage - 1)}
@@ -223,7 +251,7 @@ const Plans = ({ setCurrentPage, handleformSubmit }: Pagechangetype) => {
         <div className="flex justify-start gap-4 px-[72px]">
           <div className="custom-shadow h-max w-[792px] rounded-2xl bg-[#ffffff] px-5 pb-5 pt-3">
             <div
-              onClick={() => setCurrentPage(1)}
+              onClick={() => setdisabled(false)}
               className="z-15 relative right-0 m-0 flex justify-end p-0"
             >
               <svg
@@ -253,6 +281,7 @@ const Plans = ({ setCurrentPage, handleformSubmit }: Pagechangetype) => {
                   <input
                     type="text"
                     name="fullName"
+                    disabled={disabled}
                     required
                     placeholder="Enter Your Full Name"
                     className="w-full rounded-lg border-1 border-[#DBDBDB] p-4"
@@ -270,6 +299,7 @@ const Plans = ({ setCurrentPage, handleformSubmit }: Pagechangetype) => {
                   <input
                     type="email"
                     name="email"
+                    disabled={disabled}
                     required
                     placeholder="Enter your E-mail"
                     className="w-full rounded-lg border-1 border-[#DBDBDB] p-4"
@@ -290,6 +320,7 @@ const Plans = ({ setCurrentPage, handleformSubmit }: Pagechangetype) => {
                   <input
                     type="tel"
                     name="phoneNumber"
+                    disabled={disabled}
                     required
                     placeholder="Enter Your Mobile Number"
                     className="w-full rounded-lg border-1 border-[#DBDBDB] p-4"
@@ -306,6 +337,7 @@ const Plans = ({ setCurrentPage, handleformSubmit }: Pagechangetype) => {
                   </label>
                   <input
                     type="text"
+                    disabled={disabled}
                     name="gstinNumber"
                     placeholder="GSTIN Number"
                     minLength={15}
@@ -328,6 +360,7 @@ const Plans = ({ setCurrentPage, handleformSubmit }: Pagechangetype) => {
                 <textarea
                   rows={4}
                   name="address"
+                  disabled={disabled}
                   required
                   placeholder="Enter Your Address"
                   className="w-2/4 rounded-lg border-1 border-[#DBDBDB] p-4"
@@ -389,11 +422,12 @@ const Plans = ({ setCurrentPage, handleformSubmit }: Pagechangetype) => {
               onClick={handleSubmit}
               className="flex h-[48px] w-[100%] items-center justify-center rounded-2xl bg-[rgba(46,49,146,1)] p-4 font-poppins text-white"
             >
-              Buy Now
+              Pay ₹{price}
             </button>
           </div>
         </div>
       </div>
+      {loader && <Loadingeanimation width="w-64" />}
     </>
   );
 };

@@ -169,9 +169,9 @@ const Page2 = ({
               setAddManually(!addManually);
               setMenu([]);
             }}
-            className="cursor-pointer rounded-xl border-2 bg-[#2E3192] text-center text-white xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+            className={`cursor-pointer rounded-xl border-2 text-center xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3 ${addManually ? "border-2 border-[#2E3192] bg-white text-[#2E3192]" : "bg-[#2E3192] text-white"}`}
           >
-            {!addManually ? "Add Manually" : "Upload"}
+            Add Manually
           </div>
         </div>
         {addManually && (
@@ -268,7 +268,7 @@ const Page2 = ({
                     type="radio"
                     name="customizableMenu"
                     value="true"
-                    checked={customizableMenu}
+                    checked={customizableMenu === true} // Ensure checked is always a boolean
                     onChange={() => updateFormState({ customizableMenu: true })}
                     className="h-4 w-4 accent-[#2E3192]"
                   />
@@ -280,7 +280,7 @@ const Page2 = ({
                     type="radio"
                     name="customizableMenu"
                     value="false"
-                    checked={!customizableMenu}
+                    checked={customizableMenu === false} // Ensure checked is always a boolean
                     onChange={() =>
                       updateFormState({ customizableMenu: false })
                     }

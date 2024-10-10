@@ -1,6 +1,6 @@
 "use client";
 
-import { CheckCircle, Upload } from "lucide-react";
+import { ArrowLeft, CheckCircle, Upload } from "lucide-react";
 import React, { useState } from "react";
 import FileInput from "@/components/fileInput";
 import Dropdown from "../../(components)/Dropdown";
@@ -64,12 +64,19 @@ const Page4 = ({
         handleContinue();
       }}
     >
-      <h1 className="text-3xl font-semibold">Consultation details</h1>
+      <div className="flex items-center justify-start gap-5">
+        <ArrowLeft
+          className="ml-2 mr-1 h-6 w-6 cursor-pointer text-[#2E3192]"
+          aria-hidden="true"
+          onClick={() => setCurrentPage((prevPage) => prevPage - 1)}
+        />
+        <h1 className="text-3xl font-semibold">Consultation details</h1>
+      </div>
       <div className="flex min-w-[100%] flex-col items-start justify-between gap-5 md:flex-row">
         <div className="flex flex-col items-start justify-between gap-9">
-          <div className="flex w-max flex-col items-start justify-between gap-5 md:flex-row">
-            <div className="flex min-w-[60%] flex-col gap-4">
-              <label htmlFor="businessName">
+          <div className="flex w-max flex-col items-start justify-between gap-10 md:flex-row">
+            <div className="flex min-w-[60%] max-w-[60%] flex-col gap-4">
+              <label className="text-base font-medium" htmlFor="businessName">
                 Duration of Final Delivery of Photos/Videos
                 <span className="text-red-500">*</span>
               </label>
@@ -80,8 +87,8 @@ const Page4 = ({
               />
             </div>
 
-            <div className="flex min-w-[60%] flex-col gap-4">
-              <label htmlFor="businessName">
+            <div className="flex min-w-[60%] max-w-[60%] flex-col gap-4">
+              <label className="text-base font-medium" htmlFor="businessName">
                 Package Type<span className="text-red-500">*</span>
               </label>
               <Dropdown
@@ -96,7 +103,7 @@ const Page4 = ({
             <div className="flex min-w-[57%] flex-col gap-5">
               {/* Proposals to Clients */}
               <div className="flex flex-col gap-5">
-                <p className="text-md font-md">
+                <p className="text-md text-base font-medium">
                   Do You Provide Design Proposals to Clients?
                 </p>
                 <div className="flex gap-7">
@@ -113,7 +120,7 @@ const Page4 = ({
                         <div className="absolute inset-1 h-2 w-2 rounded-full bg-[#2E3192]"></div>
                       )}
                     </div>
-                    <label className="text-sm">Yes</label>
+                    <label className="text-base font-medium">Yes</label>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="relative flex h-4 w-4 items-center justify-center">
@@ -128,7 +135,7 @@ const Page4 = ({
                         <div className="absolute inset-1 h-2 w-2 rounded-full bg-[#2E3192]"></div>
                       )}
                     </div>
-                    <label className="text-sm">No</label>
+                    <label className="text-base font-medium">No</label>
                   </div>
                 </div>
               </div>
@@ -136,7 +143,7 @@ const Page4 = ({
             <div className="flex min-w-[55%] flex-col gap-4">
               {/* Free Initial Consultation */}
               <div className="flex flex-col gap-5">
-                <p className="text-md font-md">
+                <p className="text-base font-medium">
                   Do You Provide Free Initial Consultation?
                 </p>
                 <div className="flex gap-7">
@@ -153,7 +160,7 @@ const Page4 = ({
                         <div className="absolute inset-1 h-2 w-2 rounded-full bg-[#2E3192]"></div>
                       )}
                     </div>
-                    <label className="text-sm">Yes</label>
+                    <label className="text-base font-medium">Yes</label>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="relative flex h-4 w-4 items-center justify-center">
@@ -168,7 +175,7 @@ const Page4 = ({
                         <div className="absolute inset-1 h-2 w-2 rounded-full bg-[#2E3192]"></div>
                       )}
                     </div>
-                    <label className="text-sm">No</label>
+                    <label className="text-base font-medium">No</label>
                   </div>
                 </div>
               </div>
@@ -179,7 +186,7 @@ const Page4 = ({
             <div className="gap- flex min-w-[5%] flex-col">
               {/* Booking Deposit */}
               <div className="flex flex-col gap-5">
-                <p className="text-md font-md">
+                <p className="text-base font-medium">
                   Do You Require Any Booking Deposit For Your Services?
                 </p>
                 <div className="flex gap-7">
@@ -196,7 +203,7 @@ const Page4 = ({
                         <div className="absolute inset-1 h-2 w-2 rounded-full bg-[#2E3192]"></div>
                       )}
                     </div>
-                    <label className="text-sm">Yes</label>
+                    <label className="text-base font-medium">Yes</label>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="relative flex h-4 w-4 items-center justify-center">
@@ -211,14 +218,14 @@ const Page4 = ({
                         <div className="absolute inset-1 h-2 w-2 rounded-full bg-[#2E3192]"></div>
                       )}
                     </div>
-                    <label className="text-sm">No</label>
+                    <label className="text-base font-medium">No</label>
                   </div>
                 </div>
               </div>
             </div>
             <div className="flex min-w-[57.5%] flex-col gap-5">
               <div className="flex flex-col gap-5">
-                <p className="text-md font-md w-[70%]">
+                <p className="w-[70%] text-base font-medium">
                   Are You Available For Destination Events or Out Of Town
                   Bookings ?
                 </p>
@@ -242,7 +249,7 @@ const Page4 = ({
                         </center>
                       )}
                     </div>
-                    <label className="text-sm">Yes</label>
+                    <label className="text-base font-medium">Yes</label>
                   </div>
 
                   <div className="flex items-center gap-3">
@@ -264,7 +271,7 @@ const Page4 = ({
                         </center>
                       )}
                     </div>
-                    <label className="text-sm">No</label>
+                    <label className="text-base font-medium">No</label>
                   </div>
                 </div>
               </div>
@@ -275,7 +282,7 @@ const Page4 = ({
             <div className="flex w-max justify-between gap-4">
               {/* Advance Setup */}
               <div className="flex min-w-[66.4%] flex-col gap-5">
-                <p className="text-md font-md">
+                <p className="text-base font-medium">
                   Do You Provide Advance Set-Up?
                 </p>
                 <div className="flex gap-7">
@@ -292,7 +299,7 @@ const Page4 = ({
                         <div className="absolute inset-1 h-2 w-2 rounded-full bg-[#2E3192]"></div>
                       )}
                     </div>
-                    <label className="text-sm">Yes</label>
+                    <label className="text-base font-medium">Yes</label>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="relative flex h-4 w-4 items-center justify-center">
@@ -307,14 +314,14 @@ const Page4 = ({
                         <div className="absolute inset-1 h-2 w-2 rounded-full bg-[#2E3192]"></div>
                       )}
                     </div>
-                    <label className="text-sm">No</label>
+                    <label className="text-base font-medium">No</label>
                   </div>
                 </div>
               </div>
 
               {/* Post-Production Services */}
               <div className="flex min-w-[75%] flex-col gap-5">
-                <p className="text-md font-md">
+                <p className="text-base font-medium">
                   Do You Offer Post-Production Services?
                 </p>
                 <div className="flex gap-7">
@@ -331,7 +338,7 @@ const Page4 = ({
                         <div className="absolute inset-1 h-2 w-2 rounded-full bg-[#2E3192]"></div>
                       )}
                     </div>
-                    <label className="text-sm">Yes</label>
+                    <label className="text-base font-medium">Yes</label>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="relative flex h-4 w-4 items-center justify-center">
@@ -346,7 +353,7 @@ const Page4 = ({
                         <div className="absolute inset-1 h-2 w-2 rounded-full bg-[#2E3192]"></div>
                       )}
                     </div>
-                    <label className="text-sm">No</label>
+                    <label className="text-base font-medium">No</label>
                   </div>
                 </div>
               </div>
