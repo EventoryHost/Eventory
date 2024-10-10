@@ -151,7 +151,7 @@ const BusinessDetails = () => {
 
   const saveBusinessDetailsToBackend = async (userId: string, newDetails: businessDetails2) => {
     try {
-      console.log("Saving business details to backend:", newDetails);
+
       const response = await addBusinessDetails2(userId, newDetails);
       if (response && !response.data.success) {
         console.error("Failed to save business details to backend");
@@ -223,7 +223,6 @@ const BusinessDetails = () => {
 
     try {
       setloading(true);
-      console.log(newDetails);
       toast({
         title: "Redirecting",
         description: ` Redirecting ${newDetails.businessName} To ${newDetails.category}`,
@@ -234,7 +233,6 @@ const BusinessDetails = () => {
       dispatch(setBusinessDetails2(newDetails));
 
 
-      // console.log("Business Details:", newDetails);
       // Retrieve user information from token
       const token = localStorage.getItem("token")!;
       const { id, email } = jwt.decode(token) as {

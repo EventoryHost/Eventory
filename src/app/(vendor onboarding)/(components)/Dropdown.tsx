@@ -1,22 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
 interface DropdownProps {
   options: string[];
   onSelect: (option: string) => void;
+  selectedOption?: string | null; // New prop for controlled component
   placeholder?: string; // New placeholder prop
 }
 
 const Dropdown: React.FC<DropdownProps> = ({
   options,
   onSelect,
+  selectedOption = null, // Default to null if not provided
   placeholder = "Select an option",
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [selectedOption, setSelectedOption] = useState<string | null>(null); // Allow null for initial state
+  const [currentSelectedOption, setCurrentSelectedOption] = useState<string | null>(selectedOption); // Use selectedOption for initial state
+
+  useEffect(() => {
+    // Update local state when selectedOption changes from parent
+    setCurrentSelectedOption(selectedOption);
+  }, [selectedOption]);
 
   const handleSelect = (option: string) => {
-    setSelectedOption(option);
+    setCurrentSelectedOption(option);
     setIsOpen(false);
     onSelect(option);
   };
@@ -28,8 +35,8 @@ const Dropdown: React.FC<DropdownProps> = ({
         className="flex w-full items-center justify-between rounded-xl border-2 bg-white p-3 py-5 text-left text-sm shadow-sm hover:bg-gray-50"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <span className={`${selectedOption ? "text-black" : "text-gray-400"}`}>
-          {selectedOption || placeholder}
+        <span className={`${currentSelectedOption ? "text-black" : "text-gray-400"}`}>
+          {currentSelectedOption || placeholder}
         </span>
 
         {isOpen ? (
@@ -49,11 +56,11 @@ const Dropdown: React.FC<DropdownProps> = ({
               <li
                 key={option}
                 className={`relative flex cursor-pointer select-none items-center gap-1 py-2 pl-3 pr-9 ${
-                  selectedOption === option ? "text-black" : "text-gray-900"
+                  currentSelectedOption === option ? "text-black" : "text-gray-900"
                 }`}
                 onClick={() => handleSelect(option)}
               >
-                {selectedOption === option ? (
+                {currentSelectedOption === option ? (
                   <img
                     src={"/selection/Choice_2.svg"}
                     className="h-5 w-5"

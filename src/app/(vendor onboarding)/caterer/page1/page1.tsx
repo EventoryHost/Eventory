@@ -2,10 +2,13 @@
 
 import { FormState } from "../page";
 import Appetizers from "../../(components)/Appetizers";
-import { useState } from "react";
-import { Combobox } from "@/components/ui/combobox";
-import { ComboboxDemo } from "@/components/dropdown";
+import { useState, useEffect } from "react";
 import Dropdown from "../../(components)/Dropdown";
+
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCateringData, saveCateringDetails } from "../../../../redux/cateringSlice";
+import { AppDispatch, RootState } from "../../../../redux/store";
+
 
 const _regional = ["Gujrati", "Rajasthani", "Bengali", "Others"];
 const _service = [
@@ -51,6 +54,47 @@ const Page1 = ({
   setServiceStyles,
   handleContinue,
 }: Page1Props) => {
+  const dispatch = useDispatch<AppDispatch>();
+  const { data, loading, error } = useSelector((state: RootState) => state.catering);
+
+
+  useEffect(() => {
+    const userId = "1234";
+    if (!data) { // Only fetch data if it's not already present
+      dispatch(fetchCateringData(userId) as any);
+    }
+  }, [dispatch]);
+  
+  useEffect(() => {
+    // Only run if `data` has been updated in Redux and form state is empty
+    if (data && !formState.cateringName && !formState.businessName) {
+      const { cateringData } = data; // Destructure cateringData from response
+      updateFormState({
+        cateringName: cateringData.cateringName || "",
+        businessName: cateringData.businessName || "",
+      });
+      setServingCapacity([cateringData.servingCapacity || ""]);
+      setCuisineSpecialties(cateringData.cuisineSpecialties || []);
+      setRegionalSpecialties(cateringData.regionalSpecialties || []);
+      setServiceStyles(cateringData.serviceStyles || []);
+    }
+  }, [data]);
+
+  // Save data when user continues
+  const handleSave = () => {
+    const userId = "1234";
+    const cateringDetails = {
+      cateringName: formState.cateringName,
+      businessName: formState.businessName,
+      servingCapacity: servingCapacity[0],
+      regionalSpecialties,
+      cuisineSpecialties,
+      serviceStyles,
+    };
+    dispatch(saveCateringDetails({ userId, data: cateringDetails }) as any);
+  };
+
+
   const [isFormValid, setIsFormValid] = useState(true);
 
   const validateForm = () => {
@@ -65,10 +109,8 @@ const Page1 = ({
   };
 
   const onContinue = () => {
-    // if (validateForm()) {
-    //   handleContinue();
-    // }
     handleContinue();
+    handleSave();
   };
 
   const getInputClassName = (value: string | string[]) => {
@@ -136,6 +178,7 @@ const Page1 = ({
               options={capacities}
               onSelect={handleSelect}
               placeholder="Enter max. no. of people you serve"
+              selectedOption={servingCapacity[0]}
             />
           </div>
         </div>
@@ -188,7 +231,7 @@ const Page1 = ({
       <div className="items-strech flex flex-row gap-7 self-end">
         <button
           className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-          onClick={handleContinue}
+          onClick={onContinue}
         >
           Continue
         </button>
