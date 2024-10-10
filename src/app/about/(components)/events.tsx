@@ -1,6 +1,7 @@
 import React from "react";
 import "../../globals.css";
 import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
+import { Cards2 } from "@/components/ui/cards2_v2";
 
 type Props = {};
 
@@ -49,18 +50,13 @@ const testimonials = [
 const Events = (props: Props) => {
   return (
     <>
-      <div className="2 mt-[450px] items-center justify-between max-sm:mt-[100px] sm:mx-10 sm:gap-0 sm:py-5 md:mt-[800px] md:gap-20 md:py-5 lg:mx-16 lg:mt-[800px] lg:gap-40 lg:py-5 xl:mt-[450px]">
-        <div className="justify-center">
+      <div className="2 mt-9 items-center justify-between sm:mx-10 sm:gap-0 sm:py-5 md:gap-20 md:py-5 lg:mx-16 lg:gap-40 lg:py-5">
+        <div className="mt-9 justify-center">
           <h2 className="mx-5 text-center text-2xl font-semibold text-[rgba(0,0,0,1)] md:mb-14 md:text-left md:text-4xl">
             Our Successful Events
           </h2>
         </div>
-
-        <InfiniteMovingCards
-          items={testimonials}
-          direction="right"
-          speed="slow"
-        />
+        <Cards2 />
       </div>
     </>
   );

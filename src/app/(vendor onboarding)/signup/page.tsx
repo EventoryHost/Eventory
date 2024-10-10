@@ -222,8 +222,8 @@ const SignUp = () => {
               </div>
               <div className="mb-9 mt-5">
                 <p className="xs:text-md self-start text-gray-500 xs:mt-5">
-                  To verify it&apos;s you, we will send you a verification code to your
-                  mobile number.
+                  To verify it&apos;s you, we will send you a verification code
+                  to your mobile number.
                 </p>
               </div>
               <div className="h-[1px] w-[80%] self-start bg-gray-300" />

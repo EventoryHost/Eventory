@@ -131,7 +131,16 @@ const Form = (props: Props) => {
   };
 
   return (
-    <div className="my-7 flex w-full flex-col items-center justify-center">
+    <div
+      className="mx-3 my-9 mt-16 flex items-center justify-center rounded-xl bg-indigo-600 py-10 text-white md:mx-auto md:w-[80%]"
+      style={{
+        backgroundImage: `url('https://res.cloudinary.com/dlofupmx3/image/upload/v1727966208/Memphis_Mini_Pattern_qvwylg.png')`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        minHeight: "100vh",
+      }}
+    >
       <div className="flex w-full flex-col items-center justify-center px-4 py-5 md:px-0">
         <div className="flex flex-col gap-6 md:w-[50%]">
           <h1 className="text-center text-4xl font-bold">
@@ -143,7 +152,7 @@ const Form = (props: Props) => {
           </p>
         </div>
         <form
-          className="mt-7 flex min-w-[90%] flex-col items-center justify-center gap-5 rounded-xl bg-[#D5D6E9] px-4 py-5 md:min-w-[50%] lg:min-w-[35%]"
+          className="mt-7 flex min-w-[90%] flex-col items-center justify-center gap-5 rounded-xl bg-white px-4 py-5 text-black md:min-w-[50%] lg:min-w-[40%]"
           onSubmit={handleSubmit}
         >
           <label htmlFor="fullName" className="self-start">
@@ -155,7 +164,7 @@ const Form = (props: Props) => {
             placeholder="Full Name"
             value={formData.fullName}
             onChange={handleInputChange}
-            className="w-full rounded-lg p-4"
+            className="w-full rounded-lg border p-4"
             disabled={loading} // Disable input during loading
           />
           <label htmlFor="email" className="self-start">
@@ -167,7 +176,7 @@ const Form = (props: Props) => {
             placeholder="E-mail"
             value={formData.email}
             onChange={handleInputChange}
-            className="w-full rounded-lg p-4"
+            className="w-full rounded-lg border p-4"
             disabled={loading}
           />
           <label htmlFor="city" className="self-start">
@@ -179,7 +188,7 @@ const Form = (props: Props) => {
             placeholder="City"
             value={formData.city}
             onChange={handleInputChange}
-            className="w-full rounded-lg p-4"
+            className="w-full rounded-lg border p-4"
             disabled={loading}
           />
           <label htmlFor="services" className="self-start">
@@ -194,7 +203,7 @@ const Form = (props: Props) => {
               type="button"
               id="dropdownToggle"
               onClick={toggleDropdown}
-              className="flex h-max w-full max-w-full justify-between overflow-hidden rounded-lg bg-white p-4 text-left"
+              className="flex h-max w-full max-w-full justify-between overflow-hidden rounded-lg border bg-white p-4 text-left"
               disabled={loading} // Disable during loading
             >
               {formData.services.length > 0 ? (
@@ -281,7 +290,7 @@ const Form = (props: Props) => {
             placeholder="Type your message"
             value={formData.message}
             onChange={handleInputChange}
-            className="w-full rounded-lg p-4"
+            className="w-full resize-none rounded-lg border p-4"
             disabled={loading}
           />
 
@@ -292,7 +301,7 @@ const Form = (props: Props) => {
             }`}
             disabled={loading} // Disable during loading
           >
-            {loading ? "Loading..." : "Send Message"}
+            {loading ? "Loading..." : "Submit"}
           </button>
         </form>
       </div>
