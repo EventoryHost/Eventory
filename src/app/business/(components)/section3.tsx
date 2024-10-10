@@ -12,7 +12,7 @@ const Section3 = (props: Props) => {
 
       <div className="w-[100%]">
         {/* Container with border and shadow */}
-        <div className="mt-7 flex flex-col gap-6 rounded-xl border mx-9 border-[#EAEAF4] bg-white px-4 py-7 shadow-xl shadow-[#bca9ef] md:px-10">
+        <div className="mx-9 mt-7 flex flex-col gap-6 rounded-xl border border-[#EAEAF4] bg-white px-4 py-7 shadow-xl shadow-[#bca9ef] md:px-10">
           <div className="flex min-h-[20rem] flex-wrap justify-center gap-6 pb-9">
             {/* Create Profile */}
             <div className="flex min-w-[48%] flex-col gap-3 px-4 md:w-[23%]">

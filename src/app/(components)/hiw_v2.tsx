@@ -15,7 +15,7 @@ const HowItWorks = (props: Props) => {
 
   return (
     <div className="flex w-[100%] flex-col items-center justify-center gap-9 bg-gradient-to-b from-[#BFBFEF] to-[#ffffff] px-3 py-9 md:px-9">
-      <div className="max-w-[1440px] flex items-center justify-center w-[100%] flex-col gap-9 py-9">
+      <div className="flex w-[100%] max-w-[1440px] flex-col items-center justify-center gap-9 py-9">
         <h1 className="text-3xl font-bold md:text-5xl">How it works</h1>
         <div className="mt-9 flex w-[100%] flex-col-reverse items-center justify-center gap-9 md:flex-row">
           <div className="flex w-[100%] flex-col items-start gap-3 md:w-[50%]">
@@ -29,7 +29,7 @@ const HowItWorks = (props: Props) => {
               <p className="text-xl font-semibold text-black md:text-3xl">
                 1. Explore
               </p>
-              <p className="text-sm font-medium md:text-[2vw] xl:text-xl lg:text-lg">
+              <p className="text-sm font-medium md:text-[2vw] lg:text-lg xl:text-xl">
                 Discover the perfect vendors for your event from our diverse
                 selection.
               </p>
@@ -44,7 +44,7 @@ const HowItWorks = (props: Props) => {
               <p className="text-xl font-semibold text-black md:text-3xl">
                 2. Evaluate
               </p>
-              <p className="text-sm font-medium md:text-[2vw] xl:text-xl lg:text-lg">
+              <p className="text-sm font-medium md:text-[2vw] lg:text-lg xl:text-xl">
                 Compare vendors based on reviews, services, availability, and
                 pricing.
               </p>
@@ -59,7 +59,7 @@ const HowItWorks = (props: Props) => {
               <p className="text-xl font-semibold text-black md:text-3xl">
                 3. Secure
               </p>
-              <p className="text-sm font-medium md:text-[2vw] xl:text-xl lg:text-lg">
+              <p className="text-sm font-medium md:text-[2vw] lg:text-lg xl:text-xl">
                 Book your chosen vendors easily and securely through our
                 platform.
               </p>

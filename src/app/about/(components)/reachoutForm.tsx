@@ -4,7 +4,7 @@ import "../../globals.css";
 const ReachoutForm = () => {
   return (
     <div
-      className="mt-16 flex items-center bg-indigo-600  justify-center py-10 md:w-[80%] mx-3 rounded-xl md:mx-auto my-9"
+      className="mx-3 my-9 mt-16 flex items-center justify-center rounded-xl bg-indigo-600 py-10 md:mx-auto md:w-[80%]"
       style={{
         backgroundImage: `url('https://res.cloudinary.com/dlofupmx3/image/upload/v1727966208/Memphis_Mini_Pattern_qvwylg.png')`,
         backgroundSize: "cover",
@@ -13,21 +13,24 @@ const ReachoutForm = () => {
         minHeight: "100vh",
       }}
     >
-      <div className="w-full md:max-w-xl rounded-lg md:p-8 p-3">
-        <h1 className="text-center md:text-4xl text-[9vw] font-semibold text-white mb-4">
+      <div className="w-full rounded-lg p-3 md:max-w-xl md:p-8">
+        <h1 className="mb-4 text-center text-[9vw] font-semibold text-white md:text-4xl">
           Your Dream Event Awaits – Reach Out Today!
         </h1>
-        <p className="text-center md:text-lg text-sm text-white mb-8">
+        <p className="mb-8 text-center text-sm text-white md:text-lg">
           Let&apos;s Create Unforgettable Memories Together! At{" "}
-          <span className="font-bold ">Eventory</span>. Whether
-          it&apos;s a wedding, corporate event, or celebration, our expert team
-          ensures every moment is memorable. Contact us today to start planning
-          your extraordinary event.
+          <span className="font-bold">Eventory</span>. Whether it&apos;s a
+          wedding, corporate event, or celebration, our expert team ensures
+          every moment is memorable. Contact us today to start planning your
+          extraordinary event.
         </p>
 
-        <form className="md:max-w-xl w-[100%] max-w-[100%] rounded-lg md:p-8 p-3 shadow-lg bg-white">
+        <form className="w-[100%] max-w-[100%] rounded-lg bg-white p-3 shadow-lg md:max-w-xl md:p-8">
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700 mt-3">
+            <label
+              htmlFor="name"
+              className="mt-3 block text-sm font-medium text-gray-700"
+            >
               Full Name
             </label>
             <input
@@ -38,7 +41,10 @@ const ReachoutForm = () => {
             />
           </div>
           <div>
-            <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mt-3">
+            <label
+              htmlFor="phone"
+              className="mt-3 block text-sm font-medium text-gray-700"
+            >
               Mobile number
             </label>
             <input
@@ -49,7 +55,10 @@ const ReachoutForm = () => {
             />
           </div>
           <div>
-            <label htmlFor="message" className="block text-sm font-medium text-gray-700 mt-3">
+            <label
+              htmlFor="message"
+              className="mt-3 block text-sm font-medium text-gray-700"
+            >
               Message
             </label>
             <textarea

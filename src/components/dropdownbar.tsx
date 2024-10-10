@@ -14,7 +14,7 @@ const frameworks = [
   { value: "Corporate Party", label: "Corporate Party" },
   { value: "Get together", label: "Get together" },
   { value: "Home Function", label: "Home Function" },
-  { value: "Pooja", label: "Pooja" }
+  { value: "Pooja", label: "Pooja" },
 ];
 
 const cities = [
