@@ -206,10 +206,8 @@ const SearchPageHelper = () => {
     }
   };
   return (
-    <div className="">
-      <div className="mt-2">
+    <div className="min-h-screen">
         <ExploreSection slides={slides} />
-      </div>
 
       <CategoryBar
         event={event}
@@ -245,7 +243,7 @@ const SearchPageHelper = () => {
             {selectedFiltersSection3}
           </div>
         </div>
-        <div className="flex-2 mx-6 flex w-1/4 flex-col gap-6 rounded-lg border border-gray-300 bg-white p-6 pb-4">
+        <div className="flex-2 mx-6 md:flex w-1/4 flex-col gap-6 rounded-lg border border-gray-300 bg-white p-6 pb-4 hidden">
           <div className="flex">
             <Filter size={24} />
             <div className="mx-2 text-2xl font-semibold">Filters</div>

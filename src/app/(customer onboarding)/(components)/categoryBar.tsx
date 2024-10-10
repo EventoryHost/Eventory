@@ -52,12 +52,12 @@ const CategoryBar: React.FC<CategoryBarProps> = ({
             <Link href={"/"}>Home</Link> /{event}/SearchResult
           </h1>
         )}
-        <div className="px-14">
+        <div className="md:px-14 px-4">
           <div
-            className={`flex items-center justify-between gap-20 py-[24px] ${!event && "bg-gray-100"} overflow-x-auto scrollbar-hide`}
+            className={`flex items-center justify-between gap-20 md:py-6 py-3 ${!event && "bg-gray-100"} overflow-x-auto scrollbar-hide`}
           >
             {/* Left section - Venues list */}
-            <ul className="flex items-center gap-10 text-xl font-medium">
+            <ul className="flex items-center gap-10 md:text-xl text-sm font-medium">
               {tabs.map((venue, index) => (
                 <li
                   key={index}

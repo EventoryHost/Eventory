@@ -253,10 +253,10 @@ const EventTypeHelper = () => {
     }
   };
   return (
-    <div className="flex flex-col bg-gray-100">
-      <ExploreSection slides={slides} eventType={true} />
+    <div className="flex flex-col bg-gray-100 gap-4">
+      <ExploreSection slides={slides} eventType={true} isMobile={isMobile}/>
 
-      <div className="flex w-full justify-center md:my-4">
+      <div className="flex w-full justify-center md:my-4 my-2 ">
         <Carousel
           plugins={[plugin.current]}
           className="mb-4 mt-4 w-full max-w-[90%] md:mb-0 md:max-w-[70%]"
@@ -292,7 +292,7 @@ const EventTypeHelper = () => {
           {!isMobile && <CarouselNext />}
         </Carousel>
       </div>
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between ">
         <div className="pl-10 text-5xl font-semibold">Gift Vendors</div>
         {!isMobile && (
           <CategoryBar
