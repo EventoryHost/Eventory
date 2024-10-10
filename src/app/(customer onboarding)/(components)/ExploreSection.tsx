@@ -13,7 +13,7 @@ interface ExploreSectionProps {
 export default function ExploreSection({
   slides,
   eventType,
-  isMobile
+  isMobile,
 }: ExploreSectionProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [fade, setFade] = useState(false);
@@ -81,32 +81,36 @@ export default function ExploreSection({
               ) : (
                 <div className="my-10 flex flex-col justify-center space-y-8 px-6 opacity-90 md:mx-[72px] md:my-[35px]">
                   <h1 className="text-2xl font-semibold text-white md:w-[80%] md:text-4xl">
-                  Weddings in Jaipur
+                    Weddings in Jaipur
                   </h1>
-                  <div className="text-white md:hidden block text-sm">Discover, compare, and book top-rated vendors for weddings, corporate events, parties, and more in jaipur .
+                  <div className="block text-sm text-white md:hidden">
+                    Discover, compare, and book top-rated vendors for weddings,
+                    corporate events, parties, and more in jaipur .
                   </div>
                   {/* <ExploreBar /> */}
                   <DropdownBar />
                 </div>
               )}
-              <div className={`relative h-full w-full overflow-hidden md:w-[597px] ${eventType ? "" : "md:block hidden"}`}>
+              <div
+                className={`relative h-full w-full overflow-hidden md:w-[597px] ${eventType ? "" : "hidden md:block"}`}
+              >
                 {/* Image */}
                 <div
                   className="absolute inset-0 transition-opacity duration-500"
                   style={
                     isMobile
                       ? {
-                        maskImage:
-                          "linear-gradient(to bottom, transparent, black 50px)", // Adjusted for mobile view
-                        WebkitMaskImage:
-                          "linear-gradient(to bottom, transparent, black 50px)",
-                      }
+                          maskImage:
+                            "linear-gradient(to bottom, transparent, black 50px)", // Adjusted for mobile view
+                          WebkitMaskImage:
+                            "linear-gradient(to bottom, transparent, black 50px)",
+                        }
                       : {
-                        maskImage:
-                          "linear-gradient(to right, transparent, black 50px)", // Desktop view
-                        WebkitMaskImage:
-                          "linear-gradient(to right, transparent, black 50px)",
-                      }
+                          maskImage:
+                            "linear-gradient(to right, transparent, black 50px)", // Desktop view
+                          WebkitMaskImage:
+                            "linear-gradient(to right, transparent, black 50px)",
+                        }
                   }
                 >
                   <Image
@@ -122,21 +126,22 @@ export default function ExploreSection({
         </div>
       </div>
       {/* Navigation Dots */}
-      {isMobile&&
-      <div className="m-4 flex justify-center space-x-2">
-        {slides.map((_, index) => (
-          <button
-            key={index}
-            className={`h-2 w-2 rounded-full md:h-3 md:w-3 ${index === currentSlide
-              ? "bg-[#2E3192]"
-              : "border-2 border-[#2E3192] bg-white"
+      {isMobile && (
+        <div className="m-4 flex justify-center space-x-2">
+          {slides.map((_, index) => (
+            <button
+              key={index}
+              className={`h-2 w-2 rounded-full md:h-3 md:w-3 ${
+                index === currentSlide
+                  ? "bg-[#2E3192]"
+                  : "border-2 border-[#2E3192] bg-white"
               }`}
-            onClick={() => setCurrentSlide(index)}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
-      </div>
-}
+              onClick={() => setCurrentSlide(index)}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </div>
+      )}
     </>
   );
 }

@@ -118,7 +118,7 @@ const CarouselPage = () => {
 
   return (
     <div className="min-h-screen bg-gray-100">
-      <ExploreSection slides={slides} eventType={true} isMobile={isMobile}/>
+      <ExploreSection slides={slides} eventType={true} isMobile={isMobile} />
 
       <div className="mx-auto mt-2 flex w-[85%] flex-col items-center justify-between gap-6 md:mt-10 md:gap-16">
         <div className="flex w-full flex-col items-start">
