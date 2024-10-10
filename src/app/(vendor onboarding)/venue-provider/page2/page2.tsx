@@ -118,8 +118,8 @@ const _facilities = [
 
 interface FormState {
   venueDescription: string;
-  catererServices: boolean;
-  decorServices: boolean;
+  catererServices: boolean | null;
+  decorServices: boolean | null;
   // audioVisualEquipment: string[];
   // accessibilityFeatures: string[];
   //facilities: string[];
@@ -138,8 +138,8 @@ interface Page2Props {
   handleContinue: () => void;
   currentPage: number;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
-  catererServices: boolean;
-  decorServices: boolean;
+  catererServices: boolean | null;
+  decorServices: boolean | null;
   venueTypes: string[];
   setVenueTypes: React.Dispatch<React.SetStateAction<string[]>>;
   restrictionsPolicies: string[];

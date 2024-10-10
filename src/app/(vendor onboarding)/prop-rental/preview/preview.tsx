@@ -209,7 +209,7 @@ function Preview({
   return (
     <div className="flex h-full w-full flex-col items-start justify-start gap-5 overflow-y-scroll rounded-xl bg-white p-6 scrollbar-hide md:p-10">
       <span className="text-xl font-semibold">
-        {formState.managerName} / Prop-Rentals
+        {formState.managerName} Prop-Rentals
       </span>
 
       <div className="flex w-[100%] justify-between rounded-xl bg-[rgba(96,94,216,0.1)] p-2 pl-4 text-xl font-semibold">
@@ -296,7 +296,11 @@ function Preview({
               Do you offer customization(branding, color, theme of Items) ?
             </span>
             <span className="text-sm font-bold">
-              {formState.customization ? "yes" : "no"}
+              {formState.customization === null
+                ? ""
+                : formState.customization
+                  ? "yes"
+                  : "no"}
             </span>
           </div>
         </div>
