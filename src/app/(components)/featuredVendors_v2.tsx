@@ -92,7 +92,7 @@ const Featuredvendors = (props: Props) => {
         ))}
       </div>
       <Link
-          href="/comingsoon"
+          href="/EventListing"
           className="animate flex transform items-center justify-center gap-2 rounded-2xl border-2 border-[#2E3192] p-4 px-7 md:text-lg text-[#2E3192] hover:bg-indigo-400 hover:text-[#2E3192]"
         >
           <span>View All</span>

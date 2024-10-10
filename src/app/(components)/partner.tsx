@@ -1,15 +1,4 @@
-import { cn } from "@/utils/cn";
 import React from "react";
-import { BentoGrid, BentoGridItem } from "../../components/ui/bento2";
-import {
-  IconArrowWaveRightUp,
-  IconBoxAlignRightFilled,
-  IconBoxAlignTopLeft,
-  IconClipboardCopy,
-  IconFileBroken,
-  IconSignature,
-  IconTableColumn,
-} from "@tabler/icons-react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
@@ -44,7 +33,7 @@ export function Partner() {
           occasion.
         </p>
         <Link
-          href="/comingsoon"
+          href="/EventListing"
           className="animate flex transform items-center justify-center gap-2 rounded-2xl bg-[#2E3192] p-4 text-lg text-white hover:bg-indigo-400 hover:text-[#2E3192]"
         >
           <span>Know More</span>
@@ -55,26 +44,3 @@ export function Partner() {
   );
 }
 
-const items = [
-  {
-    title: "The Dawn of Innovation",
-    description: "Explore the birth of groundbreaking ideas and inventions.",
-    icon: <IconClipboardCopy className="h-4 w-4 text-neutral-500" />,
-    imageUrl:
-      "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/partners/partners_01.png", // Add appropriate image URLs
-  },
-  {
-    title: "The Digital Revolution",
-    description: "Dive into the transformative power of technology.",
-    icon: <IconFileBroken className="h-4 w-4 text-neutral-500" />,
-    imageUrl:
-      "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/partners/partners_02.png",
-  },
-  {
-    title: "The Art of Design",
-    description: "Discover the beauty of thoughtful and functional design.",
-    icon: <IconSignature className="h-4 w-4 text-neutral-500" />,
-    imageUrl:
-      "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/partners/partners_03.png",
-  },
-];
