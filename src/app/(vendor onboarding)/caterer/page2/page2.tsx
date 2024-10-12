@@ -4,7 +4,13 @@ import FileInput from "@/components/fileInput";
 import Appetizers from "../../(components)/Appetizers";
 import { FormState } from "../page";
 import { useEffect, useState } from "react";
-import { ArrowLeft, ChevronLeft } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
+
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCateringData, saveCateringDetails, updateFormData } from "../../../../redux/cateringSlice";
+import { RootState } from "@/redux/store";
+import { createAsyncThunk , createSlice , PayloadAction } from "@reduxjs/toolkit";
+import { saveCateringData, getCateringData } from "@/services/flows/cateringService";
 
 const _dietaryOptions = [
   "Others",
@@ -88,6 +94,50 @@ const Page2 = ({
 }: Page2Props) => {
   const { customizableMenu } = formState;
   const [addManually, setAddManually] = useState(false);
+  const dispatch = useDispatch();
+  const { formData } = useSelector((state: RootState) => state.catering);
+  const userId = "page2";
+
+  const [page2Data, setPage2Data] = useState({
+    preSetMenu: "",
+    customizableMenu: false,
+    selectedAppetizers: [],
+    selectedBeverages: [],
+    selectedMainCourses: [],
+    selectedDietaryOptions: [],
+    veg: "",
+  });
+
+  useEffect(() => {
+    // Fetch existing catering data when the component mounts
+    if (userId) {
+      dispatch(fetchCateringData(userId) as any);
+    }
+  }, [dispatch, userId]);
+
+  useEffect(() => {
+    // Populate the form with existing data if available
+    if (formData[currentPage]) {
+      setPage2Data(formData[currentPage]);
+    }
+  }, [formData, currentPage]);
+
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setPage2Data((prevData) => ({ ...prevData, [name]: value }));
+
+    // Update Redux state for this form data
+    dispatch(updateFormData({ page: currentPage, data: { ...page2Data, [name]: value } }));
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    // Dispatch save action to save data in the backend
+    dispatch(saveCateringDetails({ userId, data: { ...formData, [currentPage]: page2Data } }) as any);
+  };
+
+
 
   return (
     <div className="flex h-full w-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide">
@@ -106,9 +156,8 @@ const Page2 = ({
             {_veg.map((option) => (
               <li
                 key={option}
-                className={`relative flex cursor-pointer select-none items-center gap-1 py-2 pl-3 pr-9 ${
-                  veg.includes(option) ? "text-black" : "text-gray-900"
-                }`}
+                className={`relative flex cursor-pointer select-none items-center gap-1 py-2 pl-3 pr-9 ${veg.includes(option) ? "text-black" : "text-gray-900"
+                  }`}
                 onClick={() => setVeg([option])}
               >
                 {veg.includes(option) ? (
@@ -294,7 +343,11 @@ const Page2 = ({
           <div className="items-strech flex flex-row gap-7 self-end">
             <button
               className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-              onClick={handleContinue}
+              onClick={() => {
+                handleContinue
+                handleSubmit
+              }
+              }
             >
               Continue
             </button>

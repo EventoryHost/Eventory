@@ -28,8 +28,8 @@ const _cuisine = [
 ];
 
 type Page1Props = {
-  formState: FormState;
-  updateFormState: (newState: Partial<FormState>) => void;
+  formState: FormState & { servingCapacity: string, cuisineSpecialties: string[], serviceStyles: string[] };
+  updateFormState: (newState: Partial<FormState> & { servingCapacity?: string, regionalSpecialties?: string[], cuisineSpecialties?: string[], serviceStyles?: string[] }) => void;
   servingCapacity: string[];
   setServingCapacity: React.Dispatch<React.SetStateAction<string[]>>;
   cuisineSpecialties: string[];
@@ -55,45 +55,60 @@ const Page1 = ({
   handleContinue,
 }: Page1Props) => {
   const dispatch = useDispatch<AppDispatch>();
-  const { data, loading, error } = useSelector((state: RootState) => state.catering);
+  const { formData, loading, error } = useSelector((state: RootState) => state.catering);
 
 
   useEffect(() => {
-    const userId = "1234";
-    if (!data) { // Only fetch data if it's not already present
-      dispatch(fetchCateringData(userId) as any);
+    const userId = "page1";
+    if (userId) {
+      // Dispatch fetchCateringData action
+      dispatch(fetchCateringData(userId));
     }
   }, [dispatch]);
   
   useEffect(() => {
-    // Only run if `data` has been updated in Redux and form state is empty
-    if (data && !formState.cateringName && !formState.businessName) {
-      const { cateringData } = data; // Destructure cateringData from response
+    if (formData && !formState.cateringName && !formState.businessName) {
+      // Only update the state if formState is empty
       updateFormState({
-        cateringName: cateringData.cateringName || "",
-        businessName: cateringData.businessName || "",
+        cateringName: formData.cateringName || "",
+        businessName: formData.businessName || "",
+        servingCapacity: formData.servingCapacity || "",
       });
-      setServingCapacity([cateringData.servingCapacity || ""]);
-      setCuisineSpecialties(cateringData.cuisineSpecialties || []);
-      setRegionalSpecialties(cateringData.regionalSpecialties || []);
-      setServiceStyles(cateringData.serviceStyles || []);
+      setRegionalSpecialties(formData.regionalSpecialties || []);
+      setCuisineSpecialties(formData.cuisineSpecialties || []);
+      setServiceStyles(formData.serviceStyles || []);
+      setServingCapacity([formData.servingCapacity || ""]);
     }
-  }, [data]);
+  }, [formData, formState, updateFormState]);
 
-  // Save data when user continues
+
   const handleSave = () => {
-    const userId = "1234";
+    const userId = "page1"; 
+  
+    // Define the cateringDetails based on your schema
     const cateringDetails = {
-      cateringName: formState.cateringName,
-      businessName: formState.businessName,
-      servingCapacity: servingCapacity[0],
-      regionalSpecialties,
-      cuisineSpecialties,
-      serviceStyles,
+      userId: userId,
+      cateringName: formState.cateringName || "", // Initialize with an empty string if not available
+      businessName: formState.businessName || "", // Initialize with an empty string if not available
+      servingCapacity: servingCapacity[0] || "", // Initialize with an empty string if not available
+      regionalSpecialties: regionalSpecialties.length > 0 ? regionalSpecialties : [], // Use an empty array if no specialties
+      cuisineSpecialties: cuisineSpecialties.length > 0 ? cuisineSpecialties : [], // Use an empty array if no specialties
+      serviceStyles: serviceStyles.length > 0 ? serviceStyles : [], // Use an empty array if no styles
+      
+      // Optional fields initialized
+      selectedAppetizers: [], // You can set this based on user input later
+      selectedBeverages: [],
+      selectedMainCourses: [],
+      selectedDietaryOptions: [],
+      preSetMenu: formState.preSetMenu || "", // Initialize if needed
+      customizableMenu: formState.customizableMenu || false // Initialize with a sensible default
     };
+  
+    // Dispatch action to save catering details to Redux
     dispatch(saveCateringDetails({ userId, data: cateringDetails }) as any);
   };
-
+  
+  
 
   const [isFormValid, setIsFormValid] = useState(true);
 

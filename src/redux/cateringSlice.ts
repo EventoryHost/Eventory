@@ -1,14 +1,16 @@
-import { createAsyncThunk, createSlice , PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { saveCateringData, getCateringData } from '../services/flows/cateringService';
 
 interface CateringState {
-   data: any | null; 
+   formData: Record<string, any>; // Store form data for all pages
+   currentPage2: number; // Track the current page
    loading: boolean;
    error: string | null;
 }
 
 const initialState: CateringState = {
-   data: null,
+   formData: {},
+   currentPage2: 1,
    loading: false,
    error: null,
 };
@@ -36,11 +38,18 @@ const cateringSlice = createSlice({
    name: 'catering',
    initialState,
    reducers: {
-      // Add any synchronous actions here if needed
       resetCateringState: (state) => {
-         state.data = null;
+         state.formData = {};
+         state.currentPage2 = 1;
          state.loading = false;
          state.error = null;
+      },
+      updateFormData: (state, action: PayloadAction<{ page: number; data: any }>) => {
+         const { page, data } = action.payload;
+         state.formData[page] = data;
+      },
+      setcurrentPage2: (state, action: PayloadAction<number>) => {
+         state.currentPage2 = action.payload;
       },
    },
    extraReducers: (builder) => {
@@ -50,8 +59,8 @@ const cateringSlice = createSlice({
          })
          .addCase(fetchCateringData.fulfilled, (state, action) => {
             state.loading = false;
-            state.data = action.payload; // Set the fetched data
-            state.error = null; // Reset error
+            state.formData = action.payload; // Set the fetched data
+            state.error = null;
          })
          .addCase(fetchCateringData.rejected, (state, action) => {
             state.loading = false;
@@ -62,8 +71,8 @@ const cateringSlice = createSlice({
          })
          .addCase(saveCateringDetails.fulfilled, (state, action) => {
             state.loading = false;
-            state.data = action.payload; // Update state with saved data if necessary
-            state.error = null; // Reset error
+            state.formData = action.payload; // Update state with saved data if necessary
+            state.error = null;
          })
          .addCase(saveCateringDetails.rejected, (state, action) => {
             state.loading = false;
@@ -73,5 +82,5 @@ const cateringSlice = createSlice({
 });
 
 // Export the reducer and actions
-export const { resetCateringState } = cateringSlice.actions;
+export const { resetCateringState, updateFormData, setcurrentPage2 } = cateringSlice.actions;
 export default cateringSlice.reducer;
