@@ -45,7 +45,7 @@ const Story = () => {
             </div>
             <div className="flex flex-1 justify-center">
               <img
-                src="https://d1u34m45xfa3ar.cloudfront.net/website/about-page/story_01.png"
+                src="https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/about-page/story_01.png"
                 className="max-sm:my-10 max-sm:w-[280px]"
                 alt=""
               />
@@ -67,7 +67,7 @@ const Story = () => {
             </div>
             <div className="flex flex-1 justify-center">
               <img
-                src="https://d1u34m45xfa3ar.cloudfront.net/website/about-page/story_02.png"
+                src="https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/about-page/story_02.png"
                 className="max-sm:my-10 max-sm:w-[300px]"
                 alt=""
               />
@@ -89,7 +89,7 @@ const Story = () => {
             </div>
             <div className="flex flex-1 justify-center">
               <img
-                src="https://d1u34m45xfa3ar.cloudfront.net/website/about-page/story_03.png"
+                src="https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/about-page/story_03.png"
                 className="rounded-lg max-sm:my-10 max-sm:w-[300px]"
                 alt=""
               />

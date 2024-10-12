@@ -39,7 +39,7 @@ const Hero = (props: Props) => {
           <div className="relative h-[100%] w-full md:w-[80%]">
             <Image
               src={
-                "https://d1u34m45xfa3ar.cloudfront.net/website/business-page/business_hero.png"
+                "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/business-page/business_hero.png"
               }
               width={1400}
               height={480}

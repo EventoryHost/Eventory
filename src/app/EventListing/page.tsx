@@ -15,7 +15,7 @@ import Footer from "../(components)/footer";
 const CarouselPage = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slides = [
-    "/EventListing/eventlist_1.png",
+    "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/caraousel/pic1.png",
     "/landing_page/categories/cat_01.png",
     "/landing_page/categories/cat_02.png",
   ];
@@ -32,23 +32,23 @@ const CarouselPage = () => {
   );
   const images = [
     {
-      src: "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/categories/cat_01.png",
+      src: "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/SE/pic1.jpeg",
       text: "Category 1",
     },
     {
-      src: "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/categories/cat_02.png",
+      src: "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/SE/pic2.jpeg",
       text: "Category 2",
     },
     {
-      src: "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/categories/cat_03.png",
+      src: "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/SE/pic2.jpeg",
       text: "Category 3",
     },
     {
-      src: "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/categories/cat_01.png",
+      src: "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/SE/pic1.jpeg",
       text: "Category 4",
     },
     {
-      src: "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/categories/cat_03.png",
+      src: "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/SE/pic3.jpeg",
       text: "Category 5",
     },
   ];
@@ -59,49 +59,49 @@ const CarouselPage = () => {
       rating: "4.5",
       price: "4000",
       category: "Wedding cakes , Western suburbs",
-      img: "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/featured/card_01.png",
+      img: "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/card_01.png",
     },
     {
       name: "Krishna Vendors",
       rating: "4.5",
       price: "5000",
       category: "Wedding cakes , Western suburbs",
-      img: "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/featured/card_01.png",
+      img: "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/card_01.png",
     },
     {
       name: "Krishna Vendors",
       rating: "4.5",
       price: "6000",
       category: "Wedding cakes , Western suburbs",
-      img: "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/featured/card_01.png",
+      img: "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/card_01.png",
     },
     {
       name: "Krishna Vendors",
       rating: "4.5",
       price: "7000",
       category: "Wedding cakes , Western suburbs",
-      img: "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/featured/card_01.png",
+      img: "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/card_01.png",
     },
     {
       name: "Krishna Vendors",
       rating: "4.5",
       price: "8000",
       category: "Wedding cakes , Western suburbs",
-      img: "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/featured/card_01.png",
+      img: "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/card_01.png",
     },
     {
       name: "Krishna Vendors",
       rating: "4.5",
       price: "9000",
       category: "Wedding cakes , Western suburbs",
-      img: "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/featured/card_01.png",
+      img: "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/card_01.png",
     },
     {
       name: "Krishna Vendors",
       rating: "4.5",
       price: "4000",
       category: "Wedding cakes , Western suburbs",
-      img: "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/featured/card_01.png",
+      img: "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/card_01.png",
     },
   ];
 

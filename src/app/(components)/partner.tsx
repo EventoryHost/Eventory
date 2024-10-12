@@ -76,20 +76,20 @@ const items = [
     description: "Explore the birth of groundbreaking ideas and inventions.",
     icon: <IconClipboardCopy className="h-4 w-4 text-neutral-500" />,
     imageUrl:
-      "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/partners/partners_01.png", // Add appropriate image URLs
+      "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/landing-page/partners/partners_01.png", 
   },
   {
     title: "The Digital Revolution",
     description: "Dive into the transformative power of technology.",
     icon: <IconFileBroken className="h-4 w-4 text-neutral-500" />,
     imageUrl:
-      "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/partners/partners_02.png",
+      "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/landing-page/partners/partners_02.png",
   },
   {
     title: "The Art of Design",
     description: "Discover the beauty of thoughtful and functional design.",
     icon: <IconSignature className="h-4 w-4 text-neutral-500" />,
     imageUrl:
-      "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/partners/partners_03.png",
+      "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/landing-page/partners/partners_03.png",
   },
 ];

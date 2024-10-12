@@ -41,7 +41,7 @@ const Footer = (props: Props) => {
               width={100}
               height={100}
               // src="https://d1u34m45xfa3ar.cloudfront.net/website/footer/logo-with-bg.svg"
-              src="/footer/footer-logo-01.svg"
+              src="https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/footer/logo-with-bg.svg"
               alt="Eventory logo justify-center items-center align-middle"
               className="h-[90px] w-[60px] mix-blend-multiply"
             />
