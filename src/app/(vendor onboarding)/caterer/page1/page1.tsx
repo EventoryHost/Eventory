@@ -69,19 +69,24 @@ const Page1 = ({
   useEffect(() => {
     if (formData && !formState.cateringName && !formState.businessName) {
       // Only update the state if formState is empty
-      updateFormState({
-        cateringName: formData.cateringName || "",
-        businessName: formData.businessName || "",
-        servingCapacity: formData.servingCapacity || "",
-      });
-      setRegionalSpecialties(formData.regionalSpecialties || []);
-      setCuisineSpecialties(formData.cuisineSpecialties || []);
-      setServiceStyles(formData.serviceStyles || []);
-      setServingCapacity([formData.servingCapacity || ""]);
+      if (
+        formData.cateringName !== formState.cateringName ||
+        formData.businessName !== formState.businessName ||
+        formData.servingCapacity !== servingCapacity[0] // Add more checks if needed
+      ) {
+        updateFormState({
+          cateringName: formData.cateringName || "",
+          businessName: formData.businessName || "",
+          servingCapacity: formData.servingCapacity || "",
+        });
+        setRegionalSpecialties(formData.regionalSpecialties || []);
+        setCuisineSpecialties(formData.cuisineSpecialties || []);
+        setServiceStyles(formData.serviceStyles || []);
+        setServingCapacity([formData.servingCapacity || ""]);
+      }
     }
   }, [formData, formState, updateFormState]);
-
-
+  
   const handleSave = () => {
     const userId = "page1"; 
   

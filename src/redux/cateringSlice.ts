@@ -46,7 +46,7 @@ const cateringSlice = createSlice({
       },
       updateFormData: (state, action: PayloadAction<{ page: number; data: any }>) => {
          const { page, data } = action.payload;
-         state.formData[page] = data;
+         state.formData[page] =  { ...state.formData[page], ...data }; 
       },
       setcurrentPage2: (state, action: PayloadAction<number>) => {
          state.currentPage2 = action.payload;
@@ -59,7 +59,7 @@ const cateringSlice = createSlice({
          })
          .addCase(fetchCateringData.fulfilled, (state, action) => {
             state.loading = false;
-            state.formData = action.payload; // Set the fetched data
+            state.formData = action.payload; // Set the fetched data for all pages
             state.error = null;
          })
          .addCase(fetchCateringData.rejected, (state, action) => {
@@ -71,7 +71,7 @@ const cateringSlice = createSlice({
          })
          .addCase(saveCateringDetails.fulfilled, (state, action) => {
             state.loading = false;
-            state.formData = action.payload; // Update state with saved data if necessary
+            state.formData = action.payload; // Update state with saved data
             state.error = null;
          })
          .addCase(saveCateringDetails.rejected, (state, action) => {

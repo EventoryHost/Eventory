@@ -9,8 +9,6 @@ import { ArrowLeft } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCateringData, saveCateringDetails, updateFormData } from "../../../../redux/cateringSlice";
 import { RootState } from "@/redux/store";
-import { createAsyncThunk , createSlice , PayloadAction } from "@reduxjs/toolkit";
-import { saveCateringData, getCateringData } from "@/services/flows/cateringService";
 
 const _dietaryOptions = [
   "Others",
@@ -95,47 +93,70 @@ const Page2 = ({
   const { customizableMenu } = formState;
   const [addManually, setAddManually] = useState(false);
   const dispatch = useDispatch();
-  const { formData } = useSelector((state: RootState) => state.catering);
-  const userId = "page2";
+  const { formData, currentPage2 } = useSelector((state: RootState) => state.catering);
+  const userId = "page1";
 
-  const [page2Data, setPage2Data] = useState({
-    preSetMenu: "",
-    customizableMenu: false,
-    selectedAppetizers: [],
-    selectedBeverages: [],
-    selectedMainCourses: [],
-    selectedDietaryOptions: [],
-    veg: "",
-  });
+
+  useEffect(() => {
+    if (formData) {
+      if (!formState.preSetMenu) {
+        updateFormState({
+          preSetMenu: formData.preSetMenu || "",
+          customizableMenu: formData.customizableMenu || false,
+        });
+      }
+      if (!veg.length) {
+        setVeg(formData.veg || []);
+        
+      }
+      if (!selectedAppetizers.length) {
+        setSelectedAppetizers(formData.selectedAppetizers || []);
+      }
+      if (!selectedBeverages.length) {
+        setSelectedBeverages(formData.selectedBeverages || []);
+      }
+      if (!selectedMainCourses.length) {
+        setSelectedMainCourses(formData.selectedMainCourses || []);
+      }
+      if (!selectedDietaryOptions.length) {
+        setSelectedDietaryOptions(formData.selectedDietaryOptions || []);
+      }
+    }
+  }, [formData]);
+
+
 
   useEffect(() => {
     // Fetch existing catering data when the component mounts
     if (userId) {
       dispatch(fetchCateringData(userId) as any);
     }
-  }, [dispatch, userId]);
+  }, [dispatch]);
 
-  useEffect(() => {
-    // Populate the form with existing data if available
-    if (formData[currentPage]) {
-      setPage2Data(formData[currentPage]);
-    }
-  }, [formData, currentPage]);
 
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setPage2Data((prevData) => ({ ...prevData, [name]: value }));
-
-    // Update Redux state for this form data
-    dispatch(updateFormData({ page: currentPage, data: { ...page2Data, [name]: value } }));
+    updateFormState({ [name]: value });
+    dispatch(updateFormData({ page: currentPage, data: { [name]: value } }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
-    // Dispatch save action to save data in the backend
-    dispatch(saveCateringDetails({ userId, data: { ...formData, [currentPage]: page2Data } }) as any);
+
+    const dataToSubmit = {
+      ...formState,
+      selectedAppetizers,
+      selectedBeverages,
+      selectedMainCourses,
+      selectedDietaryOptions,
+      veg,
+    }
+
+    dispatch(saveCateringDetails({ userId, data: dataToSubmit }) as any);
+    handleContinue();
   };
+
 
 
 
@@ -158,7 +179,7 @@ const Page2 = ({
                 key={option}
                 className={`relative flex cursor-pointer select-none items-center gap-1 py-2 pl-3 pr-9 ${veg.includes(option) ? "text-black" : "text-gray-900"
                   }`}
-                onClick={() => setVeg([option])}
+                onClick={() => setVeg([option])} 
               >
                 {veg.includes(option) ? (
                   <svg
@@ -304,6 +325,7 @@ const Page2 = ({
                   updateFormState({ preSetMenu: e.target.value })
                 }
                 className="mt-4 rounded-xl border-2 border-gray-300 p-3"
+                defaultValue={formState.preSetMenu}
               ></textarea>
             </div>
             <div className="flex min-w-[50%] flex-col gap-4">
@@ -316,10 +338,11 @@ const Page2 = ({
                     id="customizableMenuYes"
                     type="radio"
                     name="customizableMenu"
-                    value="true"
+                    value={formState.customizableMenu ? "true" : "false"}
                     checked={customizableMenu}
                     onChange={() => updateFormState({ customizableMenu: true })}
                     className="h-4 w-4 accent-[#2E3192]"
+
                   />
                   <label htmlFor="customizableMenuYes">Yes</label>
                 </div>
@@ -328,7 +351,7 @@ const Page2 = ({
                     id="customizableMenuNo"
                     type="radio"
                     name="customizableMenu"
-                    value="false"
+                    value={formState.customizableMenu ? "true" : "false"}
                     checked={!customizableMenu}
                     onChange={() =>
                       updateFormState({ customizableMenu: false })
@@ -343,11 +366,7 @@ const Page2 = ({
           <div className="items-strech flex flex-row gap-7 self-end">
             <button
               className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-              onClick={() => {
-                handleContinue
-                handleSubmit
-              }
-              }
+              onClick={handleSubmit}
             >
               Continue
             </button>
