@@ -13,7 +13,9 @@ const ReachoutForm = () => {
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { id, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
@@ -65,7 +67,9 @@ const ReachoutForm = () => {
       toast({
         variant: "destructive",
         title: "Error",
-        description: error.toString() || "Failed to send the message. Please try again later.",
+        description:
+          error.toString() ||
+          "Failed to send the message. Please try again later.",
       });
     } finally {
       setLoading(false);
@@ -152,8 +156,9 @@ const ReachoutForm = () => {
           </div>
           <button
             type="submit"
-            className={`w-full rounded-md p-3 text-sm font-medium text-white ${loading ? "bg-gray-400" : "bg-indigo-600 hover:bg-indigo-700"
-              }`}
+            className={`w-full rounded-md p-3 text-sm font-medium text-white ${
+              loading ? "bg-gray-400" : "bg-indigo-600 hover:bg-indigo-700"
+            }`}
             disabled={loading}
           >
             {loading ? "Submitting..." : "Submit"}

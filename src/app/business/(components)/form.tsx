@@ -14,7 +14,7 @@ const serviceslist = [
   { value: "invitation", label: "Invitation" },
   { value: "makeupArtist", label: "Makeup Artist" },
   { value: "photoAndVideography", label: "Photo And Videography" },
-  { value: "propRentals", label: "Prop Rentals" }
+  { value: "propRentals", label: "Prop Rentals" },
 ];
 
 const Form = () => {
@@ -51,7 +51,7 @@ const Form = () => {
           headers: {
             "Content-Type": "application/json",
           },
-        }
+        },
       );
 
       if (emailResponse.status !== 200) {
@@ -181,8 +181,9 @@ const Form = () => {
 
           <button
             type="submit"
-            className={`w-full rounded-lg p-4 text-white ${loading ? "bg-gray-400" : "bg-[#2E3192]"
-              }`}
+            className={`w-full rounded-lg p-4 text-white ${
+              loading ? "bg-gray-400" : "bg-[#2E3192]"
+            }`}
             disabled={loading}
           >
             {loading ? "Loading..." : "Submit"}
