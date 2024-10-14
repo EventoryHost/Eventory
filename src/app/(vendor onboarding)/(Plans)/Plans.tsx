@@ -25,17 +25,26 @@ interface BusinessDetails {
   teamsize: "1-5" | "6-15" | "16-30" | "31-50" | "51+";
   years: "1-2" | "3-5" | "6-10" | "10+";
 }
-
+/*
+Register your business and start showcasing your services.
+Manage your profile and service offerings easily.
+Portfolio management for your business (photos, videos, etc.).
+Receive real-time notifications on new bookings.
+Organize your bookings and leads with a calendar and leads management system.
+Get a summary of payments with an overview of received and outstanding amounts.
+*/
 const Plans = ({ setCurrentPage, handleformSubmit }: Pagechangetype) => {
   const { toast } = useToast();
   const plan: PlanDetails = {
     title: "Basic",
     price: 0,
     details: [
-      "All analytics features",
-      "Up to 250,000 tracked visits",
-      "Normal support",
-      "Up to 3 team members",
+      "Register your business and start showcasing your services.",
+      "Manage your profile and service offerings easily.",
+      "Portfolio management for your business (photos, videos, etc.).",
+      "Receive real-time notifications on new bookings.",
+      "Organize your bookings and leads with a calendar and leads management system.",
+      "Get a summary of payments with an overview of received and outstanding amounts.",
     ],
   };
   const [loader, setloader] = useState(true);
@@ -375,14 +384,14 @@ const Plans = ({ setCurrentPage, handleformSubmit }: Pagechangetype) => {
               )}
             </form>
           </div>
-          <div className="flex h-[513px] w-[418px] flex-col gap-4">
+          <div className="flex w-[418px] flex-col gap-4">
             <div className="custom-shadow w-[418px] gap-7 rounded-2xl bg-[#ffffff] p-4">
               <div className="mb-3 flex h-10 items-center justify-start gap-[14px]">
                 <h4 className="font-poppins text-2xl font-semibold">
                   Review Details
                 </h4>
               </div>
-              <div className="items-left mt-2 flex h-[80px] w-[386px] flex-col justify-start rounded-xl bg-[#F7F7FC] p-4">
+              <div className="items-left mt-2 flex   w-[386px] flex-col justify-start rounded-xl bg-[#F7F7FC] p-4">
                 <div className="mb-4 flex h-[51px] w-[352px] items-center justify-between">
                   <div>
                     <p className="font-poppins text-lg font-medium">
@@ -401,6 +410,40 @@ const Plans = ({ setCurrentPage, handleformSubmit }: Pagechangetype) => {
                     </p>
                   </div>
                 </div>
+                <div className="gap-4 flex flex-col justify-between">
+                  {plan.details.map((data, i) => (
+                    <div key={i} className="flex justify-left gap-3 items-center">
+                      <svg
+                        className="max-h-5 min-h-5 min-w-5 max-w-5" // Ensure both width and height are set to the same size
+                        viewBox="0 0 20 20"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g clipPath="url(#clip0_4505_21018)">
+                          <path
+                            d="M10 20C15.523 20 20 15.523 20 10C20 4.477 15.523 0 10 0C4.477 0 0 4.477 0 10C0 15.523 4.477 20 10 20Z"
+                            fill="#4A3AFF"
+                          />
+                          <path
+                            d="M5.47461 10.6466L8.06062 13.2326L14.5257 6.76758"
+                            stroke="white"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </g>
+                        <defs>
+                          <clipPath id="clip0_4505_21018">
+                            <rect width="20" height="20" fill="white" />
+                          </clipPath>
+                        </defs>
+                      </svg>
+                      <h3 className="font-helvetica font-normal text-[#170F49] text-sm leading-tight">
+                        {data}
+                      </h3>
+                    </div>
+                  ))}
+                </div>
               </div>
 
               <div className="my-3 flex h-[36px] items-center justify-between px-2">
@@ -410,7 +453,7 @@ const Plans = ({ setCurrentPage, handleformSubmit }: Pagechangetype) => {
                   </p>
                   <p className="font-poppins text-xs font-medium text-[#6F6C90]">
                     {" "}
-                    inclusive of GST
+                    inclusive of All Tax's & Fees
                   </p>
                 </div>
                 <p className="text-right font-poppins text-2xl font-medium text-[#2E3192]">
@@ -434,26 +477,7 @@ const Plans = ({ setCurrentPage, handleformSubmit }: Pagechangetype) => {
 
 export default Plans;
 /*
-                                <div className="gap-4 flex flex-col justify-between h-[128px]">
-                                    {
-                                        plan.details.map((data, i) => (
-                                            <div key={i} className="flex justify-left gap-3 items-center h-5">
-                                                <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <g clipPath="url(#clip0_4505_21018)">
-                                                        <path d="M10 20C15.523 20 20 15.523 20 10C20 4.477 15.523 0 10 0C4.477 0 0 4.477 0 10C0 15.523 4.477 20 10 20Z" fill="#4A3AFF" />
-                                                        <path d="M5.47461 10.6466L8.06062 13.2326L14.5257 6.76758" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                                    </g>
-                                                    <defs>
-                                                        <clipPath id="clip0_4505_21018">
-                                                            <rect width="20" height="20" fill="white" />
-                                                        </clipPath>
-                                                    </defs>
-                                                </svg>
-                                                <h3 className="font-helvetica  w-max font-normal font-[#170F49] text-sm">{data}</h3>
-                                            </div>
-                                        ))
-                                    }
-                                </div>
+                               
                             <div className="h-[58px] mt-4  px-2">
                                 <div className="h-[51px] gap-4 flex flex-col justify-between ">
                                     <div className="flex  justify-between">
