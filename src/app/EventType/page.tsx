@@ -1,20 +1,52 @@
 "use client";
 
-import React, { Suspense, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import CategoryBar from "../(components)/categoryBar";
-import FilterSection from "../(components)/FilterSection";
-import Footer from "@/app/(components)/footer";
-import ExploreSection from "../(components)/ExploreSection";
-import VendorCard from "../(components)/VendorCard";
-import { Filter } from "lucide-react";
 
-const SearchPageHelper = () => {
+import Footer from "@/app/(components)/footer";
+
+import { Filter } from "lucide-react";
+import ExploreSection from "../(customer onboarding)/(components)/ExploreSection";
+import CategoryBar from "../(customer onboarding)/(components)/categoryBar";
+import VendorCard from "../(customer onboarding)/(components)/VendorCard";
+import FilterSection from "../(customer onboarding)/(components)/FilterSection";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import Image from "next/image";
+import Autoplay from "embla-carousel-autoplay";
+
+const EventTypeHelper = () => {
   const searchParams = useSearchParams();
   const event = searchParams.get("event") || "all";
-  const regional_event = searchParams.get("regional_event") || "all";
-  const popular_event = searchParams.get("popular_event") || "all";
 
+  const plugin = React.useRef(
+    Autoplay({ delay: 2000, stopOnInteraction: true }),
+  );
+  const [isMobile, setIsMobile] = useState<boolean>(false); // Initial value can be false
+  useEffect(() => {
+    // Check if running in the browser
+    if (typeof window !== "undefined") {
+      // Set initial value based on window width
+      setIsMobile(window.innerWidth < 768);
+
+      const handleResize = () => {
+        setIsMobile(window.innerWidth < 768);
+      };
+
+      // Add event listener on component mount
+      window.addEventListener("resize", handleResize);
+
+      // Cleanup event listener on component unmount
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }
+  }, []);
   const [selected, setSelected] = useState<string>("");
   const [view, setView] = useState<string>("List");
   const URLs = [
@@ -159,6 +191,21 @@ const SearchPageHelper = () => {
     "/landing_page/categories/cat_01.png",
     "/landing_page/categories/cat_02.png",
   ];
+  const venueNames = [
+    "Diwali",
+    "Holi",
+    "Navratri",
+    "Dusshera",
+    "Ganesh Chaturthi",
+    "Makar Sankranti",
+  ];
+  const baseImageUrl =
+    "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventType-page/festive-carousel/";
+
+  const popular_events = venueNames.map((name, index) => ({
+    name: name,
+    img: `${baseImageUrl}${name.toLowerCase().replace(/ /g, "-")}-pic-${index + 1}.jpeg`, // Adjust the naming convention as needed
+  }));
   const filters4 = ["4.0 and above", "4.5 and above", "5.0 and above"];
 
   const [selectedFiltersSection1, setSelectedFiltersSection1] = useState<
@@ -206,20 +253,60 @@ const SearchPageHelper = () => {
     }
   };
   return (
-    <div className="min-h-screen">
-      <ExploreSection slides={slides} />
+    <div className="flex flex-col gap-4 bg-gray-100">
+      <ExploreSection slides={slides} eventType={true} isMobile={isMobile} />
 
-      <CategoryBar
-        event={event}
-        selected={selected}
-        setSelected={setSelected}
-        view={view}
-        setView={setView}
-      />
-      <div className="flex-start flex justify-between gap-8 bg-gray-100 p-8">
-        <div className="bg-grey-100 flex-1 py-8">
+      <div className="my-2 flex w-full justify-center md:my-4">
+        <Carousel
+          plugins={[plugin.current]}
+          className="mb-4 mt-4 w-full max-w-[90%] md:mb-0 md:max-w-[70%]"
+          onMouseEnter={plugin.current.stop}
+          onMouseLeave={plugin.current.reset}
+        >
+          <CarouselContent className="flex md:gap-2">
+            {popular_events.map((venue, index) => (
+              <CarouselItem key={index} className="basis-[40%] md:basis-[20%]">
+                <div className="w-full">
+                  <div className="relative aspect-[3/4] cursor-pointer overflow-hidden rounded-xl">
+                    <Image
+                      src={venue.img}
+                      alt={venue.name}
+                      layout="fill"
+                      objectFit="cover"
+                      className="rounded-xl"
+                    />
+
+                    <div className="absolute inset-0 flex flex-col items-start justify-end bg-black bg-opacity-50 text-white">
+                      <h3 className="m-2 text-center text-xs font-semibold md:text-lg">
+                        {venue.name}
+                      </h3>
+                    </div>
+                  </div>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+
+          {/* Hide buttons in mobile view */}
+          {!isMobile && <CarouselPrevious />}
+          {!isMobile && <CarouselNext />}
+        </Carousel>
+      </div>
+      <div className="flex items-center justify-between">
+        <div className="pl-10 text-5xl font-semibold">Gift Vendors</div>
+        {!isMobile && (
+          <CategoryBar
+            selected={selected}
+            setSelected={setSelected}
+            view={view}
+            setView={setView}
+          />
+        )}
+      </div>
+      <div className="flex-start mx-14 flex justify-between gap-6 bg-gray-100">
+        <div className="bg-grey-100 flex-1">
           <div
-            className={`gap-8 ${view === "Grid" ? "grid grid-cols-3" : "grid grid-cols-1"} h-max grid-rows-1`}
+            className={`gap-2 ${view === "Grid" ? "grid grid-cols-3" : "grid grid-cols-1"} h-max grid-rows-1`}
           >
             {cardsdata.map((card, index) => (
               <VendorCard
@@ -243,7 +330,7 @@ const SearchPageHelper = () => {
             {selectedFiltersSection3}
           </div>
         </div>
-        <div className="flex-2 mx-6 hidden w-1/4 flex-col gap-6 rounded-lg border border-gray-300 bg-white p-6 pb-4 md:flex">
+        <div className="flex-2 flex w-1/4 flex-col gap-6 rounded-lg border border-gray-300 bg-white p-6 pb-4">
           <div className="flex">
             <Filter size={24} />
             <div className="mx-2 text-2xl font-semibold">Filters</div>
@@ -291,12 +378,12 @@ const SearchPageHelper = () => {
   );
 };
 
-const SearchPage = () => {
+const EventType = () => {
   return (
     <Suspense>
-      <SearchPageHelper />
+      <EventTypeHelper />
     </Suspense>
   );
 };
 
-export default SearchPage;
+export default EventType;

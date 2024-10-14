@@ -2,18 +2,18 @@
 
 import React, { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import CategoryBar from "../(components)/categoryBar";
-import FilterSection from "../(components)/FilterSection";
-import Footer from "@/app/(components)/footer";
-import ExploreSection from "../(components)/ExploreSection";
-import VendorCard from "../(components)/VendorCard";
+
+import Footer from "../(components)/footer";
+
 import { Filter } from "lucide-react";
+import ExploreSection from "../(customer onboarding)/(components)/ExploreSection";
+import CategoryBar from "../(customer onboarding)/(components)/categoryBar";
+import VendorCard from "../(customer onboarding)/(components)/VendorCard";
+import FilterSection from "../(customer onboarding)/(components)/FilterSection";
 
 const SearchPageHelper = () => {
   const searchParams = useSearchParams();
   const event = searchParams.get("event") || "all";
-  const regional_event = searchParams.get("regional_event") || "all";
-  const popular_event = searchParams.get("popular_event") || "all";
 
   const [selected, setSelected] = useState<string>("");
   const [view, setView] = useState<string>("List");
@@ -206,8 +206,10 @@ const SearchPageHelper = () => {
     }
   };
   return (
-    <div className="min-h-screen">
-      <ExploreSection slides={slides} />
+    <div className="">
+      <div className="mt-2">
+        <ExploreSection slides={slides} />
+      </div>
 
       <CategoryBar
         event={event}
@@ -243,7 +245,7 @@ const SearchPageHelper = () => {
             {selectedFiltersSection3}
           </div>
         </div>
-        <div className="flex-2 mx-6 hidden w-1/4 flex-col gap-6 rounded-lg border border-gray-300 bg-white p-6 pb-4 md:flex">
+        <div className="flex-2 mx-6 flex w-1/4 flex-col gap-6 rounded-lg border border-gray-300 bg-white p-6 pb-4">
           <div className="flex">
             <Filter size={24} />
             <div className="mx-2 text-2xl font-semibold">Filters</div>
@@ -291,7 +293,7 @@ const SearchPageHelper = () => {
   );
 };
 
-const SearchPage = () => {
+const EventType = () => {
   return (
     <Suspense>
       <SearchPageHelper />
@@ -299,4 +301,4 @@ const SearchPage = () => {
   );
 };
 
-export default SearchPage;
+export default EventType;

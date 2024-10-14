@@ -14,6 +14,11 @@ const nextConfig = {
         hostname: "d1u34m45xfa3ar.cloudfront.net",
         pathname: "/website/**",
       },
+      {
+        protocol: "https",
+        hostname: "eventory-bucket.s3.ap-south-1.amazonaws.com", // Add your S3 bucket hostname
+        pathname: "/**", // Allow all paths under this hostname
+      },
     ],
   },
 };
