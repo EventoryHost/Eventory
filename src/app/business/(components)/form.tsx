@@ -1,13 +1,25 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import { sendQuery } from "@/services/query";
+import MultipleDropdown from "@/components/MultiDropdown";
+import { useToast } from "@/components/hooks/use-toast";
+import axios from "axios";
 
-type Props = {};
+const serviceslist = [
+  { value: "decorator", label: "Decorator" },
+  { value: "caterer", label: "Caterer" },
+  { value: "venueProvider", label: "Venue Provider" },
+  { value: "transportation", label: "Transportation" },
+  { value: "gifts", label: "Gifts" },
+  { value: "invitation", label: "Invitation" },
+  { value: "makeupArtist", label: "Makeup Artist" },
+  { value: "photoAndVideography", label: "Photo And Videography" },
+  { value: "propRentals", label: "Prop Rentals" },
+];
 
-const Form = (props: Props) => {
-  // State variables to store form data
+const Form = () => {
+  const { toast } = useToast();
   const [loading, setLoading] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -16,25 +28,6 @@ const Form = (props: Props) => {
     message: "",
   });
 
-  const [checkedItems, setCheckedItems] = useState<{ [key: string]: boolean }>({
-    Decorator: false,
-    Caterer: false,
-    VenueProvider: false,
-    Transportation: false,
-    Decorators: false,
-    Gifts: false,
-    Invitation: false,
-    MakeupArtist: false,
-    "Photo-And-Videography": false,
-    PropRentals: false,
-  });
-
-  // Toggle dropdown visibility
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
-
-  // Handle input change for text fields
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
@@ -45,72 +38,35 @@ const Form = (props: Props) => {
     }));
   };
 
-  // Handle checkbox state change
-  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { id, checked } = e.target;
-    setCheckedItems((prevItems) => ({
-      ...prevItems,
-      [id]: checked,
-    }));
-  };
-
-  const dropdownRef = useRef<HTMLDivElement>(null);
-
-  // Handle click outside to close the dropdown
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
-        setIsOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
-  // Update formData.service when checkedItems change
-  useEffect(() => {
-    const selectedCheckboxes = Object.entries(checkedItems)
-      .filter(([key, value]) => value)
-      .map(([key]) => key);
-
-    setFormData((prevData) => ({
-      ...prevData,
-      services: selectedCheckboxes,
-    }));
-  }, [checkedItems]);
-
-  // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault(); // Prevent page reload
-    setLoading(true); // Start loading
-
+    e.preventDefault();
+    setLoading(true);
+    // console.log(formData);
     try {
-      // Call both APIs within the same try block
-      const emailResponse = await fetch(
+      // Send email using Axios
+      const emailResponse = await axios.post(
         `${process.env.NEXT_PUBLIC_BASE_URL}/api/email/send-email`,
+        { ...formData },
         {
-          method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ ...formData }),
         },
       );
 
-      if (!emailResponse.ok) {
+      if (emailResponse.status !== 200) {
         throw new Error("Failed to send email.");
       }
 
+      // Send query using the sendQuery service
       const queryResponse = await sendQuery({ ...formData });
 
       if (queryResponse && queryResponse.status === 200) {
-        alert("Your message has been sent successfully!");
+        toast({
+          title: "Message Sent",
+          description: "Your message has been successfully sent!",
+        });
+
         // Clear form fields
         setFormData({
           fullName: "",
@@ -123,10 +79,14 @@ const Form = (props: Props) => {
         throw new Error("Failed to send query.");
       }
     } catch (error) {
-      console.error("Error sending message:", error);
-      alert("An error occurred while sending your message.");
+      // console.error("Error sending message:", error);
+      toast({
+        title: "Error",
+        description: "An error occurred while sending your message.",
+        variant: "destructive",
+      });
     } finally {
-      setLoading(false); // Stop loading
+      setLoading(false);
     }
   };
 
@@ -165,7 +125,7 @@ const Form = (props: Props) => {
             value={formData.fullName}
             onChange={handleInputChange}
             className="w-full rounded-lg border p-4"
-            disabled={loading} // Disable input during loading
+            disabled={loading}
           />
           <label htmlFor="email" className="self-start">
             Email
@@ -194,91 +154,16 @@ const Form = (props: Props) => {
           <label htmlFor="services" className="self-start">
             Services
           </label>
-
-          <div
-            ref={dropdownRef}
-            className="relative w-full max-w-full rounded-lg bg-white"
-          >
-            <button
-              type="button"
-              id="dropdownToggle"
-              onClick={toggleDropdown}
-              className="flex h-max w-full max-w-full justify-between overflow-hidden rounded-lg border bg-white p-4 text-left"
-              disabled={loading} // Disable during loading
-            >
-              {formData.services.length > 0 ? (
-                formData.services.length > 3 ? (
-                  <div className="">
-                    {`${formData.services.slice(0, 3).join(", ")}...`}
-                  </div>
-                ) : (
-                  <div className="">{formData.services.join(", ")}</div>
-                )
-              ) : (
-                "Select Service"
-              )}
-            </button>
-
-            {isOpen && (
-              <ul className="absolute z-50 mt-2 max-h-96 w-full overflow-auto rounded-lg bg-white p-4 shadow-lg">
-                {Object.entries(checkedItems).map(([key, isChecked]) => (
-                  <li
-                    key={key}
-                    className="cursor-pointer rounded px-4 py-2.5 text-sm text-black hover:bg-blue-50"
-                    onClick={() =>
-                      setCheckedItems((prevItems) => ({
-                        ...prevItems,
-                        [key]: !prevItems[key],
-                      }))
-                    }
-                  >
-                    <div className="flex items-center">
-                      <input
-                        id={key}
-                        type="checkbox"
-                        checked={isChecked}
-                        onChange={handleCheckboxChange}
-                        className="peer hidden"
-                        disabled={loading} // Disable during loading
-                      />
-                      <label
-                        htmlFor={key}
-                        className="relative mr-3 flex h-5 w-5 cursor-pointer items-center justify-center overflow-hidden rounded border bg-[#2E3192] p-1 before:absolute before:block before:h-full before:w-full before:bg-white peer-checked:before:hidden"
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="w-full fill-white"
-                          viewBox="0 0 520 520"
-                        >
-                          <path d="M79.423 240.755a47.529 47.529 0 0 0-36.737 77.522l120.73 147.894a43.136 43.136 0 0 0 36.066 16.009c14.654-.787 27.884-8.626 36.319-21.515L486.588 56.773a6.13 6.13 0 0 1 .128-.2c2.353-3.613 1.59-10.773-3.267-15.271a13.321 13.321 0 0 0-19.362 1.343q-.135.166-.278.327L210.887 328.736a10.961 10.961 0 0 1-15.585.843l-83.94-76.386a47.319 47.319 0 0 0-31.939-12.438z" />
-                        </svg>
-                      </label>
-                      {key === "Decorator"
-                        ? "Decorator"
-                        : key === "Caterer"
-                          ? "Caterer"
-                          : key === "VenueProvider"
-                            ? "Venue Provider"
-                            : key === "Transportation"
-                              ? "Transportation"
-                              : key === "Decorators"
-                                ? "Decorators"
-                                : key === "Gifts"
-                                  ? "Gifts"
-                                  : key === "Invitation"
-                                    ? "Invitation"
-                                    : key === "MakeupArtist"
-                                      ? "Makeup Artist"
-                                      : key === "Photo-And-Videography"
-                                        ? "Photo And Videography"
-                                        : key === "PropRentals"
-                                          ? "Prop Rentals"
-                                          : ""}
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            )}
+          <div className="flex min-w-[100%] max-w-96 flex-col gap-4">
+            <MultipleDropdown
+              options={serviceslist}
+              onSelect={(value: string[]) =>
+                setFormData((prevDetails) => ({
+                  ...prevDetails,
+                  services: value,
+                }))
+              }
+            />
           </div>
 
           <label htmlFor="message" className="self-start">
@@ -299,7 +184,7 @@ const Form = (props: Props) => {
             className={`w-full rounded-lg p-4 text-white ${
               loading ? "bg-gray-400" : "bg-[#2E3192]"
             }`}
-            disabled={loading} // Disable during loading
+            disabled={loading}
           >
             {loading ? "Loading..." : "Submit"}
           </button>
