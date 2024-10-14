@@ -453,7 +453,7 @@ const Plans = ({ setCurrentPage, handleformSubmit }: Pagechangetype) => {
                   </p>
                   <p className="font-poppins text-xs font-medium text-[#6F6C90]">
                     {" "}
-                    inclusive of All Tax's & Fees
+                    inclusive of All taxes & Fees
                   </p>
                 </div>
                 <p className="text-right font-poppins text-2xl font-medium text-[#2E3192]">
