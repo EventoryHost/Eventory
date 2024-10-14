@@ -391,7 +391,7 @@ const Plans = ({ setCurrentPage, handleformSubmit }: Pagechangetype) => {
                   Review Details
                 </h4>
               </div>
-              <div className="items-left mt-2 flex   w-[386px] flex-col justify-start rounded-xl bg-[#F7F7FC] p-4">
+              <div className="items-left mt-2 flex w-[386px] flex-col justify-start rounded-xl bg-[#F7F7FC] p-4">
                 <div className="mb-4 flex h-[51px] w-[352px] items-center justify-between">
                   <div>
                     <p className="font-poppins text-lg font-medium">
@@ -410,9 +410,12 @@ const Plans = ({ setCurrentPage, handleformSubmit }: Pagechangetype) => {
                     </p>
                   </div>
                 </div>
-                <div className="gap-4 flex flex-col justify-between">
+                <div className="flex flex-col justify-between gap-4">
                   {plan.details.map((data, i) => (
-                    <div key={i} className="flex justify-left gap-3 items-center">
+                    <div
+                      key={i}
+                      className="justify-left flex items-center gap-3"
+                    >
                       <svg
                         className="max-h-5 min-h-5 min-w-5 max-w-5" // Ensure both width and height are set to the same size
                         viewBox="0 0 20 20"
@@ -438,7 +441,7 @@ const Plans = ({ setCurrentPage, handleformSubmit }: Pagechangetype) => {
                           </clipPath>
                         </defs>
                       </svg>
-                      <h3 className="font-helvetica font-normal text-[#170F49] text-sm leading-tight">
+                      <h3 className="font-helvetica text-sm font-normal leading-tight text-[#170F49]">
                         {data}
                       </h3>
                     </div>
