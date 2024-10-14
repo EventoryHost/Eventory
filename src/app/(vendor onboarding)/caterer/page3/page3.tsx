@@ -2,6 +2,12 @@
 
 import { ArrowLeft } from "lucide-react";
 import Appetizers from "../../(components)/Appetizers";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
+import { useEffect, useState } from "react";
+import { FormState } from "../page";
+import { fetchCateringData, updateFormData , saveCateringDetails } from "@/redux/cateringSlice";
+import jwt from "jsonwebtoken";
 
 const _EventTypes = [
   "Corporate",
@@ -28,6 +34,8 @@ interface page3Props {
   handleContinue: () => void;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
   currentPage: number;
+  formState: FormState;
+  updateFormState: (newState: Partial<FormState>) => void;  
 }
 const Page3: React.FC<page3Props> = ({
   selectedEventTypes,
@@ -37,9 +45,64 @@ const Page3: React.FC<page3Props> = ({
   handleContinue,
   setCurrentPage,
   currentPage,
+  formState,
+  updateFormState
 }) => {
+
+  const dispatch = useDispatch();
+  const { formData } = useSelector((state: RootState) => state.catering);
+  function getVendorId2(): string | null {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("Token not found");
+      return null;
+    }
+    try {
+      const decodedToken = jwt.decode(token) as {
+        userId?: string;
+        email?: string;
+      };
+      if (!decodedToken || !decodedToken.userId) {
+        console.error("Invalid token or token does not contain userId.");
+        return null;
+      }
+      return decodedToken.userId;
+    } catch (error) {
+      console.error("Error decoding token:", error);
+      return null;
+    }
+  }
+  const userId = getVendorId2() || "";
+
+useEffect(() => {
+
+    // Fetch data when Page 3 mounts
+    if (userId) {
+      dispatch(fetchCateringData(userId) as any);
+    }
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (formData) {
+      // Update local state based on fetched formData
+      if (!selectedEventTypes.length) {
+        setSelectedEventTypes(formData.eventTypes || []);
+      }
+      if (!selectedAdditionalServices.length) {
+        setSelectedAdditionalServices(formData.additionalServices || []);
+      }
+    }
+  }, [formData, selectedEventTypes, selectedAdditionalServices, setSelectedEventTypes, setSelectedAdditionalServices]);
+
+  
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const dataToSave = {
+      ...formData,
+      eventTypes: selectedEventTypes,
+      additionalServices: selectedAdditionalServices,
+    };
+    dispatch(saveCateringDetails({ userId, data: dataToSave }) as any);
     handleContinue();
   };
 

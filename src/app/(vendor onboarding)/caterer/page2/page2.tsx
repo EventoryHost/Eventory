@@ -5,10 +5,12 @@ import Appetizers from "../../(components)/Appetizers";
 import { FormState } from "../page";
 import { useEffect, useState } from "react";
 import { ArrowLeft } from "lucide-react";
+import jwt from "jsonwebtoken";
 
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCateringData, saveCateringDetails, updateFormData } from "../../../../redux/cateringSlice";
 import { RootState } from "@/redux/store";
+import { getvendor } from "@/services/auth";
 
 const _dietaryOptions = [
   "Others",
@@ -94,7 +96,28 @@ const Page2 = ({
   const [addManually, setAddManually] = useState(false);
   const dispatch = useDispatch();
   const { formData, currentPage2 } = useSelector((state: RootState) => state.catering);
-  const userId = "page1";
+  function getVendorId2(): string | null {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("Token not found");
+      return null;
+    }
+    try {
+      const decodedToken = jwt.decode(token) as {
+        userId?: string;
+        email?: string;
+      };
+      if (!decodedToken || !decodedToken.userId) {
+        console.error("Invalid token or token does not contain userId.");
+        return null;
+      }
+      return decodedToken.userId;
+    } catch (error) {
+      console.error("Error decoding token:", error);
+      return null;
+    }
+  }
+  const userId = getVendorId2() || "";
 
 
   useEffect(() => {

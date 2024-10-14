@@ -2,6 +2,14 @@
 
 import { ArrowLeft } from "lucide-react";
 import Appetizers from "../../(components)/Appetizers";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
+import { fetchCateringData, saveCateringDetails } from "@/redux/cateringSlice";
+import { useEffect } from "react";
+import jwt from "jsonwebtoken";
+import { get } from "http";
+
+
 const _staffProvides = ["Chefs", "Bartenders", "Servers", "Cleaners", "Others"];
 
 const _equipmentsProvided = [
@@ -30,8 +38,62 @@ const Page4 = ({
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
   currentPage: number;
 }) => {
+  const dispatch = useDispatch();
+  const { formData } = useSelector((state: RootState) => state.catering);
+  function getVendorId2(): string | null {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("Token not found");
+      return null;
+    }
+    try {
+      const decodedToken = jwt.decode(token) as {
+        userId?: string;
+        email?: string;
+      };
+      if (!decodedToken || !decodedToken.userId) {
+        console.error("Invalid token or token does not contain userId.");
+        return null;
+      }
+      return decodedToken.userId;
+    } catch (error) {
+      console.error("Error decoding token:", error);
+      return null;
+    }
+  }
+  const userId =  getVendorId2() || ""; 
+
+
+  useEffect(() => {
+    // Fetch data when Page 4 mounts
+    if (userId) {
+      dispatch(fetchCateringData(userId) as any);
+    }
+  }, [dispatch, userId]);
+
+  useEffect(() => {
+    if (formData) {
+      // Update local state based on fetched formData
+      if (!selectedStaffProvider.length) {
+        setSelectedStaffProvider(formData.staffProvides || []);
+      }
+      if (!selectedEquipmentsProvided.length) {
+        setSelectedEquipmentsProvided(formData.equipmentsProvided || []);
+      }
+    }
+  }, [formData, selectedStaffProvider, selectedEquipmentsProvided, setSelectedStaffProvider, setSelectedEquipmentsProvided]);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Prepare the data to save, including staff and equipment details
+    const dataToSave = {
+      ...formData,
+      staffProvides: selectedStaffProvider,
+      equipmentsProvided: selectedEquipmentsProvided,
+    };
+
+    dispatch(saveCateringDetails({ userId, data: dataToSave }) as any);
     handleContinue();
   };
 

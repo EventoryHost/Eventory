@@ -5,6 +5,10 @@ import { FormState } from "../page";
 import FileInput from "@/components/fileInput";
 import { useEffect } from "react";
 import Dropdown from "../../(components)/Dropdown";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
+import { fetchCateringData, saveCateringDetails } from "@/redux/cateringSlice";
+import jwt from "jsonwebtoken";
 
 interface Page6Props {
   formState: FormState;
@@ -12,6 +16,8 @@ interface Page6Props {
   handleContinue: () => void;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
   currentPage: number;
+  minOrderReq: string;
+  AdvBooking: string;
 }
 
 const Page6 = ({
@@ -28,6 +34,8 @@ const Page6 = ({
     portfolio,
     photos,
     videos,
+    minOrderReq,
+    AdvBooking,
   } = formState;
 
   const _minorder = [
@@ -76,6 +84,93 @@ const Page6 = ({
     }
   };
 
+
+  const dispatch = useDispatch();
+  const { formData } = useSelector((state: RootState) => state.catering);
+  function getVendorId2(): string | null {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("Token not found");
+      return null;
+    }
+    try {
+      const decodedToken = jwt.decode(token) as {
+        userId?: string;
+        email?: string;
+      };
+      if (!decodedToken || !decodedToken.userId) {
+        console.error("Invalid token or token does not contain userId.");
+        return null;
+      }
+      return decodedToken.userId;
+    } catch (error) {
+      console.error("Error decoding token:", error);
+      return null;
+    }
+  }
+  const userId = getVendorId2() || "";
+
+  useEffect(() => {
+    // Fetch data when Page 6 mounts
+    if (userId) {
+      dispatch(fetchCateringData(userId) as any);
+    }
+    // log the current state of formState here
+    console.log("Form State on Page 6 mount:", formState);
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (formData) {
+      // Update local state based on fetched formData
+      if (!tastingSessions) {
+        updateFormState({ tastingSessions: formData.tastingSessions });
+        console.log("Tasting Sessions after update ", formData.tastingSessions);
+        
+      }
+      if (!businessLicenses) {
+        updateFormState({ businessLicenses: formData.businessLicenses });
+      }
+      if (!foodSafety) {
+        updateFormState({ foodSafety: formData.foodSafety });
+      }
+      if (!portfolio) {
+        updateFormState({ portfolio: formData.portfolio });
+      }
+      if (!photos) {
+        updateFormState({ photos: formData.photos });
+      }
+      if (!videos) {
+        updateFormState({ videos: formData.videos });
+      }
+      if (!formState.minOrderReq) {
+        updateFormState({ minOrderReq: formData.minOrderReq });
+      }
+      if (!formState.AdvBooking) {
+        updateFormState({ AdvBooking: formData.AdvBooking });
+      }
+    }
+  }, [formData]);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    console.log("Form State before submit:", formState);
+
+    // Prepare the data to save, including services offered
+    const dataToSave = {
+      ...formData,
+      tastingSessions,
+      businessLicenses,
+      foodSafety,
+      minOrderReq,
+      AdvBooking
+    };
+
+    dispatch(saveCateringDetails({ userId, data: dataToSave }) as any);
+    handleContinue();
+  };
+
+
   return (
     <div className="flex h-full w-full flex-col overflow-hidden scrollbar-hide lg:flex-row">
       <div className="scroll-touch items-strech flex w-[100%] flex-col gap-9 overflow-y-scroll bg-[#F7F6F9] scrollbar-hide">
@@ -101,6 +196,7 @@ const Page6 = ({
                     updateFormState({ minOrderReq: option });
                   }}
                   placeholder="Minimum guests required"
+                  selectedOption={formState.minOrderReq || null}
                 />
               </div>
 
@@ -191,8 +287,8 @@ const Page6 = ({
                         ? formState.photos
                         : Array.isArray(formState.photos)
                           ? formState.photos
-                              .map((file: File) => file.name)
-                              .join(", ")
+                            .map((file: File) => file.name)
+                            .join(", ")
                           : (formState.photos as File)?.name
                     }
                     onChange={(e) =>
@@ -375,8 +471,8 @@ const Page6 = ({
                         ? formState.videos
                         : Array.isArray(formState.videos)
                           ? formState.videos
-                              .map((file: File) => file.name)
-                              .join(", ")
+                            .map((file: File) => file.name)
+                            .join(", ")
                           : (formState.videos as File)?.name
                     }
                   />
@@ -401,7 +497,7 @@ const Page6 = ({
                 </div>
 
                 <div className="flex flex-col gap-2">
-                  <p className="text-base font-medium">Buisness Licenses </p>
+                  <p className="text-base font-medium">Business Licenses </p>
                   <div className="flex gap-6">
                     <div className="flex items-center gap-4">
                       <input
@@ -443,7 +539,7 @@ const Page6 = ({
             <div className="items-strech flex flex-row gap-7 self-end">
               <button
                 className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={handleContinue}
+                onClick={handleSubmit}
               >
                 Continue
               </button>

@@ -5,6 +5,10 @@ import { FormState } from "../page";
 import FileInput from "@/components/fileInput";
 import { useEffect } from "react";
 import Dropdown from "../../(components)/Dropdown";
+import { RootState } from "@/redux/store";
+import { fetchCateringData, saveCateringDetails } from "@/redux/cateringSlice";
+import { useDispatch, useSelector } from "react-redux";
+import jwt from "jsonwebtoken";
 
 interface Page6Props {
   formState: FormState;
@@ -37,6 +41,69 @@ const Page6 = ({
     "300-400 persons",
     "> 500 ",
   ];
+
+  const dispatch = useDispatch();
+  const { formData } = useSelector((state: RootState) => state.catering);
+  function getVendorId2(): string | null {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("Token not found");
+      return null;
+    }
+    try {
+      const decodedToken = jwt.decode(token) as {
+        userId?: string;
+        email?: string;
+      };
+      if (!decodedToken || !decodedToken.userId) {
+        console.error("Invalid token or token does not contain userId.");
+        return null;
+      }
+      return decodedToken.userId;
+    } catch (error) {
+      console.error("Error decoding token:", error);
+      return null;
+    }
+  }
+  const userId =  getVendorId2() || "";
+
+  // Fetch data when Page 7 mounts
+  useEffect(() => {
+    if (userId) {
+      dispatch(fetchCateringData(userId) as any);
+    }
+  }, [dispatch, userId]);
+
+  // Update local state based on fetched formData
+  useEffect(() => {
+    if (formData) {
+      if (!termsAndConditions) {
+        updateFormState({ termsAndConditions: formData.termsAndConditions });
+      }
+      if (!clientTestimonials) {
+        updateFormState({ clientTestimonials: formData.clientTestimonials });
+      }
+      if (!cancellationPolicy) {
+        updateFormState({ cancellationPolicy: formData.cancellationPolicy });
+      }
+    }
+  }, [formData, termsAndConditions, clientTestimonials, cancellationPolicy]);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // Prepare data to save
+    const dataToSave = {
+      ...formData,
+      termsAndConditions,
+      clientTestimonials,
+      cancellationPolicy,
+    };
+
+    dispatch(saveCateringDetails({ userId, data: dataToSave }) as any);
+    handleContinue();
+  };
+
 
   const _advbooking = ["Less than a week", "1-2 weeks", "More than 2 weeks"];
   return (
@@ -265,7 +332,7 @@ const Page6 = ({
             <div className="items-strech flex flex-row gap-7 self-end">
               <button
                 className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={handleContinue}
+                onClick={handleSubmit}
               >
                 Continue
               </button>

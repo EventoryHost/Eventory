@@ -4,10 +4,12 @@ import { FormState } from "../page";
 import Appetizers from "../../(components)/Appetizers";
 import { useState, useEffect } from "react";
 import Dropdown from "../../(components)/Dropdown";
+import jwt from "jsonwebtoken";
 
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCateringData, saveCateringDetails } from "../../../../redux/cateringSlice";
 import { AppDispatch, RootState } from "../../../../redux/store";
+import { get } from "http";
 
 
 const _regional = ["Gujrati", "Rajasthani", "Bengali", "Others"];
@@ -38,7 +40,7 @@ type Page1Props = {
   setRegionalSpecialties: React.Dispatch<React.SetStateAction<string[]>>;
   serviceStyles: string[];
   setServiceStyles: React.Dispatch<React.SetStateAction<string[]>>;
-  handleContinue: () => void;
+  handleContinue: () => void;   
 };
 
 const Page1 = ({
@@ -52,14 +54,14 @@ const Page1 = ({
   setRegionalSpecialties,
   serviceStyles,
   setServiceStyles,
-  handleContinue,
+  handleContinue
 }: Page1Props) => {
   const dispatch = useDispatch<AppDispatch>();
   const { formData, loading, error } = useSelector((state: RootState) => state.catering);
 
 
   useEffect(() => {
-    const userId = "page1";
+    const userId = getVendorId2();
     if (userId) {
       // Dispatch fetchCateringData action
       dispatch(fetchCateringData(userId));
@@ -88,7 +90,8 @@ const Page1 = ({
   }, [formData, formState, updateFormState]);
   
   const handleSave = () => {
-    const userId = "page1"; 
+    // Define the userId based on your schema
+    const userId = getVendorId2() || "";
   
     // Define the cateringDetails based on your schema
     const cateringDetails = {
@@ -149,6 +152,28 @@ const Page1 = ({
     // Handle the selected option, e.g., update form state
     setServingCapacity([option]);
   };
+
+  function getVendorId2(): string | null {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("Token not found");
+      return null;
+    }
+    try {
+      const decodedToken = jwt.decode(token) as {
+        userId?: string;
+        email?: string;
+      };
+      if (!decodedToken || !decodedToken.userId) {
+        console.error("Invalid token or token does not contain userId.");
+        return null;
+      }
+      return decodedToken.userId;
+    } catch (error) {
+      console.error("Error decoding token:", error);
+      return null;
+    }
+  }
   return (
     <div className="scroll-touch flex w-full flex-col items-start gap-5 overflow-y-scroll rounded-xl bg-white p-3 scrollbar-hide xs:justify-start md:p-6">
       <h1 className="text-2xl font-semibold">Basic Details</h1>
