@@ -41,7 +41,7 @@ const Form = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    console.log(formData);
+    // console.log(formData);
     try {
       // Send email using Axios
       const emailResponse = await axios.post(
@@ -79,7 +79,7 @@ const Form = () => {
         throw new Error("Failed to send query.");
       }
     } catch (error) {
-      console.error("Error sending message:", error);
+      // console.error("Error sending message:", error);
       toast({
         title: "Error",
         description: "An error occurred while sending your message.",
