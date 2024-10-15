@@ -13,6 +13,7 @@ import { updateBusinessField, setBusinessDetails2 } from "@/redux/businessDetail
 import type { BusinessDetails2 as BusinessDetailsType } from '@/redux/businessDetailsSlice';
 import { RootState } from "@/redux/store";
 import { getBusinessDetails2, addBusinessDetails2 } from "@/services/auth";
+import { get } from "http";
 
 const categories = [
   { value: "caterer", label: "Caterers" },
@@ -100,7 +101,7 @@ const BusinessDetails = () => {
     annualrevenue: "",
   } as businessDetails);
 
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null); // New state for tracking open dropdown
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null); 
 
   const [error, setError] = useState(false);
 
@@ -172,10 +173,14 @@ const BusinessDetails = () => {
       // Decode the token
       const decodedToken = jwt.decode(token) as MyTokenPayload | null;
 
-      if (decodedToken && typeof decodedToken !== 'string' && decodedToken.userId) {
-        const userId = decodedToken.userId;
+      if (decodedToken ) {
+        const userId = getVendorId2() || decodedToken.userId;
 
         saveBusinessDetailsToBackend(userId, businessDetails2);
+        console.log("The user ID is:", userId);
+        console.log("The business details are:", businessDetails2);
+        
+        
       } else {
         console.error("User ID not found in the token.");
       }
@@ -189,7 +194,27 @@ const BusinessDetails = () => {
     dispatch(updateBusinessField({ key, value: event.target.value }));
   };
 
-
+  function getVendorId2(): string | null {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("Token not found");
+      return null;
+    }
+    try {
+      const decodedToken = jwt.decode(token) as {
+        userId?: string;
+        email?: string;
+      };
+      if (!decodedToken || !decodedToken.userId) {
+        console.error("Invalid token or token does not contain userId.");
+        return null;
+      }
+      return decodedToken.userId;
+    } catch (error) {
+      console.error("Error decoding token:", error);
+      return null;
+    }
+  }
 
   const handleBizSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -234,16 +259,9 @@ const BusinessDetails = () => {
 
 
       // Retrieve user information from token
-      const token = localStorage.getItem("token")!;
-      const { id, email } = jwt.decode(token) as {
-        id: string;
-        email: string;
-      };
-      console.log(token);
-      console.log(id);
-      console.log(email);
+      const userId = getVendorId2() || "";
       // Submit business details to the backend
-      await addBusinessDetails2(id, newDetails);
+      await addBusinessDetails2(userId, newDetails);
       // Redirect to the category page after successful submission
       router.push(`/${businessDetails.category}`);
     } catch (error) {
