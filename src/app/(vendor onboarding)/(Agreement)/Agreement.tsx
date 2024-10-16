@@ -430,7 +430,7 @@ const Agreement = ({ setCurrentPage }: PageProps) => {
               </label>
             </div>
             <h2>
-              i agree with{" "}
+              I Agree With{" "}
               <Link
                 className="font-poppins text-[rgba(46,49,146,1)] underline"
                 href="/privacy-policy"

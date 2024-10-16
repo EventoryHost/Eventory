@@ -5,7 +5,7 @@ type Props = {};
 
 const Grow = (props: Props) => {
   return (
-    <div className="flex min-h-[130vh] w-full items-start justify-center mt-9 md:min-h-fit xl:p-9">
+    <div className="mt-9 flex min-h-[130vh] w-full items-start justify-center md:min-h-fit xl:p-9">
       <div className="mt-5 flex w-[90%] flex-col items-center justify-center gap-9 md:flex-row md:p-5">
         <div className="flex w-full flex-col items-center justify-around gap-11 md:w-[50%] md:items-start">
           <h1 className="text-center text-3xl font-bold leading-snug md:text-left md:text-5xl">

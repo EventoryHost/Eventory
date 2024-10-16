@@ -17,8 +17,8 @@ const page = (props: Props) => {
       <Hero />
       <Partner />
       {/* <Works /> */}
-      <HowItWorks/>
-      <Featuredvendors/>
+      <HowItWorks />
+      <Featuredvendors />
       <Categories />
       {/* <Featured /> */}
       <Footer />

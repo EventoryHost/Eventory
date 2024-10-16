@@ -5,8 +5,8 @@ import { ArrowUpRight } from "lucide-react";
 
 export function Partner() {
   return (
-    <div className="flex flex-col-reverse py-7 justify-center items-center gap-3 space-y-4 bg-white md:flex-row-reverse md:space-y-0 md:py-7 lg:gap-8 lg:px-[3rem]">
-      <div className="md:w-[35%] w-[100%]">
+    <div className="flex flex-col-reverse items-center justify-center gap-3 space-y-4 bg-white py-7 md:flex-row-reverse md:space-y-0 md:py-7 lg:gap-8 lg:px-[3rem]">
+      <div className="w-[100%] md:w-[35%]">
         <Image
           alt=""
           src={
@@ -20,13 +20,13 @@ export function Partner() {
         />
       </div>
 
-      <div className="flex flex-1 flex-col md:items-start items-center md:justify-start justify-center gap-5 space-y-3 p-4 pt-6">
+      <div className="flex flex-1 flex-col items-center justify-center gap-5 space-y-3 p-4 pt-6 md:items-start md:justify-start">
         <div className="h-fit">
-          <h2 className="text-3xl md:text-left text-center font-semibold md:text-4xl lg:mb-4 lg:text-[2.5rem]">
-            Your Ultimate Event Planning <br/> Partner
+          <h2 className="text-center text-3xl font-semibold md:text-left md:text-4xl lg:mb-4 lg:text-[2.5rem]">
+            Your Ultimate Event Planning <br /> Partner
           </h2>
         </div>
-        <p className="text-gray-900 md:text-left text-center lg:w-[95%] lg:text-2xl">
+        <p className="text-center text-gray-900 md:text-left lg:w-[95%] lg:text-2xl">
           Our platform connects you with top vendors for a seamless event
           planning experience, ensuring a stress free planning process for
           weddings, corporate events, birthday parties, and any special
@@ -43,4 +43,3 @@ export function Partner() {
     </div>
   );
 }
-

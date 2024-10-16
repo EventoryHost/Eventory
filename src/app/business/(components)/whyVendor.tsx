@@ -5,7 +5,7 @@ type Props = {};
 
 const WhyVendor = (props: Props) => {
   return (
-    <div className="mt-9 flex w-full flex-col bg-gradient-to-b from-[#BFBFEF] to-[#ffffff] px-4 md:px-10 py-9">
+    <div className="mt-9 flex w-full flex-col bg-gradient-to-b from-[#BFBFEF] to-[#ffffff] px-4 py-9 md:px-10">
       <div className="items-start justify-start py-5 text-3xl font-semibold md:text-5xl">
         Why become vendor at <span className="text-[#2E3192]">Eventory</span>
       </div>
