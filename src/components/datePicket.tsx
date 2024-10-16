@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { addDays, format } from "date-fns";
+import { addDays, format, isBefore, startOfDay } from "date-fns";
 import { Calendar as CalendarIcon } from "lucide-react";
 import { DateRange } from "react-day-picker";
 
@@ -21,6 +21,8 @@ export function DatePickerWithRange({
     from: new Date(),
     to: addDays(new Date(), 1),
   });
+
+  const today = startOfDay(new Date());
 
   return (
     <div className={cn("grid gap-2", className)}>
@@ -45,7 +47,7 @@ export function DatePickerWithRange({
                 format(date.from, "LLL dd, y")
               )
             ) : (
-              <span>Pick a date</span>
+              <span>Pick a date range</span>
             )}
           </Button>
         </PopoverTrigger>
@@ -53,10 +55,12 @@ export function DatePickerWithRange({
           <Calendar
             initialFocus
             mode="range"
-            defaultMonth={date?.from}
+            defaultMonth={today}
             selected={date}
             onSelect={setDate}
             numberOfMonths={1}
+            disabled={(date) => isBefore(date, startOfDay(today))}
+            className="custom-calendar"
           />
         </PopoverContent>
       </Popover>
