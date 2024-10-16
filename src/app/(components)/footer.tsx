@@ -13,7 +13,6 @@ type Props = {};
 const Footer = (props: Props) => {
   return (
     <div className="relative flex min-h-fit flex-col items-start justify-start bg-gradient-to-b from-[#605ED8] to-[#2E3192] py-9 md:h-[30vw]">
-      {/* Background image section */}
       <div className="absolute bottom-0 left-0 right-0 h-[50%] w-full">
         <Image
           src={taj}
@@ -27,7 +26,6 @@ const Footer = (props: Props) => {
 
       <div className="mb-7 mt-[3rem] self-center min-h-fit w-[95%] flex flex-col rounded-xl bg-white/20 shadow-lg backdrop-blur-xl md:mt-0 lg:h-[15vw]">
         <section className="flex flex-col gap-9 p-10 lg:flex-row lg:justify-between">
-          {/* Left section with logo and description */}
           <div className="flex w-full flex-col justify-start gap-5 lg:w-[50%]">
             <Image
               width={100}
@@ -63,21 +61,19 @@ const Footer = (props: Props) => {
             </div>
           </div>
 
-          {/* Navigation links for company, vendor, and legal */}
           <div className="flex w-full flex-col gap-9 lg:w-[100%] lg:flex-row lg:items-start lg:justify-around">
-            {/* Company section */}
             <nav className="flex flex-col items-start">
               <h6 className="mb-5 font-bold text-white text-[3.5vw] lg:text-[1.5vw]">Company</h6>
-              <a className="link-hover link">
+              <a className="link-hover link" href={"/about"}>
                 <p className="text-[3vw] text-white lg:text-[1vw]">About Us</p>
               </a>
-              <a className="link-hover link">
+              <a className="link-hover link" href={"EventListing"}>
                 <p className="text-[3vw] text-white lg:text-[1vw]">Events</p>
               </a>
               <a className="link-hover link">
                 <p className="text-[3vw] text-white lg:text-[1vw]">Special Services</p>
               </a>
-              <a className="link-hover link">
+              <a className="link-hover link" href={"/business"}>
                 <p className="text-[3vw] text-white lg:text-[1vw]">Careers</p>
               </a>
               <a className="link-hover link">
@@ -91,13 +87,12 @@ const Footer = (props: Props) => {
               </a>
             </nav>
 
-            {/* Vendor section */}
             <nav className="flex flex-col items-start">
               <h6 className="mb-5 font-bold text-white text-[3.5vw] lg:text-[1.5vw]">Vendor</h6>
               <a className="link-hover link">
                 <p className="text-[3vw] text-white lg:text-[1vw]">Our Mission</p>
               </a>
-              <a className="link-hover link">
+              <a className="link-hover link" href={"/business"}>
                 <p className="text-[3vw] text-white lg:text-[1vw]">Venue Provider</p>
               </a>
               <a className="link-hover link">
@@ -120,7 +115,6 @@ const Footer = (props: Props) => {
               </a>
             </nav>
 
-            {/* Legal section */}
             <nav className="flex flex-col items-start">
               <h6 className="mb-5 font-bold text-white text-[3.5vw] lg:text-[1.5vw]">Legal</h6>
               <a className="link-hover link">
@@ -131,7 +125,6 @@ const Footer = (props: Props) => {
               </a>
             </nav>
 
-            {/* Contacts section */}
             <nav className="flex flex-col items-start">
               <h6 className="mb-5 font-bold text-white text-[3.5vw] lg:text-[1.5vw]">Contacts</h6>
               <a href="tel:+917903646350" className="link-hover link">
@@ -147,9 +140,8 @@ const Footer = (props: Props) => {
           </div>
         </section>
 
-        {/* Footer copyright and bottom image */}
         <section className="w-[100%] border-t flex flex-col items-start justify-between gap-5 text-white px-9 border-white py-[3%] lg:flex-row lg:items-center">
-          <p className="text-[2.5vw] lg:text-[1vw]">©eventory 2024-2025 — All rights reserved.</p>
+          <p className="text-[2.5vw] lg:text-[1vw]">©Eventory 2024-2025 — All rights reserved.</p>
           <Image src={"https://res.cloudinary.com/dlofupmx3/image/upload/v1728572954/download_1_hpix9x.png"} alt="footer" width={100} height={100} />
         </section>
       </div>
