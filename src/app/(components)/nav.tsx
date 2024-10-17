@@ -268,7 +268,7 @@ const Navbar = () => {
         {/* nav List */}
 
         <div
-          className={`nav-elements ${showNavbar && " sm:shadow-2xl md:shadow-none"}`}
+          className={`nav-elements ${showNavbar && "sm:shadow-2xl md:shadow-none"}`}
         >
           <button
             onClick={handleShowNavbar}
