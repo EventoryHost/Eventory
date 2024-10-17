@@ -17,28 +17,28 @@ const items = [
       "It was an unforgettable experience with Eventory. They handled everything flawlessly from start to finish.",
     name: "Aman Gupta",
     image:
-      "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/about-page/moments_01.png",
+      "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/about/moments_01.png",
   },
   {
     message:
       "It was an unforgettable experience with Eventory. They handled everything flawlessly from start to finish.",
     name: "Aman Gupta",
     image:
-      "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/about-page/moments_01.png",
+      "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/about/moments_01.png",
   },
   {
     message:
       "It was an unforgettable experience with Eventory. They handled everything flawlessly from start to finish.",
     name: "Aman Gupta",
     image:
-      "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/about-page/moments_01.png",
+      "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/about/moments_01.png",
   },
   {
     message:
       "It was an unforgettable experience with Eventory. They handled everything flawlessly from start to finish.",
     name: "Aman Gupta",
     image:
-      "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/about-page/moments_01.png",
+      "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/about/moments_01.png",
   },
   // Add more items as needed
 ];

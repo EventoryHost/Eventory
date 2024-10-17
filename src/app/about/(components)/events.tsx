@@ -11,7 +11,7 @@ const testimonials = [
     name: "Charles Dickens",
     title: "A Tale of Two Cities",
     imageUrl:
-      "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/about-page/events_01.png",
+      "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/about/events_01.png",
   },
   {
     quote:
@@ -19,14 +19,14 @@ const testimonials = [
     name: "William Shakespeare",
     title: "Hamlet",
     imageUrl:
-      "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/about-page/events_02.png",
+      "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/about/events_02.png",
   },
   {
     quote: "All that we see or seem is but a dream within a dream.",
     name: "Edgar Allan Poe",
     title: "A Dream Within a Dream",
     imageUrl:
-      "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/about-page/events_03.png",
+      "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/about/events_03.png",
   },
   {
     quote:
@@ -34,7 +34,7 @@ const testimonials = [
     name: "Jane Austen",
     title: "Pride and Prejudice",
     imageUrl:
-      "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/about-page/events_01.png",
+      "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/about/events_01.png",
   },
   {
     quote:
@@ -42,7 +42,7 @@ const testimonials = [
     name: "Herman Melville",
     title: "Moby-Dick",
     imageUrl:
-      "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/about-page/events_02.png",
+      "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/about/events_02.png",
   },
 ];
 

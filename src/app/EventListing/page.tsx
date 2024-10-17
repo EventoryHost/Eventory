@@ -15,7 +15,7 @@ import Footer from "../(components)/footer";
 const CarouselPage = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slides = [
-    "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/caraousel/pic1.png",
+    "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/event_listing/carousel/pic1.png",
     "/landing_page/categories/cat_01.png",
     "/landing_page/categories/cat_02.png",
   ];
@@ -32,23 +32,23 @@ const CarouselPage = () => {
   );
   const images = [
     {
-      src: "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/SE/pic1.jpeg",
+      src: "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/event_listing/special_events/pic1.jpeg",
       text: "Category 1",
     },
     {
-      src: "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/SE/pic2.jpeg",
+      src: "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/event_listing/special_events/pic2.jpeg",
       text: "Category 2",
     },
     {
-      src: "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/SE/pic2.jpeg",
+      src: "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/event_listing/special_events/pic3.jpeg",
       text: "Category 3",
     },
     {
-      src: "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/SE/pic1.jpeg",
+      src: "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/event_listing/special_events/pic1.jpeg",
       text: "Category 4",
     },
     {
-      src: "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/SE/pic3.jpeg",
+      src: "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/event_listing/special_events/pic2.jpeg",
       text: "Category 5",
     },
   ];
@@ -59,49 +59,49 @@ const CarouselPage = () => {
       rating: "4.5",
       price: "4000",
       category: "Wedding cakes , Western suburbs",
-      img: "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/card_01.png",
+      img: "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/event_listing/card/card_01.png",
     },
     {
       name: "Krishna Vendors",
       rating: "4.5",
       price: "5000",
       category: "Wedding cakes , Western suburbs",
-      img: "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/card_01.png",
+      img: "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/event_listing/card/card_01.png",
     },
     {
       name: "Krishna Vendors",
       rating: "4.5",
       price: "6000",
       category: "Wedding cakes , Western suburbs",
-      img: "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/card_01.png",
+      img: "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/event_listing/card/card_01.png",
     },
     {
       name: "Krishna Vendors",
       rating: "4.5",
       price: "7000",
       category: "Wedding cakes , Western suburbs",
-      img: "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/card_01.png",
+      img: "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/event_listing/card/card_01.png",
     },
     {
       name: "Krishna Vendors",
       rating: "4.5",
       price: "8000",
       category: "Wedding cakes , Western suburbs",
-      img: "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/card_01.png",
+      img: "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/event_listing/card/card_01.png",
     },
     {
       name: "Krishna Vendors",
       rating: "4.5",
       price: "9000",
       category: "Wedding cakes , Western suburbs",
-      img: "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/card_01.png",
+      img: "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/event_listing/card/card_01.png",
     },
     {
       name: "Krishna Vendors",
       rating: "4.5",
       price: "4000",
       category: "Wedding cakes , Western suburbs",
-      img: "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/card_01.png",
+      img: "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/event_listing/card/card_01.png",
     },
   ];
 
@@ -118,8 +118,9 @@ const CarouselPage = () => {
             <Image
               src={slide}
               alt={`Slide ${index + 1}`}
-              layout="fill"
-              objectFit="cover"
+              fill
+              style={{ objectFit: "cover" }} 
+              priority
             />
           </div>
         ))}
@@ -163,8 +164,9 @@ const CarouselPage = () => {
                         <Image
                           src={venue.img}
                           alt={venue.name}
-                          layout="fill"
-                          objectFit="cover"
+                          fill
+                          style={{ objectFit: "cover" }} 
+                          priority
                           className="rounded-xl"
                         />
                         <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50 p-4 text-white">
@@ -208,8 +210,9 @@ const CarouselPage = () => {
                         <Image
                           src={venue.img}
                           alt={venue.name}
-                          layout="fill"
-                          objectFit="cover"
+                          fill
+                          style={{ objectFit: "cover" }} 
+                          priority
                           className="rounded-xl"
                         />
                       </div>

@@ -48,7 +48,7 @@ const SignUp = (props: Props) => {
         </div>
         <div className="relative h-[10rem] lg:w-full">
           <img
-            src={"https://eventory-bucket.s3.ap-south-1.amazonaws.com/public/caterer/tajmahal.png"}
+            src={"https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/customer_onboarding/tajmahal.png"}
             alt=""
             className="h-full w-full object-cover"
           />

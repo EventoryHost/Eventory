@@ -19,7 +19,7 @@ const Works = (props: Props) => {
             <Image
               width={200}
               height={200}
-              src="https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/landing-page/works/works_01.svg"
+              src="https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/landing_page/works_images/works_01.svg"
               alt="Explore"
             />
           </div>
@@ -36,7 +36,7 @@ const Works = (props: Props) => {
             <Image
               width={350}
               height={350}
-              src="https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/landing-page/works/works_02.svg"
+              src="https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/landing_page/works_images/works_02.svg"
               alt="Evaluate"
             />
           </div>
@@ -53,7 +53,7 @@ const Works = (props: Props) => {
             <Image
               width={300}
               height={300}
-              src="https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/landing-page/works/works_03.svg"
+              src="https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/landing_page/works_images/works_03.svg"
               alt="Secure"
             />
           </div>

@@ -72,7 +72,7 @@ const handlePayment = async (
     const options = {
       key: process.env.NEXT_PUBLIC_RAZORPAY_KEY as string,
       image:
-        "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/Logo.png",
+        "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/logo/Logo.png",
       amount: parseFloat(amount) * 100,
       currency: "INR",
       name: "Eventory",

@@ -78,13 +78,13 @@ const FilterSection: React.FC<FilterSectionProps> = ({
                   <>
                     {selectedFilters.includes(filter) ? (
                       <img
-                        src={"https://eventory-bucket.s3.ap-south-1.amazonaws.com/public/selection/Checkbor.png"}
+                        src={"https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/components/selection/Checkbor.png"}
                         alt={filter}
                         className="h-5 w-5"
                       />
                     ) : (
                       <img
-                        src={"https://eventory-bucket.s3.ap-south-1.amazonaws.com/public/selection/Checkbor_1.png"}
+                        src={"https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/components/selection/Checkbor.png"}
                         alt={filter}
                         className="h-5 w-5"
                       />
@@ -94,13 +94,13 @@ const FilterSection: React.FC<FilterSectionProps> = ({
                   <>
                     {selectedFilters.includes(filter) ? (
                       <img
-                        src={"https://eventory-bucket.s3.ap-south-1.amazonaws.com/public/selection/Choice_1.png"}
+                        src={"https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/components/selection/Choice_1.png"}
                         alt={filter}
                         className="h-5 w-5"
                       />
                     ) : (
                       <img
-                        src={"https://eventory-bucket.s3.ap-south-1.amazonaws.com/public/selection/Choice.png"}
+                        src={"https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/components/selection/Choice.png"}
                         alt={filter}
                         className="h-5 w-5"
                       />

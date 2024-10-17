@@ -5,7 +5,6 @@ import Image from "next/image";
 import jwt from "jsonwebtoken";
 import { useRouter } from "next/navigation";
 import { addBusinessDetails } from "@/services/auth";
-import tajmahal from "/public/tajmahal.png";
 import { useToast } from "@/components/hooks/use-toast";
 import MultipleDropdown from "./(componets)/MultiDropdown2";
 
@@ -196,7 +195,7 @@ const BusinessDetails = () => {
         </div>
         <div className="relative h-[10rem] lg:w-full">
           <Image
-            src={tajmahal}
+            src={"https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/vendor_onboarding/tajmahal.png"}
             alt="Image of Indian monuments"
             className="h-full w-full object-cover"
           />

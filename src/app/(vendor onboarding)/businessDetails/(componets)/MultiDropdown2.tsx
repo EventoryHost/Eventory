@@ -113,9 +113,9 @@ const MultipleDropdown: React.FC<MultipleDropdownProps> = ({
                 {selectedOptions.some(
                   (selected) => selected.value === option.value,
                 ) ? (
-                  <img src={"/selection/Choice_2.svg"} className="h-5 w-5" />
+                  <img src={"https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/components/selection/Choice_2.svg"} alt="" className="h-5 w-5" />
                 ) : (
-                  <img src={"/selection/Choice.svg"} className="h-5 w-5" />
+                  <img src={"https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/components/selection/Choice.svg"} alt="" className="h-5 w-5" />
                 )}
                 {option.label}
               </li>
