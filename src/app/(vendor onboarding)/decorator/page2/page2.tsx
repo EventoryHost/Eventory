@@ -90,21 +90,10 @@ const Page2: React.FC<Page2Props> = ({
       dispatch(fetchDecoratorData(userId));
     }
   }, [dispatch]);
-
   useEffect(() => {
-      console.log("propthemesOffered Changed:", formState.propthemesOffered);
-      
-  },[formState.propthemesOffered]);
-
-  useEffect(() => {
-    console.log("Fetched formData:", formData);
   
     // Check if formData is defined and log each property
     if (formData) {
-      Object.entries(formData).forEach(([key, value]) => {
-        console.log(`Key: ${key}, Value: ${value}`);
-      });
-  
       // Update form state with fetched data
       if (formData.themesOffered) setThemesOffered(formData.themesOffered);
       updateFormState({

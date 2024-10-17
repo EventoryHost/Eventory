@@ -3,6 +3,12 @@
 import FileInput from "@/components/fileInput";
 import Dropdown from "../../(components)/Dropdown";
 import { ArrowLeft } from "lucide-react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/redux/store";
+import jwt from "jsonwebtoken";
+import { fetchDecoratorData, saveDecoratorDetails } from "@/redux/decoratorSlice";
+import { useEffect } from "react";
+
 
 interface FormState {
   photos: string | File | File[];
@@ -44,6 +50,92 @@ const Page6: React.FC<Page6Props> = ({
     writtenthemeproposalafterconsultaion,
     revisionforinitialthemeproposal,
   } = formState;
+
+  const dispatch = useDispatch<AppDispatch>();
+  const { formData, loading, error} = useSelector((state: RootState) => state.decorator);
+
+  function getVendorId2(): string | null {
+    if (typeof window === "undefined") {
+      // This code is running on the server, so skip localStorage access
+      return null;
+    }
+
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("Token not found");
+      return null;
+    }
+
+    try {
+      const decodedToken = jwt.decode(token) as {
+        userId?: string;
+        email?: string;
+      };
+      if (!decodedToken || !decodedToken.userId) {
+        console.error("Invalid token or token does not contain userId.");
+        return null;
+      }
+      return decodedToken.userId;
+    } catch (error) {
+      console.error("Error decoding token:", error);
+      return null;
+    }
+  }
+  const userId = getVendorId2() || "";
+
+  useEffect(() => {
+    // Fetch decorator data when component mounts
+    if (userId) {
+      dispatch(fetchDecoratorData(userId));
+    }
+  }, [dispatch]);
+
+  useEffect(() => {
+    console.log("Fetched formData:", formData);
+  
+    // Check if formData is defined and log each property
+    if (formData) {
+      Object.entries(formData).forEach(([key, value]) => {
+        console.log(`Key: ${key}, Value: ${value}`);
+      });
+  
+      // if (formData.themesElements) setThemesElements(formData.themesElements);
+
+      updateFormState({
+        photos: formData.photos ?? "",
+        videos: formData.videos ?? "",
+        websiteurl: formData.websiteurl ?? "",
+        intstagramurl: formData.intstagramurl ?? "",
+        clientTestimonials: formData.clientTestimonials ?? "",
+        Recongnition_awards: formData.Recongnition_awards ?? "",
+        advbookingperiod: formData.advbookingperiod ?? "",
+        writtenthemeproposalafterconsultaion: formData.writtenthemeproposalafterconsultaion ?? false,
+        revisionforinitialthemeproposal: formData.revisionforinitialthemeproposal ?? false,
+      });
+    } else {
+      console.log("formData is undefined or null");
+    }
+  }, [formData]);
+  
+
+  const onContinue = () => {
+    const userId = getVendorId2() || "";
+    const decoratorDetails = {
+      photos,
+      videos,
+      websiteurl,
+      intstagramurl,
+      clientTestimonials,
+      Recongnition_awards,
+      advbookingperiod,
+      writtenthemeproposalafterconsultaion,
+      revisionforinitialthemeproposal,
+    };
+    
+    
+    dispatch(saveDecoratorDetails({ userId, data: decoratorDetails }) as any);
+    handleContinue();
+  };
 
   const handledropdownadvbookingperiod = (value: string) => {
     updateFormState({ advbookingperiod: value });
@@ -135,6 +227,7 @@ const Page6: React.FC<Page6Props> = ({
                   onChange={(e) =>
                     updateFormState({ clientTestimonials: e.target.value })
                   }
+                  defaultValue={clientTestimonials}
                 />
               </div>
               <div className="flex min-w-[45%] flex-col gap-4">
@@ -149,6 +242,7 @@ const Page6: React.FC<Page6Props> = ({
                   onChange={(e) =>
                     updateFormState({ Recongnition_awards: e.target.value })
                   }
+                  defaultValue={Recongnition_awards}
                 />
               </div>
             </div>
@@ -165,6 +259,7 @@ const Page6: React.FC<Page6Props> = ({
                   onChange={(e) =>
                     updateFormState({ intstagramurl: e.target.value })
                   }
+                  defaultValue={intstagramurl}
                 />
               </div>
               <div className="flex min-w-[45%] flex-col gap-4">
@@ -179,6 +274,7 @@ const Page6: React.FC<Page6Props> = ({
                   onChange={(e) =>
                     updateFormState({ websiteurl: e.target.value })
                   }
+                  defaultValue={websiteurl}
                 />
               </div>
             </div>
@@ -193,6 +289,7 @@ const Page6: React.FC<Page6Props> = ({
                     handledropdownadvbookingperiod(value)
                   }
                   placeholder="Select Your Advance Booking Period"
+                  selectedOption={advbookingperiod}
                 />
               </div>
             </div>
@@ -265,7 +362,7 @@ const Page6: React.FC<Page6Props> = ({
               </button>
               <button
                 className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={handleContinue}
+                onClick={onContinue}
               >
                 Continue
               </button>
