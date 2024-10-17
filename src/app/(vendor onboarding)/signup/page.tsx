@@ -265,7 +265,7 @@ const SignUp = () => {
                       href={"/login"}
                       className="font-semibold text-[#2E3192]"
                     >
-                      Log In
+                      Log-In
                     </Link>
                   </div>
                   <button

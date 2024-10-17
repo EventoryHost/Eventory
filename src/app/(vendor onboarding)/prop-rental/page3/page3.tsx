@@ -207,11 +207,10 @@ function Page3({
                 setSelectedCategory("Furniture & Decor");
                 handleCategorySelection("Furniture & Decor");
               }}
-              className={`rounded-full px-4 py-2 text-[#2E3192] ${
-                selectedCategory === "Furniture & Decor"
-                  ? "bg-[#2E3192] text-white"
-                  : ""
-              }`}
+              className={`rounded-full px-4 py-2 text-[#2E3192] ${selectedCategory === "Furniture & Decor"
+                ? "bg-[#2E3192] text-white"
+                : ""
+                }`}
             >
               Furniture & Decor
             </button>
@@ -220,11 +219,10 @@ function Page3({
                 setSelectedCategory("Tent and Canopy");
                 handleCategorySelection("Tent and Canopy");
               }}
-              className={`rounded-full px-4 py-2 text-[#2E3192] ${
-                selectedCategory === "Tent and Canopy"
-                  ? "bg-[#2E3192] text-white"
-                  : ""
-              }`}
+              className={`rounded-full px-4 py-2 text-[#2E3192] ${selectedCategory === "Tent and Canopy"
+                ? "bg-[#2E3192] text-white"
+                : ""
+                }`}
             >
               Tent and Canopy
             </button>
@@ -233,11 +231,10 @@ function Page3({
                 setSelectedCategory("Audio-Visual");
                 handleCategorySelection("Audio-Visual");
               }}
-              className={`rounded-full px-4 py-2 text-[#2E3192] ${
-                selectedCategory === "Audio-Visual"
-                  ? "bg-[#2E3192] text-white"
-                  : ""
-              }`}
+              className={`rounded-full px-4 py-2 text-[#2E3192] ${selectedCategory === "Audio-Visual"
+                ? "bg-[#2E3192] text-white"
+                : ""
+                }`}
             >
               Audio-Visual
             </button>
@@ -509,8 +506,8 @@ function Page3({
                       ? formState.photos
                       : Array.isArray(formState.photos)
                         ? formState.photos
-                            .map((file: File) => file.name)
-                            .join(", ")
+                          .map((file: File) => file.name)
+                          .join(", ")
                         : (formState.photos as File)?.name
                   }
                 />
@@ -616,8 +613,8 @@ function Page3({
                       ? formState.videos
                       : Array.isArray(formState.videos)
                         ? formState.videos
-                            .map((file: File) => file.name)
-                            .join(", ")
+                          .map((file: File) => file.name)
+                          .join(", ")
                         : (formState.videos as File)?.name
                   }
                 />
@@ -719,8 +716,8 @@ function Page3({
                       ? formState.termsAndConditions
                       : Array.isArray(formState.termsAndConditions)
                         ? formState.termsAndConditions
-                            .map((file: File) => file.name)
-                            .join(", ")
+                          .map((file: File) => file.name)
+                          .join(", ")
                         : (formState.termsAndConditions as File)?.name
                   }
                   className="w-[95%] rounded-xl border-2 border-gray-300 p-3"
@@ -789,13 +786,19 @@ function Page3({
                       ? formState.cancellationPolicy
                       : Array.isArray(formState.cancellationPolicy)
                         ? formState.cancellationPolicy
-                            .map((file: File) => file.name)
-                            .join(", ")
+                          .map((file: File) => file.name)
+                          .join(", ")
                         : (formState.cancellationPolicy as File)?.name
                   }
                 ></textarea>
               </div>
               <div className="items-strech flex flex-row gap-7 self-end">
+                <button
+                  className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+                  onClick={() => setCurrentPage(currentPage - 1)}
+                >
+                  Back
+                </button>
                 <button
                   className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
                   onClick={() => {
