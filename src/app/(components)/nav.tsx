@@ -33,10 +33,10 @@ const Navbar = () => {
     handleResize();
 
     // Add event listener to handle resize
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
