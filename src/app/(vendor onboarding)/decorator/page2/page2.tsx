@@ -1,9 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import Appetizers from "../../(components)/Appetizers";
 import { ArrowLeft } from "lucide-react";
-import Dropdown from "../../(components)/Dropdown";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/redux/store";
+import jwt from "jsonwebtoken";
+import { fetchDecoratorData , saveDecoratorDetails, updateFormData } from "@/redux/decoratorSlice";
+
 
 const _themesOffered = [
   "Art Deco",
@@ -45,6 +49,93 @@ const Page2: React.FC<Page2Props> = ({
   setThemesOffered,
   handleContinue,
 }) => {
+
+
+
+  const dispatch = useDispatch<AppDispatch>();
+  const { formData, loading, error} = useSelector((state: RootState) => state.decorator);
+
+  function getVendorId2(): string | null {
+    if (typeof window === "undefined") {
+      // This code is running on the server, so skip localStorage access
+      return null;
+    }
+
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("Token not found");
+      return null;
+    }
+
+    try {
+      const decodedToken = jwt.decode(token) as {
+        userId?: string;
+        email?: string;
+      };
+      if (!decodedToken || !decodedToken.userId) {
+        console.error("Invalid token or token does not contain userId.");
+        return null;
+      }
+      return decodedToken.userId;
+    } catch (error) {
+      console.error("Error decoding token:", error);
+      return null;
+    }
+  }
+
+  useEffect(() => {
+    const userId = getVendorId2() || "";
+    // Fetch decorator data when component mounts
+    if (userId) {
+      dispatch(fetchDecoratorData(userId));
+    }
+  }, [dispatch]);
+
+  useEffect(() => {
+      console.log("propthemesOffered Changed:", formState.propthemesOffered);
+      
+  },[formState.propthemesOffered]);
+
+  useEffect(() => {
+    console.log("Fetched formData:", formData);
+  
+    // Check if formData is defined and log each property
+    if (formData) {
+      Object.entries(formData).forEach(([key, value]) => {
+        console.log(`Key: ${key}, Value: ${value}`);
+      });
+  
+      // Update form state with fetched data
+      if (formData.themesOffered) setThemesOffered(formData.themesOffered);
+      updateFormState({
+        propthemesOffered: formData.propthemesOffered ?? false,
+        adobtThemes: formData.adobtThemes ?? false,
+        colorschmes: formData.colorschmes ?? false,
+        customizationsThemes: formData.customizationsThemes ?? false,
+        customDesignProcess: formData.customDesignProcess ?? "",
+      });
+    } else {
+      console.log("formData is undefined or null");
+    }
+  }, [formData]);
+  
+
+  const onContinue = () => {
+    const userId = getVendorId2() || "";
+    const decoratorDetails = {
+      themesOffered,
+      propthemesOffered: formState.propthemesOffered,
+      adobtThemes: formState.adobtThemes,
+      colorschmes: formState.colorschmes,
+      customizationsThemes: formState.customizationsThemes,
+      customDesignProcess: formState.customDesignProcess,
+    
+    }
+    dispatch(saveDecoratorDetails({ userId, data: decoratorDetails }) as any);
+    handleContinue();
+  };
+
+
   const {
     propthemesOffered,
     adobtThemes,
@@ -216,7 +307,7 @@ const Page2: React.FC<Page2Props> = ({
               </button>
               <button
                 className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={handleContinue}
+                onClick={onContinue}
               >
                 Continue
               </button>
