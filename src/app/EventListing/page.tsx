@@ -76,7 +76,6 @@ const CarouselPage = () => {
       name: "Weddings",
 
       img: "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/event_listing/popular_events/weddings.png",
-      
     },
     {
       name: "Corporate",
@@ -147,8 +146,8 @@ const CarouselPage = () => {
                           <Image
                             src={venue.img}
                             alt={venue.name}
-                            fill 
-                            style={{ objectFit: "cover" }} 
+                            fill
+                            style={{ objectFit: "cover" }}
                             className="rounded-xl"
                           />
 
@@ -197,8 +196,8 @@ const CarouselPage = () => {
                           <Image
                             src={venue.img}
                             alt={venue.name}
-                            fill 
-                            style={{ objectFit: "cover" }} 
+                            fill
+                            style={{ objectFit: "cover" }}
                             className="rounded-xl"
                           />
                         </a>

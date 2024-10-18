@@ -483,7 +483,9 @@ const Page = () => {
           </div>
           <div className="relative h-[10rem] lg:w-full">
             <Image
-              src={"https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/vendor_onboarding/tajmahal.png"}
+              src={
+                "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/vendor_onboarding/tajmahal.png"
+              }
               alt=""
               width={400}
               height={200}
