@@ -10,7 +10,7 @@ const ImageRow = (props: Props) => {
         <Image
           key={index}
           src={
-            "https://res.cloudinary.com/dlofupmx3/image/upload/v1727962076/image_233_ryiwbb.png"
+            "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/about/girl.png"
           }
           width={200}
           height={200}

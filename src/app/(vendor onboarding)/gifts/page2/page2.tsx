@@ -102,7 +102,7 @@ const Page2: React.FC<PageProps> = ({
         </div>
         <div className="relative h-48">
           <img
-            src={"/tajmahal.png"}
+            src={"https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/vendor_onboarding/tajmahal.png"}
             alt="Taj Mahal"
             className="h-full w-full object-cover"
           />

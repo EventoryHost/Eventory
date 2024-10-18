@@ -37,7 +37,7 @@ const WhyUs = (props: Props) => {
             </p>
             <Image
               src={
-                "https://res.cloudinary.com/dlofupmx3/image/upload/v1727963960/undraw_Innovative_re_rr5i-removebg-preview_1_tgrejg.png"
+                "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/about/why_us_1.png"
               }
               width={300}
               height={300}
@@ -57,7 +57,7 @@ const WhyUs = (props: Props) => {
             <p className="text-2xl font-medium text-white">Customer Focus</p>
             <Image
               src={
-                "https://res.cloudinary.com/dlofupmx3/image/upload/v1727963960/Group_1000000802_ywh9sm.png"
+                "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/about/why_us_2.png"
               }
               width={300}
               height={300}
@@ -79,7 +79,7 @@ const WhyUs = (props: Props) => {
             </p>
             <Image
               src={
-                "https://res.cloudinary.com/dlofupmx3/image/upload/v1727963960/undraw_Collaborators_re_hont-removebg-preview_2_stna4j.png"
+                "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/about/why_us_3.png"
               }
               width={300}
               height={300}
