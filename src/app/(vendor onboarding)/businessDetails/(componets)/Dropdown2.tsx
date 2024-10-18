@@ -43,7 +43,7 @@ const Dropdown: React.FC<DropdownProps> = ({
       </button>
 
       {isOpen && (
-        <div className="absolute z-10 mt-1 w-full rounded-md bg-white shadow-lg">
+        <div className="absolute z-10 mt-2 w-full rounded-md bg-white shadow-lg">
           <ul className="max-h-60 overflow-auto rounded-md py-1 text-base focus:outline-none sm:text-sm">
             {options.map((option) => (
               <li
@@ -56,9 +56,21 @@ const Dropdown: React.FC<DropdownProps> = ({
                 onClick={() => handleSelect(option)}
               >
                 {selectedOption?.value === option.value ? (
-                  <img src={"https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/components/selection/Choice_2.svg"} alt="" className="h-5 w-5" />
+                  <img
+                    src={
+                      "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/components/selection/Choice_2.svg"
+                    }
+                    alt=""
+                    className="h-5 w-5"
+                  />
                 ) : (
-                  <img src={"https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/components/selection/Choice.svg"} alt="" className="h-5 w-5" />
+                  <img
+                    src={
+                      "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/components/selection/Choice.svg"
+                    }
+                    alt=""
+                    className="h-5 w-5"
+                  />
                 )}
 
                 {option.label}

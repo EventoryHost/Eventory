@@ -81,7 +81,9 @@ const Preview: React.FC<PreviewProps> = ({
         </div>
         <div className="relative h-48">
           <img
-            src={"https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/vendor_onboarding/tajmahal.png"}
+            src={
+              "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/vendor_onboarding/tajmahal.png"
+            }
             alt="Taj Mahal"
             className="h-full w-full object-cover"
           />

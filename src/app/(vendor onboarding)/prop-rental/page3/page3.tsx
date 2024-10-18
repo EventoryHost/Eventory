@@ -797,6 +797,12 @@ function Page3({
               </div>
               <div className="items-strech flex flex-row gap-7 self-end">
                 <button
+                  className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+                  onClick={() => setCurrentPage(currentPage - 1)}
+                >
+                  Back
+                </button>
+                <button
                   className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
                   onClick={() => {
                     console.log(

@@ -1,7 +1,7 @@
 "use client";
 import "../globals.css";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import "./navbar.css";
@@ -18,10 +18,27 @@ const Navbar = () => {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<Categories[]>([]);
   const [isVisible, setIsVisible] = useState(false);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
 
   const handleShowNavbar = () => {
     setShowNavbar(!showNavbar);
   };
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth < 768); // 768px is the md breakpoint
+    };
+
+    // Check screen size on initial load
+    handleResize();
+
+    // Add event listener to handle resize
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const pathname = usePathname();
 
@@ -324,8 +341,8 @@ const Navbar = () => {
           </button>
           <div className="flex w-auto items-center justify-center">
             <ul
-              onClick={handleShowNavbar}
-              className={`${showNavbar && "item-start flex"}`}
+              onClick={isSmallScreen ? handleShowNavbar : undefined}
+              className={"item-start flex"}
             >
               <li className="top-margin">
                 <Link href={"/about"}>

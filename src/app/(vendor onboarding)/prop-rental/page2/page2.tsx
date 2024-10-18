@@ -226,7 +226,7 @@ const Page2: React.FC<page2Props> = ({
           Services you provide?<span className="text-red-500">*</span>
         </label>
 
-        <div className="flex min-h-full min-w-full flex-col items-center">
+        <div className="flex min-h-full min-w-full flex-col items-center gap-5">
           <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
             <Appetizers
               field={"additionalServices"}
@@ -235,17 +235,17 @@ const Page2: React.FC<page2Props> = ({
               setSelectedAppetizers={setServiceProvided}
             />
           </div>
-          <div className="items-strech flex flex-row gap-7 self-end">
+
+          <div className="items-strech mt-8 flex flex-row gap-7 self-end">
+            <button
+              className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+              onClick={() => setCurrentPage(currentPage - 1)}
+            >
+              Back
+            </button>
             <button
               className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
               onClick={() => {
-                console.log(
-                  formState.customization,
-                  formState.itemCatalogue,
-                  formState.maintenance,
-                  formState.services,
-                  serviceProvided,
-                );
                 setCurrentPage(currentPage + 1);
               }}
             >

@@ -116,7 +116,7 @@ const Agreement = ({ setCurrentPage }: PageProps) => {
                 is entered into as of{" "}
                 <strong>{new Date().toLocaleDateString()}</strong> between:
               </p>
-
+              <br />
               <p>
                 <strong>Eventory</strong> (&quot;<strong>Platform</strong>&quot;
                 or &quot;
@@ -138,7 +138,7 @@ const Agreement = ({ setCurrentPage }: PageProps) => {
                 Collectively referred to as the &quot;<strong>Parties</strong>
                 &quot; and individually as a &quot;<strong>Party</strong>.&quot;
               </p>
-
+              <br />
               <strong>1. Definitions</strong>
               <ul>
                 <li>
@@ -164,7 +164,7 @@ const Agreement = ({ setCurrentPage }: PageProps) => {
                   goods or services offered by the Vendor.
                 </li>
               </ul>
-
+              <br />
               <strong>2. Scope of Services</strong>
               <ul>
                 <li>
@@ -179,7 +179,7 @@ const Agreement = ({ setCurrentPage }: PageProps) => {
                   regulatory requirements.
                 </li>
               </ul>
-
+              <br />
               <strong>3. Term and Termination</strong>
               <ul>
                 <li>
@@ -212,7 +212,7 @@ const Agreement = ({ setCurrentPage }: PageProps) => {
                   all commitments made prior to the date of termination.
                 </li>
               </ul>
-
+              <br />
               <strong>4. Payment and Commission</strong>
               <ul>
                 <li>
@@ -237,7 +237,7 @@ const Agreement = ({ setCurrentPage }: PageProps) => {
                   services, minus the applicable commission.
                 </li>
               </ul>
-
+              <br />
               <strong>5. Vendor Obligations</strong>
               <ul>
                 <li>
@@ -264,7 +264,7 @@ const Agreement = ({ setCurrentPage }: PageProps) => {
                   Agreement.
                 </li>
               </ul>
-
+              <br />
               <strong>
                 6. Cancellation, Refund, and Booking Guarantee Policy
               </strong>
@@ -284,7 +284,7 @@ const Agreement = ({ setCurrentPage }: PageProps) => {
                   made.
                 </li>
               </ul>
-
+              <br />
               <strong>7. Vendor’s Representation and Warranties</strong>
               <ul>
                 <li>
@@ -303,7 +303,7 @@ const Agreement = ({ setCurrentPage }: PageProps) => {
                   performance of its services.
                 </li>
               </ul>
-
+              <br />
               <strong>8. Vendor Visibility, Booking Numbers, and ROI</strong>
               <ul>
                 <li>
@@ -318,7 +318,7 @@ const Agreement = ({ setCurrentPage }: PageProps) => {
                   preferences and service quality.
                 </li>
               </ul>
-
+              <br />
               <strong>9. Dispute Resolution</strong>
               <ul>
                 <li>
@@ -332,13 +332,13 @@ const Agreement = ({ setCurrentPage }: PageProps) => {
                   accordance with the rules of [Arbitration Body].
                 </li>
               </ul>
-
-              <strong>10. Governing Law</strong>
+              <br />
+              <strong className="my-6">10. Governing Law</strong>
               <p>
                 This Agreement shall be governed by and construed in accordance
                 with the laws of India.
               </p>
-
+              <br />
               <strong>11. Miscellaneous</strong>
               <ul>
                 <li>
@@ -356,6 +356,7 @@ const Agreement = ({ setCurrentPage }: PageProps) => {
                   supersedes all prior agreements and understandings.
                 </li>
               </ul>
+              <br />
               <strong style={{ marginTop: "30px" }}>
                 <strong>IN WITNESS WHEREOF</strong>
               </strong>
@@ -430,7 +431,7 @@ const Agreement = ({ setCurrentPage }: PageProps) => {
               </label>
             </div>
             <h2>
-              i agree with{" "}
+              I Agree With{" "}
               <Link
                 className="font-poppins text-[rgba(46,49,146,1)] underline"
                 href="/privacy-policy"
