@@ -106,8 +106,9 @@ const Page2 = ({
             {_veg.map((option) => (
               <li
                 key={option}
-                className={`relative flex cursor-pointer select-none items-center gap-1 py-2 pl-3 pr-9 ${veg.includes(option) ? "text-black" : "text-gray-900"
-                  }`}
+                className={`relative flex cursor-pointer select-none items-center gap-1 py-2 pl-3 pr-9 ${
+                  veg.includes(option) ? "text-black" : "text-gray-900"
+                }`}
                 onClick={() => setVeg([option])}
               >
                 {veg.includes(option) ? (

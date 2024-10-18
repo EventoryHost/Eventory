@@ -8,43 +8,43 @@ const Hero = (props: Props) => {
     <div className="abhero relative flex min-h-[90vh] min-w-full items-center justify-center">
       {/* Random positioned images surrounding the hero */}
       <img
-        src="https://res.cloudinary.com/dlofupmx3/image/upload/v1727962076/image_233_ryiwbb.png"
+        src="https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/business/girl.png"
         alt="random image 1"
         className="absolute left-5 top-10 hidden h-[100px] w-[100px] object-contain md:block"
       />
       <img
-        src="https://res.cloudinary.com/dlofupmx3/image/upload/v1727962076/image_233_ryiwbb.png"
+        src="https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/business/girl.png"
         alt="random image 2"
         className="top-15 absolute left-20 hidden h-[100px] w-[100px] object-contain md:block"
       />
       <img
-        src="https://res.cloudinary.com/dlofupmx3/image/upload/v1727962076/image_233_ryiwbb.png"
+        src="https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/business/girl.png"
         alt="random image 3"
         className="absolute top-10 hidden h-[100px] w-[100px] object-contain md:block"
       />
       <img
-        src="https://res.cloudinary.com/dlofupmx3/image/upload/v1727962076/image_233_ryiwbb.png"
+        src="https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/business/girl.png"
         alt="random image 4"
         className="absolute right-10 top-20 hidden h-[80px] w-[80px] object-contain md:block"
       />
       <img
-        src="https://res.cloudinary.com/dlofupmx3/image/upload/v1727962076/image_233_ryiwbb.png"
+        src="https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/business/girl.png"
         alt="random image 5"
         className="absolute bottom-16 left-10 hidden h-[60px] w-[60px] object-contain md:block"
       />
       <img
-        src="https://res.cloudinary.com/dlofupmx3/image/upload/v1727962076/image_233_ryiwbb.png"
+        src="https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/business/girl.png"
         alt="random image 6"
         className="absolute bottom-5 right-20 hidden h-[90px] w-[90px] object-contain md:block"
       />
       {/* Additional images */}
       <img
-        src="https://res.cloudinary.com/dlofupmx3/image/upload/v1727962076/image_233_ryiwbb.png"
+        src="https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/business/girl.png"
         alt="random image 7"
         className="absolute right-5 top-5 block h-[110px] w-[110px] object-contain md:hidden"
       />
       <img
-        src="https://res.cloudinary.com/dlofupmx3/image/upload/v1727962076/image_233_ryiwbb.png"
+        src="https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/business/girl.png"
         alt="random image 8"
         className="right-30 absolute bottom-10 hidden h-[90px] w-[90px] object-contain md:block"
       />

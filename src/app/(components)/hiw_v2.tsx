@@ -8,9 +8,9 @@ type Props = {};
 const HowItWorks = (props: Props) => {
   const [activeStep, setActiveStep] = useState(1);
   const images = [
-    "https://res.cloudinary.com/dlofupmx3/image/upload/v1727812370/Frame_1430106705_z6bqlf.png",
-    "https://res.cloudinary.com/dlofupmx3/image/upload/v1727813140/Frame_1430106705_1_rjxqen.png",
-    "https://res.cloudinary.com/dlofupmx3/image/upload/v1727813140/Frame_1430106705_2_jznhnj.png",
+    "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/landing_page/works_images/img1.png",
+    "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/landing_page/works_images/img2.png",
+    "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/landing_page/works_images/img3.png",
   ];
 
   return (

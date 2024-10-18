@@ -27,7 +27,7 @@ const Hero = (props: Props) => {
         </div>
         <div className="xs:mt-[-20px] md:mt-0 md:block md:w-[60%]">
           <img
-            src="https://d1u34m45xfa3ar.cloudfront.net/website/about-page/about_hero.png"
+            src="https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/about/about_hero.png"
             alt="Event"
             className="h-full w-full md:object-cover"
           />

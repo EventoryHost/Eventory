@@ -15,7 +15,7 @@ const Footer = (props: Props) => {
     <div className="relative flex min-h-fit flex-col items-start justify-start bg-gradient-to-b from-[#605ED8] to-[#2E3192] py-9 md:h-[30vw]">
       <div className="absolute bottom-0 left-0 right-0 h-[50%] w-full">
         <Image
-          src={taj}
+          src="https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/footer/footerbg.png"
           alt="Footer background"
           layout="fill"
           objectFit="cover"
@@ -30,7 +30,7 @@ const Footer = (props: Props) => {
             <Image
               width={100}
               height={100}
-              src="/footer/footer-logo-01.svg"
+              src="https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/footer/footer-logo-01.svg"
               alt="Eventory logo"
               className="h-[9vw] w-[6vw] mix-blend-multiply"
             />
@@ -176,7 +176,7 @@ const Footer = (props: Props) => {
           </p>
           <Image
             src={
-              "https://res.cloudinary.com/dlofupmx3/image/upload/v1728572954/download_1_hpix9x.png"
+              "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/footer/startup_logo.png"
             }
             alt="footer"
             width={100}

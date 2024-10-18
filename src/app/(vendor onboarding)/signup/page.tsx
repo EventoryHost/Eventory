@@ -6,7 +6,6 @@ import Image from "next/image";
 import jwt from "jsonwebtoken";
 import auth from "@/services/auth";
 import OtpModal from "@/components/ui/otp-modal";
-import tajmahal from "/public/tajmahal.png";
 import { useRouter } from "next/navigation";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -169,7 +168,9 @@ const SignUp = () => {
         </div>
         <div className="relative h-[14rem] lg:w-full">
           <Image
-            src={tajmahal}
+            src={
+              "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/vendor_onboarding/tajmahal.png"
+            }
             alt="Image of Indian monuments"
             className="h-full w-full object-cover"
           />

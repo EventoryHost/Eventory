@@ -18,7 +18,13 @@ const FileDisplay: React.FC<FileDisplayProps> = ({ file, files }) => {
     return (
       <div className="flex w-full items-center justify-between gap-10 space-x-2 rounded-3xl border p-2 px-6">
         <div className="flex items-center gap-4">
-          <img src={"/selection/fileicon.svg"} className="h-8 w-8" alt="file" />
+          <img
+            src={
+              "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/components/selection/fileicon.svg"
+            }
+            className="h-8 w-8"
+            alt="file"
+          />
           <div className="flex flex-col">
             <span className="font-semibold">
               {file.name || "No file selected"}
@@ -69,7 +75,9 @@ const FileDisplay: React.FC<FileDisplayProps> = ({ file, files }) => {
           >
             <div className="flex items-center gap-4">
               <img
-                src={"/selection/fileicon.svg"}
+                src={
+                  "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/components/selection/fileicon.svg"
+                }
                 className="h-8 w-8"
                 alt="file"
               />

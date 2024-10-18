@@ -58,13 +58,17 @@ const Dropdown: React.FC<DropdownProps> = ({
               >
                 {selectedOption === option ? (
                   <img
-                    src={"/selection/Choice_2.svg"}
+                    src={
+                      "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/components/selection/Choice_2.svg"
+                    }
                     className="h-5 w-5"
                     alt=""
                   />
                 ) : (
                   <img
-                    src={"/selection/Choice.svg"}
+                    src={
+                      "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/components/selection/Choice.svg"
+                    }
                     className="h-5 w-5"
                     alt=""
                   />

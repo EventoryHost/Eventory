@@ -6,7 +6,6 @@ import Link from "next/link";
 import auth from "@/services/auth";
 import Loadingeanimation from "@/components/Loader";
 import OtpModal from "@/components/ui/otp-modal";
-import tajmahal from "/public/tajmahal.png";
 import jwt from "jsonwebtoken";
 type loginDetails = {
   mobile: string;
@@ -184,7 +183,9 @@ const Login = () => {
         </div>
         <div className="relative h-[10rem] lg:w-full">
           <Image
-            src={tajmahal}
+            src={
+              "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/vendor_onboarding/tajmahal.png"
+            }
             alt="Image of Indian monuments"
             className="h-full w-full object-cover"
           />

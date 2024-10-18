@@ -17,7 +17,7 @@ const WhyVendor = (props: Props) => {
           <Image
             width={80}
             height={80}
-            src="https://d1u34m45xfa3ar.cloudfront.net/website/business-page/how_to/image 99.svg"
+            src="https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/business/image_99.svg"
             alt="Increased Visibility"
           />
           <p className="mt-2 w-[80%] text-center text-sm md:text-lg">
@@ -31,7 +31,7 @@ const WhyVendor = (props: Props) => {
           <Image
             width={80}
             height={80}
-            src="https://d1u34m45xfa3ar.cloudfront.net/website/business-page/how_to/image 105.svg"
+            src="https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/business/image_105.svg"
             alt="Streamlined Operations"
           />
           <p className="mt-2 w-[80%] text-center text-sm md:text-lg">
@@ -47,7 +47,7 @@ const WhyVendor = (props: Props) => {
           <Image
             width={80}
             height={80}
-            src="https://d1u34m45xfa3ar.cloudfront.net/website/business-page/how_to/image 104.svg"
+            src="https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/business/image_104.svg"
             alt="More Bookings"
           />
 
