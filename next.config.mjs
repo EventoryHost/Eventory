@@ -1,8 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['eventory-web-prod.s3.ap-south-1.amazonaws.com',
-      'eventory-bucket.s3.ap-south-1.amazonaws.com',
+    domains: [
+      "eventory-web-prod.s3.ap-south-1.amazonaws.com",
+      "eventory-bucket.s3.ap-south-1.amazonaws.com",
     ],
     remotePatterns: [
       {

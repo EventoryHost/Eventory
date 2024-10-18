@@ -91,7 +91,6 @@ const Section3 = (props: Props) => {
                 mind with detailed invoices and a comprehensive transaction
                 history for all your bookings.
               </div>
-
             </div>
           </div>
         </div>

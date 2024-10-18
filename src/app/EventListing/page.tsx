@@ -41,7 +41,6 @@ const CarouselPage = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const slides = [
-
     "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/event_listing/carousel/pic1.png",
 
     "/landing_page/categories/cat_01.png",
@@ -120,7 +119,6 @@ const CarouselPage = () => {
 
   return (
     <div className="min-h-screen bg-gray-100">
-
       <ExploreSection slides={slides} eventType={true} isMobile={isMobile} />
 
       <div className="mx-auto mt-2 flex w-[85%] flex-col items-center justify-between gap-6 md:mt-10 md:gap-16">
@@ -141,7 +139,6 @@ const CarouselPage = () => {
                     key={index}
                     className="basis-[40%] md:basis-[22.22%]"
                   >
-
                     <div className="w-full">
                       <div className="relative aspect-square cursor-pointer overflow-hidden rounded-xl">
                         <a

@@ -99,27 +99,41 @@ const MultipleDropdown: React.FC<MultipleDropdownProps> = ({
         <div className="absolute z-10 mt-2 w-full rounded-md bg-white shadow-lg">
           <ul className="max-h-60 overflow-auto rounded-md py-1 text-base focus:outline-none sm:text-sm">
             {options
-              .filter((option) => 
-                !selectedOptions.some((selected) => selected.value === option.value)
+              .filter(
+                (option) =>
+                  !selectedOptions.some(
+                    (selected) => selected.value === option.value,
+                  ),
               ) // Filter out selected options from the list
               .map((option) => (
-              <li
-                key={option.value}
-                className="relative flex cursor-pointer select-none items-center gap-1 py-2 pl-3 pr-9"
-                onClick={() => handleSelect(option)}
-              >
+                <li
+                  key={option.value}
+                  className="relative flex cursor-pointer select-none items-center gap-1 py-2 pl-3 pr-9"
+                  onClick={() => handleSelect(option)}
+                >
+                  {selectedOptions.some(
+                    (selected) => selected.value === option.value,
+                  ) ? (
+                    <img
+                      src={
+                        "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/components/selection/Choice_2.svg"
+                      }
+                      alt=""
+                      className="h-5 w-5"
+                    />
+                  ) : (
+                    <img
+                      src={
+                        "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/components/selection/Choice.svg"
+                      }
+                      alt=""
+                      className="h-5 w-5"
+                    />
+                  )}
 
-                {selectedOptions.some(
-                  (selected) => selected.value === option.value,
-                ) ? (
-                  <img src={"https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/components/selection/Choice_2.svg"} alt="" className="h-5 w-5" />
-                ) : (
-                  <img src={"https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/components/selection/Choice.svg"} alt="" className="h-5 w-5" />
-                )}
-
-                {option.label}
-              </li>
-            ))}
+                  {option.label}
+                </li>
+              ))}
           </ul>
         </div>
       )}

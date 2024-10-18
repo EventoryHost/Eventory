@@ -78,7 +78,6 @@ const Hero = (props: Props) => {
             </Link>
           </div>
         </div>
-        
         <div className="relative flex w-full flex-col items-center justify-center space-y-9 px-3 md:px-5">
           <div className="relative h-[100%] w-full md:w-[80%]">
             <Image
@@ -113,8 +112,7 @@ const Hero = (props: Props) => {
             </div>
           </div>
         </div>
-=======
-
+        =======
       </div>
     </div>
   );

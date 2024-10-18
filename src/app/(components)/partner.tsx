@@ -50,7 +50,7 @@ const items = [
     description: "Explore the birth of groundbreaking ideas and inventions.",
     icon: <IconClipboardCopy className="h-4 w-4 text-neutral-500" />,
     imageUrl:
-      "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/landing_page/partner_images/partners_01.png", 
+      "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/landing_page/partner_images/partners_01.png",
   },
   {
     title: "The Digital Revolution",
@@ -67,4 +67,3 @@ const items = [
       "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/landing_page/partner_images/partners_03.png",
   },
 ];
-

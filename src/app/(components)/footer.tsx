@@ -30,7 +30,6 @@ const Footer = (props: Props) => {
             <Image
               width={100}
               height={100}
-
               src="https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/footer/logo-with-bg.svg"
               alt="Eventory logo"
               className="h-[9vw] w-[6vw] mix-blend-multiply"

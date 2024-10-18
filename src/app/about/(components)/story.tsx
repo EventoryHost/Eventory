@@ -40,7 +40,6 @@ const Story = () => {
             </div>
             <div className="flex flex-1 justify-center rounded-lg">
               <img
-
                 src="https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/about/story_01.png"
                 className="rounded-lg shadow-xl shadow-[#787bbc] max-sm:my-10 max-sm:w-[280px]"
                 alt="Story"
@@ -103,7 +102,6 @@ const Story = () => {
             </div>
             <div className="flex flex-1 justify-center rounded-lg">
               <img
-
                 src="https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/about/story_03.png"
                 className="rounded-lg shadow-xl shadow-[#787bbc] max-sm:my-10 max-sm:w-[300px]"
                 alt="Social Cause"

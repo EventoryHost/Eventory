@@ -191,8 +191,8 @@ const Page6 = ({
                         ? formState.photos
                         : Array.isArray(formState.photos)
                           ? formState.photos
-                            .map((file: File) => file.name)
-                            .join(", ")
+                              .map((file: File) => file.name)
+                              .join(", ")
                           : (formState.photos as File)?.name
                     }
                     onChange={(e) =>
@@ -375,8 +375,8 @@ const Page6 = ({
                         ? formState.videos
                         : Array.isArray(formState.videos)
                           ? formState.videos
-                            .map((file: File) => file.name)
-                            .join(", ")
+                              .map((file: File) => file.name)
+                              .join(", ")
                           : (formState.videos as File)?.name
                     }
                   />
