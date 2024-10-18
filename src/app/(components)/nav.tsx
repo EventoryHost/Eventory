@@ -24,19 +24,28 @@ const Navbar = () => {
     setShowNavbar(!showNavbar);
   };
 
+  const [isScrolled, setIsScrolled] = useState(false);
+
   useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
     const handleResize = () => {
       setIsSmallScreen(window.innerWidth < 768); // 768px is the md breakpoint
     };
 
-    // Check screen size on initial load
-    handleResize();
-
-    // Add event listener to handle resize
-    window.addEventListener('resize', handleResize);
+    handleResize(); // Initialize the screen size on mount
+    window.addEventListener("scroll", handleScroll); // Listen for scroll events
+    window.addEventListener("resize", handleResize); // Listen for resize events
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("scroll", handleScroll); // Clean up scroll listener
+      window.removeEventListener("resize", handleResize); // Clean up resize listener
     };
   }, []);
 
@@ -44,12 +53,15 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`navbar flex flex-col shadow-md ${
-        pathname === "/" ? "bg-[#BFBFEF]" : "bg-white"
-      }`}
+      className={`navbar fixed top-0 z-20 flex flex-col shadow-md ${
+        pathname == "/EventListing"
+          ? "bg-white"
+          : isScrolled
+            ? "bg-white"
+            : "bg-transparent"
+      } transition-all duration-300`}
     >
       <div className="container flex items-center justify-between">
-        {/* logo eventory part */}
         <div className="logo flex flex-col items-center justify-center">
           <Link href={"/"}>
             <svg

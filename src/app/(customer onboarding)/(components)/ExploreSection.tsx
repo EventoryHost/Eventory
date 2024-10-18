@@ -50,19 +50,19 @@ export default function ExploreSection({
 
   return (
     <>
-      <div className="flex h-[454px] w-full items-center justify-between transition-opacity duration-1000 ease-in-out md:h-[399px]">
-        <div className="relative h-full w-full overflow-hidden">
+      <div className="flex h-[454px] w-full items-center justify-between transition-opacity duration-1000 ease-in-out md:h-[425px] ">
+        <div className="relative h-[100%] w-full overflow-hidden">
           {slides.map((slide, index) => (
             <div
               key={index}
-              className={`absolute left-0 top-0 flex h-full w-full flex-col justify-between transition-opacity duration-1000 ease-in-out md:flex-row md:items-center ${index === currentSlide ? "opacity-100" : "opacity-0"}`}
+              className={`absolute  left-0 top-0 flex h-full w-full flex-col justify-between transition-opacity duration-1000 ease-in-out md:flex-row md:items-center ${index === currentSlide ? "opacity-100" : "opacity-0"}`}
               style={{
                 background:
                   "linear-gradient(90deg, #605ED8 0%, #4445B1 55.17%, #2E3192 100%)",
               }}
             >
               {eventType ? (
-                <div className="my-10 flex flex-col justify-center space-y-8 px-6 opacity-90 md:mx-[72px] md:my-[35px]">
+                <div className="my-10  flex flex-col justify-center space-y-8 px-6 opacity-90 md:mx-[72px] md:my-[35px]">
                   <h1 className="text-2xl font-semibold text-white md:w-[80%] md:text-4xl">
                     Turning visions into memories{" "}
                   </h1>
