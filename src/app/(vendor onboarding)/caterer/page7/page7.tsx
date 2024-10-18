@@ -115,8 +115,8 @@ const Page6 = ({
                         ? formState.termsAndConditions
                         : Array.isArray(formState.termsAndConditions)
                           ? formState.termsAndConditions
-                              .map((file: File) => file.name)
-                              .join(", ")
+                            .map((file: File) => file.name)
+                            .join(", ")
                           : (formState.termsAndConditions as File)?.name
                     }
                     className="w-[95%] rounded-xl border-2 border-gray-300 p-3"
@@ -183,8 +183,8 @@ const Page6 = ({
                         ? formState.clientTestimonials
                         : Array.isArray(formState.clientTestimonials)
                           ? formState.clientTestimonials
-                              .map((file: File) => file.name)
-                              .join(", ")
+                            .map((file: File) => file.name)
+                            .join(", ")
                           : (formState.clientTestimonials as File)?.name
                     }
                     className="w-[95%] rounded-xl border-2 border-gray-300 p-3"
@@ -253,8 +253,8 @@ const Page6 = ({
                         ? formState.cancellationPolicy
                         : Array.isArray(formState.cancellationPolicy)
                           ? formState.cancellationPolicy
-                              .map((file: File) => file.name)
-                              .join(", ")
+                            .map((file: File) => file.name)
+                            .join(", ")
                           : (formState.cancellationPolicy as File)?.name
                     }
                   ></textarea>
@@ -262,7 +262,13 @@ const Page6 = ({
               </div>
             </div>
 
-            <div className="items-strech flex flex-row gap-7 self-end">
+            <div className="mt-9 flex flex-row items-stretch gap-7 self-end bg-white">
+              <button
+                className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+                onClick={() => setCurrentPage((prevPage) => prevPage - 1)}
+              >
+                Back
+              </button>
               <button
                 className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
                 onClick={handleContinue}

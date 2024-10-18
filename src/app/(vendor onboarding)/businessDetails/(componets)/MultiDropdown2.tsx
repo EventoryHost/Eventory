@@ -84,7 +84,7 @@ const MultipleDropdown: React.FC<MultipleDropdownProps> = ({
     <div className="relative w-full">
       <button
         type="button"
-        className="py- flex w-full items-center justify-between rounded-xl border-2 bg-white p-3 text-left shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+        className="flex w-full items-center justify-between rounded-xl border-2 bg-white p-3 text-left shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
         onClick={onToggle} // Use onToggle to handle the click
       >
         <span
@@ -96,27 +96,18 @@ const MultipleDropdown: React.FC<MultipleDropdownProps> = ({
       </button>
 
       {isOpen && (
-        <div className="absolute z-10 mt-1 w-full rounded-md bg-white shadow-lg">
+        <div className="absolute z-10 mt-2 w-full rounded-md bg-white shadow-lg">
           <ul className="max-h-60 overflow-auto rounded-md py-1 text-base focus:outline-none sm:text-sm">
-            {options.map((option) => (
+            {options
+              .filter((option) => 
+                !selectedOptions.some((selected) => selected.value === option.value)
+              ) // Filter out selected options from the list
+              .map((option) => (
               <li
                 key={option.value}
-                className={`relative flex cursor-pointer select-none items-center gap-1 py-2 pl-3 pr-9 ${
-                  selectedOptions.some(
-                    (selected) => selected.value === option.value,
-                  )
-                    ? "text-black"
-                    : "text-gray-900"
-                }`}
+                className="relative flex cursor-pointer select-none items-center gap-1 py-2 pl-3 pr-9"
                 onClick={() => handleSelect(option)}
               >
-                {selectedOptions.some(
-                  (selected) => selected.value === option.value,
-                ) ? (
-                  <img src={"/selection/Choice_2.svg"} className="h-5 w-5" />
-                ) : (
-                  <img src={"/selection/Choice.svg"} className="h-5 w-5" />
-                )}
                 {option.label}
               </li>
             ))}

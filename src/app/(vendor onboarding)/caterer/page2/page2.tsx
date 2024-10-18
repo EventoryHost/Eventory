@@ -106,9 +106,8 @@ const Page2 = ({
             {_veg.map((option) => (
               <li
                 key={option}
-                className={`relative flex cursor-pointer select-none items-center gap-1 py-2 pl-3 pr-9 ${
-                  veg.includes(option) ? "text-black" : "text-gray-900"
-                }`}
+                className={`relative flex cursor-pointer select-none items-center gap-1 py-2 pl-3 pr-9 ${veg.includes(option) ? "text-black" : "text-gray-900"
+                  }`}
                 onClick={() => setVeg([option])}
               >
                 {veg.includes(option) ? (
@@ -291,7 +290,13 @@ const Page2 = ({
               </div>
             </div>
           </div>
-          <div className="items-strech flex flex-row gap-7 self-end">
+          <div className="mt-9 flex flex-row items-stretch gap-7 self-end bg-white">
+            <button
+              className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+              onClick={() => setCurrentPage((prevPage) => prevPage - 1)}
+            >
+              Back
+            </button>
             <button
               className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
               onClick={handleContinue}

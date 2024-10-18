@@ -282,7 +282,7 @@ function Preview({
             <span className="text-base font-normal">catalogue</span>
             <span className="font-semibold">
               {formState.itemCatalogue &&
-              typeof formState.itemCatalogue === "object" ? (
+                typeof formState.itemCatalogue === "object" ? (
                 <span className="font-semibold">
                   <FileDisplay file={formState.itemCatalogue} />
                 </span>
@@ -363,7 +363,7 @@ function Preview({
             <span className="text-base font-normal">Uploaded List</span>
             <span className="font-semibold">
               {formState.furnitureAndDecorListUrl &&
-              typeof formState.furnitureAndDecorListUrl === "object" ? (
+                typeof formState.furnitureAndDecorListUrl === "object" ? (
                 <span className="font-semibold">
                   <FileDisplay file={formState.furnitureAndDecorListUrl} />
                 </span>
@@ -426,7 +426,7 @@ function Preview({
             <span className="text-base font-normal">Uploaded List</span>
             <span className="font-semibold">
               {formState.tentAndCanopyListUrl &&
-              typeof formState.tentAndCanopyListUrl === "object" ? (
+                typeof formState.tentAndCanopyListUrl === "object" ? (
                 <span className="min-w-full font-semibold">
                   <FileDisplay file={formState.tentAndCanopyListUrl} />
                 </span>
@@ -481,7 +481,7 @@ function Preview({
             <span className="text-base font-normal">Upload List</span>
             <span className="font-semibold">
               {formState.audioVisualListUrl &&
-              typeof formState.audioVisualListUrl === "object" ? (
+                typeof formState.audioVisualListUrl === "object" ? (
                 <span className="min-w-full font-semibold">
                   <FileDisplay file={formState.audioVisualListUrl} />
                 </span>
@@ -552,7 +552,7 @@ function Preview({
             <span className="text-base font-normal">photos</span>
             <span className="text-sm font-bold">
               {Array.isArray(formState.photos) &&
-              formState.photos.length > 0 ? (
+                formState.photos.length > 0 ? (
                 formState.photos.map((photo, index) => (
                   <span key={index} className="block">
                     {photo.name}
@@ -567,7 +567,7 @@ function Preview({
             <span className="text-base font-normal">Videos</span>
             <span className="text-sm font-bold">
               {Array.isArray(formState.videos) &&
-              formState.videos.length > 0 ? (
+                formState.videos.length > 0 ? (
                 formState.videos.map((video, index) => (
                   <span key={index} className="block">
                     {video.name}
@@ -657,15 +657,12 @@ function Preview({
       </div>
 
       <div className="mr-[5%] flex w-full justify-end gap-[32px]">
-        {/* Previous Button */}
-        {/* <button
+        <button
           onClick={() => setCurrentPage(currentPage - 1)}
           className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
         >
-          Previous
-        </button> */}
-
-        {/* Next Button */}
+          Back
+        </button>
         <button
           onClick={() => setCurrentPage(currentPage + 1)}
           className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
