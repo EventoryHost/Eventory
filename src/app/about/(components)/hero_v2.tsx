@@ -17,7 +17,7 @@ const Feed: React.FC = () => {
 
   return (
     <>
-      <div className="flex w-[100%] flex-col flex-wrap justify-center overflow-hidden bg-gradient-to-b from-[#BFBFEF] to-[#ffffff] md:flex-row md:py-0">
+      <div className="flex w-[100%] flex-col flex-wrap justify-center overflow-hidden bg-gradient-to-b from-[#BFBFEF] to-[#ffffff] py-[27vw] md:flex-row md:py-[15vw] lg:py-[5vw]">
         <div className="flex w-[100%] flex-col items-center justify-center gap-9 py-[8%] md:py-[3%]">
           <div className="flex flex-col items-center justify-center px-[4%]">
             <h1 className="text-center text-4xl font-bold leading-relaxed md:text-6xl">

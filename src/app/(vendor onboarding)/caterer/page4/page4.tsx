@@ -78,7 +78,7 @@ const Page4 = ({
                 setSelectedAppetizers={setSelectedEquipmentsProvided}
               />
             </div>
-            <div className="mt-9 flex mb-8 flex-row items-stretch gap-7 self-end bg-white">
+            <div className="mb-8 mt-9 flex flex-row items-stretch gap-7 self-end bg-white">
               <button
                 className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
                 onClick={() => setCurrentPage((prevPage) => prevPage - 1)}

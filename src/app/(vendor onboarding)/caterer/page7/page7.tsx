@@ -115,8 +115,8 @@ const Page6 = ({
                         ? formState.termsAndConditions
                         : Array.isArray(formState.termsAndConditions)
                           ? formState.termsAndConditions
-                            .map((file: File) => file.name)
-                            .join(", ")
+                              .map((file: File) => file.name)
+                              .join(", ")
                           : (formState.termsAndConditions as File)?.name
                     }
                     className="w-[95%] rounded-xl border-2 border-gray-300 p-3"
@@ -183,8 +183,8 @@ const Page6 = ({
                         ? formState.clientTestimonials
                         : Array.isArray(formState.clientTestimonials)
                           ? formState.clientTestimonials
-                            .map((file: File) => file.name)
-                            .join(", ")
+                              .map((file: File) => file.name)
+                              .join(", ")
                           : (formState.clientTestimonials as File)?.name
                     }
                     className="w-[95%] rounded-xl border-2 border-gray-300 p-3"
@@ -253,8 +253,8 @@ const Page6 = ({
                         ? formState.cancellationPolicy
                         : Array.isArray(formState.cancellationPolicy)
                           ? formState.cancellationPolicy
-                            .map((file: File) => file.name)
-                            .join(", ")
+                              .map((file: File) => file.name)
+                              .join(", ")
                           : (formState.cancellationPolicy as File)?.name
                     }
                   ></textarea>
