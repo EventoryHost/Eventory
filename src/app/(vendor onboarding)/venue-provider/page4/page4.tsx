@@ -1,7 +1,11 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect ,useState  } from "react";
 import FileInput from "@/components/fileInput";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../../../redux/store";
+import { fetchVenueData, saveVenueDetails } from "@/redux/venue-providerSlice";
+import jwt from "jsonwebtoken";
 
 interface FormState {
   termsConditions: string | File | File[];
@@ -27,6 +31,66 @@ const Page4: React.FC<PageProps> = ({
   currentPage,
   setCurrentPage,
 }) => {
+
+  const dispatch = useDispatch<AppDispatch>();
+  const { formData, loading, error } = useSelector((state: RootState) => state["venue-provider"]);
+
+  useEffect(() => {
+    const userId = getVendorId();
+    if (userId) {
+      dispatch(fetchVenueData(userId));
+    }
+  }, [dispatch]);
+
+  // Update form state based on fetched data
+  useEffect(() => {
+    if (formData) {
+      updateFormState({
+        termsConditions: formData.termsConditions || [],
+        cancellationPolicy: formData.cancellationPolicy || [],
+        insurancePolicy: formData.insurancePolicy || [],
+      });
+    }
+  }, [formData]);
+
+  const handleSave = () => {
+    const userId = getVendorId() || "";
+    const venueDetails = {
+      userId,
+      termsConditions: formState.termsConditions || "",
+      cancellationPolicy: formState.cancellationPolicy || "",
+      insurancePolicy: formState.insurancePolicy || "",
+    };
+
+    dispatch(saveVenueDetails({ userId, data: venueDetails }) as any);
+  };
+
+
+  const [isFormValid, setIsFormValid] = useState(true);
+
+  const onContinue = () => {
+    console.log("the current formState", formState);
+    
+    handleSave();
+    handleContinue();
+  };
+
+  function getVendorId(): string | null {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("Token not found");
+      return null;
+    }
+    try {
+      const decodedToken = jwt.decode(token) as {
+        userId?: string;
+      };
+      return decodedToken?.userId || null;
+    } catch (error) {
+      console.error("Error decoding token:", error);
+      return null;
+    }
+  }
   return (
     <div className="scroll-touch flex w-full flex-col items-start gap-7 overflow-y-scroll rounded-xl bg-white p-3 scrollbar-hide xs:justify-start">
       <div className="flex w-full flex-col gap-7 rounded-xl bg-white p-3 md:p-6">
