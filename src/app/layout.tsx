@@ -30,9 +30,7 @@ export default function RootLayout({
         <header>
           <Nav />
         </header>
-        <div className={""}>
-          {children}
-        </div>
+        <div className={""}>{children}</div>
         <footer></footer>
         <Toaster />
       </body>
