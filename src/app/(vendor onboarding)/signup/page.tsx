@@ -103,8 +103,8 @@ const SignUp = () => {
 
     // Check if OTP is 6 digits long
     if (inputOtp.length !== 6) {
-      setFormError(`Please fill in the OTP correctly`);
-      toast.error("OTP must be 6 digits");
+      setFormError(`Please fill in the code correctly`);
+      toast.error("code must be 6 digits");
       return;
     }
 
@@ -127,7 +127,7 @@ const SignUp = () => {
         // Store token in local storage
         localStorage.setItem("token", token);
         console.log("OTP verification successful");
-        toast.success("OTP verification successful");
+        toast.success("verification successful");
         toast2({
           title: "Redirecting",
           description: `Signup Successfull Redirecting To BusinessDetails`,
@@ -135,14 +135,14 @@ const SignUp = () => {
         router.push("/businessDetails");
       } else {
         console.error("OTP verification failed or response is invalid");
-        toast.error("Incorrect OTP, please try again");
+        toast.error("Incorrect code, please try again");
       }
     } catch (error) {
       console.error("Failed to verify OTP", error);
-      setFormError("Failed to verify OTP. Please try again.");
+      setFormError("Failed to verify code. Please try again.");
     } finally {
       setloading(false);
-      toast.error("Failed to verify OTP. Please try again.");
+      toast.error("Failed to verify code. Please try again.");
     }
   };
 
@@ -209,7 +209,7 @@ const SignUp = () => {
               <div className="mt-5 flex w-full flex-col-reverse justify-between gap-3 self-start p-2 md:mt-0 md:flex-row md:items-center md:px-0">
                 <div className="xs:text-md mt-5 flex gap-1">
                   <h2>
-                    By continueing. You agree with{" "}
+                    By continuing. You agree with{" "}
                     <Link
                       href={"/privacy-policy"}
                       className="text-[#2E3192] underline"
@@ -221,8 +221,8 @@ const SignUp = () => {
               </div>
               <div className="mb-9 mt-5">
                 <p className="xs:text-md self-start text-gray-500 xs:mt-5">
-                  To verify it&apos;s you, we will send you an OTP to your
-                  mobile number.
+                  To verify it&apos;s you, we will send you a verification code
+                  to your mobile number.
                 </p>
               </div>
               <div className="h-[1px] w-[80%] self-start bg-gray-300" />
@@ -264,7 +264,7 @@ const SignUp = () => {
                       href={"/login"}
                       className="font-semibold text-[#2E3192]"
                     >
-                      Log In
+                      Log-In
                     </Link>
                   </div>
                   <button

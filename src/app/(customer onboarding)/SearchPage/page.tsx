@@ -12,6 +12,8 @@ import { Filter } from "lucide-react";
 const SearchPageHelper = () => {
   const searchParams = useSearchParams();
   const event = searchParams.get("event") || "all";
+  const regional_event = searchParams.get("regional_event") || "all";
+  const popular_event = searchParams.get("popular_event") || "all";
 
   const [selected, setSelected] = useState<string>("");
   const [view, setView] = useState<string>("List");
@@ -152,6 +154,11 @@ const SearchPageHelper = () => {
     "5000-5500",
     "5500-6000",
   ];
+  const slides = [
+    "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/caraousel/pic1.png",
+    "/landing_page/categories/cat_01.png",
+    "/landing_page/categories/cat_02.png",
+  ];
   const filters4 = ["4.0 and above", "4.5 and above", "5.0 and above"];
 
   const [selectedFiltersSection1, setSelectedFiltersSection1] = useState<
@@ -199,10 +206,9 @@ const SearchPageHelper = () => {
     }
   };
   return (
-    <div className="">
-      <div className="mt-2">
-        <ExploreSection />
-      </div>
+    <div className="min-h-screen">
+      <ExploreSection slides={slides} />
+
       <CategoryBar
         event={event}
         selected={selected}
@@ -237,7 +243,7 @@ const SearchPageHelper = () => {
             {selectedFiltersSection3}
           </div>
         </div>
-        <div className="flex-2 mx-6 flex w-1/4 flex-col gap-6 rounded-lg border border-gray-300 bg-white p-6 pb-4">
+        <div className="flex-2 mx-6 hidden w-1/4 flex-col gap-6 rounded-lg border border-gray-300 bg-white p-6 pb-4 md:flex">
           <div className="flex">
             <Filter size={24} />
             <div className="mx-2 text-2xl font-semibold">Filters</div>

@@ -249,7 +249,7 @@ function Preview({
           <div className="flex w-full items-center justify-between rounded-xl bg-[#F0EFFC] p-2 pl-4 text-xl font-semibold">
             3. Videography Details
             <div className="align-center flex justify-center p-1">
-              <button onClick={() => setCurrentPage(3)}>
+              <button onClick={() => setCurrentPage(2)}>
                 <EditIcon size={28} />
               </button>
             </div>

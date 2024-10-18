@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
 interface DropdownProps {
+  sort?: boolean;
   options: string[];
   onSelect: (option: string) => void;
   placeholder?: string; // New placeholder prop
 }
 
 const Dropdown: React.FC<DropdownProps> = ({
+  sort,
   options,
   onSelect,
   placeholder = "Select an option",
@@ -22,12 +24,13 @@ const Dropdown: React.FC<DropdownProps> = ({
   };
 
   return (
-    <div className="relative w-full">
+    <div className="relative w-full min-w-[10rem]">
       <button
         type="button"
         className="flex w-full items-center justify-between rounded-xl border-2 bg-white p-3 py-5 text-left text-sm shadow-sm hover:bg-gray-50"
         onClick={() => setIsOpen(!isOpen)}
       >
+        {sort && <span className={`px-2 text-gray-400`}>Sort:</span>}
         <span className={`${selectedOption ? "text-black" : "text-gray-400"}`}>
           {selectedOption || placeholder}
         </span>
@@ -43,7 +46,7 @@ const Dropdown: React.FC<DropdownProps> = ({
       </button>
 
       {isOpen && (
-        <div className="absolute z-10 mt-1 w-full rounded-xl bg-white shadow-xl">
+        <div className="absolute z-10 mt-2 w-full rounded-xl bg-white shadow-xl">
           <ul className="max-h-60 overflow-auto rounded-md py-1 text-base focus:outline-none sm:text-sm">
             {options.map((option) => (
               <li
