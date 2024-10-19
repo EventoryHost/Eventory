@@ -50,8 +50,8 @@ export default function ExploreSection({
 
   return (
     <>
-      <div className="flex h-[454px] w-full items-center justify-between transition-opacity duration-1000 ease-in-out md:h-[399px]">
-        <div className="relative h-full w-full overflow-hidden">
+      <div className="flex h-[454px] w-full items-center justify-between transition-opacity duration-1000 ease-in-out md:h-[425px]">
+        <div className="relative h-[100%] w-full overflow-hidden">
           {slides.map((slide, index) => (
             <div
               key={index}
