@@ -3,7 +3,7 @@
 import React from "react";
 import { Check, EditIcon } from "lucide-react";
 import StepBar from "@/app/(components)/stepBar";
-import Appetizers from "../../(components)/Appetizers";
+import Appetizers from "../../(components)/PreviewAppetizer";
 
 const vehicleTypes = [
   "Sedan",

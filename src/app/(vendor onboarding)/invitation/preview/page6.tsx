@@ -1,6 +1,6 @@
 import { Check, EditIcon } from "lucide-react";
 import { SetStateAction } from "react";
-import Appetizers from "../..//(components)/Appetizers";
+import Appetizers from "../../(components)/PreviewAppetizer";
 import File from "../../caterer/(components)/File";
 import StepBar from "../(components)/StepBar";
 const _cuisine = ["North Indian", "South Indian", "Chinese", "Italian"];

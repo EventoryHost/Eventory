@@ -2,7 +2,7 @@ import { Check, EditIcon } from "lucide-react";
 import { SetStateAction } from "react";
 import ThreeStepBar from "@/app/(components)/threeStepBar";
 import StepBar from "@/app/(components)/stepBar";
-import Appetizers from "../../(components)/Appetizers";
+import Appetizers from "../../(components)/PreviewAppetizer";
 import File from "../../caterer/(components)/File";
 import FileDisplay from "../../caterer/(components)/File";
 

@@ -184,7 +184,7 @@ const Page6 = ({
                   <span className="text-base font-medium">or Continue via</span>
                   <input
                     type="text"
-                    className="w-full rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-300"
+                    className="w-full rounded-xl border-2 bg-white p-3 py-5 text-sm outline-none"
                     placeholder="Enter your portfolio link"
                     value={
                       typeof formState.photos === "string"
