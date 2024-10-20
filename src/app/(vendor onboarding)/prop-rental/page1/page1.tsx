@@ -1,9 +1,13 @@
 "use client";
 
-import StepBar from "@/app/(components)/stepBar";
-import { Combobox } from "@/components/ui/combobox";
 import React, { SetStateAction } from "react";
 import Dropdown from "../../(components)/Dropdown";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../../../redux/store";
+import { fetchRentalData, saveRentalDetails } from "@/redux/prop-rentalSlice";
+import jwt from "jsonwebtoken";
+
 
 const workerOptions = [
   { value: "0-2 Members", label: "0-2 Members" },
@@ -18,11 +22,26 @@ const eventOptions = [
   "More than 300 ",
 ];
 
-interface formState {
+interface FormState {
   managerName: string;
   workDescription: string;
   eventSize: string;
   handleChange: (key: string, value: any) => void;
+  itemCatalogue: boolean | File;
+  customization: boolean;
+  maintenance: string;
+  services: string;
+  furnitureAndDecorListUrl: string | File;
+  tentAndCanopyListUrl: string | File;
+  audioVisualListUrl: string | File;
+  photos: string | File | File[];
+  videos: string | File | File[];
+  awardsAndRecognize: string;
+  clientTestimonial: string;
+  instaUrl: string;
+  websiteUrl: string;
+  termsAndConditions: string | File | File[];
+  cancellationPolicy: string | File | File[];
 }
 
 type PricingEntry = {
@@ -32,7 +51,7 @@ type PricingEntry = {
 };
 
 type page1Props = {
-  formState: formState;
+  formState: FormState;
   handleChange: (key: string, value: any) => void;
   handleNestedChange: (key: string, nestedKey: string, value: any) => void;
   navigateToPage: (page: number) => void;
@@ -45,10 +64,77 @@ type page1Props = {
 const Page1: React.FC<page1Props> = ({
   formState,
   handleChange,
-  handleNestedChange,
   currentPage,
   setCurrentPage,
 }) => {
+  const dispatch = useDispatch<AppDispatch>();
+  const { formData, loading, error } = useSelector(
+    (state: RootState) => state["prop-rental"]
+  );
+
+  // Fetch rental data on mount
+  useEffect(() => {
+    const userId = getVendorId();
+    if (userId) {
+      dispatch(fetchRentalData(userId));
+    }
+  }, [dispatch]);
+
+  // Update form state with fetched data
+  useEffect(() => {
+    if (formData) {
+  
+      if (formData.managerName) {
+        handleChange("managerName", formData.managerName);
+      }
+      if (formData.eventSize) {
+        handleChange("eventSize", formData.eventSize);
+      }
+      if (formData.workDescription) {
+        handleChange("workDescription", formData.workDescription);
+      }
+    }
+  }, [formData]);
+  
+
+    
+
+  const handleSave = () => {
+    const userId = getVendorId() || "";
+    const venueDetails = {
+      userId: userId,
+      managerName: formState.managerName || "", 
+      eventSize: formState.eventSize || "",
+      workDescription: formState.workDescription || "",
+    };
+
+    dispatch(saveRentalDetails({ userId, data: venueDetails }) as any);
+  };
+
+
+  const onContinue = () => {
+    handleSave(); // Save the rental details before continuing
+    setCurrentPage(currentPage + 1); // Move to the next page
+  };
+
+
+  function getVendorId(): string | null {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("Token not found");
+      return null;
+    }
+    try {
+      const decodedToken = jwt.decode(token) as {
+        userId?: string;
+      };
+      return decodedToken?.userId || null;
+    } catch (error) {
+      console.error("Error decoding token:", error);
+      return null;
+    }
+  }
+
   return (
     <>
       <div className="scroll-touch flex w-full flex-col items-start gap-5 overflow-y-scroll rounded-xl bg-white p-3 scrollbar-hide xs:justify-start md:p-6">
@@ -77,6 +163,7 @@ const Page1: React.FC<page1Props> = ({
                   handleChange("eventSize", option);
                 }}
                 placeholder="Select event size you cover"
+                selectedOption={formState.eventSize}
               />
             </div>
           </div>
@@ -101,12 +188,8 @@ const Page1: React.FC<page1Props> = ({
         <div className="items-strech flex flex-row gap-7 self-end">
           <button
             onClick={() => {
-              console.log(
-                formState.managerName,
-                formState.eventSize,
-                formState.workDescription,
-              );
               setCurrentPage(currentPage + 1);
+              onContinue();
             }}
             className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
           >

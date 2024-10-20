@@ -4,6 +4,7 @@ import businessDetailsReducer from './businessDetailsSlice';
 import cateringReducer from './cateringSlice'
 import decoratorReducer from './decoratorSlice'
 import venueProviderSlice from './venue-providerSlice';
+import propRentalSlice from './prop-rentalSlice';
 
 
 const store = configureStore({
@@ -12,6 +13,7 @@ const store = configureStore({
     catering : cateringReducer,
     decorator : decoratorReducer,
     "venue-provider": venueProviderSlice,
+    "prop-rental": propRentalSlice,
   },
 });
 

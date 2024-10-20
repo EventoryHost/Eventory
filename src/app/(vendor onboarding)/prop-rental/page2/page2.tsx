@@ -4,7 +4,11 @@ import { ArrowLeft, Upload } from "lucide-react";
 import { SetStateAction, useEffect } from "react";
 import { FormState } from "../page";
 import Appetizers from "../../(components)/Appetizers";
-import { Console } from "console";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/redux/store";
+import { fetchRentalData, saveRentalDetails } from "@/redux/prop-rentalSlice";
+import jwt from "jsonwebtoken";
+
 
 interface formState {
   itemCatalogue: boolean | File;
@@ -51,9 +55,85 @@ const Page2: React.FC<page2Props> = ({
     "Others",
   ];
 
+  const dispatch = useDispatch<AppDispatch>();
+  const { formData, loading, error } = useSelector(
+    (state: RootState) => state["prop-rental"]
+  );
+
+  // Fetch rental data on mount
   useEffect(() => {
-    console.log(formState.customization);
-  }, [formState.customization]);
+    const userId = getVendorId();
+    if (userId) {
+      dispatch(fetchRentalData(userId));
+    }
+  }, [dispatch]);
+
+ // Update form state with fetched data for Page 2
+useEffect(() => {
+  if (formData) {
+    if (formData.itemCatalogue !== undefined) {
+      handleChange("itemCatalogue", formData.itemCatalogue);
+    }
+    if (formData.customization !== undefined) {
+      handleChange("customization", formData.customization);
+    }
+    if (formData.maintenance) {
+      handleChange("maintenance", formData.maintenance);
+    }
+    if (formData.services) {
+      handleChange("services", formData.services);
+    }
+    if (formData.serviceProvided) {
+      setServiceProvided(formData.serviceProvided);
+    }
+  }
+}, [formData]);
+
+const handleSave = () => {
+  const userId = getVendorId() || ""; // Retrieve user ID
+
+  // Create the object to be sent in the API request
+  const rentalDetails = {
+    userId: userId,
+    itemCatalogue: formState.itemCatalogue ? true : false, // Assuming this is a boolean
+    customization: formState.customization ? true : false, // Assuming this is a boolean
+    maintenance: formState.maintenance || "", // Handle maintenance details
+    services: formState.services || "", // Handle service areas
+    serviceProvided: serviceProvided, // Array of selected services
+  };
+
+  // Dispatch the action with the rental details
+  dispatch(saveRentalDetails({ userId, data: rentalDetails }) as any);
+};
+
+
+
+
+  const onContinue = () => {
+    handleSave(); // Save the rental details before continuing
+    setCurrentPage(currentPage + 1); // Move to the next page
+  };
+
+
+  function getVendorId(): string | null {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("Token not found");
+      return null;
+    }
+    try {
+      const decodedToken = jwt.decode(token) as {
+        userId?: string;
+      };
+      return decodedToken?.userId || null;
+    } catch (error) {
+      console.error("Error decoding token:", error);
+      return null;
+    }
+  }
+
+
+
   return (
     <div className="flex h-full w-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide">
       <div className="flex min-w-full flex-col items-start justify-around gap-10">
@@ -202,6 +282,7 @@ const Page2: React.FC<page2Props> = ({
                     updateFormState({ maintenance: e.target.value })
                   }
                   className="mt-4 rounded-xl border-2 border-gray-300 p-3"
+                  defaultValue={formState.maintenance}
                 ></textarea>
               </div>
               <div className="flex min-w-[48%] flex-col gap-2">
@@ -214,6 +295,7 @@ const Page2: React.FC<page2Props> = ({
                   onChange={(e) =>
                     updateFormState({ services: e.target.value })
                   }
+                  defaultValue={formState.services}
                   className="mt-4 rounded-xl border-2 border-gray-300 p-3"
                 ></textarea>
               </div>
@@ -239,14 +321,8 @@ const Page2: React.FC<page2Props> = ({
             <button
               className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
               onClick={() => {
-                console.log(
-                  formState.customization,
-                  formState.itemCatalogue,
-                  formState.maintenance,
-                  formState.services,
-                  serviceProvided,
-                );
                 setCurrentPage(currentPage + 1);
+                onContinue();
               }}
             >
               Continue
