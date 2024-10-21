@@ -57,7 +57,7 @@ const Agreement = ({ setCurrentPage }: PageProps) => {
               gstinNumber: user?.businessDetails.gstin,
               address: user?.businessDetails.businessAddress,
             }));
-            console.log(user);
+            //console.log(user);
           } else {
             toast({
               variant: "destructive",
@@ -86,6 +86,16 @@ const Agreement = ({ setCurrentPage }: PageProps) => {
 
     fetchData();
   }, []);
+
+  const isSignatureValid = (): boolean => {
+    if (!formData.fullName || !signature) return false; // Return false if either is empty
+  
+    const nameParts = formData.fullName.toLowerCase().split(" "); // Split full name into parts
+    const signatureLower = signature.toLowerCase();
+  
+    // Check if the signature matches a full name word or starts with the first part of the full name
+    return nameParts.some((word) => word === signatureLower || formData.fullName.toLowerCase().startsWith(signatureLower));
+  };
 
   return (
     <>
@@ -389,11 +399,10 @@ const Agreement = ({ setCurrentPage }: PageProps) => {
                   <strong>Signature:</strong>{" "}
                   <input
                     onChange={(e) => setsignature(e.target.value)}
-                    className={`border-b-2 ${
-                      signature === formData?.fullName
-                        ? "border-b-blue-600"
-                        : "border-b-red-600"
-                    }`}
+                    className={`border-b-2 ${isSignatureValid() 
+                      ? "border-b-blue-600"
+                      : "border-b-red-600"
+                      }`}
                     type="text"
                     value={signature}
                     placeholder="Enter your signature"
@@ -450,14 +459,14 @@ const Agreement = ({ setCurrentPage }: PageProps) => {
             </button>
             <button
               onClick={() => {
-                checked && signature === formData.fullName
+                checked && isSignatureValid()
                   ? setCurrentPage((prevPage) => prevPage + 1)
                   : toast({
-                      variant: "destructive",
-                      title: "Pls Complete Following Staff",
-                      description:
-                        "Pls Check the Checkmark And Write Your Signature At The Bottem Of Agreement",
-                    });
+                    variant: "destructive",
+                    title: "Pls Complete Following Staff",
+                    description:
+                      "Pls Check the Checkmark And Write Your Signature At The Bottem Of Agreement",
+                  });
               }}
               className="flex h-[48px] w-[164px] items-center justify-center rounded-2xl bg-[rgba(46,49,146,1)] p-4 font-poppins text-white"
             >
