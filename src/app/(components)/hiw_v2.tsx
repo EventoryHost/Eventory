@@ -70,11 +70,12 @@ const HowItWorks = (props: Props) => {
             <Image
               alt=""
               src={images[activeStep - 1]}
-              layout="responsive"
               objectFit="cover"
               width={400}
               height={400}
               quality={100}
+              loading="eager"
+              priority={true}
             />
           </div>
         </div>
