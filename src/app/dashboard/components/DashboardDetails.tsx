@@ -315,7 +315,7 @@ const DashboardDetails: React.FC<IntroProps> = ({ user, venueDetails }) => {
                             </div>
                         ))} */}
           </div>
-        )}
+        }
         {selected === 3 && (
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
             {photo_video.map(([key, value]) => (
