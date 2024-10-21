@@ -89,7 +89,9 @@ const Page = () => {
         </div>
         <div className="relative h-[10rem] lg:w-full">
           <img
-            src={"/tajmahal.png"}
+            src={
+              "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/customer_onboarding/tajmahal.png"
+            }
             alt=""
             className="h-full w-full object-cover"
           />

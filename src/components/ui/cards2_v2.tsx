@@ -4,11 +4,11 @@ import { useState, useEffect } from "react";
 
 export function Cards2() {
   const images = [
-    "https://d1u34m45xfa3ar.cloudfront.net/website/about-page/story_03.png",
-    "https://d1u34m45xfa3ar.cloudfront.net/website/about-page/story_02.png",
-    "https://d1u34m45xfa3ar.cloudfront.net/website/about-page/story_03.png",
-    "https://d1u34m45xfa3ar.cloudfront.net/website/about-page/story_02.png",
-    "https://d1u34m45xfa3ar.cloudfront.net/website/about-page/story_03.png",
+    "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/about/story_03.png",
+    "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/about/story_02.png",
+    "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/about/story_01.png",
+    "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/about/story_02.png",
+    "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/about/story_03.png",
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
