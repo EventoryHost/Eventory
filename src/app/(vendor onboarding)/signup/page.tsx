@@ -90,6 +90,7 @@ const SignUp = () => {
         toggleModal();
       }
     } catch (error) {
+      console.log(error);
       setFormError(String(error) || "Something goes wrong");
       console.log(error);
     } finally {
@@ -171,6 +172,8 @@ const SignUp = () => {
             src={
               "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/vendor_onboarding/tajmahal.png"
             }
+            height={200}
+            width={200}
             alt="Image of Indian monuments"
             className="h-full w-full object-cover"
           />
@@ -206,7 +209,7 @@ const SignUp = () => {
                 ))}
               </div>
               {formError && !isModalOpen && (
-                <div className="pl-4 text-red-500">{formError}321</div>
+                <div className="py-2 text-red-500">{formError}</div>
               )}
               <div className="mt-5 flex w-full flex-col-reverse justify-between gap-3 self-start p-2 md:mt-0 md:flex-row md:items-center md:px-0">
                 <div className="xs:text-md mt-5 flex gap-1">

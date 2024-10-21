@@ -57,7 +57,7 @@ const Agreement = ({ setCurrentPage }: PageProps) => {
               gstinNumber: user?.businessDetails.gstin,
               address: user?.businessDetails.businessAddress,
             }));
-            console.log(user);
+            //console.log(user);
           } else {
             toast({
               variant: "destructive",
@@ -86,6 +86,20 @@ const Agreement = ({ setCurrentPage }: PageProps) => {
 
     fetchData();
   }, []);
+
+  const isSignatureValid = (): boolean => {
+    if (!formData.fullName || !signature) return false; // Return false if either is empty
+
+    const nameParts = formData.fullName.toLowerCase().split(" "); // Split full name into parts
+    const signatureLower = signature.toLowerCase();
+
+    // Check if the signature matches a full name word or starts with the first part of the full name
+    return nameParts.some(
+      (word) =>
+        word === signatureLower ||
+        formData.fullName.toLowerCase().startsWith(signatureLower),
+    );
+  };
 
   return (
     <>
@@ -390,7 +404,7 @@ const Agreement = ({ setCurrentPage }: PageProps) => {
                   <input
                     onChange={(e) => setsignature(e.target.value)}
                     className={`border-b-2 ${
-                      signature === formData?.fullName
+                      isSignatureValid()
                         ? "border-b-blue-600"
                         : "border-b-red-600"
                     }`}
@@ -450,7 +464,7 @@ const Agreement = ({ setCurrentPage }: PageProps) => {
             </button>
             <button
               onClick={() => {
-                checked && signature === formData.fullName
+                checked && isSignatureValid()
                   ? setCurrentPage((prevPage) => prevPage + 1)
                   : toast({
                       variant: "destructive",
