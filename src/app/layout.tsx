@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Footer from "./(components)/footer";
 import "./globals.css";
-import Nav from "./(components)/nav";
 import { Toaster } from "@/components/ui/toaster";
+import ConditionalNav from "./(components)/ConditionalNav";
+import { SidebarProvider } from "./dashboard/context/SidebarContext";
 export const metadata: Metadata = {
   title: "Eventory",
   description: "Inventory for Events",
@@ -27,11 +28,13 @@ export default function RootLayout({
         <link rel="icon" href="/logo-with-bg.svg" />
       </head>
       <body>
+        <SidebarProvider>
         <header>
-          <Nav />
+          <ConditionalNav /> 
         </header>
-        {children}
+          {children}
         <footer></footer>
+        </SidebarProvider>
         <Toaster />
       </body>
     </html>
