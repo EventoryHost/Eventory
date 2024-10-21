@@ -12,9 +12,9 @@ import MultipleDropdown from "./(componets)/MultiDropdown2";
 const categories = [
   { value: "caterer", label: "Caterers" },
   { value: "decorator", label: "Decorator" },
-  { value: "prop-rental", label: "Prop Rental" },
+  { value: "propRental", label: "Prop Rental" },
   { value: "pav", label: "Photo & Videography" },
-  { value: "venue-provider", label: "Venue Provider" },
+  { value: "venueProvider", label: "Venue Provider" },
 ];
 
 const teamsize = [
