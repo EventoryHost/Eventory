@@ -184,15 +184,15 @@ const Page6 = ({
                   <span className="text-base font-medium">or Continue via</span>
                   <input
                     type="text"
-                    className="w-full rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-300"
+                    className="w-full rounded-xl border-2 bg-white p-3 py-5 text-sm outline-none"
                     placeholder="Enter your portfolio link"
                     value={
                       typeof formState.photos === "string"
                         ? formState.photos
                         : Array.isArray(formState.photos)
                           ? formState.photos
-                            .map((file: File) => file.name)
-                            .join(", ")
+                              .map((file: File) => file.name)
+                              .join(", ")
                           : (formState.photos as File)?.name
                     }
                     onChange={(e) =>
@@ -375,8 +375,8 @@ const Page6 = ({
                         ? formState.videos
                         : Array.isArray(formState.videos)
                           ? formState.videos
-                            .map((file: File) => file.name)
-                            .join(", ")
+                              .map((file: File) => file.name)
+                              .join(", ")
                           : (formState.videos as File)?.name
                     }
                   />

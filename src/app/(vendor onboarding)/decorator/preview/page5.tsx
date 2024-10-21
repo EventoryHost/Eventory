@@ -1,5 +1,5 @@
 import { EditIcon } from "lucide-react";
-import Appetizers from "../../(components)/Appetizers";
+import Appetizers from "../../(components)/PreviewAppetizer";
 import FileDisplay from "../../caterer/(components)/File";
 import { FormState } from "../page";
 

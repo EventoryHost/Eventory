@@ -187,9 +187,9 @@ const EventTypeHelper = () => {
     "5500-6000",
   ];
   const slides = [
-    "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/caraousel/pic1.png",
-    "/landing_page/categories/cat_01.png",
-    "/landing_page/categories/cat_02.png",
+    "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/event_listing/carousel/pic1.png",
+    "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/event_listing/carousel/cat_01.png",
+    "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/event_listing/carousel/cat_02.png",
   ];
   const venueNames = [
     "Diwali",
@@ -200,7 +200,7 @@ const EventTypeHelper = () => {
     "Makar Sankranti",
   ];
   const baseImageUrl =
-    "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventType-page/festive-carousel/";
+    "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/event_listing/carousel/festive-carousel/";
 
   const popular_events = venueNames.map((name, index) => ({
     name: name,

@@ -48,41 +48,41 @@ const items = [
   {
     title: "Home",
     imageUrl:
-      "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/categories/cat_01.png",
+      "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/landing_page/category_images/cat_01.png",
   },
   {
     title: "Festive",
     imageUrl:
-      "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/categories/cat_02.png",
+      "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/landing_page/category_images/cat_02.png",
   },
   {
     title: "Special Guest",
     imageUrl:
-      "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/categories/cat_03.png",
+      "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/landing_page/category_images/cat_03.png",
   },
   {
     title: "Corporate",
     imageUrl:
-      "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/categories/cat_04.png",
+      "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/landing_page/category_images/cat_04.png",
   },
   {
     title: "Night",
     imageUrl:
-      "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/categories/cat_05.png",
+      "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/landing_page/category_images/cat_05.png",
   },
   {
     title: "Wedding",
     imageUrl:
-      "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/categories/cat_06.png",
+      "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/landing_page/category_images/cat_06.png",
   },
   {
     title: "Anniversary",
     imageUrl:
-      "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/categories/cat_07.png",
+      "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/landing_page/category_images/cat_07.png",
   },
   {
     title: "Birthday",
     imageUrl:
-      "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/categories/cat_08.png",
+      "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/landing_page/category_images/cat_08.png",
   },
 ];

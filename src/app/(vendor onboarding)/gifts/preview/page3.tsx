@@ -1,7 +1,7 @@
 import React from "react";
 import ThreeStepBar from "@/app/(components)/threeStepBar";
 import { EditIcon } from "lucide-react";
-import Appetizers from "../../(components)/Appetizers";
+import Appetizers from "../../(components)/PreviewAppetizer";
 
 const giftTypes = [
   "Books and Media Gifts",
@@ -81,7 +81,9 @@ const Preview: React.FC<PreviewProps> = ({
         </div>
         <div className="relative h-48">
           <img
-            src={"/tajmahal.png"}
+            src={
+              "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/vendor_onboarding/tajmahal.png"
+            }
             alt="Taj Mahal"
             className="h-full w-full object-cover"
           />

@@ -6,15 +6,15 @@ import { cn } from "@/lib/utils";
 
 export const ParallaxScroll = ({ className }: { className: string }) => {
   const images = [
-    "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/parallax/Parallax_image_01.png",
-    "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/parallax/Parallax_image_02.png",
-    "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/parallax/Parallax_image_03.png",
+    "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/landing_page/moving_card_images/Parallax_image_01.png",
+    "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/landing_page/moving_card_images/Parallax_image_02.png",
+    "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/landing_page/moving_card_images/Parallax_image_03.png",
   ];
 
   const images2 = [
-    "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/parallax/Parallax_image_04.png",
-    "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/parallax/Parallax_image_05.png",
-    "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/parallax/Parallax_image_01.png",
+    "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/landing_page/moving_card_images/Parallax_image_04.png",
+    "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/landing_page/moving_card_images/Parallax_image_05.png",
+    "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/landing_page/moving_card_images/Parallax_image_01.png",
   ];
 
   const doubledImages = [...images, ...images, ...images];

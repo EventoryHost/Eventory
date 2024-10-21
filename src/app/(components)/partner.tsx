@@ -10,7 +10,7 @@ export function Partner() {
         <Image
           alt=""
           src={
-            "https://res.cloudinary.com/dlofupmx3/image/upload/v1727810428/Group_1000000799_zw80hq.png"
+            "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/landing_page/partner_images/Group_1000000799_zw80hq.png"
           }
           layout="responsive"
           objectFit="cover"

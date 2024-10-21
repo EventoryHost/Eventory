@@ -41,9 +41,9 @@ const CarouselPage = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const slides = [
-    "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/caraousel/pic1.png",
-    "/landing_page/categories/cat_01.png",
-    "/landing_page/categories/cat_02.png",
+    "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/event_listing/carousel/pic1.png",
+    "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/event_listing/carousel/cat_01.png",
+    "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/event_listing/carousel/cat_02.png",
   ];
 
   useEffect(() => {
@@ -58,15 +58,15 @@ const CarouselPage = () => {
   );
   const images = [
     {
-      src: "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/SE/pic1.jpeg",
+      src: "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/event_listing/special_events/pic1.jpeg",
       text: "I recently celebrated my birthday and used Eventory to book a hall, decorators, and a cake, and I couldn't be happier. The venue was perfect, the decorations were stunning, and the cake was delicious. ",
     },
     {
-      src: "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/SE/pic2.jpeg",
+      src: "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/event_listing/special_events/pic2.jpeg",
       text: "Category 2",
     },
     {
-      src: "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/SE/pic3.jpeg",
+      src: "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/event_listing/special_events/pic3.jpeg",
       text: "Category 3",
     },
   ];
@@ -75,27 +75,27 @@ const CarouselPage = () => {
     {
       name: "Weddings",
 
-      img: "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/PE/weddings.png",
+      img: "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/event_listing/popular_events/weddings.png",
     },
     {
       name: "Corporate",
 
-      img: "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/PE/corporate.png",
+      img: "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/event_listing/popular_events/corporate.png",
     },
     {
       name: "Festive",
 
-      img: "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/PE/festive.png",
+      img: "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/event_listing/popular_events/festive.png",
     },
     {
       name: "Birthdays",
 
-      img: "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/PE/birthdays.png",
+      img: "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/event_listing/popular_events/birthdays.png",
     },
     {
       name: "Anniversary",
 
-      img: "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/PE/anniversary.png",
+      img: "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/event_listing/popular_events/anniversary.png",
     },
   ];
 
@@ -146,8 +146,8 @@ const CarouselPage = () => {
                           <Image
                             src={venue.img}
                             alt={venue.name}
-                            layout="fill"
-                            objectFit="cover"
+                            fill
+                            style={{ objectFit: "cover" }}
                             className="rounded-xl"
                           />
 
@@ -196,8 +196,8 @@ const CarouselPage = () => {
                           <Image
                             src={venue.img}
                             alt={venue.name}
-                            layout="fill"
-                            objectFit="cover"
+                            fill
+                            style={{ objectFit: "cover" }}
                             className="rounded-xl"
                           />
                         </a>

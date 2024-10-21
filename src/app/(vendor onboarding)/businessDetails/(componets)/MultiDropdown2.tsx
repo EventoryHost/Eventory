@@ -99,18 +99,21 @@ const MultipleDropdown: React.FC<MultipleDropdownProps> = ({
         <div className="absolute z-10 mt-2 w-full rounded-md bg-white shadow-lg">
           <ul className="max-h-60 overflow-auto rounded-md py-1 text-base focus:outline-none sm:text-sm">
             {options
-              .filter((option) => 
-                !selectedOptions.some((selected) => selected.value === option.value)
+              .filter(
+                (option) =>
+                  !selectedOptions.some(
+                    (selected) => selected.value === option.value,
+                  ),
               ) // Filter out selected options from the list
               .map((option) => (
-              <li
-                key={option.value}
-                className="relative flex cursor-pointer select-none items-center gap-1 py-2 pl-3 pr-9"
-                onClick={() => handleSelect(option)}
-              >
-                {option.label}
-              </li>
-            ))}
+                <li
+                  key={option.value}
+                  className="relative flex cursor-pointer select-none items-center gap-1 py-2 pl-3 pr-9"
+                  onClick={() => handleSelect(option)}
+                >
+                  {option.label}
+                </li>
+              ))}
           </ul>
         </div>
       )}

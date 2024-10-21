@@ -18,7 +18,7 @@ const Section3 = (props: Props) => {
             <div className="flex min-w-[48%] flex-col gap-3 px-4 md:w-[23%]">
               <div className="flex flex-col gap-4">
                 <Image
-                  src="https://d1u34m45xfa3ar.cloudfront.net/website/business-page/how_to/profile.svg"
+                  src="https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/business/profile.svg"
                   alt="Create Profile"
                   width={60}
                   height={100}
@@ -38,7 +38,7 @@ const Section3 = (props: Props) => {
             <div className="flex min-w-[48%] flex-col gap-3 px-4 md:w-[23%]">
               <div className="flex flex-col gap-4">
                 <Image
-                  src="https://d1u34m45xfa3ar.cloudfront.net/website/business-page/how_to/eva_list-outline.svg"
+                  src="https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/business/eva_list-outline.svg"
                   alt="List Your Services"
                   width={60}
                   height={100}
@@ -58,7 +58,7 @@ const Section3 = (props: Props) => {
             <div className="flex min-w-[48%] flex-col gap-3 px-4 md:w-[23%]">
               <div className="flex flex-col gap-4">
                 <Image
-                  src="https://d1u34m45xfa3ar.cloudfront.net/website/business-page/how_to/Box 1.svg"
+                  src="https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/business/Box_1.svg"
                   alt="Manage Bookings"
                   width={50}
                   height={100}
@@ -78,7 +78,7 @@ const Section3 = (props: Props) => {
             <div className="flex min-w-[48%] flex-col gap-3 px-4 md:w-[23%]">
               <div className="flex flex-col gap-4">
                 <Image
-                  src="https://d1u34m45xfa3ar.cloudfront.net/website/business-page/how_to/Lock check.svg"
+                  src="https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/business/Lock_check.svg"
                   alt="Secure Payments"
                   width={50}
                   height={100}
