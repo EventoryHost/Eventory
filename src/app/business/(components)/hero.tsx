@@ -5,48 +5,48 @@ type Props = {};
 
 const Hero = (props: Props) => {
   return (
-    <div className="abhero relative flex flex-col min-h-[90vh] min-w-full items-center justify-center">
+    <div className="abhero relative flex min-h-[90vh] min-w-full flex-col items-center justify-center">
       {/* Random positioned images surrounding the hero */}
       <img
         src="https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/business/girl.png"
         alt="random image 1"
-        className="hidden md:absolute left-5 top-10  h-[100px] w-[100px] object-contain md:block"
+        className="left-5 top-10 hidden h-[100px] w-[100px] object-contain md:absolute md:block"
       />
       <img
         src="https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/business/girl.png"
         alt="random image 2"
-        className="top-15 hidden md:absolute left-20  h-[100px] w-[100px] object-contain md:block"
+        className="top-15 left-20 hidden h-[100px] w-[100px] object-contain md:absolute md:block"
       />
       <img
         src="https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/business/girl.png"
         alt="random image 3"
-        className="hidden md:absolute top-10  h-[100px] w-[100px] object-contain md:block"
+        className="top-10 hidden h-[100px] w-[100px] object-contain md:absolute md:block"
       />
       <img
         src="https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/business/girl.png"
         alt="random image 4"
-        className="hidden md:absolute right-10 top-20  h-[80px] w-[80px] object-contain md:block"
+        className="right-10 top-20 hidden h-[80px] w-[80px] object-contain md:absolute md:block"
       />
       <img
         src="https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/business/girl.png"
         alt="random image 5"
-        className="hidden md:absolute bottom-16 left-10  h-[60px] w-[60px] object-contain md:block"
+        className="bottom-16 left-10 hidden h-[60px] w-[60px] object-contain md:absolute md:block"
       />
       <img
         src="https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/business/girl.png"
         alt="random image 6"
-        className="hidden md:absolute bottom-5 right-20  h-[90px] w-[90px] object-contain md:block"
+        className="bottom-5 right-20 hidden h-[90px] w-[90px] object-contain md:absolute md:block"
       />
       {/* Additional images */}
       <img
         src="https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/business/girl.png"
         alt="random image 7"
-        className="hidden md:absolute right-5 top-5  h-[110px] w-[110px] object-contain md:hidden"
+        className="right-5 top-5 hidden h-[110px] w-[110px] object-contain md:absolute md:hidden"
       />
       <img
         src="https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/business/girl.png"
         alt="random image 8"
-        className="right-30 hidden md:absolute bottom-10  h-[90px] w-[90px] object-contain md:block"
+        className="right-30 bottom-10 hidden h-[90px] w-[90px] object-contain md:absolute md:block"
       />
 
       {/* Hero Section */}
@@ -79,7 +79,7 @@ const Hero = (props: Props) => {
           </div>
         </div>
       </div>
-      <div className="md:hidden mt-10 flex justify-center gap-5">
+      <div className="mt-10 flex justify-center gap-5 md:hidden">
         <img
           src="https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/business/girl.png"
           alt="image 1"
