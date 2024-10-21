@@ -28,15 +28,14 @@ export default function RootLayout({
         <link rel="icon" href="/logo-with-bg.svg" />
       </head>
       <body>
-
         <SidebarProvider>
           <header>
             <ConditionalNav />
           </header>
           <div className={"h-[100vh] py-[27vw] md:py-[15vw] lg:py-[4.5vw]"}>
-          {children}
-        </div>
-        <footer></footer>
+            {children}
+          </div>
+          <footer></footer>
         </SidebarProvider>
 
         <Toaster />
