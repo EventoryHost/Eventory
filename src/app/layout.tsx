@@ -30,7 +30,7 @@ export default function RootLayout({
         <header>
           <Nav />
         </header>
-        <div className={""}>
+        <div className={"lg:py-[4.5vw] md:py-[15vw] py-[27vw] h-[100vh]"}>
           {children}
         </div>
         <footer></footer>
