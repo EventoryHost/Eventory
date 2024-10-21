@@ -53,7 +53,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`navbar fixed top-0 z-20 flex flex-col shadow-md ${
+      className={`navbar fixed top-0 z-20 flex flex-col bg-white shadow-md md:${
         pathname == "/EventListing"
           ? "bg-white"
           : isScrolled

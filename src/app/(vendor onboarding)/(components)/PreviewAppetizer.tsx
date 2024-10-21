@@ -82,7 +82,7 @@ const Appetizers: React.FC<AppetizersProps> = ({
             <button
               key={index}
               onClick={(e) => handleButtonClick(e, appetizer)}
-              className={`text col-span-1 row-span-1 flex items-center  justify-center rounded-3xl border px-6 py-3 text-sm font-medium outline-none ${selectedAppetizers.includes(appetizer) ? "border-2 bg-[#D0CFF4]  border-[#2E3192] text-[#2E3192]" : "bg-[rgba(242,242,242,1)] text-gray-600"}`}
+              className={`text col-span-1 row-span-1 flex items-center justify-center rounded-3xl border px-6 py-3 text-sm font-medium outline-none ${selectedAppetizers.includes(appetizer) ? "border-2 border-[#2E3192] bg-[#D0CFF4] text-[#2E3192]" : "bg-[rgba(242,242,242,1)] text-gray-600"}`}
             >
               {appetizer}
             </button>
