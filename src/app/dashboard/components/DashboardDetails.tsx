@@ -79,7 +79,7 @@ const DashboardDetails: React.FC<IntroProps> = ({ user, venueDetails }) => {
         )
 
         // still working
-        
+
         // useEffect(() => {
         //     const fetchMetadata = async () => {
         //         try {
@@ -245,7 +245,7 @@ const DashboardDetails: React.FC<IntroProps> = ({ user, venueDetails }) => {
                                                 // Extract file name from the URL
                                                 const fileName = item.split('/').pop().split('-').pop();
                                                 return (
-                                                    <div className="flex w-full items-center justify-between gap-10 space-x-2 rounded-2xl border p-3 px-6">
+                                                    <div key={index} className="flex w-full items-center justify-between gap-10 space-x-2 rounded-2xl border p-3 px-6">
                                                         <div className="flex items-center gap-4">
                                                             <img src={"/selection/fileicon.svg"} className="h-8 w-8" alt="file" />
                                                             <div className="flex flex-col">
