@@ -1,82 +1,90 @@
-import FileDisplay from '@/app/(vendor onboarding)/caterer/(components)/File';
-import React, { useEffect, useState } from 'react';
+import FileDisplay from "@/app/(vendor onboarding)/caterer/(components)/File";
+import React, { useEffect, useState } from "react";
 
 interface BusinessDetails {
-    businessName: string;
-    category: string;
-    gstin: string;
-    teamsize: string;
-    annualrevenue: string;
-    businessAddress: string;
-    cities: string[]; // Array of cities
-    pinCode: number;
-    years: string;
+  businessName: string;
+  category: string;
+  gstin: string;
+  teamsize: string;
+  annualrevenue: string;
+  businessAddress: string;
+  cities: string[]; // Array of cities
+  pinCode: number;
+  years: string;
 }
 interface User {
-    name: string;
-    mobile: string;
-    businessDetails: BusinessDetails; // Nested business details
-
+  name: string;
+  mobile: string;
+  businessDetails: BusinessDetails; // Nested business details
 }
 interface VenueDetails {
-    userId: string;
-    name: string;
-    managerName: string;
-    capacity: string;
-    operatingHours: {
-        address: string;
-        venueDescription: string;
-    };
-    venueTypes: string[];
-    audioVisualEquipment: string[];
-    accessibilityFeatures: string[];
-    restrictionsPolicies: string[];
-    specialFeatures: string[];
-    facilities: string[];
-    termsConditions: string[];
-    cancellationPolicy: string[];
-    insurancePolicy: string[];
-    photos: string[];
-    videos: string[];
-    __v: number;
-    catererServices: boolean;
-    decorServices: boolean;
-    advanceBookingPeriod: string;
-    awards: string;
-    clientTestimonials: string;
+  userId: string;
+  name: string;
+  managerName: string;
+  capacity: string;
+  operatingHours: {
+    address: string;
+    venueDescription: string;
+  };
+  venueTypes: string[];
+  audioVisualEquipment: string[];
+  accessibilityFeatures: string[];
+  restrictionsPolicies: string[];
+  specialFeatures: string[];
+  facilities: string[];
+  termsConditions: string[];
+  cancellationPolicy: string[];
+  insurancePolicy: string[];
+  photos: string[];
+  videos: string[];
+  __v: number;
+  catererServices: boolean;
+  decorServices: boolean;
+  advanceBookingPeriod: string;
+  awards: string;
+  clientTestimonials: string;
 }
-
 
 interface IntroProps {
-    user: User | null;
-    venueDetails: VenueDetails;
+  user: User | null;
+  venueDetails: VenueDetails;
 }
 const DashboardDetails: React.FC<IntroProps> = ({ user, venueDetails }) => {
-    const [selected, setSelected] = useState<number>(0);
-    const tabs = ['basic deatils  ', 'features details', 'policies', 'additional details'];
-    const [policyMetadata, setPolicyMetadata] = useState<any[]>([]); // State to hold fetched metadata
+  const [selected, setSelected] = useState<number>(0);
+  const tabs = [
+    "basic deatils  ",
+    "features details",
+    "policies",
+    "additional details",
+  ];
+  const [policyMetadata, setPolicyMetadata] = useState<any[]>([]); // State to hold fetched metadata
 
-    if (!user || !user.businessDetails) {
-        return <p>Loading business details...</p>;
-    }
+  if (!user || !user.businessDetails) {
+    return <p>Loading business details...</p>;
+  }
 
-  
-    const booleanFields = Object.entries(venueDetails)
-        .filter(([key, value]) => typeof value === 'boolean') // Filter boolean fields
+  const booleanFields = Object.entries(venueDetails).filter(
+    ([key, value]) => typeof value === "boolean",
+  ); // Filter boolean fields
 
-    const filteredStringArrays = Object.entries(venueDetails)
-        .filter(([key, value]) =>
-            Array.isArray(value) && typeof value[0] === 'string' &&
-            !["termsConditions", "cancellationPolicy", "insurancePolicy", "photos", "videos"].includes(key)
-        )
-    const policies = Object.entries(venueDetails)
-        .filter(([key]) =>
-            ["termsConditions", "insurancePolicy", "cancellationPolicy"].includes(key)
-        )
-    const photo_video = Object.entries(venueDetails)
-        .filter(([key]) =>
-            ["photos", "videos"].includes(key)
-        )
+  const filteredStringArrays = Object.entries(venueDetails).filter(
+    ([key, value]) =>
+      Array.isArray(value) &&
+      typeof value[0] === "string" &&
+      ![
+        "termsConditions",
+        "cancellationPolicy",
+        "insurancePolicy",
+        "photos",
+        "videos",
+      ].includes(key),
+  );
+  const policies = Object.entries(venueDetails).filter(([key]) =>
+    ["termsConditions", "insurancePolicy", "cancellationPolicy"].includes(key),
+  );
+  const photo_video = Object.entries(venueDetails).filter(([key]) =>
+    ["photos", "videos"].includes(key),
+  );
 
         // still working
 
@@ -306,30 +314,38 @@ const DashboardDetails: React.FC<IntroProps> = ({ user, venueDetails }) => {
                                 </div>
                             </div>
                         ))} */}
-                    </div>
-                }
-                {selected === 3 && <div className="grid grid-cols-1 md:grid-cols-2 gap-8 ">
-                    {photo_video.map(([key, value]) => (
-                        <div key={key} className="flex flex-col gap-4 border-2 p-5 rounded-[20px]">
-                            <div className='flex flex-col gap-2 text-gray-700'>
-                                <div className='text-base font-normal'>{key.charAt(0).toUpperCase() + key.slice(1)}:</div>
-                                <div className='flex flex-wrap gap-2 w-[80%]'>
-                                    {Array.isArray(value) && value.map((item, index) => (
-                                        <span className=" bg-[#E8F1FD] text-[#448DF2] p-2 rounded-lg text-xs font-medium" key={index}>
-
-                                            {item}
-                                        </span>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </div>}
-            </div>
-
-
-        </div>
-    )
-}
+          </div>
+        )}
+        {selected === 3 && (
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+            {photo_video.map(([key, value]) => (
+              <div
+                key={key}
+                className="flex flex-col gap-4 rounded-[20px] border-2 p-5"
+              >
+                <div className="flex flex-col gap-2 text-gray-700">
+                  <div className="text-base font-normal">
+                    {key.charAt(0).toUpperCase() + key.slice(1)}:
+                  </div>
+                  <div className="flex w-[80%] flex-wrap gap-2">
+                    {Array.isArray(value) &&
+                      value.map((item, index) => (
+                        <span
+                          className="rounded-lg bg-[#E8F1FD] p-2 text-xs font-medium text-[#448DF2]"
+                          key={index}
+                        >
+                          {item}
+                        </span>
+                      ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
 
 export default DashboardDetails;

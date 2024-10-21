@@ -9,10 +9,10 @@ import { useSidebar } from "../dashboard/context/SidebarContext";
 
 export default function ConditionalNav() {
   const pathname = usePathname();
-  const { isSidebarOpen, toggleSidebar } = useSidebar(); 
-//   const toggleSidebar = () => {
-//     setIsSidebarOpen((prev) => !prev);
-//   };
+  const { isSidebarOpen, toggleSidebar } = useSidebar();
+  //   const toggleSidebar = () => {
+  //     setIsSidebarOpen((prev) => !prev);
+  //   };
 
   if (pathname.startsWith("/dashboard")) {
     return (

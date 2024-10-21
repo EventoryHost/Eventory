@@ -73,10 +73,9 @@ const Page: React.FC = () => {
     facilities: ["Av Equipments", "Charging Stations", "Garden Area"],
     termsConditions: [
       "https://eventory-bucket.s3.ap-south-1.amazonaws.com/Venues/harshi/documents/termsConditions",
-     ],
+    ],
     cancellationPolicy: [
       "https://eventory-bucket.s3.ap-south-1.amazonaws.com/Venues/harshi/documents/cancellationPolicy",
-
     ],
     insurancePolicy: [],
     photos: [],
@@ -108,8 +107,6 @@ const Page: React.FC = () => {
             const res = await fetchVendor(id, email, mobile);
             setemail(email);
             setUser(res);
-
-           
           } else {
             toast({
               variant: "destructive",
@@ -138,14 +135,14 @@ const Page: React.FC = () => {
 
     fetchData();
   }, []);
-  
+
   useEffect(() => {
     const fetchVendorData = async () => {
       if (!user) return; // Exit early if user is not defined
       setLoading(true);
 
       const token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InZlbjIwMjQxMDE5MTgxMTAxMjc5IiwibmFtZSI6IkhhcnNoaXRhIHBhdGhhayIsIm1vYmlsZSI6Iis5MTg3OTk3MzI5NDAiLCJfaWQiOiI2NzEzZjY0ZDQyYTM5NzhkMWRiNzBkZjciLCJfX3YiOjAsImlhdCI6MTcyOTM2MTQ4NH0.IVuofZ3ziXZdgE8497owzb8gsnwHaKSMueikv5oV7eA";
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InZlbjIwMjQxMDE5MTgxMTAxMjc5IiwibmFtZSI6IkhhcnNoaXRhIHBhdGhhayIsIm1vYmlsZSI6Iis5MTg3OTk3MzI5NDAiLCJfaWQiOiI2NzEzZjY0ZDQyYTM5NzhkMWRiNzBkZjciLCJfX3YiOjAsImlhdCI6MTcyOTM2MTQ4NH0.IVuofZ3ziXZdgE8497owzb8gsnwHaKSMueikv5oV7eA";
 
       if (token) {
         try {
@@ -156,13 +153,17 @@ const Page: React.FC = () => {
           // Ensure the user category exists
           if (id && user.businessDetails.category) {
             // Call fetchVendorByIdAndCategory with parameters
-            const vendorData = await getVendorByIdAndCategory( "caterer","ven343555");
+            const vendorData = await getVendorByIdAndCategory(
+              "caterer",
+              "ven343555",
+            );
             // Handle vendorData as needed (e.g., set state)
           } else {
             toast({
               variant: "destructive",
               title: "Error: Something went wrong.",
-              description: "There was a problem with your request. Please log in again.",
+              description:
+                "There was a problem with your request. Please log in again.",
             });
             console.error("Token does not contain expected data.");
           }
@@ -170,7 +171,9 @@ const Page: React.FC = () => {
           toast({
             variant: "destructive",
             title: "Error",
-            description: String(error) || "Something went wrong. Check your internet connection.",
+            description:
+              String(error) ||
+              "Something went wrong. Check your internet connection.",
           });
           console.error("Failed to decode token:", error);
         } finally {
@@ -183,13 +186,13 @@ const Page: React.FC = () => {
     };
 
     fetchVendorData();
-  }, [user]); 
+  }, [user]);
 
   return (
-    <div className="bg-slate-100 p-6 overflow-hidden max-h-[89vh] min-h-[89vh] overflow-y-auto scrollbar-hide">
+    <div className="max-h-[89vh] min-h-[89vh] overflow-hidden overflow-y-auto bg-slate-100 p-6 scrollbar-hide">
       {/* Dynamic width adjustment based on the sidebar state */}
       <div
-        className={`ml-56 gap-6 flex flex-col  `} // Shift based on sidebar width (assuming sidebar is 64px wide)
+        className={`ml-56 flex flex-col gap-6`} // Shift based on sidebar width (assuming sidebar is 64px wide)
       >
         {loading && <Loadingeanimation width="w-64" />}
 
@@ -199,7 +202,7 @@ const Page: React.FC = () => {
             <DashboardDetails
               user={user}
               venueDetails={venueDetails}
-               // Pass metadata to DashboardDetails
+              // Pass metadata to DashboardDetails
             />
           </>
         )}

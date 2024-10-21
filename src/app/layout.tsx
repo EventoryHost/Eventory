@@ -29,11 +29,11 @@ export default function RootLayout({
       </head>
       <body>
         <SidebarProvider>
-        <header>
-          <ConditionalNav /> 
-        </header>
+          <header>
+            <ConditionalNav />
+          </header>
           {children}
-        <footer></footer>
+          <footer></footer>
         </SidebarProvider>
         <Toaster />
       </body>
