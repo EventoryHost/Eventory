@@ -107,26 +107,27 @@ const Decorators: React.FC = () => {
 
   function getVendorId(): string | null {
     const token = localStorage.getItem("token");
-
     if (!token) {
-      console.log("No token found!");
+      console.error("Token not found");
       return null;
     }
     try {
       const decodedToken = jwt.decode(token) as {
-        userId?: string;
-        email?: string;
+        id: string;
+        email: string;
+        name: string;
+        mobile: string;
       };
-      if (!decodedToken || !decodedToken.userId) {
+      if (!decodedToken || !decodedToken.id) {
         console.error("Invalid token or token does not contain userId.");
         return null;
       }
-      return decodedToken.userId;
+      return decodedToken.id;
     } catch (error) {
       console.error("Error decoding token:", error);
       return null;
     }
-  }
+  };
 
   const handleContinue = () => {
     setCurrentPage(currentPage + 1);

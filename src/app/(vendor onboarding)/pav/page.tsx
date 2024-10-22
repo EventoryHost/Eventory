@@ -1,5 +1,5 @@
 "use client";
-
+import jwt from "jsonwebtoken"; // Import the 'jsonwebtoken' module
 import Page1 from "./components/page1";
 import Page2 from "./components/page2";
 import Page3 from "./components/page3";
@@ -91,11 +91,45 @@ const Page = () => {
     setCurrentPage(currentPage + 1);
   };
 
+  function getVendorId(): string | null {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("Token not found");
+      return null;
+    }
+    try {
+      const decodedToken = jwt.decode(token) as {
+        id: string;
+        email: string;
+        name: string;
+        mobile: string;
+      };
+      if (!decodedToken || !decodedToken.id) {
+        console.error("Invalid token or token does not contain userId.");
+        return null;
+      }
+      return decodedToken.id;
+    } catch (error) {
+      console.error("Error decoding token:", error);
+      return null;
+    }
+  };
+
   const handleSubmit = async () => {
+
+    const venId = getVendorId();
+    if (!venId) {
+      console.error("No vendorId found!");
+      return;
+    }
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("No token found!");
+      return;
+    }
     const formData = new FormData();
 
-    formData.append("venId", "SomeVenID");
-
+    formData.append("venId", venId);
     // page 1
     formData.append("name", name);
     formData.append("description", description);
