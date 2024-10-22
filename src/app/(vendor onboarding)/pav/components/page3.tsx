@@ -4,6 +4,11 @@ import { ArrowLeft, CheckCircle, Upload } from "lucide-react";
 import React, { useState } from "react";
 import FileInput from "@/components/fileInput";
 import Dropdown from "../../(components)/Dropdown";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/redux/store";
+import { fetchPavData, savePavDetails } from "@/redux/pavSlice";
+import jwt from "jsonwebtoken";
 
 type Page1Props = {
   Durationoffinaldelivery: string;
@@ -56,6 +61,96 @@ const Page4 = ({
   ];
   const packagetypes = ["Costomize", "Standard", "Both"];
 
+  const dispatch = useDispatch<AppDispatch>();
+  const { formData, loading, error } = useSelector(
+    (state: RootState) => state["pav"]
+  );
+
+  // Fetch rental data on mount
+  useEffect(() => {
+    const userId = getVendorId();
+    if (userId) {
+      dispatch(fetchPavData(userId));
+    }
+  }, [dispatch]);
+  
+  // Update form state with fetched data for Page 1
+  useEffect(() => {
+    if (formData) {
+      if (formData.Durationoffinaldelivery !== undefined) {
+        setDurationoffinaldelivery(formData.Durationoffinaldelivery);
+      }
+      if (formData.Packagetype !== undefined) {
+        setPackagetype(formData.Packagetype);
+      }
+      if (formData.availablefordestinationevents !== undefined) {
+        setavailablefordestinationevents(formData.availablefordestinationevents);
+      }
+      if (formData.postproductionservices !== undefined) {
+        setpostproductionservices(formData.postproductionservices);
+      }
+      if (formData.proposalsToClients !== undefined) {
+        setProposalsToClients(formData.proposalsToClients);
+      }
+      if (formData.freeInitialConsultation !== undefined) {
+        setFreeInitialConsultation(formData.freeInitialConsultation);
+      }
+      if (formData.advanceSetup !== undefined) {
+        setAdvanceSetup(formData.advanceSetup);
+      }
+      if (formData.bookingDeposit !== undefined) {
+        setBookingDeposit(formData.bookingDeposit);
+      }
+
+    }
+  }, [formData]);
+  
+  // Updated handleSave function
+  const handleSave = () => {
+    const userId = getVendorId();
+    if (!userId) {
+      console.error("User ID is missing");
+      return;
+    }
+  
+    const updatedFormState = {
+      Durationoffinaldelivery,
+      Packagetype,
+      availablefordestinationevents,
+      postproductionservices,
+      proposalsToClients,
+      freeInitialConsultation,
+      advanceSetup,
+      bookingDeposit,
+    };
+  
+    // Dispatch action to save the updated form data for Page 3
+    dispatch(savePavDetails({ userId, data: updatedFormState }) as any);
+  };
+
+  const onContinue = () => {
+    handleSave(); // Save the rental details before continuing
+    handleContinue();
+  };
+
+
+  function getVendorId(): string | null {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("Token not found");
+      return null;
+    }
+    try {
+      const decodedToken = jwt.decode(token) as {
+        userId?: string;
+      };
+      return decodedToken?.userId || null;
+    } catch (error) {
+      console.error("Error decoding token:", error);
+      return null;
+    }
+  }
+
   return (
     <div
       className="scroll-touch flex flex-col items-start gap-7 overflow-y-scroll rounded-xl bg-white p-3 scrollbar-hide xs:w-[95%] xs:min-w-[90%] xs:justify-start md:p-6"
@@ -84,6 +179,7 @@ const Page4 = ({
                 options={durations}
                 onSelect={(value: string) => setDurationoffinaldelivery(value)}
                 placeholder="Select Your Work Delivery time"
+                selectedOption={Durationoffinaldelivery}
               />
             </div>
 
@@ -95,6 +191,7 @@ const Page4 = ({
                 options={packagetypes}
                 onSelect={(value: string) => setPackagetype(value)}
                 placeholder="Select Type Of Your Delivery"
+                selectedOption={Packagetype}
               />
             </div>
           </div>
@@ -371,7 +468,7 @@ const Page4 = ({
         </button>
         <button
           className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-          onClick={handleContinue}
+          onClick={onContinue}
         >
           Continue
         </button>
