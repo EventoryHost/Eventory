@@ -163,7 +163,7 @@ const Caterer = () => {
       console.error("Error decoding token:", error);
       return null;
     }
-  };
+  }
 
   async function handleSubmit() {
     const venId = getVendorId();

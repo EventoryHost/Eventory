@@ -91,7 +91,7 @@ const RootPage = () => {
     managerName: "",
     workDescription: "",
     eventSize: "",
-    handleChange: (key: keyof FormState, value: any) => { },
+    handleChange: (key: keyof FormState, value: any) => {},
 
     // URL's for the files
     itemCatalogue: false,
@@ -287,7 +287,7 @@ const RootPage = () => {
       console.error("Error decoding token:", error);
       return null;
     }
-  };
+  }
 
   async function handleSubmit() {
     console.log("Form State before submission:", formState);

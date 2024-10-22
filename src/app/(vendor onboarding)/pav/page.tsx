@@ -113,10 +113,9 @@ const Page = () => {
       console.error("Error decoding token:", error);
       return null;
     }
-  };
+  }
 
   const handleSubmit = async () => {
-
     const venId = getVendorId();
     if (!venId) {
       console.error("No vendorId found!");

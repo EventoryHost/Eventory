@@ -127,7 +127,7 @@ const Decorators: React.FC = () => {
       console.error("Error decoding token:", error);
       return null;
     }
-  };
+  }
 
   const handleContinue = () => {
     setCurrentPage(currentPage + 1);

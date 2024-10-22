@@ -114,7 +114,7 @@ const VenueForm: React.FC = () => {
       console.error("Error decoding token:", error);
       return null;
     }
-  };
+  }
 
   const handleSubmit = async () => {
     if (!formState.managerName) {
@@ -409,28 +409,33 @@ const VenueForm: React.FC = () => {
               </span>
               <div className="flex gap-2">
                 <button
-                  className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 1 ? "bg-[#2E3192] text-white" : "bg-gray-300"
-                    }`}
+                  className={`flex h-2 w-10 items-center justify-center rounded-full ${
+                    currentPage >= 1 ? "bg-[#2E3192] text-white" : "bg-gray-300"
+                  }`}
                 ></button>
 
                 <button
-                  className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 2 ? "bg-[#2E3192] text-white" : "bg-gray-300"
-                    }`}
+                  className={`flex h-2 w-10 items-center justify-center rounded-full ${
+                    currentPage >= 2 ? "bg-[#2E3192] text-white" : "bg-gray-300"
+                  }`}
                 ></button>
 
                 <button
-                  className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 3 ? "bg-[#2E3192] text-white" : "bg-gray-300"
-                    }`}
+                  className={`flex h-2 w-10 items-center justify-center rounded-full ${
+                    currentPage >= 3 ? "bg-[#2E3192] text-white" : "bg-gray-300"
+                  }`}
                 ></button>
 
                 <button
-                  className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 4 ? "bg-[#2E3192] text-white" : "bg-gray-300"
-                    }`}
+                  className={`flex h-2 w-10 items-center justify-center rounded-full ${
+                    currentPage >= 4 ? "bg-[#2E3192] text-white" : "bg-gray-300"
+                  }`}
                 ></button>
 
                 <button
-                  className={`flex h-2 w-10 items-center justify-center rounded-full ${currentPage >= 5 ? "bg-[#2E3192] text-white" : "bg-gray-300"
-                    }`}
+                  className={`flex h-2 w-10 items-center justify-center rounded-full ${
+                    currentPage >= 5 ? "bg-[#2E3192] text-white" : "bg-gray-300"
+                  }`}
                 ></button>
               </div>
             </div>

@@ -90,7 +90,7 @@ const SignUp = () => {
         toggleModal();
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
       setFormError(String(error) || "Something goes wrong");
       console.log(error);
     } finally {
