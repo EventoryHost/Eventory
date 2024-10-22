@@ -149,53 +149,21 @@ const Caterer = () => {
     }
     try {
       const decodedToken = jwt.decode(token) as {
-        userId?: string;
-        email?: string;
+        id: string;
+        email: string;
+        name: string;
+        mobile: string;
       };
-      if (!decodedToken || !decodedToken.userId) {
+      if (!decodedToken || !decodedToken.id) {
         console.error("Invalid token or token does not contain userId.");
         return null;
       }
-      return decodedToken.userId;
+      return decodedToken.id;
     } catch (error) {
       console.error("Error decoding token:", error);
       return null;
     }
   }
-
-  const handleContinue = () => {
-    console.log({
-      veg,
-      cateringName: formState.cateringName,
-      BusinessName: formState.businessName,
-      preSetMenu: formState.preSetMenu,
-      customizableMenu: formState.customizableMenu,
-      servingCapacity,
-      cuisineSpecialties,
-      regionalSpecialties,
-      serviceStyles,
-      selectedAppetizers,
-      selectedBeverages,
-      selectedMainCourses,
-      selectedDietaryOptions,
-      eventTypes,
-      additionalServices,
-      staffProvides,
-      equipmentsProvided,
-      dailyPackages,
-      seasonalPackages,
-      TastingSessions: formState.tastingSessions,
-      BusinessLicenses: formState.businessLicenses,
-      FoodSafety: formState.foodSafety,
-      CateringServiceImages: formState.cateringServiceImages,
-      VideoEvent: formState.videoEvent,
-      TermsAndConditions: formState.termsAndConditions,
-      CancellationPolicy: formState.cancellationPolicy,
-      advancePayment,
-      portfolio: formState.portfolio,
-      clientTestimonials: formState.clientTestimonials,
-    });
-  };
 
   async function handleSubmit() {
     const venId = getVendorId();
@@ -205,12 +173,6 @@ const Caterer = () => {
       return;
     }
 
-    const token = localStorage.getItem("token");
-
-    if (!token) {
-      console.error("No token found!");
-      return;
-    }
     // collect all responses in formdata and send to backend
     const formData = new FormData();
     formData.append("venId", venId);
@@ -350,7 +312,6 @@ const Caterer = () => {
         console.log(`${key}: ${value}`);
       });
       await addCaterer(formData);
-      // localStorage.clear();
       console.log("Caterer added successfully");
     } catch (error) {
       console.error("Error adding caterer:", error);
@@ -374,7 +335,6 @@ const Caterer = () => {
             setServiceStyles={setServiceStyles}
             handleContinue={() => {
               setCurrentPage(2);
-              handleContinue();
             }}
           />
         );
@@ -399,7 +359,6 @@ const Caterer = () => {
             setSelectedDietaryOptions={setSelectedDietaryOptions}
             handleContinue={() => {
               setCurrentPage(3);
-              handleContinue();
             }}
           />
         );
@@ -414,7 +373,6 @@ const Caterer = () => {
             setSelectedAdditionalServices={setAdditionalServices}
             handleContinue={() => {
               setCurrentPage(4);
-              handleContinue();
             }}
           />
         );
@@ -429,7 +387,6 @@ const Caterer = () => {
             setSelectedEquipmentsProvided={setEquipmentsProvided}
             handleContinue={() => {
               setCurrentPage(5);
-              handleContinue();
             }}
           />
         );
@@ -443,7 +400,6 @@ const Caterer = () => {
             updateFormState={updateFormState}
             handleContinue={() => {
               setCurrentPage(6);
-              handleContinue();
               // handleSubmit();
             }}
           />
@@ -458,7 +414,6 @@ const Caterer = () => {
             updateFormState={updateFormState}
             handleContinue={() => {
               setCurrentPage(7);
-              handleContinue();
               // handleSubmit();
             }}
           />

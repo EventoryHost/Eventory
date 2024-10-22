@@ -91,23 +91,29 @@ const RootPage = () => {
   }, [listOfGifts]);
 
   // Decode JWT to extract vendor ID
-  const getVendorId = (): string | null => {
+  function getVendorId(): string | null {
     const token = localStorage.getItem("token");
-
     if (!token) {
+      console.error("Token not found");
       return null;
     }
     try {
       const decodedToken = jwt.decode(token) as {
-        userId?: string;
-        email?: string;
+        id: string;
+        email: string;
+        name: string;
+        mobile: string;
       };
-      return decodedToken?.userId || null;
+      if (!decodedToken || !decodedToken.id) {
+        console.error("Invalid token or token does not contain userId.");
+        return null;
+      }
+      return decodedToken.id;
     } catch (error) {
       console.error("Error decoding token:", error);
       return null;
     }
-  };
+  }
 
   // Handle form submission
   const handleSubmit = async () => {
