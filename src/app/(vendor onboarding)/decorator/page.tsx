@@ -157,7 +157,7 @@ const Decorators: React.FC = () => {
     //page 1
     formData.append("name", formState.businessName);
     formData.append("duration", formState.duration);
-    formData.append("eventsize", formState.eventsize);
+    formData.append("eventSize", formState.eventsize);
 
     typesOfEvents.forEach((type) => {
       formData.append("typesOfEvents", type);
@@ -270,7 +270,7 @@ const Decorators: React.FC = () => {
     } else {
       formData.append("termsAndConditions", formState.termsAndConditions);
     }
-
+    formData.append("advanceBookingPeriod", formState.advbookingperiod);
     // Append form data for debugging
     formData.forEach((value, key) => {
       console.log(`${key}: ${value}`);
@@ -278,7 +278,7 @@ const Decorators: React.FC = () => {
 
     try {
       await addDecorator(formData);
-      alert("Tried adding decorator");
+      // alert("Tried adding decorator");
     } catch (error) {
       console.error("Error adding venue:", error);
     }

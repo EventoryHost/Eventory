@@ -11,7 +11,7 @@ async function addDecorator(data: any) {
         },
       },
     );
-    console.log(response.data);
+    console.log("Done",response.data);
   } catch (error) {
     if (axios.isAxiosError(error)) {
       console.log(error.message);
