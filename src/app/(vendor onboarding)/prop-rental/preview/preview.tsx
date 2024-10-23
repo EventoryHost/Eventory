@@ -2,7 +2,7 @@ import { Check, EditIcon } from "lucide-react";
 import { SetStateAction } from "react";
 import ThreeStepBar from "@/app/(components)/threeStepBar";
 import StepBar from "@/app/(components)/stepBar";
-import Appetizers from "../../(components)/Appetizers";
+import Appetizers from "../../(components)/PreviewAppetizer";
 import File from "../../caterer/(components)/File";
 import FileDisplay from "../../caterer/(components)/File";
 
@@ -119,7 +119,7 @@ type FormState = {
 
   // Page2
   itemCatalogue: boolean | File;
-  customization: boolean;
+  customization: boolean | null;
   maintenance: string;
   services: string;
 
@@ -209,7 +209,7 @@ function Preview({
   return (
     <div className="flex h-full w-full flex-col items-start justify-start gap-5 overflow-y-scroll rounded-xl bg-white p-6 scrollbar-hide md:p-10">
       <span className="text-xl font-semibold">
-        {formState.managerName} / Prop-Rentals
+        {formState.managerName} Prop-Rentals
       </span>
 
       <div className="flex w-[100%] justify-between rounded-xl bg-[rgba(96,94,216,0.1)] p-2 pl-4 text-xl font-semibold">
@@ -296,7 +296,11 @@ function Preview({
               Do you offer customization(branding, color, theme of Items) ?
             </span>
             <span className="text-sm font-bold">
-              {formState.customization ? "yes" : "no"}
+              {formState.customization === null
+                ? ""
+                : formState.customization
+                  ? "yes"
+                  : "no"}
             </span>
           </div>
         </div>
@@ -653,15 +657,12 @@ function Preview({
       </div>
 
       <div className="mr-[5%] flex w-full justify-end gap-[32px]">
-        {/* Previous Button */}
-        {/* <button
+        <button
           onClick={() => setCurrentPage(currentPage - 1)}
           className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
         >
-          Previous
-        </button> */}
-
-        {/* Next Button */}
+          Back
+        </button>
         <button
           onClick={() => setCurrentPage(currentPage + 1)}
           className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"

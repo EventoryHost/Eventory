@@ -17,14 +17,14 @@ const _typesOfPaperUsedForInvitations = [
 ];
 
 interface FormState {
-  customInvitationsFromScratch: boolean;
-  semiCustomInvitations: boolean;
-  foilStamping: boolean;
-  engraving: boolean;
-  letterPressPrinting: boolean;
-  preDesignedCards: boolean;
-  differentCardstockWeights: boolean;
-  informationInserts: boolean;
+  customInvitationsFromScratch: boolean | null;
+  semiCustomInvitations: boolean | null;
+  foilStamping: boolean | null;
+  engraving: boolean | null;
+  letterPressPrinting: boolean | null;
+  preDesignedCards: boolean | null;
+  differentCardstockWeights: boolean | null;
+  informationInserts: boolean | null;
 }
 
 interface Page2Props {
@@ -72,7 +72,9 @@ const Page: React.FC<Page2Props> = ({
         </div>
         <div className="relative h-[10rem] lg:w-full">
           <img
-            src={"/tajmahal.png"}
+            src={
+              "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/vendor_onboarding/tajmahal.png"
+            }
             alt=""
             className="h-full w-full object-cover"
           />

@@ -404,7 +404,7 @@ function Page4({
               onClick={() => setCurrentPage(currentPage - 1)}
               className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
             >
-              Previous
+              Back
             </button>
 
             {/* Next Button */}

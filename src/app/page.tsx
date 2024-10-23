@@ -6,17 +6,21 @@ import Works from "./(components)/works";
 import Hero from "./(components)/hero";
 import { Horizontal } from "./(components)/horizontal";
 import Footer from "./(components)/footer";
+import HowItWorks from "./(components)/hiw_v2";
+import Featuredvendors from "./(components)/featuredVendors_v2";
 
 type Props = {};
 
 const page = (props: Props) => {
   return (
-    <div>
+    <div className="">
       <Hero />
       <Partner />
-      <Works />
+      {/* <Works /> */}
+      <HowItWorks />
+      <Featuredvendors />
       <Categories />
-      <Featured />
+      {/* <Featured /> */}
       <Footer />
     </div>
   );

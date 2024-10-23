@@ -1,5 +1,5 @@
 import { EditIcon } from "lucide-react";
-import Appetizers from "../../(components)/Appetizers";
+import Appetizers from "../../(components)/PreviewAppetizer";
 import FileDisplay from "../../caterer/(components)/File";
 import { FormState } from "../page";
 
@@ -182,7 +182,11 @@ function Preview({
                   </span>
 
                   <span className="font-poppins text-lg font-medium">
-                    {formState.propthemesOffered ? "yes" : "no"}
+                    {formState.propthemesOffered === null
+                      ? ""
+                      : formState.propthemesOffered
+                        ? "yes"
+                        : "no"}
                   </span>
                 </div>
                 <div className="flex w-1/2 flex-col">
@@ -190,7 +194,11 @@ function Preview({
                     Do you adapt themes to different venue sizes ?
                   </span>
                   <span className="font-poppins text-lg font-medium">
-                    {formState.adobtThemes ? "yes" : "no"}
+                    {formState.adobtThemes === null
+                      ? ""
+                      : formState.adobtThemes
+                        ? "yes"
+                        : "no"}
                   </span>
                 </div>
               </div>
@@ -201,7 +209,11 @@ function Preview({
                   </span>
 
                   <span className="font-poppins text-lg font-medium">
-                    {formState.colorschmes ? "yes" : "no"}
+                    {formState.colorschmes === null
+                      ? ""
+                      : formState.colorschmes
+                        ? "yes"
+                        : "no"}
                   </span>
                 </div>
                 <div className="flex w-1/2 flex-col">
@@ -209,7 +221,11 @@ function Preview({
                     Do you offer customization of themes ?
                   </span>
                   <span className="font-poppins text-lg font-medium">
-                    {formState.customizationsThemes ? "yes" : "no"}
+                    {formState.customizationsThemes === null
+                      ? ""
+                      : formState.customizationsThemes
+                        ? "yes"
+                        : "no"}
                   </span>
                 </div>
               </div>
@@ -355,7 +371,11 @@ function Preview({
                   </span>
 
                   <p className="font-poppins text-lg font-medium">
-                    {formState.revisionforinitialthemeproposal ? "yes" : "no"}
+                    {formState.revisionforinitialthemeproposal === null
+                      ? ""
+                      : formState.revisionforinitialthemeproposal
+                        ? "yes"
+                        : "no"}
                   </p>
                 </div>
                 <div className="flex w-1/2 flex-col">
@@ -364,9 +384,11 @@ function Preview({
                   </span>
 
                   <p className="font-poppins text-lg font-medium">
-                    {formState.writtenthemeproposalafterconsultaion
-                      ? "yes"
-                      : "no"}
+                    {formState.writtenthemeproposalafterconsultaion === null
+                      ? ""
+                      : formState.writtenthemeproposalafterconsultaion
+                        ? "yes"
+                        : "no"}
                   </p>
                 </div>
               </div>

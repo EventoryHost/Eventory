@@ -11,13 +11,39 @@ import {
 import Autoplay from "embla-carousel-autoplay";
 import ImageCarousel from "./(components)/ImageCarousel";
 import Footer from "../(components)/footer";
+import Link from "next/link";
+import ExploreSection from "../(customer onboarding)/(components)/ExploreSection";
 
 const CarouselPage = () => {
+  const [isMobile, setIsMobile] = useState<boolean>(false); // Initial value can be false
+
+  // Effect to update the isMobile state on window resize
+  useEffect(() => {
+    // Check if running in the browser
+    if (typeof window !== "undefined") {
+      // Set initial value based on window width
+      setIsMobile(window.innerWidth < 768);
+
+      const handleResize = () => {
+        setIsMobile(window.innerWidth < 768);
+      };
+
+      // Add event listener on component mount
+      window.addEventListener("resize", handleResize);
+
+      // Cleanup event listener on component unmount
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }
+  }, []);
+
   const [currentSlide, setCurrentSlide] = useState(0);
+
   const slides = [
-    "/EventListing/eventlist_1.png",
-    "/landing_page/categories/cat_01.png",
-    "/landing_page/categories/cat_02.png",
+    "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/event_listing/carousel/pic1.png",
+    "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/event_listing/carousel/cat_01.png",
+    "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/event_listing/carousel/cat_02.png",
   ];
 
   useEffect(() => {
@@ -32,115 +58,69 @@ const CarouselPage = () => {
   );
   const images = [
     {
-      src: "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/categories/cat_01.png",
-      text: "Category 1",
+      src: "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/event_listing/special_events/pic1.jpeg",
+      text: "I recently celebrated my birthday and used Eventory to book a hall, decorators, and a cake, and I couldn't be happier. The venue was perfect, the decorations were stunning, and the cake was delicious. ",
     },
     {
-      src: "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/categories/cat_02.png",
+      src: "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/event_listing/special_events/pic2.jpeg",
       text: "Category 2",
     },
     {
-      src: "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/categories/cat_03.png",
+      src: "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/event_listing/special_events/pic3.jpeg",
       text: "Category 3",
-    },
-    {
-      src: "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/categories/cat_01.png",
-      text: "Category 4",
-    },
-    {
-      src: "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/categories/cat_03.png",
-      text: "Category 5",
     },
   ];
 
-  const venues = [
+  const popular_events = [
     {
-      name: "Krishna Vendors",
-      rating: "4.5",
-      price: "4000",
-      category: "Wedding cakes , Western suburbs",
-      img: "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/featured/card_01.png",
+      name: "Weddings",
+
+      img: "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/event_listing/popular_events/weddings.png",
     },
     {
-      name: "Krishna Vendors",
-      rating: "4.5",
-      price: "5000",
-      category: "Wedding cakes , Western suburbs",
-      img: "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/featured/card_01.png",
+      name: "Corporate",
+
+      img: "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/event_listing/popular_events/corporate.png",
     },
     {
-      name: "Krishna Vendors",
-      rating: "4.5",
-      price: "6000",
-      category: "Wedding cakes , Western suburbs",
-      img: "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/featured/card_01.png",
+      name: "Festive",
+
+      img: "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/event_listing/popular_events/festive.png",
     },
     {
-      name: "Krishna Vendors",
-      rating: "4.5",
-      price: "7000",
-      category: "Wedding cakes , Western suburbs",
-      img: "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/featured/card_01.png",
+      name: "Birthdays",
+
+      img: "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/event_listing/popular_events/birthdays.png",
     },
     {
-      name: "Krishna Vendors",
-      rating: "4.5",
-      price: "8000",
-      category: "Wedding cakes , Western suburbs",
-      img: "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/featured/card_01.png",
-    },
-    {
-      name: "Krishna Vendors",
-      rating: "4.5",
-      price: "9000",
-      category: "Wedding cakes , Western suburbs",
-      img: "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/featured/card_01.png",
-    },
-    {
-      name: "Krishna Vendors",
-      rating: "4.5",
-      price: "4000",
-      category: "Wedding cakes , Western suburbs",
-      img: "https://d1u34m45xfa3ar.cloudfront.net/website/landing-page/featured/card_01.png",
+      name: "Anniversary",
+
+      img: "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/event_listing/popular_events/anniversary.png",
     },
   ];
+
+  const venueNames = [
+    "Central India",
+    "East India",
+    "North East",
+
+    "North India",
+    "South India",
+    "West India",
+  ];
+  const baseImageUrl =
+    "https://eventory-bucket.s3.ap-south-1.amazonaws.com/website/EventListing-page/";
+
+  const venues = venueNames.map((name, index) => ({
+    name: name,
+    img: `${baseImageUrl}RE/${name.toLowerCase().replace(/ /g, "-")}-pic-${index + 1}.png`, // Adjust the naming convention as needed
+  }));
 
   return (
     <div className="min-h-screen bg-gray-100">
-      <div className="relative h-[426px] w-full overflow-hidden">
-        {slides.map((slide, index) => (
-          <div
-            key={index}
-            className={`absolute left-0 top-0 h-full w-full transition-opacity duration-1000 ease-in-out ${
-              index === currentSlide ? "opacity-100" : "opacity-0"
-            }`}
-          >
-            <Image
-              src={slide}
-              alt={`Slide ${index + 1}`}
-              layout="fill"
-              objectFit="cover"
-            />
-          </div>
-        ))}
-      </div>
-      {/* Navigation Dots */}
-      <div className="m-4 flex justify-center space-x-2">
-        {slides.map((_, index) => (
-          <button
-            key={index}
-            className={`h-3 w-3 rounded-full ${
-              index === currentSlide
-                ? "bg-[#2E3192]"
-                : "border-2 border-[#2E3192] bg-white"
-            }`}
-            onClick={() => setCurrentSlide(index)}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
-      </div>
+      <ExploreSection slides={slides} eventType={true} isMobile={isMobile} />
 
-      <div className="mx-auto mt-10 flex w-[85%] flex-col items-center justify-between gap-16">
+      <div className="mx-auto mt-2 flex w-[85%] flex-col items-center justify-between gap-6 md:mt-10 md:gap-16">
         <div className="flex w-full flex-col items-start">
           <div className="justify-start font-poppins text-2xl font-bold md:text-4xl">
             Regional Events
@@ -148,40 +128,45 @@ const CarouselPage = () => {
           <div className="flex w-full justify-center">
             <Carousel
               plugins={[plugin.current]}
-              className="mb-4 mt-4 w-full max-w-[75%] md:mb-0 md:max-w-[90%]"
+              className="mb-4 mt-4 w-full max-w-[100%] overflow-x-auto scrollbar-hide md:mb-0 md:max-w-[90%] md:overflow-visible"
               onMouseEnter={plugin.current.stop}
               onMouseLeave={plugin.current.reset}
             >
-              <CarouselContent className="-ml-1">
+              <CarouselContent className="flex overflow-x-auto scrollbar-hide md:gap-2 md:overflow-visible">
                 {venues.map((venue, index) => (
                   <CarouselItem
                     key={index}
-                    className="pl-1 md:basis-1/3 lg:basis-[22.22%]"
+                    className="basis-[40%] md:basis-[22.22%]"
                   >
-                    <div className="w-full p-1 md:p-2">
-                      <div className="relative aspect-square overflow-hidden rounded-xl">
-                        <Image
-                          src={venue.img}
-                          alt={venue.name}
-                          layout="fill"
-                          objectFit="cover"
-                          className="rounded-xl"
-                        />
-                        <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50 p-4 text-white">
-                          <h3 className="mb-2 text-center text-lg font-semibold">
-                            {venue.name}
-                          </h3>
-                          <p className="text-center text-sm">
+                    <div className="w-full">
+                      <div className="relative aspect-square cursor-pointer overflow-hidden rounded-xl">
+                        <a
+                          href={`/EventType?event=${encodeURIComponent(venue.name)}`}
+                        >
+                          <Image
+                            src={venue.img}
+                            alt={venue.name}
+                            fill
+                            style={{ objectFit: "cover" }}
+                            className="rounded-xl"
+                          />
+
+                          <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50 text-white">
+                            <h3 className="mb-2 p-1 text-center text-xs font-semibold md:text-lg">
+                              {venue.name}
+                            </h3>
+                            {/* <p className="text-center text-sm">
                             {venue.category}
-                          </p>
-                        </div>
+                          </p> */}
+                          </div>
+                        </a>
                       </div>
                     </div>
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselPrevious />
-              <CarouselNext />
+              {!isMobile && <CarouselPrevious />}
+              {!isMobile && <CarouselNext />}
             </Carousel>
           </div>
         </div>
@@ -193,35 +178,51 @@ const CarouselPage = () => {
           <div className="flex w-full justify-center">
             <Carousel
               plugins={[plugin.current]}
-              className="mb-4 mt-4 w-full max-w-[75%] md:mb-0 md:max-w-[90%]"
+              className="mb-4 mt-4 w-full max-w-[100%] md:mb-0 md:max-w-[90%]"
               onMouseEnter={plugin.current.stop}
               onMouseLeave={plugin.current.reset}
             >
-              <CarouselContent className="-ml-1">
-                {venues.map((venue, index) => (
+              <CarouselContent className="flex md:gap-2">
+                {popular_events.map((venue, index) => (
                   <CarouselItem
                     key={index}
-                    className="pl-1 md:basis-1/2 lg:basis-[28%]"
+                    className="basis-[45%] md:basis-[26%]"
                   >
-                    <div className="w-full p-1 md:p-2">
-                      <div className="relative aspect-square overflow-hidden rounded-xl">
-                        <Image
-                          src={venue.img}
-                          alt={venue.name}
-                          layout="fill"
-                          objectFit="cover"
-                          className="rounded-xl"
-                        />
+                    <div className="w-full">
+                      <div className="relative aspect-[3/4] cursor-pointer overflow-hidden rounded-xl md:aspect-square">
+                        <a
+                          href={`/EventType?event=${encodeURIComponent(venue.name)}`}
+                        >
+                          <Image
+                            src={venue.img}
+                            alt={venue.name}
+                            fill
+                            style={{ objectFit: "cover" }}
+                            className="rounded-xl"
+                          />
+                        </a>
+
+                        {isMobile && (
+                          <div className="absolute inset-0 flex flex-col items-start justify-end bg-black bg-opacity-20 text-white">
+                            <h3 className="p-4 text-center text-sm font-semibold md:text-lg">
+                              {venue.name}
+                            </h3>
+                          </div>
+                        )}
                       </div>
-                      <h3 className="mb-2 text-lg font-semibold">
-                        {venue.name}
-                      </h3>
+                      {!isMobile && (
+                        <h3 className="mb-2 text-lg font-semibold">
+                          {venue.name}
+                        </h3>
+                      )}
                     </div>
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselPrevious />
-              <CarouselNext />
+
+              {/* Hide buttons in mobile view */}
+              {!isMobile && <CarouselPrevious />}
+              {!isMobile && <CarouselNext />}
             </Carousel>
           </div>
         </div>

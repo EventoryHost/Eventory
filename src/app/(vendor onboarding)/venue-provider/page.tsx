@@ -29,8 +29,8 @@ export interface FormState {
   };
   address: string;
   venueDescription: string;
-  catererServices: boolean;
-  decorServices: boolean;
+  catererServices: boolean | null;
+  decorServices: boolean | null;
   termsConditions: string | File | File[];
   cancellationPolicy: string | File | File[];
   insurancePolicy: string | File | File[];
@@ -51,8 +51,8 @@ const VenueForm: React.FC = () => {
     name: "",
     managerName: "",
     capacity: "",
-    catererServices: false,
-    decorServices: false,
+    catererServices: null,
+    decorServices: null,
     insurancePolicy: "",
     photos: [],
     videos: [],
@@ -98,12 +98,22 @@ const VenueForm: React.FC = () => {
       console.error("Token not found");
       return null;
     }
-
-    const { userId, email } = jwt.decode(token) as {
-      userId: string;
-      email: string;
-    };
-    return userId;
+    try {
+      const decodedToken = jwt.decode(token) as {
+        id: string;
+        email: string;
+        name: string;
+        mobile: string;
+      };
+      if (!decodedToken || !decodedToken.id) {
+        console.error("Invalid token or token does not contain userId.");
+        return null;
+      }
+      return decodedToken.id;
+    } catch (error) {
+      console.error("Error decoding token:", error);
+      return null;
+    }
   }
 
   const handleSubmit = async () => {
@@ -128,8 +138,17 @@ const VenueForm: React.FC = () => {
     );
     formData.append("address", formState.address);
     formData.append("venueDescription", formState.venueDescription);
-    formData.append("catererServices", String(formState.catererServices));
-    formData.append("decorServices", String(formState.decorServices));
+    formData.append(
+      "catererServices",
+      formState.catererServices !== null
+        ? String(formState.catererServices)
+        : "",
+    );
+
+    formData.append(
+      "decorServices",
+      formState.decorServices !== null ? String(formState.decorServices) : "",
+    );
 
     // Venue Types (Array)
     venueTypes.forEach((item, index) => {
@@ -431,7 +450,9 @@ const VenueForm: React.FC = () => {
           </div>
           <div className="relative h-[10rem] lg:w-full">
             <Image
-              src={"/tajmahal.png"}
+              src={
+                "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/vendor_onboarding/tajmahal.png"
+              }
               alt=""
               width={400}
               height={200}

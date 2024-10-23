@@ -1,6 +1,7 @@
 import React from "react";
 import "../../globals.css";
 import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
+import { Cards2 } from "@/components/ui/cards2_v2";
 
 type Props = {};
 
@@ -11,7 +12,7 @@ const testimonials = [
     name: "Charles Dickens",
     title: "A Tale of Two Cities",
     imageUrl:
-      "https://d1u34m45xfa3ar.cloudfront.net/website/about-page/events_01.png",
+      "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/about/events_01.png",
   },
   {
     quote:
@@ -19,14 +20,14 @@ const testimonials = [
     name: "William Shakespeare",
     title: "Hamlet",
     imageUrl:
-      "https://d1u34m45xfa3ar.cloudfront.net/website/about-page/events_02.png",
+      "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/about/events_02.png",
   },
   {
     quote: "All that we see or seem is but a dream within a dream.",
     name: "Edgar Allan Poe",
     title: "A Dream Within a Dream",
     imageUrl:
-      "https://d1u34m45xfa3ar.cloudfront.net/website/about-page/events_03.png",
+      "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/about/events_03.png",
   },
   {
     quote:
@@ -34,7 +35,7 @@ const testimonials = [
     name: "Jane Austen",
     title: "Pride and Prejudice",
     imageUrl:
-      "https://d1u34m45xfa3ar.cloudfront.net/website/about-page/events_01.png",
+      "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/about/events_01.png",
   },
   {
     quote:
@@ -42,25 +43,20 @@ const testimonials = [
     name: "Herman Melville",
     title: "Moby-Dick",
     imageUrl:
-      "https://d1u34m45xfa3ar.cloudfront.net/website/about-page/events_02.png",
+      "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/pages/about/events_02.png",
   },
 ];
 
 const Events = (props: Props) => {
   return (
     <>
-      <div className="2 mt-[450px] items-center justify-between max-sm:mt-[100px] sm:mx-10 sm:gap-0 sm:py-5 md:mt-[800px] md:gap-20 md:py-5 lg:mx-16 lg:mt-[800px] lg:gap-40 lg:py-5 xl:mt-[450px]">
-        <div className="justify-center">
+      <div className="2 mt-9 items-center justify-between sm:mx-10 sm:gap-0 sm:py-5 md:gap-20 md:py-5 lg:mx-16 lg:gap-40 lg:py-5">
+        <div className="mt-9 justify-center">
           <h2 className="mx-5 text-center text-2xl font-semibold text-[rgba(0,0,0,1)] md:mb-14 md:text-left md:text-4xl">
             Our Successful Events
           </h2>
         </div>
-
-        <InfiniteMovingCards
-          items={testimonials}
-          direction="right"
-          speed="slow"
-        />
+        <Cards2 />
       </div>
     </>
   );

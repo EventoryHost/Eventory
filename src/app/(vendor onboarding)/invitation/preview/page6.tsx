@@ -1,6 +1,6 @@
 import { Check, EditIcon } from "lucide-react";
 import { SetStateAction } from "react";
-import Appetizers from "../..//(components)/Appetizers";
+import Appetizers from "../../(components)/PreviewAppetizer";
 import File from "../../caterer/(components)/File";
 import StepBar from "../(components)/StepBar";
 const _cuisine = ["North Indian", "South Indian", "Chinese", "Italian"];
@@ -189,7 +189,9 @@ function Preview({
         </div>
         <div className="relative h-[10rem] lg:w-full">
           <img
-            src={"/tajmahal.png"}
+            src={
+              "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/vendor_onboarding/tajmahal.png"
+            }
             alt=""
             className="h-full w-full object-cover"
           />
@@ -227,7 +229,11 @@ function Preview({
                   Do you provide references upon request ?
                 </span>
                 <span className="font-semibold">
-                  {formState.references ? "yes" : "no"}
+                  {formState.references === null
+                    ? ""
+                    : formState.references
+                      ? "yes"
+                      : "no"}
                 </span>
               </div>
             </div>

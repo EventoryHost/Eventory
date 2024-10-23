@@ -26,7 +26,7 @@ export interface FormState {
 
   // Page2
   itemCatalogue: boolean | File;
-  customization: boolean;
+  customization: boolean | null;
   maintenance: string;
   services: string;
 
@@ -94,8 +94,8 @@ const RootPage = () => {
     handleChange: (key: keyof FormState, value: any) => {}, 
 
     // URL's for the files
-    itemCatalogue: true,
-    customization: false,
+    itemCatalogue: false,
+    customization: null,
     photos: [],
     videos: [],
     maintenance: "",
@@ -267,21 +267,22 @@ const RootPage = () => {
 
   function getVendorId(): string | null {
     const token = localStorage.getItem("token");
-
     if (!token) {
-      console.log("No token found!");
+      console.error("Token not found");
       return null;
     }
     try {
       const decodedToken = jwt.decode(token) as {
-        userId?: string;
-        email?: string;
+        id: string;
+        email: string;
+        name: string;
+        mobile: string;
       };
-      if (!decodedToken || !decodedToken.userId) {
+      if (!decodedToken || !decodedToken.id) {
         console.error("Invalid token or token does not contain userId.");
         return null;
       }
-      return decodedToken.userId;
+      return decodedToken.id;
     } catch (error) {
       console.error("Error decoding token:", error);
       return null;
@@ -309,7 +310,11 @@ const RootPage = () => {
         formState.itemCatalogue ? "true" : "false",
       );
     }
-    formData.append("customization", formState.customization.toString());
+    formData.append(
+      "customization",
+      formState.customization ? formState.customization.toString() : "null",
+    );
+
     formData.append("maintenance", formState.maintenance);
     formData.append("services", formState.services);
     // Handle photos field
@@ -596,7 +601,9 @@ const RootPage = () => {
           </div>
           <div className="relative h-[10rem] w-full">
             <Image
-              src={"/tajmahal.png"}
+              src={
+                "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/vendor_onboarding/tajmahal.png"
+              }
               alt=""
               width={400}
               height={200}

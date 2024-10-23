@@ -8,48 +8,23 @@ import { DatePickerWithRange } from "./datePicket";
 import { WandSparkles } from "lucide-react";
 
 const frameworks = [
-  {
-    value: "Birthday",
-    label: "Birthday",
-  },
-  {
-    value: "Marriage",
-    label: "Marriage",
-  },
-  {
-    value: "Anniversary",
-    label: "Anniversary",
-  },
-  {
-    value: "Special Guest",
-    label: "Special Guest",
-  },
-  {
-    value: "Tradional",
-    label: "Tradional",
-  },
+  { value: "Birthday", label: "Birthday" },
+  { value: "Wedding", label: "Wedding" },
+  { value: "Anniversary", label: "Anniversary" },
+  { value: "Corporate Party", label: "Corporate Party" },
+  { value: "Get together", label: "Get together" },
+  { value: "Home Function", label: "Home Function" },
+  { value: "Pooja", label: "Pooja" },
 ];
 
 const cities = [
   {
-    value: "Delhi",
-    label: "Delhi",
+    value: "Noida",
+    label: "Noida",
   },
   {
-    value: "Mumbai",
-    label: "Mumbai",
-  },
-  {
-    value: "Kolkata",
-    label: "Kolkata",
-  },
-  {
-    value: "Chennai",
-    label: "Chennai",
-  },
-  {
-    value: "Bangalore",
-    label: "Bangalore",
+    value: "Rohini",
+    label: "Rohini",
   },
 ];
 

@@ -1,7 +1,7 @@
 "use client";
 import "../globals.css";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import "./navbar.css";
@@ -18,21 +18,50 @@ const Navbar = () => {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<Categories[]>([]);
   const [isVisible, setIsVisible] = useState(false);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
 
   const handleShowNavbar = () => {
     setShowNavbar(!showNavbar);
   };
 
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth < 768); // 768px is the md breakpoint
+    };
+
+    handleResize(); // Initialize the screen size on mount
+    window.addEventListener("scroll", handleScroll); // Listen for scroll events
+    window.addEventListener("resize", handleResize); // Listen for resize events
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll); // Clean up scroll listener
+      window.removeEventListener("resize", handleResize); // Clean up resize listener
+    };
+  }, []);
+
   const pathname = usePathname();
 
   return (
     <nav
-      className={`navbar flex flex-col shadow-md ${
-        pathname === "/" ? "bg-[#BFBFEF]" : "bg-white"
-      }`}
+      className={`navbar fixed top-0 z-20 flex flex-col bg-white shadow-md md:${
+        pathname == "/EventListing"
+          ? "bg-white"
+          : isScrolled
+            ? "bg-white"
+            : "bg-transparent"
+      } transition-all duration-300`}
     >
       <div className="container flex items-center justify-between">
-        {/* logo eventory part */}
         <div className="logo flex flex-col items-center justify-center">
           <Link href={"/"}>
             <svg
@@ -324,8 +353,8 @@ const Navbar = () => {
           </button>
           <div className="flex w-auto items-center justify-center">
             <ul
-              onClick={handleShowNavbar}
-              className={`${showNavbar && "item-start flex"}`}
+              onClick={isSmallScreen ? handleShowNavbar : undefined}
+              className={"item-start flex"}
             >
               <li className="top-margin">
                 <Link href={"/about"}>

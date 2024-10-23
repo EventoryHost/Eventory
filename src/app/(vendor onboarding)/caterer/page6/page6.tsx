@@ -280,7 +280,7 @@ const Page6 = ({
                   <span className="text-base font-medium">or Continue via</span>
                   <input
                     type="text"
-                    className="w-full rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-300"
+                    className="w-full rounded-xl border-2 bg-white p-3 py-5 text-sm outline-none"
                     placeholder="Enter your portfolio link"
                     value={
                       typeof formState.photos === "string"
@@ -319,7 +319,7 @@ const Page6 = ({
                         type="radio"
                         name="tastingSessions"
                         value="true"
-                        checked={tastingSessions}
+                        checked={tastingSessions === true} // Handle boolean explicitly
                         onChange={() =>
                           updateFormState({ tastingSessions: true })
                         }
@@ -335,7 +335,7 @@ const Page6 = ({
                         type="radio"
                         name="tastingSessions"
                         value="false"
-                        checked={!tastingSessions}
+                        checked={tastingSessions === false} // Handle boolean explicitly
                         onChange={() =>
                           updateFormState({ tastingSessions: false })
                         }
@@ -455,7 +455,7 @@ const Page6 = ({
 
                       updateFormState({ videos: newVideos });
                     }}
-                    acceptedFileTypes="image/png, .pdf, image/jpg"
+                    acceptedFileTypes="video/mp4, video/x-msvideo, .mp4, .avi"
                     multiple
                   />
                   <span className="text-base font-medium">or Continue via</span>
@@ -505,7 +505,7 @@ const Page6 = ({
                         type="radio"
                         name="businessLicense"
                         value="true"
-                        checked={businessLicenses}
+                        checked={businessLicenses === true} // Explicitly check for true
                         onChange={() =>
                           updateFormState({ businessLicenses: true })
                         }
@@ -521,7 +521,7 @@ const Page6 = ({
                         type="radio"
                         name="businessLicense"
                         value="false"
-                        checked={!businessLicenses}
+                        checked={businessLicenses === false} // Explicitly check for false
                         onChange={() =>
                           updateFormState({ businessLicenses: false })
                         }
@@ -536,7 +536,13 @@ const Page6 = ({
               </div>
             </div>
 
-            <div className="items-strech flex flex-row gap-7 self-end">
+            <div className="mt-9 flex flex-row items-stretch gap-7 self-end bg-white">
+              <button
+                className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+                onClick={() => setCurrentPage((prevPage) => prevPage - 1)}
+              >
+                Back
+              </button>
               <button
                 className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
                 onClick={handleSubmit}

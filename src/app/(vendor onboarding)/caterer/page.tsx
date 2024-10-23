@@ -28,13 +28,13 @@ export interface FormState {
   businessName: string;
 
   preSetMenu: string;
-  customizableMenu: boolean;
+  customizableMenu: boolean | null;
 
   // Page 6
   portfolio: string | File;
   clientTestimonials: string | File | File[];
-  tastingSessions: boolean;
-  businessLicenses: boolean;
+  tastingSessions: boolean | null;
+  businessLicenses: boolean | null;
   foodSafety: boolean | File;
   cateringServiceImages: string | File;
   videoEvent: string | File;
@@ -58,9 +58,9 @@ const Caterer = () => {
     cateringName: "",
     businessName: "",
     preSetMenu: "",
-    customizableMenu: true,
-    tastingSessions: false,
-    businessLicenses: false,
+    customizableMenu: null,
+    tastingSessions: null,
+    businessLicenses: null,
     foodSafety: false,
     cateringServiceImages: "",
     videoEvent: "",
@@ -89,7 +89,7 @@ const Caterer = () => {
   const [serviceStyles, setServiceStyles] = useState<string[]>([]);
 
   //states for page2
-  const [veg, setVeg] = useState<string[]>(["Veg"]);
+  const [veg, setVeg] = useState<string[]>([""]);
 
   const [selectedAppetizers, setSelectedAppetizers] = useState<string[]>([]);
   const [selectedBeverages, setSelectedBeverages] = useState<string[]>([]);
@@ -156,53 +156,21 @@ const Caterer = () => {
     }
     try {
       const decodedToken = jwt.decode(token) as {
-        userId?: string;
-        email?: string;
+        id: string;
+        email: string;
+        name: string;
+        mobile: string;
       };
-      if (!decodedToken || !decodedToken.userId) {
+      if (!decodedToken || !decodedToken.id) {
         console.error("Invalid token or token does not contain userId.");
         return null;
       }
-      return decodedToken.userId;
+      return decodedToken.id;
     } catch (error) {
       console.error("Error decoding token:", error);
       return null;
     }
   }
-
-  const handleContinue = () => {
-    console.log({
-      veg,
-      cateringName: formState.cateringName,
-      BusinessName: formState.businessName,
-      preSetMenu: formState.preSetMenu,
-      customizableMenu: formState.customizableMenu,
-      servingCapacity,
-      cuisineSpecialties,
-      regionalSpecialties,
-      serviceStyles,
-      selectedAppetizers,
-      selectedBeverages,
-      selectedMainCourses,
-      selectedDietaryOptions,
-      eventTypes,
-      additionalServices,
-      staffProvides,
-      equipmentsProvided,
-      dailyPackages,
-      seasonalPackages,
-      TastingSessions: formState.tastingSessions,
-      BusinessLicenses: formState.businessLicenses,
-      FoodSafety: formState.foodSafety,
-      CateringServiceImages: formState.cateringServiceImages,
-      VideoEvent: formState.videoEvent,
-      TermsAndConditions: formState.termsAndConditions,
-      CancellationPolicy: formState.cancellationPolicy,
-      advancePayment,
-      portfolio: formState.portfolio,
-      clientTestimonials: formState.clientTestimonials,
-    });
-  };
 
   async function handleSubmit() {
     const venId = getVendorId();
@@ -212,12 +180,6 @@ const Caterer = () => {
       return;
     }
 
-    const token = localStorage.getItem("token");
-
-    if (!token) {
-      console.error("No token found!");
-      return;
-    }
     // collect all responses in formdata and send to backend
     const formData = new FormData();
     formData.append("venId", venId);
@@ -275,7 +237,11 @@ const Caterer = () => {
     });
 
     formData.append("deposit_required", advancePayment.toString());
-    formData.append("customizable", formState.customizableMenu.toString());
+    //formData.append("customizable", formState.customizableMenu.toString());
+    formData.append(
+      "customizable",
+      formState.customizableMenu?.toString() || "null",
+    );
 
     // Handle photos field
     if (Array.isArray(formState.photos)) {
@@ -299,8 +265,22 @@ const Caterer = () => {
       formData.append("videos", formState.videos); // Append the string (URL)
     }
 
-    formData.append("tasting_sessions", formState.tastingSessions.toString());
-    formData.append("business_licenses", formState.businessLicenses.toString());
+    //formData.append("tasting_sessions", formState.tastingSessions.toString());
+    formData.append(
+      "tasting_sessions",
+      formState.tastingSessions !== null
+        ? formState.tastingSessions.toString()
+        : "null",
+    );
+
+    //formData.append("business_licenses", formState.businessLicenses.toString());
+    formData.append(
+      "business_licenses",
+      formState.tastingSessions !== null
+        ? formState.tastingSessions.toString()
+        : "null",
+    );
+
     formData.append(
       "food_safety_certificates",
       formState.foodSafety.toString(),
@@ -339,7 +319,6 @@ const Caterer = () => {
         console.log(`${key}: ${value}`);
       });
       await addCaterer(formData);
-      // localStorage.clear();
       console.log("Caterer added successfully");
     } catch (error) {
       console.error("Error adding caterer:", error);
@@ -363,7 +342,6 @@ const Caterer = () => {
             setServiceStyles={setServiceStyles}
             handleContinue={() => {
               setCurrentPage(2);
-              handleContinue();
             }}
             
           />
@@ -389,7 +367,6 @@ const Caterer = () => {
             setSelectedDietaryOptions={setSelectedDietaryOptions}
             handleContinue={() => {
               setCurrentPage(3);
-              handleContinue();
             }}
             
 
@@ -406,7 +383,6 @@ const Caterer = () => {
             setSelectedAdditionalServices={setAdditionalServices}
             handleContinue={() => {
               setCurrentPage(4);
-              handleContinue();
             }}
             formState={formState}
             updateFormState={updateFormState}
@@ -424,7 +400,6 @@ const Caterer = () => {
             setSelectedEquipmentsProvided={setEquipmentsProvided}
             handleContinue={() => {
               setCurrentPage(5);
-              handleContinue();
             }}
             
           />
@@ -439,7 +414,6 @@ const Caterer = () => {
             updateFormState={updateFormState}
             handleContinue={() => {
               setCurrentPage(6);
-              handleContinue();
               // handleSubmit();
             }}
             minOrderReq={formState.minOrderReq}
@@ -456,7 +430,6 @@ const Caterer = () => {
             updateFormState={updateFormState}
             handleContinue={() => {
               setCurrentPage(7);
-              handleContinue();
               // handleSubmit();
             }}
           />
@@ -642,7 +615,9 @@ const Caterer = () => {
           </div>
           <div className="relative h-[10rem] w-full">
             <Image
-              src={"/tajmahal.png"}
+              src={
+                "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/vendor_onboarding/tajmahal.png"
+              }
               alt=""
               width={400}
               height={200}

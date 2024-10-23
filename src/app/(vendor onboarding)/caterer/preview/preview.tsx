@@ -1,6 +1,6 @@
 import { Check, EditIcon } from "lucide-react";
 import { SetStateAction } from "react";
-import Appetizers from "../../(components)/Appetizers";
+import Appetizers from "../../(components)/PreviewAppetizer";
 import File from "../(components)/File";
 import FileDisplay from "../(components)/File";
 const _cuisine = ["North Indian", "South Indian", "Chinese", "Italian"];
@@ -51,13 +51,13 @@ type FormState = {
   cateringName: string;
   // menu: string | File;
   preSetMenu: string;
-  customizableMenu: boolean;
+  customizableMenu: boolean | null;
   // Page 6
   portfolio: string | File;
   photos: string | File[] | File;
   videos: string | File[] | File;
-  tastingSessions: boolean;
-  businessLicenses: boolean;
+  tastingSessions: boolean | null;
+  businessLicenses: boolean | null;
   foodSafety: boolean | File;
   cateringServiceImages: string | File;
   videoEvent: string | File;
@@ -173,7 +173,7 @@ function Preview({
   return (
     <div className="flex h-full w-full flex-col items-start justify-start gap-5 overflow-y-scroll rounded-xl bg-white p-6 scrollbar-hide md:p-10">
       <span className="text-xl font-semibold">
-        {formState.businessName} / Caterers
+        {formState.businessName} Caterers
       </span>
 
       <div className="flex w-[100%] justify-between rounded-xl bg-[rgba(96,94,216,0.1)] p-2 pl-4 text-xl font-semibold">
@@ -327,7 +327,11 @@ function Preview({
         <div className="m-6 mt-4 flex flex-col gap-1">
           <span className="text-base font-normal">Customizable</span>
           <span className="text-sm font-bold">
-            {formState.customizableMenu ? "yes" : "no"}
+            {formState.customizableMenu === null
+              ? ""
+              : formState.customizableMenu
+                ? "Yes"
+                : "No"}
           </span>
         </div>
       </div>
@@ -482,14 +486,22 @@ function Preview({
           <span className="text-base font-normal">Tasting sessions</span>
 
           <span className="font-semibold">
-            {formState.tastingSessions ? "yes" : "no"}
+            {formState.tastingSessions === null
+              ? ""
+              : formState.tastingSessions
+                ? "Yes"
+                : "No"}
           </span>
         </div>
         <div className="flex min-w-[45%] flex-col gap-2">
           <span className="text-base font-normal">Buisness Licenses</span>
 
           <span className="font-semibold">
-            {formState.businessLicenses ? "yes" : "no"}
+            {formState.businessLicenses === null
+              ? ""
+              : formState.businessLicenses
+                ? "Yes"
+                : "No"}
           </span>
         </div>
       </div>
@@ -502,7 +514,7 @@ function Preview({
               <File file={formState.foodSafety} />
             </span>
           ) : (
-            "no"
+            ""
           )}
         </span>
       </div>
@@ -572,7 +584,13 @@ function Preview({
           </span>
         </div>
       </div>
-      <div className="items-strech flex flex-row gap-7 self-end">
+      <div className="mt-9 flex flex-row items-stretch gap-7 self-end bg-white">
+        <button
+          className="rounded-xl border-2 border-[#2E3192] text-[#2E3192] xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+          onClick={() => setCurrentPage((prevPage) => prevPage - 1)}
+        >
+          Back
+        </button>
         <button
           className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
           onClick={handleContinue}

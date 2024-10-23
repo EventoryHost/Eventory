@@ -22,14 +22,14 @@ const _envelopeTypes = [
 
 interface FormState {
   //page 3
-  additionalStationery: boolean;
-  thankYouCards: boolean;
-  designconcept: boolean;
-  discussVision: boolean;
-  specialTouch: boolean;
-  initialConsultation: boolean;
-  allowRevisions: boolean;
-  provideProofs: boolean;
+  additionalStationery: boolean | null;
+  thankYouCards: boolean | null;
+  designconcept: boolean | null;
+  discussVision: boolean | null;
+  specialTouch: boolean | null;
+  initialConsultation: boolean | null;
+  allowRevisions: boolean | null;
+  provideProofs: boolean | null;
 }
 
 interface Page2Props {
@@ -78,7 +78,9 @@ const Page: React.FC<Page2Props> = ({
         </div>
         <div className="relative h-[10rem] lg:w-full">
           <img
-            src={"/tajmahal.png"}
+            src={
+              "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/vendor_onboarding/tajmahal.png"
+            }
             alt=""
             className="h-full w-full object-cover"
           />

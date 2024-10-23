@@ -27,10 +27,10 @@ export interface FormState {
   eventsize: string;
 
   // Page 2
-  propthemesOffered: boolean;
-  adobtThemes: boolean;
-  colorschmes: boolean;
-  customizationsThemes: boolean;
+  propthemesOffered: boolean | null;
+  adobtThemes: boolean | null;
+  colorschmes: boolean | null;
+  customizationsThemes: boolean | null;
   customDesignProcess: string;
 
   // Page 3
@@ -44,8 +44,8 @@ export interface FormState {
   clientTestimonials: string;
   Recongnition_awards: string;
   advbookingperiod: string;
-  writtenthemeproposalafterconsultaion: boolean;
-  revisionforinitialthemeproposal: boolean;
+  writtenthemeproposalafterconsultaion: boolean | null;
+  revisionforinitialthemeproposal: boolean | null;
 
   //page 7
   cancellationPolicy: string | File | File[];
@@ -64,10 +64,10 @@ const Decorators: React.FC = () => {
     eventsize: "",
 
     // Page 2
-    propthemesOffered: false,
-    adobtThemes: false,
-    colorschmes: false,
-    customizationsThemes: false,
+    propthemesOffered: null,
+    adobtThemes: null,
+    colorschmes: null,
+    customizationsThemes: null,
     customDesignProcess: "",
 
     //page 3
@@ -82,8 +82,8 @@ const Decorators: React.FC = () => {
     clientTestimonials: "",
     Recongnition_awards: "",
     advbookingperiod: "",
-    writtenthemeproposalafterconsultaion: false,
-    revisionforinitialthemeproposal: false,
+    writtenthemeproposalafterconsultaion: null,
+    revisionforinitialthemeproposal: null,
     //page5
     cancellationPolicy: "",
     termsAndConditions: "",
@@ -107,21 +107,22 @@ const Decorators: React.FC = () => {
 
   function getVendorId(): string | null {
     const token = localStorage.getItem("token");
-
     if (!token) {
-      console.log("No token found!");
+      console.error("Token not found");
       return null;
     }
     try {
       const decodedToken = jwt.decode(token) as {
-        userId?: string;
-        email?: string;
+        id: string;
+        email: string;
+        name: string;
+        mobile: string;
       };
-      if (!decodedToken || !decodedToken.userId) {
+      if (!decodedToken || !decodedToken.id) {
         console.error("Invalid token or token does not contain userId.");
         return null;
       }
-      return decodedToken.userId;
+      return decodedToken.id;
     } catch (error) {
       console.error("Error decoding token:", error);
       return null;
@@ -177,15 +178,29 @@ const Decorators: React.FC = () => {
     themesOffered.forEach((event) => {
       formData.append("themesOffered", event);
     });
+
     formData.append(
       "propthemesOffered",
-      formState.propthemesOffered.toString(),
+      formState.propthemesOffered
+        ? formState.propthemesOffered.toString()
+        : "null",
     );
-    formData.append("adobtThemes", formState.adobtThemes.toString());
-    formData.append("colorschmes", formState.colorschmes.toString());
+
+    formData.append(
+      "adobtThemes",
+      formState.adobtThemes ? formState.adobtThemes.toString() : "null",
+    );
+
+    formData.append(
+      "colorschmes",
+      formState.colorschmes ? formState.colorschmes.toString() : "null",
+    );
+
     formData.append(
       "customizationsThemes",
-      formState.customizationsThemes.toString(),
+      formState.customizationsThemes
+        ? formState.customizationsThemes.toString()
+        : "null",
     );
 
     formData.append("customDesignProcess", formState.customDesignProcess);
@@ -456,7 +471,9 @@ const Decorators: React.FC = () => {
           </div>
           <div className="relative h-[10rem] lg:w-full">
             <Image
-              src={"/tajmahal.png"}
+              src={
+                "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/vendor_onboarding/tajmahal.png"
+              }
               alt=""
               width={400}
               height={200}
