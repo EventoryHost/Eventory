@@ -9,12 +9,10 @@ interface Notification {
 
 interface NotificationDropdownMenuProps {
   notifications: Notification[];
-  setIsOpen: (isOpen: boolean) => void; // Add setIsOpen prop
 }
 
 const NotificationDropdownMenu: React.FC<NotificationDropdownMenuProps> = ({
   notifications,
-  setIsOpen, // Destructure the prop
 }) => {
   const [filter, setFilter] = useState<"read" | "unread">("read");
 

@@ -159,7 +159,7 @@ const DashboardDetails: React.FC<IntroProps> = ({ user, venueDetails }) => {
     if (policies.length > 0) {
       fetchAllPoliciesInfo(
         policies.flatMap(([, value]) => value),
-        setS3UrlsState,
+        setS3UrlsState
       );
     }
   }, []);

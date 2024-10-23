@@ -162,7 +162,6 @@ const Navbar: React.FC<NavbarProps> = () => {
               {isNotifOpen && (
                 <NotificationDropdownMenu
                   notifications={notifications}
-                  setIsOpen={setIsNotifOpen}
                 />
               )}
             </div>
@@ -177,7 +176,7 @@ const Navbar: React.FC<NavbarProps> = () => {
                 {/* User avatar can go here */}
               </div>
               {isProfileOpen && (
-                <ProfileDropdownMenu setIsOpen={setIsProfileOpen} />
+                <ProfileDropdownMenu  />
               )}
             </div>
           </div>
