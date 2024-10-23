@@ -1,6 +1,6 @@
 "use client";
 import { useToast } from "@/components/hooks/use-toast";
-import { useRouter } from "next/navigation"
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import Image from "next/image";
 import jwt from "jsonwebtoken";

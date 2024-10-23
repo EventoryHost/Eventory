@@ -66,8 +66,8 @@ const RootPage = () => {
       ...prevState,
       [key]:
         typeof prevState[key] === "object" &&
-          prevState[key] !== null &&
-          !Array.isArray(prevState[key])
+        prevState[key] !== null &&
+        !Array.isArray(prevState[key])
           ? { ...(prevState[key] as Record<string, any>), [nestedKey]: value }
           : { [nestedKey]: value },
     }));

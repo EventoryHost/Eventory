@@ -19,7 +19,7 @@ async function addPropRental(data: any) {
     } else {
       console.error("Unexpected error:", error);
     }
-    throw error
+    throw error;
   }
 }
 

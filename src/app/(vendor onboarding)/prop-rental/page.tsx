@@ -95,7 +95,7 @@ const RootPage = () => {
     managerName: "",
     workDescription: "",
     eventSize: "",
-    handleChange: (key: keyof FormState, value: any) => { },
+    handleChange: (key: keyof FormState, value: any) => {},
 
     // URL's for the files
     itemCatalogue: false,
