@@ -160,9 +160,7 @@ const Navbar: React.FC<NavbarProps> = () => {
                 {notifications.filter((n) => !n.read).length}
               </span>
               {isNotifOpen && (
-                <NotificationDropdownMenu
-                  notifications={notifications}
-                />
+                <NotificationDropdownMenu notifications={notifications} />
               )}
             </div>
 
@@ -175,9 +173,7 @@ const Navbar: React.FC<NavbarProps> = () => {
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-300">
                 {/* User avatar can go here */}
               </div>
-              {isProfileOpen && (
-                <ProfileDropdownMenu  />
-              )}
+              {isProfileOpen && <ProfileDropdownMenu />}
             </div>
           </div>
         </div>
