@@ -7,14 +7,14 @@ interface BusinessDetails {
   teamsize: string;
   annualrevenue: string;
   businessAddress: string;
-  cities: string[]; // Array of cities
+  cities: string[]; 
   pinCode: number;
   years: string;
 }
 interface User {
   name: string;
   mobile: string;
-  businessDetails: BusinessDetails; // Nested business details
+  businessDetails: BusinessDetails; 
 }
 
 interface IntroProps {
@@ -84,8 +84,8 @@ const Intro: React.FC<IntroProps> = ({ user, email }) => {
                 <div
                   className={`rounded-md p-2 text-xs ${
                     index % 2 === 0
-                      ? "bg-[#E8F1FD] text-[#448DF2]" // Blue for even indexes
-                      : "bg-[#FEF4E6] text-[#F2A448]" // Yellow for odd indexes
+                      ? "bg-[#E8F1FD] text-[#448DF2]"
+                      : "bg-[#FEF4E6] text-[#F2A448]" 
                   }`}
                   key={index}
                 >

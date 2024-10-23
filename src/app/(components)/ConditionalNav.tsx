@@ -5,11 +5,11 @@ import Nav from "./nav";
 import Navbar from "../dashboard/components/Navbar";
 import Sidebar from "../dashboard/components/SideBar";
 import Page from "../dashboard/page"; // Import the page component
-import { useSidebar } from "../dashboard/context/SidebarContext";
+import { useContextbar } from "../dashboard/context/SidebarContext";
 
 export default function ConditionalNav() {
   const pathname = usePathname();
-  const { isSidebarOpen, toggleSidebar } = useSidebar();
+  const { isSidebarOpen, toggleSidebar } = useContextbar();
   //   const toggleSidebar = () => {
   //     setIsSidebarOpen((prev) => !prev);
   //   };

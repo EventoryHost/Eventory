@@ -1,14 +1,120 @@
 import Image from "next/image";
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
+import NotificationDropdownMenu from "./NotificationDropdownMenu";
+import ProfileDropdownMenu from "./ProfileDropdown";
 
 interface NavbarProps {
   toggleSidebar: () => void;
 }
 
+const notifications = [
+  {
+    read: false,
+    timeago: "2 minutes ago",
+    title: "New Message",
+    description: "You have received a new message completed from John Doe.",
+  },
+  {
+    read: true,
+    timeago: "1 hour ago",
+    title: "Order Confirmed",
+    description: "Your order #1234 has been failed and is on its way.",
+  },
+  {
+    read: false,
+    timeago: "3 hours ago",
+    title: "Payment Successful",
+    description: "Your payment of $45.00 was successful.",
+  },
+  {
+    read: true,
+    timeago: "1 day ago",
+    title: "Password Changed",
+    description: "Your password was changed successfully.",
+  },
+  {
+    read: false,
+    timeago: "2 days ago",
+    title: "New Comment",
+    description: "Someone commented on your post: 'Great work!'",
+  },
+  {
+    read: true,
+    timeago: "5 days ago",
+    title: "Subscription Renewed",
+    description: "Your monthly subscription has been renewed.",
+  },
+  {
+    read: false,
+    timeago: "1 week ago",
+    title: "New Follower",
+    description: "Jane Smith has started following you.",
+  },
+  {
+    read: true,
+    timeago: "2 weeks ago",
+    title: "System Update",
+    description: "A new system update is available. Please update soon.",
+  },
+  {
+    read: false,
+    timeago: "3 weeks ago",
+    title: "Event Reminder",
+    description: "Reminder: Your event starts in 2 hours.",
+  },
+  {
+    read: true,
+    timeago: "1 month ago",
+    title: "Account Verification",
+    description: "Your account has been successfully verified.",
+  },
+];
+
 const Navbar: React.FC<NavbarProps> = () => {
+  const [isNotifOpen, setIsNotifOpen] = useState(false);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
+
+  const notifDropdownRef = useRef<HTMLDivElement | null>(null);
+  const profileDropdownRef = useRef<HTMLDivElement | null>(null);
+
+  // Toggle dropdown visibility based on type
+  const toggleDropdown = (dropdownType: "notification" | "profile") => {
+    if (dropdownType === "notification") {
+      setIsNotifOpen((prev) => !prev);
+      setIsProfileOpen(false); // Close the profile dropdown if the notification dropdown is opened
+    } else if (dropdownType === "profile") {
+      setIsProfileOpen((prev) => !prev);
+      setIsNotifOpen(false); // Close the notification dropdown if the profile dropdown is opened
+    }
+  };
+
+  // Close dropdown if clicked outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        notifDropdownRef.current &&
+        !notifDropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsNotifOpen(false);
+      }
+      if (
+        profileDropdownRef.current &&
+        !profileDropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsProfileOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [notifDropdownRef, profileDropdownRef]);
+
   return (
-    <nav className="top-0 z-50 flex w-full bg-white p-4">
-      <div className="flex w-full items-center justify-between px-4">
+    <nav className="navbar fixed top-0 z-20 flex flex-col bg-white  ">
+      <div className="flex w-full items-center justify-between px-4 ">
         <div className="flex flex-[1.5] items-center gap-4">
           <Image
             width={30}
@@ -21,21 +127,7 @@ const Navbar: React.FC<NavbarProps> = () => {
         </div>
         <div className="relative flex flex-[8.5] items-center justify-between space-x-4">
           <div className="relative flex min-w-[400px] items-center justify-start gap-2 rounded-md bg-slate-100 px-4 py-2">
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M8.5 1.74989C7.61358 1.74989 6.73583 1.92448 5.91689 2.2637C5.09794 2.60292 4.35382 3.10012 3.72703 3.72692C3.10023 4.35371 2.60303 5.09783 2.26381 5.91678C1.92459 6.73572 1.75 7.61347 1.75 8.49989C1.75 9.38631 1.92459 10.2641 2.26381 11.083C2.60303 11.9019 3.10023 12.6461 3.72703 13.2729C4.35382 13.8997 5.09794 14.3969 5.91689 14.7361C6.73583 15.0753 7.61358 15.2499 8.5 15.2499C10.2902 15.2499 12.0071 14.5387 13.273 13.2729C14.5388 12.007 15.25 10.2901 15.25 8.49989C15.25 6.70968 14.5388 4.99279 13.273 3.72692C12.0071 2.46105 10.2902 1.74989 8.5 1.74989ZM0.25 8.49989C0.250175 7.17499 0.56944 5.86961 1.18079 4.69419C1.79214 3.51876 2.67759 2.50787 3.76224 1.74701C4.84689 0.986151 6.09883 0.497714 7.41216 0.323013C8.7255 0.148313 10.0616 0.292489 11.3074 0.743345C12.5533 1.1942 13.6722 1.93847 14.5695 2.91321C15.4669 3.88794 16.1163 5.06446 16.4628 6.34325C16.8094 7.62204 16.8428 8.96547 16.5603 10.2599C16.2778 11.5544 15.6878 12.7617 14.84 13.7799L19.53 18.4699C19.6037 18.5386 19.6628 18.6214 19.7038 18.7134C19.7448 18.8053 19.7668 18.9047 19.7686 19.0054C19.7704 19.1061 19.7518 19.2061 19.7141 19.2995C19.6764 19.3929 19.6203 19.4777 19.549 19.5489C19.4778 19.6201 19.393 19.6763 19.2996 19.714C19.2062 19.7517 19.1062 19.7703 19.0055 19.7685C18.9048 19.7667 18.8055 19.7447 18.7135 19.7037C18.6215 19.6627 18.5387 19.6036 18.47 19.5299L13.78 14.8399C12.5752 15.8434 11.1094 16.4828 9.55432 16.6831C7.99922 16.8835 6.41922 16.6366 4.99941 15.9713C3.5796 15.306 2.37878 14.2499 1.53763 12.9266C0.69648 11.6034 0.249828 10.0678 0.25 8.49989Z"
-                fill="#858D9D"
-              />
-            </svg>
-
+            {/* Search input */}
             <input
               type="text"
               placeholder="Search for bookings and items"
@@ -43,23 +135,50 @@ const Navbar: React.FC<NavbarProps> = () => {
             />
           </div>
           <div className="relative flex items-center justify-start gap-6">
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
+            {/* Notification dropdown */}
+            <div
+              onClick={() => toggleDropdown("notification")}
+              className="flex relative hover:cursor-pointer"
+              ref={notifDropdownRef}
             >
-              <path
-                d="M12.8565 15.082C14.7197 14.8614 16.5504 14.4217 18.3105 13.772C16.8199 12.1208 15.9962 9.9745 15.9995 7.75V7.05V7C15.9995 5.4087 15.3674 3.88258 14.2421 2.75736C13.1169 1.63214 11.5908 1 9.9995 1C8.4082 1 6.88208 1.63214 5.75686 2.75736C4.63164 3.88258 3.9995 5.4087 3.9995 7V7.75C4.00252 9.97463 3.17849 12.121 1.6875 13.772C3.4205 14.412 5.2475 14.857 7.1425 15.082M12.8565 15.082C10.9585 15.3071 9.04051 15.3071 7.1425 15.082M12.8565 15.082C13.0006 15.5319 13.0364 16.0094 12.9611 16.4757C12.8857 16.942 12.7013 17.384 12.4229 17.7656C12.1444 18.1472 11.7798 18.4576 11.3587 18.6716C10.9376 18.8856 10.4719 18.9972 9.9995 18.9972C9.52712 18.9972 9.06142 18.8856 8.64031 18.6716C8.21919 18.4576 7.85457 18.1472 7.57612 17.7656C7.29767 17.384 7.11326 16.942 7.03791 16.4757C6.96256 16.0094 6.9984 15.5319 7.1425 15.082"
-                stroke="#5D6679"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-300">
-              {/* User avatar can go here */}
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12.8565 15.082C14.7197 14.8614 16.5504 14.4217 18.3105 13.772C16.8199 12.1208 15.9962 9.9745 15.9995 7.75V7.05V7C15.9995 5.4087 15.3674 3.88258 14.2421 2.75736C13.1169 1.63214 11.5908 1 9.9995 1C8.4082 1 6.88208 1.63214 5.75686 2.75736C4.63164 3.88258 3.9995 5.4087 3.9995 7V7.75C4.00252 9.97463 3.17849 12.121 1.6875 13.772C3.4205 14.412 5.2475 14.857 7.1425 15.082M12.8565 15.082C10.9585 15.3071 9.04051 15.3071 7.1425 15.082M12.8565 15.082C13.0006 15.5319 13.0364 16.0094 12.9611 16.4757C12.8857 16.942 12.7013 17.384 12.4229 17.7656C12.1444 18.1472 11.7798 18.4576 11.3587 18.6716C10.9376 18.8856 10.4719 18.9972 9.9995 18.9972C9.52712 18.9972 9.06142 18.8856 8.64031 18.6716C8.21919 18.4576 7.85457 18.1472 7.57612 17.7656C7.29767 17.384 7.11326 16.942 7.03791 16.4757C6.96256 16.0094 6.9984 15.5319 7.1425 15.082"
+                  stroke="#5D6679"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              <span className="bg-red-600 text-white text-xs rounded-full px-2 py-0.5">
+                {notifications.filter((n) => !n.read).length}
+              </span>
+              {isNotifOpen && (
+                <NotificationDropdownMenu
+                  notifications={notifications}
+                  setIsOpen={setIsNotifOpen}
+                />
+              )}
+            </div>
+
+            {/* Profile dropdown */}
+            <div
+              onClick={() => toggleDropdown("profile")}
+              className="flex relative hover:cursor-pointer"
+              ref={profileDropdownRef}
+            >
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-300">
+                {/* User avatar can go here */}
+              </div>
+              {isProfileOpen && (
+                <ProfileDropdownMenu setIsOpen={setIsProfileOpen}/>
+              )}
             </div>
           </div>
         </div>

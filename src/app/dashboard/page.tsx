@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useSidebar } from "./context/SidebarContext";
+import { useContextbar } from "./context/SidebarContext";
 import Image from "next/image";
 import Intro from "./components/Intro";
 import DashboardDetails from "./components/DashboardDetails";
@@ -19,7 +19,7 @@ interface BusinessDetails {
   teamsize: string;
   annualrevenue: string;
   businessAddress: string;
-  cities: string[]; // Array of cities
+  cities: string[]; 
   pinCode: number;
   years: string;
 }
@@ -27,14 +27,14 @@ interface BusinessDetails {
 interface User {
   name: string;
   mobile: string;
-  businessDetails: BusinessDetails; // Nested business details
+  businessDetails: BusinessDetails; 
 }
 
 const Page: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const { toast } = useToast();
-  const [user, setUser] = useState<User | null>(null);
-  const [email, setemail] = useState<String | null>(null);
+  const { user, setUser} = useContextbar();
+    const [email, setemail] = useState<String | null>(null);
 
   const fetchVendor = async (userId: string, email: string, mobile: string) => {
     const res = await getvendor(userId, email, mobile);
@@ -54,7 +54,7 @@ const Page: React.FC = () => {
     audioVisualEquipment: [
       "Projection Screens",
       "Microphones",
-      "PTZ (Pan-Tilt-Zoom) Cameras",
+      "PTZ Cameras",
       "Dlp Projectors",
     ],
     accessibilityFeatures: [
@@ -72,20 +72,31 @@ const Page: React.FC = () => {
     specialFeatures: [],
     facilities: ["Av Equipments", "Charging Stations", "Garden Area"],
     termsConditions: [
-      "https://eventory-bucket.s3.ap-south-1.amazonaws.com/Venues/harshi/documents/termsConditions",
+      "https://eventory-bucket.s3.ap-south-1.amazonaws.com/Caterers/harshitaTest3/documents/terms_and_conditions-Invoice_1880882773.pdf",
     ],
     cancellationPolicy: [
-      "https://eventory-bucket.s3.ap-south-1.amazonaws.com/Venues/harshi/documents/cancellationPolicy",
+      "https://eventory-bucket.s3.ap-south-1.amazonaws.com/Caterers/harshitaTest3/documents/cancellation_policy-Invoice_1799691381.pdf",
     ],
-    insurancePolicy: [],
-    photos: [],
-    videos: [],
+    insurancePolicy: ["https://eventory-bucket.s3.ap-south-1.amazonaws.com/Caterers/harshitaTest3/documents/cancellation_policy-Invoice_1799691381.pdf"],
+    photos: ["https://eventory-bucket.s3.ap-south-1.amazonaws.com/Caterers/harshitaTest3/images/photos-aws-(1).png",
+      "https://eventory-bucket.s3.ap-south-1.amazonaws.com/Caterers/harshitaTest3/images/photos-aws-(1).png",
+      "https://eventory-bucket.s3.ap-south-1.amazonaws.com/Caterers/harshitaTest3/images/photos-aws-(1).png",
+      "https://eventory-bucket.s3.ap-south-1.amazonaws.com/Caterers/harshitaTest3/images/photos-aws-(1).png",
+      "https://eventory-bucket.s3.ap-south-1.amazonaws.com/Caterers/harshitaTest3/images/photos-aws-(1).png",
+      "https://eventory-bucket.s3.ap-south-1.amazonaws.com/Caterers/harshitaTest3/images/photos-aws-(1).png",
+      "https://eventory-bucket.s3.ap-south-1.amazonaws.com/Caterers/harshitaTest3/images/photos-aws-(1).png",
+    ],
+    videos: ["https://eventory-bucket.s3.ap-south-1.amazonaws.com/Caterers/harshitaTest3/videos/videos-event.mp4"],
     __v: 0,
     catererServices: true,
     decorServices: true,
     advanceBookingPeriod: "Less than a week",
     awards: "Awards url",
     clientTestimonials: "client url",
+    socialLinks:{
+      instagramURL:"insta url",
+      websiteURL:"website url"
+    }
   };
 
   useEffect(() => {
@@ -134,11 +145,11 @@ const Page: React.FC = () => {
     };
 
     fetchData();
-  }, []);
+  }, [setUser]);
 
   useEffect(() => {
     const fetchVendorData = async () => {
-      if (!user) return; // Exit early if user is not defined
+      if (!user) return;
       setLoading(true);
 
       const token =
@@ -150,9 +161,7 @@ const Page: React.FC = () => {
             id: string;
           };
 
-          // Ensure the user category exists
           if (id && user.businessDetails.category) {
-            // Call fetchVendorByIdAndCategory with parameters
             const vendorData = await getVendorByIdAndCategory(
               "caterer",
               "ven343555",
@@ -190,9 +199,8 @@ const Page: React.FC = () => {
 
   return (
     <div className="max-h-[89vh] min-h-[89vh] overflow-hidden overflow-y-auto bg-slate-100 p-6 scrollbar-hide">
-      {/* Dynamic width adjustment based on the sidebar state */}
       <div
-        className={`ml-56 flex flex-col gap-6`} // Shift based on sidebar width (assuming sidebar is 64px wide)
+        className={`ml-56 flex flex-col gap-6`} 
       >
         {loading && <Loadingeanimation width="w-64" />}
 
@@ -202,7 +210,6 @@ const Page: React.FC = () => {
             <DashboardDetails
               user={user}
               venueDetails={venueDetails}
-              // Pass metadata to DashboardDetails
             />
           </>
         )}
