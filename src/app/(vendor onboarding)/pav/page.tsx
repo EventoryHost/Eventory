@@ -13,10 +13,13 @@ import "react-toastify/dist/ReactToastify.css";
 import Agreement from "../(Agreement)/Agreement";
 import Plans from "../(Plans)/Plans";
 import Registration_Completed from "../(Registration-Completed)/thankupage";
+import { useToast } from "@/components/hooks/use-toast";
+import { useRouter } from "next/navigation";
 
 const Page = () => {
+  const { toast } = useToast();
+  const router = useRouter();
   //states for page1
-
   const [name, setFullName] = useState("");
   const [description, setDescription] = useState<string>("");
   const [eventsize, setEventsize] = useState<string>("");
@@ -220,9 +223,23 @@ const Page = () => {
     }
 
     try {
+      toast({
+        variant: "default",
+        title: "Creating Service...",
+      });
       const res = await addPhotographer(formData);
-      console.log("Form data Submitted Succesfully");
+      toast({
+        variant: "default",
+        title: "Service Created Successfully",
+      });
+      // console.log("Form data Submitted Succesfully");
     } catch (error) {
+      toast({
+        variant: "destructive",
+        title: error ? "Error" : "Something went wrong.",
+        description: "Error While Creating Service. Pls Try Again",
+      });
+      router.push("/Payment-Failed");
       console.error("Error adding photographer:", error);
     }
   };

@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useRouter } from "next/navigation"; // Adjusted import
 
 // import Razorpay from "razorpay";
 
@@ -31,6 +30,7 @@ const verifyPayment = async (
   order_id: string,
   payment_id: string,
   signature: string,
+  handlepaymentfailed: () => void
 ) => {
   try {
     const response = await axios.post(
@@ -53,6 +53,7 @@ const verifyPayment = async (
     if (axios.isAxiosError(error)) {
       console.log(error.message);
     }
+    handlepaymentfailed();
   }
 };
 
@@ -63,7 +64,9 @@ const handlePayment = async (
   name: string, // vendor name from flow
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>,
   handleSubmit: () => void,
+  handlepaymentfailed: () => void
 ) => {
+
   try {
     const orderResponse = await createOrder(amount, plan, id);
 
@@ -85,10 +88,13 @@ const handlePayment = async (
           order_id,
           payment_id,
           signature,
+          handlepaymentfailed,
         );
-        handleSubmit();
-        setCurrentPage((prevPage) => prevPage + 1);
-        console.log(verifyResponse);
+        if (verifyResponse) {
+          handleSubmit();
+          setCurrentPage((prevPage) => prevPage + 1);
+        }
+        // console.log(verifyResponse);
       },
       order_id: order_id,
       prefill: {
@@ -103,6 +109,7 @@ const handlePayment = async (
     rzp.open();
   } catch (error) {
     console.error("Payment error:", error);
+    handlepaymentfailed();
   }
 };
 

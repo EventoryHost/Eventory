@@ -16,6 +16,7 @@ async function addPhotographer(data: any) {
     if (axios.isAxiosError(error)) {
       console.log(error.message);
     }
+    throw error
   }
 }
 

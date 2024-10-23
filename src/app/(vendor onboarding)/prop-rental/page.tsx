@@ -2,6 +2,8 @@
 import jwt from "jsonwebtoken";
 // RootPage.tsx
 import React, { useEffect, useState } from "react";
+import { useToast } from "@/components/hooks/use-toast";
+import { useRouter } from "next/navigation";
 
 import Page1 from "./page1/page1";
 import Page2 from "./page2/page2";
@@ -86,12 +88,14 @@ type PricingEntry = {
 };
 
 const RootPage = () => {
+  const { toast } = useToast();
+  const router = useRouter();
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [formState, setFormState] = useState<FormState>({
     managerName: "",
     workDescription: "",
     eventSize: "",
-    handleChange: (key: keyof FormState, value: any) => {},
+    handleChange: (key: keyof FormState, value: any) => { },
 
     // URL's for the files
     itemCatalogue: false,
@@ -409,8 +413,22 @@ const RootPage = () => {
     }
 
     try {
+      toast({
+        variant: "default",
+        title: "Creating Service...",
+      });
       await addPropRental(formData);
+      toast({
+        variant: "default",
+        title: "Service Created Successfully",
+      });
     } catch (error) {
+      toast({
+        variant: "destructive",
+        title: error ? "Error" : "Something went wrong.",
+        description: "Error While Creating Service. Pls Try Again",
+      });
+      router.push("/Payment-Failed");
       console.error("Error adding prop rentals: ", error);
     }
   }

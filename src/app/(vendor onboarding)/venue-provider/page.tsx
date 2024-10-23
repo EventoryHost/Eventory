@@ -1,5 +1,6 @@
 "use client";
-
+import { useToast } from "@/components/hooks/use-toast";
+import { useRouter } from "next/navigation"
 import React, { useState } from "react";
 import Image from "next/image";
 import jwt from "jsonwebtoken";
@@ -45,7 +46,8 @@ export interface FormState {
 
 const VenueForm: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
-
+  const { toast } = useToast();
+  const router = useRouter();
   // global varibales
   const [formState, setFormState] = useState<FormState>({
     name: "",
@@ -243,9 +245,23 @@ const VenueForm: React.FC = () => {
     });
 
     try {
+      toast({
+        variant: "default",
+        title: "Creating Service...",
+      });
       await addVenue(formData);
+      toast({
+        variant: "default",
+        title: "Service Created Successfully",
+      });
       console.log("Venue added successfully");
     } catch (error) {
+      toast({
+        variant: "destructive",
+        title: error ? "Error" : "Something went wrong.",
+        description: "Error While Creating Service. Pls Try Again",
+      });
+      router.push("/Payment-Failed");
       console.error("Error adding venue:", error);
     }
   };
