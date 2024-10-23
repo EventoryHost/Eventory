@@ -32,9 +32,7 @@ export default function RootLayout({
           <header>
             <ConditionalNav />
           </header>
-          <div className={""}>
-            {children}
-          </div>
+          <div className={""}>{children}</div>
           <footer></footer>
 
           <Toaster />
