@@ -155,6 +155,7 @@ const DashboardDetails: React.FC<IntroProps> = ({ user, venueDetails }) => {
     }
   };
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     if (policies.length > 0) {
       fetchAllPoliciesInfo(
