@@ -50,11 +50,13 @@ const Caterer = () => {
   // State for current page
   const [currentPage, setCurrentPage] = useState<number>(1);
   // state are 7 for the form then 8 for the t&c then payment
-  const [formState, setFormState] = useState<FormState & {
-    servingCapacity: string;
-    cuisineSpecialties: string[];
-    serviceStyles: string[];
-  }>({
+  const [formState, setFormState] = useState<
+    FormState & {
+      servingCapacity: string;
+      cuisineSpecialties: string[];
+      serviceStyles: string[];
+    }
+  >({
     cateringName: "",
     businessName: "",
     preSetMenu: "",
@@ -343,7 +345,6 @@ const Caterer = () => {
             handleContinue={() => {
               setCurrentPage(2);
             }}
-            
           />
         );
       case 2:
@@ -368,8 +369,6 @@ const Caterer = () => {
             handleContinue={() => {
               setCurrentPage(3);
             }}
-            
-
           />
         );
       case 3:
@@ -386,7 +385,6 @@ const Caterer = () => {
             }}
             formState={formState}
             updateFormState={updateFormState}
-            
           />
         );
       case 4:
@@ -401,7 +399,6 @@ const Caterer = () => {
             handleContinue={() => {
               setCurrentPage(5);
             }}
-            
           />
         );
 
@@ -480,7 +477,6 @@ const Caterer = () => {
               setCurrentPage(8);
               // handleSubmit();
             }}
-            
           />
         );
       case 8:

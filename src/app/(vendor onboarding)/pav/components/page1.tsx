@@ -10,9 +10,8 @@ import Dropdown from "../../(components)/Dropdown";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/redux/store";
-import { fetchPavData , savePavDetails } from "@/redux/pavSlice";
+import { fetchPavData, savePavDetails } from "@/redux/pavSlice";
 import jwt from "jsonwebtoken";
-
 
 type Page1Props = {
   fullName: string;
@@ -52,11 +51,9 @@ const Page1 = ({
   events,
   handleContinue,
 }: Page1Props) => {
-
-
   const dispatch = useDispatch<AppDispatch>();
   const { formData, loading, error } = useSelector(
-    (state: RootState) => state["pav"]
+    (state: RootState) => state["pav"],
   );
 
   // Fetch rental data on mount
@@ -66,7 +63,7 @@ const Page1 = ({
       dispatch(fetchPavData(userId));
     }
   }, [dispatch]);
-  
+
   // Update form state with fetched data for Page 1
   useEffect(() => {
     if (formData) {
@@ -76,30 +73,26 @@ const Page1 = ({
       setEvent(formData?.events || []);
     }
   }, [formData, setFullName, setDescription, setEventsize, setEvent]);
-  
+
   // Function to handle the save operation
   const handleSave = () => {
     const userId = getVendorId() || ""; // Retrieve user ID
-  
+
     // Create the object to be sent in the API request
     const rentalDetails = {
-      fullName,        // Full name of the point of contact
-      description,     // Background description
-      eventsize,       // Event size selected from the dropdown
-      events,          // Array of selected events
+      fullName, // Full name of the point of contact
+      description, // Background description
+      eventsize, // Event size selected from the dropdown
+      events, // Array of selected events
     };
-  
+
     dispatch(savePavDetails({ userId, data: rentalDetails }) as any);
   };
-
-
-
 
   const onContinue = () => {
     handleSave(); // Save the rental details before continuing
     handleContinue();
   };
-
 
   function getVendorId(): string | null {
     const token = localStorage.getItem("token");
@@ -117,7 +110,6 @@ const Page1 = ({
       return null;
     }
   }
-
 
   return (
     <div className="scroll-touch flex flex-col items-start gap-7 overflow-y-scroll rounded-xl p-3 scrollbar-hide xs:justify-start md:p-6">

@@ -13,7 +13,6 @@ interface DropdownProps {
   isOpen: boolean; // New prop to control open/close state
   onToggle: () => void; // New prop to toggle open/close
   placeholder?: string;
-  
 }
 
 const Dropdown: React.FC<DropdownProps> = ({

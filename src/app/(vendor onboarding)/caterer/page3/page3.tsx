@@ -6,7 +6,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { useEffect, useState } from "react";
 import { FormState } from "../page";
-import { fetchCateringData, updateFormData , saveCateringDetails } from "@/redux/cateringSlice";
+import {
+  fetchCateringData,
+  updateFormData,
+  saveCateringDetails,
+} from "@/redux/cateringSlice";
 import jwt from "jsonwebtoken";
 
 const _EventTypes = [
@@ -35,7 +39,7 @@ interface page3Props {
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
   currentPage: number;
   formState: FormState;
-  updateFormState: (newState: Partial<FormState>) => void;  
+  updateFormState: (newState: Partial<FormState>) => void;
 }
 const Page3: React.FC<page3Props> = ({
   selectedEventTypes,
@@ -46,9 +50,8 @@ const Page3: React.FC<page3Props> = ({
   setCurrentPage,
   currentPage,
   formState,
-  updateFormState
+  updateFormState,
 }) => {
-
   const dispatch = useDispatch();
   const { formData } = useSelector((state: RootState) => state.catering);
   function getVendorId2(): string | null {
@@ -74,8 +77,7 @@ const Page3: React.FC<page3Props> = ({
   }
   const userId = getVendorId2() || "";
 
-useEffect(() => {
-
+  useEffect(() => {
     // Fetch data when Page 3 mounts
     if (userId) {
       dispatch(fetchCateringData(userId) as any);
@@ -92,9 +94,14 @@ useEffect(() => {
         setSelectedAdditionalServices(formData.additionalServices || []);
       }
     }
-  }, [formData, selectedEventTypes, selectedAdditionalServices, setSelectedEventTypes, setSelectedAdditionalServices]);
+  }, [
+    formData,
+    selectedEventTypes,
+    selectedAdditionalServices,
+    setSelectedEventTypes,
+    setSelectedAdditionalServices,
+  ]);
 
-  
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const dataToSave = {

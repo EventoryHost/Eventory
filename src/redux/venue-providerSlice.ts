@@ -1,5 +1,8 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { saveVenueData, getVenueData } from '@/services/flows/venue-providerService';
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {
+  saveVenueData,
+  getVenueData,
+} from "@/services/flows/venue-providerService";
 
 interface VenueProviderState {
   formData: Record<string, any>;
@@ -17,25 +20,25 @@ const initialState: VenueProviderState = {
 
 // Async thunk to fetch venue data
 export const fetchVenueData = createAsyncThunk(
-  'venueProvider/fetchData',
+  "venueProvider/fetchData",
   async (userId: string) => {
     const response = await getVenueData(userId);
-    return response.data; 
-  }
+    return response.data;
+  },
 );
 
 // Async thunk to save venue details
 export const saveVenueDetails = createAsyncThunk(
-  'venueProvider/saveData',
+  "venueProvider/saveData",
   async ({ userId, data }: { userId: string; data: any }) => {
     const response = await saveVenueData(userId, data);
     return response.data;
-  }
+  },
 );
 
 // Create a slice of the store for venue-provider
 const venueProviderSlice = createSlice({
-  name: 'venueProvider',
+  name: "venueProvider",
   initialState,
   reducers: {
     resetVenueState: (state) => {
@@ -44,9 +47,12 @@ const venueProviderSlice = createSlice({
       state.loading = false;
       state.error = null;
     },
-    updateFormData: (state, action: PayloadAction<{ page: number; data: any }>) => {
+    updateFormData: (
+      state,
+      action: PayloadAction<{ page: number; data: any }>,
+    ) => {
       const { page, data } = action.payload;
-      state.formData[page] = { ...state.formData[page], ...data }; 
+      state.formData[page] = { ...state.formData[page], ...data };
     },
     setCurrentPage: (state, action: PayloadAction<number>) => {
       state.currentPage = action.payload;
@@ -82,5 +88,6 @@ const venueProviderSlice = createSlice({
 });
 
 // Export the reducer and actions
-export const { resetVenueState, updateFormData, setCurrentPage } = venueProviderSlice.actions;
+export const { resetVenueState, updateFormData, setCurrentPage } =
+  venueProviderSlice.actions;
 export default venueProviderSlice.reducer;

@@ -6,8 +6,11 @@ import Dropdown from "../../(components)/Dropdown";
 import { useSelector, useDispatch } from "react-redux";
 import jwt from "jsonwebtoken";
 import { RootState, AppDispatch } from "../../../../redux/store";
-import { fetchDecoratorData, saveDecoratorDetails, setcurrentPage2 } from '../../../../redux/decoratorSlice';
-
+import {
+  fetchDecoratorData,
+  saveDecoratorDetails,
+  setcurrentPage2,
+} from "../../../../redux/decoratorSlice";
 
 const _typesOfEvent = [
   "Anniversary Celebration",
@@ -84,7 +87,6 @@ interface FormState {
   corporateEvents: string[];
   seasonalEvents: string[];
   culturalEvents: string[];
-
 }
 
 const teamsizelist = ["1-5", "6-15", "16-30", "31-50", "51+"];
@@ -127,9 +129,10 @@ const Page1: React.FC<Page1Props> = ({
   updateFormState,
   handleContinue,
 }) => {
-
   const dispatch = useDispatch<AppDispatch>();
-  const { formData, loading, error } = useSelector((state: RootState) => state.decorator);
+  const { formData, loading, error } = useSelector(
+    (state: RootState) => state.decorator,
+  );
 
   function getVendorId2(): string | null {
     if (typeof window === "undefined") {
@@ -170,7 +173,7 @@ const Page1: React.FC<Page1Props> = ({
 
   useEffect(() => {
     if (formData) {
-      let updated = false
+      let updated = false;
       // Update form state if specific fields in formState are empty
       if (!formState.businessName) {
         updateFormState({ businessName: formData.businessName || "" });
@@ -197,13 +200,14 @@ const Page1: React.FC<Page1Props> = ({
       if (!culturalEvents.length) {
         setCulturalEvents(formData.culturalEvents || []);
       }
-      
+
       if (!updated) return;
     }
-  }, [formData ]);
+  }, [formData]);
 
-
-  const handleInputChange2 = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+  const handleInputChange2 = (
+    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
+  ) => {
     const { name, value } = e.target;
 
     // Call the original handleInputChange functionality
@@ -232,7 +236,7 @@ const Page1: React.FC<Page1Props> = ({
       corporateEvents,
       seasonalEvents,
       culturalEvents,
-    }
+    };
 
     dispatch(saveDecoratorDetails({ userId, data: decoratorDetails }) as any);
     handleContinue();
@@ -240,11 +244,15 @@ const Page1: React.FC<Page1Props> = ({
 
   const handledropdowneventsize = (value: string) => {
     updateFormState({ eventsize: value });
-    handleInputChange2({ target: { name: 'eventsize', value } } as React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>);
+    handleInputChange2({
+      target: { name: "eventsize", value },
+    } as React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>);
   };
   const handledropdownduration = (value: string) => {
     updateFormState({ duration: value });
-    handleInputChange2({ target: { name: 'duration', value } } as React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>);
+    handleInputChange2({
+      target: { name: "duration", value },
+    } as React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>);
   };
 
   return (
@@ -282,8 +290,7 @@ const Page1: React.FC<Page1Props> = ({
                   value={formState.businessName}
                   placeholder="Enter your business name"
                   onChange={(e) => {
-                    handleInputChange(e),
-                      handleInputChange2(e)
+                    handleInputChange(e), handleInputChange2(e);
                   }}
                   required
                 />

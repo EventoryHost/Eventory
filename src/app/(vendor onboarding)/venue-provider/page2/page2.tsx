@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../../redux/store";
 import { fetchVenueData, saveVenueDetails } from "@/redux/venue-providerSlice";
 
-
 const _decorTypes = [
   { value: "indoor", label: "Inhouse Decor" },
   { value: "external_allowed", label: "External Decor Allowed" },
@@ -172,9 +171,10 @@ const Page2: React.FC<Page2Props> = ({
   specialFeatures,
   setSpecialFeatures,
 }) => {
-
   const dispatch = useDispatch<AppDispatch>();
-  const { formData, loading, error } = useSelector((state: RootState) => state["venue-provider"]);
+  const { formData, loading, error } = useSelector(
+    (state: RootState) => state["venue-provider"],
+  );
 
   useEffect(() => {
     const userId = getVendorId();
@@ -223,7 +223,7 @@ const Page2: React.FC<Page2Props> = ({
 
   const onContinue = () => {
     console.log("the current formState", formState);
-    
+
     handleSave();
     handleContinue();
   };

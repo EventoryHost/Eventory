@@ -7,10 +7,12 @@ import Dropdown from "../../(components)/Dropdown";
 import jwt from "jsonwebtoken";
 
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCateringData, saveCateringDetails } from "../../../../redux/cateringSlice";
+import {
+  fetchCateringData,
+  saveCateringDetails,
+} from "../../../../redux/cateringSlice";
 import { AppDispatch, RootState } from "../../../../redux/store";
 import { get } from "http";
-
 
 const _regional = ["Gujrati", "Rajasthani", "Bengali", "Others"];
 const _service = [
@@ -30,8 +32,19 @@ const _cuisine = [
 ];
 
 type Page1Props = {
-  formState: FormState & { servingCapacity: string, cuisineSpecialties: string[], serviceStyles: string[] };
-  updateFormState: (newState: Partial<FormState> & { servingCapacity?: string, regionalSpecialties?: string[], cuisineSpecialties?: string[], serviceStyles?: string[] }) => void;
+  formState: FormState & {
+    servingCapacity: string;
+    cuisineSpecialties: string[];
+    serviceStyles: string[];
+  };
+  updateFormState: (
+    newState: Partial<FormState> & {
+      servingCapacity?: string;
+      regionalSpecialties?: string[];
+      cuisineSpecialties?: string[];
+      serviceStyles?: string[];
+    },
+  ) => void;
   servingCapacity: string[];
   setServingCapacity: React.Dispatch<React.SetStateAction<string[]>>;
   cuisineSpecialties: string[];
@@ -40,7 +53,7 @@ type Page1Props = {
   setRegionalSpecialties: React.Dispatch<React.SetStateAction<string[]>>;
   serviceStyles: string[];
   setServiceStyles: React.Dispatch<React.SetStateAction<string[]>>;
-  handleContinue: () => void;   
+  handleContinue: () => void;
 };
 
 const Page1 = ({
@@ -54,11 +67,12 @@ const Page1 = ({
   setRegionalSpecialties,
   serviceStyles,
   setServiceStyles,
-  handleContinue
+  handleContinue,
 }: Page1Props) => {
   const dispatch = useDispatch<AppDispatch>();
-  const { formData, loading, error } = useSelector((state: RootState) => state.catering);
-
+  const { formData, loading, error } = useSelector(
+    (state: RootState) => state.catering,
+  );
 
   useEffect(() => {
     const userId = getVendorId2();
@@ -67,7 +81,7 @@ const Page1 = ({
       dispatch(fetchCateringData(userId));
     }
   }, [dispatch]);
-  
+
   useEffect(() => {
     if (formData && !formState.cateringName && !formState.businessName) {
       // Only update the state if formState is empty
@@ -88,35 +102,35 @@ const Page1 = ({
       }
     }
   }, [formData, formState, updateFormState]);
-  
+
   const handleSave = () => {
     // Define the userId based on your schema
     const userId = getVendorId2() || "";
-  
+
     // Define the cateringDetails based on your schema
     const cateringDetails = {
       userId: userId,
       cateringName: formState.cateringName || "", // Initialize with an empty string if not available
       businessName: formState.businessName || "", // Initialize with an empty string if not available
       servingCapacity: servingCapacity[0] || "", // Initialize with an empty string if not available
-      regionalSpecialties: regionalSpecialties.length > 0 ? regionalSpecialties : [], // Use an empty array if no specialties
-      cuisineSpecialties: cuisineSpecialties.length > 0 ? cuisineSpecialties : [], // Use an empty array if no specialties
+      regionalSpecialties:
+        regionalSpecialties.length > 0 ? regionalSpecialties : [], // Use an empty array if no specialties
+      cuisineSpecialties:
+        cuisineSpecialties.length > 0 ? cuisineSpecialties : [], // Use an empty array if no specialties
       serviceStyles: serviceStyles.length > 0 ? serviceStyles : [], // Use an empty array if no styles
-      
+
       // Optional fields initialized
       selectedAppetizers: [], // You can set this based on user input later
       selectedBeverages: [],
       selectedMainCourses: [],
       selectedDietaryOptions: [],
       preSetMenu: formState.preSetMenu || "", // Initialize if needed
-      customizableMenu: formState.customizableMenu || false // Initialize with a sensible default
+      customizableMenu: formState.customizableMenu || false, // Initialize with a sensible default
     };
-  
+
     // Dispatch action to save catering details to Redux
     dispatch(saveCateringDetails({ userId, data: cateringDetails }) as any);
   };
-  
-  
 
   const [isFormValid, setIsFormValid] = useState(true);
 

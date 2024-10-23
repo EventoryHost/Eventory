@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect ,useState  } from "react";
+import React, { useEffect, useState } from "react";
 import FileInput from "@/components/fileInput";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../../redux/store";
@@ -31,9 +31,10 @@ const Page4: React.FC<PageProps> = ({
   currentPage,
   setCurrentPage,
 }) => {
-
   const dispatch = useDispatch<AppDispatch>();
-  const { formData, loading, error } = useSelector((state: RootState) => state["venue-provider"]);
+  const { formData, loading, error } = useSelector(
+    (state: RootState) => state["venue-provider"],
+  );
 
   useEffect(() => {
     const userId = getVendorId();
@@ -65,12 +66,11 @@ const Page4: React.FC<PageProps> = ({
     dispatch(saveVenueDetails({ userId, data: venueDetails }) as any);
   };
 
-
   const [isFormValid, setIsFormValid] = useState(true);
 
   const onContinue = () => {
     console.log("the current formState", formState);
-    
+
     handleSave();
     handleContinue();
   };

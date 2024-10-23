@@ -9,7 +9,6 @@ import { AppDispatch, RootState } from "@/redux/store";
 import { fetchPavData, savePavDetails } from "@/redux/pavSlice";
 import jwt from "jsonwebtoken";
 
-
 interface FormState {
   photos: string | File | File[];
   videos: string | File | File[];
@@ -75,11 +74,9 @@ const Page6: React.FC<PageProps> = ({
   freerevisionforinitialthemeproposal,
   setrevisionforinitialthemeproposal,
 }) => {
-
-
   const dispatch = useDispatch<AppDispatch>();
   const { formData, loading, error } = useSelector(
-    (state: RootState) => state["pav"]
+    (state: RootState) => state["pav"],
   );
 
   // Fetch rental data on mount
@@ -89,7 +86,7 @@ const Page6: React.FC<PageProps> = ({
       dispatch(fetchPavData(userId));
     }
   }, [dispatch]);
-  
+
   // Update form state with fetched data for Page 1
   useEffect(() => {
     if (formData) {
@@ -116,15 +113,17 @@ const Page6: React.FC<PageProps> = ({
       }
       if (formData.writtenthemeproposalafterconsultaion !== undefined) {
         setwrittenthemeproposalafterconsultaion(
-          formData.writtenthemeproposalafterconsultaion
+          formData.writtenthemeproposalafterconsultaion,
         );
       }
       if (formData.freerevisionforinitialthemeproposal !== undefined) {
-        setrevisionforinitialthemeproposal(formData.freerevisionforinitialthemeproposal);
+        setrevisionforinitialthemeproposal(
+          formData.freerevisionforinitialthemeproposal,
+        );
       }
     }
   }, [formData]);
-  
+
   // Updated handleSave function
   const handleSave = () => {
     const userId = getVendorId();
@@ -132,7 +131,7 @@ const Page6: React.FC<PageProps> = ({
       console.error("User ID is missing");
       return;
     }
-  
+
     const updatedFormState = {
       photos,
       videos,
@@ -144,7 +143,7 @@ const Page6: React.FC<PageProps> = ({
       writtenthemeproposalafterconsultaion,
       freerevisionforinitialthemeproposal,
     };
-  
+
     // Dispatch action to save the updated form data for Page 6
     dispatch(savePavDetails({ userId, data: updatedFormState }) as any);
   };
@@ -153,7 +152,6 @@ const Page6: React.FC<PageProps> = ({
     handleSave(); // Save the rental details before continuing
     handleContinue();
   };
-
 
   function getVendorId(): string | null {
     const token = localStorage.getItem("token");
@@ -171,7 +169,6 @@ const Page6: React.FC<PageProps> = ({
       return null;
     }
   }
-
 
   return (
     <div className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide xs:w-[95%] xs:min-w-[90%]">

@@ -63,7 +63,7 @@ const Page4 = ({
 
   const dispatch = useDispatch<AppDispatch>();
   const { formData, loading, error } = useSelector(
-    (state: RootState) => state["pav"]
+    (state: RootState) => state["pav"],
   );
 
   // Fetch rental data on mount
@@ -73,7 +73,7 @@ const Page4 = ({
       dispatch(fetchPavData(userId));
     }
   }, [dispatch]);
-  
+
   // Update form state with fetched data for Page 1
   useEffect(() => {
     if (formData) {
@@ -84,7 +84,9 @@ const Page4 = ({
         setPackagetype(formData.Packagetype);
       }
       if (formData.availablefordestinationevents !== undefined) {
-        setavailablefordestinationevents(formData.availablefordestinationevents);
+        setavailablefordestinationevents(
+          formData.availablefordestinationevents,
+        );
       }
       if (formData.postproductionservices !== undefined) {
         setpostproductionservices(formData.postproductionservices);
@@ -101,10 +103,9 @@ const Page4 = ({
       if (formData.bookingDeposit !== undefined) {
         setBookingDeposit(formData.bookingDeposit);
       }
-
     }
   }, [formData]);
-  
+
   // Updated handleSave function
   const handleSave = () => {
     const userId = getVendorId();
@@ -112,7 +113,7 @@ const Page4 = ({
       console.error("User ID is missing");
       return;
     }
-  
+
     const updatedFormState = {
       Durationoffinaldelivery,
       Packagetype,
@@ -123,7 +124,7 @@ const Page4 = ({
       advanceSetup,
       bookingDeposit,
     };
-  
+
     // Dispatch action to save the updated form data for Page 3
     dispatch(savePavDetails({ userId, data: updatedFormState }) as any);
   };
@@ -132,7 +133,6 @@ const Page4 = ({
     handleSave(); // Save the rental details before continuing
     handleContinue();
   };
-
 
   function getVendorId(): string | null {
     const token = localStorage.getItem("token");

@@ -6,9 +6,11 @@ import { ArrowLeft } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/redux/store";
 import jwt from "jsonwebtoken";
-import { fetchDecoratorData, saveDecoratorDetails } from "@/redux/decoratorSlice";
+import {
+  fetchDecoratorData,
+  saveDecoratorDetails,
+} from "@/redux/decoratorSlice";
 import { useEffect } from "react";
-
 
 interface FormState {
   photos: string | File | File[];
@@ -52,7 +54,9 @@ const Page6: React.FC<Page6Props> = ({
   } = formState;
 
   const dispatch = useDispatch<AppDispatch>();
-  const { formData, loading, error} = useSelector((state: RootState) => state.decorator);
+  const { formData, loading, error } = useSelector(
+    (state: RootState) => state.decorator,
+  );
 
   function getVendorId2(): string | null {
     if (typeof window === "undefined") {
@@ -92,13 +96,13 @@ const Page6: React.FC<Page6Props> = ({
 
   useEffect(() => {
     console.log("Fetched formData:", formData);
-  
+
     // Check if formData is defined and log each property
     if (formData) {
       Object.entries(formData).forEach(([key, value]) => {
         console.log(`Key: ${key}, Value: ${value}`);
       });
-  
+
       // if (formData.themesElements) setThemesElements(formData.themesElements);
 
       updateFormState({
@@ -109,14 +113,15 @@ const Page6: React.FC<Page6Props> = ({
         clientTestimonials: formData.clientTestimonials ?? "",
         Recongnition_awards: formData.Recongnition_awards ?? "",
         advbookingperiod: formData.advbookingperiod ?? "",
-        writtenthemeproposalafterconsultaion: formData.writtenthemeproposalafterconsultaion ?? false,
-        revisionforinitialthemeproposal: formData.revisionforinitialthemeproposal ?? false,
+        writtenthemeproposalafterconsultaion:
+          formData.writtenthemeproposalafterconsultaion ?? false,
+        revisionforinitialthemeproposal:
+          formData.revisionforinitialthemeproposal ?? false,
       });
     } else {
       console.log("formData is undefined or null");
     }
   }, [formData]);
-  
 
   const onContinue = () => {
     const userId = getVendorId2() || "";
@@ -131,8 +136,7 @@ const Page6: React.FC<Page6Props> = ({
       writtenthemeproposalafterconsultaion,
       revisionforinitialthemeproposal,
     };
-    
-    
+
     dispatch(saveDecoratorDetails({ userId, data: decoratorDetails }) as any);
     handleContinue();
   };

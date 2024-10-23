@@ -9,7 +9,6 @@ import { useEffect } from "react";
 import jwt from "jsonwebtoken";
 import { get } from "http";
 
-
 const _staffProvides = ["Chefs", "Bartenders", "Servers", "Cleaners", "Others"];
 
 const _equipmentsProvided = [
@@ -61,8 +60,7 @@ const Page4 = ({
       return null;
     }
   }
-  const userId =  getVendorId2() || ""; 
-
+  const userId = getVendorId2() || "";
 
   useEffect(() => {
     // Fetch data when Page 4 mounts
@@ -81,11 +79,17 @@ const Page4 = ({
         setSelectedEquipmentsProvided(formData.equipmentsProvided || []);
       }
     }
-  }, [formData, selectedStaffProvider, selectedEquipmentsProvided, setSelectedStaffProvider, setSelectedEquipmentsProvided]);
+  }, [
+    formData,
+    selectedStaffProvider,
+    selectedEquipmentsProvided,
+    setSelectedStaffProvider,
+    setSelectedEquipmentsProvided,
+  ]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Prepare the data to save, including staff and equipment details
     const dataToSave = {
       ...formData,

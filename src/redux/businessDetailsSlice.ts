@@ -1,6 +1,5 @@
 // redux/businessDetails2Slice.ts
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 // businessName: refs.current.businessName!.value,
 // category: businessDetails2.category,
@@ -25,19 +24,19 @@ export type BusinessDetails2 = {
 };
 
 const initialState: BusinessDetails2 = {
-  businessName: '',
-  category: '',
-  gstin: '',
-  years: '',
-  businessAddress: '',
+  businessName: "",
+  category: "",
+  gstin: "",
+  years: "",
+  businessAddress: "",
   pinCode: 1,
   cities: [],
-  teamsize: '',
-  annualrevenue: '',
+  teamsize: "",
+  annualrevenue: "",
 };
 
 const businessDetails2Slice = createSlice({
-  name: 'businessDetails2',
+  name: "businessDetails2",
   initialState,
   reducers: {
     setBusinessDetails2: (state, action: PayloadAction<BusinessDetails2>) => {
@@ -45,12 +44,13 @@ const businessDetails2Slice = createSlice({
     },
     updateBusinessField: <K extends keyof BusinessDetails2>(
       state: BusinessDetails2,
-      action: PayloadAction<{ key: K; value: BusinessDetails2[K] }>
+      action: PayloadAction<{ key: K; value: BusinessDetails2[K] }>,
     ) => {
       state[action.payload.key] = action.payload.value;
     },
   },
 });
 
-export const { setBusinessDetails2, updateBusinessField } = businessDetails2Slice.actions;
+export const { setBusinessDetails2, updateBusinessField } =
+  businessDetails2Slice.actions;
 export default businessDetails2Slice.reducer;

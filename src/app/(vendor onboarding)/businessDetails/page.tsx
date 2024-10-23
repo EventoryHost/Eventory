@@ -9,8 +9,11 @@ import { useToast } from "@/components/hooks/use-toast";
 import MultipleDropdown from "./(componets)/MultiDropdown2";
 
 import { useDispatch, useSelector } from "react-redux";
-import { updateBusinessField, setBusinessDetails2 } from "@/redux/businessDetailsSlice";
-import type { BusinessDetails2 as BusinessDetailsType } from '@/redux/businessDetailsSlice';
+import {
+  updateBusinessField,
+  setBusinessDetails2,
+} from "@/redux/businessDetailsSlice";
+import type { BusinessDetails2 as BusinessDetailsType } from "@/redux/businessDetailsSlice";
 import { RootState } from "@/redux/store";
 import { getBusinessDetails2, addBusinessDetails2 } from "@/services/auth";
 import { get } from "http";
@@ -83,9 +86,15 @@ export type businessDetails = {
 
 const BusinessDetails = () => {
   const dispatch = useDispatch();
-  const businessDetails2 = useSelector((state: RootState) => state.businessDetails);
-  const refs = useRef({} as Record<keyof BusinessDetailsType, HTMLInputElement | HTMLButtonElement | null>);
-
+  const businessDetails2 = useSelector(
+    (state: RootState) => state.businessDetails,
+  );
+  const refs = useRef(
+    {} as Record<
+      keyof BusinessDetailsType,
+      HTMLInputElement | HTMLButtonElement | null
+    >,
+  );
 
   const [loading, setloading] = useState(false);
   const { toast } = useToast();
@@ -101,7 +110,7 @@ const BusinessDetails = () => {
     annualrevenue: "",
   } as businessDetails);
 
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null); 
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   const [error, setError] = useState(false);
 
@@ -137,9 +146,11 @@ const BusinessDetails = () => {
           const response = await getBusinessDetails2(userId);
           if (response && response.success) {
             dispatch(setBusinessDetails2(response.data));
-          }
-          else{
-            console.error("Failed to fetch business details", response?.message);
+          } else {
+            console.error(
+              "Failed to fetch business details",
+              response?.message,
+            );
           }
         }
       } catch (error) {
@@ -150,9 +161,11 @@ const BusinessDetails = () => {
     fetchBusinessDetails();
   }, [dispatch]);
 
-  const saveBusinessDetailsToBackend = async (userId: string, newDetails: businessDetails2) => {
+  const saveBusinessDetailsToBackend = async (
+    userId: string,
+    newDetails: businessDetails2,
+  ) => {
     try {
-
       const response = await addBusinessDetails2(userId, newDetails);
       if (response && !response.data.success) {
         console.error("Failed to save business details to backend");
@@ -167,20 +180,18 @@ const BusinessDetails = () => {
   }
 
   const handleSaveBusinessDetails = () => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
 
     if (token) {
       // Decode the token
       const decodedToken = jwt.decode(token) as MyTokenPayload | null;
 
-      if (decodedToken ) {
+      if (decodedToken) {
         const userId = getVendorId2() || decodedToken.userId;
 
         saveBusinessDetailsToBackend(userId, businessDetails2);
         console.log("The user ID is:", userId);
         console.log("The business details are:", businessDetails2);
-        
-        
       } else {
         console.error("User ID not found in the token.");
       }
@@ -189,10 +200,11 @@ const BusinessDetails = () => {
     }
   };
 
-  
-  const handleInputChange = (key: any) => (event: any): void => {
-    dispatch(updateBusinessField({ key, value: event.target.value }));
-  };
+  const handleInputChange =
+    (key: any) =>
+    (event: any): void => {
+      dispatch(updateBusinessField({ key, value: event.target.value }));
+    };
 
   function getVendorId2(): string | null {
     const token = localStorage.getItem("token");
@@ -239,7 +251,7 @@ const BusinessDetails = () => {
       !newDetails.businessAddress ||
       !newDetails.pinCode ||
       !newDetails.teamsize ||
-      !newDetails.annualrevenue 
+      !newDetails.annualrevenue
       // newDetails.cities.length == 0
     ) {
       setError(true);
@@ -256,7 +268,6 @@ const BusinessDetails = () => {
       setBusinessDetails(newDetails);
 
       dispatch(setBusinessDetails2(newDetails));
-
 
       // Retrieve user information from token
       const userId = getVendorId2() || "";
@@ -284,231 +295,256 @@ const BusinessDetails = () => {
     );
   };
 
-return (
-  <div className="flex h-max w-full flex-col overflow-y-scroll lg:h-[calc(100vh-4.2rem)] lg:flex-row">
-    <div className="flex h-max flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[35%] lg:h-[calc(100vh-4.2rem)] lg:max-w-[30%]">
-      <div className="flex h-[100%] flex-col items-center justify-center gap-9 px-9 xs:pl-5 md:px-11 lg:p-8">
-        <h1 className="text-3xl font-semibold md:text-4xl lg:text-5xl">
-          Tell us about your business
-        </h1>
-        <p className="font-Helvetica font-normal text-[#797878] xs:text-lg">
-          Fill out your Business details to get verified and proceed to
-          onboarding process.
-        </p>
-      </div>
-      <div className="relative h-[10rem] lg:w-full">
-        <Image
-          src={
+  return (
+    <div className="flex h-max w-full flex-col overflow-y-scroll lg:h-[calc(100vh-4.2rem)] lg:flex-row">
+      <div className="flex h-max flex-col items-start justify-between bg-[#FFFFFF] xs:gap-7 xs:pt-4 md:min-w-[35%] lg:h-[calc(100vh-4.2rem)] lg:max-w-[30%]">
+        <div className="flex h-[100%] flex-col items-center justify-center gap-9 px-9 xs:pl-5 md:px-11 lg:p-8">
+          <h1 className="text-3xl font-semibold md:text-4xl lg:text-5xl">
+            Tell us about your business
+          </h1>
+          <p className="font-Helvetica font-normal text-[#797878] xs:text-lg">
+            Fill out your Business details to get verified and proceed to
+            onboarding process.
+          </p>
+        </div>
+        <div className="relative h-[10rem] lg:w-full">
+          <Image
+            src={
               "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/vendor_onboarding/tajmahal.png"
             }
             height={100}
             width={100}
-          alt="Image of Indian monuments"
-          className="h-full w-full object-cover"
-        />
+            alt="Image of Indian monuments"
+            className="h-full w-full object-cover"
+          />
+        </div>
       </div>
-    </div>
-    <div className="scroll-touch flex h-max min-w-[65%] flex-col items-center justify-start overflow-y-scroll bg-[#F7F6F9] p-2 scrollbar-hide md:p-[1rem] lg:h-[calc(100vh-4.2rem)]">
-      <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
-        <h1 className="text-3xl font-semibold">Business Details</h1>
-        <form onSubmit={handleBizSubmit}>
-          <div className="flex min-h-full flex-col items-center gap-5">
-            <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-              <div className="flex min-w-[45%] max-w-[45%] flex-col gap-4">
-                <label htmlFor="businessName">
-                  Business Name<span className="text-red-600">*</span>
-                </label>
-                <input
-                  id="businessName"
-                  type="text"
-                  className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
-                  ref={(el) => {
-                    refs.current.businessName = el;
-                  }}
-                  defaultValue={businessDetails2.businessName || refs.current.businessName?.value || ''}
-                  required
-                  onChange={handleInputChange("businessName")}
-                />
+      <div className="scroll-touch flex h-max min-w-[65%] flex-col items-center justify-start overflow-y-scroll bg-[#F7F6F9] p-2 scrollbar-hide md:p-[1rem] lg:h-[calc(100vh-4.2rem)]">
+        <div className="flex flex-col gap-7 rounded-xl bg-white p-3 xs:min-w-[90%] md:p-6">
+          <h1 className="text-3xl font-semibold">Business Details</h1>
+          <form onSubmit={handleBizSubmit}>
+            <div className="flex min-h-full flex-col items-center gap-5">
+              <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+                <div className="flex min-w-[45%] max-w-[45%] flex-col gap-4">
+                  <label htmlFor="businessName">
+                    Business Name<span className="text-red-600">*</span>
+                  </label>
+                  <input
+                    id="businessName"
+                    type="text"
+                    className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
+                    ref={(el) => {
+                      refs.current.businessName = el;
+                    }}
+                    defaultValue={
+                      businessDetails2.businessName ||
+                      refs.current.businessName?.value ||
+                      ""
+                    }
+                    required
+                    onChange={handleInputChange("businessName")}
+                  />
+                </div>
+                <div className="flex min-w-[45%] max-w-[45%] flex-col gap-4">
+                  <label htmlFor="category">
+                    Type Of Service<span className="text-red-600">*</span>
+                  </label>
+                  <Dropdown2
+                    options={categories}
+                    isOpen={openDropdown === "category"}
+                    onToggle={() => toggleDropdown("category")}
+                    onSelect={(value: string) => {
+                      setBusinessDetails({
+                        ...businessDetails,
+                        category: value,
+                      });
+                      handleInputChange("category")({ target: { value } });
+                    }}
+                    placeholder={
+                      businessDetails2.category || "Select Your Service"
+                    }
+                  />
+                </div>
               </div>
-              <div className="flex min-w-[45%] max-w-[45%] flex-col gap-4">
-                <label htmlFor="category">
-                  Type Of Service<span className="text-red-600">*</span>
-                </label>
-                <Dropdown2
-                  options={categories}
-                  isOpen={openDropdown === "category"}
-                  onToggle={() => toggleDropdown("category")}
-                  onSelect={(value: string) =>{
-                    setBusinessDetails({
-                      ...businessDetails,
-                      category: value,
-                    })
-                  handleInputChange("category")({target: {value}})
-                  }}
-                  placeholder={businessDetails2.category ||"Select Your Service"}
-                />
+              <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+                <div className="flex min-w-[45%] max-w-[45%] flex-col gap-4">
+                  <label htmlFor="gstin">
+                    GSTIN<span className="text-red-600">*</span>
+                  </label>
+                  <input
+                    id="gstin"
+                    type="text"
+                    minLength={15}
+                    maxLength={15}
+                    className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
+                    ref={(el) => {
+                      refs.current.gstin = el;
+                    }}
+                    defaultValue={
+                      businessDetails2.gstin || refs.current.gstin?.value || ""
+                    }
+                    required
+                    placeholder="Your 15 Digit GSTIN"
+                    onChange={handleInputChange("gstin")}
+                  />
+                </div>
+                <div className="flex min-w-[45%] max-w-[45%] flex-col gap-4">
+                  <label htmlFor="teamsize">
+                    Team Size<span className="text-red-600">*</span>
+                  </label>
+                  <Dropdown2
+                    options={teamsize}
+                    isOpen={openDropdown === "teamsize"}
+                    onToggle={() => toggleDropdown("teamsize")}
+                    onSelect={(value: string) => {
+                      setBusinessDetails({
+                        ...businessDetails,
+                        teamsize: value,
+                      });
+                      handleInputChange("teamsize")({ target: { value } });
+                    }}
+                    placeholder={
+                      businessDetails2.teamsize || "Select Team Size"
+                    }
+                  />
+                </div>
               </div>
-            </div>
-            <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-              <div className="flex min-w-[45%] max-w-[45%] flex-col gap-4">
-                <label htmlFor="gstin">
-                  GSTIN<span className="text-red-600">*</span>
-                </label>
-                <input
-                  id="gstin"
-                  type="text"
-                  minLength={15}
-                  maxLength={15}
-                  className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
-                  ref={(el) => {
-                    refs.current.gstin = el;
-                  }}
-                  defaultValue={businessDetails2.gstin || refs.current.gstin?.value || ''}
-                  required
-                  placeholder="Your 15 Digit GSTIN"
-                  onChange={handleInputChange("gstin")}
-                />
+              <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+                <div className="flex min-w-[45%] max-w-[45%] flex-col gap-4">
+                  <label htmlFor="businessAddress">
+                    Business Address<span className="text-red-600">*</span>
+                  </label>
+                  <input
+                    id="businessAddress"
+                    type="text"
+                    className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
+                    ref={(el) => {
+                      refs.current.businessAddress = el;
+                    }}
+                    placeholder="Business Address"
+                    defaultValue={
+                      businessDetails2.businessAddress ||
+                      refs.current.businessAddress?.value ||
+                      ""
+                    }
+                    required
+                    onChange={handleInputChange("businessAddress")}
+                  />
+                </div>
+                <div className="flex min-w-[45%] max-w-[45%] flex-col gap-4">
+                  <label htmlFor="pinCode">
+                    Pin Code<span className="text-red-600">*</span>
+                  </label>
+                  <input
+                    id="pinCode"
+                    type="number"
+                    className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
+                    ref={(el) => {
+                      refs.current.pinCode = el;
+                    }}
+                    defaultValue={
+                      businessDetails2.pinCode ||
+                      refs.current.pinCode?.value ||
+                      ""
+                    }
+                    required
+                    placeholder="Pin-Code"
+                    onChange={handleInputChange("pinCode")}
+                  />
+                </div>
               </div>
-              <div className="flex min-w-[45%] max-w-[45%] flex-col gap-4">
-                <label htmlFor="teamsize">
-                  Team Size<span className="text-red-600">*</span>
-                </label>
-                <Dropdown2
-                  options={teamsize}
-                  isOpen={openDropdown === "teamsize"}
-                  onToggle={() => toggleDropdown("teamsize")}
-                  onSelect={(value: string) =>{
-                    setBusinessDetails({
-                      ...businessDetails,
-                      teamsize: value,
-                    })
-                    handleInputChange("teamsize")({target: {value}})
-                  }}
-                  placeholder={businessDetails2.teamsize ||"Select Team Size"}
-                />
+              <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+                <div className="flex min-w-[45%] max-w-[45%] flex-col gap-4">
+                  <label htmlFor="cities">
+                    Operational City(s)<span className="text-red-600">*</span>
+                  </label>
+                  <MultipleDropdown
+                    options={operationalCities}
+                    isOpen={openDropdown === "cities"}
+                    onToggle={() => toggleDropdown("cities")}
+                    onSelect={(value: string[]) => {
+                      setBusinessDetails((prevDetails) => ({
+                        ...prevDetails,
+                        cities: value,
+                      }));
+                      handleInputChange("cities")({ target: { value } });
+                    }}
+                    placeholder={
+                      businessDetails2.cities.length > 0
+                        ? businessDetails2.cities.join(", ") // Join cities into a single string
+                        : "Cities Where You Operate"
+                    }
+                  />
+                </div>
+                <div className="flex min-w-[45%] max-w-[45%] flex-col gap-4">
+                  <label htmlFor="years">
+                    Years in Operation<span className="text-red-600">*</span>
+                  </label>
+                  <Dropdown2
+                    options={yearsInOperation}
+                    isOpen={openDropdown === "yearsInOperation"}
+                    onToggle={() => toggleDropdown("yearsInOperation")}
+                    onSelect={(value: string) => {
+                      setBusinessDetails({ ...businessDetails, years: value });
+                      handleInputChange("years")({ target: { value } });
+                    }}
+                    placeholder={
+                      businessDetails2.years || "Provide Year Of Operations"
+                    }
+                  />
+                </div>
               </div>
-            </div>
-            <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-              <div className="flex min-w-[45%] max-w-[45%] flex-col gap-4">
-                <label htmlFor="businessAddress">
-                  Business Address<span className="text-red-600">*</span>
-                </label>
-                <input
-                  id="businessAddress"
-                  type="text"
-                  className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
-                  ref={(el) => {
-                    refs.current.businessAddress = el;
-                  }}
-                  placeholder="Business Address"
-                  defaultValue={businessDetails2.businessAddress || refs.current.businessAddress?.value || ''}
-                  required
-                  onChange={handleInputChange("businessAddress")}
-                />
+              <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
+                <div className="flex min-w-[45%] max-w-[45%] flex-col gap-4">
+                  <label htmlFor="annualrevenue">
+                    Annual Revenue<span className="text-red-600">*</span>
+                  </label>
+                  <Dropdown2
+                    options={annualrevenue}
+                    isOpen={openDropdown === "annualrevenue"}
+                    onToggle={() => toggleDropdown("annualrevenue")}
+                    onSelect={(value: string) => {
+                      setBusinessDetails({
+                        ...businessDetails,
+                        annualrevenue: value,
+                      });
+                      handleInputChange("annualrevenue")({ target: { value } });
+                    }}
+                    placeholder={
+                      businessDetails2.annualrevenue || "Select Annual Revenue"
+                    }
+                  />
+                </div>
               </div>
-              <div className="flex min-w-[45%] max-w-[45%] flex-col gap-4">
-                <label htmlFor="pinCode">
-                  Pin Code<span className="text-red-600">*</span>
-                </label>
-                <input
-                  id="pinCode"
-                  type="number"
-                  className="w-full rounded-xl border-2 bg-white p-5 py-3 outline-none"
-                  ref={(el) => {
-                    refs.current.pinCode = el;
-                  }}
-                  defaultValue={businessDetails2.pinCode || refs.current.pinCode?.value || ''}
-                  required
-                  placeholder="Pin-Code"
-                  onChange={handleInputChange("pinCode")}
-                />
-              </div>
-            </div>
-            <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-              <div className="flex min-w-[45%] max-w-[45%] flex-col gap-4">
-                <label htmlFor="cities">
-                  Operational City(s)<span className="text-red-600">*</span>
-                </label>
-                <MultipleDropdown
-                  options={operationalCities}
-                  isOpen={openDropdown === "cities"}
-                  onToggle={() => toggleDropdown("cities")}
-                  onSelect={(value: string[]) =>{
-                    setBusinessDetails((prevDetails) => ({
-                      ...prevDetails,
-                      cities: value,
-                    }))
-                    handleInputChange("cities")({target: {value}})
-                  }}
-                  placeholder={businessDetails2.cities.length > 0 
-                    ? businessDetails2.cities.join(", ") // Join cities into a single string
-                    : "Cities Where You Operate"}                />
-              </div>
-              <div className="flex min-w-[45%] max-w-[45%] flex-col gap-4">
-                <label htmlFor="years">
-                  Years in Operation<span className="text-red-600">*</span>
-                </label>
-                <Dropdown2
-                  options={yearsInOperation}
-                  isOpen={openDropdown === "yearsInOperation"}
-                  onToggle={() => toggleDropdown("yearsInOperation")}
-                  onSelect={(value: string) =>{
-                    setBusinessDetails({ ...businessDetails, years: value })
-                    handleInputChange("years")({target: {value}})
-                  }}
-                  placeholder={ businessDetails2.years || "Provide Year Of Operations"}
-                />
-              </div>
-            </div>
-            <div className="flex min-w-full flex-col items-center justify-between gap-5 md:flex-row">
-              <div className="flex min-w-[45%] max-w-[45%] flex-col gap-4">
-                <label htmlFor="annualrevenue">
-                  Annual Revenue<span className="text-red-600">*</span>
-                </label>
-                <Dropdown2
-                  options={annualrevenue}
-                  isOpen={openDropdown === "annualrevenue"}
-                  onToggle={() => toggleDropdown("annualrevenue")}
-                  onSelect={(value: string) =>{
-                    setBusinessDetails({
-                      ...businessDetails,
-                      annualrevenue: value,
-                    })
-                    handleInputChange("annualrevenue")({target: {value}})
-                  }}
-                  placeholder={ businessDetails2.annualrevenue || "Select Annual Revenue" }
-                />
-              </div>
-            </div>
-            <div className="flex flex-col items-start gap-9 self-end md:flex-row">
-              <button
-                type="submit"
-                className="rounded-2xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-              >
-                Register
-              </button>
-              {error && (
-                <p className="text-md flex flex-col items-start self-start font-poppins font-medium text-red-600">
-                  Fill All The Req&apos; Field&apos;s
-                </p>
-              )}
-              <div className="flex flex-col items-start self-end">
+              <div className="flex flex-col items-start gap-9 self-end md:flex-row">
                 <button
-                  disabled={loading}
                   type="submit"
-                  onClick={handleSaveBusinessDetails}
-                  className="rounded-2xl bg-[#2E3192] text-white xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+                  className="rounded-2xl border-2 border-[#2E3192] text-[#2E3192] xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
                 >
-                  {loading ? "Loading" : "Continue"}
+                  Register
                 </button>
+                {error && (
+                  <p className="text-md flex flex-col items-start self-start font-poppins font-medium text-red-600">
+                    Fill All The Req&apos; Field&apos;s
+                  </p>
+                )}
+                <div className="flex flex-col items-start self-end">
+                  <button
+                    disabled={loading}
+                    type="submit"
+                    onClick={handleSaveBusinessDetails}
+                    className="rounded-2xl bg-[#2E3192] text-white xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
+                  >
+                    {loading ? "Loading" : "Continue"}
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
 };
 
 export default BusinessDetails;
