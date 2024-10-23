@@ -21,7 +21,7 @@ const ProfileDropdownMenu: React.FC<DropdownMenuProps> = ({
 
   return (
     <div
-      className="absolute right-0 mt-1 w-[400px] bg-white border-2 rounded-lg shadow-lg top-[40px] z-40"
+      className="absolute right-0 mt-2 w-[400px] bg-white border-2 rounded-lg shadow-lg top-[40px] z-40"
       onClick={handleDropdownClick} // Add onClick handler here
     >
         {user?.name}

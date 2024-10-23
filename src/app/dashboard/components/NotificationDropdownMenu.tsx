@@ -31,7 +31,7 @@ const NotificationDropdownMenu: React.FC<NotificationDropdownMenuProps> = ({
 
   return (
     <div
-      className="absolute right-0 mt-2 w-[400px] bg-white border-2 rounded-lg shadow-lg top-[20px] z-40"
+      className="absolute right-0 mt-4 w-[400px] bg-white border-2 rounded-lg shadow-lg top-[20px] z-40"
       onClick={handleDropdownClick} // Add onClick handler here
     >
       <div className="p-4">
