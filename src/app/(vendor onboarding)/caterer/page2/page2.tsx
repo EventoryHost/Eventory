@@ -362,10 +362,9 @@ const Page2 = ({
                     type="radio"
                     name="customizableMenu"
                     value={formState.customizableMenu ? "true" : "false"}
-                    checked={customizableMenu}
+                    checked={customizableMenu || false}
                     onChange={() => updateFormState({ customizableMenu: true })}
                     className="h-4 w-4 accent-[#2E3192]"
-
                   />
                   <label htmlFor="customizableMenuYes">Yes</label>
                 </div>
