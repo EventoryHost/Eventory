@@ -2,12 +2,21 @@
 import Dropdown2 from "./(componets)/Dropdown2";
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import jwt from "jsonwebtoken";
+import jwt, { JwtPayload } from "jsonwebtoken";
 import { useRouter } from "next/navigation";
-import { addBusinessDetails } from "@/services/auth";
 import tajmahal from "/public/tajmahal.png";
 import { useToast } from "@/components/hooks/use-toast";
 import MultipleDropdown from "./(componets)/MultiDropdown2";
+
+import { useDispatch, useSelector } from "react-redux";
+import {
+  updateBusinessField,
+  setBusinessDetails2,
+} from "@/redux/businessDetailsSlice";
+import type { BusinessDetails2 as BusinessDetailsType } from "@/redux/businessDetailsSlice";
+import { RootState } from "@/redux/store";
+import { getBusinessDetails2, addBusinessDetails2 } from "@/services/auth";
+import { get } from "http";
 
 const categories = [
   { value: "caterer", label: "Caterers" },
@@ -51,6 +60,18 @@ const operationalCities = [
   { value: "Agr", label: "Agraa" },
 ];
 
+export type businessDetails2 = {
+  businessName: string;
+  category: string;
+  gstin: string;
+  teamsize: string;
+  businessAddress: string;
+  pinCode: number;
+  cities: string[];
+  years: string;
+  annualrevenue: string;
+};
+
 export type businessDetails = {
   businessName: string;
   category: string;
@@ -64,6 +85,17 @@ export type businessDetails = {
 };
 
 const BusinessDetails = () => {
+  const dispatch = useDispatch();
+  const businessDetails2 = useSelector(
+    (state: RootState) => state.businessDetails,
+  );
+  const refs = useRef(
+    {} as Record<
+      keyof BusinessDetailsType,
+      HTMLInputElement | HTMLButtonElement | null
+    >,
+  );
+
   const [loading, setloading] = useState(false);
   const { toast } = useToast();
   const [businessDetails, setBusinessDetails] = useState<businessDetails>({
@@ -78,14 +110,8 @@ const BusinessDetails = () => {
     annualrevenue: "",
   } as businessDetails);
 
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null); // New state for tracking open dropdown
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
-  const refs = useRef(
-    {} as Record<
-      keyof businessDetails,
-      HTMLInputElement | HTMLButtonElement | null
-    >,
-  );
   const [error, setError] = useState(false);
 
   const router = useRouter();
@@ -105,9 +131,102 @@ const BusinessDetails = () => {
   }, []);
 
   useEffect(() => {
-    // Reset error state when any input changes
     setError(false);
   }, [businessDetails]);
+
+  // Fetch business details when the component mounts
+  useEffect(() => {
+    const fetchBusinessDetails = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        if (token) {
+          const { userId } = jwt.decode(token) as { userId: string };
+
+          // Fetch business details from the backend
+          const response = await getBusinessDetails2(userId);
+          if (response && response.success) {
+            dispatch(setBusinessDetails2(response.data));
+          } else {
+            console.error(
+              "Failed to fetch business details",
+              response?.message,
+            );
+          }
+        }
+      } catch (error) {
+        console.error("Failed to fetch business details", error);
+      }
+    };
+
+    fetchBusinessDetails();
+  }, [dispatch]);
+
+  const saveBusinessDetailsToBackend = async (
+    userId: string,
+    newDetails: businessDetails2,
+  ) => {
+    try {
+      const response = await addBusinessDetails2(userId, newDetails);
+      if (response && !response.data.success) {
+        console.error("Failed to save business details to backend");
+      }
+    } catch (error) {
+      console.error("Error saving business details to backend:", error);
+    }
+  };
+
+  interface MyTokenPayload extends JwtPayload {
+    userId: string;
+  }
+
+  const handleSaveBusinessDetails = () => {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      // Decode the token
+      const decodedToken = jwt.decode(token) as MyTokenPayload | null;
+
+      if (decodedToken) {
+        const userId = getVendorId2() || decodedToken.userId;
+
+        saveBusinessDetailsToBackend(userId, businessDetails2);
+        console.log("The user ID is:", userId);
+        console.log("The business details are:", businessDetails2);
+      } else {
+        console.error("User ID not found in the token.");
+      }
+    } else {
+      console.error("User is not logged in.");
+    }
+  };
+
+  const handleInputChange =
+    (key: any) =>
+    (event: any): void => {
+      dispatch(updateBusinessField({ key, value: event.target.value }));
+    };
+
+  function getVendorId2(): string | null {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("Token not found");
+      return null;
+    }
+    try {
+      const decodedToken = jwt.decode(token) as {
+        userId?: string;
+        email?: string;
+      };
+      if (!decodedToken || !decodedToken.userId) {
+        console.error("Invalid token or token does not contain userId.");
+        return null;
+      }
+      return decodedToken.userId;
+    } catch (error) {
+      console.error("Error decoding token:", error);
+      return null;
+    }
+  }
 
   const handleBizSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -116,24 +235,24 @@ const BusinessDetails = () => {
       businessName: refs.current.businessName!.value,
       category: businessDetails.category,
       gstin: refs.current.gstin!.value,
-      years: businessDetails.years,
+      teamsize: businessDetails.teamsize,
       businessAddress: refs.current.businessAddress!.value,
       pinCode: Number(refs.current.pinCode!.value),
       cities: businessDetails.cities,
-      teamsize: businessDetails.teamsize,
+      years: businessDetails.years,
       annualrevenue: businessDetails.annualrevenue,
     };
     // Validation: check if all required fields have data
     if (
       !newDetails.businessName ||
       !newDetails.category ||
-      newDetails.gstin.length !== 15 ||
+      // newDetails.gstin.length !== 15 ||
       !newDetails.years ||
       !newDetails.businessAddress ||
       !newDetails.pinCode ||
       !newDetails.teamsize ||
-      !newDetails.annualrevenue ||
-      newDetails.cities.length === 0
+      !newDetails.annualrevenue
+      // newDetails.cities.length == 0
     ) {
       setError(true);
       return;
@@ -141,25 +260,19 @@ const BusinessDetails = () => {
 
     try {
       setloading(true);
-      console.log(newDetails);
       toast({
         title: "Redirecting",
         description: ` Redirecting ${newDetails.businessName} To ${newDetails.category}`,
       });
       // Update business details state
       setBusinessDetails(newDetails);
-      // console.log("Business Details:", newDetails);
+
+      dispatch(setBusinessDetails2(newDetails));
+
       // Retrieve user information from token
-      const token = localStorage.getItem("token")!;
-      const { id, email } = jwt.decode(token) as {
-        id: string;
-        email: string;
-      };
-      console.log(token);
-      console.log(id);
-      console.log(email);
+      const userId = getVendorId2() || "";
       // Submit business details to the backend
-      await addBusinessDetails(id, newDetails);
+      await addBusinessDetails2(userId, newDetails);
       // Redirect to the category page after successful submission
       router.push(`/${businessDetails.category}`);
     } catch (error) {
@@ -223,8 +336,13 @@ const BusinessDetails = () => {
                     ref={(el) => {
                       refs.current.businessName = el;
                     }}
-                    placeholder="Business Name"
+                    defaultValue={
+                      businessDetails2.businessName ||
+                      refs.current.businessName?.value ||
+                      ""
+                    }
                     required
+                    onChange={handleInputChange("businessName")}
                   />
                 </div>
                 <div className="flex min-w-[45%] max-w-[45%] flex-col gap-4">
@@ -235,13 +353,16 @@ const BusinessDetails = () => {
                     options={categories}
                     isOpen={openDropdown === "category"}
                     onToggle={() => toggleDropdown("category")}
-                    onSelect={(value: string) =>
+                    onSelect={(value: string) => {
                       setBusinessDetails({
                         ...businessDetails,
                         category: value,
-                      })
+                      });
+                      handleInputChange("category")({ target: { value } });
+                    }}
+                    placeholder={
+                      businessDetails2.category || "Select Your Service"
                     }
-                    placeholder="Select Your Service"
                   />
                 </div>
               </div>
@@ -259,8 +380,12 @@ const BusinessDetails = () => {
                     ref={(el) => {
                       refs.current.gstin = el;
                     }}
+                    defaultValue={
+                      businessDetails2.gstin || refs.current.gstin?.value || ""
+                    }
                     required
                     placeholder="Your 15 Digit GSTIN"
+                    onChange={handleInputChange("gstin")}
                   />
                 </div>
                 <div className="flex min-w-[45%] max-w-[45%] flex-col gap-4">
@@ -271,13 +396,16 @@ const BusinessDetails = () => {
                     options={teamsize}
                     isOpen={openDropdown === "teamsize"}
                     onToggle={() => toggleDropdown("teamsize")}
-                    onSelect={(value: string) =>
+                    onSelect={(value: string) => {
                       setBusinessDetails({
                         ...businessDetails,
                         teamsize: value,
-                      })
+                      });
+                      handleInputChange("teamsize")({ target: { value } });
+                    }}
+                    placeholder={
+                      businessDetails2.teamsize || "Select Team Size"
                     }
-                    placeholder="Select Team Size"
                   />
                 </div>
               </div>
@@ -294,7 +422,13 @@ const BusinessDetails = () => {
                       refs.current.businessAddress = el;
                     }}
                     placeholder="Business Address"
+                    defaultValue={
+                      businessDetails2.businessAddress ||
+                      refs.current.businessAddress?.value ||
+                      ""
+                    }
                     required
+                    onChange={handleInputChange("businessAddress")}
                   />
                 </div>
                 <div className="flex min-w-[45%] max-w-[45%] flex-col gap-4">
@@ -308,8 +442,14 @@ const BusinessDetails = () => {
                     ref={(el) => {
                       refs.current.pinCode = el;
                     }}
+                    defaultValue={
+                      businessDetails2.pinCode ||
+                      refs.current.pinCode?.value ||
+                      ""
+                    }
                     required
                     placeholder="Pin-Code"
+                    onChange={handleInputChange("pinCode")}
                   />
                 </div>
               </div>
@@ -322,13 +462,18 @@ const BusinessDetails = () => {
                     options={operationalCities}
                     isOpen={openDropdown === "cities"}
                     onToggle={() => toggleDropdown("cities")}
-                    onSelect={(value: string[]) =>
+                    onSelect={(value: string[]) => {
                       setBusinessDetails((prevDetails) => ({
                         ...prevDetails,
                         cities: value,
-                      }))
+                      }));
+                      handleInputChange("cities")({ target: { value } });
+                    }}
+                    placeholder={
+                      businessDetails2.cities.length > 0
+                        ? businessDetails2.cities.join(", ") // Join cities into a single string
+                        : "Cities Where You Operate"
                     }
-                    placeholder="Cities Where You Operate"
                   />
                 </div>
                 <div className="flex min-w-[45%] max-w-[45%] flex-col gap-4">
@@ -339,10 +484,13 @@ const BusinessDetails = () => {
                     options={yearsInOperation}
                     isOpen={openDropdown === "yearsInOperation"}
                     onToggle={() => toggleDropdown("yearsInOperation")}
-                    onSelect={(value: string) =>
-                      setBusinessDetails({ ...businessDetails, years: value })
+                    onSelect={(value: string) => {
+                      setBusinessDetails({ ...businessDetails, years: value });
+                      handleInputChange("years")({ target: { value } });
+                    }}
+                    placeholder={
+                      businessDetails2.years || "Provide Year Of Operations"
                     }
-                    placeholder="Provide Year Of Operations"
                   />
                 </div>
               </div>
@@ -355,13 +503,16 @@ const BusinessDetails = () => {
                     options={annualrevenue}
                     isOpen={openDropdown === "annualrevenue"}
                     onToggle={() => toggleDropdown("annualrevenue")}
-                    onSelect={(value: string) =>
+                    onSelect={(value: string) => {
                       setBusinessDetails({
                         ...businessDetails,
                         annualrevenue: value,
-                      })
+                      });
+                      handleInputChange("annualrevenue")({ target: { value } });
+                    }}
+                    placeholder={
+                      businessDetails2.annualrevenue || "Select Annual Revenue"
                     }
-                    placeholder="Range of your revenue"
                   />
                 </div>
               </div>
@@ -381,6 +532,7 @@ const BusinessDetails = () => {
                   <button
                     disabled={loading}
                     type="submit"
+                    onClick={handleSaveBusinessDetails}
                     className="rounded-2xl bg-[#2E3192] text-white xs:w-fit xs:px-3 xs:py-2 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
                   >
                     {loading ? "Loading" : "Continue"}

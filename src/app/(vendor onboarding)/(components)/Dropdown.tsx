@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
 interface DropdownProps {
   sort?: boolean;
   options: string[];
   onSelect: (option: string) => void;
+  selectedOption?: string | null; // New prop for controlled component
   placeholder?: string; // New placeholder prop
 }
 
@@ -12,13 +13,21 @@ const Dropdown: React.FC<DropdownProps> = ({
   sort,
   options,
   onSelect,
+  selectedOption = null, // Default to null if not provided
   placeholder = "Select an option",
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [selectedOption, setSelectedOption] = useState<string | null>(null); // Allow null for initial state
+  const [currentSelectedOption, setCurrentSelectedOption] = useState<
+    string | null
+  >(selectedOption); // Use selectedOption for initial state
+
+  useEffect(() => {
+    // Update local state when selectedOption changes from parent
+    setCurrentSelectedOption(selectedOption);
+  }, [selectedOption]);
 
   const handleSelect = (option: string) => {
-    setSelectedOption(option);
+    setCurrentSelectedOption(option);
     setIsOpen(false);
     onSelect(option);
   };
@@ -52,11 +61,13 @@ const Dropdown: React.FC<DropdownProps> = ({
               <li
                 key={option}
                 className={`relative flex cursor-pointer select-none items-center gap-1 py-2 pl-3 pr-9 ${
-                  selectedOption === option ? "text-black" : "text-gray-900"
+                  currentSelectedOption === option
+                    ? "text-black"
+                    : "text-gray-900"
                 }`}
                 onClick={() => handleSelect(option)}
               >
-                {selectedOption === option ? (
+                {currentSelectedOption === option ? (
                   <img
                     src={
                       "https://eventory-web-prod.s3.ap-south-1.amazonaws.com/assets/components/selection/Choice_2.svg"

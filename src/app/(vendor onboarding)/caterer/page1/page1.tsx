@@ -2,10 +2,17 @@
 
 import { FormState } from "../page";
 import Appetizers from "../../(components)/Appetizers";
-import { useState } from "react";
-import { Combobox } from "@/components/ui/combobox";
-import { ComboboxDemo } from "@/components/dropdown";
+import { useState, useEffect } from "react";
 import Dropdown from "../../(components)/Dropdown";
+import jwt from "jsonwebtoken";
+
+import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchCateringData,
+  saveCateringDetails,
+} from "../../../../redux/cateringSlice";
+import { AppDispatch, RootState } from "../../../../redux/store";
+import { get } from "http";
 
 const _regional = ["Gujrati", "Rajasthani", "Bengali", "Others"];
 const _service = [
@@ -25,8 +32,19 @@ const _cuisine = [
 ];
 
 type Page1Props = {
-  formState: FormState;
-  updateFormState: (newState: Partial<FormState>) => void;
+  formState: FormState & {
+    servingCapacity: string;
+    cuisineSpecialties: string[];
+    serviceStyles: string[];
+  };
+  updateFormState: (
+    newState: Partial<FormState> & {
+      servingCapacity?: string;
+      regionalSpecialties?: string[];
+      cuisineSpecialties?: string[];
+      serviceStyles?: string[];
+    },
+  ) => void;
   servingCapacity: string[];
   setServingCapacity: React.Dispatch<React.SetStateAction<string[]>>;
   cuisineSpecialties: string[];
@@ -51,6 +69,69 @@ const Page1 = ({
   setServiceStyles,
   handleContinue,
 }: Page1Props) => {
+  const dispatch = useDispatch<AppDispatch>();
+  const { formData, loading, error } = useSelector(
+    (state: RootState) => state.catering,
+  );
+
+  useEffect(() => {
+    const userId = getVendorId2();
+    if (userId) {
+      // Dispatch fetchCateringData action
+      dispatch(fetchCateringData(userId));
+    }
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (formData && !formState.cateringName && !formState.businessName) {
+      // Only update the state if formState is empty
+      if (
+        formData.cateringName !== formState.cateringName ||
+        formData.businessName !== formState.businessName ||
+        formData.servingCapacity !== servingCapacity[0] // Add more checks if needed
+      ) {
+        updateFormState({
+          cateringName: formData.cateringName || "",
+          businessName: formData.businessName || "",
+          servingCapacity: formData.servingCapacity || "",
+        });
+        setRegionalSpecialties(formData.regionalSpecialties || []);
+        setCuisineSpecialties(formData.cuisineSpecialties || []);
+        setServiceStyles(formData.serviceStyles || []);
+        setServingCapacity([formData.servingCapacity || ""]);
+      }
+    }
+  }, [formData, formState, updateFormState]);
+
+  const handleSave = () => {
+    // Define the userId based on your schema
+    const userId = getVendorId2() || "";
+
+    // Define the cateringDetails based on your schema
+    const cateringDetails = {
+      userId: userId,
+      cateringName: formState.cateringName || "", // Initialize with an empty string if not available
+      businessName: formState.businessName || "", // Initialize with an empty string if not available
+      servingCapacity: servingCapacity[0] || "", // Initialize with an empty string if not available
+      regionalSpecialties:
+        regionalSpecialties.length > 0 ? regionalSpecialties : [], // Use an empty array if no specialties
+      cuisineSpecialties:
+        cuisineSpecialties.length > 0 ? cuisineSpecialties : [], // Use an empty array if no specialties
+      serviceStyles: serviceStyles.length > 0 ? serviceStyles : [], // Use an empty array if no styles
+
+      // Optional fields initialized
+      selectedAppetizers: [], // You can set this based on user input later
+      selectedBeverages: [],
+      selectedMainCourses: [],
+      selectedDietaryOptions: [],
+      preSetMenu: formState.preSetMenu || "", // Initialize if needed
+      customizableMenu: formState.customizableMenu || false, // Initialize with a sensible default
+    };
+
+    // Dispatch action to save catering details to Redux
+    dispatch(saveCateringDetails({ userId, data: cateringDetails }) as any);
+  };
+
   const [isFormValid, setIsFormValid] = useState(true);
 
   const validateForm = () => {
@@ -65,10 +146,8 @@ const Page1 = ({
   };
 
   const onContinue = () => {
-    // if (validateForm()) {
-    //   handleContinue();
-    // }
     handleContinue();
+    handleSave();
   };
 
   const getInputClassName = (value: string | string[]) => {
@@ -87,6 +166,28 @@ const Page1 = ({
     // Handle the selected option, e.g., update form state
     setServingCapacity([option]);
   };
+
+  function getVendorId2(): string | null {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("Token not found");
+      return null;
+    }
+    try {
+      const decodedToken = jwt.decode(token) as {
+        userId?: string;
+        email?: string;
+      };
+      if (!decodedToken || !decodedToken.userId) {
+        console.error("Invalid token or token does not contain userId.");
+        return null;
+      }
+      return decodedToken.userId;
+    } catch (error) {
+      console.error("Error decoding token:", error);
+      return null;
+    }
+  }
   return (
     <div className="scroll-touch flex w-full flex-col items-start gap-5 overflow-y-scroll rounded-xl bg-white p-3 scrollbar-hide xs:justify-start md:p-6">
       <h1 className="text-2xl font-semibold">Basic Details</h1>
@@ -136,6 +237,7 @@ const Page1 = ({
               options={capacities}
               onSelect={handleSelect}
               placeholder="Enter max. no. of people you serve"
+              selectedOption={servingCapacity[0]}
             />
           </div>
         </div>
@@ -188,7 +290,7 @@ const Page1 = ({
       <div className="items-strech flex flex-row gap-7 self-end">
         <button
           className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-          onClick={handleContinue}
+          onClick={onContinue}
         >
           Continue
         </button>

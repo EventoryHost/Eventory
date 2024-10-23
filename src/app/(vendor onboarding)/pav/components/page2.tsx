@@ -2,6 +2,11 @@
 import React, { useState } from "react";
 import Appetizers from "../../(components)/Appetizers";
 import { ArrowLeft } from "lucide-react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/redux/store";
+import { fetchPavData, savePavDetails } from "@/redux/pavSlice";
+import jwt from "jsonwebtoken";
 
 const styles = [
   "Aerial",
@@ -99,6 +104,107 @@ const Page1 = ({
   setCurrentPage,
   handleContinue,
 }: Page1Props) => {
+  const dispatch = useDispatch<AppDispatch>();
+  const { formData, loading, error } = useSelector(
+    (state: RootState) => state["pav"],
+  );
+
+  // Fetch rental data on mount
+  useEffect(() => {
+    const userId = getVendorId();
+    if (userId) {
+      dispatch(fetchPavData(userId));
+    }
+  }, [dispatch]);
+
+  // Update form state with fetched data for Page 2
+  useEffect(() => {
+    if (formData) {
+      // for (const [key, value] of Object.entries(formData)) {
+      //   console.log(`${key}: ${value}`);
+      // }
+
+      if (formData.photoSelectedstyles !== undefined) {
+        setphotoSelectedstyles(formData.photoSelectedstyles);
+      }
+      if (formData.photoequipments !== undefined) {
+        setphotoEquipments(formData.photoequipments);
+      }
+      if (formData.photoAddons !== undefined) {
+        setphotoAddons(formData.photoAddons);
+      }
+      if (formData.photoFinalDeliveryMethods !== undefined) {
+        setphotoFinaldeliverymethods(formData.photoFinalDeliveryMethods);
+      }
+      if (formData.videoSelectedstyles !== undefined) {
+        setvideoStyles(formData.videoSelectedstyles);
+      }
+      if (formData.videoEquipments !== undefined) {
+        setvideoSelectedEquipments(formData.videoEquipments);
+      }
+      if (formData.videoAddons !== undefined) {
+        setvideoAddons(formData.videoAddons);
+      }
+      if (formData.videoFinalDeliveryMethods !== undefined) {
+        setvideoFinaldeliverymethods(formData.videoFinalDeliveryMethods);
+      }
+      if (formData.Selectedvideoequipments !== undefined) {
+        setvideoSelectedEquipments(formData.Selectedvideoequipments);
+      }
+      if (formData.photofinaldeliverymethods !== undefined) {
+        setphotoFinaldeliverymethods(formData.photofinaldeliverymethods);
+      }
+      if (formData.videofinaldeliverymethods !== undefined) {
+        setvideoFinaldeliverymethods(formData.videofinaldeliverymethods);
+      }
+    }
+  }, [formData]);
+
+  const handleSave = () => {
+    const userId = getVendorId();
+    if (!userId) {
+      console.error("User ID is missing");
+      return;
+    }
+
+    const updatedFormState = {
+      photoSelectedstyles,
+      photoequipments,
+      photoAddons,
+      photofinaldeliverymethods,
+      videoSelectedstyles,
+      equipments,
+      videoAddons,
+      videofinaldeliverymethods,
+      Selectedvideoequipments,
+    };
+
+    // Dispatch an action to save the updated form data for page 2
+    dispatch(savePavDetails({ userId, data: updatedFormState }) as any);
+  };
+
+  const onContinue = async () => {
+    await handleSave();
+    handleContinue();
+  };
+
+  function getVendorId(): string | null {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("Token not found");
+      return null;
+    }
+    try {
+      const decodedToken = jwt.decode(token) as {
+        userId?: string;
+      };
+      return decodedToken?.userId || null;
+    } catch (error) {
+      console.error("Error decoding token:", error);
+      return null;
+    }
+  }
+
   return (
     <div
       className="scroll-touch flex flex-col items-start gap-7 overflow-y-scroll rounded-xl p-3 scrollbar-hide xs:justify-start md:p-6"
@@ -193,7 +299,7 @@ const Page1 = ({
                 </button>
                 <button
                   className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                  onClick={handleContinue}
+                  onClick={onContinue}
                 >
                   Continue
                 </button>
@@ -263,7 +369,7 @@ const Page1 = ({
                 </button>
                 <button
                   className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                  onClick={handleContinue}
+                  onClick={onContinue}
                 >
                   Continue
                 </button>

@@ -50,7 +50,13 @@ const Caterer = () => {
   // State for current page
   const [currentPage, setCurrentPage] = useState<number>(1);
   // state are 7 for the form then 8 for the t&c then payment
-  const [formState, setFormState] = useState<FormState>({
+  const [formState, setFormState] = useState<
+    FormState & {
+      servingCapacity: string;
+      cuisineSpecialties: string[];
+      serviceStyles: string[];
+    }
+  >({
     cateringName: "",
     businessName: "",
     preSetMenu: "",
@@ -68,6 +74,9 @@ const Caterer = () => {
     AdvBooking: "",
     photos: [],
     videos: [],
+    servingCapacity: "",
+    cuisineSpecialties: [],
+    serviceStyles: [],
   });
 
   function updateFormState(newState: Partial<FormState>) {
@@ -374,6 +383,8 @@ const Caterer = () => {
             handleContinue={() => {
               setCurrentPage(4);
             }}
+            formState={formState}
+            updateFormState={updateFormState}
           />
         );
       case 4:
@@ -402,6 +413,8 @@ const Caterer = () => {
               setCurrentPage(6);
               // handleSubmit();
             }}
+            minOrderReq={formState.minOrderReq}
+            AdvBooking={formState.AdvBooking}
           />
         );
 

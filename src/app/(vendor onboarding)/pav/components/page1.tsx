@@ -7,6 +7,11 @@ import Organization from "./(page1)/organization";
 import { pavtypes } from "@/types/types";
 import Appetizers from "../../(components)/Appetizers";
 import Dropdown from "../../(components)/Dropdown";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/redux/store";
+import { fetchPavData, savePavDetails } from "@/redux/pavSlice";
+import jwt from "jsonwebtoken";
 
 type Page1Props = {
   fullName: string;
@@ -46,6 +51,66 @@ const Page1 = ({
   events,
   handleContinue,
 }: Page1Props) => {
+  const dispatch = useDispatch<AppDispatch>();
+  const { formData, loading, error } = useSelector(
+    (state: RootState) => state["pav"],
+  );
+
+  // Fetch rental data on mount
+  useEffect(() => {
+    const userId = getVendorId();
+    if (userId) {
+      dispatch(fetchPavData(userId));
+    }
+  }, [dispatch]);
+
+  // Update form state with fetched data for Page 1
+  useEffect(() => {
+    if (formData) {
+      setFullName(formData?.fullName || "");
+      setDescription(formData?.description || "");
+      setEventsize(formData?.eventsize || "");
+      setEvent(formData?.events || []);
+    }
+  }, [formData, setFullName, setDescription, setEventsize, setEvent]);
+
+  // Function to handle the save operation
+  const handleSave = () => {
+    const userId = getVendorId() || ""; // Retrieve user ID
+
+    // Create the object to be sent in the API request
+    const rentalDetails = {
+      fullName, // Full name of the point of contact
+      description, // Background description
+      eventsize, // Event size selected from the dropdown
+      events, // Array of selected events
+    };
+
+    dispatch(savePavDetails({ userId, data: rentalDetails }) as any);
+  };
+
+  const onContinue = () => {
+    handleSave(); // Save the rental details before continuing
+    handleContinue();
+  };
+
+  function getVendorId(): string | null {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("Token not found");
+      return null;
+    }
+    try {
+      const decodedToken = jwt.decode(token) as {
+        userId?: string;
+      };
+      return decodedToken?.userId || null;
+    } catch (error) {
+      console.error("Error decoding token:", error);
+      return null;
+    }
+  }
+
   return (
     <div className="scroll-touch flex flex-col items-start gap-7 overflow-y-scroll rounded-xl p-3 scrollbar-hide xs:justify-start md:p-6">
       <div className="flex w-[100%] flex-col items-start justify-start gap-9 rounded-xl bg-white p-5">
@@ -78,6 +143,7 @@ const Page1 = ({
                 setEventsize(option);
               }}
               placeholder="Select event size you cover"
+              selectedOption={eventsize}
             />
           </div>
         </div>
@@ -119,7 +185,7 @@ const Page1 = ({
         <div className="mt-9 flex flex-row items-stretch gap-7 self-end">
           <button
             className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-            onClick={handleContinue}
+            onClick={onContinue}
           >
             Continue
           </button>

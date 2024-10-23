@@ -4,6 +4,13 @@ import React, { useEffect, useState } from "react";
 import Appetizers from "../../(components)/Appetizers";
 import FileInput from "@/components/fileInput";
 import { ArrowLeft } from "lucide-react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/redux/store";
+import jwt from "jsonwebtoken";
+import {
+  fetchDecoratorData,
+  saveDecoratorDetails,
+} from "@/redux/decoratorSlice";
 
 const _themesElement = [
   "Backdrop",
@@ -36,7 +43,77 @@ const Page3: React.FC<Page3Props> = ({
   setThemesElements,
   handleContinue,
 }) => {
-  const { themephotos, themevideos } = formState;
+  const dispatch = useDispatch<AppDispatch>();
+  const { formData, loading, error } = useSelector(
+    (state: RootState) => state.decorator,
+  );
+
+  function getVendorId2(): string | null {
+    if (typeof window === "undefined") {
+      // This code is running on the server, so skip localStorage access
+      return null;
+    }
+
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("Token not found");
+      return null;
+    }
+
+    try {
+      const decodedToken = jwt.decode(token) as {
+        userId?: string;
+        email?: string;
+      };
+      if (!decodedToken || !decodedToken.userId) {
+        console.error("Invalid token or token does not contain userId.");
+        return null;
+      }
+      return decodedToken.userId;
+    } catch (error) {
+      console.error("Error decoding token:", error);
+      return null;
+    }
+  }
+  const userId = getVendorId2() || "";
+
+  useEffect(() => {
+    // Fetch decorator data when component mounts
+    if (userId) {
+      dispatch(fetchDecoratorData(userId));
+    }
+  }, [dispatch]);
+
+  useEffect(() => {
+    console.log("Fetched formData:", formData);
+
+    // Check if formData is defined and log each property
+    if (formData) {
+      Object.entries(formData).forEach(([key, value]) => {
+        console.log(`Key: ${key}, Value: ${value}`);
+      });
+
+      if (formData.themesElements) setThemesElements(formData.themesElements);
+      updateFormState({
+        themephotos: formData.themephotos,
+        themevideos: formData.themevideos,
+      });
+    } else {
+      console.log("formData is undefined or null");
+    }
+  }, [formData]);
+
+  const onContinue = () => {
+    const userId = getVendorId2() || "";
+    const decoratorDetails = {
+      themesElements,
+      themephotos: formState.themephotos,
+      themevideos: formState.themevideos,
+    };
+
+    dispatch(saveDecoratorDetails({ userId, data: decoratorDetails }) as any);
+    handleContinue();
+  };
 
   return (
     <div className="flex h-full w-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide">
@@ -212,7 +289,7 @@ const Page3: React.FC<Page3Props> = ({
               </button>
               <button
                 className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={handleContinue}
+                onClick={onContinue}
               >
                 Continue
               </button>

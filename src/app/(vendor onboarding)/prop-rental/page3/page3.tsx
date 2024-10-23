@@ -6,6 +6,12 @@ import { SetStateAction, useState } from "react";
 import FileInput from "@/components/fileInput";
 import { ArrowLeft } from "lucide-react";
 import { FormState } from "../page";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/redux/store";
+import { fetchRentalData, saveRentalDetails } from "@/redux/prop-rentalSlice";
+import jwt from "jsonwebtoken";
+import { useEffect } from "react";
+import { set } from "date-fns";
 
 const _typesOfEvents = [
   "Anniversary Celebration ",
@@ -188,6 +194,178 @@ function Page3({
   const handleCategorySelection = (category: string) => {
     setSelectedCategory(category);
   };
+
+  const dispatch = useDispatch<AppDispatch>();
+  const { formData, loading, error } = useSelector(
+    (state: RootState) => state["prop-rental"],
+  );
+
+  // Fetch rental data on mount
+  useEffect(() => {
+    const userId = getVendorId();
+    if (userId) {
+      dispatch(fetchRentalData(userId));
+    }
+  }, [dispatch]);
+
+  // Update form state with fetched data for Page 2
+  useEffect(() => {
+    if (formData) {
+      // Set basic fields
+      if (formData.itemCatalogue !== undefined) {
+        handleChange("itemCatalogue", formData.itemCatalogue);
+      }
+      if (formData.customization !== undefined) {
+        handleChange("customization", formData.customization);
+      }
+      if (formData.maintenance !== undefined) {
+        handleChange("maintenance", formData.maintenance);
+      }
+      if (formData.serviceProvided) {
+        handleChange("services", formData.serviceProvided); // Assuming serviceProvided is an array
+      }
+      if (formData.photos) {
+        handleChange("photos", formData.photos); // Array of photos
+      }
+      if (formData.videos) {
+        handleChange("videos", formData.videos); // Array of videos
+      }
+      if (formData.awardsAndRecognize) {
+        handleChange("awardsAndRecognize", formData.awardsAndRecognize);
+      }
+      if (formData.clientTestimonial) {
+        handleChange("clientTestimonial", formData.clientTestimonial);
+      }
+      if (formData.instaUrl) {
+        handleChange("instaUrl", formData.instaUrl);
+      }
+      if (formData.websiteUrl) {
+        handleChange("websiteUrl", formData.websiteUrl);
+      }
+      if (formData.cancellationPolicy) {
+        handleChange("cancellationPolicy", formData.cancellationPolicy); // Assuming this is an array
+      }
+      if (formData.termsAndConditions) {
+        handleChange("termsAndConditions", formData.termsAndConditions); // Assuming this is an array
+      }
+
+      // Handle nested fields
+      if (formData.furnitureAndDecor) {
+        const { furnitureAndDecor } = formData;
+        if (furnitureAndDecor.listUrl) {
+          setSelectedFurniture(furnitureAndDecor.listUrl);
+        }
+        if (furnitureAndDecor.typeOfEvents) {
+          setselectedFurnitureEvents(furnitureAndDecor.typeOfEvents);
+        }
+        if (furnitureAndDecor.furniture) {
+          setSelectedFurniture(furnitureAndDecor.furniture);
+        }
+        if (furnitureAndDecor.decor) {
+          setSelectedDecor(furnitureAndDecor.decor);
+        }
+      }
+
+      if (formData.tentAndCanopy) {
+        const { tentAndCanopy } = formData;
+        if (tentAndCanopy.listUrl) {
+          setSelectedTentOptions(tentAndCanopy.listUrl); // Assuming this is an array
+        }
+        if (tentAndCanopy.typeOfEvents) {
+          setselectedTentEvents(tentAndCanopy.typeOfEvents); // Assuming this is an array
+        }
+        if (tentAndCanopy.items) {
+          setSelectedTentOptions(tentAndCanopy.items); // Array of selected tent options
+        }
+      }
+
+      if (formData.audioVisual) {
+        const { audioVisual } = formData;
+        if (audioVisual.listUrl) {
+          setSelectedAudioOptions(audioVisual.listUrl); // Assuming this is an array
+        }
+        if (audioVisual.typeOfEvents) {
+          setselectedAudioEvents(audioVisual.typeOfEvents); // Assuming this is an array
+        }
+        if (audioVisual.audioEquipment) {
+          setSelectedAudioOptions(audioVisual.audioEquipment); // Array of selected audio equipment
+        }
+        if (audioVisual.visualEquipment) {
+          setSelectedVisualOptions(audioVisual.visualEquipment); // Array of selected visual equipment
+        }
+        if (audioVisual.lightEquipment) {
+          setSelectedLightOptions(audioVisual.lightEquipment); // Array of selected light equipment
+        }
+      }
+    }
+  }, [formData]);
+
+  const handleSave = () => {
+    const userId = getVendorId() || ""; // Retrieve user ID
+
+    // Create the object to be sent in the API request
+    const rentalDetails = {
+      userId: userId,
+      managerName: formState.managerName || "", // Add managerName
+      workDescription: formState.workDescription || "", // Add workDescription
+      eventSize: formState.eventSize || "", // Add eventSize
+      itemCatalogue: formState.itemCatalogue ? true : false, // Boolean
+      customization: formState.customization ? true : false, // Boolean
+      maintenance: formState.maintenance || "", // Maintenance details
+      serviceProvided: formState.services || [], // Assuming services is an array
+      photos: formState.photos, // Array of photos
+      videos: formState.videos, // Array of videos
+      awardsAndRecognize: formState.awardsAndRecognize || "", // Awards and Recognitions
+      clientTestimonial: formState.clientTestimonial || "", // Client Testimonials
+      instaUrl: formState.instaUrl || "", // Instagram URL
+      websiteUrl: formState.websiteUrl || "", // Website URL
+      cancellationPolicy: formState.cancellationPolicy || [], // Assuming it's an array
+      termsAndConditions: formState.termsAndConditions || [], // Assuming it's an array
+      furnitureAndDecor: {
+        listUrl: formState.selectedFurniture || [], // Array for furniture
+        typeOfEvents: selectedFurnitureEvents, // Array for selected furniture events
+        furniture: selectedFurniture, // Array for selected furniture
+        decor: selectedDecor, // Array for selected decor
+      },
+      tentAndCanopy: {
+        listUrl: formState.selectedTentOptions || [], // Array for tent options
+        typeOfEvents: selectedTentEvents, // Array for selected tent events
+        items: selectedTentOptions, // Array for selected tent options
+      },
+      audioVisual: {
+        listUrl: formState.selectedAudioOptions || [], // Array for audio options
+        typeOfEvents: selectedAudioEvents, // Array for selected audio events
+        audioEquipment: selectedAudioOptions, // Array for selected audio equipment
+        visualEquipment: selectedvisualOptions, // Array for selected visual equipment
+        lightEquipment: selectedLightOptions, // Array for selected light equipment
+      },
+    };
+
+    // Dispatch the action with the rental details
+    dispatch(saveRentalDetails({ userId, data: rentalDetails }) as any);
+  };
+
+  const onContinue = () => {
+    handleSave(); // Save the rental details before continuing
+    setCurrentPage(currentPage + 1); // Move to the next page
+  };
+
+  function getVendorId(): string | null {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("Token not found");
+      return null;
+    }
+    try {
+      const decodedToken = jwt.decode(token) as {
+        userId?: string;
+      };
+      return decodedToken?.userId || null;
+    } catch (error) {
+      console.error("Error decoding token:", error);
+      return null;
+    }
+  }
 
   return (
     <div className="flex h-full w-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide">
@@ -537,7 +715,7 @@ function Page3({
                 <input
                   id="vendorName"
                   type="text"
-                  value={formState.instaUrl || ""}
+                  value={formState.instaUrl}
                   onChange={(e) => handleChange("instaUrl", e.target.value)}
                   className="w-full rounded-xl border-2 bg-white p-4 outline-none"
                   placeholder="Provide your Instagram URL for the Venue"
@@ -805,14 +983,7 @@ function Page3({
                 <button
                   className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
                   onClick={() => {
-                    console.log(
-                      formState.furnitureAndDecorListUrl,
-                      formState.termsAndConditions,
-                      formState.clientTestimonial,
-                      formState.photos,
-                      formState.videos,
-                    );
-                    setCurrentPage(currentPage + 1);
+                    onContinue();
                   }}
                 >
                   Continue

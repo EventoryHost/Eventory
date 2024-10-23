@@ -1,8 +1,16 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import Appetizers from "../../(components)/Appetizers";
 import Dropdown from "../../(components)/Dropdown";
+import { useSelector, useDispatch } from "react-redux";
+import jwt from "jsonwebtoken";
+import { RootState, AppDispatch } from "../../../../redux/store";
+import {
+  fetchDecoratorData,
+  saveDecoratorDetails,
+  setcurrentPage2,
+} from "../../../../redux/decoratorSlice";
 
 const _typesOfEvent = [
   "Anniversary Celebration",
@@ -74,6 +82,11 @@ interface FormState {
   businessName: string;
   eventsize: string;
   duration: string;
+  typeOfevents: string[];
+  weddingEvents: string[];
+  corporateEvents: string[];
+  seasonalEvents: string[];
+  culturalEvents: string[];
 }
 
 const teamsizelist = ["1-5", "6-15", "16-30", "31-50", "51+"];
@@ -116,6 +129,94 @@ const Page1: React.FC<Page1Props> = ({
   updateFormState,
   handleContinue,
 }) => {
+  const dispatch = useDispatch<AppDispatch>();
+  const { formData, loading, error } = useSelector(
+    (state: RootState) => state.decorator,
+  );
+
+  function getVendorId2(): string | null {
+    if (typeof window === "undefined") {
+      // This code is running on the server, so skip localStorage access
+      return null;
+    }
+
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("Token not found");
+      return null;
+    }
+
+    try {
+      const decodedToken = jwt.decode(token) as {
+        userId?: string;
+        email?: string;
+      };
+      if (!decodedToken || !decodedToken.userId) {
+        console.error("Invalid token or token does not contain userId.");
+        return null;
+      }
+      return decodedToken.userId;
+    } catch (error) {
+      console.error("Error decoding token:", error);
+      return null;
+    }
+  }
+
+  const userId = getVendorId2() || "";
+
+  useEffect(() => {
+    // Fetch decorator data when component mounts
+    if (userId) {
+      dispatch(fetchDecoratorData(userId));
+    }
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (formData) {
+      let updated = false;
+      // Update form state if specific fields in formState are empty
+      if (!formState.businessName) {
+        updateFormState({ businessName: formData.businessName || "" });
+      }
+      if (!formState.eventsize) {
+        updateFormState({ eventsize: formData.teamsizelist });
+      }
+      if (!formState.duration) {
+        updateFormState({ duration: formData.durationlist });
+      }
+      // Update event lists if they are empty
+      if (!typeOfevents.length) {
+        setTypesOfEvents(formData.typeOfevents || []);
+      }
+      if (!weddingEvents.length) {
+        setWeddingEvents(formData.weddingEvents || []);
+      }
+      if (!corporateEvents.length) {
+        setCorporateEvents(formData.corporateEvents || []);
+      }
+      if (!seasonalEvents.length) {
+        setSeasonalEvents(formData.seasonalEvents || []);
+      }
+      if (!culturalEvents.length) {
+        setCulturalEvents(formData.culturalEvents || []);
+      }
+
+      if (!updated) return;
+    }
+  }, [formData]);
+
+  const handleInputChange2 = (
+    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
+  ) => {
+    const { name, value } = e.target;
+
+    // Call the original handleInputChange functionality
+    handleInputChange(e);
+
+    // Update the form data in Redux
+    dispatch(saveDecoratorDetails({ userId, data: { [name]: value } }));
+  };
+
   const handleInputChange = (
     e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
   ) => {
@@ -124,17 +225,34 @@ const Page1: React.FC<Page1Props> = ({
   };
 
   const onContinue = () => {
-    // if (validateForm()) {
-    //   handleContinue();
-    // }
+    const userId = getVendorId2() || "";
+    const decoratorDetails = {
+      userId,
+      businessName: formState.businessName,
+      teamsizelist: formState.eventsize,
+      durationlist: formState.duration,
+      typeOfevents,
+      weddingEvents,
+      corporateEvents,
+      seasonalEvents,
+      culturalEvents,
+    };
+
+    dispatch(saveDecoratorDetails({ userId, data: decoratorDetails }) as any);
     handleContinue();
   };
 
   const handledropdowneventsize = (value: string) => {
     updateFormState({ eventsize: value });
+    handleInputChange2({
+      target: { name: "eventsize", value },
+    } as React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>);
   };
   const handledropdownduration = (value: string) => {
     updateFormState({ duration: value });
+    handleInputChange2({
+      target: { name: "duration", value },
+    } as React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>);
   };
 
   return (
@@ -171,7 +289,9 @@ const Page1: React.FC<Page1Props> = ({
                   name="businessName"
                   value={formState.businessName}
                   placeholder="Enter your business name"
-                  onChange={handleInputChange}
+                  onChange={(e) => {
+                    handleInputChange(e), handleInputChange2(e);
+                  }}
                   required
                 />
               </div>
@@ -184,6 +304,7 @@ const Page1: React.FC<Page1Props> = ({
                   options={teamsizelist}
                   onSelect={(value: string) => handledropdowneventsize(value)}
                   placeholder="Select Your Team Size"
+                  selectedOption={formState.eventsize}
                 />
               </div>
             </div>
@@ -197,6 +318,7 @@ const Page1: React.FC<Page1Props> = ({
                   options={durationlist}
                   onSelect={(value: string) => handledropdownduration(value)}
                   placeholder="Select Your Time Period"
+                  selectedOption={formState.duration}
                 />
               </div>
             </div>
@@ -270,7 +392,7 @@ const Page1: React.FC<Page1Props> = ({
             <div className="items-strech mt-9 flex flex-row gap-7 self-end">
               <button
                 className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={handleContinue}
+                onClick={onContinue}
               >
                 Continue
               </button>

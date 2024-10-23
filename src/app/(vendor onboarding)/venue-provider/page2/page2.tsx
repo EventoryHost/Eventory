@@ -1,9 +1,11 @@
 "use client";
 
-import { Combobox } from "@/components/ui/combobox";
 import Appetizers from "../../(components)/Appetizers";
-import { useEffect } from "react";
-import { set } from "date-fns";
+import jwt from "jsonwebtoken";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../../../redux/store";
+import { fetchVenueData, saveVenueDetails } from "@/redux/venue-providerSlice";
 
 const _decorTypes = [
   { value: "indoor", label: "Inhouse Decor" },
@@ -169,6 +171,79 @@ const Page2: React.FC<Page2Props> = ({
   specialFeatures,
   setSpecialFeatures,
 }) => {
+  const dispatch = useDispatch<AppDispatch>();
+  const { formData, loading, error } = useSelector(
+    (state: RootState) => state["venue-provider"],
+  );
+
+  useEffect(() => {
+    const userId = getVendorId();
+    if (userId) {
+      dispatch(fetchVenueData(userId));
+    }
+  }, [dispatch]);
+
+  // Update form state based on fetched data
+  useEffect(() => {
+    if (formData) {
+      updateFormState({
+        venueDescription: formData.venueDescription || "",
+        catererServices: formData.catererServices || false,
+        decorServices: formData.decorServices || false,
+      });
+
+      setAudioVisualEquipment(formData.audioVisualEquipment || []);
+      setAccessibilityFeatures(formData.accessibilityFeatures || []);
+      setFacilities(formData.facilities || []);
+      setVenueTypes(formData.venueTypes || []);
+      setRestrictionsPolicies(formData.restrictionsPolicies || []);
+      setSpecialFeatures(formData.specialFeatures || []);
+    }
+  }, [formData]);
+
+  const handleSave = () => {
+    const userId = getVendorId() || "";
+    const venueDetails = {
+      userId: userId,
+      venueDescription: formState.venueDescription || "",
+      catererServices: formState.catererServices || false,
+      decorServices: formState.decorServices || false,
+      audioVisualEquipment: audioVisualEquipment || [],
+      accessibilityFeatures: accessibilityFeatures || [],
+      facilities: facilities || [],
+      venueTypes: venueTypes || [],
+      restrictionsPolicies: restrictionsPolicies || [],
+      specialFeatures: specialFeatures || [],
+    };
+
+    dispatch(saveVenueDetails({ userId, data: venueDetails }) as any);
+  };
+
+  const [isFormValid, setIsFormValid] = useState(true);
+
+  const onContinue = () => {
+    console.log("the current formState", formState);
+
+    handleSave();
+    handleContinue();
+  };
+
+  function getVendorId(): string | null {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("Token not found");
+      return null;
+    }
+    try {
+      const decodedToken = jwt.decode(token) as {
+        userId?: string;
+      };
+      return decodedToken?.userId || null;
+    } catch (error) {
+      console.error("Error decoding token:", error);
+      return null;
+    }
+  }
   return (
     <>
       <div className="scroll-touch flex flex-col items-start gap-7 overflow-y-scroll rounded-xl bg-white p-3 scrollbar-hide xs:justify-start">
@@ -188,6 +263,7 @@ const Page2: React.FC<Page2Props> = ({
                     type="radio"
                     name="catering"
                     id="catering-yes"
+                    checked={catererServices || false}
                     onChange={() => updateFormState({ catererServices: true })}
                     className="h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
                   />
@@ -203,6 +279,7 @@ const Page2: React.FC<Page2Props> = ({
                     type="radio"
                     name="catering"
                     id="catering-no"
+                    checked={!catererServices}
                     onChange={() => updateFormState({ catererServices: false })}
                     className="h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
                   />
@@ -226,6 +303,7 @@ const Page2: React.FC<Page2Props> = ({
                     type="radio"
                     name="decorating"
                     id="decorating-yes"
+                    checked={decorServices || false}
                     onChange={() => updateFormState({ decorServices: true })}
                     className="h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
                   />
@@ -241,6 +319,7 @@ const Page2: React.FC<Page2Props> = ({
                     type="radio"
                     name="decorating"
                     id="decorating-no"
+                    checked={!decorServices}
                     onChange={() => updateFormState({ decorServices: false })}
                     className="h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
                   />
@@ -352,7 +431,7 @@ const Page2: React.FC<Page2Props> = ({
           </button>
           <button
             className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-            onClick={handleContinue}
+            onClick={onContinue}
           >
             Continue
           </button>

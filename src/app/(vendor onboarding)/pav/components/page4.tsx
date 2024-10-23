@@ -3,6 +3,11 @@
 import FileInput from "@/components/fileInput";
 import Dropdown from "../../(components)/Dropdown";
 import { ArrowLeft } from "lucide-react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/redux/store";
+import { fetchPavData, savePavDetails } from "@/redux/pavSlice";
+import jwt from "jsonwebtoken";
 
 interface FormState {
   photos: string | File | File[];
@@ -69,6 +74,102 @@ const Page6: React.FC<PageProps> = ({
   freerevisionforinitialthemeproposal,
   setrevisionforinitialthemeproposal,
 }) => {
+  const dispatch = useDispatch<AppDispatch>();
+  const { formData, loading, error } = useSelector(
+    (state: RootState) => state["pav"],
+  );
+
+  // Fetch rental data on mount
+  useEffect(() => {
+    const userId = getVendorId();
+    if (userId) {
+      dispatch(fetchPavData(userId));
+    }
+  }, [dispatch]);
+
+  // Update form state with fetched data for Page 1
+  useEffect(() => {
+    if (formData) {
+      if (formData.photos !== undefined) {
+        setPhotos(formData.photos);
+      }
+      if (formData.videos !== undefined) {
+        setVideos(formData.videos);
+      }
+      if (formData.websiteurl !== undefined) {
+        setwebsiteurl(formData.websiteurl);
+      }
+      if (formData.intstagramurl !== undefined) {
+        setintstagramurl(formData.intstagramurl);
+      }
+      if (formData.Recongnition_awards !== undefined) {
+        setRecongnition_awards(formData.Recongnition_awards);
+      }
+      if (formData.advbookingperiod !== undefined) {
+        setadvbookingperiod(formData.advbookingperiod);
+      }
+      if (formData.clientTestimonials !== undefined) {
+        setclientTestimonials(formData.clientTestimonials);
+      }
+      if (formData.writtenthemeproposalafterconsultaion !== undefined) {
+        setwrittenthemeproposalafterconsultaion(
+          formData.writtenthemeproposalafterconsultaion,
+        );
+      }
+      if (formData.freerevisionforinitialthemeproposal !== undefined) {
+        setrevisionforinitialthemeproposal(
+          formData.freerevisionforinitialthemeproposal,
+        );
+      }
+    }
+  }, [formData]);
+
+  // Updated handleSave function
+  const handleSave = () => {
+    const userId = getVendorId();
+    if (!userId) {
+      console.error("User ID is missing");
+      return;
+    }
+
+    const updatedFormState = {
+      photos,
+      videos,
+      websiteurl,
+      intstagramurl,
+      Recongnition_awards,
+      advbookingperiod,
+      clientTestimonials,
+      writtenthemeproposalafterconsultaion,
+      freerevisionforinitialthemeproposal,
+    };
+
+    // Dispatch action to save the updated form data for Page 6
+    dispatch(savePavDetails({ userId, data: updatedFormState }) as any);
+  };
+
+  const onContinue = () => {
+    handleSave(); // Save the rental details before continuing
+    handleContinue();
+  };
+
+  function getVendorId(): string | null {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("Token not found");
+      return null;
+    }
+    try {
+      const decodedToken = jwt.decode(token) as {
+        userId?: string;
+      };
+      return decodedToken?.userId || null;
+    } catch (error) {
+      console.error("Error decoding token:", error);
+      return null;
+    }
+  }
+
   return (
     <div className="flex h-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide xs:w-[95%] xs:min-w-[90%]">
       <div className="flex min-w-full flex-col items-start justify-around gap-10">
@@ -153,6 +254,7 @@ const Page6: React.FC<PageProps> = ({
                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                   placeholder="Provide Your URL"
                   onChange={(e) => setclientTestimonials(e.target.value)}
+                  defaultValue={clientTestimonials}
                 />
               </div>
               <div className="flex min-w-[40%] flex-col gap-4">
@@ -165,6 +267,7 @@ const Page6: React.FC<PageProps> = ({
                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                   placeholder="Provide Your URL"
                   onChange={(e) => setRecongnition_awards(e.target.value)}
+                  defaultValue={Recongnition_awards}
                 />
               </div>
             </div>
@@ -179,6 +282,7 @@ const Page6: React.FC<PageProps> = ({
                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                   placeholder="Provide Your URL"
                   onChange={(e) => setintstagramurl(e.target.value)}
+                  defaultValue={intstagramurl}
                 />
               </div>
               <div className="flex min-w-[40%] flex-col gap-4">
@@ -191,6 +295,7 @@ const Page6: React.FC<PageProps> = ({
                   className="h-[4rem] w-full rounded-xl border-2 bg-white p-3 text-sm outline-none"
                   placeholder="Provide Your URL"
                   onChange={(e) => setwebsiteurl(e.target.value)}
+                  defaultValue={websiteurl}
                 />
               </div>
             </div>
@@ -203,6 +308,7 @@ const Page6: React.FC<PageProps> = ({
                   options={advbookingperiodlist}
                   onSelect={(value: string) => setadvbookingperiod(value)}
                   placeholder="Select Your Advance Booking Period"
+                  selectedOption={advbookingperiod}
                 />
               </div>
             </div>
@@ -265,7 +371,7 @@ const Page6: React.FC<PageProps> = ({
               </button>
               <button
                 className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-                onClick={handleContinue}
+                onClick={onContinue}
               >
                 Continue
               </button>

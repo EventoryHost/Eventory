@@ -1,9 +1,12 @@
 "use client";
 
 import FileInput from "@/components/fileInput";
-import { Combobox } from "../(components)/comboBoxNew";
-import { useEffect } from "react";
 import Dropdown from "../../(components)/Dropdown";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../../../redux/store";
+import { fetchVenueData, saveVenueDetails } from "@/redux/venue-providerSlice";
+import jwt from "jsonwebtoken";
 
 interface FormState {
   termsConditions: string | File | File[];
@@ -45,6 +48,78 @@ const Page3: React.FC<Page3Props> = ({
   currentPage,
   setCurrentPage,
 }) => {
+  const dispatch = useDispatch<AppDispatch>();
+  const { formData, loading, error } = useSelector(
+    (state: RootState) => state["venue-provider"],
+  );
+
+  useEffect(() => {
+    const userId = getVendorId();
+    if (userId) {
+      dispatch(fetchVenueData(userId));
+    }
+  }, [dispatch]);
+
+  // Update form state based on fetched data
+  useEffect(() => {
+    if (formData) {
+      updateFormState({
+        termsConditions: formData.termsConditions || [],
+        cancellationPolicy: formData.cancellationPolicy || [],
+        photos: formData.photos || [],
+        videos: formData.videos || [],
+        instagramURL: formData.instagramURL || "",
+        websiteURL: formData.websiteURL || "",
+        awards: formData.awards || "",
+        clientTestimonials: formData.clientTestimonials || "",
+        advanceBookingPeriod: formData.advanceBookingPeriod || "",
+      });
+    }
+  }, [formData]);
+
+  const handleSave = () => {
+    const userId = getVendorId() || "";
+    const venueDetails = {
+      userId,
+      termsConditions: formState.termsConditions || "",
+      cancellationPolicy: formState.cancellationPolicy || "",
+      photos: formState.photos || [],
+      videos: formState.videos || [],
+      instagramURL: formState.instagramURL || "",
+      websiteURL: formState.websiteURL || "",
+      awards: formState.awards || "",
+      clientTestimonials: formState.clientTestimonials || "",
+      advanceBookingPeriod: formState.advanceBookingPeriod || "",
+    };
+
+    dispatch(saveVenueDetails({ userId, data: venueDetails }) as any);
+  };
+
+  const [isFormValid, setIsFormValid] = useState(true);
+
+  const onContinue = () => {
+    console.log("the current formState", formState);
+
+    handleSave();
+    handleContinue();
+  };
+
+  function getVendorId(): string | null {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("Token not found");
+      return null;
+    }
+    try {
+      const decodedToken = jwt.decode(token) as {
+        userId?: string;
+      };
+      return decodedToken?.userId || null;
+    } catch (error) {
+      console.error("Error decoding token:", error);
+      return null;
+    }
+  }
   return (
     <div className="scroll-touch flex flex-col items-start gap-7 overflow-y-scroll rounded-xl bg-white p-3 scrollbar-hide xs:w-[95%] xs:min-w-[90%] xs:justify-start md:p-6">
       <h1 className="text-3xl font-semibold">Additional Details </h1>
@@ -277,6 +352,7 @@ const Page3: React.FC<Page3Props> = ({
                 updateFormState({ advanceBookingPeriod: value })
               }
               placeholder="Select Advance Booking Period"
+              selectedOption={formState.advanceBookingPeriod}
             />
           </div>
         </div>
@@ -291,7 +367,7 @@ const Page3: React.FC<Page3Props> = ({
         </button>
         <button
           className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-          onClick={handleContinue}
+          onClick={onContinue}
         >
           Continue
         </button>

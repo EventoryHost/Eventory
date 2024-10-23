@@ -4,7 +4,17 @@ import FileInput from "@/components/fileInput";
 import Appetizers from "../../(components)/Appetizers";
 import { FormState } from "../page";
 import { useEffect, useState } from "react";
-import { ArrowLeft, ChevronLeft } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
+import jwt from "jsonwebtoken";
+
+import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchCateringData,
+  saveCateringDetails,
+  updateFormData,
+} from "../../../../redux/cateringSlice";
+import { RootState } from "@/redux/store";
+import { getvendor } from "@/services/auth";
 
 const _dietaryOptions = [
   "Others",
@@ -88,6 +98,87 @@ const Page2 = ({
 }: Page2Props) => {
   const { customizableMenu } = formState;
   const [addManually, setAddManually] = useState(false);
+  const dispatch = useDispatch();
+  const { formData, currentPage2 } = useSelector(
+    (state: RootState) => state.catering,
+  );
+  function getVendorId2(): string | null {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("Token not found");
+      return null;
+    }
+    try {
+      const decodedToken = jwt.decode(token) as {
+        userId?: string;
+        email?: string;
+      };
+      if (!decodedToken || !decodedToken.userId) {
+        console.error("Invalid token or token does not contain userId.");
+        return null;
+      }
+      return decodedToken.userId;
+    } catch (error) {
+      console.error("Error decoding token:", error);
+      return null;
+    }
+  }
+  const userId = getVendorId2() || "";
+
+  useEffect(() => {
+    if (formData) {
+      if (!formState.preSetMenu) {
+        updateFormState({
+          preSetMenu: formData.preSetMenu || "",
+          customizableMenu: formData.customizableMenu || false,
+        });
+      }
+      if (!veg.length) {
+        setVeg(formData.veg || []);
+      }
+      if (!selectedAppetizers.length) {
+        setSelectedAppetizers(formData.selectedAppetizers || []);
+      }
+      if (!selectedBeverages.length) {
+        setSelectedBeverages(formData.selectedBeverages || []);
+      }
+      if (!selectedMainCourses.length) {
+        setSelectedMainCourses(formData.selectedMainCourses || []);
+      }
+      if (!selectedDietaryOptions.length) {
+        setSelectedDietaryOptions(formData.selectedDietaryOptions || []);
+      }
+    }
+  }, [formData]);
+
+  useEffect(() => {
+    // Fetch existing catering data when the component mounts
+    if (userId) {
+      dispatch(fetchCateringData(userId) as any);
+    }
+  }, [dispatch]);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    updateFormState({ [name]: value });
+    dispatch(updateFormData({ page: currentPage, data: { [name]: value } }));
+  };
+
+  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+
+    const dataToSubmit = {
+      ...formState,
+      selectedAppetizers,
+      selectedBeverages,
+      selectedMainCourses,
+      selectedDietaryOptions,
+      veg,
+    };
+
+    dispatch(saveCateringDetails({ userId, data: dataToSubmit }) as any);
+    handleContinue();
+  };
 
   return (
     <div className="flex h-full w-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide">
@@ -255,6 +346,7 @@ const Page2 = ({
                   updateFormState({ preSetMenu: e.target.value })
                 }
                 className="mt-4 rounded-xl border-2 border-gray-300 p-3"
+                defaultValue={formState.preSetMenu}
               ></textarea>
             </div>
             <div className="flex min-w-[50%] flex-col gap-4">
@@ -267,8 +359,8 @@ const Page2 = ({
                     id="customizableMenuYes"
                     type="radio"
                     name="customizableMenu"
-                    value="true"
-                    checked={customizableMenu === true} // Ensure checked is always a boolean
+                    value={formState.customizableMenu ? "true" : "false"}
+                    checked={customizableMenu || false}
                     onChange={() => updateFormState({ customizableMenu: true })}
                     className="h-4 w-4 accent-[#2E3192]"
                   />
@@ -279,8 +371,8 @@ const Page2 = ({
                     id="customizableMenuNo"
                     type="radio"
                     name="customizableMenu"
-                    value="false"
-                    checked={customizableMenu === false} // Ensure checked is always a boolean
+                    value={formState.customizableMenu ? "true" : "false"}
+                    checked={!customizableMenu}
                     onChange={() =>
                       updateFormState({ customizableMenu: false })
                     }
@@ -300,7 +392,7 @@ const Page2 = ({
             </button>
             <button
               className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-              onClick={handleContinue}
+              onClick={handleSubmit}
             >
               Continue
             </button>

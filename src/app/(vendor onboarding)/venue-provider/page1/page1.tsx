@@ -1,9 +1,12 @@
 "use client";
 
-import { Combobox } from "@/components/ui/combobox";
 import { OperatingHoursDropdown } from "../(components)/comboBoxNew";
-import { useEffect } from "react";
 import Dropdown from "../../(components)/Dropdown";
+import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { AppDispatch, RootState } from "../../../../redux/store";
+import { fetchVenueData, saveVenueDetails } from "@/redux/venue-providerSlice";
+import jwt from "jsonwebtoken";
 
 const _capacity = [
   "Less than 50 persons",
@@ -63,14 +66,93 @@ const Page1: React.FC<Page1Props> = ({
   updateFormState,
   handleContinue,
 }) => {
-  const {
-    name,
-    address,
-    venueDescription,
-    managerName,
-    capacity,
-    operatingHours,
-  } = formState;
+  const { name, address, venueDescription, managerName } = formState;
+
+  const dispatch = useDispatch<AppDispatch>();
+  const { formData, loading, error } = useSelector(
+    (state: RootState) => state["venue-provider"],
+  );
+
+  useEffect(() => {
+    const userId = getVendorId();
+    if (userId) {
+      // Dispatch fetchVenueData action
+      dispatch(fetchVenueData(userId));
+    }
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (formData && !formState.name) {
+      // Update the state if formState is empty
+      updateFormState({
+        name: formData.name || "",
+        managerName: formData.managerName || "",
+        capacity: formData.capacity || "",
+        address: formData.address || "",
+        operatingHours: formData.operatingHours || {},
+        venueDescription: formData.venueDescription || "",
+      });
+    }
+  }, [formData, formState, updateFormState]);
+
+  const handleSave = () => {
+    const userId = getVendorId() || "";
+    const venueDetails = {
+      userId: userId,
+      name: formState.name || "",
+      managerName: formState.managerName || "",
+      capacity: formState.capacity || "",
+      address: formState.address || "",
+      operatingHours: formState.operatingHours,
+      venueDescription: formState.venueDescription || "",
+    };
+
+    // Dispatch action to save venue details to Redux
+    dispatch(saveVenueDetails({ userId, data: venueDetails }) as any);
+  };
+
+  const [isFormValid, setIsFormValid] = useState(true);
+
+  const validateForm = () => {
+    const isValid =
+      formState.name.trim() !== "" &&
+      formState.managerName.trim() !== "" &&
+      formState.capacity !== "" &&
+      formState.address.trim() !== "";
+
+    setIsFormValid(isValid);
+    return isValid;
+  };
+
+  const onContinue = () => {
+    handleSave(); // Save the venue details before continuing
+    if (validateForm()) {
+      handleContinue();
+    }
+  };
+
+  const getInputClassName = (value: string) => {
+    const baseClasses =
+      "w-full rounded-xl border-2 bg-white p-3 py-5 outline-none text-sm";
+    return `${baseClasses} ${!isFormValid && value.trim() === "" ? "border-red-500" : ""}`;
+  };
+
+  function getVendorId(): string | null {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("Token not found");
+      return null;
+    }
+    try {
+      const decodedToken = jwt.decode(token) as {
+        userId?: string;
+      };
+      return decodedToken?.userId || null;
+    } catch (error) {
+      console.error("Error decoding token:", error);
+      return null;
+    }
+  }
 
   return (
     <div className="flex h-auto w-full flex-col items-start gap-7 overflow-y-scroll rounded-xl bg-white p-3 scrollbar-hide xs:justify-start md:p-6">
@@ -99,6 +181,7 @@ const Page1: React.FC<Page1Props> = ({
               updateFormState({ capacity: option });
             }}
             placeholder="Minimum guests required"
+            selectedOption={formState.capacity}
           />
         </div>
       </div>
@@ -184,7 +267,7 @@ const Page1: React.FC<Page1Props> = ({
         <div className="items-strech mt-9 flex flex-row gap-7 self-end">
           <button
             className="rounded-xl bg-[#2E3192] text-white xs:w-fit xs:px-4 xs:py-3 md:w-fit md:min-w-[10rem] md:px-4 md:py-3"
-            onClick={handleContinue}
+            onClick={onContinue}
           >
             Continue
           </button>
