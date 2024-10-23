@@ -115,12 +115,14 @@ const DashboardDetails: React.FC<IntroProps> = ({ user, venueDetails }) => {
   useEffect(() => {
     if (user && venueDetails) {
       const policies = Object.entries(venueDetails).filter(([key]) =>
-        ["termsConditions", "insurancePolicy", "cancellationPolicy"].includes(key),
+        ["termsConditions", "insurancePolicy", "cancellationPolicy"].includes(
+          key,
+        ),
       );
 
       fetchAllPoliciesInfo(
         policies.flatMap(([, value]) => value),
-        setS3UrlsState
+        setS3UrlsState,
       );
     }
   }, [user, venueDetails]);
@@ -152,19 +154,18 @@ const DashboardDetails: React.FC<IntroProps> = ({ user, venueDetails }) => {
 
   const photos = Object.entries(venueDetails)
     .filter(([key]) => ["photos"].includes(key))
-    .flatMap(
-      ([, value]) =>
-        Array.isArray(value) &&
-          value.every((item: string) => item.startsWith("http"))
-          ? value
-          : [],
+    .flatMap(([, value]) =>
+      Array.isArray(value) &&
+      value.every((item: string) => item.startsWith("http"))
+        ? value
+        : [],
     );
 
   const videos = Object.entries(venueDetails)
     .filter(([key]) => ["videos"].includes(key))
     .flatMap(([, value]) =>
       Array.isArray(value) &&
-        value.every((item: string) => item.startsWith("http"))
+      value.every((item: string) => item.startsWith("http"))
         ? value
         : [],
     );
@@ -176,10 +177,11 @@ const DashboardDetails: React.FC<IntroProps> = ({ user, venueDetails }) => {
           {tabs.map((venue, index) => (
             <li
               key={index}
-              className={`cursor-pointer pb-3 text-center ${selected === index
-                ? "border-b-4 border-[#2E3192] text-[#2E3192]"
-                : "text-gray-500"
-                }`}
+              className={`cursor-pointer pb-3 text-center ${
+                selected === index
+                  ? "border-b-4 border-[#2E3192] text-[#2E3192]"
+                  : "text-gray-500"
+              }`}
               onClick={() => setSelected(index)}
             >
               {venue}
