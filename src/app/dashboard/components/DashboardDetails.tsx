@@ -75,49 +75,6 @@ const DashboardDetails: React.FC<IntroProps> = ({ user, venueDetails }) => {
     "Additional Details",
   ];
 
-  if (!user || !user.businessDetails) {
-    return <p>Loading business details...</p>;
-  }
-
-  const booleanFields = Object.entries(venueDetails).filter(
-    ([key, value]) => typeof value === "boolean",
-  );
-
-  const filteredStringArrays = Object.entries(venueDetails).filter(
-    ([key, value]) =>
-      Array.isArray(value) &&
-      typeof value[0] === "string" &&
-      ![
-        "termsConditions",
-        "cancellationPolicy",
-        "insurancePolicy",
-        "photos",
-        "videos",
-      ].includes(key),
-  );
-  const policies = Object.entries(venueDetails).filter(([key]) =>
-    ["termsConditions", "insurancePolicy", "cancellationPolicy"].includes(key),
-  );
-
-  const photos = Object.entries(venueDetails)
-    .filter(([key]) => ["photos"].includes(key)) // Filter for "photos"
-    .flatMap(
-      ([, value]) =>
-        Array.isArray(value) &&
-        value.every((item: string) => item.startsWith("http")) // Ensure it's an array of URLs
-          ? value
-          : [], // If not a URL array, return an empty array
-    );
-
-  const videos = Object.entries(venueDetails)
-    .filter(([key]) => ["videos"].includes(key))
-    .flatMap(([, value]) =>
-      Array.isArray(value) &&
-      value.every((item: string) => item.startsWith("http"))
-        ? value
-        : [],
-    );
-
   const fetchFileInfo = async (url: string): Promise<FileInfo> => {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/files/get-file-info`,
@@ -156,11 +113,61 @@ const DashboardDetails: React.FC<IntroProps> = ({ user, venueDetails }) => {
   };
 
   useEffect(() => {
+    if (user && venueDetails) {
+      const policies = Object.entries(venueDetails).filter(([key]) =>
+        ["termsConditions", "insurancePolicy", "cancellationPolicy"].includes(key),
+      );
+
       fetchAllPoliciesInfo(
         policies.flatMap(([, value]) => value),
         setS3UrlsState
       );
-  }, []);
+    }
+  }, [user, venueDetails]);
+
+  if (!user || !user.businessDetails) {
+    return <p>Loading business details...</p>;
+  }
+
+  const booleanFields = Object.entries(venueDetails).filter(
+    ([key, value]) => typeof value === "boolean",
+  );
+
+  const filteredStringArrays = Object.entries(venueDetails).filter(
+    ([key, value]) =>
+      Array.isArray(value) &&
+      typeof value[0] === "string" &&
+      ![
+        "termsConditions",
+        "cancellationPolicy",
+        "insurancePolicy",
+        "photos",
+        "videos",
+      ].includes(key),
+  );
+
+  const policies = Object.entries(venueDetails).filter(([key]) =>
+    ["termsConditions", "insurancePolicy", "cancellationPolicy"].includes(key),
+  );
+
+  const photos = Object.entries(venueDetails)
+    .filter(([key]) => ["photos"].includes(key))
+    .flatMap(
+      ([, value]) =>
+        Array.isArray(value) &&
+          value.every((item: string) => item.startsWith("http"))
+          ? value
+          : [],
+    );
+
+  const videos = Object.entries(venueDetails)
+    .filter(([key]) => ["videos"].includes(key))
+    .flatMap(([, value]) =>
+      Array.isArray(value) &&
+        value.every((item: string) => item.startsWith("http"))
+        ? value
+        : [],
+    );
 
   return (
     <div className="flex flex-col gap-8 rounded-xl bg-white p-3 md:p-6">
@@ -169,11 +176,10 @@ const DashboardDetails: React.FC<IntroProps> = ({ user, venueDetails }) => {
           {tabs.map((venue, index) => (
             <li
               key={index}
-              className={`cursor-pointer pb-3 text-center ${
-                selected === index
-                  ? "border-b-4 border-[#2E3192] text-[#2E3192]"
-                  : "text-gray-500"
-              }`}
+              className={`cursor-pointer pb-3 text-center ${selected === index
+                ? "border-b-4 border-[#2E3192] text-[#2E3192]"
+                : "text-gray-500"
+                }`}
               onClick={() => setSelected(index)}
             >
               {venue}
