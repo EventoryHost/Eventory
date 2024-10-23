@@ -113,8 +113,8 @@ const Navbar: React.FC<NavbarProps> = () => {
   }, [notifDropdownRef, profileDropdownRef]);
 
   return (
-    <nav className="navbar fixed top-0 z-20 flex flex-col bg-white ">
-      <div className="flex w-full items-center justify-between px-4 h-24">
+    <nav className="navbar fixed top-0 z-20 flex flex-col bg-white">
+      <div className="flex h-24 w-full items-center justify-between px-4">
         <div className="flex flex-[1.5] items-center gap-4">
           <Image
             width={30}

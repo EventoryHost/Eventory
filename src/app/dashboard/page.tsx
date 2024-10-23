@@ -203,10 +203,10 @@ const Page: React.FC = () => {
   }, [user]);
 
   return (
-    <div className="overflow-hidden overflow-y-auto bg-slate-100 p-6 scrollbar-hide pt-[80px] ">
-    <div
-      className={`ml-56 flex flex-col gap-6 scrollbar-hide overflow-hidden overflow-y-auto`}
-    >
+    <div className="overflow-hidden overflow-y-auto bg-slate-100 p-6 pt-[80px] scrollbar-hide">
+      <div
+        className={`ml-56 flex flex-col gap-6 overflow-hidden overflow-y-auto scrollbar-hide`}
+      >
         {loading && <Loadingeanimation width="w-64" />}
 
         {user && (

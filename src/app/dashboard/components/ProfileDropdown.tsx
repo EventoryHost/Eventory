@@ -27,7 +27,7 @@ const ProfileDropdownMenu: React.FC<DropdownMenuProps> = ({
 
   return (
     <div
-      className="absolute right-0 mt-2 w-[400px] bg-white border-2 rounded-lg shadow-lg top-[40px] z-40"
+      className="absolute right-0 top-[40px] z-40 mt-2 w-[400px] rounded-lg border-2 bg-white shadow-lg"
       onClick={handleDropdownClick} // Add onClick handler here
     >
       <div className="p-6 flex flex-col gap-4 items-center justify-center">
