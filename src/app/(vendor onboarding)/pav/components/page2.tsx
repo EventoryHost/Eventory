@@ -8,8 +8,6 @@ import { AppDispatch, RootState } from "@/redux/store";
 import { fetchPavData, savePavDetails } from "@/redux/pavSlice";
 import jwt from "jsonwebtoken";
 
-
-
 const styles = [
   "Aerial",
   "Black and White",
@@ -108,7 +106,7 @@ const Page1 = ({
 }: Page1Props) => {
   const dispatch = useDispatch<AppDispatch>();
   const { formData, loading, error } = useSelector(
-    (state: RootState) => state["pav"]
+    (state: RootState) => state["pav"],
   );
 
   // Fetch rental data on mount
@@ -125,7 +123,7 @@ const Page1 = ({
       // for (const [key, value] of Object.entries(formData)) {
       //   console.log(`${key}: ${value}`);
       // }
-      
+
       if (formData.photoSelectedstyles !== undefined) {
         setphotoSelectedstyles(formData.photoSelectedstyles);
       }
@@ -153,15 +151,14 @@ const Page1 = ({
       if (formData.Selectedvideoequipments !== undefined) {
         setvideoSelectedEquipments(formData.Selectedvideoequipments);
       }
-      if(formData.photofinaldeliverymethods !== undefined){
+      if (formData.photofinaldeliverymethods !== undefined) {
         setphotoFinaldeliverymethods(formData.photofinaldeliverymethods);
       }
-      if(formData.videofinaldeliverymethods !== undefined){
+      if (formData.videofinaldeliverymethods !== undefined) {
         setvideoFinaldeliverymethods(formData.videofinaldeliverymethods);
       }
     }
   }, [formData]);
-
 
   const handleSave = () => {
     const userId = getVendorId();
@@ -180,13 +177,11 @@ const Page1 = ({
       videoAddons,
       videofinaldeliverymethods,
       Selectedvideoequipments,
-
     };
 
     // Dispatch an action to save the updated form data for page 2
     dispatch(savePavDetails({ userId, data: updatedFormState }) as any);
   };
-
 
   const onContinue = async () => {
     await handleSave();

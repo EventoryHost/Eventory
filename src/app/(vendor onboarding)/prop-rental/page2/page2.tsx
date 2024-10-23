@@ -9,7 +9,6 @@ import { AppDispatch, RootState } from "@/redux/store";
 import { fetchRentalData, saveRentalDetails } from "@/redux/prop-rentalSlice";
 import jwt from "jsonwebtoken";
 
-
 interface formState {
   itemCatalogue: boolean | File;
   customization: boolean | null;
@@ -57,7 +56,7 @@ const Page2: React.FC<page2Props> = ({
 
   const dispatch = useDispatch<AppDispatch>();
   const { formData, loading, error } = useSelector(
-    (state: RootState) => state["prop-rental"]
+    (state: RootState) => state["prop-rental"],
   );
 
   // Fetch rental data on mount
@@ -68,52 +67,48 @@ const Page2: React.FC<page2Props> = ({
     }
   }, [dispatch]);
 
- // Update form state with fetched data for Page 2
-useEffect(() => {
-  if (formData) {
-    if (formData.itemCatalogue !== undefined) {
-      handleChange("itemCatalogue", formData.itemCatalogue);
+  // Update form state with fetched data for Page 2
+  useEffect(() => {
+    if (formData) {
+      if (formData.itemCatalogue !== undefined) {
+        handleChange("itemCatalogue", formData.itemCatalogue);
+      }
+      if (formData.customization !== undefined) {
+        handleChange("customization", formData.customization);
+      }
+      if (formData.maintenance) {
+        handleChange("maintenance", formData.maintenance);
+      }
+      if (formData.services) {
+        handleChange("services", formData.services);
+      }
+      if (formData.serviceProvided) {
+        setServiceProvided(formData.serviceProvided);
+      }
     }
-    if (formData.customization !== undefined) {
-      handleChange("customization", formData.customization);
-    }
-    if (formData.maintenance) {
-      handleChange("maintenance", formData.maintenance);
-    }
-    if (formData.services) {
-      handleChange("services", formData.services);
-    }
-    if (formData.serviceProvided) {
-      setServiceProvided(formData.serviceProvided);
-    }
-  }
-}, [formData]);
+  }, [formData]);
 
-const handleSave = () => {
-  const userId = getVendorId() || ""; // Retrieve user ID
+  const handleSave = () => {
+    const userId = getVendorId() || ""; // Retrieve user ID
 
-  // Create the object to be sent in the API request
-  const rentalDetails = {
-    userId: userId,
-    itemCatalogue: formState.itemCatalogue ? true : false, // Assuming this is a boolean
-    customization: formState.customization ? true : false, // Assuming this is a boolean
-    maintenance: formState.maintenance || "", // Handle maintenance details
-    services: formState.services || "", // Handle service areas
-    serviceProvided: serviceProvided, // Array of selected services
+    // Create the object to be sent in the API request
+    const rentalDetails = {
+      userId: userId,
+      itemCatalogue: formState.itemCatalogue ? true : false, // Assuming this is a boolean
+      customization: formState.customization ? true : false, // Assuming this is a boolean
+      maintenance: formState.maintenance || "", // Handle maintenance details
+      services: formState.services || "", // Handle service areas
+      serviceProvided: serviceProvided, // Array of selected services
+    };
+
+    // Dispatch the action with the rental details
+    dispatch(saveRentalDetails({ userId, data: rentalDetails }) as any);
   };
-
-  // Dispatch the action with the rental details
-  dispatch(saveRentalDetails({ userId, data: rentalDetails }) as any);
-};
-
-
-
 
   const onContinue = () => {
     handleSave(); // Save the rental details before continuing
     setCurrentPage(currentPage + 1); // Move to the next page
   };
-
 
   function getVendorId(): string | null {
     const token = localStorage.getItem("token");
@@ -131,8 +126,6 @@ const handleSave = () => {
       return null;
     }
   }
-
-
 
   return (
     <div className="flex h-full w-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide">

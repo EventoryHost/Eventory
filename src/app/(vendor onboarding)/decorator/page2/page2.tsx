@@ -6,8 +6,11 @@ import { ArrowLeft } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/redux/store";
 import jwt from "jsonwebtoken";
-import { fetchDecoratorData , saveDecoratorDetails, updateFormData } from "@/redux/decoratorSlice";
-
+import {
+  fetchDecoratorData,
+  saveDecoratorDetails,
+  updateFormData,
+} from "@/redux/decoratorSlice";
 
 const _themesOffered = [
   "Art Deco",
@@ -49,11 +52,10 @@ const Page2: React.FC<Page2Props> = ({
   setThemesOffered,
   handleContinue,
 }) => {
-
-
-
   const dispatch = useDispatch<AppDispatch>();
-  const { formData, loading, error} = useSelector((state: RootState) => state.decorator);
+  const { formData, loading, error } = useSelector(
+    (state: RootState) => state.decorator,
+  );
 
   function getVendorId2(): string | null {
     if (typeof window === "undefined") {
@@ -91,7 +93,6 @@ const Page2: React.FC<Page2Props> = ({
     }
   }, [dispatch]);
   useEffect(() => {
-  
     // Check if formData is defined and log each property
     if (formData) {
       // Update form state with fetched data
@@ -107,7 +108,6 @@ const Page2: React.FC<Page2Props> = ({
       console.log("formData is undefined or null");
     }
   }, [formData]);
-  
 
   const onContinue = () => {
     const userId = getVendorId2() || "";
@@ -118,12 +118,10 @@ const Page2: React.FC<Page2Props> = ({
       colorschmes: formState.colorschmes,
       customizationsThemes: formState.customizationsThemes,
       customDesignProcess: formState.customDesignProcess,
-    
-    }
+    };
     dispatch(saveDecoratorDetails({ userId, data: decoratorDetails }) as any);
     handleContinue();
   };
-
 
   const {
     propthemesOffered,

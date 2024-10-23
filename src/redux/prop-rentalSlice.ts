@@ -1,5 +1,8 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { saveRentalData, getRentalData } from '../services/flows/prop-rentalService';
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {
+  saveRentalData,
+  getRentalData,
+} from "../services/flows/prop-rentalService";
 
 interface RentalState {
   formData: Record<string, any>; // Store form data for all pages
@@ -17,25 +20,25 @@ const initialState: RentalState = {
 
 // Async thunk to fetch rental data
 export const fetchRentalData = createAsyncThunk(
-  'rental/fetchData',
+  "rental/fetchData",
   async (userId: string) => {
     const response = await getRentalData(userId);
     return response.data;
-  }
+  },
 );
 
 // Async thunk to save rental details
 export const saveRentalDetails = createAsyncThunk(
-  'rental/saveData',
+  "rental/saveData",
   async ({ userId, data }: { userId: string; data: any }) => {
     const response = await saveRentalData(userId, data);
     return response.data;
-  }
+  },
 );
 
 // Create a slice of the store
 const rentalSlice = createSlice({
-  name: 'rental',
+  name: "rental",
   initialState,
   reducers: {
     resetRentalState: (state) => {
@@ -44,7 +47,10 @@ const rentalSlice = createSlice({
       state.loading = false;
       state.error = null;
     },
-    updateFormData: (state, action: PayloadAction<{ page: number; data: any }>) => {
+    updateFormData: (
+      state,
+      action: PayloadAction<{ page: number; data: any }>,
+    ) => {
       const { page, data } = action.payload;
       state.formData[page] = { ...state.formData[page], ...data };
     },
@@ -82,5 +88,6 @@ const rentalSlice = createSlice({
 });
 
 // Export the reducer and actions
-export const { resetRentalState, updateFormData, setCurrentPage } = rentalSlice.actions;
+export const { resetRentalState, updateFormData, setCurrentPage } =
+  rentalSlice.actions;
 export default rentalSlice.reducer;

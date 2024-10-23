@@ -2,12 +2,11 @@
 
 import FileInput from "@/components/fileInput";
 import Dropdown from "../../(components)/Dropdown";
-import { useState , useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../../redux/store";
 import { fetchVenueData, saveVenueDetails } from "@/redux/venue-providerSlice";
 import jwt from "jsonwebtoken";
-
 
 interface FormState {
   termsConditions: string | File | File[];
@@ -49,9 +48,10 @@ const Page3: React.FC<Page3Props> = ({
   currentPage,
   setCurrentPage,
 }) => {
-
   const dispatch = useDispatch<AppDispatch>();
-  const { formData, loading, error } = useSelector((state: RootState) => state["venue-provider"]);
+  const { formData, loading, error } = useSelector(
+    (state: RootState) => state["venue-provider"],
+  );
 
   useEffect(() => {
     const userId = getVendorId();
@@ -99,7 +99,7 @@ const Page3: React.FC<Page3Props> = ({
 
   const onContinue = () => {
     console.log("the current formState", formState);
-    
+
     handleSave();
     handleContinue();
   };
@@ -352,7 +352,7 @@ const Page3: React.FC<Page3Props> = ({
                 updateFormState({ advanceBookingPeriod: value })
               }
               placeholder="Select Advance Booking Period"
-            selectedOption={formState.advanceBookingPeriod}
+              selectedOption={formState.advanceBookingPeriod}
             />
           </div>
         </div>

@@ -197,7 +197,7 @@ function Page3({
 
   const dispatch = useDispatch<AppDispatch>();
   const { formData, loading, error } = useSelector(
-    (state: RootState) => state["prop-rental"]
+    (state: RootState) => state["prop-rental"],
   );
 
   // Fetch rental data on mount
@@ -298,63 +298,57 @@ function Page3({
         }
       }
     }
-}, [formData]);
-
+  }, [formData]);
 
   const handleSave = () => {
     const userId = getVendorId() || ""; // Retrieve user ID
 
     // Create the object to be sent in the API request
     const rentalDetails = {
-        userId: userId,
-        managerName: formState.managerName || "", // Add managerName
-        workDescription: formState.workDescription || "", // Add workDescription
-        eventSize: formState.eventSize || "", // Add eventSize
-        itemCatalogue: formState.itemCatalogue ? true : false, // Boolean
-        customization: formState.customization ? true : false, // Boolean
-        maintenance: formState.maintenance || "", // Maintenance details
-        serviceProvided: formState.services || [], // Assuming services is an array
-        photos: formState.photos, // Array of photos
-        videos: formState.videos, // Array of videos
-        awardsAndRecognize: formState.awardsAndRecognize || "", // Awards and Recognitions
-        clientTestimonial: formState.clientTestimonial || "", // Client Testimonials
-        instaUrl: formState.instaUrl || "", // Instagram URL
-        websiteUrl: formState.websiteUrl || "", // Website URL
-        cancellationPolicy: formState.cancellationPolicy || [], // Assuming it's an array
-        termsAndConditions: formState.termsAndConditions || [], // Assuming it's an array
-        furnitureAndDecor: {
-            listUrl: formState.selectedFurniture || [], // Array for furniture
-            typeOfEvents: selectedFurnitureEvents, // Array for selected furniture events
-            furniture: selectedFurniture, // Array for selected furniture
-            decor: selectedDecor, // Array for selected decor
-        },
-        tentAndCanopy: {
-            listUrl: formState.selectedTentOptions || [], // Array for tent options
-            typeOfEvents: selectedTentEvents, // Array for selected tent events
-            items: selectedTentOptions, // Array for selected tent options
-        },
-        audioVisual: {
-            listUrl: formState.selectedAudioOptions || [], // Array for audio options
-            typeOfEvents: selectedAudioEvents, // Array for selected audio events
-            audioEquipment: selectedAudioOptions, // Array for selected audio equipment
-            visualEquipment: selectedvisualOptions, // Array for selected visual equipment
-            lightEquipment: selectedLightOptions, // Array for selected light equipment
-        },
+      userId: userId,
+      managerName: formState.managerName || "", // Add managerName
+      workDescription: formState.workDescription || "", // Add workDescription
+      eventSize: formState.eventSize || "", // Add eventSize
+      itemCatalogue: formState.itemCatalogue ? true : false, // Boolean
+      customization: formState.customization ? true : false, // Boolean
+      maintenance: formState.maintenance || "", // Maintenance details
+      serviceProvided: formState.services || [], // Assuming services is an array
+      photos: formState.photos, // Array of photos
+      videos: formState.videos, // Array of videos
+      awardsAndRecognize: formState.awardsAndRecognize || "", // Awards and Recognitions
+      clientTestimonial: formState.clientTestimonial || "", // Client Testimonials
+      instaUrl: formState.instaUrl || "", // Instagram URL
+      websiteUrl: formState.websiteUrl || "", // Website URL
+      cancellationPolicy: formState.cancellationPolicy || [], // Assuming it's an array
+      termsAndConditions: formState.termsAndConditions || [], // Assuming it's an array
+      furnitureAndDecor: {
+        listUrl: formState.selectedFurniture || [], // Array for furniture
+        typeOfEvents: selectedFurnitureEvents, // Array for selected furniture events
+        furniture: selectedFurniture, // Array for selected furniture
+        decor: selectedDecor, // Array for selected decor
+      },
+      tentAndCanopy: {
+        listUrl: formState.selectedTentOptions || [], // Array for tent options
+        typeOfEvents: selectedTentEvents, // Array for selected tent events
+        items: selectedTentOptions, // Array for selected tent options
+      },
+      audioVisual: {
+        listUrl: formState.selectedAudioOptions || [], // Array for audio options
+        typeOfEvents: selectedAudioEvents, // Array for selected audio events
+        audioEquipment: selectedAudioOptions, // Array for selected audio equipment
+        visualEquipment: selectedvisualOptions, // Array for selected visual equipment
+        lightEquipment: selectedLightOptions, // Array for selected light equipment
+      },
     };
 
     // Dispatch the action with the rental details
     dispatch(saveRentalDetails({ userId, data: rentalDetails }) as any);
-};
-
-
-
-
+  };
 
   const onContinue = () => {
     handleSave(); // Save the rental details before continuing
     setCurrentPage(currentPage + 1); // Move to the next page
   };
-
 
   function getVendorId(): string | null {
     const token = localStorage.getItem("token");
@@ -372,7 +366,6 @@ function Page3({
       return null;
     }
   }
-
 
   return (
     <div className="flex h-full w-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide">
@@ -392,10 +385,11 @@ function Page3({
                 setSelectedCategory("Furniture & Decor");
                 handleCategorySelection("Furniture & Decor");
               }}
-              className={`rounded-full px-4 py-2 text-[#2E3192] ${selectedCategory === "Furniture & Decor"
+              className={`rounded-full px-4 py-2 text-[#2E3192] ${
+                selectedCategory === "Furniture & Decor"
                   ? "bg-[#2E3192] text-white"
                   : ""
-                }`}
+              }`}
             >
               Furniture & Decor
             </button>
@@ -404,10 +398,11 @@ function Page3({
                 setSelectedCategory("Tent and Canopy");
                 handleCategorySelection("Tent and Canopy");
               }}
-              className={`rounded-full px-4 py-2 text-[#2E3192] ${selectedCategory === "Tent and Canopy"
+              className={`rounded-full px-4 py-2 text-[#2E3192] ${
+                selectedCategory === "Tent and Canopy"
                   ? "bg-[#2E3192] text-white"
                   : ""
-                }`}
+              }`}
             >
               Tent and Canopy
             </button>
@@ -416,10 +411,11 @@ function Page3({
                 setSelectedCategory("Audio-Visual");
                 handleCategorySelection("Audio-Visual");
               }}
-              className={`rounded-full px-4 py-2 text-[#2E3192] ${selectedCategory === "Audio-Visual"
+              className={`rounded-full px-4 py-2 text-[#2E3192] ${
+                selectedCategory === "Audio-Visual"
                   ? "bg-[#2E3192] text-white"
                   : ""
-                }`}
+              }`}
             >
               Audio-Visual
             </button>
@@ -691,8 +687,8 @@ function Page3({
                       ? formState.photos
                       : Array.isArray(formState.photos)
                         ? formState.photos
-                          .map((file: File) => file.name)
-                          .join(", ")
+                            .map((file: File) => file.name)
+                            .join(", ")
                         : (formState.photos as File)?.name
                   }
                 />
@@ -798,8 +794,8 @@ function Page3({
                       ? formState.videos
                       : Array.isArray(formState.videos)
                         ? formState.videos
-                          .map((file: File) => file.name)
-                          .join(", ")
+                            .map((file: File) => file.name)
+                            .join(", ")
                         : (formState.videos as File)?.name
                   }
                 />
@@ -901,8 +897,8 @@ function Page3({
                       ? formState.termsAndConditions
                       : Array.isArray(formState.termsAndConditions)
                         ? formState.termsAndConditions
-                          .map((file: File) => file.name)
-                          .join(", ")
+                            .map((file: File) => file.name)
+                            .join(", ")
                         : (formState.termsAndConditions as File)?.name
                   }
                   className="w-[95%] rounded-xl border-2 border-gray-300 p-3"
@@ -971,8 +967,8 @@ function Page3({
                       ? formState.cancellationPolicy
                       : Array.isArray(formState.cancellationPolicy)
                         ? formState.cancellationPolicy
-                          .map((file: File) => file.name)
-                          .join(", ")
+                            .map((file: File) => file.name)
+                            .join(", ")
                         : (formState.cancellationPolicy as File)?.name
                   }
                 ></textarea>

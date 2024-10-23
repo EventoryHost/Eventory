@@ -2,13 +2,11 @@
 
 import { OperatingHoursDropdown } from "../(components)/comboBoxNew";
 import Dropdown from "../../(components)/Dropdown";
-import { useEffect,useState } from "react";
-import { useSelector , useDispatch } from "react-redux";
-import { AppDispatch,RootState } from "../../../../redux/store";
-import { fetchVenueData , saveVenueDetails } from "@/redux/venue-providerSlice";
+import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { AppDispatch, RootState } from "../../../../redux/store";
+import { fetchVenueData, saveVenueDetails } from "@/redux/venue-providerSlice";
 import jwt from "jsonwebtoken";
-
-
 
 const _capacity = [
   "Less than 50 persons",
@@ -68,15 +66,12 @@ const Page1: React.FC<Page1Props> = ({
   updateFormState,
   handleContinue,
 }) => {
-  const {
-    name,
-    address,
-    venueDescription,
-    managerName,
-  } = formState;
+  const { name, address, venueDescription, managerName } = formState;
 
   const dispatch = useDispatch<AppDispatch>();
-  const { formData, loading, error } = useSelector((state: RootState) => state["venue-provider"]);
+  const { formData, loading, error } = useSelector(
+    (state: RootState) => state["venue-provider"],
+  );
 
   useEffect(() => {
     const userId = getVendorId();
@@ -159,7 +154,6 @@ const Page1: React.FC<Page1Props> = ({
     }
   }
 
-
   return (
     <div className="flex h-auto w-full flex-col items-start gap-7 overflow-y-scroll rounded-xl bg-white p-3 scrollbar-hide xs:justify-start md:p-6">
       <h1 className="text-3xl font-semibold">Basic Details</h1>
@@ -185,7 +179,6 @@ const Page1: React.FC<Page1Props> = ({
             options={_capacity}
             onSelect={(option: string) => {
               updateFormState({ capacity: option });
-              
             }}
             placeholder="Minimum guests required"
             selectedOption={formState.capacity}

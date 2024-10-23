@@ -84,7 +84,6 @@ const Page6 = ({
     }
   };
 
-
   const dispatch = useDispatch();
   const { formData } = useSelector((state: RootState) => state.catering);
   function getVendorId2(): string | null {
@@ -125,7 +124,6 @@ const Page6 = ({
       if (!tastingSessions) {
         updateFormState({ tastingSessions: formData.tastingSessions });
         console.log("Tasting Sessions after update ", formData.tastingSessions);
-        
       }
       if (!businessLicenses) {
         updateFormState({ businessLicenses: formData.businessLicenses });
@@ -163,13 +161,12 @@ const Page6 = ({
       businessLicenses,
       foodSafety,
       minOrderReq,
-      AdvBooking
+      AdvBooking,
     };
 
     dispatch(saveCateringDetails({ userId, data: dataToSave }) as any);
     handleContinue();
   };
-
 
   return (
     <div className="flex h-full w-full flex-col overflow-hidden scrollbar-hide lg:flex-row">
@@ -287,8 +284,8 @@ const Page6 = ({
                         ? formState.photos
                         : Array.isArray(formState.photos)
                           ? formState.photos
-                            .map((file: File) => file.name)
-                            .join(", ")
+                              .map((file: File) => file.name)
+                              .join(", ")
                           : (formState.photos as File)?.name
                     }
                     onChange={(e) =>
@@ -471,8 +468,8 @@ const Page6 = ({
                         ? formState.videos
                         : Array.isArray(formState.videos)
                           ? formState.videos
-                            .map((file: File) => file.name)
-                            .join(", ")
+                              .map((file: File) => file.name)
+                              .join(", ")
                           : (formState.videos as File)?.name
                     }
                   />

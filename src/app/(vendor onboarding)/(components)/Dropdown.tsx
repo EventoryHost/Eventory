@@ -17,7 +17,9 @@ const Dropdown: React.FC<DropdownProps> = ({
   placeholder = "Select an option",
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [currentSelectedOption, setCurrentSelectedOption] = useState<string | null>(selectedOption); // Use selectedOption for initial state
+  const [currentSelectedOption, setCurrentSelectedOption] = useState<
+    string | null
+  >(selectedOption); // Use selectedOption for initial state
 
   useEffect(() => {
     // Update local state when selectedOption changes from parent
@@ -59,7 +61,9 @@ const Dropdown: React.FC<DropdownProps> = ({
               <li
                 key={option}
                 className={`relative flex cursor-pointer select-none items-center gap-1 py-2 pl-3 pr-9 ${
-                  currentSelectedOption === option ? "text-black" : "text-gray-900"
+                  currentSelectedOption === option
+                    ? "text-black"
+                    : "text-gray-900"
                 }`}
                 onClick={() => handleSelect(option)}
               >

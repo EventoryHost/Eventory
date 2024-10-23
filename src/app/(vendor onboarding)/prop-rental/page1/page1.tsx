@@ -8,7 +8,6 @@ import { AppDispatch, RootState } from "../../../../redux/store";
 import { fetchRentalData, saveRentalDetails } from "@/redux/prop-rentalSlice";
 import jwt from "jsonwebtoken";
 
-
 const workerOptions = [
   { value: "0-2 Members", label: "0-2 Members" },
   { value: "2-4 Members", label: "2-4 Members" },
@@ -69,7 +68,7 @@ const Page1: React.FC<page1Props> = ({
 }) => {
   const dispatch = useDispatch<AppDispatch>();
   const { formData, loading, error } = useSelector(
-    (state: RootState) => state["prop-rental"]
+    (state: RootState) => state["prop-rental"],
   );
 
   // Fetch rental data on mount
@@ -83,7 +82,6 @@ const Page1: React.FC<page1Props> = ({
   // Update form state with fetched data
   useEffect(() => {
     if (formData) {
-  
       if (formData.managerName) {
         handleChange("managerName", formData.managerName);
       }
@@ -95,15 +93,12 @@ const Page1: React.FC<page1Props> = ({
       }
     }
   }, [formData]);
-  
-
-    
 
   const handleSave = () => {
     const userId = getVendorId() || "";
     const venueDetails = {
       userId: userId,
-      managerName: formState.managerName || "", 
+      managerName: formState.managerName || "",
       eventSize: formState.eventSize || "",
       workDescription: formState.workDescription || "",
     };
@@ -111,12 +106,10 @@ const Page1: React.FC<page1Props> = ({
     dispatch(saveRentalDetails({ userId, data: venueDetails }) as any);
   };
 
-
   const onContinue = () => {
     handleSave(); // Save the rental details before continuing
     setCurrentPage(currentPage + 1); // Move to the next page
   };
-
 
   function getVendorId(): string | null {
     const token = localStorage.getItem("token");

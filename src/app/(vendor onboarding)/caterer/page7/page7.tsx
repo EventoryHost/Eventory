@@ -65,7 +65,7 @@ const Page6 = ({
       return null;
     }
   }
-  const userId =  getVendorId2() || "";
+  const userId = getVendorId2() || "";
 
   // Fetch data when Page 7 mounts
   useEffect(() => {
@@ -103,7 +103,6 @@ const Page6 = ({
     dispatch(saveCateringDetails({ userId, data: dataToSave }) as any);
     handleContinue();
   };
-
 
   const _advbooking = ["Less than a week", "1-2 weeks", "More than 2 weeks"];
   return (

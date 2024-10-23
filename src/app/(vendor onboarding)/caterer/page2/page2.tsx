@@ -8,7 +8,11 @@ import { ArrowLeft } from "lucide-react";
 import jwt from "jsonwebtoken";
 
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCateringData, saveCateringDetails, updateFormData } from "../../../../redux/cateringSlice";
+import {
+  fetchCateringData,
+  saveCateringDetails,
+  updateFormData,
+} from "../../../../redux/cateringSlice";
 import { RootState } from "@/redux/store";
 import { getvendor } from "@/services/auth";
 
@@ -95,7 +99,9 @@ const Page2 = ({
   const { customizableMenu } = formState;
   const [addManually, setAddManually] = useState(false);
   const dispatch = useDispatch();
-  const { formData, currentPage2 } = useSelector((state: RootState) => state.catering);
+  const { formData, currentPage2 } = useSelector(
+    (state: RootState) => state.catering,
+  );
   function getVendorId2(): string | null {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -119,7 +125,6 @@ const Page2 = ({
   }
   const userId = getVendorId2() || "";
 
-
   useEffect(() => {
     if (formData) {
       if (!formState.preSetMenu) {
@@ -130,7 +135,6 @@ const Page2 = ({
       }
       if (!veg.length) {
         setVeg(formData.veg || []);
-        
       }
       if (!selectedAppetizers.length) {
         setSelectedAppetizers(formData.selectedAppetizers || []);
@@ -147,16 +151,12 @@ const Page2 = ({
     }
   }, [formData]);
 
-
-
   useEffect(() => {
     // Fetch existing catering data when the component mounts
     if (userId) {
       dispatch(fetchCateringData(userId) as any);
     }
   }, [dispatch]);
-
-
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -174,14 +174,11 @@ const Page2 = ({
       selectedMainCourses,
       selectedDietaryOptions,
       veg,
-    }
+    };
 
     dispatch(saveCateringDetails({ userId, data: dataToSubmit }) as any);
     handleContinue();
   };
-
-
-
 
   return (
     <div className="flex h-full w-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide">
@@ -200,9 +197,10 @@ const Page2 = ({
             {_veg.map((option) => (
               <li
                 key={option}
-                className={`relative flex cursor-pointer select-none items-center gap-1 py-2 pl-3 pr-9 ${veg.includes(option) ? "text-black" : "text-gray-900"
-                  }`}
-                onClick={() => setVeg([option])} 
+                className={`relative flex cursor-pointer select-none items-center gap-1 py-2 pl-3 pr-9 ${
+                  veg.includes(option) ? "text-black" : "text-gray-900"
+                }`}
+                onClick={() => setVeg([option])}
               >
                 {veg.includes(option) ? (
                   <svg

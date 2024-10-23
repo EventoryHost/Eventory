@@ -7,8 +7,10 @@ import { ArrowLeft } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/redux/store";
 import jwt from "jsonwebtoken";
-import { fetchDecoratorData, saveDecoratorDetails } from "@/redux/decoratorSlice";
-
+import {
+  fetchDecoratorData,
+  saveDecoratorDetails,
+} from "@/redux/decoratorSlice";
 
 const _themesElement = [
   "Backdrop",
@@ -42,7 +44,9 @@ const Page3: React.FC<Page3Props> = ({
   handleContinue,
 }) => {
   const dispatch = useDispatch<AppDispatch>();
-  const { formData, loading, error} = useSelector((state: RootState) => state.decorator);
+  const { formData, loading, error } = useSelector(
+    (state: RootState) => state.decorator,
+  );
 
   function getVendorId2(): string | null {
     if (typeof window === "undefined") {
@@ -82,13 +86,13 @@ const Page3: React.FC<Page3Props> = ({
 
   useEffect(() => {
     console.log("Fetched formData:", formData);
-  
+
     // Check if formData is defined and log each property
     if (formData) {
       Object.entries(formData).forEach(([key, value]) => {
         console.log(`Key: ${key}, Value: ${value}`);
       });
-  
+
       if (formData.themesElements) setThemesElements(formData.themesElements);
       updateFormState({
         themephotos: formData.themephotos,
@@ -98,7 +102,6 @@ const Page3: React.FC<Page3Props> = ({
       console.log("formData is undefined or null");
     }
   }, [formData]);
-  
 
   const onContinue = () => {
     const userId = getVendorId2() || "";
@@ -107,12 +110,10 @@ const Page3: React.FC<Page3Props> = ({
       themephotos: formState.themephotos,
       themevideos: formState.themevideos,
     };
-    
-    
+
     dispatch(saveDecoratorDetails({ userId, data: decoratorDetails }) as any);
     handleContinue();
   };
-
 
   return (
     <div className="flex h-full w-full flex-col items-start justify-start gap-5 overflow-y-scroll scrollbar-hide">
