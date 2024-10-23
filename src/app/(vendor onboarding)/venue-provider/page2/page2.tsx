@@ -263,7 +263,7 @@ const Page2: React.FC<Page2Props> = ({
                     type="radio"
                     name="catering"
                     id="catering-yes"
-                    checked={catererServices}
+                    checked={catererServices || false}
                     onChange={() => updateFormState({ catererServices: true })}
                     className="h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
                   />
@@ -303,7 +303,7 @@ const Page2: React.FC<Page2Props> = ({
                     type="radio"
                     name="decorating"
                     id="decorating-yes"
-                    checked={decorServices}
+                    checked={decorServices || false}
                     onChange={() => updateFormState({ decorServices: true })}
                     className="h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
                   />

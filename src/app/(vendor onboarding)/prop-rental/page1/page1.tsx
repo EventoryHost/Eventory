@@ -27,7 +27,6 @@ interface FormState {
   eventSize: string;
   handleChange: (key: string, value: any) => void;
   itemCatalogue: boolean | File;
-  customization: boolean;
   maintenance: string;
   services: string;
   furnitureAndDecorListUrl: string | File;
