@@ -9,7 +9,7 @@ interface BusinessDetails {
   teamsize: string;
   annualrevenue: string;
   businessAddress: string;
-  cities: string[]; 
+  cities: string[];
   pinCode: number;
   years: string;
 }
@@ -30,7 +30,7 @@ interface SidebarContextProps {
 
 // Create the context with initial undefined value
 const SidebarContext = createContext<SidebarContextProps | undefined>(
-  undefined
+  undefined,
 );
 
 export const SidebarProvider = ({ children }: { children: ReactNode }) => {

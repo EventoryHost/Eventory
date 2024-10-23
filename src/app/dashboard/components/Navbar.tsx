@@ -138,7 +138,7 @@ const Navbar: React.FC<NavbarProps> = () => {
             {/* Notification dropdown */}
             <div
               onClick={() => toggleDropdown("notification")}
-              className="flex relative hover:cursor-pointer"
+              className="relative flex hover:cursor-pointer"
               ref={notifDropdownRef}
             >
               <svg
@@ -156,7 +156,7 @@ const Navbar: React.FC<NavbarProps> = () => {
                   strokeLinejoin="round"
                 />
               </svg>
-              <span className="bg-red-600 text-white text-xs rounded-full px-2 py-0.5">
+              <span className="rounded-full bg-red-600 px-2 py-0.5 text-xs text-white">
                 {notifications.filter((n) => !n.read).length}
               </span>
               {isNotifOpen && (
@@ -170,14 +170,14 @@ const Navbar: React.FC<NavbarProps> = () => {
             {/* Profile dropdown */}
             <div
               onClick={() => toggleDropdown("profile")}
-              className="flex relative hover:cursor-pointer"
+              className="relative flex hover:cursor-pointer"
               ref={profileDropdownRef}
             >
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-300">
                 {/* User avatar can go here */}
               </div>
               {isProfileOpen && (
-                <ProfileDropdownMenu setIsOpen={setIsProfileOpen}/>
+                <ProfileDropdownMenu setIsOpen={setIsProfileOpen} />
               )}
             </div>
           </div>

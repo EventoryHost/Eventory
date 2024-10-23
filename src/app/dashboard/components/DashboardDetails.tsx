@@ -47,7 +47,7 @@ interface VenueDetails {
   socialLinks: {
     instagramURL: string;
     websiteURL: string;
-  }
+  };
 }
 
 interface IntroProps {
@@ -63,7 +63,6 @@ interface S3UrlState {
   url: string;
   result: FileInfo | null;
 }
-
 
 const DashboardDetails: React.FC<IntroProps> = ({ user, venueDetails }) => {
   const [selected, setSelected] = useState<number>(0);
@@ -96,34 +95,40 @@ const DashboardDetails: React.FC<IntroProps> = ({ user, venueDetails }) => {
         "videos",
       ].includes(key),
   );
-  const policies = Object.entries(venueDetails)
-    .filter(([key]) => ["termsConditions", "insurancePolicy", "cancellationPolicy"].includes(key))
-
+  const policies = Object.entries(venueDetails).filter(([key]) =>
+    ["termsConditions", "insurancePolicy", "cancellationPolicy"].includes(key),
+  );
 
   const photos = Object.entries(venueDetails)
     .filter(([key]) => ["photos"].includes(key)) // Filter for "photos"
-    .flatMap(([, value]) =>
-      Array.isArray(value) && value.every((item: string) => item.startsWith('http')) // Ensure it's an array of URLs
-        ? value
-        : [] // If not a URL array, return an empty array
+    .flatMap(
+      ([, value]) =>
+        Array.isArray(value) &&
+        value.every((item: string) => item.startsWith("http")) // Ensure it's an array of URLs
+          ? value
+          : [], // If not a URL array, return an empty array
     );
 
   const videos = Object.entries(venueDetails)
     .filter(([key]) => ["videos"].includes(key))
     .flatMap(([, value]) =>
-      Array.isArray(value) && value.every((item: string) => item.startsWith('http'))
+      Array.isArray(value) &&
+      value.every((item: string) => item.startsWith("http"))
         ? value
-        : []
+        : [],
     );
 
   const fetchFileInfo = async (url: string): Promise<FileInfo> => {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/files/get-file-info`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/files/get-file-info`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ url }),
       },
-      body: JSON.stringify({ url }),
-    });
+    );
 
     if (!response.ok) {
       throw new Error(`Error fetching data for ${url}: ${response.statusText}`);
@@ -132,7 +137,10 @@ const DashboardDetails: React.FC<IntroProps> = ({ user, venueDetails }) => {
     return await response.json();
   };
 
-  const fetchAllPoliciesInfo = async (urls: string[], setS3Urls: React.Dispatch<React.SetStateAction<S3UrlState[]>>) => {
+  const fetchAllPoliciesInfo = async (
+    urls: string[],
+    setS3Urls: React.Dispatch<React.SetStateAction<S3UrlState[]>>,
+  ) => {
     try {
       const results = await Promise.all(urls.map(fetchFileInfo));
 
@@ -143,15 +151,17 @@ const DashboardDetails: React.FC<IntroProps> = ({ user, venueDetails }) => {
 
       setS3Urls(updatedUrlsState);
     } catch (error) {
-      console.error('Error fetching policy info:', error);
+      console.error("Error fetching policy info:", error);
     }
   };
 
   useEffect(() => {
     if (policies.length > 0) {
-      fetchAllPoliciesInfo(policies.flatMap(([, value]) => value), setS3UrlsState);
+      fetchAllPoliciesInfo(
+        policies.flatMap(([, value]) => value),
+        setS3UrlsState,
+      );
     }
-
   }, []);
 
   return (
@@ -161,10 +171,11 @@ const DashboardDetails: React.FC<IntroProps> = ({ user, venueDetails }) => {
           {tabs.map((venue, index) => (
             <li
               key={index}
-              className={`cursor-pointer pb-3 text-center ${selected === index
-                ? "border-b-4 border-[#2E3192] text-[#2E3192]"
-                : "text-gray-500"
-                }`}
+              className={`cursor-pointer pb-3 text-center ${
+                selected === index
+                  ? "border-b-4 border-[#2E3192] text-[#2E3192]"
+                  : "text-gray-500"
+              }`}
               onClick={() => setSelected(index)}
             >
               {venue}
@@ -298,8 +309,11 @@ const DashboardDetails: React.FC<IntroProps> = ({ user, venueDetails }) => {
                 // Extract file name from the URL
 
                 return (
-                  <div key={index} className="flex flex-col gap-4 rounded-[20px] px-5">
-                    <div className="flex flex-col gap-2 ">
+                  <div
+                    key={index}
+                    className="flex flex-col gap-4 rounded-[20px] px-5"
+                  >
+                    <div className="flex flex-col gap-2">
                       <div className="text-sm font-normal">
                         {policies[index][0]}
                       </div>
@@ -313,12 +327,13 @@ const DashboardDetails: React.FC<IntroProps> = ({ user, venueDetails }) => {
                                 alt="file"
                               />
                               <div className="flex flex-col gap-1">
-                                <span className="font-normal text-sm">
+                                <span className="text-sm font-normal">
                                   {result.fileName || "Unknown"}
                                 </span>
-                                <span className="font-normal text-sm">
-                                  {result.fileSize ? `${(result.fileSize / 1000000).toFixed(1)} MB` : "Unknown"}
-
+                                <span className="text-sm font-normal">
+                                  {result.fileSize
+                                    ? `${(result.fileSize / 1000000).toFixed(1)} MB`
+                                    : "Unknown"}
                                 </span>
                               </div>
                             </div>
@@ -358,22 +373,22 @@ const DashboardDetails: React.FC<IntroProps> = ({ user, venueDetails }) => {
                 );
               })
             ) : (
-              <span className="text-sm text-gray-500">
-                No files available
-              </span>
+              <span className="text-sm text-gray-500">No files available</span>
             )}
-
           </div>
         )}
         {selected === 3 && (
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-            <div className="flex flex-col gap-4 rounded-[20px]  ">
+            <div className="flex flex-col gap-4 rounded-[20px]">
               <div className="text-base font-normal">Photos</div>
 
               {Array.isArray(photos) && photos.length > 0 ? (
                 <div className="flex flex-wrap gap-2">
                   {photos.map((url, index) => (
-                    <div key={index} className="aspect-square w-32 overflow-hidden rounded-xl border-2">
+                    <div
+                      key={index}
+                      className="aspect-square w-32 overflow-hidden rounded-xl border-2"
+                    >
                       <Image
                         width={128}
                         height={128}
@@ -385,26 +400,35 @@ const DashboardDetails: React.FC<IntroProps> = ({ user, venueDetails }) => {
                   ))}
                 </div>
               ) : venueDetails.photos && venueDetails.photos.length > 0 ? (
-                <span className="text-sm text-gray-500">{venueDetails.photos}</span>
+                <span className="text-sm text-gray-500">
+                  {venueDetails.photos}
+                </span>
               ) : (
                 <span className="text-sm text-gray-500">No file selected</span>
               )}
             </div>
 
-            <div className="flex flex-col gap-4 rounded-[20px]  text-gray-700">
+            <div className="flex flex-col gap-4 rounded-[20px] text-gray-700">
               <div className="text-base font-normal">Videos</div>
 
               {Array.isArray(videos) && videos.length > 0 ? (
                 <div className="flex flex-wrap gap-2">
                   {videos.map((url, index) => (
-                    <div key={index} className="aspect-square w-32 overflow-hidden rounded-xl border-2 hover:cursor-pointer">
+                    <div
+                      key={index}
+                      className="aspect-square w-32 overflow-hidden rounded-xl border-2 hover:cursor-pointer"
+                    >
                       <video
                         width="128"
                         height="128"
                         muted // Mute the video so it plays without sound
                         className="h-full w-full object-cover"
-                        onMouseEnter={e => (e.currentTarget as HTMLVideoElement).play()} // Type cast to HTMLVideoElement
-                        onMouseLeave={e => (e.currentTarget as HTMLVideoElement).pause()}
+                        onMouseEnter={(e) =>
+                          (e.currentTarget as HTMLVideoElement).play()
+                        } // Type cast to HTMLVideoElement
+                        onMouseLeave={(e) =>
+                          (e.currentTarget as HTMLVideoElement).pause()
+                        }
                       >
                         <source src={url} type="video/mp4" />
                         Your browser does not support the video tag.
@@ -413,7 +437,9 @@ const DashboardDetails: React.FC<IntroProps> = ({ user, venueDetails }) => {
                   ))}
                 </div>
               ) : venueDetails.videos && venueDetails.videos.length > 0 ? (
-                <span className="text-sm text-gray-500">{venueDetails.videos}</span>
+                <span className="text-sm text-gray-500">
+                  {venueDetails.videos}
+                </span>
               ) : (
                 <span className="text-sm text-gray-500">No file selected</span>
               )}
@@ -421,10 +447,10 @@ const DashboardDetails: React.FC<IntroProps> = ({ user, venueDetails }) => {
 
             <div className="flex flex-col gap-4 rounded-[20px] border-2 p-5">
               <div className="flex flex-col gap-2 text-gray-700">
-                <div className="text-base font-normal">Awards / Recognization</div>
-                <div className="text-sm font-bold">
-                  {venueDetails.awards}
+                <div className="text-base font-normal">
+                  Awards / Recognization
                 </div>
+                <div className="text-sm font-bold">{venueDetails.awards}</div>
               </div>
             </div>
             <div className="flex flex-col gap-4 rounded-[20px] border-2 p-5">
@@ -453,7 +479,9 @@ const DashboardDetails: React.FC<IntroProps> = ({ user, venueDetails }) => {
             </div>
             <div className="flex flex-col gap-4 rounded-[20px] border-2 p-5">
               <div className="flex flex-col gap-2 text-gray-700">
-                <div className="text-base font-normal">Advance Booking Period</div>
+                <div className="text-base font-normal">
+                  Advance Booking Period
+                </div>
                 <div className="text-sm font-bold">
                   {venueDetails.advanceBookingPeriod}
                 </div>
