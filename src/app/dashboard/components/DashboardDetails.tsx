@@ -156,10 +156,10 @@ const DashboardDetails: React.FC<IntroProps> = ({ user, venueDetails }) => {
   };
 
   useEffect(() => {
-      fetchAllPoliciesInfo(
-        policies.flatMap(([, value]) => value),
-        setS3UrlsState
-      );
+    fetchAllPoliciesInfo(
+      policies.flatMap(([, value]) => value),
+      setS3UrlsState,
+    );
   }, []);
 
   return (
