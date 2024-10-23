@@ -41,7 +41,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
   return (
     <aside
       ref={sidebarRef}
-      className={`sidebar fixed left-0 z-10 m-auto h-[100vh] py-[27vw] md:py-[15vw] lg:py-[4.5vw] w-56 translate-x-0 transform bg-white shadow-lg transition-transform`} // Adjust height and start below navbar
+      className={`sidebar fixed left-0 z-10 m-auto h-[100vh] w-56 translate-x-0 transform bg-white py-[27vw] shadow-lg transition-transform md:py-[15vw] lg:py-[4.5vw]`} // Adjust height and start below navbar
     >
       <ul className="m-4 mt-6 flex flex-col gap-4">
         <li className="mb-2 text-sm">

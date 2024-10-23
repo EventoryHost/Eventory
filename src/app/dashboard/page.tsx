@@ -19,7 +19,7 @@ interface BusinessDetails {
   teamsize: string;
   annualrevenue: string;
   businessAddress: string;
-  cities: string[]; 
+  cities: string[];
   pinCode: number;
   years: string;
 }
@@ -27,14 +27,14 @@ interface BusinessDetails {
 interface User {
   name: string;
   mobile: string;
-  businessDetails: BusinessDetails; 
+  businessDetails: BusinessDetails;
 }
 
 const Page: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const { toast } = useToast();
-  const { user, setUser} = useContextbar();
-    const [email, setemail] = useState<String | null>(null);
+  const { user, setUser } = useContextbar();
+  const [email, setemail] = useState<String | null>(null);
 
   const fetchVendor = async (userId: string, email: string, mobile: string) => {
     const res = await getvendor(userId, email, mobile);
@@ -77,8 +77,11 @@ const Page: React.FC = () => {
     cancellationPolicy: [
       "https://eventory-bucket.s3.ap-south-1.amazonaws.com/Caterers/harshitaTest3/documents/cancellation_policy-Invoice_1799691381.pdf",
     ],
-    insurancePolicy: ["https://eventory-bucket.s3.ap-south-1.amazonaws.com/Caterers/harshitaTest3/documents/cancellation_policy-Invoice_1799691381.pdf"],
-    photos: ["https://eventory-bucket.s3.ap-south-1.amazonaws.com/Caterers/harshitaTest3/images/photos-aws-(1).png",
+    insurancePolicy: [
+      "https://eventory-bucket.s3.ap-south-1.amazonaws.com/Caterers/harshitaTest3/documents/cancellation_policy-Invoice_1799691381.pdf",
+    ],
+    photos: [
+      "https://eventory-bucket.s3.ap-south-1.amazonaws.com/Caterers/harshitaTest3/images/photos-aws-(1).png",
       "https://eventory-bucket.s3.ap-south-1.amazonaws.com/Caterers/harshitaTest3/images/photos-aws-(1).png",
       "https://eventory-bucket.s3.ap-south-1.amazonaws.com/Caterers/harshitaTest3/images/photos-aws-(1).png",
       "https://eventory-bucket.s3.ap-south-1.amazonaws.com/Caterers/harshitaTest3/images/photos-aws-(1).png",
@@ -86,17 +89,19 @@ const Page: React.FC = () => {
       "https://eventory-bucket.s3.ap-south-1.amazonaws.com/Caterers/harshitaTest3/images/photos-aws-(1).png",
       "https://eventory-bucket.s3.ap-south-1.amazonaws.com/Caterers/harshitaTest3/images/photos-aws-(1).png",
     ],
-    videos: ["https://eventory-bucket.s3.ap-south-1.amazonaws.com/Caterers/harshitaTest3/videos/videos-event.mp4"],
+    videos: [
+      "https://eventory-bucket.s3.ap-south-1.amazonaws.com/Caterers/harshitaTest3/videos/videos-event.mp4",
+    ],
     __v: 0,
     catererServices: true,
     decorServices: true,
     advanceBookingPeriod: "Less than a week",
     awards: "Awards url",
     clientTestimonials: "client url",
-    socialLinks:{
-      instagramURL:"insta url",
-      websiteURL:"website url"
-    }
+    socialLinks: {
+      instagramURL: "insta url",
+      websiteURL: "website url",
+    },
   };
 
   useEffect(() => {
@@ -199,18 +204,13 @@ const Page: React.FC = () => {
 
   return (
     <div className="max-h-[89vh] min-h-[89vh] overflow-hidden overflow-y-auto bg-slate-100 p-6 scrollbar-hide">
-      <div
-        className={`ml-56 flex flex-col gap-6`} 
-      >
+      <div className={`ml-56 flex flex-col gap-6`}>
         {loading && <Loadingeanimation width="w-64" />}
 
         {user && (
           <>
             <Intro user={user} email={email} />
-            <DashboardDetails
-              user={user}
-              venueDetails={venueDetails}
-            />
+            <DashboardDetails user={user} venueDetails={venueDetails} />
           </>
         )}
       </div>

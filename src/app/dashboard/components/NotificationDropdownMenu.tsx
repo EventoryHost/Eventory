@@ -19,11 +19,9 @@ const NotificationDropdownMenu: React.FC<NotificationDropdownMenuProps> = ({
   const [filter, setFilter] = useState<"read" | "unread">("read");
 
   // Filter notifications based on the selected filter
-  const filteredNotifications =
-
-    notifications.filter((notification) =>
-      filter === "read" ? notification.read : !notification.read
-    );
+  const filteredNotifications = notifications.filter((notification) =>
+    filter === "read" ? notification.read : !notification.read,
+  );
 
   const handleDropdownClick = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation(); // Prevent click from propagating
@@ -31,33 +29,36 @@ const NotificationDropdownMenu: React.FC<NotificationDropdownMenuProps> = ({
 
   return (
     <div
-      className="absolute right-0 mt-2 w-[400px] bg-white border-2 rounded-lg shadow-lg top-[20px] z-40"
+      className="absolute right-0 top-[20px] z-40 mt-2 w-[400px] rounded-lg border-2 bg-white shadow-lg"
       onClick={handleDropdownClick} // Add onClick handler here
     >
       <div className="p-4">
-        <h4 className="font-medium text-xl my-4">Notifications</h4>
+        <h4 className="my-4 text-xl font-medium">Notifications</h4>
 
         {/* Toggle Switch */}
-        <div className="flex items-center mb-4">
+        <div className="mb-4 flex items-center">
           <div
-            className="relative inline-flex items-center cursor-pointer w-full"
+            className="relative inline-flex w-full cursor-pointer items-center"
             onClick={() => setFilter(filter === "read" ? "unread" : "read")}
           >
-            <div className="w-full h-12 bg-gray-100 rounded-lg transition-colors duration-300 ease-in-out relative overflow-hidden">
+            <div className="relative h-12 w-full overflow-hidden rounded-lg bg-gray-100 transition-colors duration-300 ease-in-out">
               {/* Container for both labels */}
-              <div className="absolute w-full h-full flex items-center justify-around ">
-                <span className={`text-sm font-medium transition-colors duration-300 ${filter === 'read' ? 'text-gray-700' : 'text-black'}`}>
+              <div className="absolute flex h-full w-full items-center justify-around">
+                <span
+                  className={`text-sm font-medium transition-colors duration-300 ${filter === "read" ? "text-gray-700" : "text-black"}`}
+                >
                   Read
                 </span>
-                <span className={`text-sm font-medium transition-colors duration-300 ${filter === 'unread' ? 'text-gray-700' : 'text-black'}`}>
+                <span
+                  className={`text-sm font-medium transition-colors duration-300 ${filter === "unread" ? "text-gray-700" : "text-black"}`}
+                >
                   Unread
                 </span>
               </div>
 
               {/* Sliding white background */}
               <div
-                className={`absolute w-1/2 h-full bg-white rounded-lg  transition-transform duration-300 ease-in-out border-2
-                ${filter === "unread" ? "translate-x-full" : "translate-x-0"}`}
+                className={`absolute h-full w-1/2 rounded-lg border-2 bg-white transition-transform duration-300 ease-in-out ${filter === "unread" ? "translate-x-full" : "translate-x-0"}`}
               />
             </div>
           </div>
@@ -67,43 +68,42 @@ const NotificationDropdownMenu: React.FC<NotificationDropdownMenuProps> = ({
           <p className="text-gray-500">No notifications</p>
         ) : (
           <div className="flex flex-col gap-6">
-         { filteredNotifications.map((notification, index) => (
-            <div
-              key={index}
-              className={`flex items-center gap-5  
-                `}
-            >
-              <div className="w-10 h-10 p-2 rounded-full border-2 flex items-center justify-center">
-                <img src="/wallet.svg" alt="wallet" />
-              </div>
-              <div>
-                <div className="flex justify-between items-center">
-                  <h5 className="font-medium text-base">{notification.title}</h5>
-                  <span className="text-xs text-gray-400">{notification.timeago}</span>
-
+            {filteredNotifications.map((notification, index) => (
+              <div key={index} className={`flex items-center gap-5`}>
+                <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 p-2">
+                  <img src="/wallet.svg" alt="wallet" />
                 </div>
-                <p className="text-sm text-gray-600">
-                  {notification.description.split(" ").map((word, idx) => {
-                    if (word.toLowerCase() === "completed") {
-                      return (
-                        <span key={idx} className="text-green-600">
-                          {word}{" "}
-                        </span>
-                      );
-                    } else if (word.toLowerCase() === "failed") {
-                      return (
-                        <span key={idx} className="text-red-600">
-                          {word}{" "}
-                        </span>
-                      );
-                    } else {
-                      return word + " ";
-                    }
-                  })}
-                </p>
+                <div>
+                  <div className="flex items-center justify-between">
+                    <h5 className="text-base font-medium">
+                      {notification.title}
+                    </h5>
+                    <span className="text-xs text-gray-400">
+                      {notification.timeago}
+                    </span>
+                  </div>
+                  <p className="text-sm text-gray-600">
+                    {notification.description.split(" ").map((word, idx) => {
+                      if (word.toLowerCase() === "completed") {
+                        return (
+                          <span key={idx} className="text-green-600">
+                            {word}{" "}
+                          </span>
+                        );
+                      } else if (word.toLowerCase() === "failed") {
+                        return (
+                          <span key={idx} className="text-red-600">
+                            {word}{" "}
+                          </span>
+                        );
+                      } else {
+                        return word + " ";
+                      }
+                    })}
+                  </p>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
           </div>
         )}
       </div>

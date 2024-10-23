@@ -7,14 +7,14 @@ interface BusinessDetails {
   teamsize: string;
   annualrevenue: string;
   businessAddress: string;
-  cities: string[]; 
+  cities: string[];
   pinCode: number;
   years: string;
 }
 interface User {
   name: string;
   mobile: string;
-  businessDetails: BusinessDetails; 
+  businessDetails: BusinessDetails;
 }
 
 interface IntroProps {
@@ -85,7 +85,7 @@ const Intro: React.FC<IntroProps> = ({ user, email }) => {
                   className={`rounded-md p-2 text-xs ${
                     index % 2 === 0
                       ? "bg-[#E8F1FD] text-[#448DF2]"
-                      : "bg-[#FEF4E6] text-[#F2A448]" 
+                      : "bg-[#FEF4E6] text-[#F2A448]"
                   }`}
                   key={index}
                 >
