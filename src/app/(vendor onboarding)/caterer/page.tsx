@@ -15,6 +15,8 @@ import { addCaterer } from "@/services/vendors/caterer";
 import Agreement from "../(Agreement)/Agreement";
 import Plans from "../(Plans)/Plans";
 import Registration_Completed from "../(Registration-Completed)/thankupage";
+import { useToast } from "@/components/hooks/use-toast";
+import { useRouter } from "next/navigation";
 
 interface Package {
   type: string;
@@ -47,6 +49,8 @@ export interface FormState {
 }
 
 const Caterer = () => {
+  const { toast } = useToast();
+  const router = useRouter();
   // State for current page
   const [currentPage, setCurrentPage] = useState<number>(1);
   // state are 7 for the form then 8 for the t&c then payment
@@ -308,12 +312,22 @@ const Caterer = () => {
     formData.append("advance_booking_period", formState.AdvBooking);
 
     try {
-      formData.forEach((value, key) => {
-        console.log(`${key}: ${value}`);
+      toast({
+        variant: "default",
+        title: "Creating Service...",
       });
       await addCaterer(formData);
-      console.log("Caterer added successfully");
+      toast({
+        variant: "default",
+        title: "Service Created Successfully",
+      });
     } catch (error) {
+      toast({
+        variant: "destructive",
+        title: error ? "Error" : "Something went wrong.",
+        description: "Error While Creating Service. Pls Try Again",
+      });
+      router.push("/Payment-Failed");
       console.error("Error adding caterer:", error);
     }
   }

@@ -9,6 +9,8 @@ import { addGift } from "@/services/vendors/gift";
 import Agreement from "../(Agreement)/Agreement";
 import Plans from "../(Plans)/Plans";
 import Registration_Completed from "../(Registration-Completed)/thankupage";
+import { useToast } from "@/components/hooks/use-toast";
+import { useRouter } from "next/navigation";
 
 const Pages = [Page1, Page2, Preview]; // List of pages
 
@@ -31,7 +33,8 @@ type FormState = {
 const RootPage = () => {
   const [currentPage, setCurrentPage] = useState<number>(0);
   const [listOfGifts, setlistOfGifts] = useState<string[]>([]);
-
+  const { toast } = useToast();
+  const router = useRouter();
   const [formState, setFormState] = useState<FormState>({
     vendorName: "",
     contactNumber: "",
@@ -143,9 +146,23 @@ const RootPage = () => {
     });
 
     try {
+      toast({
+        variant: "default",
+        title: "Creating Service...",
+      });
       await addGift(formData);
-      console.log("addGift Form submitted successfully");
+      toast({
+        variant: "default",
+        title: "Service Created Successfully",
+      });
+      // console.log("addGift Form submitted successfully");
     } catch (error) {
+      toast({
+        variant: "destructive",
+        title: error ? "Error" : "Something went wrong.",
+        description: "Error While Creating Service. Pls Try Again",
+      });
+      router.push("/Payment-Failed");
       console.error("Error submitting form:", error);
     }
   };

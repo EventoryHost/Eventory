@@ -67,6 +67,9 @@ const Plans = ({ setCurrentPage, handleformSubmit }: Pagechangetype) => {
     setError(false);
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+  const handlepaymentfailed = () => {
+    router.push("/Payment-Failed");
+  };
   // Utility functions to convert string values to numbers
   const convertTeamSizeToNumber = (teamSize: string): number => {
     switch (teamSize) {
@@ -135,6 +138,7 @@ const Plans = ({ setCurrentPage, handleformSubmit }: Pagechangetype) => {
         formData.fullName,
         setCurrentPage,
         handleformSubmit,
+        handlepaymentfailed,
       );
     } else {
       // Optionally, handle invalid form (e.g., show an error message)

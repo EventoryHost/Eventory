@@ -1,5 +1,6 @@
 "use client";
-
+import { useToast } from "@/components/hooks/use-toast";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import jwt from "jsonwebtoken"; // Import the 'jsonwebtoken' module
 import Page1 from "./page1/page1";
@@ -57,6 +58,8 @@ export interface FormState {
 const Decorators: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   // global variables
+  const { toast } = useToast();
+  const router = useRouter();
   const [formState, setFormState] = useState<FormState>({
     //page1
     businessName: "",
@@ -157,7 +160,7 @@ const Decorators: React.FC = () => {
     //page 1
     formData.append("name", formState.businessName);
     formData.append("duration", formState.duration);
-    formData.append("eventsize", formState.eventsize);
+    formData.append("eventSize", formState.eventsize);
 
     typesOfEvents.forEach((type) => {
       formData.append("typesOfEvents", type);
@@ -270,16 +273,27 @@ const Decorators: React.FC = () => {
     } else {
       formData.append("termsAndConditions", formState.termsAndConditions);
     }
-
+    formData.append("advanceBookingPeriod", formState.advbookingperiod);
     // Append form data for debugging
-    formData.forEach((value, key) => {
-      console.log(`${key}: ${value}`);
-    });
 
     try {
+      toast({
+        variant: "default",
+        title: "Creating Service...",
+      });
       await addDecorator(formData);
-      alert("Tried adding decorator");
+      // alert("Tried adding decorator");
+      toast({
+        variant: "default",
+        title: "Service Created Successfully",
+      });
     } catch (error) {
+      toast({
+        variant: "destructive",
+        title: error ? "Error" : "Something went wrong.",
+        description: "Error While Creating Service. Pls Try Again",
+      });
+      router.push("/Payment-Failed");
       console.error("Error adding venue:", error);
     }
   };

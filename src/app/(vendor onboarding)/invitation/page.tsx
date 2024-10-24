@@ -1,5 +1,6 @@
 "use client";
-
+import { useToast } from "@/components/hooks/use-toast";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Page1 from "./page1/page1";
 import Page2 from "./page2/page2";
@@ -54,6 +55,8 @@ interface FormState {
 }
 
 const Invitation: React.FC = () => {
+  const { toast } = useToast();
+  const router = useRouter();
   const [currentPage, setCurrentPage] = useState(1);
   // global variables
   const [formState, setFormState] = useState<FormState>({
@@ -272,9 +275,22 @@ const Invitation: React.FC = () => {
     });
 
     try {
+      toast({
+        variant: "default",
+        title: "Creating Service...",
+      });
       await addInvitation(formData);
-      console.log("Invitation added successfully");
+      toast({
+        variant: "default",
+        title: "Service Created Successfully",
+      });
     } catch (error) {
+      toast({
+        variant: "destructive",
+        title: error ? "Error" : "Something went wrong.",
+        description: "Error While Creating Service. Pls Try Again",
+      });
+      router.push("/Payment-Failed");
       console.log(" error adding makeup artist" + error);
     }
   };
