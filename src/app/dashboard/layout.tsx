@@ -17,7 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <SidebarProvider>
-      <div className="flex h-[100vh] pt-[27vw] md:pt-[15vw] lg:pt-[4.5vw] scrollbar-hide overflow-hidden overflow-y-auto">
+      <div className="flex h-[100vh] overflow-hidden overflow-y-auto pt-[27vw] scrollbar-hide md:pt-[15vw] lg:pt-[4.5vw]">
         <SideBarWrapper />
         {children}
       </div>
