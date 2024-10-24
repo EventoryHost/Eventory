@@ -92,20 +92,20 @@ const Page3: React.FC<Page3Props> = ({
                     <path
                       d="M8.33398 11.334L8.33398 7.33398"
                       stroke="#2B3F6C"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                     <path
                       d="M7.00065 7.33398L8.33398 7.33398"
                       stroke="#2B3F6C"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                     <path
                       d="M8.33398 5.33464L8.33398 4.66797"
                       stroke="#2B3F6C"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                   </svg>
                 </label>
@@ -145,20 +145,20 @@ const Page3: React.FC<Page3Props> = ({
                     <path
                       d="M8.33398 11.334L8.33398 7.33398"
                       stroke="#2B3F6C"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                     <path
                       d="M7.00065 7.33398L8.33398 7.33398"
                       stroke="#2B3F6C"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                     <path
                       d="M8.33398 5.33464L8.33398 4.66797"
                       stroke="#2B3F6C"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                   </svg>
                 </label>
