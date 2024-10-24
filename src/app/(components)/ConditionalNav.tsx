@@ -18,7 +18,7 @@ export default function ConditionalNav() {
     return (
       <>
         <Navbar toggleSidebar={toggleSidebar} />
-        <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+        {/* <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} /> */}
         {/* <Page isSidebarOpen={isSidebarOpen} /> */}
       </>
     );

@@ -203,7 +203,7 @@ const Page: React.FC = () => {
   }, [user]);
 
   return (
-    <div className="overflow-hidden overflow-y-auto bg-slate-100 p-6 pt-[80px] scrollbar-hide">
+    <div className="h-[90vh] overflow-hidden overflow-y-auto bg-slate-100 p-6 pt-[80px] scrollbar-hide">
       <div
         className={`ml-56 flex flex-col gap-6 overflow-hidden overflow-y-auto scrollbar-hide`}
       >

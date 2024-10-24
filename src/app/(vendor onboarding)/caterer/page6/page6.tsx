@@ -140,20 +140,20 @@ const Page6 = ({
                       <path
                         d="M8.33398 11.3335L8.33398 7.3335"
                         stroke="#2B3F6C"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                       <path
                         d="M7.00065 7.3335L8.33398 7.3335"
                         stroke="#2B3F6C"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                       <path
                         d="M8.33398 5.33366L8.33398 4.66699"
                         stroke="#2B3F6C"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                     </svg>
                   </div>
@@ -325,20 +325,20 @@ const Page6 = ({
                       <path
                         d="M8.33398 11.3335L8.33398 7.3335"
                         stroke="#2B3F6C"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                       <path
                         d="M7.00065 7.3335L8.33398 7.3335"
                         stroke="#2B3F6C"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                       <path
                         d="M8.33398 5.33366L8.33398 4.66699"
                         stroke="#2B3F6C"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                     </svg>
                   </div>

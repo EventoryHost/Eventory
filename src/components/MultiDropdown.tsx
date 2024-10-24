@@ -63,9 +63,9 @@ const MultipleDropdown: React.FC<DropdownProps> = ({
                   <path
                     d="M2 2L14 14M2 14L14 2"
                     stroke="#2B3F6C"
-                    stroke-width="1.33333"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="1.33333"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                 </svg>
               </span>

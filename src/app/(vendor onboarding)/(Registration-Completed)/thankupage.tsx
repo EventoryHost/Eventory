@@ -17,8 +17,8 @@ function Registration_Completed() {
                 <path
                   d="M11.35 9.55L8.71317 12.1868C8.26407 12.6359 8.26407 13.3641 8.71317 13.8132L11.35 16.45M9.05 13H17.1M12.5 1.5C6.14873 1.5 1 6.64873 1 13C1 19.3513 6.14873 24.5 12.5 24.5C18.8513 24.5 24 19.3513 24 13C24 6.64873 18.8513 1.5 12.5 1.5Z"
                   stroke="#2B3F6C"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
                 />
               </svg>
               <h2 className="text-[rgba(55, 65, 81, 1)] font-poppins text-xl font-normal">
@@ -35,7 +35,7 @@ function Registration_Completed() {
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <g clip-path="url(#clip0_4527_21158)">
+            <g clipPath="url(#clip0_4527_21158)">
               <path
                 d="M29.9613 313.85C32.2605 314.657 34.729 314.859 37.1291 314.437C39.5292 314.015 41.78 312.982 43.6646 311.439C48.4641 307.415 49.9692 300.787 51.1933 294.649L54.8148 276.492L47.2328 281.707C41.7799 285.457 36.2045 289.328 32.4293 294.76C28.6541 300.192 27.0071 307.607 30.0395 313.485"
                 fill="#E6E6E6"
